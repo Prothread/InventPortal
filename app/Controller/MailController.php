@@ -31,7 +31,7 @@ class MailController
         $this->model->setToken($mailinfo['token']);
         $this->model->setVerified($mailinfo['token']);
         if ($result = $this->model->create()) {
-            echo('success, de mail is succesvol aangemaakt.');
+            echo('Success, de mail is succesvol verzonden.');
             return $result;
         }
         return false;
@@ -39,7 +39,7 @@ class MailController
 
     /**
      * Update mail information
-     * @TODO: getting mail by Id
+     * @TODO: getting mail by Id and updating that
      *
      * @param array $mailinfo
      * @return bool

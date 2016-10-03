@@ -37,9 +37,6 @@ $smtp = array(
 
 if( isset($_POST['submit'] ) ) {
 
-    //Verify email variable
-    $verified = 0;
-
     /* TO, SUBJECT, CONTENT */
     $to = $_POST['mailto']; //The 'To' field
     $subject = $_POST['title'];
@@ -86,14 +83,13 @@ if( isset($_POST['submit'] ) ) {
         'name' => $_POST['mailname'],
         'email' => $_POST['mailto'],
         'token' => $token,
-        'verified' => $verified
+        'verified' => $_POST['verified']
     ];
 
 //Check if mail is sent :
     if (!$mailer->send()) {
         echo 'Error sending mail : ' . $mailer->ErrorInfo;
     } else {
-        echo 'Message sent! ';
         //If mail is send, create data and send it to the database
         $mymail->create($mailinfo);
     }
@@ -105,8 +101,8 @@ if( isset($_POST['submit'] ) ) {
             <span>Zender: </span>
             <input type="text" name="fromname" id="MailFromName">
 
-            <span>Zender e-mail: </span>
-            <input type="text" name="frommail" id="MailFrom" value="<?php echo $crendentials['email']?>">
+            <!-- <span>Zender e-mail: </span> -->
+            <input type="hidden" name="frommail" id="MailFrom" value="<?php echo $crendentials['email']?>">
 
             <span>Title e-mail: </span>
             <input type="text" name="title" id="MailTitle">
@@ -119,6 +115,8 @@ if( isset($_POST['submit'] ) ) {
 
             <span>Email ontvanger: </span>
             <input type="text" name="mailto" id="MailTo">
+
+            <input type="hidden" name="verified" value="0">
 
             <input type="submit" value="Submit mail" name="submit">
         </form>
