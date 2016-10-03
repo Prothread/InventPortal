@@ -1,0 +1,13 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: Kevin
+ * Date: 29-Sep-16
+ * Time: 12:47
+ */
+?>
+<form action="?page=uploading" method="post" enctype="multipart/form-data">
+    Select an image to upload
+    <input type="file" name="fileToUpload" id="fileToUpload" multiple="multiple">
+    <input type="submit" value="Upload image" name="submit">
+</form>

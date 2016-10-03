@@ -1,0 +1,52 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: Kevin
+ * Date: 30-Sep-16
+ * Time: 12:34
+ */
+
+class MailController
+{
+    private $model;
+
+    public function __construct()
+    {
+        $this->model = new Mail();
+        var_dump($this);
+    }
+
+    public function create(array $mailinfo)
+    {
+        $this->model->setMailSubject($mailinfo['title']);
+        $this->model->setMailSender($mailinfo['sender']);
+        $this->model->setMailDescription($mailinfo['description']);
+        $this->model->setMailName($mailinfo['name']);
+        $this->model->setMailEmail($mailinfo['email']);
+        $this->model->setToken($mailinfo['token']);
+        $this->model->setVerified($mailinfo['token']);
+        if ($result = $this->model->create()) {
+            echo('success, de mail is succesvol aangemaakt.');
+            return $result;
+        }
+        return false;
+    }
+    public function update(array $mailinfo)
+    {
+        $this->model->setMailSubject($mailinfo['title']);
+        $this->model->setMailSender($mailinfo['sender']);
+        $this->model->setMailDescription($mailinfo['description']);
+        $this->model->setMailName($mailinfo['name']);
+        $this->model->setMailEmail($mailinfo['email']);
+        $this->model->setToken($mailinfo['token']);
+        $this->model->setVerified($mailinfo['token']);
+        if ($result = $this->model->update()) {
+            echo('success, de mail is succesvol geüpdate.');
+            return $result;
+        }
+        return false;
+    }
+
+
+
+}

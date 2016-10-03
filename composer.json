@@ -1,0 +1,23 @@
+{
+  "name": "Kevin/InventPortal",
+  "authors": [
+    {
+      "name": "Kevin Ernst",
+      "email": "kevin.herdershof@hotmail.com"
+    }
+  ],
+  "autoload": {
+    "classmap": ["app/"], 
+    "psr-4": {
+        "ProjectRoot\\" : "", 
+        "NamspaceInSourceDir\\" : "src/"         
+    }
+  },
+  "require": {
+    "phpmailer/phpmailer": "^5.2",
+    "ircmaxell/password-compat": "^1.0"
+  },
+  "version": "0.1.0-dev",
+  "require-dev": {
+  }
+}
