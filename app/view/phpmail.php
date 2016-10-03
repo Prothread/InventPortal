@@ -45,6 +45,7 @@ if( isset($_POST['submit'] ) ) {
 
         $_POST['additionalcontent'] .
 
+        "<br /><br />" . "Here is the link to get you your product: " . "<a href='http://localhost/InventPortal/public/index.php?page=verify&key=$token'>Link</a> " .
 
         "<br /> <br />Met vriendelijke groet, <br />" . $_POST['fromname'];
     ;
