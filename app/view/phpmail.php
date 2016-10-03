@@ -94,6 +94,7 @@ if( isset($_POST['submit'] ) ) {
         echo 'Error sending mail : ' . $mailer->ErrorInfo;
     } else {
         echo 'Message sent! ';
+        //If mail is send, create data and send it to the database
         $mymail->create($mailinfo);
     }
 }
