@@ -15,12 +15,6 @@ class MailController
         $this->model = new Mail();
     }
 
-    /**
-     * Get mail information and send it to the Mail model
-     *
-     * @param array $mailinfo
-     * @return bool|mixed
-     */
     public function create(array $mailinfo)
     {
         $this->model->setMailSubject($mailinfo['title']);
@@ -36,14 +30,6 @@ class MailController
         }
         return false;
     }
-
-    /**
-     * Update mail information
-     * @TODO: getting mail by Id
-     *
-     * @param array $mailinfo
-     * @return bool
-     */
     public function update(array $mailinfo)
     {
         $this->model->setMailSubject($mailinfo['title']);
