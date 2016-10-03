@@ -8,6 +8,8 @@
 require_once '../app/view/header.php';
 require_once '../config/load.php';
 
+//HERROOO
+
 isset($_GET['page']) ? $page = $_GET['page'] : $page = 'dashboard';
 
 if(isset($_GET['page'])) {
