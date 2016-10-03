@@ -6,21 +6,12 @@
  * Time: 13:15
  */
 
-if( class_exists('MailController')) {
-    $mymail = new MailController();
-}
-else {
-    echo 'nope';
-}
 $mymail = new MailController();
-
-//$memail = DIR_CONTROLLER.'MailController.php';
 
 //Generate a random string.
 $token = openssl_random_pseudo_bytes(16);
 //Convert the binary data into hexadecimal representation.
 $token = bin2hex($token);
-
 
 //Load PHPMailer dependencies
 require_once DIR_MAILER.'/PHPMailerAutoload.php';
@@ -102,7 +93,7 @@ if( isset($_POST['submit'] ) ) {
     if (!$mailer->send()) {
         echo 'Error sending mail : ' . $mailer->ErrorInfo;
     } else {
-        echo 'Message sent !';
+        echo 'Message sent! ';
         $mymail->create($mailinfo);
     }
 
