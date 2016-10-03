@@ -35,6 +35,7 @@ class ComposerStaticInitc0a55957efdf0e279fcd6092060aa6da
     public static $classMap = array (
         'Database' => __DIR__ . '/../..' . '/app/Model/Database.php',
         'DbMail' => __DIR__ . '/../..' . '/app/Model/DbMail.php',
+        'DbVerify' => __DIR__ . '/../..' . '/app/Model/DbVerify.php',
         'EasyPeasyICS' => __DIR__ . '/..' . '/phpmailer/phpmailer/extras/EasyPeasyICS.php',
         'Mail' => __DIR__ . '/../..' . '/app/Model/Mail.php',
         'MailController' => __DIR__ . '/../..' . '/app/Controller/MailController.php',

@@ -23,6 +23,7 @@ define("WWW_ROOT",                          "");
  define("DIR_VIEW",                         WWW_ROOT."../app/views/");
  define("DIR_CONTROLLER",                   WWW_ROOT."../app/Controller/");
  define("DIR_MAILER",                       WWW_ROOT."../vendor/phpmailer/");
+ define("DIR_IMAGE",                        WWW_ROOT."../app/uploads/");
  
 // DATABASE CONNECTION
  define("FILE_DB",                          DIR_CONTROLLER."Database.php");

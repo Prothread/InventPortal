@@ -45,5 +45,23 @@ class Database
 
         return $this->query_result;
     }
+    public function dbFetchArray($query)
+    {
+        $result = $this->connection->query($query);
+
+        //TODO: add error check.
+        if($data_array = $result->fetch_array(MYSQLI_ASSOC)) {
+            if (!$this->connection->errno) {
+                $data_array = $this->dbOutArray($data_array);
+            }
+            return $data_array;
+        }
+
+
+        if ($data_array == FALSE) {
+            return FALSE;
+        }
+
+    }
 
 }

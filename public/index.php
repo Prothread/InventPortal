@@ -40,6 +40,9 @@ switch($page) {
     case 'verify':
         include '../app/Model/verifymail.php';
         break;
+    case 'dbverify':
+        include '../app/Model/DbVerify.php';
+        break;
     default:
         break;
 }

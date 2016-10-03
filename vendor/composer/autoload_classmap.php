@@ -8,6 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'Database' => $baseDir . '/app/Model/Database.php',
     'DbMail' => $baseDir . '/app/Model/DbMail.php',
+    'DbVerify' => $baseDir . '/app/Model/DbVerify.php',
     'EasyPeasyICS' => $vendorDir . '/phpmailer/phpmailer/extras/EasyPeasyICS.php',
     'Mail' => $baseDir . '/app/Model/Mail.php',
     'MailController' => $baseDir . '/app/Controller/MailController.php',
