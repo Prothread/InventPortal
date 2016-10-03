@@ -6,7 +6,6 @@
  * Time: 15:58
  */
 
-
 class DbVerify extends Database
 {
 
@@ -14,18 +13,23 @@ class DbVerify extends Database
 
     public function setVerified($verifyemail, $verifykey)
     {
-        $query =
-        "IF EXISTS (SELECT * FROM `mail` WHERE `email` = '{$verifyemail}' && `key` = '{$verifykey}')
+        $query = "SELECT * FROM `mail` WHERE `email` = '{$verifyemail}' && `key` = '{$verifykey}'";
+
+        /*"IF EXISTS (SELECT * FROM `mail` WHERE `email` = '{$verifyemail}' && `key` = '{$verifykey}')
             BEGIN
-                SELECT * FROM `mail` WHERE `email` = '{$verifyemail}' && `key` = '{$verifykey}'
+                SELECT `verified` FROM `mail` WHERE `email` = '{$verifyemail}' && `key` = '{$verifykey}'
             END
-        ";
+        ";*/
+
         if( $result = $this->dbQuery($query) ){
-            return $this->result = $result;
+            $this->result = $result;
         }
+
     }
     public function getVerified()
     {
         return $this->result;
     }
 }
+$test = new DbVerify();
+var_dump(  $test->getVerified() );

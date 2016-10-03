@@ -10,20 +10,21 @@ $DbVerify = new DbVerify();
 
 if(isset( $_GET['email'] ) ) {
     $verifyemail = $_GET['email'];
-}
-else {
+} else {
     echo "No e-mail returned. ";
 }
+
 if(isset( $_GET['key'] ) ) {
     $verifykey = $_GET['key'];
-}
-else {
+} else {
     echo "No key returned. ";
 }
+
 if( isset( $_GET['email'] ) && isset( $_GET['key'] ) ) {
     //$sql = "SELECT * FROM `mail` WHERE `email` = '{$verifyemail}' && `key` = '{$verifykey}'";
     $DbVerify->setVerified($verifyemail, $verifykey);
-    header('Location: index.php?page=dbverify');
+    var_dump($DbVerify);
+    //header('Location: index.php?page=dbverify');
 }
 else {
     echo 'Something went wrong!';
