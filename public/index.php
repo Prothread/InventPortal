@@ -37,6 +37,9 @@ switch($page) {
     case 'phpmail':
         include '../app/view/phpmail.php';
         break;
+    case 'verify':
+        include '../app/Model/verifymail.php';
+        break;
     default:
         break;
 }

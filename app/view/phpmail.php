@@ -45,7 +45,6 @@ if( isset($_POST['submit'] ) ) {
 
         $_POST['additionalcontent'] .
 
-        "<br /><br />" . "Here is the link to get you your product: " . "<a href='http://localhost/InventPortal/vendor/phpmailer/index.php&key=$token'>Link</a> " .
 
         "<br /> <br />Met vriendelijke groet, <br />" . $_POST['fromname'];
     ;
@@ -99,22 +98,22 @@ if( isset($_POST['submit'] ) ) {
     <div id="Mail">
         <form method="post">
             <span>Zender: </span>
-            <input type="text" name="fromname" id="MailFromName">
+            <input type="text" name="fromname" id="MailFromName" value="<?php if( isset($mailinfo['sender']) ){echo $mailinfo['sender'];}?>">
 
             <!-- <span>Zender e-mail: </span> -->
             <input type="hidden" name="frommail" id="MailFrom" value="<?php echo $crendentials['email']?>">
 
-            <span>Title e-mail: </span>
-            <input type="text" name="title" id="MailTitle">
+            <span>Title: </span>
+            <input type="text" name="title" id="MailTitle" value="<?php if( isset($mailinfo['title']) ){echo $mailinfo['title'];}?>">
 
             <span>Extra omschrijving (opmerkingen): </span>
-            <input type="text" name="additionalcontent" id="MailContent">
+            <input type="text" name="additionalcontent" id="MailContent" value="<?php if( isset($mailinfo['description']) ){echo $mailinfo['description'];}?>">
 
             <span>Naam ontvanger: </span>
-            <input type="text" name="mailname" id="MailName">
+            <input type="text" name="mailname" id="MailName" value="<?php if( isset($mailinfo['name']) ){echo $mailinfo['name'];}?>">
 
             <span>Email ontvanger: </span>
-            <input type="text" name="mailto" id="MailTo">
+            <input type="email" name="mailto" id="MailTo" value="<?php if( isset($mailinfo['email']) ){echo $mailinfo['email'];}?>">
 
             <input type="hidden" name="verified" value="0">
 
