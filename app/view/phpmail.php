@@ -96,9 +96,6 @@ if( isset($_POST['submit'] ) ) {
         echo 'Message sent! ';
         $mymail->create($mailinfo);
     }
-
-    var_dump($mailinfo);
-
 }
 
 ?>

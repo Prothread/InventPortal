@@ -20,7 +20,6 @@ class Mail {
     public function __construct()
     {
         $this->db = new DbMail();
-        var_dump($this);
     }
 
     public function create()

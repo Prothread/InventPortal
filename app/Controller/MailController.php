@@ -13,7 +13,6 @@ class MailController
     public function __construct()
     {
         $this->model = new Mail();
-        var_dump($this);
     }
 
     public function create(array $mailinfo)
