@@ -48,10 +48,9 @@ if (isset($_FILES['myFile'])) {
             $target_dir = "../app/uploads/";
             $target_file = $target_dir . $test;
 
-            if (!file_exists($target_file)) {
                 $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
                 if (move_uploaded_file($test1, $target_file)) {
-                    array_push($images, $target_file);
+                    array_push($images, $test);
 
                     echo "The file " . $test . " has been uploaded.";
                     echo '<img src="../app/uploads/' . $test . '">';
@@ -73,8 +72,8 @@ if (isset($_FILES['myFile'])) {
             }
         }
     }
-
-    $mymail = new MailController();
+if($error == 0) {
+$mymail = new MailController();
 
 //Generate a random string.
     $token = openssl_random_pseudo_bytes(16);
