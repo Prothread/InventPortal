@@ -6,6 +6,9 @@
  * Time: 10:44
  */
 
+//Session start
+//session_start();
+
 //Get Composer autloader
 require '../vendor/autoload.php';
 

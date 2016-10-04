@@ -9,6 +9,15 @@
 class Session
 {
 
+    public function exists($name)
+    {
+        if (isset($_SESSION[$name]) && !empty($_SESSION[$name])) {
+            return true;
+        }
+
+        return false;
+    }
+
     public function delete()
     {
         session_destroy();
