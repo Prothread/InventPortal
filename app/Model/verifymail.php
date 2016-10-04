@@ -29,6 +29,8 @@ if( isset( $_GET['email'] ) && isset( $_GET['key'] ) ) {
     //$sql = "SELECT * FROM `mail` WHERE `email` = '{$verifyemail}' && `key` = '{$verifykey}'";
     $DbVerify->setVerified($verifyemail, $verifykey);
     var_dump($DbVerify);
+    $DbVerify->getVerified();
+    var_dump($DbVerify->getVerified());
     //header('Location: index.php?page=dbverify');
 }
 else {

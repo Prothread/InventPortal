@@ -23,6 +23,7 @@ class DbVerify extends Database
 
         if( $result = $this->dbQuery($query) ){
             $this->result = $result;
+            return $result;
         }
 
     }
