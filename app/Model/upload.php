@@ -21,10 +21,10 @@ if (isset($_FILES['myFile'])) {
             if (move_uploaded_file($test1, $target_file)) {
 
                 echo "The file " . $test . " has been uploaded.";
+                ?><br /><?php
                 echo '<img src="../app/uploads/' . $test . '">';
                 ?>
 
-                <p>File #<?= $i + 1 ?>:</p>
                 <p>
                     Name: <?= $myFile["name"][$i] ?><br>
                     Temporary file: <?= $myFile["tmp_name"][$i] ?><br>
@@ -34,6 +34,9 @@ if (isset($_FILES['myFile'])) {
                 </p>
                 <?php
             }
+        }else{
+            echo "The file " . $test . " already exists!.";
+            ?><br /><?php
         }
     }
 }
