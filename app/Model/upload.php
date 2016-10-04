@@ -6,11 +6,9 @@
  * Time: 11:47
  */
 
-<<<<<<< HEAD
-$error = 0;
-=======
 
->>>>>>> origin/master
+$error = 0;
+
 if (isset($_FILES['myFile'])) {
     $myFile = $_FILES['myFile'];
     $fileCount = count($myFile["name"]);
@@ -19,161 +17,154 @@ if (isset($_FILES['myFile'])) {
 
     for ($i = 0; $i < $fileCount; $i++) {
 
-            $test = $myFile['name'][$i];
-            $test1 = $myFile['tmp_name'][$i];
+        $test = $myFile['name'][$i];
+        $test1 = $myFile['tmp_name'][$i];
 
-<<<<<<< HEAD
-            $target_dir = "../app/uploads/";
-            $target_file = $target_dir . $test;
-            $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
 
-        if(file_exists($target_file)){
+        $target_dir = "../app/uploads/";
+        $target_file = $target_dir . $test;
+        $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
+
+        if (file_exists($target_file)) {
             $error = 1;
-            echo $test." already exists!";
-            ?><br /><?php
+            echo $test . " already exists!";
+            ?><br/><?php
         }
 
-        if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
+        if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
             $error = 1;
             echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-            ?><br /><?php
+            ?><br/><?php
         }
 
-        if(filesize($test) > 50000000){
+        if (filesize($test) > 50000000) {
             $error = 1;
-            echo $test." File too big!";
-            ?><br /><?php
+            echo $test . " File too big!";
+            ?><br/><?php
         }
 
         if ($error == 0) {
-=======
-        $target_dir = "../app/uploads/";
-        $target_file = $target_dir . $test;
 
-        if (!file_exists($target_file)) {
->>>>>>> origin/master
-            $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
-            if (move_uploaded_file($test1, $target_file)) {
-               array_push($images, $target_file);
+            $target_dir = "../app/uploads/";
+            $target_file = $target_dir . $test;
 
-                echo "The file " . $test . " has been uploaded.";
-                echo '<img src="../app/uploads/' . $test . '">';
-                ?>
+            if (!file_exists($target_file)) {
+                $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
+                if (move_uploaded_file($test1, $target_file)) {
+                    array_push($images, $target_file);
 
-                <p>File #<?= $i + 1 ?>:</p>
-                <p>
-                    Name: <?= $myFile["name"][$i] ?><br>
-                    Temporary file: <?= $myFile["tmp_name"][$i] ?><br>
-                    Type: <?= $myFile["type"][$i] ?><br>
-                    Size: <?= $myFile["size"][$i] ?><br>
-                    Error: <?= $myFile["error"][$i] ?><br>
-                </p>
-                <?php
+                    echo "The file " . $test . " has been uploaded.";
+                    echo '<img src="../app/uploads/' . $test . '">';
+                    ?>
+
+                    <p>File #<?= $i + 1 ?>:</p>
+                    <p>
+                        Name: <?= $myFile["name"][$i] ?><br>
+                        Temporary file: <?= $myFile["tmp_name"][$i] ?><br>
+                        Type: <?= $myFile["type"][$i] ?><br>
+                        Size: <?= $myFile["size"][$i] ?><br>
+                        Error: <?= $myFile["error"][$i] ?><br>
+                    </p>
+                    <?php
+                }
+
+            } else {
+
             }
-<<<<<<< HEAD
-        }else{
-
-=======
-        } else {
-            echo 'File has already been uploaded!';
->>>>>>> origin/master
         }
     }
-}
 
-$mymail = new MailController();
+    $mymail = new MailController();
 
 //Generate a random string.
-$token = openssl_random_pseudo_bytes(16);
+    $token = openssl_random_pseudo_bytes(16);
 //Convert the binary data into hexadecimal representation.
-$token = bin2hex($token);
+    $token = bin2hex($token);
 
 //Load PHPMailer dependencies
-require_once DIR_MAILER.'/PHPMailerAutoload.php';
-require_once DIR_MAILER.'/class.phpmailer.php';
-require_once DIR_MAILER.'/class.smtp.php';
+    require_once DIR_MAILER . '/PHPMailerAutoload.php';
+    require_once DIR_MAILER . '/class.phpmailer.php';
+    require_once DIR_MAILER . '/class.smtp.php';
 
-/* CONFIGURATION */
-$crendentials = array(
-    'email' => 'nicle48@gmail.com',    //Your GMail adress
-    'password' => 'Moneyhack1'         //Your GMail password
-);
+    /* CONFIGURATION */
+    $crendentials = array(
+        'email' => 'nicle48@gmail.com',    //Your GMail adress
+        'password' => 'Moneyhack1'         //Your GMail password
+    );
 
-/* SPECIFIC TO GMAIL SMTP */
-$smtp = array(
+    /* SPECIFIC TO GMAIL SMTP */
+    $smtp = array(
 
-    'host' => 'smtp.gmail.com',
-    'port' => 587,
-    'username' => $crendentials['email'],
-    'password' => $crendentials['password'],
-    'secure' => 'tls' //SSL or TLS
+        'host' => 'smtp.gmail.com',
+        'port' => 587,
+        'username' => $crendentials['email'],
+        'password' => $crendentials['password'],
+        'secure' => 'tls' //SSL or TLS
 
-);
+    );
 
-if( isset($_POST['submit'] ) ) {
+    if (isset($_POST['submit'])) {
 
-    /* TO, SUBJECT, CONTENT */
-    $to = $_POST['mailto']; //The 'To' field
-    $subject = $_POST['title'];
-    $content = "Beste " . $_POST['mailname'] .
-        "<br/><br/>" . "This is the HTML message body <b>in bold!</b>" . "<br /><br />" .
+        /* TO, SUBJECT, CONTENT */
+        $to = $_POST['mailto']; //The 'To' field
+        $subject = $_POST['title'];
+        $content = "Beste " . $_POST['mailname'] .
+            "<br/><br/>" . "This is the HTML message body <b>in bold!</b>" . "<br /><br />" .
 
-        $_POST['additionalcontent'] .
+            $_POST['additionalcontent'] .
 
-        "<br /><br />" . "Here is the link to get you your product: " . "<a href='http://localhost/InventPortal/public/index.php?page=verify&email=$to&key=$token'>Link</a> " .
+            "<br /><br />" . "Here is the link to get you your product: " . "<a href='http://localhost/InventPortal/public/index.php?page=verify&email=$to&key=$token'>Link</a> " .
 
-        "<br /> <br />Met vriendelijke groet, <br />" . $_POST['fromname'];
-    ;
-    $altcontent = "This is the content if the mailing system doesn't support a HMTL body";
+            "<br /> <br />Met vriendelijke groet, <br />" . $_POST['fromname'];;
+        $altcontent = "This is the content if the mailing system doesn't support a HMTL body";
 
-    $mailer = new PHPMailer();
+        $mailer = new PHPMailer();
 
 //SMTP Configuration
-    $mailer->isSMTP();
-    $mailer->SMTPAuth = true; //We need to authenticate
-    $mailer->Host = $smtp['host'];
-    $mailer->Port = $smtp['port'];
-    $mailer->Username = $smtp['username'];
-    $mailer->Password = $smtp['password'];
-    $mailer->SMTPSecure = $smtp['secure'];
+        $mailer->isSMTP();
+        $mailer->SMTPAuth = true; //We need to authenticate
+        $mailer->Host = $smtp['host'];
+        $mailer->Port = $smtp['port'];
+        $mailer->Username = $smtp['username'];
+        $mailer->Password = $smtp['password'];
+        $mailer->SMTPSecure = $smtp['secure'];
 
 //Now, send mail :
 //From - To :
-    $mailer->AddReplyTo($_POST['frommail'], $_POST['fromname']);
-    $mailer->From = $crendentials['email'];
-    $mailer->FromName = $_POST['fromname']; //Optional
-    $mailer->addAddress($to);  // Add a recipient
+        $mailer->AddReplyTo($_POST['frommail'], $_POST['fromname']);
+        $mailer->From = $crendentials['email'];
+        $mailer->FromName = $_POST['fromname']; //Optional
+        $mailer->addAddress($to);  // Add a recipient
 
 //Subject - Body :
-    $mailer->Subject = $subject;
-    $mailer->Body = $content;
-    $mailer->isHTML(true); //Mail body contains HTML tags
-    $mailer->AltBody = $altcontent;
+        $mailer->Subject = $subject;
+        $mailer->Body = $content;
+        $mailer->isHTML(true); //Mail body contains HTML tags
+        $mailer->AltBody = $altcontent;
 
 //Saving mail information
 
-    $dbimages = implode(", ", $images);
+        $dbimages = implode(", ", $images);
 
-    $mailinfo = [
-        'title' => $_POST['title'],
-        'sender' => $_POST['fromname'],
-        'description' => $_POST['additionalcontent'],
-        'name' => $_POST['mailname'],
-        'email' => $_POST['mailto'],
-        'token' => $token,
-        'images' => $dbimages,
-        'verified' => $_POST['verified']
-    ];
+        $mailinfo = [
+            'title' => $_POST['title'],
+            'sender' => $_POST['fromname'],
+            'description' => $_POST['additionalcontent'],
+            'name' => $_POST['mailname'],
+            'email' => $_POST['mailto'],
+            'token' => $token,
+            'images' => $dbimages,
+            'verified' => $_POST['verified']
+        ];
 
 //Check if mail is sent :
-    if (!$mailer->send()) {
-        header('Location: index.php?page=phpmail');
-        echo 'Error sending mail : ' . $mailer->ErrorInfo;
-    } else {
-        //If mail is send, create data and send it to the database
-        $mymail->create($mailinfo);
-        //header('Location: index.php?page=uploading');
+        if (!$mailer->send()) {
+            header('Location: index.php?page=phpmail');
+            echo 'Error sending mail : ' . $mailer->ErrorInfo;
+        } else {
+            //If mail is send, create data and send it to the database
+            $mymail->create($mailinfo);
+            //header('Location: index.php?page=uploading');
+        }
     }
 }
-
-?>
