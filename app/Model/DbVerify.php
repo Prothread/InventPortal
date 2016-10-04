@@ -13,24 +13,45 @@ class DbVerify extends Database
 
     public function setVerified($verifyemail, $verifykey)
     {
-        $query = "SELECT * FROM `mail` WHERE `email` = '{$verifyemail}' && `key` = '{$verifykey}'";
+        $sql = "SELECT * FROM `mail` WHERE `email` = '{$verifyemail}' && `key` = '{$verifykey}'";
+        $result = $this->dbQuery($sql);
 
-        /*"IF EXISTS (SELECT * FROM `mail` WHERE `email` = '{$verifyemail}' && `key` = '{$verifykey}')
-            BEGIN
-                SELECT `verified` FROM `mail` WHERE `email` = '{$verifyemail}' && `key` = '{$verifykey}'
-            END
-        ";*/
+        $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 
-        if( $result = $this->dbQuery($query) ){
-            $this->result = $result;
-            return $result;
+        if( $result ){
+            $this->result = $row;
+            return $this->result;
         }
 
     }
+
+    public function setVerifiedById($id)
+    {
+        $sql = "UPDATE `mail` SET `verified` = '1' WHERE `mail`.`id` = '{$id}';";
+        $result = $this->dbQuery($sql);
+
+        if( $result ){
+            return $this->result;
+        }
+
+    }
+
+    public function getVerifiedById($verifyemail, $verifykey)
+    {
+        $sql = "SELECT `id` FROM `mail` WHERE `email` = '{$verifyemail}' && `key` = '{$verifykey}'";
+        $result = $this->dbQuery($sql);
+
+        $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+
+        if( $result ){
+            $this->result = $row;
+            return $this->result;
+        }
+
+    }
+
     public function getVerified()
     {
         return $this->result;
     }
 }
-$test = new DbVerify();
-var_dump(  $test->getVerified() );
