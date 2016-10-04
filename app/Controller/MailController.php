@@ -29,6 +29,7 @@ class MailController
         $this->model->setMailName($mailinfo['name']);
         $this->model->setMailEmail($mailinfo['email']);
         $this->model->setToken($mailinfo['token']);
+        $this->model->setImage($mailinfo['images']);
         $this->model->setVerified($mailinfo['token']);
         if ($result = $this->model->create()) {
             echo('Success, de mail is succesvol verzonden.');

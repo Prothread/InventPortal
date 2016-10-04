@@ -22,8 +22,6 @@ if(isset($_GET['page'])) {
     $page = 'dashboard';
 }*/
 
-//$page = $_GET['page'];
-
 switch($page) {
     case 'upload':
         include '../app/view/uploadoverzicht.php';
