@@ -29,6 +29,8 @@
 
             <input type="hidden" name="verified" value="0">
 
+            <input type="file" name="myFile[]" id="myFile" multiple>
+
             <input type="submit" value="Submit mail" name="submit">
         </form>
     </div>
