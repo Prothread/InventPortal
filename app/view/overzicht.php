@@ -6,6 +6,9 @@
  * Time: 08:52
  */
 
+$uploads = new BlockController();
+$uploads->getUploads();
+
 ?>
 <table>
     <thead>

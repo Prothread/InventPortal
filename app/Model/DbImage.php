@@ -12,10 +12,10 @@ class DbImage extends Database
         $sql = "SELECT `id` FROM `mail` ORDER BY `id` DESC LIMIT 1";
 
         $result = $this->dbQuery($sql);
-        $value = mysqli_fetch_object($result);
+        $value = mysqli_fetch_assoc($result);
 
         if($value) {
-            return $value;
+            return  intval($value['id']);
         }
     }
 }
