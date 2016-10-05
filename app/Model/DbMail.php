@@ -10,8 +10,9 @@ class DbMail extends Database
 {
     public function create(Mail $mail)
     {
-        $sql = "INSERT INTO `mail` (`onderwerp`, `verstuurder`, `beschrijving`, `naam`, `email`, `key`, `images`, `verified`) VALUES ('{$mail->getMailSubject()}' , '{$mail->getMailSender()}' ,
-                '{$mail->getMailDescription()}' , '{$mail->getMailName()}' , '{$mail->getMailEmail()}' , '{$mail->getToken()}', '{$mail->getImage()}', '{$mail->getDatum()}' , '{$mail->getVerified()}' )";
+        $sql = "INSERT INTO `mail` (`onderwerp`, `verstuurder`, `beschrijving`, `naam`, `email`, `key`, `imgname` , `images`, `datum` , `verified`) VALUES ('{$mail->getMailSubject()}' , '{$mail->getMailSender()}' ,
+                '{$mail->getMailDescription()}' , '{$mail->getMailName()}' , '{$mail->getMailEmail()}' , '{$mail->getToken()}', '{$mail->getFakeImage()}' ,'{$mail->getImage()}', '{$mail->getDatum()}' ,
+                '{$mail->getVerified()}' )";
 
         if($this->dbQuery($sql)) {
             return $this->dbLastInsertedId();
@@ -23,8 +24,9 @@ class DbMail extends Database
 
     public function update(Mail $mail)
     {
-        $sql = "INSERT INTO `mail` (`onderwerp`, `verstuurder`, `beschrijving`, `naam`, `email`, `key`, `images`, `verified`) VALUES ('{$mail->getMailSubject()}' , '{$mail->getMailSender()}' ,
-                '{$mail->getMailDescription()}' , '{$mail->getMailName()}' , '{$mail->getMailEmail()}' , '{$mail->getToken()}', '{$mail->getImage()}', '{$mail->getDatum()}' , '{$mail->getVerified()}' )";
+        $sql = "INSERT INTO `mail` (`onderwerp`, `verstuurder`, `beschrijving`, `naam`, `email`, `key`, `imgname` , `images`, `datum` , `verified`) VALUES ('{$mail->getMailSubject()}' , '{$mail->getMailSender()}' ,
+                '{$mail->getMailDescription()}' , '{$mail->getMailName()}' , '{$mail->getMailEmail()}' , '{$mail->getToken()}', '{$mail->getFakeImage()}' , '{$mail->getImage()}', '{$mail->getDatum()}' ,
+                '{$mail->getVerified()}' )";
 
         if($this->dbQuery($sql)) {
             return true;

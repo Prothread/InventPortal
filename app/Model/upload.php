@@ -31,7 +31,7 @@ if (isset($_FILES['myFile'])) {
 
         if (file_exists($target_file)) {
             $error = 1;
-            echo $test . $imageId ." already exists!";
+            echo $test ." already exists!";
             ?><br/><?php
         }
 
@@ -157,17 +157,18 @@ if($error == 0) {
             'token' => $token,
             'imgname' => $dbimages,
             'images' => $dbimages,
-            'datum' => date('d-m-Y'),
+            'datum' => date('Y-m-d'),
             'verified' => $_POST['verified']
         ];
 
 //Check if mail is sent :
         if (!$mailer->send()) {
-           // header('Location: index.php?page=phpmail');
+            header('Location: index.php?page=phpmail');
             echo 'Error sending mail : ' . $mailer->ErrorInfo;
         } else {
             //If mail is send, create data and send it to the database
             $mymail->create($mailinfo);
+            var_dump($mymail);
             //header('Location: index.php?page=uploading');
         }
     }

@@ -15,6 +15,7 @@ class Mail {
     private $MailName;
     private $MailEmail;
     private $MailToken;
+    private $MailFake;
     private $MailImage;
     private $MailDatum;
     private $MailVerified;
@@ -69,6 +70,11 @@ class Mail {
         $this->MailToken = $MailToken;
     }
 
+    public function setFakeImage($FakeImage)
+    {
+        $this->MailFake = $FakeImage;
+    }
+
     public function setImage($MailImage)
     {
         $this->MailImage = $MailImage;
@@ -112,6 +118,11 @@ class Mail {
     public function getToken()
     {
         return $this->MailToken;
+    }
+
+    public function getFakeImage()
+    {
+        return $this->MailFake;
     }
 
     public function getImage()
