@@ -7,8 +7,6 @@
  */
 
 $uploads = new BlockController();
-$uploads->getUploads();
-//var_dump($uploads->getUploads());
 
 ?>
 <table>
