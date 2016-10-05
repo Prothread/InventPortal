@@ -7,7 +7,9 @@
  */
 
 $upload = new BlockController();
-$myupload = $upload->getUploadById($_SESSION['id']);
+//$myupload = $upload->getUploadById($_SESSION['id']);
+$myupload = $upload->getUploadById(13);
+
 $imgarray = ( explode(", ", $myupload['imgname']) );
 
 ?>
@@ -74,7 +76,7 @@ $imgarray = ( explode(", ", $myupload['imgname']) );
             <td>
                 <?php
                     foreach ($imgarray as $img) {?>
-                        <img src="<?= DIR_IMAGE.$img?>" />
+                        <img width="400px" src="<?= DIR_IMAGE.$img?>" />
                     <?php }
                 ?>
             </td>

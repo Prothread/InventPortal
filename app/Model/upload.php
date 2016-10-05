@@ -53,8 +53,7 @@ if (isset($_FILES['myFile'])) {
             $target_dir = "../app/uploads/";
             $target_file = $target_dir . $test;
             $unique_name = pathinfo($test, PATHINFO_FILENAME)."_".($imageId+1).'.'.$imageFileType;
-            echo $unique_name;
-            var_dump($unique_names);
+
             array_push($unique_names, $unique_name);
 
                 $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
@@ -163,7 +162,7 @@ if($error == 0) {
             'imgname' => $dbimages,
             'images' => $uniqdbimages,
             'datum' => date('Y-m-d'),
-            'verified' => $_POST['verified']
+            'verified' => 0
         ];
 
 //Check if mail is sent :
@@ -173,7 +172,6 @@ if($error == 0) {
         } else {
             //If mail is send, create data and send it to the database
             $mymail->create($mailinfo);
-            var_dump($mymail);
             //header('Location: index.php?page=uploading');
         }
     }

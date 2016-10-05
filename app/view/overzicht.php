@@ -9,47 +9,53 @@
 $uploads = new BlockController();
 
 ?>
-<table>
-    <thead>
-        <tr>
-            <td>
-                Onderwerp
-            </td>
-            <td>
-                Verstuurder
-            </td>
-            <td>
-                Klantnaam
-            </td>
-            <td>
-                Datum
-            </td>
-            <td>
-                Status
-            </td>
-        </tr>
-    </thead>
-    <tbody>
 
-        <?php foreach($uploads->getUploads() as $upload) {?>
-            <tr>
-                <td>
-                    <?= $upload['onderwerp']?>
-                </td>
-                <td>
-                    <?= $upload['verstuurder']?>
-                </td>
-                <td>
-                    <?= $upload['naam']?>
-                </td>
-                <td>
-                    <?= date("d-m-Y", strtotime($upload['datum']));?>
-                </td>
-                <td>
-                    <?= $upload['verified']?>
-                </td>
-            </tr>
-        <?php }?>
 
-    </tbody>
-</table>
+<!-- Page Content -->
+<div id="page-content-wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <p class="NameText">Overzicht</p>
+                <hr size="1">
+                <input type="text" size="50" id="TableInput" onkeyup="searchTable()" placeholder="Zoek een product...">
+                <br>
+                <br>
+                <table id="overzicht" class="sortable">
+                    <thead>
+                        <tr>
+                            <td><b>Onderwerp</b></td>
+                            <td><b>Verstuurder</b></td>
+                            <td><b>Naam klant</b></td>
+                            <td><b>Datum</b></td>
+                            <td><b>Status</b></td>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                    <?php foreach($uploads->getUploads() as $upload) {?>
+                        <tr>
+                            <td>
+                                <?= $upload['onderwerp']?>
+                            </td>
+                            <td>
+                                <?= $upload['verstuurder']?>
+                            </td>
+                            <td>
+                                <?= $upload['naam']?>
+                            </td>
+                            <td>
+                                <?= date("d-m-Y", strtotime($upload['datum']));?>
+                            </td>
+                            <td>
+                                <?= $upload['verified']?>
+                            </td>
+                        </tr>
+                    <?php }?>
+                    </tbody>
+                </table>
+                <hr size="1">
+            </div>
+        </div>
+    </div>
+</div>

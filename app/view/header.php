@@ -5,7 +5,6 @@
  * Date: 28-Sep-16
  */
 ?>
-<!DOCTYPE html>
 <html lang="nl">
 
 <head>
@@ -65,7 +64,7 @@
                     if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
                         tr[i].style.display = "";
                     } else {
-                        tr[i].style.display = "none";
+                        tr[i].style.display = "";
                     }
                 }
             }
@@ -155,7 +154,7 @@
                     <a href="index.php?page=phpmail">Upload</a>
                 </li>
                 <li class="nav-button-all">
-                    <a href="index.php?page=">Overzicht</a>
+                    <a href="index.php?page=overzicht">Overzicht</a>
                 </li>
                 <li class="nav-button-settings">
                     <a href="index.php?page=#">Instellingen</a>
