@@ -21,13 +21,14 @@ $uploads = new BlockController();
                 <br>
                 <table id="overzicht" class="sortable">
                     <thead>
-                        <tr>
-                            <td><b>Onderwerp</b></td>
-                            <td><b>Verstuurder</b></td>
-                            <td><b>Naam klant</b></td>
-                            <td><b>Datum</b></td>
-                            <td><b>Status</b></td>
-                        </tr>
+                    <tr>
+                            <th><b>Onderwerp</b></th>
+                            <th><b>Verstuurder</b></th>
+                            <th><b>Naam klant</b></th>
+                            <th><b>Datum</b></th>
+                            <th><b>Status</b></th>
+
+                    </tr>
                     </thead>
 
                     <tbody>

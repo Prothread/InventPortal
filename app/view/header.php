@@ -50,10 +50,11 @@
     <script>
         function searchTable() {
             // Declare variables
-            var input, filter, table, tr, td, i;
+            var input, filter, table, tbody, tr, td, i;
             input = document.getElementById("TableInput");
             filter = input.value.toUpperCase();
             table = document.getElementById("overzicht");
+            tbody = table.getElementsByTagName("tbody");
             tr = table.getElementsByTagName("tr");
             td = table.getElementsByTagName("td");
 
@@ -64,7 +65,8 @@
                     if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
                         tr[i].style.display = "";
                     } else {
-                        tr[i].style.display = "";
+                        tr[i].style.display = "none";
+                        tr[0].style.display = "";
                     }
                 }
             }
