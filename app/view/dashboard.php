@@ -10,8 +10,6 @@ $uploads = new BlockController();
 $uploads->getLastThreeUploads();
 
 ?>
-
-<<<<<<< HEAD
 <!-- Page Content -->
 <div id="page-content-wrapper">
     <div class="container-fluid">
@@ -118,7 +116,6 @@ $uploads->getLastThreeUploads();
     </div>
 </div>
 </div>
-=======
 <table>
     <thead>
     <tr>
@@ -164,4 +161,4 @@ $uploads->getLastThreeUploads();
 
     </tbody>
 </table>
->>>>>>> origin/master
+
