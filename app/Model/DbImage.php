@@ -11,8 +11,11 @@ class DbImage extends Database
     public function getNewId(){
         $sql = "SELECT `id` FROM `mail` ORDER BY `id` DESC LIMIT 1";
 
-        if($result = $this->dbQuery($sql) ) {
-            return $result;
+        $result = $this->dbQuery($sql);
+        $value = mysqli_fetch_object($result);
+
+        if($value) {
+            return $value;
         }
     }
 }
