@@ -18,6 +18,7 @@ if (isset($_FILES['myFile'])) {
     $fileCount = count($myFile["name"]);
 
     $images = array();
+    $unique_names = array();
 
     for ($i = 0; $i < $fileCount; $i++) {
 
@@ -51,6 +52,10 @@ if (isset($_FILES['myFile'])) {
 
             $target_dir = "../app/uploads/";
             $target_file = $target_dir . $test;
+            $unique_name = pathinfo($test, PATHINFO_FILENAME)."_".($imageId+1).'.'.$imageFileType;
+            echo $unique_name;
+            var_dump($unique_names);
+            array_push($unique_names, $unique_name);
 
                 $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
                 if (move_uploaded_file($test1, $target_file)) {
@@ -64,7 +69,6 @@ if (isset($_FILES['myFile'])) {
                         Name: <?= $myFile["name"][$i] ?><br>
                         Type: <?= $myFile["type"][$i] ?><br>
                         Size: <?= $myFile["size"][$i] ?><br>
-                        Error: <?= $myFile["error"][$i] ?><br>
                     </p>
                     <?php
                 }
@@ -156,14 +160,14 @@ if($error == 0) {
             'email' => $_POST['mailto'],
             'token' => $token,
             'imgname' => $dbimages,
-            'images' => $dbimages,
+            'images' => $unique_names,
             'datum' => date('Y-m-d'),
             'verified' => $_POST['verified']
         ];
 
 //Check if mail is sent :
         if (!$mailer->send()) {
-            header('Location: index.php?page=phpmail');
+           // header('Location: index.php?page=phpmail');
             echo 'Error sending mail : ' . $mailer->ErrorInfo;
         } else {
             //If mail is send, create data and send it to the database
