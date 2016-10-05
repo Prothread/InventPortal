@@ -6,10 +6,9 @@
  * Time: 11:47
  */
 
-
-$error = 0;
-
 if (isset($_FILES['myFile'])) {
+    $error = 0;
+
     $myFile = $_FILES['myFile'];
     $fileCount = count($myFile["name"]);
 
@@ -37,7 +36,7 @@ if (isset($_FILES['myFile'])) {
             ?><br/><?php
         }
 
-        if (filesize($test) > 50000000) {
+        if ($myFile["size"][$i] > 10485760) {
             $error = 1;
             echo $test . " File too big!";
             ?><br/><?php
@@ -53,13 +52,12 @@ if (isset($_FILES['myFile'])) {
                     array_push($images, $test);
 
                     echo "The file " . $test . " has been uploaded.";
-                    echo '<img src="../app/uploads/' . $test . '">';
+                    ?><br /><?php
+                    echo '<img style="width:300px; height: auto;" src="../app/uploads/' . $test . '">';
                     ?>
 
-                    <p>File #<?= $i + 1 ?>:</p>
                     <p>
                         Name: <?= $myFile["name"][$i] ?><br>
-                        Temporary file: <?= $myFile["tmp_name"][$i] ?><br>
                         Type: <?= $myFile["type"][$i] ?><br>
                         Size: <?= $myFile["size"][$i] ?><br>
                         Error: <?= $myFile["error"][$i] ?><br>
@@ -72,8 +70,9 @@ if (isset($_FILES['myFile'])) {
             }
         }
     }
+
 if($error == 0) {
-$mymail = new MailController();
+    $mymail = new MailController();
 
 //Generate a random string.
     $token = openssl_random_pseudo_bytes(16);
@@ -158,7 +157,7 @@ $mymail = new MailController();
 
 //Check if mail is sent :
         if (!$mailer->send()) {
-            header('Location: index.php?page=phpmail');
+           // header('Location: index.php?page=phpmail');
             echo 'Error sending mail : ' . $mailer->ErrorInfo;
         } else {
             //If mail is send, create data and send it to the database
