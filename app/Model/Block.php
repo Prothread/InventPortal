@@ -3,24 +3,24 @@
  * Created by PhpStorm.
  * User: Kevin
  * Date: 05-Oct-16
- * Time: 10:47
+ * Time: 11:37
  */
 
-class BlockController
+class Block
 {
-    private $model;
+    private $db;
 
     public function __construct()
     {
-        $this->model = new Block();
+        $this->db = new DbBlock();
     }
 
     public function getUploads(){
-        return $this->model->getUploads();
+        return $this->db->getUploads();
     }
 
     public function getLastThreeUploads(){
-        return $this->model->getLastThreeUploads();
+        return $this->db->getLastThreeUploads();
     }
 
 }

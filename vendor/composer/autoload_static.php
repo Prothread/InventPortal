@@ -33,7 +33,10 @@ class ComposerStaticInitc0a55957efdf0e279fcd6092060aa6da
     );
 
     public static $classMap = array (
+        'Block' => __DIR__ . '/../..' . '/app/Model/Block.php',
+        'BlockController' => __DIR__ . '/../..' . '/app/Controller/BlockController.php',
         'Database' => __DIR__ . '/../..' . '/app/Model/Database.php',
+        'DbBlock' => __DIR__ . '/../..' . '/app/Model/DbBlock.php',
         'DbImage' => __DIR__ . '/../..' . '/app/Model/DbImage.php',
         'DbMail' => __DIR__ . '/../..' . '/app/Model/DbMail.php',
         'DbVerify' => __DIR__ . '/../..' . '/app/Model/DbVerify.php',

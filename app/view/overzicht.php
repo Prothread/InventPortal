@@ -8,6 +8,7 @@
 
 $uploads = new BlockController();
 $uploads->getUploads();
+//var_dump($uploads->getUploads());
 
 ?>
 <table>
@@ -31,22 +32,26 @@ $uploads->getUploads();
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td>
-                Get ondewerp
-            </td>
-            <td>
-                Get verstuurder
-            </td>
-            <td>
-                Get klantnaam
-            </td>
-            <td>
-                Get datum
-            </td>
-            <td>
-                Get verified
-            </td>
-        </tr>
+
+        <?php foreach($uploads->getUploads() as $upload) {?>
+            <tr>
+                <td>
+                    <?= $upload['onderwerp']?>
+                </td>
+                <td>
+                    <?= $upload['verstuurder']?>
+                </td>
+                <td>
+                    <?= $upload['naam']?>
+                </td>
+                <td>
+                    <?= date("d-m-Y", strtotime($upload['datum']));?>
+                </td>
+                <td>
+                    <?= $upload['verified']?>
+                </td>
+            </tr>
+        <?php }?>
+
     </tbody>
 </table>
