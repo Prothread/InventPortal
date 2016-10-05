@@ -34,9 +34,12 @@ class ComposerStaticInitc0a55957efdf0e279fcd6092060aa6da
 
     public static $classMap = array (
         'Database' => __DIR__ . '/../..' . '/app/Model/Database.php',
+        'DbImage' => __DIR__ . '/../..' . '/app/Model/DbImage.php',
         'DbMail' => __DIR__ . '/../..' . '/app/Model/DbMail.php',
         'DbVerify' => __DIR__ . '/../..' . '/app/Model/DbVerify.php',
         'EasyPeasyICS' => __DIR__ . '/..' . '/phpmailer/phpmailer/extras/EasyPeasyICS.php',
+        'ImageController' => __DIR__ . '/../..' . '/app/Controller/ImageController.php',
+        'ImageModel' => __DIR__ . '/../..' . '/app/Model/ImageModel.php',
         'Mail' => __DIR__ . '/../..' . '/app/Model/Mail.php',
         'MailController' => __DIR__ . '/../..' . '/app/Controller/MailController.php',
         'PHPMailer' => __DIR__ . '/..' . '/phpmailer/phpmailer/class.phpmailer.php',
@@ -44,6 +47,7 @@ class ComposerStaticInitc0a55957efdf0e279fcd6092060aa6da
         'PHPMailerOAuthGoogle' => __DIR__ . '/..' . '/phpmailer/phpmailer/class.phpmaileroauthgoogle.php',
         'POP3' => __DIR__ . '/..' . '/phpmailer/phpmailer/class.pop3.php',
         'SMTP' => __DIR__ . '/..' . '/phpmailer/phpmailer/class.smtp.php',
+        'Session' => __DIR__ . '/../..' . '/app/session/Session.php',
         'ntlm_sasl_client_class' => __DIR__ . '/..' . '/phpmailer/phpmailer/extras/ntlm_sasl_client.php',
         'phpmailerException' => __DIR__ . '/..' . '/phpmailer/phpmailer/class.phpmailer.php',
     );

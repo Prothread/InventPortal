@@ -7,9 +7,12 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Database' => $baseDir . '/app/Model/Database.php',
+    'DbImage' => $baseDir . '/app/Model/DbImage.php',
     'DbMail' => $baseDir . '/app/Model/DbMail.php',
     'DbVerify' => $baseDir . '/app/Model/DbVerify.php',
     'EasyPeasyICS' => $vendorDir . '/phpmailer/phpmailer/extras/EasyPeasyICS.php',
+    'ImageController' => $baseDir . '/app/Controller/ImageController.php',
+    'ImageModel' => $baseDir . '/app/Model/ImageModel.php',
     'Mail' => $baseDir . '/app/Model/Mail.php',
     'MailController' => $baseDir . '/app/Controller/MailController.php',
     'PHPMailer' => $vendorDir . '/phpmailer/phpmailer/class.phpmailer.php',
@@ -17,6 +20,7 @@ return array(
     'PHPMailerOAuthGoogle' => $vendorDir . '/phpmailer/phpmailer/class.phpmaileroauthgoogle.php',
     'POP3' => $vendorDir . '/phpmailer/phpmailer/class.pop3.php',
     'SMTP' => $vendorDir . '/phpmailer/phpmailer/class.smtp.php',
+    'Session' => $baseDir . '/app/session/Session.php',
     'ntlm_sasl_client_class' => $vendorDir . '/phpmailer/phpmailer/extras/ntlm_sasl_client.php',
     'phpmailerException' => $vendorDir . '/phpmailer/phpmailer/class.phpmailer.php',
 );

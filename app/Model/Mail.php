@@ -16,6 +16,7 @@ class Mail {
     private $MailEmail;
     private $MailToken;
     private $MailImage;
+    private $MailDatum;
     private $MailVerified;
 
     public function __construct()
@@ -73,6 +74,11 @@ class Mail {
         $this->MailImage = $MailImage;
     }
 
+    public function setDatum($Datum)
+    {
+        $this->MailDatum = $Datum;
+    }
+
     public function setVerified($Verified)
     {
         $this->MailVerified = $Verified;
@@ -111,6 +117,11 @@ class Mail {
     public function getImage()
     {
         return $this->MailImage;
+    }
+
+    public function getDatum()
+    {
+        return $this->MailDatum;
     }
 
     public function getVerified()

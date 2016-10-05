@@ -7,10 +7,13 @@
  */
 
 //Session start
-//session_start();
+//session_start
 
 //Get Composer autloader
 require '../vendor/autoload.php';
+
+// Require helper functions.
+require '../app/helpers.php';
 
 //Get directory Constants
 require '../config/constants.php';

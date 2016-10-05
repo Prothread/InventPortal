@@ -6,6 +6,8 @@
  * Time: 11:47
  */
 
+$imageFileName = new ImageController();
+$imageId = $imageFileName->getNewId();
 
 $error = 0;
 
@@ -27,7 +29,7 @@ if (isset($_FILES['myFile'])) {
 
         if (file_exists($target_file)) {
             $error = 1;
-            echo $test . " already exists!";
+            echo $test . $imageId ." already exists!";
             ?><br/><?php
         }
 
@@ -152,7 +154,9 @@ $mymail = new MailController();
             'name' => $_POST['mailname'],
             'email' => $_POST['mailto'],
             'token' => $token,
+            'imgname' => $dbimages,
             'images' => $dbimages,
+            'datum' => date('d-m-Y'),
             'verified' => $_POST['verified']
         ];
 

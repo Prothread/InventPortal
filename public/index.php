@@ -29,6 +29,9 @@ switch($page) {
     case 'dashboard':
         include '../app/view/dashboard.php';
         break;
+    case 'overzicht':
+        include '../app/view/overzicht.php';
+        break;
     case 'uploading':
         include '../app/Model/upload.php';
         break;
