@@ -23,4 +23,8 @@ class Block
         return $this->db->getLastThreeUploads();
     }
 
+    public function getUploadById($id){
+        return $this->db->getUploadById($id);
+    }
+
 }

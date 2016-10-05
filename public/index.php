@@ -44,6 +44,9 @@ switch($page) {
     case 'dbverify':
         include '../app/Model/DbVerify.php';
         break;
+    case 'tester':
+        include '../app/view/tester.php';
+        break;
     default:
         break;
 }

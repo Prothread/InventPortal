@@ -23,4 +23,8 @@ class BlockController
         return $this->model->getLastThreeUploads();
     }
 
+    public function getUploadById($id){
+        return $this->model->getUploadById($id);
+    }
+
 }

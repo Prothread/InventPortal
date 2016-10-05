@@ -23,8 +23,9 @@ if(isset( $_GET['key'] ) ) {
 if( isset( $_GET['email'] ) && isset( $_GET['key'] ) ) {
     $getter = $DbVerify->getVerifiedById($verifyemail, $verifykey);
     $DbVerify->setVerifiedById($getter['id']);
+    $_SESSION['id'] = $getter['id'];
 
-    header('Location: index.php?page=dashboard');
+    header('Location: index.php?page=tester');
 }
 else {
     echo 'Something went wrong!';

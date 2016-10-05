@@ -7,7 +7,7 @@
  */
 
 //Session start
-//session_start
+session_start();
 
 //Get Composer autloader
 require '../vendor/autoload.php';

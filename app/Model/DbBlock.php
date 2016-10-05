@@ -33,4 +33,15 @@ class DbBlock extends Database
         }
     }
 
+    public function getUploadById($id){
+        $sql = "SELECT * FROM `mail` WHERE `id` = '{$id}'";
+
+        $result = $this->dbQuery($sql);
+        $value = mysqli_fetch_assoc($result);
+
+        if($value) {
+            return $value;
+        }
+    }
+
 }
