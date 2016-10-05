@@ -7,9 +7,7 @@
  */
 
 $uploads = new BlockController();
-
 ?>
-
 <div id="page-content-wrapper">
     <div class="container-fluid">
         <div class="row">

@@ -44,13 +44,11 @@ switch($page) {
     case 'dbverify':
         include '../app/Model/DbVerify.php';
         break;
-    case 'tester':
-        include '../app/view/tester.php';
+    case 'accordering':
+        include '../app/view/accordering.php';
         break;
     default:
         break;
 }
 
-?>
-
-<?php require_once '../app/view/footer.php'; ?>
+require_once '../app/view/footer.php';
