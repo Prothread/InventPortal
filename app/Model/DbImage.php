@@ -15,7 +15,7 @@ class DbImage extends Database
         $value = mysqli_fetch_assoc($result);
 
         if($value) {
-            return  intval($value['id']);
+            return intval($value['id']);
         }
     }
 }
