@@ -151,6 +151,7 @@ if($error == 0) {
 //Saving mail information
 
         $dbimages = implode(", ", $images);
+        $uniqdbimages = implode(", ", $unique_names);
 
         $mailinfo = [
             'title' => $_POST['title'],
@@ -160,7 +161,7 @@ if($error == 0) {
             'email' => $_POST['mailto'],
             'token' => $token,
             'imgname' => $dbimages,
-            'images' => $unique_names,
+            'images' => $uniqdbimages,
             'datum' => date('Y-m-d'),
             'verified' => $_POST['verified']
         ];

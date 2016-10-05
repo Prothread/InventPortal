@@ -6,7 +6,10 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Block' => $baseDir . '/app/Model/Block.php',
+    'BlockController' => $baseDir . '/app/Controller/BlockController.php',
     'Database' => $baseDir . '/app/Model/Database.php',
+    'DbBlock' => $baseDir . '/app/Model/DbBlock.php',
     'DbImage' => $baseDir . '/app/Model/DbImage.php',
     'DbMail' => $baseDir . '/app/Model/DbMail.php',
     'DbVerify' => $baseDir . '/app/Model/DbVerify.php',
