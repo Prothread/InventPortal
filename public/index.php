@@ -47,6 +47,8 @@ switch($page) {
     case 'accordering':
         include '../app/view/accordering.php';
         break;
+    case 'item':
+        include '../app/view/item.php';
     default:
         break;
 }

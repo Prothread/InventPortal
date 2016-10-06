@@ -16,7 +16,7 @@ $uploads = new BlockController();
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
-                <p class="NameText">Overzicht</p>
+                <p class="NameText">Item</p>
                 <hr size="1">
                 <input type="text" size="50" id="TableInput" onkeyup="searchTable()" placeholder="Zoek een product...">
                 <br>
@@ -34,13 +34,14 @@ $uploads = new BlockController();
                     </thead>
 
                     <tbody>
-                    <?php foreach($uploads->getUploads() as $upload) {?>
+                    <?php $id = $_GET['id'] ?>
+                    <?php foreach($uploads->getUploadById($_GET[$id]) as $upload) {?>
                         <tr>
                             <td>
                                 <?= $upload['id']?>
                             </td>
                             <td>
-                                <a href="?page=item&id=<?=$upload['id']?>"><?= $upload['onderwerp']?></a>
+                                <a href="?page=item"><?= $upload['onderwerp']?></a>
                             </td>
                             <td>
                                 <?= $upload['verstuurder']?>
@@ -55,7 +56,7 @@ $uploads = new BlockController();
                                 <?= $upload['verified']?>
                             </td>
                         </tr>
-                    <?php }?>
+                    <?php break;}?>
                     </tbody>
                 </table>
                 <hr size="1">
