@@ -59,6 +59,15 @@ tr:nth-child(even) {
 	background-repeat: no-repeat;
 }
 
+#UserTable {
+	border-radius: 5px;
+	border: 1px solid #bb2c4c;
+	padding-left: 7px;
+	background-image: url('http://i66.tinypic.com/20f89w5.png');
+	background-position: right;
+	background-repeat: no-repeat;
+}
+
 .fileContainer [type=file] {
     cursor: inherit;
     display: block;
@@ -83,6 +92,33 @@ tr:nth-child(even) {
 
 .fileContainer [type=file] {
     cursor: pointer;
+}
+
+#KlantbeheerButton {
+    border-radius: .5em;
+    border: 1px solid #bb2c4c;
+    background-color: #bb2c4c;
+    padding: 0.5em;
+    color: white;
+    font-weight: bold;
+    width: 150px;
+    text-decoration: none;
+    text-align: center;
+}
+
+.SMTPSettings input[type=text] {
+	border-radius: 5px;
+	border: 1px solid #bb2c4c;
+	padding-left: 12px;
+}
+
+.SMTPSettings input[type=submit] {
+	border-radius: .5em;
+	border: 1px solid #bb2c4c;
+	background-color: #bb2c4c;
+	padding: 0.5em;
+	color: white;
+	font-weight: bold;
 }
 
 #tags {

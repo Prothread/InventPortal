@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Madalco Portal | Accorderen</title>
+
+    <!--Sort table-->
+    <script src="js/sorttable.js" type="text/javascript"></script>
+
+    <!-- Bootstrap CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Eigen CSS -->
+    <link href="css/styles.css" rel="stylesheet">
+
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+
+    <script>
+        function searchTable() {
+          // Declare variables
+          var input, filter, table, tr, td, i;
+          input = document.getElementById("UserTable");
+          filter = input.value.toUpperCase();
+          table = document.getElementById("users");
+          tr = table.getElementsByTagName("tr");
+          td = table.getElementsByTagName("td");
+
+          // Loop through all table rows, and hide those who don't match the search query
+          for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+              if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+              } else {
+                tr[i].style.display = "none";
+              }
+            }
+          }
+        }
+    </script>
+
+</head>
+
+<body>
+
+    <div id="header">
+        <div id="MenuSide">
+                    <div id="MenuButton">
+                    <a href="#menu-toggle" class="btn btn-default" id="menu-toggle"><img src="https://cdn4.iconfinder.com/data/icons/wirecons-free-vector-icons/32/menu-alt-20.png"></a>
+                    </div>
+        </div>
+
+        <div id="NameSide">
+        <div id="UserPhoto">
+        </div>
+            <h3 id="LoggedInAs">Testklant</h3>
+            <a id="LogOut" href="#"><h6 id="LogOut">Uitloggen</h6></a>
+        </div>
+    </div>
+
+
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+
+                <li class="nav-button-home">
+                    <a href="index.html">Home</a>
+                </li>
+                <li class="nav-button-upload">
+                    <a href="upload.html">Upload</a>
+                </li>
+                <li class="nav-button-all">
+                    <a href="overzicht.html">Overzicht</a>
+                </li>
+                <li class="nav-button-settings">
+                    <a href="instellingen.html">Instellingen</a>
+                </li>
+                <br>
+                <li class="nav-button-logout">
+                    <a href="#">Uitloggen</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                            <p class="NameText">Productaccordering</p>
+                    <hr size="1">
+                    <p> Onderwerp: <span style="color:#bc2d4c">Flyer Terneuzen</span> </p>
+                    <p> Verstuurder: <span style="color:#bc2d4c">Testadmin</span> </p>
+                    <p> Bestand: <a href="#"<span style="color:#bc2d4c">flyerterneuzen.png</span></p></a>
+                    <p> Omschrijving: <span style="color:#bc2d4c">Dit is de flyer voor het festival Zoute Neuzen</span> </p>
+                    <div style="border:0; width: 259px; height: 459px">
+                    <img style="pointer-events: none;" src="css/flyer.jpg" width=250 height=410></img>
+                    <div style="position:relative; left: 0px; top: -300px; width:150px;">
+                    <img style="pointer-events: none;" src="css/watermerk.png" width=250 height=200></div></div>
+                    <form class="UploadForm" action="#">
+                    <label>Beschrijving<span style="color:#bc2d4c">*</span></label>
+                    <input type="text" name="description" size="50" value="">&emsp;&emsp;<br><br>
+                    <label>Naam<span style="color:#bc2d4c">*</span></label>
+                    <input type="text" name="description" size="50" value="">&emsp;&emsp;<br><br>
+                    <input type="checkbox" name="yeahright">                       
+                    <label>Ik heb de <a href="#"><span style="color:#bc2d4c">algemene voorwaarden</span></a> gelezen en ga hiermee akkoord</label><br><br>
+                    <input type="submit" value="Akkoord!">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<input type="submit" value="Weiger">    
+                    <br><br>
+                    <label>Uw IP-adres:</label>
+                    </form>
+                        <?PHP
+                        echo ''.$_SERVER['REMOTE_ADDR'];
+                        ?>
+                        <br>
+                        <br>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Menuscript -->
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
+
+</body>
+
+</html>

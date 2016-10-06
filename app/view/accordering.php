@@ -17,81 +17,57 @@ $imgarray = ( explode(", ", $myupload['imgname']) );
 
 ?>
 
-<table>
-    <thead>
-    <tr>
-        <td>
-            Onderwerp
-        </td>
+<!-- Page Content -->
+<div id="page-content-wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <p class="NameText">Productaccordering</p>
+                <hr size="1">
 
-        <td>
-            Verstuurder
-        </td>
+                <p> Onderwerp: <span style="color:#bc2d4c"><?= $myupload['onderwerp']; ?></span></p>
 
-        <td>
-            Beschrijving
-        </td>
+                <p> Verstuurder: <span style="color:#bc2d4c"><?= $myupload['verstuurder']?></span> </p>
 
-        <td>
-            Klantnaam
-        </td>
+                <p> Bestand:
+                    <a href="#">
+                        <span style="color:#bc2d4c">
+                            <?= $myupload['imgname']?>
+                        </span>
+                    </a>
+                </p>
 
-        <td>
-            E-mail
-        </td>
+                <p> Omschrijving: <span style="color:#bc2d4c"><?= $myupload['beschrijving']?></span> </p>
 
-        <td>
-            Images
-        </td>
-
-        <td>
-            Datum
-        </td>
-
-        <td>
-            Status
-        </td>
-    </tr>
-    </thead>
-    <tbody>
-
-        <tr>
-            <td>
-                <?= $myupload['onderwerp']?>
-            </td>
-
-            <td>
-                <?= $myupload['verstuurder']?>
-            </td>
-
-            <td>
-                <?= $myupload['beschrijving'] ?>
-            </td>
-
-            <td>
-                <?= $myupload['naam']?>
-            </td>
-
-            <td>
-                <?= $myupload['email']?>
-            </td>
-
-            <td>
-                <?php
+                <div style="border:0; width: 259px; height: 459px">
+                    <?php
                     foreach ($imgarray as $img) {?>
-                        <img width="400px" src="<?= DIR_IMAGE.$img?>" />
+                        <img style="pointer-events: none;" height="410" width="250" src="<?= DIR_IMAGE.$img?>" />
+                        <div style="position:relative; left: 0px; top: -300px; width:150px;">
+                            <img style="pointer-events: none;" src="css/watermerk.png" width=250 height=200>
+                        </div>
                     <?php }
-                ?>
-            </td>
+                    ?>
+                </div>
 
-            <td>
-                <?= date("d-m-Y", strtotime($myupload['datum']));?>
-            </td>
+                <form class="UploadForm" action="#">
+                    <label>Volledige naam<span style="color:#bc2d4c">*</span></label>
+                    <input type="text" name="description" size="50" value=""><br><br>
 
-            <td>
-                <?= $myupload['verified']?>
-            </td>
-        </tr>
+                    <label>Opmerking<span style="color:#bc2d4c">*</span></label>
+                    <input type="text" name="description" size="50" value=""><br><br>
 
-    </tbody>
-</table>
+                    <input type="checkbox" name="yeahright">
+                    <label>Ik heb de <a href="#"><span style="color:#bc2d4c">algemene voorwaarden</span></a> gelezen en ga hiermee akkoord</label><br><br>
+                    <input type="submit" value="Akkoord!">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<input type="submit" value="Weiger">
+                    <br><br>
+                    <label>Uw IP-adres: <?PHP
+                        echo ''.$_SERVER['REMOTE_ADDR'];
+                        ?></label>
+                </form>
+                <br>
+                <br>
+
+            </div>
+        </div>
+    </div>

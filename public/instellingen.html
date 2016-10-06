@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Madalco Portal | Instellingen</title>
+
+    <!--Sort table-->
+    <script src="js/sorttable.js" type="text/javascript"></script>
+
+    <!-- Bootstrap CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Eigen CSS -->
+    <link href="css/styles.css" rel="stylesheet">
+
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+
+    <script>
+        function searchTable() {
+          // Declare variables
+          var input, filter, table, tr, td, i;
+          input = document.getElementById("UserTable");
+          filter = input.value.toUpperCase();
+          table = document.getElementById("users");
+          tr = table.getElementsByTagName("tr");
+          td = table.getElementsByTagName("td");
+
+          // Loop through all table rows, and hide those who don't match the search query
+          for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+              if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+              } else {
+                tr[i].style.display = "none";
+              }
+            }
+          }
+        }
+    </script>
+
+</head>
+
+<body>
+
+    <div id="header">
+        <div id="MenuSide">
+                    <div id="MenuButton">
+                    <a href="#menu-toggle" class="btn btn-default" id="menu-toggle"><img src="https://cdn4.iconfinder.com/data/icons/wirecons-free-vector-icons/32/menu-alt-20.png"></a>
+                    </div>
+        </div>
+
+        <div id="NameSide">
+        <div id="UserPhoto">
+        </div>
+            <h3 id="LoggedInAs">Testadmin</h3>
+            <a id="LogOut" href="#"><h6 id="LogOut">Uitloggen</h6></a>
+        </div>
+    </div>
+
+
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+
+                <li class="nav-button-home">
+                    <a href="index.html">Home</a>
+                </li>
+                <li class="nav-button-upload">
+                    <a href="upload.html">Upload</a>
+                </li>
+                <li class="nav-button-all">
+                    <a href="overzicht.html">Overzicht</a>
+                </li>
+                <li class="nav-button-settings">
+                    <a href="instellingen.html">Instellingen</a>
+                </li>
+                <br>
+                <li class="nav-button-logout">
+                    <a href="#">Uitloggen</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                            <p class="NameText">Instellingen</th>
+                    <hr size="1">
+                    <form class="SMTPSettings" action="#">
+                            <label>SMTP-adres</label>&emsp;&emsp;&emsp;&emsp;
+                            <input type="text" name="subject" size="50" value="smtp.madalcomedia.nl">
+                            <br>
+                            <input type="submit" name="submit" size="50" value="Opslaan">
+                            <br>
+                            </form>
+                        <hr size="1">
+                        <input type="text" size="50" id="UserTable" onkeyup="searchTable()" placeholder="Zoek gebruiker...">
+                        <br>
+                        <br>
+                        <table id="users" class="sortable">
+                        <tr>
+                        <th><span style="color:#bc2d4c">Naam</span></th>
+                        <th><span style="color:#bc2d4c">Rechten</span></th>
+                        <th><span style="color:#bc2d4c">E-mailadres</span></th>
+                        <th><span style="color:#bc2d4c">Edit</span></th>
+                        </tr>
+                        <tr>
+                        <td>Davy Nielen</td>
+                        <td>Admin</td>
+                        <td>d.nielen@madalcomedia.nl</td>
+                        <td><a href="#"><img src="http://i65.tinypic.com/14l68f4.png" style="width: 24px; height: 24px;"></a></td>
+                        </tr>
+                        <tr>
+                        <td>Jeffrey Valckx</td>
+                        <td>Admin</td>
+                        <td>valckxj@outlook.com</td>
+                        <td><a href="#"><img src="http://i65.tinypic.com/14l68f4.png" style="width: 24px; height: 24px;"></a></td>
+                        </tr>
+                        <tr>
+                        <td>Kevin Ernst</td>
+                        <td>Admin</td>
+                        <td>kevin.herdershof@hotmail.com</td>
+                        <td><a href="#"><img src="http://i65.tinypic.com/14l68f4.png" style="width: 24px; height: 24px;"></a></td>
+                        </tr>
+                        <tr>
+                        <td>Gijs van den Abeele</td>
+                        <td>Admin</td>
+                        <td>gijsvdabeele@gmail.com</td>
+                        <td><a href="#"><img src="http://i65.tinypic.com/14l68f4.png" style="width: 24px; height: 24px;"></a></td>
+                        </tr>
+                        </table>
+                        <hr size="1"> 
+                            <label>Beheer klanten</label>&emsp;&emsp;&emsp;&emsp;
+                            <a href="klantenbeheer.html"><div id="KlantbeheerButton">Klantenbeheer</div></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Menuscript -->
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
+
+</body>
+
+</html>
