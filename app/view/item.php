@@ -35,7 +35,7 @@ $uploads = new BlockController();
 
                     <tbody>
                     <?php $id = $_GET['id'] ?>
-                    <?php foreach($uploads->getUploadById($_GET[$id]) as $upload) {?>
+                    <?php $upload = $uploads->getUploadById($id);?>
                         <tr>
                             <td>
                                 <?= $upload['id']?>
@@ -56,7 +56,6 @@ $uploads = new BlockController();
                                 <?= $upload['verified']?>
                             </td>
                         </tr>
-                    <?php break;}?>
                     </tbody>
                 </table>
                 <hr size="1">
