@@ -1,65 +1,64 @@
+
 <?php
-/**
- * Created by PhpStorm.
- * User: Kevin
- * Date: 05-Oct-16
- * Time: 08:52
- */
-
 $uploads = new BlockController();
-
+$id = $_GET['id'];
+$upload = $uploads->getUploadById($id);
+$imgarray = ( explode(", ", $upload['imgname']) );
 ?>
 
+    <div id="Mail">
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <p class="NameText">Aanpassen</p>
+                        <hr size="1">
 
-<!-- Page Content -->
-<div id="page-content-wrapper">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-12">
-                <p class="NameText">Item</p>
-                <hr size="1">
-                <input type="text" size="50" id="TableInput" onkeyup="searchTable()" placeholder="Zoek een product...">
-                <br>
-                <br>
-                <table id="overzicht" class="sortable">
-                    <thead>
-                        <tr>
-                            <td><b>ID</b></td>
-                            <td><b>Onderwerp</b></td>
-                            <td><b>Verstuurder</b></td>
-                            <td><b>Naam klant</b></td>
-                            <td><b>Datum</b></td>
-                            <td><b>Status</b></td>
-                        </tr>
-                    </thead>
+                        <form class="UploadForm" action="?page=uploading" method="post" enctype="multipart/form-data">
+                            <label>Onderwerp<span style="color:#bc2d4c">*</span></label>
+                            <input type="text" name="title" size="50" value="<?= $upload['onderwerp']?>">&emsp;&emsp;
 
-                    <tbody>
-                    <?php $id = $_GET['id'] ?>
-                    <?php $upload = $uploads->getUploadById($id);?>
-                        <tr>
-                            <td>
-                                <?= $upload['id']?>
-                            </td>
-                            <td>
-                                <a href="?page=item"><?= $upload['onderwerp']?></a>
-                            </td>
-                            <td>
-                                <?= $upload['verstuurder']?>
-                            </td>
-                            <td>
-                                <?= $upload['naam']?>
-                            </td>
-                            <td>
-                                <?= date("d-m-Y", strtotime($upload['datum']));?>
-                            </td>
-                            <td>
-                                <?= $upload['verified']?>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <hr size="1">
+                            <label>Verstuurder<span style="color:#bc2d4c">*</span></label>
+                            <input type="text" name="fromname" size="35" value="<?= $upload['verstuurder']?>">
+
+                            <br><br>
+                            <fieldset>
+                                <label class="fileContainer">Bestand uploaden*
+                                    <input type="file" name="myFile[]" id="imgInp" multiple onchange="loadFile(event);">
+                                </label>
+                                <br>
+                                <img class="preview" id="preview" alt="">
+                            </fieldset><br>
+
+                            <label>Beschrijving<span style="color:#bc2d4c">*</span></label><br>
+
+                            <input class="TaDescription" name="additionalcontent" value="<?= $upload['beschrijving']?>">
+                            <br><br>
+
+                            <label>Klant zoeken</label>
+                            <input type="text" id="tags" name="suggestions" class="suggestionsinput" size="50" value="">
+                            <br><br>
+
+                            <div id="suggestions">
+                                Klantensuggesties voor <span class="searchterm"></span>...
+                            </div>
+                            <br><br>
+
+                            <label>Naam klant<span style="color:#bc2d4c">*</span></label>
+                            <input type="text" name="mailname" size="50" value="<?= $upload['naam']?>">&emsp;&emsp;
+
+                            <label>E-mailadres klant<span style="color:#bc2d4c">*</span></label>
+                            <input type="email" name="mailto" size="50" value="<?= $upload['email']?>">
+
+                            <input type="hidden" name="frommail" id="MailFrom" value="<?= $upload['onderwerp']?>">
+                            <br><br>
+
+                            <input type="submit" name="submit" size="50" value="submit mail">
+                            <br>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
