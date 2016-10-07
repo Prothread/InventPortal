@@ -33,6 +33,8 @@ $imgarray = ( explode(", ", $upload['imgname']) );
                                 <br>
                                 <img class="preview" id="preview" alt="">
                             </fieldset><br>
+                            <button style="width:40px; height:20px" onclick="<?php $ugh->getImageVerified(); ?>">
+                                ugh
                             </button>
 
                             <label>Beschrijving<span style="color:#bc2d4c">*</span></label><br>
