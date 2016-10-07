@@ -24,9 +24,6 @@ class DbMail extends Database
 
     public function update(Mail $mail)
     {
-        /*$sql = "UPDATE `mail` WHERE `id` = '{$mail->getMailId()}' SET(`onderwerp`, `verstuurder`, `beschrijving`, `naam`, `email`, `key`, `imgname` , `images`, `datum` , `verified`) VALUES ('{$mail->getMailSubject()}' , '{$mail->getMailSender()}' ,
-                '{$mail->getMailDescription()}' , '{$mail->getMailName()}' , '{$mail->getMailEmail()}' , '{$mail->getToken()}', '{$mail->getFakeImage()}' , '{$mail->getImage()}', '{$mail->getDatum()}' ,
-                '{$mail->getVerified()}' )";*/
         $sql = "UPDATE `mail` SET `onderwerp` = '{$mail->getMailSubject()}', `verstuurder` = '{$mail->getMailSender()}', `beschrijving` = '{$mail->getMailDescription()}', `naam` = '{$mail->getMailName()}',
                 `email` = '{$mail->getMailEmail()}', `key` = '{$mail->getToken()}', `imgname` = '{$mail->getFakeImage()}', `uniquename` = '{$mail->getImage()}', `datum` = '{$mail->getDatum()}',
                 `verified` = '{$mail->getVerified()}' WHERE `id`= '{$mail->getMailId()}'";

@@ -176,6 +176,7 @@ tr:nth-child(even) {
 }
 
 #header {
+    position:relative;
     width: 100%;
     height: 130px;
     background-image: url('headerbg.png');
@@ -194,9 +195,9 @@ ul.sidebar-nav {
 
 #MenuButton {
     width: 30px;
-    margin-left: 23px;
-    margin-top: -1px;
-    line-height: 11;
+    position: absolute;
+    bottom: 10px;
+    left: 35px;
 }
 
 #MenuSide {

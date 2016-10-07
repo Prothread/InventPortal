@@ -9,8 +9,6 @@
 $upload = new BlockController();
 //$myupload = $upload->getUploadById($_SESSION['id']);
 
-//$myupload = $upload->getUploadById(18);
-
 $myupload = $upload->getUploadById($_GET['id']);
 
 $imgarray = ( explode(", ", $myupload['imgname']) );
