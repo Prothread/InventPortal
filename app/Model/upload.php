@@ -158,9 +158,9 @@ if($error == 0) {
         $dbimages = implode(", ", $images);
         $uniqdbimages = implode(", ", $unique_names);
 
-        $myid = $_POST['id'];
 
         if(isset($_POST['id'])) {
+        $myid = $_POST['id'];
             $mailinfo = [
                 'id' => intval($myid),
                 'title' => $_POST['title'],
