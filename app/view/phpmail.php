@@ -51,9 +51,9 @@
                             <br>
 
                             <input type="hidden" name="frommail" id="MailFrom" value="<?php if( isset($mailinfo['title']) ){ echo $mailinfo['email'];}?>">
-                            <input type="hidden" name="mailto" id="" value="gijsvdabeele@gmail.com">
+                            <input type="hidden" name="mailto" id="" value="valckxj@outlook.com">
                             <input type="hidden" name="fromname" id="" value="Gijs">
-                            <input type="hidden" name="mailname" id="" value="Piet">
+                            <input type="hidden" name="mailname" id="" value="Jef">
                             <br>
 
                             <input type="submit" name="submit" size="50" value="Versturen">
