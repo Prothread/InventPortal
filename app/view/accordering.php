@@ -50,14 +50,14 @@ $imgarray = ( explode(", ", $myupload['imgname']) );
 
                 <form class="UploadForm" action="#">
                     <label>Volledige naam<span style="color:#bc2d4c">*</span></label>
-                    <input type="text" name="description" size="50" value=""><br><br>
+                    <input type="text" name="description" size="50" value="" required><br><br>
 
                     <label>Opmerking<span style="color:#bc2d4c">*</span></label>
-                    <input type="text" name="description" size="50" value=""><br><br>
+                    <input type="text" name="description" size="50" value="" required><br><br>
 
-                    <input type="checkbox" name="yeahright">
+                    <input type="checkbox" name="yeahright" required>
                     <label>Ik heb de <a href="#"><span style="color:#bc2d4c">algemene voorwaarden</span></a> gelezen en ga hiermee akkoord</label><br><br>
-                    <input type="submit" value="Akkoord!">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<input type="submit" value="Weiger">
+                    <input type="submit" value="Akkoord!" >&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<input type="submit" value="Weiger">
                     <br><br>
                     <label>Uw IP-adres: <?PHP
                         echo ''.$_SERVER['REMOTE_ADDR'];
