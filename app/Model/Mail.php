@@ -9,6 +9,7 @@
 class Mail {
 
     private $db;
+    private $MailId;
     private $MailSubject;
     private $MailSender;
     private $MailDescription;
@@ -38,6 +39,11 @@ class Mail {
     public function read()
     {
         return $this->db->read($this);
+    }
+
+    public function setMailId($MailId)
+    {
+        $this->MailId = $MailId;
     }
 
     public function setMailSubject($MailSubject)
@@ -88,6 +94,11 @@ class Mail {
     public function setVerified($Verified)
     {
         $this->MailVerified = $Verified;
+    }
+
+    public function getMailId()
+    {
+        return $this->MailId;
     }
 
     public function getMailSubject()

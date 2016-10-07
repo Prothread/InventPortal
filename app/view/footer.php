@@ -77,11 +77,6 @@
             preview.src = oldimg;
         }
     };
-
-    $('.submit-button').on('click', function(event) {
-        alert('This is a dummy submit button. It does nothing.');
-        event.preventDefault();
-    });
 </script>
 
 <!-- jQuery -->

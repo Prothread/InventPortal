@@ -24,6 +24,7 @@ $uploads = new BlockController();
                 <table id="overzicht" class="sortable">
                     <thead>
                         <tr>
+                            <td><b>ID</b></td>
                             <td><b>Onderwerp</b></td>
                             <td><b>Verstuurder</b></td>
                             <td><b>Naam klant</b></td>
@@ -36,7 +37,10 @@ $uploads = new BlockController();
                     <?php foreach($uploads->getUploads() as $upload) {?>
                         <tr>
                             <td>
-                                <?= $upload['onderwerp']?>
+                                <?= $upload['id']?>
+                            </td>
+                            <td>
+                                <a href="?page=item&id=<?=$upload['id']?>"><?= $upload['onderwerp']?></a>
                             </td>
                             <td>
                                 <?= $upload['verstuurder']?>

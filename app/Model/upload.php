@@ -7,7 +7,13 @@
  */
 
 $imageFileName = new ImageController();
-$imageId = $imageFileName->getNewId();
+if(isset($_POST['id'])) {
+    $imageId = $_POST['id'];
+} else {
+    $imageId = $imageFileName->getNewId();
+    $imageId =  $imageId + 1;
+}
+
 
 $error = 0;
 
@@ -52,7 +58,7 @@ if (isset($_FILES['myFile'])) {
 
             $target_dir = "../app/uploads/";
             $target_file = $target_dir . $test;
-            $unique_name = pathinfo($test, PATHINFO_FILENAME)."_".($imageId+1).'.'.$imageFileType;
+            $unique_name = pathinfo($test, PATHINFO_FILENAME)."_".( $imageId ).'.'.$imageFileType;
 
             array_push($unique_names, $unique_name);
 
@@ -152,18 +158,37 @@ if($error == 0) {
         $dbimages = implode(", ", $images);
         $uniqdbimages = implode(", ", $unique_names);
 
-        $mailinfo = [
-            'title' => $_POST['title'],
-            'sender' => $_POST['fromname'],
-            'description' => $_POST['additionalcontent'],
-            'name' => $_POST['mailname'],
-            'email' => $_POST['mailto'],
-            'token' => $token,
-            'imgname' => $dbimages,
-            'images' => $uniqdbimages,
-            'datum' => date('Y-m-d'),
-            'verified' => 0
-        ];
+
+        if(isset($_POST['id'])) {
+        $myid = $_POST['id'];
+            $mailinfo = [
+                'id' => intval($myid),
+                'title' => $_POST['title'],
+                'sender' => $_POST['fromname'],
+                'description' => $_POST['additionalcontent'],
+                'name' => $_POST['mailname'],
+                'email' => $_POST['mailto'],
+                'token' => $token,
+                'imgname' => $dbimages,
+                'images' => $uniqdbimages,
+                'datum' => date('Y-m-d'),
+                'verified' => 0
+            ];
+        }
+        else {
+            $mailinfo = [
+                'title' => $_POST['title'],
+                'sender' => $_POST['fromname'],
+                'description' => $_POST['additionalcontent'],
+                'name' => $_POST['mailname'],
+                'email' => $_POST['mailto'],
+                'token' => $token,
+                'imgname' => $dbimages,
+                'images' => $uniqdbimages,
+                'datum' => date('Y-m-d'),
+                'verified' => 0
+            ];
+        }
 
 //Check if mail is sent :
         if (!$mailer->send()) {
@@ -171,7 +196,16 @@ if($error == 0) {
             echo 'Error sending mail : ' . $mailer->ErrorInfo;
         } else {
             //If mail is send, create data and send it to the database
-            $mymail->create($mailinfo);
+            if(isset( $_POST['id'] )) {
+                $mymail->update($mailinfo);
+                $mailer->send();
+                var_dump($mymail);
+            }
+            else {
+                $mymail->create($mailinfo);
+            }
+            //$mymail->create($mailinfo);
+
             //header('Location: index.php?page=uploading');
         }
     }
