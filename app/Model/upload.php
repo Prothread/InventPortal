@@ -160,19 +160,35 @@ if($error == 0) {
 
         $myid = $_POST['id'];
 
-        $mailinfo = [
-            'id' => intval($myid),
-            'title' => $_POST['title'],
-            'sender' => $_POST['fromname'],
-            'description' => $_POST['additionalcontent'],
-            'name' => $_POST['mailname'],
-            'email' => $_POST['mailto'],
-            'token' => $token,
-            'imgname' => $dbimages,
-            'images' => $uniqdbimages,
-            'datum' => date('Y-m-d'),
-            'verified' => 0
-        ];
+        if(isset($_POST['id'])) {
+            $mailinfo = [
+                'id' => intval($myid),
+                'title' => $_POST['title'],
+                'sender' => $_POST['fromname'],
+                'description' => $_POST['additionalcontent'],
+                'name' => $_POST['mailname'],
+                'email' => $_POST['mailto'],
+                'token' => $token,
+                'imgname' => $dbimages,
+                'images' => $uniqdbimages,
+                'datum' => date('Y-m-d'),
+                'verified' => 0
+            ];
+        }
+        else {
+            $mailinfo = [
+                'title' => $_POST['title'],
+                'sender' => $_POST['fromname'],
+                'description' => $_POST['additionalcontent'],
+                'name' => $_POST['mailname'],
+                'email' => $_POST['mailto'],
+                'token' => $token,
+                'imgname' => $dbimages,
+                'images' => $uniqdbimages,
+                'datum' => date('Y-m-d'),
+                'verified' => 0
+            ];
+        }
 
 //Check if mail is sent :
         if (!$mailer->send()) {
@@ -182,6 +198,7 @@ if($error == 0) {
             //If mail is send, create data and send it to the database
             if(isset( $_POST['id'] )) {
                 $mymail->update($mailinfo);
+                $mailer->send();
                 var_dump($mymail);
             }
             else {
