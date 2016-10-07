@@ -17,6 +17,7 @@ $imgarray = ( explode(", ", $upload['imgname']) );
 
                         <form class="UploadForm" action="?page=uploading" method="post" enctype="multipart/form-data">
 
+                            <input type="hidden" name="id" value="<?= $upload['id']?>">&emsp;&emsp;
 
                             <label>Onderwerp<span style="color:#bc2d4c">*</span></label>
                             <input type="text" name="title" size="50" value="<?= $upload['onderwerp']?>">&emsp;&emsp;
