@@ -18,7 +18,7 @@
 
                         <form class="UploadForm" action="?page=uploading" method="post" enctype="multipart/form-data">
                             <label>Onderwerp<span style="color:#bc2d4c">*</span></label>
-                            <input type="text" name="title" size="50" value="<?php if( isset($mailinfo['title']) ){echo $mailinfo['title'];}?>">&emsp;&emsp;<br><br>
+                            <input required type="text" name="title" size="50" value="<?php if( isset($mailinfo['title']) ){echo $mailinfo['title'];}?>">&emsp;&emsp;<br><br>
 
                             <label>Verstuurder<span style="color:#bc2d4c">*</span>:</label>
                             <label>Testadmin</label>
@@ -26,7 +26,7 @@
                             <br><br>
                             <fieldset>
                                 <label class="fileContainer">Bestand uploaden*
-                                    <input type="file" name="myFile[]" id="imgInp" multiple onchange="loadFile(event);">
+                                    <input required  type="file" name="myFile[]" id="imgInp" multiple onchange="loadFile(event);">
                                 </label>
                                 <br>
                                 <div class="image-container">
@@ -36,7 +36,7 @@
 
                             <label>Beschrijving<span style="color:#bc2d4c">*</span></label>
 
-                            <input class="TaDescription" name="additionalcontent" size="50" value="<?php if( isset($mailinfo['description']) ){echo $mailinfo['description'];}?>">
+                            <input required class="TaDescription" name="additionalcontent" size="50" value="<?php if( isset($mailinfo['description']) ){echo $mailinfo['description'];}?>">
                             <br><br>
 
                             <label>Klant zoeken<span style="color:#bc2d4c">*</label>                             
@@ -51,6 +51,9 @@
                             <br>
 
                             <input type="hidden" name="frommail" id="MailFrom" value="<?php if( isset($mailinfo['title']) ){ echo $mailinfo['email'];}?>">
+                            <input type="hidden" name="mailto" id="" value="gijsvdabeele@gmail.com">
+                            <input type="hidden" name="fromname" id="" value="Gijs">
+                            <input type="hidden" name="mailname" id="" value="Piet">
                             <br>
 
                             <input type="submit" name="submit" size="50" value="Versturen">
