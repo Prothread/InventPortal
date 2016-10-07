@@ -49,6 +49,7 @@ class MailController
      */
     public function update(array $mailinfo)
     {
+        $this->model->setMailId($mailinfo['id']);
         $this->model->setMailSubject($mailinfo['title']);
         $this->model->setMailSender($mailinfo['sender']);
         $this->model->setMailDescription($mailinfo['description']);
