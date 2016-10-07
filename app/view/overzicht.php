@@ -7,7 +7,6 @@
  */
 
 $uploads = new BlockController();
-
 ?>
 
 
