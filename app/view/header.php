@@ -58,6 +58,7 @@
         <div id="MenuSide">
             <div id="MenuButton">
                 <a href="#menu-toggle" class="btn btn-default" id="menu-toggle"><img src="https://cdn4.iconfinder.com/data/icons/wirecons-free-vector-icons/32/menu-alt-20.png"></a>
+                </div>
             </div>
         </div>
 

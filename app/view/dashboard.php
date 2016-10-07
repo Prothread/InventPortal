@@ -12,7 +12,7 @@ $uploads = new BlockController();
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
-                <p class="NameText">Overzicht</p>
+                <p class="NameText">Home</p>
                 <hr size="1">
                 <input type="text" size="50" id="TableInput" onkeyup="searchTable()" placeholder="Zoek een product...">
                 <br>

@@ -24,6 +24,36 @@ tr:nth-child(even) {
 	padding-left: 2px;
 }
 
+@media(max-width:650px) {
+.UploadForm input[type=text] {
+        width: 100%;
+    }
+}
+
+@media(max-width:650px) {
+.NameText {
+        text-align: center;
+    }
+}
+
+#preview {
+    max-width: 100%; 
+    display:block; 
+    height: auto;
+}
+
+@media(max-width:650px) {
+#tags {
+        width: 100%;
+    }
+}
+
+@media(max-width:650px) {
+.TaDescription {
+        width: 100%;
+    }
+}
+
 .TaDescription {
 	border-radius: 5px;
 	border: 1px solid #bb2c4c;
@@ -57,6 +87,13 @@ tr:nth-child(even) {
 	background-image: url('http://i66.tinypic.com/20f89w5.png');
 	background-position: right;
 	background-repeat: no-repeat;
+    width: 40%;
+}
+
+@media(max-width:650px) {
+    #TableInput {
+        width: 100%;
+    }
 }
 
 .fileContainer [type=file] {
@@ -161,6 +198,20 @@ ul.sidebar-nav {
     align: left;
     width: 100px;
     height: 100px;
+}
+
+#NewClientButton {
+    width: 160px;
+    height: 28px;
+    border-radius: .5em;
+    border: 1px solid #bb2c4c;
+    background-color: #bb2c4c;
+    padding: 0.5em;
+    color: white;
+    font-weight: bold;
+    line-height: 8px;
+    text-align: center;
+    text-decoration: none;
 }
 
 #LoggedInAs{
