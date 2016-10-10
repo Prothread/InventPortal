@@ -56,6 +56,9 @@ switch($page) {
     case 'newclient':
         include '../app/view/newclient.php';
         break;
+    case 'manageclients':
+        include '../app/view/manageclients.php';
+        break;
     default:
         break;
 }

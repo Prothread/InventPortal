@@ -96,7 +96,7 @@
 
                 <hr size="1">
                 <p class="NameText">Klanten beheren</p>
-                <a href="#"><div id="KlantbeheerButton">Klantenbeheer</div></a>
+                <a href="index.php?page=manageclients"><div id="KlantbeheerButton">Klantenbeheer</div></a>
             </div>
         </div>
     </div>
