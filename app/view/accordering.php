@@ -56,7 +56,7 @@ $ugh = new ImageController();
                     </div>
                     <?php }
                     ?>
-
+                
                 <form class="UploadForm" action="#" style="clear:both;">
                     <label>Volledige naam<span style="color:#bc2d4c">*</span></label>
                     <input type="text" name="description" size="50" value="" required><br><br>
