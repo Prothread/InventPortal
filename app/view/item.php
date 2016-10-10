@@ -3,7 +3,7 @@
 $uploads = new BlockController();
 $id = $_GET['id'];
 $upload = $uploads->getUploadById($id);
-$imgarray = ( explode(", ", $upload['imgname']) );
+$imgarray = ( explode(", ", $upload['uniquename']) );
 ?>
 
     <div id="Mail">
@@ -25,6 +25,10 @@ $imgarray = ( explode(", ", $upload['imgname']) );
                             <label>Verstuurder<span style="color:#bc2d4c">*</span></label>
                             <input type="text" name="fromname" size="35" value="<?= $upload['verstuurder']?>">
 
+                            <br />
+                            <?php foreach($imgarray as $myimg) { ?>
+                            <img width=400px; height=400px; src="<?= DIR_IMAGE.$myimg?>"/>
+                            <?php } ?>
                             <br><br>
                             <fieldset>
                                 <label class="fileContainer">Bestand uploaden*
