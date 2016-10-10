@@ -39,6 +39,16 @@ class DbMail extends Database
                 `verified` = '{$mail->getVerified()}' WHERE `id`= '{$mail->getMailId()}'";
 
         if($this->dbQuery($sql)) {
+
+            $imgarray = ( explode(", ", $mail->getImage()) );
+            foreach($imgarray as $img){
+                $sql1 = "UPDATE `image` SET `images` = '{$img}', `verify` = '{$mail->getVerified()}') WHERE `mailid` = '{$mail->getMailId()}'";
+
+                if($this->dbQuery($sql1)){
+                    true;
+                }
+            }
+
             return true;
         }
 
