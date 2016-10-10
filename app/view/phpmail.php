@@ -42,7 +42,7 @@
                             <label>Klant zoeken<span style="color:#bc2d4c">*</label>                             
                             <input type="text" id="tags" name="suggestions" class="suggestionsinput" size="50" value="">
                             <br><br>
-                            <a href="#"><div id="NewClientButton">Nieuwe klant</div></a>
+                            <a href="index.php?page=newclient"><div id="NewClientButton">Nieuwe klant</div></a>
                             <br><br>
 
                             <div id="suggestions">

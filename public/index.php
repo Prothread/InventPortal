@@ -49,8 +49,13 @@ switch($page) {
         break;
     case 'item':
         include '../app/view/item.php';
+        break;
     case 'settings':
-    include '../app/view/settings.php';
+        include '../app/view/settings.php';
+        break;
+    case 'newclient':
+        include '../app/view/newclient.php';
+        break;
     default:
         break;
 }
