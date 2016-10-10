@@ -15,6 +15,16 @@ class DbMail extends Database
                 '{$mail->getVerified()}' )";
 
         if($this->dbQuery($sql)) {
+            $imgarray = ( explode(", ", $mail->getImage()) );
+            $myid = $this->dbLastInsertedId();
+            foreach($imgarray as $img){
+                $sql1 = "INSERT INTO `image` (`mailid`, `images`, `verify`) VALUES ('{$myid}', '{$img}', '{$mail->getVerified()}')";
+
+                if($this->dbQuery($sql1)){
+                    true;
+                }
+            }
+
             return $this->dbLastInsertedId();
         }
 
