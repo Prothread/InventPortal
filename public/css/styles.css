@@ -1,3 +1,9 @@
+label {
+    width: 114px;
+    margin-right: 15px;
+    display: inline-block;
+    }
+
 table {
     font-family: cabinregular;
     border-collapse: collapse;
@@ -24,6 +30,27 @@ tr:nth-child(even) {
 	padding-left: 2px;
 }
 
+.NewClient input[type=text] {
+    border-radius: 5px;
+    border: 1px solid #bb2c4c;
+    padding-left: 2px;
+}
+
+.NewClient input[type=submit] {
+    border-radius: .5em;
+    border: 1px solid #bb2c4c;
+    background-color: #bb2c4c;
+    padding: 0.5em;
+    color: white;
+    font-weight: bold;
+}
+
+.NewClient input[type=email] {
+    border-radius: 5px;
+    border: 1px solid #bb2c4c;
+    padding-left: 2px;
+}
+
 @media(max-width:650px) {
 .UploadForm input[type=text] {
         width: 100%;
@@ -31,7 +58,37 @@ tr:nth-child(even) {
 }
 
 @media(max-width:650px) {
+.NewClient input[type=text] {
+        width: 100%;
+    }
+}
+
+@media(max-width:650px) {
+.NewClient input[type=email] {
+        width: 100%;
+    }
+}
+
+.MailSettings input[type=text] {
+    border-radius: 5px;
+    border: 1px solid #bb2c4c;
+    padding-left: 2px;
+}
+
+@media(max-width:650px) {
+.MailSettings input[type=text] {
+        width: 100%;
+    }
+}
+
+@media(max-width:650px) {
 .NameText {
+        text-align: center;
+    }
+}
+
+@media(max-width:650px) {
+.ClientFormText {
         text-align: center;
     }
 }
@@ -74,6 +131,22 @@ tr:nth-child(even) {
 	color: white;
 	font-weight: bold;
 }
+
+.MailSettings input[type=email] {
+    border-radius: 5px;
+    border: 1px solid #bb2c4c;
+    padding-left: 2px;
+}
+
+.MailSettings input[type=submit] {
+    border-radius: .5em;
+    border: 1px solid #bb2c4c;
+    background-color: #bb2c4c;
+    padding: 0.5em;
+    color: white;
+    font-weight: bold;
+}
+
 
 .fileContainer {
     overflow: hidden;
@@ -337,6 +410,11 @@ table.table { width: 100%; }
 
 .NameText {
 	font-size: 20px;
+}
+
+.ClientFormText {
+    font-size: 17px;
+
 }
 
 .LastOne {

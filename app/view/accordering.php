@@ -11,7 +11,7 @@ $upload = new BlockController();
 
 $myupload = $upload->getUploadById($_GET['id']);
 
-$imgarray = ( explode(", ", $myupload['uniquename']) );
+$imgarray = ( explode(", ", $myupload['imgname']) );
 
 $ugh = new ImageController();
 
@@ -42,12 +42,34 @@ $ugh = new ImageController();
                 <div style="border:0; width: 259px; height: 459px">
                     <?php
                     foreach ($imgarray as $img) {?>
-
-                        <img id="myimage" style="pointer-events: none;" height="410" width="250" src="<?php echo DIR_IMAGE.$img;?>" />
+                        <img id="myimage" style="pointer-events: none;" height="410" width="250" src="<?= DIR_IMAGE.$img?>" />
                         <div style="position:relative; left: 0px; top: -300px; width:150px;">
                             <img style="pointer-events: none;z-index:5;" src="css/watermerk.png" width=250 height=200>
                         </div>
+                        <?php
+                        $imageFileType = pathinfo(DIR_IMAGE.$img, PATHINFO_EXTENSION);
+                        $id = 1;
+                        $unique_name = pathinfo($img, PATHINFO_FILENAME); //."_".( $id . 'V' ).'.'.$imageFileType;
+                        var_dump($unique_name);
+                        ?>
 
+                        <script>
+                            function changeImage(){
+                                document.getElementById("myimage").src = "<?php $ugh->ImageVerify($id, $img, $imageFileType); ?>"
+                            }
+                        </script>
+                        <img src="../uploads/testfile.jpg" onclick="changeImage()">test</img>
+
+                        <?php
+                        if($unique_name == pathinfo($img, PATHINFO_FILENAME)."_".( $id . 'V' ).'.'.$imageFileType){
+                            echo 'oh yeah';
+                        }
+                        else {
+                            echo 'no, sorry. Here is your dump: <br />';
+                            var_dump($unique_name);
+                        }
+                        //var_dump($unique_name);
+                        ?>
                     <?php }
                     ?>
                 </div>

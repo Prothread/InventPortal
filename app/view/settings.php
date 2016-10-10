@@ -1,5 +1,9 @@
 <?php
 /**
+ * Created by SublimeText.
+ * User: Jeffrey
+ * Date: 10-Okt-16
+ * Time: 09:51
  */
 ?>
 
@@ -9,7 +13,7 @@
             <div class="col-lg-12">
                 <p class="NameText">Instellingen</p>
                 <hr size="1">
-                    <form class="UploadForm" action="#" method="post" enctype="multipart/form-data">
+                    <form class="MailSettings" action="#" method="post" enctype="multipart/form-data">
                         <label>SMTP-adres<span style="color:#bc2d4c">*</span></label>
                         <input required type="text" name="title" size="50" value="smtp.madalcomedia.nl">&emsp;&emsp;<br><br>
                         <label>E-mailadres ontvangen<span style="color:#bc2d4c">*</span></label>
