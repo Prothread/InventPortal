@@ -14,6 +14,9 @@
                 <p class="NameText">Klantenbeheer</p>
                 <hr size="1">
                 <input type="text" size="50" id="TableInput" onkeyup="searchTable()" placeholder="Zoek een klant...">
+                <br>
+                <br>
+                <a href="index.php?page=newclient"><div id="NewClientButton">Nieuwe klant</div></a>
                 <table id="overzicht" class="sortable">
                 <br><br>
                     <thead>
