@@ -56,11 +56,19 @@ switch($page) {
     case 'newclient':
         include '../app/view/newclient.php';
         break;
+<<<<<<< HEAD
     case 'imageverify':
         include '../app/view/imageverify.php';
         break;
     case 'imagedecline':
         include '../app/view/imagedecline.php';
+=======
+    case 'manageclients':
+        include '../app/view/manageclients.php';
+        break;
+    case 'conditions':
+        include '../app/view/conditions.php';
+>>>>>>> origin/master
         break;
     default:
         break;
