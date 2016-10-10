@@ -13,7 +13,7 @@
     <meta name="description" content="Madalco Klantenportaal">
     <meta name="author" content="Madalco Media">
 
-    <title>Madalco Portal | Upload</title>
+    <title>Madalco Portal</title>
 
     <!-- Bootstrap CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -86,7 +86,7 @@
                 </li>
 
                 <li class="nav-button-settings">
-                    <a href="index.php?page=#">Instellingen</a>
+                    <a href="index.php?page=settings">Instellingen</a>
                 </li>
 
                 <li class="nav-button-logout">
