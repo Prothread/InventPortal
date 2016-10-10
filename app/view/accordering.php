@@ -41,21 +41,13 @@ $ugh = new ImageController();
 
                 <div style="border:0; width: 259px; height: 459px">
                     <?php
-                    foreach ($imgarray as $img) {
-                    //for ($i = 0; $i <= $imgarray, $i++;) {?>
-                        <?php
-/*                        $image = pathinfo(DIR_IMAGE.$img);
-                        $imagefilename = $image['filename'] = $image['filename'].'V';
-                        $image['basename'] = $imagefilename . '.' . $image['extension'];
+                    foreach ($imgarray as $img) {?>
 
-                        move_uploaded_file(DIR_IMAGE.$img, DIR_IMAGE.$image['basename']);
-                        */?>
                         <img id="myimage" style="pointer-events: none;" height="410" width="250" src="<?php echo DIR_IMAGE.$img;?>" />
                         <div style="position:relative; left: 0px; top: -300px; width:150px;">
                             <img style="pointer-events: none;z-index:5;" src="css/watermerk.png" width=250 height=200>
                         </div>
 
-                        <button onclick="document.getElementById('myimage')">test</button>
                     <?php }
                     ?>
                 </div>

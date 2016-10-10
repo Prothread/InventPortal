@@ -119,14 +119,14 @@ if($error == 0) {
         /* TO, SUBJECT, CONTENT */
         $to = $_POST['mailto']; //The 'To' field
         $subject = $_POST['title'];
-        $content = "Beste " . $_POST['mailname'] .
-            "<br/><br/>" . "This is the HTML message body <b>in bold!</b>" . "<br /><br />" .
-
+        $content = "<img alt='MadalcoHeader' src='http://i68.tinypic.com/dw5a9f.png'>"."  <br/><br/>" . "Geachte " . $_POST['mailname'] . "," .
+            " <br/><br/>" . "Uw proef staat te wachten op goedkeuring in het <b>Madalco Portaal!</b>" . "<br /><br />" .
+            "<b>Beschrijving van uw proef:</b> " .
             $_POST['additionalcontent'] .
 
-            "<br /><br />" . "Here is the link to get you your product: " . "<a href='http://localhost/InventPortal/public/index.php?page=verify&email=$to&key=$token'>Link</a> " .
+            "<br /><br />" . "U kunt uw proef " . "<a href='http://localhost/InventPortal/public/index.php?page=verify&email=$to&key=$token'>hier</a> " . "goedkeuren." .
 
-            "<br /> <br />Met vriendelijke groet, <br />" . $_POST['fromname'];;
+            "<br /> <br />Met vriendelijke groet, <br />" . $_POST['fromname'] . " </br>Madalco Media";;
         $altcontent = "This is the content if the mailing system doesn't support a HMTL body";
 
         $mailer = new PHPMailer();

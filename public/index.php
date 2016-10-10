@@ -49,6 +49,7 @@ switch($page) {
         break;
     case 'item':
         include '../app/view/item.php';
+        break;
     default:
         break;
 }
