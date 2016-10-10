@@ -12,7 +12,6 @@ $upload = new BlockController();
 $myupload = $upload->getUploadById($_GET['id']);
 
 $imgarray = ( explode(", ", $myupload['uniquename']) );
-
 $ugh = new ImageController();
 
 ?>
@@ -39,20 +38,26 @@ $ugh = new ImageController();
 
                 <p> Omschrijving: <span style="color:#bc2d4c"><?= $myupload['beschrijving']?></span> </p>
 
-                <div style="border:0; width: 259px; height: 459px">
                     <?php
-                    foreach ($imgarray as $img) {?>
-
-                        <img id="myimage" style="pointer-events: none;" height="410" width="250" src="<?php echo DIR_IMAGE.$img;?>" />
-                        <div style="position:relative; left: 0px; top: -300px; width:150px;">
-                            <img style="pointer-events: none;z-index:5;" src="css/watermerk.png" width=250 height=200>
+                    foreach ($imgarray as $img) {
+                    //for($i = 0; $i <= $imgarray; $i++) {
+                    ?>
+                    <div id="imgakkoord" style="float:left;">
+                        <div style="border:0; width: auto; height: 410px">
+                            <img id="myimage" style="pointer-events: none;" height="410" width="250" src="<?php echo DIR_IMAGE.$img;?>" />
+                            <div style="position:relative; left: 0px; top: -300px; width:150px;">
+                                <img style="pointer-events: none;z-index:5;" src="css/watermerk.png" width=250 height=200>
+                            </div>
                         </div>
 
+                        <a href="?page=imageverify&img=<?= $img ?>"><button href="?page=imageverify">Akkoord</button></a>
+                        <a href="?page=imagedecline&img=<?= $img ?>"><button href="?page=imageverify">Weiger</button></a>
+
+                    </div>
                     <?php }
                     ?>
-                </div>
 
-                <form class="UploadForm" action="#">
+                <form class="UploadForm" action="#" style="clear:both;">
                     <label>Volledige naam<span style="color:#bc2d4c">*</span></label>
                     <input type="text" name="description" size="50" value="" required><br><br>
 

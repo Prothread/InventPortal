@@ -18,4 +18,16 @@ class ImageModel
     public function getNewId(){
         return $this->db->getNewId();
     }
+
+    public function ImageVerify($img){
+        return $this->db->ImageVerify($img);
+    }
+
+    public function ImageDecline($img){
+        return $this->db->ImageDecline($img);
+    }
+
+    public function getImageVerify($img){
+        return $this->db->getImageVerify($img);
+    }
 }

@@ -56,6 +56,12 @@ switch($page) {
     case 'newclient':
         include '../app/view/newclient.php';
         break;
+    case 'imageverify':
+        include '../app/view/imageverify.php';
+        break;
+    case 'imagedecline':
+        include '../app/view/imagedecline.php';
+        break;
     default:
         break;
 }
