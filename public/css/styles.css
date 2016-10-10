@@ -10,8 +10,16 @@ table {
     width: 100%;
 }
 
+#ConditionsLogoDiv {
+    vertical-align: middle;
+}
+
 body {
 	height: 600px;
+}
+
+#Voorwaarden {
+    width: 100%;
 }
 
 td, th {

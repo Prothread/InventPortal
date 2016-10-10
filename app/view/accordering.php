@@ -59,10 +59,11 @@ $ugh = new ImageController();
                     <label>Opmerking<span style="color:#bc2d4c">*</span></label>
                     <input type="text" name="description" size="50" value="" required><br><br>
 
-                    <input type="checkbox" name="yeahright" required>
-                    <label>Ik heb de <a href="#"><span style="color:#bc2d4c">algemene voorwaarden</span></a> gelezen en ga hiermee akkoord</label><br><br>
+                    <label id="Voorwaarden">Ik heb de <a href="index.php?page=conditions"><span style="color:#bc2d4c">algemene voorwaarden</span></a> gelezen en ga hiermee akkoord</label><input type="checkbox" name="yeahright" required>
+                    <br>
+                    <br>
                     <input type="submit" value="Akkoord!" >&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<input type="submit" value="Weiger">
-                    <br><br>
+                    <br><br>index.php?page=manageclients
                     <label>Uw IP-adres: <?PHP
                         echo ''.$_SERVER['REMOTE_ADDR'];
                         ?></label>
