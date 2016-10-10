@@ -65,7 +65,7 @@ $ugh = new ImageController();
                             echo 'oh yeah';
                         }
                         else {
-                            echo 'no, sorry. Here is your dump: <br />';
+                            echo 'no, sorry. Here is your dump:'.'<br />';
                             var_dump($unique_name);
                         }
                         //var_dump($unique_name);
