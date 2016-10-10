@@ -31,16 +31,17 @@ if (isset($_FILES['myFile'])) {
         $test = $myFile['name'][$i];
         $test1 = $myFile['tmp_name'][$i];
 
-
         $target_dir = "../app/uploads/";
         $target_file = $target_dir . $test;
         $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
 
+        /*
         if (file_exists($target_file)) {
             $error = 1;
             echo $test ." already exists!";
             ?><br/><?php
         }
+        */
 
         if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
             $error = 1;
@@ -56,14 +57,13 @@ if (isset($_FILES['myFile'])) {
 
         if ($error == 0) {
 
-            $target_dir = "../app/uploads/";
-            $target_file = $target_dir . $test;
             $unique_name = pathinfo($test, PATHINFO_FILENAME)."_".( $imageId ).'.'.$imageFileType;
+            $uniqfile = $target_dir . $unique_name;
 
             array_push($unique_names, $unique_name);
+            $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
 
-                $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
-                if (move_uploaded_file($test1, $target_file)) {
+                if (move_uploaded_file($test1, $uniqfile)) {
                     array_push($images, $test);
 
                     echo "The file " . $test . " has been uploaded."; ?><br /><?php
@@ -192,19 +192,19 @@ if($error == 0) {
 
 //Check if mail is sent :
         if (!$mailer->send()) {
-           // header('Location: index.php?page=phpmail');
+            header('Location: index.php?page=phpmail');
             echo 'Error sending mail : ' . $mailer->ErrorInfo;
         } else {
             //If mail is send, create data and send it to the database
             if(isset( $_POST['id'] )) {
                 $mymail->update($mailinfo);
                 $mailer->send();
-                var_dump($mymail);
+                //var_dump($mymail);
             }
             else {
                 $mymail->create($mailinfo);
+                //var_dump($mymail);
             }
-            //$mymail->create($mailinfo);
 
             //header('Location: index.php?page=uploading');
         }
