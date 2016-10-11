@@ -5,8 +5,8 @@
  * Date: 29-Sep-16
  * Time: 12:47
  */
-
 $uploads = new BlockController();
+$get_filled_info = $uploads->getLastThreeUploads();
 ?>
 <div id="page-content-wrapper">
     <div class="container-fluid">
@@ -29,34 +29,48 @@ $uploads = new BlockController();
                     </thead>
 
                     <tbody>
-                    <?php foreach($uploads->getLastThreeUploads() as $upload) {?>
+                    <?php
+                    if($get_filled_info !== null) {
+                        foreach ($uploads->getLastThreeUploads() as $upload) { ?>
+
+                            <tr>
+                                <td>
+                                    <?= $upload['onderwerp'] ?>
+                                </td>
+                                <td>
+                                    <?= $upload['verstuurder'] ?>
+                                </td>
+                                <td>
+                                    <?= $upload['naam'] ?>
+                                </td>
+                                <td>
+                                    <?= date("d-m-Y", strtotime($upload['datum'])); ?>
+                                </td>
+                                <td>
+                                    <?php if ($upload['verified'] == 1) {?>
+                                        <img alt="Gezien" style="width: 50px; height: 50px;" src="../public/icons/gezien.png">
+                                    <?php } elseif ($upload['verified'] == 2) {?>
+                                        <img alt="Geaccepteerd" src="../public/icons/akkoord.png">
+                                    <?php } elseif ($upload['verified'] == 3) {?>
+                                        <img alt="Geweigerd" src="../public/icons/geweigerd.png">
+                                    <?php } else {?>
+                                        <img alt="Uploaded" src="../public/icons/uploaded.png">
+                                    <?php } ?>
+                                </td>
+                            </tr>
+                        <?php }
+                    }
+                    else
+                    {
+                          ?>
                         <tr>
                             <td>
-                                <?= $upload['onderwerp']?>
-                            </td>
-                            <td>
-                                <?= $upload['verstuurder']?>
-                            </td>
-                            <td>
-                                <?= $upload['naam']?>
-                            </td>
-                            <td>
-                                <?= date("d-m-Y", strtotime($upload['datum']));?>
-                            </td>
-                            <td>
-                                <?php if ($upload['verified'] == 1) {?>
-                                    <img alt="Gezien" style="width: 50px; height: 50px;" src="../public/icons/gezien.png">
-                                <?php } elseif ($upload['verified'] == 2) {?>
-                                    <img alt="Geaccepteerd" src="../public/icons/akkoord.png">
-                                <?php } elseif ($upload['verified'] == 3) {?>
-                                    <img alt="Geweigerd" src="../public/icons/geweigerd.png">
-                                <?php } else {?>
-                                    <img alt="Uploaded" src="../public/icons/uploaded.png">
-                                <?php } ?>
-
+                                Er zijn nog geen items. Voeg eerst een item toe via de upload pagina
                             </td>
                         </tr>
-                    <?php }?>
+                        <?php
+                    }
+                    ?>
                     </tbody>
                 </table>
                 <hr size="1">
