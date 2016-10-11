@@ -10,8 +10,6 @@ table {
     width: 100%;
 }
 
-
-
 #ConditionsLogoDiv {
     vertical-align: middle;
 }
@@ -318,6 +316,20 @@ ul.sidebar-nav {
     align: left;
     width: 100px;
     height: 100px;
+}
+
+#AccButton {
+    width: 120px;
+    height: 28px;
+    border-radius: .5em;
+    border: 1px solid #bb2c4c;
+    background-color: #bb2c4c;
+    padding: 0.5em;
+    color: white;
+    font-weight: bold;
+    line-height: 8px;
+    text-align: center;
+    text-decoration: none;
 }
 
 #NewClientButton {
