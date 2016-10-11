@@ -8,11 +8,11 @@
 
 ?>
 
-<canvas id="canvas0" width="290px" height="400px" style="border:1px solid #d3d3d3;"></canvas>
+<canvas id="canvas" width="290px" height="400px" style="border:1px solid #d3d3d3;"></canvas>
 
 <script>
 
-    var canvas = document.getElementById('canvas0');
+    var canvas = document.getElementById('canvas');
     var ctx = canvas.getContext('2d');
 
     img = new Image;
@@ -74,5 +74,16 @@
         /// fill image in dest. rectangle
         ctx.drawImage(img, cx, cy, cw, ch,  x, y, w, h);
     }
+
+    var dataURL = canvas.toDataURL("");
+
+    var wrapper = document.getElementById('wrapper');
+
+    var img2 = new Image();
+    img2.onload=function(){
+        document.body.appendChild(wrapper);
+    };
+
+    img2.src = dataURL;
 
 </script>
