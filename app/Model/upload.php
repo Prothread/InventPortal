@@ -65,7 +65,7 @@ if (isset($_FILES['myFile'])) {
                     array_push($images, $test);
 
                     echo "The file " . $test . " has been uploaded."; ?><br /><?php
-                    echo '<img style="width:300px; height: auto;" src="../app/uploads/' . $unique_name . '">';
+                    echo '<img style="width:300px; height: auto;" src="../app/uploads/' . $unique_name  . '">';
                     ?>
 
                     <p>
