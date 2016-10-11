@@ -50,3 +50,5 @@ config/db_constants.php
 /nbproject/private/
 app/uploads/Werkafspraken.jpg
 app/view/accordering.php
+app/uploads/Aviary Photo_131115803557974574_11.png
+*.png

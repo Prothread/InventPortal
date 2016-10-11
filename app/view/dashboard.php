@@ -53,6 +53,7 @@ $uploads = new BlockController();
                                 <?php } else {?>
                                     <img alt="Uploaded" src="../public/icons/uploaded.png">
                                 <?php } ?>
+
                             </td>
                         </tr>
                     <?php }?>

@@ -52,15 +52,16 @@ $ugh = new ImageController();
                                 <img style="pointer-events: none;z-index:5;" src="css/watermerk.png" width=250 height=200>
                             </div>
                         </div>
-
-                        <a href="?page=imageverify&img=<?= $img ?>"><button href="?page=imageverify">Akkoord</button></a>
-                        <a href="?page=imagedecline&img=<?= $img ?>"><button href="?page=imageverify">Weiger</button></a>
+                        <br />
+                        <a href="?page=imageverify&img=<?= $img ?>"><button id="AccButton"href="?page=imageverify">Akkoord</button></a>
+                        <a href="?page=imagedecline&img=<?= $img ?>"><button id="AccButton" href="?page=imageverify">Weiger</button></a>
 
                     </div>
                     <?php }
                     ?>
 
                 <form class="UploadForm" action="#" style="clear:both;">
+                <br />
                     <label>Volledige naam<span style="color:#bc2d4c">*</span></label>
                     <input type="text" name="description" size="50" value="" required><br><br>
 
@@ -71,7 +72,7 @@ $ugh = new ImageController();
                     <br>
                     <br>
                     <input type="submit" value="Akkoord!" >&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<input type="submit" value="Weiger">
-                    <br><br>index.php?page=manageclients
+                    <br><br>
                     <label>Uw IP-adres: <?PHP
                         echo ''.$_SERVER['REMOTE_ADDR'];
                         ?></label>
