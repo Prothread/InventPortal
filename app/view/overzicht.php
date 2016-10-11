@@ -36,7 +36,11 @@ $uploads = new BlockController();
                     <?php foreach($uploads->getUploads() as $upload) {?>
                         <tr>
                             <td>
+<<<<<<< HEAD
                                 <?= $upload['id']?>
+=======
+                                Er zijn nog geen items. Voeg eerst een item toe via de upload pagina.
+>>>>>>> origin/master
                             </td>
                             <td>
                                 <a href="?page=item&id=<?=$upload['id']?>"><?= $upload['onderwerp']?></a>
