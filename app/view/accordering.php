@@ -10,13 +10,9 @@ $upload = new BlockController();
 $session = new Session();
 
 $myupload = $upload->getUploadById($session->getMailId());
-//var_dump($session->getMailId());
-
-//$myupload = $upload->getUploadById($_GET['id']);
 
 $imgarray = ( explode(", ", $myupload['uniquename']) );
 $ugh = new ImageController();
-
 ?>
 
 <!-- Page Content -->

@@ -64,7 +64,7 @@ $get_filled_info = $uploads->getUploads();
                         ?>
                         <tr>
                             <td>
-                                Er zijn nog geen items. Voeg eerst een item toe via de upload pagina
+                                Er zijn nog geen items. Voeg eerst een item toe via de upload pagina.
                             </td>
                             <td>
 

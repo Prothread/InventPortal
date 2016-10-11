@@ -177,14 +177,14 @@ if($error == 0) {
         }
         else {
             $mailinfo = [
-                'title' => $_POST['title'],
-                'sender' => $_POST['fromname'],
-                'description' => $_POST['additionalcontent'],
-                'name' => $_POST['mailname'],
-                'email' => $_POST['mailto'],
-                'token' => $token,
-                'imgname' => $dbimages,
-                'images' => $uniqdbimages,
+                'title' => strip_tags($_POST['title']),
+                'sender' => strip_tags($_POST['fromname']),
+                'description' => strip_tags($_POST['additionalcontent']),
+                'name' => strip_tags($_POST['mailname']),
+                'email' => strip_tags($_POST['mailto']),
+                'token' => strip_tags($token),
+                'imgname' => strip_tags($dbimages),
+                'images' => strip_tags($uniqdbimages),
                 'datum' => date('Y-m-d'),
                 'verified' => 0
             ];
