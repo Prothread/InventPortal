@@ -5,8 +5,8 @@
  * Date: 29-Sep-16
  * Time: 12:47
  */
-
 $uploads = new BlockController();
+$get_filled_info = $uploads->getLastThreeUploads();
 ?>
 <div id="page-content-wrapper">
     <div class="container-fluid">
@@ -29,25 +29,52 @@ $uploads = new BlockController();
                     </thead>
 
                     <tbody>
-                    <?php foreach($uploads->getLastThreeUploads() as $upload) {?>
+                    <?php
+                    if($get_filled_info !== null) {
+                        foreach ($uploads->getLastThreeUploads() as $upload) { ?>
+
+                            <tr>
+                                <td>
+                                    <?= $upload['onderwerp'] ?>
+                                </td>
+                                <td>
+                                    <?= $upload['verstuurder'] ?>
+                                </td>
+                                <td>
+                                    <?= $upload['naam'] ?>
+                                </td>
+                                <td>
+                                    <?= date("d-m-Y", strtotime($upload['datum'])); ?>
+                                </td>
+                                <td>
+                                    <?= $upload['verified'] ?>
+                                </td>
+                            </tr>
+                        <?php }
+                    }
+                    else
+                    {
+                          ?>
                         <tr>
                             <td>
-                                <?= $upload['onderwerp']?>
+                                Er zijn nog geen items. Voeg eerst een item toe via de upload pagina
                             </td>
                             <td>
-                                <?= $upload['verstuurder']?>
+
                             </td>
                             <td>
-                                <?= $upload['naam']?>
+
                             </td>
                             <td>
-                                <?= date("d-m-Y", strtotime($upload['datum']));?>
+
                             </td>
                             <td>
-                                <?= $upload['verified']?>
+
                             </td>
                         </tr>
-                    <?php }?>
+                        <?php
+                    }
+                    ?>
                     </tbody>
                 </table>
                 <hr size="1">
