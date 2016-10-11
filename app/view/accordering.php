@@ -3,9 +3,7 @@
 
 $upload = new BlockController();
 $session = new Session();
-
 $myupload = $upload->getUploadById($session->getMailId());
-
 $imgarray = ( explode(", ", $myupload['uniquename']) );
 $ugh = new ImageController();
 ?>
@@ -59,14 +57,18 @@ $ugh = new ImageController();
                     <label>Opmerking<span style="color:#bc2d4c">*</span></label>
                     <input type="text" name="description" size="50" value="" required><br><br>
 
-                    <label id="Voorwaarden">Ik heb de <a href="index.php?page=conditions"><span style="color:#bc2d4c">algemene voorwaarden</span></a> gelezen en ga hiermee akkoord</label><input type="checkbox" name="yeahright" required>
+                    <label id="Voorwaarden">Ik heb de <a href="index.php?page=conditions"><span style="color:#bc2d4c">algemene voorwaarden</span></a> gelezen en ga hiermee akkoord</label>
+                    <input type="checkbox" name="yeahright" required>
                     <br>
                     <br>
                     <input type="submit" value="Akkoord!" >&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<input type="submit" value="Weiger">
                     <br><br>
-                    <label>Uw IP-adres: <?PHP
+                    <label>
+                        Uw IP-adres:
+                        <?PHP
                         echo ''.$_SERVER['REMOTE_ADDR'];
-                        ?></label>
+                        ?>
+                    </label>
                 </form>
                 <br>
                 <br>

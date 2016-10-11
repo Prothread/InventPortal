@@ -26,9 +26,7 @@ $get_filled_info = $uploads->getUploads();
                             <td><b>Status</b></td>
                         </tr>
                     </thead>
-
                     <tbody>
-
                     <?php
                     if($get_filled_info !== null) {
                         foreach($uploads->getUploads() as $upload) {?>

@@ -19,12 +19,12 @@
                 <p class="NameText">Gebruikers</p>
                 <table id="overzicht" class="sortable">
                     <thead>
-                    <tr>
-                        <th><b>Naam</b></th>
-                        <th><b>Rechten</b></th>
-                        <th><b>E-mailadres</b></th>
-                        <th><b>Edit</b></th>
-                    </tr>
+                        <tr>
+                            <th><b>Naam</b></th>
+                            <th><b>Rechten</b></th>
+                            <th><b>E-mailadres</b></th>
+                            <th><b>Edit</b></th>
+                        </tr>
                     </thead>
                     <tbody>
                         <tr>
@@ -72,7 +72,7 @@
                             </td>
                         </tr>
 
-                                                <tr>
+                        <tr>
                             <td>
                             Gijs van den Abeele
                             </td>

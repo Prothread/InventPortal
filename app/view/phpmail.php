@@ -9,14 +9,11 @@
                     <div class="col-lg-12">
                         <p class="NameText">Uploaden</p>
                         <hr size="1">
-
                         <form class="UploadForm" action="?page=uploading" method="post" enctype="multipart/form-data">
                             <label>Onderwerp<span style="color:#bc2d4c">*</span></label>
                             <input required type="text" name="title" size="50" value="<?php if( isset($mailinfo['title']) ){echo $mailinfo['title'];}?>">&emsp;&emsp;<br><br>
-
                             <label>Verstuurder<span style="color:#bc2d4c">*</span>:</label>
                             <label>Testadmin</label>
-
                             <br><br>
                             <fieldset>
                                 <label class="fileContainer">Bestand uploaden*
@@ -24,7 +21,7 @@
                                 </label>
                                 <br>
                                 <div class="image-container">
-                                <img class="preview" id="preview" width: "100%"; height: "100%"; src="http://i67.tinypic.com/mtxpbl.jpg">
+                                    <img class="preview" id="preview" width: "100%"; height: "100%"; src="http://i67.tinypic.com/mtxpbl.jpg">
                                 </div>
                             </fieldset><br>
 

@@ -13,17 +13,17 @@
                 <br>
                 <a href="index.php?page=newclient"><div id="NewClientButton">Nieuwe klant</div></a>
                 <table id="overzicht" class="sortable">
-                <br><br>
+                    <br><br>
                     <thead>
-                    <tr>
-                        <th><b>Weergavenaam</b></th>
-                        <th><b>Bedrijfsnaam</b></th>
-                        <th><b>E-mailadres</b></th>
-                        <th><b>Adres</b></th>
-                        <th><b>Postcode</b></th>
-                        <th><b>Plaats</b></th>
-                        <th><b>Edit</b></th>
-                    </tr>
+                        <tr>
+                            <th><b>Weergavenaam</b></th>
+                            <th><b>Bedrijfsnaam</b></th>
+                            <th><b>E-mailadres</b></th>
+                            <th><b>Adres</b></th>
+                            <th><b>Postcode</b></th>
+                            <th><b>Plaats</b></th>
+                            <th><b>Edit</b></th>
+                        </tr>
                     </thead>
                     <tbody>
                         <tr>

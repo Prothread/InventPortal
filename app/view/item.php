@@ -15,26 +15,17 @@ $imgarray = ( explode(", ", $upload['uniquename']) );
                     <div class="col-lg-12">
                         <p class="NameText">Aanpassen</p>
                         <hr size="1">
-
                         <form class="UploadForm" action="?page=uploading" method="post" enctype="multipart/form-data">
-
                             <input type="hidden" name="id" value="<?= $upload['id']?>">&emsp;&emsp;
-
                             <label>Onderwerp<span style="color:#bc2d4c">*</span></label>
                             <input type="text" name="title" size="50" value="<?= $upload['onderwerp']?>">&emsp;&emsp;
-
                             <label>Verstuurder<span style="color:#bc2d4c">*</span></label>
                             <input type="text" name="fromname" size="35" value="<?= $upload['verstuurder']?>">
-
-
-
                             <br />
-                            
 
                             <?php foreach($imgarray as $myimg) { ?>
                             <img width=400px; height=400px; src="<?= DIR_IMAGE.$myimg?>"/>
                             <?php } ?>
-
 
                             <br><br>
                             <fieldset>

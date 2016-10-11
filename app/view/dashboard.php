@@ -15,20 +15,19 @@ $get_filled_info = $uploads->getLastThreeUploads();
                 <br>
                 <table id="overzicht" class="sortable">
                     <thead>
-                    <tr>
-                        <th><b>Onderwerp</b></th>
-                        <th><b>Verstuurder</b></th>
-                        <th><b>Naam klant</b></th>
-                        <th><b>Datum</b></th>
-                        <th><b>Status</b></th>
-                    </tr>
+                        <tr>
+                            <th><b>Onderwerp</b></th>
+                            <th><b>Verstuurder</b></th>
+                            <th><b>Naam klant</b></th>
+                            <th><b>Datum</b></th>
+                            <th><b>Status</b></th>
+                        </tr>
                     </thead>
 
                     <tbody>
                     <?php
                     if($get_filled_info !== null) {
                         foreach ($uploads->getLastThreeUploads() as $upload) { ?>
-
                             <tr>
                                 <td>
                                     <?= $upload['onderwerp'] ?>

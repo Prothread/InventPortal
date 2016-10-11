@@ -7,9 +7,7 @@
  */
 
 ?>
-
 <canvas id="canvas" width="290px" height="400px" style="border:1px solid #d3d3d3;"></canvas>
-
 <script>
 
     var canvas = document.getElementById('canvas');
