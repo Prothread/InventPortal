@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by SublimeText.
- * User: Jeffrey
- * Date: 10-Okt-16
- * Time: 13:11
- */
+#TERMS AND CONDITIONS PAGE
 ?>
 
 <div id="page-content-wrapper">

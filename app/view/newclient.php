@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by SublimeText.
- * User: Jeffrey
- * Date: 10-Okt-16
- * Time: 09:51
- */
+#PAGE FOR CREATING CLIENTS
 ?>
 
 <div id="page-content-wrapper">

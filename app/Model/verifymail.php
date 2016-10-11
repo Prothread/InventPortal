@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Kevin
- * Date: 03-Oct-16
- * Time: 14:50
- */
+#VERIFIES THE MAIL SERVER
 
 $session = new Session();
 

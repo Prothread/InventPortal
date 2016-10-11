@@ -8,6 +8,11 @@
 
 class ImageController
 {
+    /**
+ * Model voor de imagecontroller
+ *
+ * @var ImageModel
+ */
     private $model;
     private $uniquename;
 

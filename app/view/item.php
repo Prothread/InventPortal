@@ -1,5 +1,6 @@
-
 <?php
+#INDIVIDUAL ITEM PAGE
+
 $uploads = new BlockController();
 $id = $_GET['id'];
 $upload = $uploads->getUploadById($id);

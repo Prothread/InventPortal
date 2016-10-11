@@ -1,11 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Kevin
- * Date: 29-Sep-16
- * Time: 13:15
- */
-
+#UPLOAD PAGE
 ?>
 <div id="Mail">
         <!-- Page Content -->

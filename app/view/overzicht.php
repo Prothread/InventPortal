@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Kevin
- * Date: 05-Oct-16
- * Time: 08:52
- */
+#OVERZICHT PAGE VAN ALLE ITEMS
 $uploads = new BlockController();
 $get_filled_info = $uploads->getUploads();
 ?>

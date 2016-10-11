@@ -1,10 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Kevin
- * Date: 29-Sep-16
- * Time: 12:47
- */
+#DASHBOARD PAGE LAAT RECENTE ITEMS ZIEN
+
 $uploads = new BlockController();
 $get_filled_info = $uploads->getLastThreeUploads();
 ?>

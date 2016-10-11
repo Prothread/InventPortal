@@ -1,9 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Kevin
- * Date: 28-Sep-16
- */
+#HEADER
 ?>
 
 <html lang="nl">
@@ -54,7 +50,7 @@
 
 <link rel="icon" 
       type="image/png" 
-      href="../images/favicon.png">
+      href="../../images/favicon.png">
 </head>
 
 <body>

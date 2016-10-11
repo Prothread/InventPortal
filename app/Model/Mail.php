@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Kevin
- * Date: 30-Sep-16
- * Time: 11:48
- */
+#SETUP FOR MAIL
 
 class Mail {
 
