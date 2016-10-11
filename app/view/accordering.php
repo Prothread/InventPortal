@@ -7,9 +7,12 @@
  */
 
 $upload = new BlockController();
-//$myupload = $upload->getUploadById($_SESSION['id']);
+$session = new Session();
 
-$myupload = $upload->getUploadById($_GET['id']);
+$myupload = $upload->getUploadById($session->getMailId());
+//var_dump($session->getMailId());
+
+//$myupload = $upload->getUploadById($_GET['id']);
 
 $imgarray = ( explode(", ", $myupload['uniquename']) );
 $ugh = new ImageController();
@@ -40,7 +43,7 @@ $ugh = new ImageController();
 
                     <?php
                     foreach ($imgarray as $img) {
-                    //for($i = 0; $i <= $imgarray; $i++) {
+                    //for($i = 0; $i <= $imgarray; $i++) { --> ophalen welke het is met $i en dit in de session zetten
                     ?>
                     <div id="imgakkoord" style="float:left;">
                         <div style="border:0; width: auto; height: 410px">
@@ -56,7 +59,7 @@ $ugh = new ImageController();
                     </div>
                     <?php }
                     ?>
-                
+
                 <form class="UploadForm" action="#" style="clear:both;">
                 <br />
                     <label>Volledige naam<span style="color:#bc2d4c">*</span></label>

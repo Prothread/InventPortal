@@ -68,6 +68,9 @@ switch($page) {
     case 'conditions':
         include '../app/view/conditions.php';
         break;
+    case 'test':
+        include '../app/view/test.php';
+        break;
     default:
         break;
 }
