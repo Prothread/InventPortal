@@ -75,7 +75,7 @@
         ctx.drawImage(img, cx, cy, cw, ch,  x, y, w, h);
     }
 
-    var dataURL = canvas.toDataURL("");
+    var dataURL = canvas.toDataURL();
 
     var wrapper = document.getElementById('wrapper');
 
