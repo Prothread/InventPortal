@@ -6,6 +6,8 @@
  * Time: 14:50
  */
 
+$session = new Session();
+
 $DbVerify = new DbVerify();
 
 if(isset( $_GET['email'] ) ) {
@@ -24,9 +26,10 @@ if( isset( $_GET['email'] ) && isset( $_GET['key'] ) ) {
     $getter = $DbVerify->getVerifiedById($verifyemail, $verifykey);
     $DbVerify->setVerifiedById($getter['id']);
 
-    //$_SESSION['id'] = $getter['id'];
+    $session->setMailId( $getter['id'] );//
 
-    header('Location: index.php?page=accordering&id='.$getter['id']);
+    //header('Location: index.php?page=accordering&id='.$getter['id']);
+    header('Location: index.php?page=accordering');
 }
 else {
     echo 'Something went wrong!';

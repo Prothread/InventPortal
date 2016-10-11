@@ -32,4 +32,12 @@ class Session
         ];
     }
 
+    public function setMailId($id){
+        $_SESSION['id'] = $id;
+    }
+
+    public function getMailId(){
+        return $_SESSION['id'];
+    }
+
 }
