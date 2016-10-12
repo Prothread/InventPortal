@@ -89,6 +89,10 @@
                     <a href="index.php?page=settings">Instellingen</a>
                 </li>
 
+                <li class="nav-button-settings">
+                    <a href="index.php?page=manageclients">Klanten</a>
+                </li>
+
                 <li class="nav-button-logout">
                     <a href="#">Uitloggen</a>
                 </li>
