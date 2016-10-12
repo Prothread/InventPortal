@@ -15,10 +15,11 @@
 
     img = new Image;
     img.onload = draw;
-    img.src = "../app/uploads/Goodra_9.jpg";
 
     img1 = new Image;
     img1.onload = draw;
+
+    //img.src = "../app/uploads/Goodra_9.jpg";
     img1.src = "../public/css/watermerk.png";
 
     function draw() {

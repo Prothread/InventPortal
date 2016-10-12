@@ -46,4 +46,16 @@ class DbImage extends Database
         }
     }
 
+    public function getImagebyMailID($MailID){
+        $sql = "SELECT * FROM `image` WHERE `mailid` = '{$MailID}'";
+
+        $result = $this->dbQuery($sql);
+        $row = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+        if($row) {
+            return $row;
+        }
+
+    }
+
 }

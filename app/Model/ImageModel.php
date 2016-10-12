@@ -30,4 +30,9 @@ class ImageModel
     public function getImageVerify($img){
         return $this->db->getImageVerify($img);
     }
+
+    public function getImagebyMailID($MailID) {
+        return $this->db->getImagebyMailID($MailID);
+    }
+
 }

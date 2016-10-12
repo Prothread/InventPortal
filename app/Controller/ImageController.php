@@ -42,4 +42,9 @@ class ImageController
     public function getImageVerify($img) {
         return $this->model->getImageVerify($img);
     }
+
+    public function getImagebyMailID($MailID) {
+        return $this->model->getImagebyMailID($MailID);
+    }
+
 }

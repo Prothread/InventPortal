@@ -24,7 +24,17 @@ $imgarray = ( explode(", ", $upload['uniquename']) );
                             <br />
 
                             <?php foreach($imgarray as $myimg) { ?>
-                            <img width=400px; height=400px; src="<?= DIR_IMAGE.$myimg?>"/>
+                            <!-- <img width=400px; height=400px; src="<?= DIR_IMAGE.$myimg?>"/> -->
+
+                            <div id="images" style="
+                                 width: 320px;
+                                 height: 450px;
+                                 background-image: url(<?= DIR_PUBLIC ?>watermerk.png), url(<?= DIR_IMAGE.$myimg ?>);
+                                 background-size:contain, cover;
+                                 background-position: center center, center top;
+                                 background-repeat: no-repeat;"
+                            ></div>
+
                             <?php } ?>
 
                             <br><br>

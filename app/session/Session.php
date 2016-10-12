@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Kevin
- * Date: 04-Oct-16
- * Time: 09:28
- */
 
 class Session
 {
@@ -38,6 +32,16 @@ class Session
 
     public function getMailId(){
         return $_SESSION['id'];
+    }
+
+    public function ImageVerify($imageid, $verify){
+        $img_id = '"' . 'img' . $imageid . '"';
+        $_SESSION[$img_id] = $verify;
+    }
+
+    public function getImageVerify($imageid){
+        $img_id = '"' . 'img' . $imageid . '"';
+        return $_SESSION[$img_id];
     }
 
 }

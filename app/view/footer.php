@@ -72,6 +72,7 @@
             preview.src = oldimg;
         }
     };
+
 </script>
 
 <!-- jQuery -->

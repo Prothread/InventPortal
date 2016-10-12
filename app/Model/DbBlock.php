@@ -25,7 +25,6 @@ class DbBlock extends Database
         $sql = "SELECT * FROM `mail` ORDER BY `id` DESC LIMIT 3";
 
         $result = $this->dbQuery($sql);
-
         $row = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
         if($row) {

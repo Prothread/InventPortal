@@ -5,7 +5,10 @@ $upload = new BlockController();
 $session = new Session();
 $myupload = $upload->getUploadById($session->getMailId());
 $imgarray = ( explode(", ", $myupload['uniquename']) );
-$ugh = new ImageController();
+
+$image_controller = new ImageController();
+$uploadedimages = $image_controller->getImagebyMailID($myupload['id']);
+
 ?>
 
 <!-- Page Content -->
@@ -31,19 +34,19 @@ $ugh = new ImageController();
                 <p> Omschrijving: <span style="color:#bc2d4c"><?= $myupload['beschrijving']?></span> </p>
 
                     <?php
-                    foreach ($imgarray as $img) {
+                    foreach ($uploadedimages as $img) {
                     //for($i = 0; $i <= $imgarray; $i++) { --> ophalen welke het is met $i en dit in de session zetten
                     ?>
                     <div id="imgakkoord" style="float:left;">
                         <div style="border:0; width: auto; height: 410px">
-                            <img id="myimage" style="pointer-events: none;" height="410" width="250" src="<?php echo DIR_IMAGE.$img;?>" />
+                            <img id="myimage" style="pointer-events: none;" height="410" width="250" src="<?php echo DIR_IMAGE.$img['images'];?>" />
                             <div style="position:relative; left: 0px; top: -300px; width:150px;">
                                 <img style="pointer-events: none;z-index:5;" src="css/watermerk.png" width=250 height=200>
                             </div>
                         </div>
                         <br />
-                        <a href="?page=imageverify&img=<?= $img ?>"><button id="AccButton"href="?page=imageverify">Akkoord</button></a>
-                        <a href="?page=imagedecline&img=<?= $img ?>"><button id="AccButton" href="?page=imageverify">Weiger</button></a>
+                        <a href="?page=imageverify&img=<?= $img['id']; ?>"><button id="AccButton">Akkoord</button></a>
+                        <a href="?page=imagedecline&img=<?= $img['id']; ?>"><button id="AccButton">Weiger</button></a>
 
                     </div>
                     <?php }
