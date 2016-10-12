@@ -187,7 +187,13 @@ if($error == 0) {
                 'verified' => 0
             ];
         }
-
+        $mailer->SMTPOptions = array(
+                'ssl' => array(
+                'verify_peer' => false,
+                'verify_peer_name' => false,
+                'allow_self_signed' => true
+            )
+        );
 //Check if mail is sent :
         if (!$mailer->send()) {
             header('Location: index.php?page=phpmail');
