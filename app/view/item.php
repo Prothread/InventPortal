@@ -41,15 +41,6 @@ $imgarray = ( explode(", ", $upload['uniquename']) );
                             <input class="TaDescription" name="additionalcontent" value="<?= $upload['beschrijving']?>">
                             <br><br>
 
-                            <label>Klant zoeken</label>
-                            <input type="text" id="tags" name="suggestions" class="suggestionsinput" size="50" value="">
-                            <br><br>
-
-                            <div id="suggestions">
-                                Klantensuggesties voor <span class="searchterm"></span>...
-                            </div>
-                            <br><br>
-
                             <label>Naam klant<span style="color:#bc2d4c">*</span></label>
                             <input type="text" name="mailname" size="50" value="<?= $upload['naam']?>">&emsp;&emsp;
 

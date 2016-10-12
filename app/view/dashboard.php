@@ -30,7 +30,7 @@ $get_filled_info = $uploads->getLastThreeUploads();
                         foreach ($uploads->getLastThreeUploads() as $upload) { ?>
                             <tr>
                                 <td>
-                                    <?= $upload['onderwerp'] ?>
+                                    <a href="?page=item&id=<?=$upload['id']?>"><?= $upload['onderwerp']?></a>
                                 </td>
                                 <td>
                                     <?= $upload['verstuurder'] ?>
