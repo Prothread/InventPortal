@@ -5,6 +5,9 @@ $uploads = new BlockController();
 $id = $_GET['id'];
 $upload = $uploads->getUploadById($id);
 $imgarray = ( explode(", ", $upload['uniquename']) );
+
+$image_controller = new ImageController();
+$uploadedimages = $image_controller->getImagebyMailID($upload['id']);
 ?>
 
     <div id="Mail">
@@ -23,23 +26,23 @@ $imgarray = ( explode(", ", $upload['uniquename']) );
                             <input type="text" name="fromname" size="35" value="<?= $upload['verstuurder']?>">
                             <br />
 
-                            <?php foreach($imgarray as $myimg) { ?>
-                            <!-- <img width=400px; height=400px; src="<?= DIR_IMAGE.$myimg?>"/> -->
-
-                            <div id="images" style="
-                                 width: 320px;
-                                 height: 450px;
-                                 background-image: url(<?= DIR_PUBLIC ?>watermerk.png), url(<?= DIR_IMAGE.$myimg ?>);
-                                 background-size:contain, cover;
-                                 background-position: center center, center top;
-                                 background-repeat: no-repeat;"
-                            ></div>
-
-                            <?php } ?>
+                            <?php foreach ($uploadedimages as $img) {
+                            ?>
+                            <div id="imgakkoord" style="float:left;">
+                                <div style="border:0; width: auto; height: 410px">
+                                    <img id="myimage" style="pointer-events: none;" height="410" width="300" border="20px solid white" src="<?php echo DIR_IMAGE.$img['images'];?>" />
+                                    <div style="position:relative; left: 28px; top: -304px; width:150px;">
+                                        <img style="pointer-events: none;z-index:5;" src="css/watermerk.png" width=250 height=200>
+                                    </div>
+                                </div>
+                                <br />
+                            </div>
+                            <?php }
+                            ?>
 
                             <br><br>
-                            <fieldset>
-                                <label class="fileContainer">Bestand uploaden*
+                            <fieldset style="clear:both">
+                                <label class="fileContainer">Nieuwe Bestand(en) uploaden*
                                     <input type="file" name="myFile[]" id="imgInp" multiple onchange="loadFile(event);">
                                 </label>
                                 <br>

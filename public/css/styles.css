@@ -3,6 +3,9 @@ label {
     margin-right: 15px;
     display: inline-block;
     }
+button {
+    width:20px;
+}
 
 table {
     font-family: cabinregular, 'serif';
@@ -14,6 +17,17 @@ table {
     vertical-align: middle;
 }
 
+.AccordImgBorder {
+    width: 900px;
+}
+
+#myimage {
+    border: 20px solid white;
+}
+
+#mybuttons {
+    border: 25px solid white;
+}
 body {
 	height: 600px;
 }
@@ -62,6 +76,13 @@ tr:nth-child(even) {
 @media(max-width:650px) {
 .UploadForm input[type=text] {
         width: 100%;
+    }
+}
+
+@media(max-width:650px) {
+#preview {
+        width: 100%;
+        height: 100%;
     }
 }
 
