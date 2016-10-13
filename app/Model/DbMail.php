@@ -38,22 +38,31 @@ class DbMail extends Database
                 `email` = '{$mail->getMailEmail()}', `key` = '{$mail->getToken()}', `imgname` = '{$mail->getFakeImage()}', `uniquename` = '{$mail->getImage()}', `datum` = '{$mail->getDatum()}',
                 `verified` = '{$mail->getVerified()}' WHERE `id`= '{$mail->getMailId()}'";
 
-        if($this->dbQuery($sql)) {
+        if($mail->getAnswer() !== null) {
+            $sql = "UPDATE `mail` SET `answer` = '{$mail->getAnswer()}' WHERE `id` = '{$mail->getMailId()}'";
 
-            $imgarray = ( explode(", ", $mail->getImage()) );
-            foreach($imgarray as $img){
-                $sql1 = "UPDATE `image` SET `images` = '{$img}', `verify` = '{$mail->getVerified()}') WHERE `mailid` = '{$mail->getMailId()}'";
-
-                if($this->dbQuery($sql1)){
-                    true;
-                }
+            if($return = $this->dbQuery($sql)){
+                return ($return);
             }
-
-            return true;
         }
 
-        return false;
+        else {
+            if ($this->dbQuery($sql)) {
 
+                $imgarray = (explode(", ", $mail->getImage()));
+                foreach ($imgarray as $img) {
+                    $sql1 = "UPDATE `image` SET `images` = '{$img}', `verify` = '{$mail->getVerified()}') WHERE `mailid` = '{$mail->getMailId()}'";
+
+                    if ($this->dbQuery($sql1)) {
+                        true;
+                    }
+                }
+
+                return true;
+            }
+
+            return false;
+        }
     }
 
     public function dbLastInsertedId()

@@ -13,6 +13,7 @@ class Mail {
     private $MailToken;
     private $MailFake;
     private $MailImage;
+    private $MailAnswer;
     private $MailDatum;
     private $MailVerified;
 
@@ -81,6 +82,11 @@ class Mail {
         $this->MailImage = $MailImage;
     }
 
+    public function setAnswer($MailAnswer)
+    {
+        $this->MailAnswer = $MailAnswer;
+    }
+
     public function setDatum($Datum)
     {
         $this->MailDatum = $Datum;
@@ -134,6 +140,11 @@ class Mail {
     public function getImage()
     {
         return $this->MailImage;
+    }
+
+    public function getAnswer()
+    {
+        return $this->MailAnswer;
     }
 
     public function getDatum()

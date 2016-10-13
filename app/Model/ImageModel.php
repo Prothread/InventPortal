@@ -35,4 +35,8 @@ class ImageModel
         return $this->db->getImagebyMailID($MailID);
     }
 
+    public function setImageVerify($id, $verify) {
+        return $this->db->setImageVerify($id, $verify);
+    }
+
 }

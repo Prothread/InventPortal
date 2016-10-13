@@ -12,6 +12,6 @@ $session = new Session();
 if (isset($_GET['page']) == 'imageverify') {
 
     //$imgcontrol->ImageDecline($_GET['img']);
-    $session->ImageVerify($_GET['img'], 0);
+    $session->ImageVerify($_GET['img'], 2);
     header('Location: ' . $_SERVER['HTTP_REFERER']);
 }

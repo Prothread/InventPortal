@@ -47,4 +47,8 @@ class ImageController
         return $this->model->getImagebyMailID($MailID);
     }
 
+    public function setImageVerify($id, $verify) {
+        return $this->model->setImageVerify($id, $verify);
+    }
+
 }

@@ -6,6 +6,7 @@
  * Time: 12:20
  */
 
+require_once '../app/view/header.php';
 require_once '../config/load.php';
 
 isset($_GET['page']) ? $page = $_GET['page'] : $page = 'dashboard';
@@ -24,47 +25,36 @@ if(isset($_GET['page'])) {
 
 switch($page) {
     case 'upload':
-        require_once '../app/view/header.php';
         include '../app/view/uploadoverzicht.php';
         break;
     case 'dashboard':
-        require_once '../app/view/header.php';
         include '../app/view/dashboard.php';
         break;
     case 'overzicht':
-        require_once '../app/view/header.php';
         include '../app/view/overzicht.php';
         break;
     case 'uploading':
-        require_once '../app/view/header.php';
         include '../app/Model/upload.php';
         break;
     case 'phpmail':
-        require_once '../app/view/header.php';
         include '../app/view/phpmail.php';
         break;
     case 'verify':
-        require_once '../app/view/header.php';
         include '../app/Model/verifymail.php';
         break;
     case 'dbverify':
-        require_once '../app/view/header.php';
         include '../app/Model/DbVerify.php';
         break;
     case 'accordering':
-        require_once '../app/view/header.php';
         include '../app/view/accordering.php';
         break;
     case 'item':
-        require_once '../app/view/header.php';
         include '../app/view/item.php';
         break;
     case 'settings':
-        require_once '../app/view/header.php';
         include '../app/view/settings.php';
         break;
     case 'newclient':
-        require_once '../app/view/header.php';
         include '../app/view/newclient.php';
         break;
     case 'imageverify':
@@ -74,15 +64,12 @@ switch($page) {
         include '../app/view/imagedecline.php';
         break;
     case 'manageclients':
-        require_once '../app/view/header.php';
         include '../app/view/manageclients.php';
         break;
     case 'conditions':
-        require_once '../app/view/header.php';
         include '../app/view/conditions.php';
         break;
     case 'test':
-        require_once '../app/view/header.php';
         include '../app/view/test.php';
         break;
     case 'logout':
@@ -90,6 +77,9 @@ switch($page) {
         break;
     case 'register':
         include '../app/view/login/register.php';
+        break;
+    case 'updatemail':
+        include '../app/view/updatemail.php';
         break;
     default:
         include '../app/view/login/login.php';

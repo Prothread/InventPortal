@@ -29,16 +29,7 @@ class DbImage extends Database
     }
 
     public function ImageDecline($img) {
-        $sql = "UPDATE `image` SET  `verify` = '0' WHERE `images` = '{$img}'";
-
-        if($this->dbQuery($sql)){
-            var_dump($this->dbQuery($sql));
-            return true;
-        }
-    }
-
-    public function getImageVerify($img) {
-        $sql = "SELECT `image` SET  `verify` = '1' WHERE `images` = '{$img}'";
+        $sql = "UPDATE `image` SET  `verify` = '2' WHERE `images` = '{$img}'";
 
         if($this->dbQuery($sql)){
             var_dump($this->dbQuery($sql));
@@ -56,6 +47,14 @@ class DbImage extends Database
             return $row;
         }
 
+    }
+
+    public function setImageVerify($id, $verify) {
+        $sql = "UPDATE `image` SET `verify` = '{$verify}' WHERE `id` = '{$id}'";
+
+        if($this->dbQuery($sql)){
+            return true;
+        }
     }
 
 }
