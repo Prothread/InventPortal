@@ -41,9 +41,9 @@ if (isset($_FILES['myFile'])) {
         }
         */
 
-        if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
+        if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "pdf") {
             $error = 1;
-            echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+            echo "Sorry, only JPG, JPEG, PNG, PDF & GIF files are allowed.";
             ?><br/><?php
         }
 
@@ -63,9 +63,19 @@ if (isset($_FILES['myFile'])) {
 
                 if (move_uploaded_file($test1, $uniqfile)) {
                     array_push($images, $test);
-
-                    echo "The file " . $test . " has been uploaded."; ?><br /><?php
-                    echo '<img style="width:300px; height: auto;" src="../app/uploads/' . $unique_name  . '">';
+                    if($imageFileType == "pdf"){
+                        echo "The file " . $test . " has been uploaded."; ?><br /><?php
+                        ?>
+                        <object data="<?= DIR_IMAGE.$unique_name ?>" type="application/pdf" width="700px" height="700px">
+                            <embed src="<?= DIR_IMAGE.$unique_name ?>">
+                            </embed>
+                        </object>
+                            <?php
+                    }
+                    else{
+                        echo "The file " . $test . " has been uploaded."; ?><br /><?php
+                        echo '<img style="width:300px; height: auto;" src="../app/uploads/' . $unique_name  . '">';
+                    }
                     ?>
 
                     <p>

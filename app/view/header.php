@@ -89,7 +89,7 @@
                     <a href="index.php?page=settings">Instellingen</a>
                 </li>
 
-                <li class="nav-button-settings">
+                <li class="nav-button-users">
                     <a href="index.php?page=manageclients">Klanten</a>
                 </li>
 

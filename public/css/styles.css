@@ -5,7 +5,7 @@ label {
     }
 
 table {
-    font-family: cabinregular;
+    font-family: cabinregular, 'serif';
     border-collapse: collapse;
     width: 100%;
 }
@@ -246,7 +246,7 @@ tr:nth-child(even) {
 }
 
 .NameText table {
-    font-family: cabinregular;
+    font-family: cabinregular, 'serif';
     border-collapse: collapse;
     width: 100%;
     border: none;
@@ -313,7 +313,7 @@ ul.sidebar-nav {
 }
 
 #PF {
-    align: left;
+    align-content: left;
     width: 100px;
     height: 100px;
 }
@@ -386,10 +386,13 @@ ul.sidebar-nav {
 .sidebar-nav .nav-button-upload a { background:url("http://i65.tinypic.com/2hrd10x.png") no-repeat 40px 5px }
 .sidebar-nav .nav-button-all a { background:url("http://i65.tinypic.com/2m69uki.png") no-repeat 40px 5px }
 .sidebar-nav .nav-button-settings a { background:url("http://i63.tinypic.com/2qjf1p0.png") no-repeat 40px 5px }
+.sidebar-nav .nav-button-users a { background:url("http://i67.tinypic.com/20zy22u.png") no-repeat 40px 5px }
+
 .sidebar-nav .nav-button-home a:hover { background:url("http://i66.tinypic.com/2u6my6s.png") no-repeat 40px 5px }
 .sidebar-nav .nav-button-upload a:hover { background:url("http://i67.tinypic.com/2e4cf44.png") no-repeat 40px 5px }
 .sidebar-nav .nav-button-all a:hover { background:url("http://i66.tinypic.com/2gufn2q.png") no-repeat 40px 5px }
 .sidebar-nav .nav-button-settings a:hover { background:url("http://i68.tinypic.com/qyy3qs.png") no-repeat 40px 5px }
+.sidebar-nav .nav-button-users a:hover { background:url("http://i64.tinypic.com/qn0dix.png") no-repeat 40px 5px }
 
 
 
@@ -409,7 +412,7 @@ table.table { width: 100%; }
 }
 
 .table tr { 
-  border-bottom: 0px solid #FFFFFF;
+  border-bottom: 0 solid #FFFFFF;
 }
 
 @media screen and (max-width: 800px) {

@@ -21,7 +21,7 @@
                                 </label>
                                 <br>
                                 <div class="image-container">
-                                    <img class="preview" id="preview" width: "100%"; height: "100%"; src="http://i67.tinypic.com/mtxpbl.jpg">
+                                    <img class="preview" id="preview" width="100%" height="100%" src="http://i67.tinypic.com/mtxpbl.jpg">
                                 </div>
                             </fieldset><br>
 
