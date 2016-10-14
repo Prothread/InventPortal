@@ -28,12 +28,12 @@ $mymail = new MailController();
     $subject = $_POST['title'];
     $myid = $_POST['id'];
 
-    $content = "<img alt='MadalcoHeader' src='http://i68.tinypic.com/dw5a9f.png'>" . "  <br/><br/>" . "Geachte " . $_POST['fromname'] . "," .
+    $content = "<img alt='MadalcoHeader' src='http://i68.tinypic.com/dw5a9f.png'>" . "  <br/><br/>" . "Geachte " . $_POST['name'] . "," .
         " <br/><br/>" . $_POST['name'] . " heeft uw proef: " . $_POST['keuring'] . "." . "<br /><br />" .
         "<b>Titel van uw proef: </b>" .
         $_POST['title'] .
 
-        "<br /><br />" . "U kunt uw proef " . "<a href='http://localhost/InventPortal/public/index.php?page=dashboard&$myid'>hier</a> " . "bekijken." .
+        "<br /><br />" . "U kunt uw proef " . "<a href='http://localhost/InventPortal/public/index.php?page=item&id=$myid'>hier</a> " . "bekijken." .
 
         "<br /> <br />Met vriendelijke groet, <br />" . $_POST['name'];
     $altcontent = "This is the content if the mailing system doesn't support a HMTL body";
@@ -69,6 +69,7 @@ $mymail = new MailController();
         'id' => intval($myid),
         'name' => strip_tags($_POST['name']),
         'answer' => strip_tags($_POST['answer']),
+        'verified' => strip_tags($_POST['verified'])
     ];
     var_dump($mailinfo);
 
