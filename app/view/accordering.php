@@ -1,6 +1,12 @@
 <?php
 #ACCORDERING PAGINA
 
+//TODO Mensen kunnen op de accorder pagina komen als ze niet ingelogd zijn
+// Haal hierbij het email op en vergelijk het met een van de gebruikers en als het akkoord gaat bij het accorderen
+// dat het bijgewerkt wordt bij de lijst van de geaccordeerde proeven/offertes van die gebruiker
+
+//TODO niet verdergaan als nog niet alle images beoordeeld zijn
+
 $upload = new BlockController();
 $session = new Session();
 $myupload = $upload->getUploadById($session->getMailId());
@@ -9,16 +15,39 @@ $imgarray = ( explode(", ", $myupload['uniquename']) );
 $image_controller = new ImageController();
 $uploadedimages = $image_controller->getImagebyMailID($myupload['id']);
 
-if(isset($_POST['submit'])) {
-    foreach($uploadedimages as $img) {
-        $session->getImageVerify($img['id']);
+$verifiedimages = array();
 
-        $image_controller->setImageVerify($img['id'], $session->getImageVerify($img['id']));
+if (isset($_POST['submit'])) {
+
+    foreach ($uploadedimages as $img) {
+        $session->getImageVerify($img['id']);
+        array_push($verifiedimages, $session->getImageVerify($img['id']));
     }
+
 }
 
-?>
+if (in_array(2, $verifiedimages)) {
+    $verified = 3;
+    $verifytext = "afgekeurd";
+} else {
+    $verified = 2;
+    $verifytext = 'goedgekeurd';
+}
 
+if(in_array( 0, $verifiedimages)) {
+    echo "You can't submit yet, because you haven't verified all images yet";
+}
+else {
+    if(isset($_POST['submit'])) {
+
+        foreach ($uploadedimages as $img) {
+            $session->getImageVerify($img['id']);
+            $image_controller->setImageVerify($img['id'], $session->getImageVerify($img['id']));
+        }
+
+    }
+}
+?>
 
 <!-- Page Content -->
 <div id="page-content-wrapper">
@@ -27,6 +56,9 @@ if(isset($_POST['submit'])) {
             <div class="col-lg-12">
                 <p class="NameText">Productaccordering</p>
                 <hr size="1">
+
+                <!-- TODO Delete id-->
+                <p> Tidjelijk id: <span style="color:#bc2d4c"><?= $myupload['id']; ?></span></p>
 
                 <p> Onderwerp: <span style="color:#bc2d4c"><?= $myupload['onderwerp']; ?></span></p>
 
@@ -87,11 +119,14 @@ if(isset($_POST['submit'])) {
 
                     <input type="hidden" name="name" value="<?= $myupload['naam']; ?>">
                     <input type="hidden" name="title" value="<?= $myupload['onderwerp']; ?>">
+                    <input type="hidden" name="verified" value="<?php if(isset($verified)){ echo $verified; }?>">
+                    <input type="hidden" name="keuring" value="<?php if(isset($verified)) { echo $verifytext; }?>">
 
                     <input type="hidden" name="fromname" id="" value="Kevin Ernst">
                     <input type="hidden" name="mailto" id="" value="kevin.herdershof@hotmail.com">
 
-                    <label id="Voorwaarden">Ik heb de <a href="index.php?page=conditions"><span style="color:#bc2d4c">algemene voorwaarden</span></a> gelezen en ga hiermee akkoord</label><input type="checkbox" name="yeahright" required>
+                    <label id="Voorwaarden">Ik heb de <a href="index.php?page=conditions"><span style="color:#bc2d4c">algemene voorwaarden</span></a> gelezen en ga hiermee akkoord</label>
+                    <input type="checkbox" name="yeahright" required>
                     <br><br>
 
                     <input type="submit" value="Verstuur!" >

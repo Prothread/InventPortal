@@ -6,7 +6,6 @@
  * Time: 12:20
  */
 
-require_once '../app/view/header.php';
 require_once '../config/load.php';
 
 $session = new Session();
@@ -19,14 +18,14 @@ if(isset($_GET['page'])) {
     $page = 'dashboard';
 }
 
-/*if(!isset($_SESSION['usr_id'])) {
-    header("Location: index.php?page=login");
-}*/
-
-if(!$session->exists('usr_id') && $page !== 'wachtwoordvergeten' && $page !== 'wachtwoordherstellen') {
+if(!$session->exists('usr_id') && $page !== 'wachtwoordvergeten' && $page !== 'wachtwoordherstellen' && $page !== 'register') {
     $page = 'login';
 } else if($session->exists('usr_id') && $page=='login') {
     $page = 'dashboard';
+}
+
+if($session->exists('usr_id')){
+    require_once '../app/view/header.php';
 }
 
 switch($page) {

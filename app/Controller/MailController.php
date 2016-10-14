@@ -53,6 +53,7 @@ class MailController
             $this->model->setMailId($mailinfo['id']);
             $this->model->setMailName($mailinfo['name']);
             $this->model->setAnswer($mailinfo['answer']);
+            $this->model->setVerified($mailinfo['verified']);
         }
         else {
             $this->model->setMailId($mailinfo['id']);

@@ -34,10 +34,9 @@ class UserController
         $this->model->setPassword($userinfo['password']);
 
         if ($result = $this->model->getUser()) {
-            echo('Success, de user is succesvol gecheckt.');
             return $result;
         }
-
+        return false;
     }
 
 }

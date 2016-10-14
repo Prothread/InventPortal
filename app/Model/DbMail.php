@@ -39,7 +39,7 @@ class DbMail extends Database
                 `verified` = '{$mail->getVerified()}' WHERE `id`= '{$mail->getMailId()}'";
 
         if($mail->getAnswer() !== null) {
-            $sql = "UPDATE `mail` SET `answer` = '{$mail->getAnswer()}' WHERE `id` = '{$mail->getMailId()}'";
+            $sql = "UPDATE `mail` SET `answer` = '{$mail->getAnswer()}', `verify` = `{$mail->getVerified()}` WHERE `id` = '{$mail->getMailId()}'";
 
             if($return = $this->dbQuery($sql)){
                 return ($return);

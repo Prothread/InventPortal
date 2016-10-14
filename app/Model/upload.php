@@ -130,7 +130,7 @@ if($error == 0) {
         $content = "<img alt='MadalcoHeader' src='http://i68.tinypic.com/dw5a9f.png'>"."  <br/><br/>" . "Geachte " . $_POST['mailname'] . "," .
             " <br/><br/>" . "Uw proef staat te wachten op goedkeuring in het <b>Madalco Portaal!</b>" . "<br /><br />" .
             "<b>Titel van uw proef:</b>".
-            $_POST['title'] .
+            $_POST['title'] . "<br />" .
 
             "<b>Beschrijving van uw proef:</b> " .
             $_POST['additionalcontent'] .
