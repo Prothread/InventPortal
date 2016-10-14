@@ -39,6 +39,7 @@ class ComposerStaticInitc0a55957efdf0e279fcd6092060aa6da
         'DbBlock' => __DIR__ . '/../..' . '/app/Model/DbBlock.php',
         'DbImage' => __DIR__ . '/../..' . '/app/Model/DbImage.php',
         'DbMail' => __DIR__ . '/../..' . '/app/Model/DbMail.php',
+        'DbUser' => __DIR__ . '/../..' . '/app/Model/DbUser.php',
         'DbVerify' => __DIR__ . '/../..' . '/app/Model/DbVerify.php',
         'EasyPeasyICS' => __DIR__ . '/..' . '/phpmailer/phpmailer/extras/EasyPeasyICS.php',
         'ImageController' => __DIR__ . '/../..' . '/app/Controller/ImageController.php',
@@ -51,6 +52,8 @@ class ComposerStaticInitc0a55957efdf0e279fcd6092060aa6da
         'POP3' => __DIR__ . '/..' . '/phpmailer/phpmailer/class.pop3.php',
         'SMTP' => __DIR__ . '/..' . '/phpmailer/phpmailer/class.smtp.php',
         'Session' => __DIR__ . '/../..' . '/app/session/Session.php',
+        'User' => __DIR__ . '/../..' . '/app/Model/User.php',
+        'UserController' => __DIR__ . '/../..' . '/app/Controller/UserController.php',
         'ntlm_sasl_client_class' => __DIR__ . '/..' . '/phpmailer/phpmailer/extras/ntlm_sasl_client.php',
         'phpmailerException' => __DIR__ . '/..' . '/phpmailer/phpmailer/class.phpmailer.php',
     );

@@ -4,17 +4,23 @@ if(isset($_SESSION['usr_id'])) {
     header("Location: index.php");
 }
 
-include_once 'dbconnect.php';
+$user = new UserController();
 
 //set validation error flag as false
 $error = false;
 
 //check if form is submitted
 if (isset($_POST['signup'])) {
-    $name = mysqli_real_escape_string($con, $_POST['name']);
+
+    /*$name = mysqli_real_escape_string($con, $_POST['name']);
     $email = mysqli_real_escape_string($con, $_POST['email']);
     $password = mysqli_real_escape_string($con, $_POST['password']);
-    $cpassword = mysqli_real_escape_string($con, $_POST['cpassword']);
+    $cpassword = mysqli_real_escape_string($con, $_POST['cpassword']);*/
+
+    $name = ( $_POST['name'] );
+    $email = ( $_POST['email'] );
+    $password = ( $_POST['password'] );
+    $cpassword = ($_POST['cpassword'] );
     
     //name can contain only alpha characters and space
     if (!preg_match("/^[a-zA-Z ]+$/",$name)) {
@@ -34,58 +40,28 @@ if (isset($_POST['signup'])) {
         $cpassword_error = "De ingevoerde wachtwoorden komen niet overeen.";
     }
     if (!$error) {
-        if(mysqli_query($con, "INSERT INTO users(name,email,password) VALUES('" . $name . "', '" . $email . "', '" . md5($password) . "')")) {
+
+        $userinfo = [
+            'name' => $name,
+            'email' => $email,
+            'password' => $cpassword
+        ];
+
+        if($user->create($userinfo)) {
+            $successmsg = "Succesvol geregistreerd! <a href='index.php'>Klik hier om in te loggen.</a>";
+        }
+        else {
+            $errormsg = "Er is een probleem opgetreden tijdens het registeren, probeer het later opnieuw.";
+        }
+
+        /*if(mysqli_query($con, "INSERT INTO users(name,email,password) VALUES('" . $name . "', '" . $email . "', '" . md5($password) . "')")) {
             $successmsg = "Succesvol geregistreerd! <a href='index.php'>Klik hier om in te loggen.</a>";
         } else {
             $errormsg = "Er is een probleem opgetreden tijdens het registeren, probeer het later opnieuw.";
-        }
+        }*/
     }
 }
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="assets/img/favicon.ico">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" >
-    <link rel="stylesheet" type="text/css" href="css/styles.css">
-    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
-
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-
-    <title>Inloggen</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="assets/css/bootstrap.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="assets/css/ionicons.min.css" rel="stylesheet">
-    <link href="assets/css/style.css" rel="stylesheet">
-
-
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-  </head>
-
-  <body>
-
     <div id="h">
       <div class="logo">Login Systeem</div>
       <div class="social hidden-xs">
@@ -94,7 +70,7 @@ if (isset($_POST['signup'])) {
       <div class="container">
         <div class="row">
           <div class="col-md-8 col-md-offset-2 centered">
-                        <form role="form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="signupform">
+              <form role="form" method="post" name="signupform">
                 <fieldset>
                     <legend>Nieuw account</legend>
 
@@ -126,7 +102,7 @@ if (isset($_POST['signup'])) {
                         <input type="submit" name="signup" value="Aanmaken" class="btn btn-primary" />
                     </div>
                 </fieldset>
-            </form>
+              </form>
             <span class="text-success"><?php if (isset($successmsg)) { echo $successmsg; } ?></span>
             <span class="text-danger"><?php if (isset($errormsg)) { echo $errormsg; } ?></span>
         </div>
@@ -138,27 +114,7 @@ if (isset($_POST['signup'])) {
         </div>
     </div>
 </div>
-
-<script src="js/jquery-1.10.2.js"></script>
-<script src="js/bootstrap.min.js"></script>
           </div>
         </div><!--/row-->
       </div><!--/container-->
     </div><!-- /H -->
-
-    
-
-
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6 col-md-offset-3 centered">
-
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
-    <script src="assets/js/retina-1.1.0.js"></script>
-  </body>
-</html>

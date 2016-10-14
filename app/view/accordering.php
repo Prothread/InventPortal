@@ -71,7 +71,7 @@ if(isset($_POST['submit'])) {
                                     AccButtonB.style.display = "none";
                                 }
                             </script>-->
-                            
+
                         </div>
                     </div>
                 <?php }

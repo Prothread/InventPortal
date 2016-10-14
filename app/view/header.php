@@ -65,7 +65,7 @@
             <div id="UserPhoto">
             </div>
             <h3 id="LoggedInAs">Testadmin</h3>
-            <a id="LogOut" href="#"><h6 id="LogOut">Uitloggen</h6></a>
+            <a id="LogOut" href="?page=logout"><h6 id="LogOut">Uitloggen</h6></a>
         </div>
     </div>
 
@@ -94,7 +94,7 @@
                 </li>
 
                 <li class="nav-button-logout">
-                    <a href="#">Uitloggen</a>
+                    <a href="?page=logout">Uitloggen</a>
                 </li>
             </ul>
         </div>

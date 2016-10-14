@@ -9,6 +9,8 @@
 require_once '../app/view/header.php';
 require_once '../config/load.php';
 
+$session = new Session();
+
 isset($_GET['page']) ? $page = $_GET['page'] : $page = 'dashboard';
 
 if(isset($_GET['page'])) {
@@ -17,11 +19,15 @@ if(isset($_GET['page'])) {
     $page = 'dashboard';
 }
 
-/*if(!$session->exists('username') && $page !== 'wachtwoordvergeten' && $page !== 'wachtwoordherstellen') {
-    $page = 'login';
-} elseif($session->exists('username') && $page=='login') {
-    $page = 'dashboard';
+/*if(!isset($_SESSION['usr_id'])) {
+    header("Location: index.php?page=login");
 }*/
+
+if(!$session->exists('usr_id') && $page !== 'wachtwoordvergeten' && $page !== 'wachtwoordherstellen') {
+    $page = 'login';
+} else if($session->exists('usr_id') && $page=='login') {
+    $page = 'dashboard';
+}
 
 switch($page) {
     case 'upload':
@@ -73,16 +79,19 @@ switch($page) {
         include '../app/view/test.php';
         break;
     case 'logout':
-        include '../app/view/login/logout.php';
+        include '../app/view/logout.php';
         break;
     case 'register':
-        include '../app/view/login/register.php';
+        include '../app/view/register.php';
         break;
     case 'updatemail':
         include '../app/view/updatemail.php';
         break;
+    case 'login':
+        include '../app/view/login.php';
+        break;
     default:
-        include '../app/view/login/login.php';
+        include '../app/view/login.php';
         break;
 }
 
