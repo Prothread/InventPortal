@@ -50,21 +50,6 @@ class DbVerify extends Database
 
     }
 
-    public function getUserForAccord($verifyemail)
-    {
-        $sql = "SELECT * FROM `users` WHERE `email` = '{$verifyemail}'";
-
-        $result = $this->dbQuery($sql);
-
-        $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-
-        if( $result ){
-            $this->result = $row;
-            return $this->result;
-        }
-
-    }
-
     public function getVerified()
     {
         return $this->result;

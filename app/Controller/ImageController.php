@@ -9,64 +9,43 @@
 class ImageController
 {
     /**
-     * Variabele om ImageModel te verbinden met de controller
-     *
-     * @var ImageModel
-     */
-
+ * Model voor de imagecontroller
+ *
+ * @var ImageModel
+ */
     private $model;
     private $uniquename;
-
-    /**
-     * Constructor om deze controller te verbinden met de ImageModel
-     *
-     * ImageController constructor.
-     */
 
     public function __construct()
     {
         $this->model = new ImageModel();
     }
 
-    /**
-     * Haal het laatst geüploade item op
-     *
-     * @return int
-     */
-
     public function getNewId(){
         return $this->model->getNewId();
     }
 
-    /**
-     * Kijk of de image al geverifieerd is
-     *
-     * @param $img
-     * @return mixed
-     */
+    /*public function ImageVerify($id, $img, $imageFileType) {
+        $unique_name = pathinfo($img, PATHINFO_FILENAME)."_".( $id . 'V' ).'.'.$imageFileType;
+        $this->uniquename = DIR_IMAGE.$unique_name;
+        echo $this->uniquename;
+    }*/
+
+    public function ImageVerify($img) {
+        return $this->model->ImageVerify($img);
+    }
+
+    public function ImageDecline($img) {
+        return $this->model->ImageDecline($img);
+    }
 
     public function getImageVerify($img) {
         return $this->model->getImageVerify($img);
     }
 
-    /**
-     * Haal image op door te kijken bij welke mail hij hoort
-     *
-     * @param $MailID
-     * @return array|null
-     */
-
     public function getImagebyMailID($MailID) {
         return $this->model->getImagebyMailID($MailID);
     }
-
-    /**
-     * Verander de verify tabel van de image om aan te geven dat hij goedgekeurd of afgekeurd wordt
-     *
-     * @param $id
-     * @param $verify
-     * @return bool
-     */
 
     public function setImageVerify($id, $verify) {
         return $this->model->setImageVerify($id, $verify);

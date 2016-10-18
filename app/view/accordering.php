@@ -5,7 +5,7 @@
 // Haal hierbij het email op en vergelijk het met een van de gebruikers en als het akkoord gaat bij het accorderen
 // dat het bijgewerkt wordt bij de lijst van de geaccordeerde proeven/offertes van die gebruiker
 
-//TODO Delete key als de accordering goed is
+//TODO niet verdergaan als nog niet alle images beoordeeld zijn
 
 $upload = new BlockController();
 $session = new Session();
@@ -15,20 +15,15 @@ $imgarray = ( explode(", ", $myupload['uniquename']) );
 $image_controller = new ImageController();
 $uploadedimages = $image_controller->getImagebyMailID($myupload['id']);
 
-$UID = date('dmY-G.i.s') . '-192.08.1.124';
-//TODO Check ip goede adress
-//$UID = date('dmY-G.i.s') . '' . $_SERVER['REMOTE_ADDR'];
-
 $verifiedimages = array();
 
-foreach ($uploadedimages as $img) {
-    if($session->getImageVerify($img['id']) !== null){
-        $imageverify = $session->getImageVerify($img['id']);
+if (isset($_POST['submit'])) {
+
+    foreach ($uploadedimages as $img) {
+        $session->getImageVerify($img['id']);
+        array_push($verifiedimages, $session->getImageVerify($img['id']));
     }
-    else{
-        $imageverify = 0;
-    }
-    array_push($verifiedimages, $imageverify);
+
 }
 
 if (in_array(2, $verifiedimages)) {
@@ -40,10 +35,17 @@ if (in_array(2, $verifiedimages)) {
 }
 
 if(in_array( 0, $verifiedimages)) {
-    $verify = 0;
+    echo "You can't submit yet, because you haven't verified all images yet";
 }
 else {
-    $verify = 1;
+    if(isset($_POST['submit'])) {
+
+        foreach ($uploadedimages as $img) {
+            $session->getImageVerify($img['id']);
+            $image_controller->setImageVerify($img['id'], $session->getImageVerify($img['id']));
+        }
+
+    }
 }
 ?>
 
@@ -55,11 +57,8 @@ else {
                 <p class="NameText">Productaccordering</p>
                 <hr size="1">
 
-                <!-- TODO Delete id
-                     TODO Sla mail per user op
-                -->
+                <!-- TODO Delete id-->
                 <p> Tidjelijk id: <span style="color:#bc2d4c"><?= $myupload['id']; ?></span></p>
-                <?php var_dump($session->getUserId()) ?>
 
                 <p> Onderwerp: <span style="color:#bc2d4c"><?= $myupload['onderwerp']; ?></span></p>
 
@@ -118,15 +117,10 @@ else {
                     <label>Opmerking<span style="color:#bc2d4c">*</span></label>
                     <input type="text" name="answer" size="50" required><br><br>
 
-                    <input type="hidden" name="name" value="<?php if(isset($_SESSION['usr_id'])){ echo $_SESSION['usr_name']; } else {echo $myupload['naam']; }?>">
+                    <input type="hidden" name="name" value="<?= $myupload['naam']; ?>">
                     <input type="hidden" name="title" value="<?= $myupload['onderwerp']; ?>">
-                    <input type="hidden" name="verstuurder" value="<?= $myupload['verstuurder']?>">
-                    <input type="hidden" name="UID" value="<?= $UID; ?>">
-
                     <input type="hidden" name="verified" value="<?php if(isset($verified)){ echo $verified; }?>">
                     <input type="hidden" name="keuring" value="<?php if(isset($verified)) { echo $verifytext; }?>">
-
-                    <p id="verify"></p>
 
                     <input type="hidden" name="fromname" id="" value="Kevin Ernst">
                     <input type="hidden" name="mailto" id="" value="kevin.herdershof@hotmail.com">
@@ -135,27 +129,13 @@ else {
                     <input type="checkbox" name="yeahright" required>
                     <br><br>
 
-                    <input type="submit" name="submit" value="Verstuur!" >
+                    <input type="submit" value="Verstuur!" >
 
                     <br><br>
                     <label>Uw IP-adres: <?PHP
                         echo ''.$_SERVER['REMOTE_ADDR'];
                         ?></label>
                 </form>
-
-                <script>
-                    $( "form" ).submit(function( event ) {
-                        // TODO if verify = false goed neerzetten
-                        if ( <?= $verify ?> === 1) {
-                            $( "#verify" ).text( "Validated..." ).show();
-                            return;
-                        }
-
-                        $( "#verify" ).text( "Not valid!" ).show().fadeOut( 2500 );
-                        event.preventDefault();
-                    });
-                </script>
-
                 <br>
                 <br>
 

@@ -8,51 +8,20 @@
 
 class BlockController
 {
-    /**
-     * Variabele om door te verbinden naar de model Block
-     *
-     * @var Block
-     */
-
     private $model;
-
-    /**
-     * Verbindt de model Block
-     *
-     * BlockController constructor.
-     */
 
     public function __construct()
     {
         $this->model = new Block();
     }
 
-    /**
-     * Haal ale uploads op
-     *
-     * @return array|null
-     */
-
     public function getUploads(){
         return $this->model->getUploads();
     }
 
-    /**
-     * Haal de laatste 3 uploads op
-     *
-     * @return array|null
-     */
-
     public function getLastThreeUploads(){
         return $this->model->getLastThreeUploads();
     }
-
-    /**
-     * Haal een upload op met het id dat je meegeeft
-     *
-     * @param $id
-     * @return array|null
-     */
 
     public function getUploadById($id){
         return $this->model->getUploadById($id);

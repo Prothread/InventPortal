@@ -9,12 +9,6 @@
 class DbBlock extends Database
 {
 
-    /**
-     * Haal ale uploads op
-     *
-     * @return array|null
-     */
-
     public function getUploads(){
         $sql = "SELECT * FROM `mail` ORDER BY `mail`.`id` DESC";
 
@@ -27,12 +21,6 @@ class DbBlock extends Database
         }
     }
 
-    /**
-     * Haal de laatste 3 uploads op
-     *
-     * @return array|null
-     */
-
     public function getLastThreeUploads() {
         $sql = "SELECT * FROM `mail` ORDER BY `id` DESC LIMIT 3";
 
@@ -43,13 +31,6 @@ class DbBlock extends Database
             return $row;
         }
     }
-
-    /**
-     * Haal een upload op met het id dat je meegeeft
-     *
-     * @param $id
-     * @return array|null
-     */
 
     public function getUploadById($id){
         $sql = "SELECT * FROM `mail` WHERE `id` = '{$id}'";
