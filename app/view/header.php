@@ -1,5 +1,8 @@
 <?php
 #HEADER
+
+$user = new UserController();
+$myuser = $user->getUserById($session->getUserId());
 ?>
 
 <html lang="nl">
@@ -64,7 +67,7 @@
         <div id="NameSide">
             <div id="UserPhoto">
             </div>
-            <h3 id="LoggedInAs"><?php echo $_SESSION['usr_name']; ?></h3>
+            <h3 id="LoggedInAs"><?= $myuser['name']; ?></h3>
             <a id="LogOut" href="?page=logout"><h6 id="LogOut">Uitloggen</h6></a>
         </div>
     </div>

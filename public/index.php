@@ -40,13 +40,13 @@ if(isset($_GET['page'])) {
  * Anders: de gebruiker is ingelogd en gaat naar het dashboard
  */
 
-if(!$session->exists('usr_id') && $page !== 'wachtwoordvergeten' && $page !== 'wachtwoordherstellen' && $page !== 'register') {
+if(!$session->exists('usr_id') && $page !== 'wachtwoordvergeten' && $page !== 'wachtwoordherstellen' && $page !== 'register' && $page !== 'accordering' && $page !== 'verify') {
     $page = 'login';
 } else if($session->exists('usr_id') && $page=='login') {
     $page = 'dashboard';
 }
 
-if($session->exists('usr_id')){
+if($session->exists('usr_id') || $page = 'accordering'){
     require_once '../app/view/header.php';
 }
 

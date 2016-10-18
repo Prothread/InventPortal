@@ -53,4 +53,9 @@ class UserController
         return false;
     }
 
+    public function getUserById($id)
+    {
+        return $this->model->getUserById($id);
+    }
+
 }

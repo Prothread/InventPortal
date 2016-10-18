@@ -49,10 +49,29 @@ class DbUser extends Database
     }
 
     /**
+     * Haal user op met het id van die gebruiker
+     *
+     * @param $id
+     * @return array|null
+     */
+
+    public function getUserById($id){
+        $sql = "SELECT * FROM `users` WHERE `id` = '{$id}'";
+
+        $result = $this->dbQuery($sql);
+        $value = mysqli_fetch_assoc($result);
+
+        if($value) {
+            return $value;
+        }
+    }
+
+    /**
      * Haal de laatste id op die in de database toegevoegd wordt
      *
      * @return mixed
      */
+
 
     public function dbLastInsertedId()
     {

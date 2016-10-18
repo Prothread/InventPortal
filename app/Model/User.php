@@ -19,6 +19,14 @@ class User
     private $Name;
 
     /**
+     * Variabele voor het opslaan/ophalen van het id van de user
+     *
+     * @var $UserId
+     */
+
+    private $UserId;
+
+    /**
      * Variabele voor het opslaan/ophalen van de email van de user
      *
      * @var $Email
@@ -97,6 +105,18 @@ class User
     public function setPassword($Password)
     {
         $this->Password = $Password;
+    }
+
+    /**
+     * Haal de gebruiker op met behulp van het gebruiker id
+     *
+     * @param $id
+     * @return array|null
+     */
+
+    public function getUserById($id)
+    {
+        return $this->db->getUserById($id);
     }
 
     /**

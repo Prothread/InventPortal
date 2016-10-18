@@ -5,8 +5,6 @@
 // Haal hierbij het email op en vergelijk het met een van de gebruikers en als het akkoord gaat bij het accorderen
 // dat het bijgewerkt wordt bij de lijst van de geaccordeerde proeven/offertes van die gebruiker
 
-//TODO Delete key als de accordering goed is
-
 $upload = new BlockController();
 $session = new Session();
 $image_controller = new ImageController();
