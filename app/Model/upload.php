@@ -53,6 +53,12 @@ if (isset($_FILES['myFile'])) {
             ?><br/><?php
         }
 
+        if (strlen($test) > 10) {
+            $error = 1;
+            echo $test . " File length exceeds limit!";
+            ?><br/><?php
+        }
+
         if ($error == 0) {
 
             $unique_name = pathinfo($test, PATHINFO_FILENAME)."_".( $imageId ).'.'.$imageFileType;
@@ -227,3 +233,6 @@ if($error == 0) {
         }
     }
 }
+?>
+<br>
+<input onClick="location.href='index.php?page=phpmail'" type="submit" name="submit" size="50" value="Back">
