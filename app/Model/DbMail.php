@@ -24,17 +24,18 @@ class DbMail extends Database
 
     public function create(Mail $mail)
     {
-        $sql = "INSERT INTO `mail` (`onderwerp`, `verstuurder`, `beschrijving`, `naam`, `email`, `key`, `imgname` , `uniquename`, `datum` , `verified`) VALUES ('{$mail->getMailSubject()}' , '{$mail->getMailSender()}' ,
-                '{$mail->getMailDescription()}' , '{$mail->getMailName()}' , '{$mail->getMailEmail()}' , '{$mail->getToken()}', '{$mail->getFakeImage()}' ,'{$mail->getImage()}', '{$mail->getDatum()}' ,
+        $sql = "INSERT INTO `mail` (`onderwerp`, `verstuurder`, `beschrijving`, `naam`, `email`, `key`, `datum` , `verified`) VALUES ('{$mail->getMailSubject()}' , '{$mail->getMailSender()}' ,
+                '{$mail->getMailDescription()}' , '{$mail->getMailName()}' , '{$mail->getMailEmail()}' , '{$mail->getToken()}', '{$mail->getDatum()}' ,
                 '{$mail->getVerified()}' )";
 
         if($this->dbQuery($sql)) {
+
             $imgarray = ( explode(", ", $mail->getImage()) );
             $myid = $this->dbLastInsertedId();
             foreach($imgarray as $img){
-                $sql1 = "INSERT INTO `image` (`mailid`, `images`, `verify`) VALUES ('{$myid}', '{$img}', '{$mail->getVerified()}')";
+                $sql2 = "INSERT INTO `image` (`mailid`, `fakename`, `images`, `verify`) VALUES ('{$myid}', '{$mail->getFakeImage()}', '{$img}', '{$mail->getVerified()}')";
 
-                if($this->dbQuery($sql1)){
+                if($this->dbQuery($sql2)){
                     true;
                 }
             }
@@ -49,7 +50,8 @@ class DbMail extends Database
     /**
      * Get all information in the sql variable
      *
-     * If: als er een antwoord is ingevuld --> verander sql zodat het velden bij gaat werken
+     * If: als er een antwoord is ingevuld --> werk antwoord, token en verified bij
+     * Update de usermail met een nieuwe userid en mailid (dit is voor geaccordeerde proeven/offertes)
      *
      * Else: Voor elke image update de rij.
      *
@@ -60,13 +62,20 @@ class DbMail extends Database
     public function update(Mail $mail)
     {
         $sql = "UPDATE `mail` SET `onderwerp` = '{$mail->getMailSubject()}', `verstuurder` = '{$mail->getMailSender()}', `beschrijving` = '{$mail->getMailDescription()}', `naam` = '{$mail->getMailName()}',
-                `email` = '{$mail->getMailEmail()}', `key` = '{$mail->getToken()}', `imgname` = '{$mail->getFakeImage()}', `uniquename` = '{$mail->getImage()}', `datum` = '{$mail->getDatum()}',
+                `email` = '{$mail->getMailEmail()}', `key` = '{$mail->getToken()}', `datum` = '{$mail->getDatum()}',
                 `verified` = '{$mail->getVerified()}' WHERE `id`= '{$mail->getMailId()}'";
 
         if($mail->getAnswer() !== null) {
-            $sql = "UPDATE `mail` SET `answer` = '{$mail->getAnswer()}', `key` = '{$mail->getToken()}' , `verify` = `{$mail->getVerified()}` WHERE `id` = '{$mail->getMailId()}'";
+            $sql = "UPDATE `mail` SET `answer` = '{$mail->getAnswer()}', `key` = '{$mail->getToken()}' , `verified` = '{$mail->getVerified()}' WHERE `id` = '{$mail->getMailId()}'";
 
             if($this->dbQuery($sql)){
+
+                $sql1 = "INSERT INTO `usermail` (`userid`, `mailid`) VALUES ('{$mail->getMailUserId()}', '{$mail->getMailId()}')";
+
+                if($this->dbQuery($sql1)) {
+                    true;
+                }
+
                 return true;
             }
 
@@ -78,7 +87,7 @@ class DbMail extends Database
 
                 $imgarray = (explode(", ", $mail->getImage()));
                 foreach ($imgarray as $img) {
-                    $sql1 = "UPDATE `image` SET `images` = '{$img}', `verify` = '{$mail->getVerified()}') WHERE `mailid` = '{$mail->getMailId()}'";
+                    $sql1 = "UPDATE `image` SET `fakename` = '{$mail->getFakeImage()}' , `images` = '{$img}', `verify` = '{$mail->getVerified()}') WHERE `mailid` = '{$mail->getMailId()}'";
 
                     if ($this->dbQuery($sql1)) {
                         true;

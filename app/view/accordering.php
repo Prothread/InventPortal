@@ -9,13 +9,12 @@
 
 $upload = new BlockController();
 $session = new Session();
-$myupload = $upload->getUploadById($session->getMailId());
-$imgarray = ( explode(", ", $myupload['uniquename']) );
-
 $image_controller = new ImageController();
-$uploadedimages = $image_controller->getImagebyMailID($myupload['id']);
 
+$myupload = $upload->getUploadById($session->getMailId());
+$uploadedimages = $image_controller->getImagebyMailID($myupload['id']);
 $UID = date('dmY-G.i.s') . '-192.08.1.124';
+
 //TODO Check ip goede adress
 //$UID = date('dmY-G.i.s') . '' . $_SERVER['REMOTE_ADDR'];
 
@@ -55,12 +54,6 @@ else {
                 <p class="NameText">Productaccordering</p>
                 <hr size="1">
 
-                <!-- TODO Delete id
-                     TODO Sla mail per user op
-                -->
-                <p> Tidjelijk id: <span style="color:#bc2d4c"><?= $myupload['id']; ?></span></p>
-                <?php var_dump($session->getUserId()) ?>
-
                 <p> Onderwerp: <span style="color:#bc2d4c"><?= $myupload['onderwerp']; ?></span></p>
 
                 <p> Verstuurder: <span style="color:#bc2d4c"><?= $myupload['verstuurder']?></span> </p>
@@ -68,7 +61,17 @@ else {
                 <p> Bestand(en):
                     <a href="#">
                     <span style="color:#bc2d4c">
-                        <?= $myupload['imgname']?>
+                        <?php
+                        $numItems = count($uploadedimages);
+                        $i = 0;
+                        foreach($uploadedimages as $fakename){
+                            if(++$i === $numItems) {
+                                echo $fakename['fakename'];
+                            }
+                            else {
+                                echo $fakename['fakename'] . ', ';
+                            }
+                        }?>
                     </span>
                     </a>
                 </p>
@@ -118,6 +121,7 @@ else {
                     <label>Opmerking<span style="color:#bc2d4c">*</span></label>
                     <input type="text" name="answer" size="50" required><br><br>
 
+                    <input type="hidden" name="userid" value="<?php if(isset($_SESSION['usr_id'])){ echo $_SESSION['usr_id']; } else {echo $myupload['id']; }?>">
                     <input type="hidden" name="name" value="<?php if(isset($_SESSION['usr_id'])){ echo $_SESSION['usr_name']; } else {echo $myupload['naam']; }?>">
                     <input type="hidden" name="title" value="<?= $myupload['onderwerp']; ?>">
                     <input type="hidden" name="verstuurder" value="<?= $myupload['verstuurder']?>">

@@ -82,6 +82,7 @@ if( isset( $_GET['email'] ) && isset( $_GET['key'] ) ) {
     else {
         $userid = $useracc['id'];
     }
+
     $session->setUserId( $userid );
 
     /**

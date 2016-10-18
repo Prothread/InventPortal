@@ -103,7 +103,7 @@ class Session
      */
 
     public function ImageVerify($imageid, $verify){
-        $img_id = '"' . 'img' . $imageid . '"';
+        $img_id = 'img' . $imageid;
         $_SESSION[$img_id] = $verify;
     }
 
@@ -117,7 +117,7 @@ class Session
      */
 
     public function getImageVerify($imageid){
-        $img_id = '"' . 'img' . $imageid . '"';
+        $img_id = 'img' . $imageid;
         return $_SESSION[$img_id];
     }
 

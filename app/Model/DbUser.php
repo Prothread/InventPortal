@@ -9,20 +9,32 @@
 class DbUser extends Database
 {
 
+    /**
+     * Maak een gebruiker aan met de meegestuurde informatie
+     *
+     * @param User $user
+     * @return mixed
+     */
+
     public function create(User $user)
     {
         $name = $user->getName();
         $email = $user->getEmail();
         $password = md5($user->getPassword());
 
-        //$sql = "INSERT INTO `users` (`name`, `email`, `password`) VALUES( '{$user->getName()}' . '{$user->getEmail()}' . '{$password}'";
-
-        $sql = "INSERT INTO users(name,email,password) VALUES('" . $name . "', '" . $email . "', '" . $password . "')";
+        $sql = "INSERT INTO users(`name`,`email`,`password`) VALUES('" . $name . "', '" . $email . "', '" . $password . "')";
 
         if($this->dbQuery($sql)){
             return $this->dbLastInsertedId();
         }
     }
+
+    /**
+     * Haal je gebruiker op
+     *
+     * @param User $user
+     * @return array|bool|mysqli_result
+     */
 
     public function getUser(User $user)
     {
@@ -35,6 +47,12 @@ class DbUser extends Database
             return $result;
         }
     }
+
+    /**
+     * Haal de laatste id op die in de database toegevoegd wordt
+     *
+     * @return mixed
+     */
 
     public function dbLastInsertedId()
     {

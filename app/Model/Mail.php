@@ -6,6 +6,14 @@ class Mail {
     private $db;
 
     /**
+     * Variabele om MailUserId op te slaan
+     *
+     * @var $MailUserId
+     */
+
+    private $MailUserId;
+
+    /**
      * Variabele om MailId op te slaan
      *
      * @var $MailId
@@ -147,6 +155,17 @@ class Mail {
     }
 
     /**
+     * Sla meegegeven informatie op in de MailUserId variabele
+     *
+     * @param $MailUserId
+     */
+
+    public function setMailUserId($MailUserId)
+    {
+        $this->MailUserId = $MailUserId;
+    }
+
+    /**
      * Sla meegegeven informatie op in de MailId variabele
      *
      * @param $MailId
@@ -276,6 +295,17 @@ class Mail {
     public function setVerified($Verified)
     {
         $this->MailVerified = $Verified;
+    }
+
+    /**
+     * Haal de informatie voor MailId op
+     *
+     * @param getMailId
+     */
+
+    public function getMailUserId()
+    {
+        return $this->MailUserId;
     }
 
     /**

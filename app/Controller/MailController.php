@@ -42,7 +42,8 @@ class MailController
 
     /**
      * Update mail information
-     * @TODO: getting mail by Id and updating that
+     * If: Als er een antwoord is (accordering.php), dan verstuur je userid, id, answer, token en verified
+     * Else: Verstuur alle informatie voor het updaten van de mail
      *
      * @param array $mailinfo
      * @return bool
@@ -50,6 +51,7 @@ class MailController
     public function update(array $mailinfo)
     {
         if(isset($mailinfo['answer'])){
+            $this->model->setMailUserId($mailinfo['userid']);
             $this->model->setMailId($mailinfo['id']);
             $this->model->setAnswer($mailinfo['answer']);
             $this->model->setToken($mailinfo['key']);
@@ -70,7 +72,6 @@ class MailController
             $this->model->setVerified($mailinfo['verified']);
         }
         if ($result = $this->model->update()) {
-            echo('Success, de mail is succesvol verstuurd.');
             return $result;
         }
         return false;

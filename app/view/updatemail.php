@@ -77,6 +77,7 @@ $mymail = new MailController();
     $myid = $_POST['id'];
 
     $mailinfo = [
+        'userid' => intval($_POST['userid']),
         'id' => intval($myid),
         'answer' => strip_tags($_POST['answer']),
         'key' => strip_tags($_POST['UID']),
@@ -99,6 +100,6 @@ $mymail = new MailController();
         //If mail is send, create data and send it to the database
         $mymail->update($mailinfo);
         echo 'Mail is verstuurd';
-        var_dump($mymail);
+        //var_dump($mymail);
     }
 

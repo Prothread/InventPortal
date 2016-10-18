@@ -15,6 +15,13 @@ class UserController
         $this->model = new User();
     }
 
+    /**
+     * Informatie voor een user aan te maken
+     *
+     * @param array $userinfo
+     * @return mixed
+     */
+
     public function create(array $userinfo)
     {
         $this->model->setName($userinfo['name']);
@@ -27,6 +34,13 @@ class UserController
         }
 
     }
+
+    /**
+     * Haal user op
+     *
+     * @param array $userinfo
+     * @return array|bool|mysqli_result
+     */
 
     public function getUser(array $userinfo)
     {
