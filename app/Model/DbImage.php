@@ -8,6 +8,13 @@
 
 class DbImage extends Database
 {
+
+    /**
+     * Haal het laatst geüploade item op
+     *
+     * @return int
+     */
+
     public function getNewId(){
         $sql = "SELECT `id` FROM `mail` ORDER BY `id` DESC LIMIT 1";
 
@@ -19,23 +26,12 @@ class DbImage extends Database
         }
     }
 
-    public function ImageVerify($img){
-        $sql = "UPDATE `image` SET  `verify` = '1' WHERE `images` = '{$img}'";
-
-        if($this->dbQuery($sql)){
-            var_dump($this->dbQuery($sql));
-            return true;
-        }
-    }
-
-    public function ImageDecline($img) {
-        $sql = "UPDATE `image` SET  `verify` = '2' WHERE `images` = '{$img}'";
-
-        if($this->dbQuery($sql)){
-            var_dump($this->dbQuery($sql));
-            return true;
-        }
-    }
+    /**
+     * Haal image op door te kijken bij welke mail hij hoort
+     *
+     * @param $MailID
+     * @return array|null
+     */
 
     public function getImagebyMailID($MailID){
         $sql = "SELECT * FROM `image` WHERE `mailid` = '{$MailID}'";
@@ -49,8 +45,32 @@ class DbImage extends Database
 
     }
 
+    /**
+     * Verander de verify tabel van de image om aan te geven dat hij goedgekeurd of afgekeurd wordt
+     *
+     * @param $id
+     * @param $verify
+     * @return bool
+     */
+
     public function setImageVerify($id, $verify) {
         $sql = "UPDATE `image` SET `verify` = '{$verify}' WHERE `id` = '{$id}'";
+
+        if($this->dbQuery($sql)){
+            return true;
+        }
+    }
+
+    /**
+     * Kijk of de image al geverifieerd is
+     *
+     * @param $id
+     * @return bool
+     */
+
+
+    public function getImageVerify($id) {
+        $sql = "SELECT * FROM `image` WHERE `id` = '{$id}'";
 
         if($this->dbQuery($sql)){
             return true;

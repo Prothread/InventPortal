@@ -8,15 +8,37 @@
 
 require_once '../config/load.php';
 
+/**
+ * Variabele om een sessie class aan te maken
+ *
+ * @var Session
+ */
+
 $session = new Session();
 
+/**
+ * Creeren van ?page=
+ */
+
 isset($_GET['page']) ? $page = $_GET['page'] : $page = 'dashboard';
+
+/**
+ * If: Haal page van url op
+ * Anders: pagina is dashboard
+ */
 
 if(isset($_GET['page'])) {
     $page = $_GET['page'];
 } else {
     $page = 'dashboard';
 }
+
+/**
+ * If: Als er niemand ingelogd is of de pagina is niet registreren/wachtwoord vergeten of wachtwoord herstellen
+ * Dan: De pagina si login
+ *
+ * Anders: de gebruiker is ingelogd en gaat naar het dashboard
+ */
 
 if(!$session->exists('usr_id') && $page !== 'wachtwoordvergeten' && $page !== 'wachtwoordherstellen' && $page !== 'register') {
     $page = 'login';
@@ -27,6 +49,10 @@ if(!$session->exists('usr_id') && $page !== 'wachtwoordvergeten' && $page !== 'w
 if($session->exists('usr_id')){
     require_once '../app/view/header.php';
 }
+
+/**
+ * Switch case voor de optie van ?page= in je url
+ */
 
 switch($page) {
     case 'upload':

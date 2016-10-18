@@ -8,6 +8,20 @@
 
 class DbMail extends Database
 {
+
+    /**
+     * Get all information in the sql variable
+     *
+     * If: get query from information
+     * Maak een array van imgarray
+     * Voor elke image, maak je een nieuwe rij met id, de image en een tabel voor goedkeuring/afkeuring
+     *
+     * Geef weer dat het gelukt.
+     *
+     * @param Mail $mail
+     * @return bool|mixed
+     */
+
     public function create(Mail $mail)
     {
         $sql = "INSERT INTO `mail` (`onderwerp`, `verstuurder`, `beschrijving`, `naam`, `email`, `key`, `imgname` , `uniquename`, `datum` , `verified`) VALUES ('{$mail->getMailSubject()}' , '{$mail->getMailSender()}' ,
@@ -32,6 +46,17 @@ class DbMail extends Database
 
     }
 
+    /**
+     * Get all information in the sql variable
+     *
+     * If: als er een antwoord is ingevuld --> verander sql zodat het velden bij gaat werken
+     *
+     * Else: Voor elke image update de rij.
+     *
+     * @param Mail $mail
+     * @return bool|mixed
+     */
+
     public function update(Mail $mail)
     {
         $sql = "UPDATE `mail` SET `onderwerp` = '{$mail->getMailSubject()}', `verstuurder` = '{$mail->getMailSender()}', `beschrijving` = '{$mail->getMailDescription()}', `naam` = '{$mail->getMailName()}',
@@ -39,11 +64,13 @@ class DbMail extends Database
                 `verified` = '{$mail->getVerified()}' WHERE `id`= '{$mail->getMailId()}'";
 
         if($mail->getAnswer() !== null) {
-            $sql = "UPDATE `mail` SET `answer` = '{$mail->getAnswer()}', `verify` = `{$mail->getVerified()}` WHERE `id` = '{$mail->getMailId()}'";
+            $sql = "UPDATE `mail` SET `answer` = '{$mail->getAnswer()}', `key` = '{$mail->getToken()}' , `verify` = `{$mail->getVerified()}` WHERE `id` = '{$mail->getMailId()}'";
 
-            if($return = $this->dbQuery($sql)){
-                return ($return);
+            if($this->dbQuery($sql)){
+                return true;
             }
+
+            return false;
         }
 
         else {
@@ -64,6 +91,12 @@ class DbMail extends Database
             return false;
         }
     }
+
+    /**
+     * Geef aan dat het de laatste rij is die geimporteerd wordt in de database
+     *
+     * @return mixed
+     */
 
     public function dbLastInsertedId()
     {

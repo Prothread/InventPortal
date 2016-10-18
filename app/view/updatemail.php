@@ -1,5 +1,16 @@
 <?php
 
+$upload = new BlockController();
+$myupload = $upload->getUploadById($session->getMailId());
+
+$image_controller = new ImageController();
+$uploadedimages = $image_controller->getImagebyMailID($myupload['id']);
+
+foreach ($uploadedimages as $img) {
+    $session->getImageVerify($img['id']);
+    $image_controller->setImageVerify($img['id'], $session->getImageVerify($img['id']));
+}
+
 $mymail = new MailController();
 
 //Load PHPMailer dependencies
@@ -28,8 +39,8 @@ $mymail = new MailController();
     $subject = $_POST['title'];
     $myid = $_POST['id'];
 
-    $content = "<img alt='MadalcoHeader' src='http://i68.tinypic.com/dw5a9f.png'>" . "  <br/><br/>" . "Geachte " . $_POST['name'] . "," .
-        " <br/><br/>" . $_POST['name'] . " heeft uw proef: " . $_POST['keuring'] . "." . "<br /><br />" .
+    $content = "<img alt='MadalcoHeader' src='http://i68.tinypic.com/dw5a9f.png'>" . "  <br/><br/>" . "Geachte " . $_POST['verstuurder'] . "," .
+        " <br/><br/>" . $_POST['name'] . " heeft uw proef <b>" . $_POST['keuring'] . "</b>." . "<br /><br />" .
         "<b>Titel van uw proef: </b>" .
         $_POST['title'] .
 
@@ -67,8 +78,8 @@ $mymail = new MailController();
 
     $mailinfo = [
         'id' => intval($myid),
-        'name' => strip_tags($_POST['name']),
         'answer' => strip_tags($_POST['answer']),
+        'key' => strip_tags($_POST['UID']),
         'verified' => strip_tags($_POST['verified'])
     ];
     var_dump($mailinfo);
@@ -82,11 +93,12 @@ $mymail = new MailController();
     );
 //Check if mail is sent :
     if (!$mailer->send()) {
-        header('Location: index.php?page=phpmail');
+        header('Location: index.php');
         echo 'Error sending mail : ' . $mailer->ErrorInfo;
     } else {
         //If mail is send, create data and send it to the database
         $mymail->update($mailinfo);
-        //var_dump($mymail);
+        echo 'Mail is verstuurd';
+        var_dump($mymail);
     }
 
