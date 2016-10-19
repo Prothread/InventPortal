@@ -20,7 +20,7 @@ class DbUser extends Database
     {
         $name = $user->getName();
         $email = $user->getEmail();
-        $password = md5($user->getPassword());
+        $password = $password = hash('sha256', $user->getPassword());
 
         $sql = "INSERT INTO users(`name`,`email`,`password`) VALUES('" . $name . "', '" . $email . "', '" . $password . "')";
 
@@ -39,7 +39,7 @@ class DbUser extends Database
     public function getUser(User $user)
     {
         $email = $user->getEmail();
-        $password = md5($user->getPassword());
+        $password = hash('sha256', $user->getPassword());
 
         $sql = "SELECT * FROM users WHERE email = '" . $email. "' and password = '" .$password . "'";
 
