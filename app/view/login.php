@@ -1,5 +1,7 @@
 <?php
 
+$mysqli = mysqli_connect();
+
 $user = new UserController();
 $client = new ClientController();
 

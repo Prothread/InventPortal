@@ -216,11 +216,9 @@ if($error == 0) {
             if(isset( $_POST['id'] )) {
                 $mymail->update($mailinfo);
                 $mailer->send();
-                //var_dump($mymail);
             }
             else {
                 $mymail->create($mailinfo);
-                //var_dump($mymail);
             }
 
             //header('Location: index.php?page=uploading');

@@ -46,6 +46,10 @@ if(!$session->exists('usr_id') && $page !== 'wachtwoordvergeten' && $page !== 'w
     $page = 'dashboard';
 }
 
+if(!$session->exists('usr_id') && $page == 'accordering') {
+    require_once '../app/view/header.php';
+}
+
 if($session->exists('usr_id')){
     require_once '../app/view/header.php';
 }

@@ -3,12 +3,10 @@
 
 $user = new UserController();
 
-$myuser = $_SESSION['usr_name'];
-
-if(isset($myuser)) {
+if(isset($_SESSION['usr_name'])) {
     $myuser = $_SESSION['usr_name'];
 }
-else if( $myuser ) {
+else if( isset($user) ) {
     $thisuser = $user->getUserById($session->getUserId());
     $myuser = $thisuser['name'];
 }
