@@ -11,7 +11,7 @@
                         <hr size="1">
                         <form class="UploadForm" action="?page=uploading" method="post" enctype="multipart/form-data">
                             <label>Onderwerp<span style="color:#bc2d4c">*</span></label>
-                            <input required type="text" name="title" size="50" value="<?php if( isset($mailinfo['title']) ){echo $mailinfo['title'];}?>">&emsp;&emsp;<br><br>
+                            <input maxlength="50" required type="text" name="title" size="50" value="<?php if( isset($mailinfo['title']) ){echo $mailinfo['title'];}?>">&emsp;&emsp;<br><br>
                             <label>Verstuurder<span style="color:#bc2d4c">*</span>:</label>
                             <label>Testadmin</label>
                             <br><br>
@@ -26,8 +26,7 @@
                             </fieldset><br>
 
                             <label>Beschrijving<span style="color:#bc2d4c">*</span></label>
-
-                            <input required class="TaDescription" name="additionalcontent" size="50" value="<?php if( isset($mailinfo['description']) ){echo $mailinfo['description'];}?>">
+                            <input maxlength="500" required class="TaDescription" name="additionalcontent" size="50" value="<?php if( isset($mailinfo['description']) ){echo $mailinfo['description'];}?>">
                             <br><br>
 
                             <label>Klant zoeken<span style="color:#bc2d4c">*</label>                             
