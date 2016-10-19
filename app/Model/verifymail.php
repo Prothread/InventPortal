@@ -112,5 +112,5 @@ if( isset( $_GET['id'] ) && isset( $mailkey ) ) {
     header('Location: index.php?page=accordering');
 }
 else {
-    echo '';
+    echo ' Er is iets misgegaan.';
 }
