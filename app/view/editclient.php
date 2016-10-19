@@ -15,10 +15,16 @@ $myclient = $client->getClientById($id);
 
 if(isset($_POST['submit'])){
 
+    //Generate a random string.
+    $token = openssl_random_pseudo_bytes(8);
+    //Convert the binary data into hexadecimal representation.
+    $token = bin2hex($token);
+
     $clientinfo = [
-        'id' => strip_tags($_POST['id']),
+        'id' => intval($_POST['id']),
         'naam' => strip_tags( $_POST['showname'] ),
         'email' => strip_tags( $_POST['email'] ),
+        'password' => $token,
         'bedrijfsnaam' => strip_tags( $_POST['companyname'] ),
         'adres' => strip_tags( $_POST['companyadress'] ),
         'postcode' => strip_tags( $_POST['postcode'] ),
@@ -41,7 +47,7 @@ if(isset($_POST['submit'])){
                     <p class="ClientFormText">Namen</p>
                     <hr size="1">
 
-                    <input type="hidden" name="id" value="<?= $myclient['naam']; ?>">
+                    <input type="hidden" name="id" value="<?= $myclient['id']; ?>">
 
                     <label>Naam klant<span style="color:#bc2d4c">*</span></label>
                     <input required type="text" name="showname" size="50" value="<?= $myclient['naam']; ?>"><br><br>

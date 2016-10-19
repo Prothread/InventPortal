@@ -2,7 +2,19 @@
 #HEADER
 
 $user = new UserController();
-$myuser = $user->getUserById($session->getUserId());
+
+$myuser = $_SESSION['usr_name'];
+
+if(isset($myuser)) {
+    $myuser = $_SESSION['usr_name'];
+}
+else if( $myuser ) {
+    $thisuser = $user->getUserById($session->getUserId());
+    $myuser = $thisuser['name'];
+}
+else {
+    echo 'User';
+}
 ?>
 
 <html lang="nl">
@@ -51,53 +63,55 @@ $myuser = $user->getUserById($session->getUserId());
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-<link rel="icon" 
-      type="image/png" 
-      href="../../images/favicon.png">
+    <link rel="icon"
+          type="image/png"
+          href="../../images/favicon.png">
 </head>
 
 <body>
-    <div id="header">
-        <div id="MenuSide"></div>
-        <div id="MenuButton">
-            <a href="#menu-toggle" class="btn btn-default" id="menu-toggle"><img src="https://cdn4.iconfinder.com/data/icons/wirecons-free-vector-icons/32/menu-alt-20.png"></a>
-        </div>
+<div id="header">
+    <div id="MenuSide"></div>
+    <div id="MenuButton">
+        <a href="#menu-toggle" class="btn btn-default" id="menu-toggle"><img src="https://cdn4.iconfinder.com/data/icons/wirecons-free-vector-icons/32/menu-alt-20.png"></a>
     </div>
+</div>
 
-        <div id="NameSide">
-            <div id="UserPhoto">
-            </div>
-            <h3 id="LoggedInAs"><?= $myuser['name']; ?></h3>
-            <a id="LogOut" href="?page=logout"><h6 id="LogOut">Uitloggen</h6></a>
-        </div>
+<div id="NameSide">
+    <div id="UserPhoto">
     </div>
+    <h3 id="LoggedInAs"><?= $myuser; ?></h3>
+</div>
+</div>
 
-    <div id="wrapper">
-        <!-- Sidebar -->
-        <div id="sidebar-wrapper">
-            <ul class="sidebar-nav">
-                <li class="nav-button-home">
-                    <a href="index.php?page=dashboard">Home</a>
-                </li>
+<div id="wrapper">
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <li class="nav-button-home">
+                <a href="index.php?page=dashboard">Home</a>
+            </li>
 
-                <li class="nav-button-upload">
-                    <a href="index.php?page=phpmail">Upload</a>
-                </li>
+            <li class="nav-button-upload">
+                <a href="index.php?page=phpmail">Upload</a>
+            </li>
 
-                <li class="nav-button-all">
-                    <a href="index.php?page=overzicht">Overzicht</a>
-                </li>
+            <li class="nav-button-all">
+                <a href="index.php?page=overzicht">Overzicht</a>
+            </li>
 
-                <li class="nav-button-settings">
-                    <a href="index.php?page=settings">Instellingen</a>
-                </li>
+            <li class="nav-button-settings">
+                <a href="index.php?page=settings">Instellingen</a>
+            </li>
 
-                <li class="nav-button-users">
-                    <a href="index.php?page=manageclients">Klanten</a>
-                </li>
+            <li class="nav-button-users">
+                <a href="index.php?page=manageclients">Klanten</a>
+            </li>
 
-                <li class="nav-button-logout">
-                    <a href="?page=logout">Uitloggen</a>
-                </li>
-            </ul>
-        </div>
+            <br>
+            <br>
+
+            <li class="nav-button-logout">
+                <a href="?page=logout">Uitloggen</a>
+            </li>
+        </ul>
+    </div>

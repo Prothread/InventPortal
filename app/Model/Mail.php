@@ -155,6 +155,18 @@ class Mail {
     }
 
     /**
+     * Haal een mail op met een meegestuurd id
+     *
+     * @param $id
+     * @return mixed
+     */
+
+    public function getMailById($id)
+    {
+        return $this->db->getMailById($id);
+    }
+
+    /**
      * Sla meegegeven informatie op in de MailUserId variabele
      *
      * @param $MailUserId

@@ -42,6 +42,14 @@ class Client
     private $ClientEmail;
 
     /**
+     * Variabele om klant paswoord in op te slaan
+     *
+     * @var $ClientPassword
+     */
+
+    private $ClientPassword;
+
+    /**
      * Variabele om klant bedrijfsnaam in op te slaan
      *
      * @var $ClientCompany
@@ -107,6 +115,17 @@ class Client
     }
 
     /**
+     * Haal klant informatie op voor het inlogscherm
+     *
+     * @return mixed
+     */
+
+    public function getClient()
+    {
+        return $this->db->getClient($this);
+    }
+
+    /**
      * Haal de klant op met id
      *
      * @param $id
@@ -116,6 +135,18 @@ class Client
     public function getClientById($id)
     {
         return $this->db->getClientById($id);
+    }
+
+    /**
+     * Haal de klant op met de meegestuude email
+     *
+     * @param $email
+     * @return mixed
+     */
+
+    public function getClientByEmail($email)
+    {
+        return $this->db->getClientByEmail($email);
     }
 
     /**
@@ -171,6 +202,17 @@ class Client
     public function setClientEmail($clientemai)
     {
         $this->ClientEmail = $clientemai;
+    }
+
+    /**
+     * Sla het wachtwoord van de klant op
+     *
+     * @param setClientPassword
+     */
+
+    public function setClientPassword($clientpass)
+    {
+        $this->ClientPassword = $clientpass;
     }
 
     /**
@@ -248,6 +290,17 @@ class Client
     public function getClientEmail()
     {
         return $this->ClientEmail;
+    }
+
+    /**
+     * Haal het wachwoord van de klant op
+     *
+     * @return mixed
+     */
+
+    public function getClientPassword()
+    {
+        return $this->ClientPassword;
     }
 
     /**

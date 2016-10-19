@@ -102,6 +102,25 @@ class DbMail extends Database
     }
 
     /**
+     * Haal mail op met id
+     *
+     * @param $id
+     * @return array|null
+     */
+
+    public function getMailById($id)
+    {
+        $sql = "SELECT * FROM `mail` WHERE `id` = '{$id}'";
+
+        $result = $this->dbQuery($sql);
+        $value = mysqli_fetch_assoc($result);
+
+        if($value) {
+            return $value;
+        }
+    }
+
+    /**
      * Geef aan dat het de laatste rij is die geimporteerd wordt in de database
      *
      * @return mixed

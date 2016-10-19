@@ -1,6 +1,7 @@
 <?php
 
 $user = new UserController();
+$client = new ClientController();
 
 //check if form is submitted
 if (isset($_POST['login'])) {
@@ -18,6 +19,10 @@ if (isset($_POST['login'])) {
     if($row = mysqli_fetch_array( $user->getUser($userinfo) )) {
         $_SESSION['usr_id'] = $row['id'];
         $_SESSION['usr_name'] = $row['name'];
+    }
+    else if($row = mysqli_fetch_array( $client->getClient($userinfo) )) {
+        $_SESSION['usr_id'] = $row['id'];
+        $_SESSION['usr_name'] = $row['naam'];
     }
     else {
         $errormsg = "Verkeerde combinatie, probeer het opnieuw.";

@@ -392,29 +392,20 @@ ul.sidebar-nav {
   }
 }
 
-@media screen and (min-width: 600px) {
-  .nav-button-logout {
-    visibility: hidden;
-    clear: both;
-    float: left;
-    margin: 10px auto 5px 20px;
-    width: 28%;
-    display: none;
-  }
-}
-
 .sidebar-nav .nav-button-home a { background:url("http://i63.tinypic.com/2hokbgz.png") no-repeat 40px 5px }
 .sidebar-nav .nav-button-upload a { background:url("http://i65.tinypic.com/2hrd10x.png") no-repeat 40px 5px }
 .sidebar-nav .nav-button-all a { background:url("http://i65.tinypic.com/2m69uki.png") no-repeat 40px 5px }
 .sidebar-nav .nav-button-settings a { background:url("http://i63.tinypic.com/2qjf1p0.png") no-repeat 40px 5px }
 .sidebar-nav .nav-button-users a { background:url("http://i67.tinypic.com/20zy22u.png") no-repeat 40px 5px }
+.sidebar-nav .nav-button-logout a { background:url("http://i63.tinypic.com/2nb8v9x.png") no-repeat 40px 7px }
+
 
 .sidebar-nav .nav-button-home a:hover { background:url("http://i66.tinypic.com/2u6my6s.png") no-repeat 40px 5px }
 .sidebar-nav .nav-button-upload a:hover { background:url("http://i67.tinypic.com/2e4cf44.png") no-repeat 40px 5px }
 .sidebar-nav .nav-button-all a:hover { background:url("http://i66.tinypic.com/2gufn2q.png") no-repeat 40px 5px }
 .sidebar-nav .nav-button-settings a:hover { background:url("http://i68.tinypic.com/qyy3qs.png") no-repeat 40px 5px }
 .sidebar-nav .nav-button-users a:hover { background:url("http://i64.tinypic.com/qn0dix.png") no-repeat 40px 5px }
-
+.sidebar-nav .nav-button-logout a:hover { background:url("http://i63.tinypic.com/21m8f3r.jpg") no-repeat 40px 7px }
 
 
 #wrapper {

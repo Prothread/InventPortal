@@ -118,6 +118,9 @@ switch($page) {
     case 'editclient':
         include '../app/view/editclient.php';
         break;
+    case 'clientmail':
+        include '../app/view/clientmail.php';
+        break;
     default:
         include '../app/view/login.php';
         break;

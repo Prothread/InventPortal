@@ -135,7 +135,7 @@ if($error == 0) {
             "<b>Beschrijving van uw proef:</b> " .
             $_POST['additionalcontent'] .
 
-            "<br /><br />" . "U kunt uw proef " . "<a href='http://localhost/InventPortal/public/index.php?page=verify&email=$to&key=$token'>hier</a> " . "goedkeuren." .
+            "<br /><br />" . "U kunt uw proef " . "<a href='http://localhost/InventPortal/public/index.php?page=verify&id=$imageId&key=$token'>hier</a> " . "goedkeuren." .
 
             "<br /> <br />Met vriendelijke groet, <br />" . $_POST['fromname'] . " </br>Madalco Media";;
         $altcontent = "This is the content if the mailing system doesn't support a HMTL body";

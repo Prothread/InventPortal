@@ -1,22 +1,5 @@
 <?php
 #PAGE FOR CREATING CLIENTS
-
-$client = new ClientController();
-
-if(isset($_POST['submit'])){
-
-    $clientinfo = [
-    'naam' => strip_tags( $_POST['showname'] ),
-    'email' => strip_tags( $_POST['email'] ),
-    'bedrijfsnaam' => strip_tags( $_POST['companyname'] ),
-    'adres' => strip_tags( $_POST['companyadress'] ),
-    'postcode' => strip_tags( $_POST['postcode'] ),
-    'plaats' => strip_tags( $_POST['plaats'] )
-    ];
-
-    $client->newClient($clientinfo);
-
-}
 ?>
 
 <div id="page-content-wrapper">
@@ -26,7 +9,7 @@ if(isset($_POST['submit'])){
                 <p class="NameText">Nieuwe klant</p>
                 <hr size="1">
                 <br>
-                <form class="NewClient" action="#" method="post" enctype="multipart/form-data">
+                <form class="NewClient" action="?page=clientmail" method="post" enctype="multipart/form-data">
                     <p class="ClientFormText">Namen</p>
                     <hr size="1">
                     <label>Weergavenaam<span style="color:#bc2d4c">*</span></label>

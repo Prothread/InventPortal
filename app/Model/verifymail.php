@@ -22,15 +22,25 @@ $session = new Session();
 $DbVerify = new DbVerify();
 
 /**
- * Check email
- *
- * Is er een email in de database die gelijk is aan die meegegeven in de link
+ * Mailcontroller voor ophalen van de maild
  */
 
-if(isset( $_GET['email'] ) ) {
-    $verifyemail = $_GET['email'];
+$mail = new MailController();
+
+/**
+ * Haal de mail met het id op
+ */
+
+$mymail = $mail->getMailById($_GET['id']);
+
+/**
+ * Check of er een id is meegestuurd
+ */
+
+if(isset( $mymail ) ) {
+    $verifyemail = $mymail['email'];
 } else {
-    echo "No e-mail returned. ";
+    echo "Er is een fout opgetreden ";
 }
 
 /**
@@ -40,9 +50,18 @@ if(isset( $_GET['email'] ) ) {
  */
 
 if(isset( $_GET['key'] ) ) {
-    $verifykey = $_GET['key'];
-} else {
-    echo "No key returned. ";
+
+    if($mymail['key'] == $_GET['key']) {
+        $mailkey = ($mymail['key']);
+    }
+    else {?>
+    <br>
+ <div class="alert alert-danger alert-dismissible" role="alert">
+  <strong>Let op!</strong> Het product is al geaccordeerd. Bekijk de status in het overzicht.
+</div>
+    
+   <?php }
+
 }
 
 /**
@@ -50,8 +69,8 @@ if(isset( $_GET['key'] ) ) {
  *
  * Als de email en de key bestaan, ga dan door
  */
-if( isset( $_GET['email'] ) && isset( $_GET['key'] ) ) {
-    $getter = $DbVerify->getVerifiedById($verifyemail, $verifykey);
+if( isset( $_GET['id'] ) && isset( $mailkey ) ) {
+    $getter = $DbVerify->getVerifiedById($verifyemail, $mailkey);
     $DbVerify->setVerifiedById($getter['id']);
 
     /**
@@ -93,5 +112,5 @@ if( isset( $_GET['email'] ) && isset( $_GET['key'] ) ) {
     header('Location: index.php?page=accordering');
 }
 else {
-    echo 'Something went wrong!';
+    echo '';
 }

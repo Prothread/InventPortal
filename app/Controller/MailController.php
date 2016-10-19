@@ -77,6 +77,15 @@ class MailController
         return false;
     }
 
-
+    /**
+     * Haal mail op met een mail id
+     *
+     * @param $id
+     * @return mixed
+     */
+    public function getMailById($id)
+    {
+        return $this->model->getMailById($id);
+    }
 
 }

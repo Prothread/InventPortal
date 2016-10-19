@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 18 okt 2016 om 11:53
+-- Gegenereerd op: 19 okt 2016 om 14:03
 -- Serverversie: 10.1.13-MariaDB
 -- PHP-versie: 7.0.6
 
@@ -19,6 +19,40 @@ SET time_zone = "+00:00";
 --
 -- Database: `portalinvent`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Tabelstructuur voor tabel `clients`
+--
+
+CREATE TABLE `clients` (
+  `id` int(11) NOT NULL,
+  `naam` varchar(50) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `paswoord` varchar(64) NOT NULL,
+  `bedrijfsnaam` varchar(64) NOT NULL,
+  `adres` varchar(64) NOT NULL,
+  `postcode` varchar(8) NOT NULL,
+  `plaats` varchar(64) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `clients`
+--
+
+INSERT INTO `clients` (`id`, `naam`, `email`, `paswoord`, `bedrijfsnaam`, `adres`, `postcode`, `plaats`) VALUES
+(1, 'Dylan', 'Dylan', '', 'Madalco', 'Invent ICT', '4829AF', 'Terneuzen'),
+(2, 'test', 'test', '', 'nogwta', 'wefjsakl', 'fdsa9as', 'test'),
+(3, 'Dylan', 'nogeenker@invent-ict.nl', '', 'Invent', 'Veilenlaan 2', '4292ba', 'Terneuzen'),
+(4, 'test', 'ditiseentest@gmail.com', '', 'nogwta', 'wefjsakl', 'fdsa9as', 'test'),
+(6, 'jfsi', 'fs@hoi.nl', 'd9ff39430e47208f5b12e6901d9fd830', 'jfais', 'freestylers', '32802', 'KEOwacht'),
+(7, 'prank gaat fout', 'test@hoi.nl', 'f1d934443b7a7faaf6b07a57d494ade5', 'test', 'fsda', 'fsd', 'fsda'),
+(8, 'prank gaat fout', 'test@hoi.nl', '5cd6891c6904348dc268370e405f0d2f', 'test', 'fsda', 'fsd', 'fsda'),
+(9, 'Kevin', 'kevin@hoi.nl', 'f7e843dbd31d37a8485af3017fec5085', 'test', 'test', 'test', 'dsfa'),
+(10, 'Kevin Ernst', 'kevin.herdershof@hotmail.com', 'f91f833765fca1920a6b35dda58b7744', 'Scalda', 'Nw karnemlk', '42422', 'Koewact'),
+(11, 'Jef', 'kevin.herdershof@hotmail.com', '0a5f7eb4a036adf966615a0182dcb0a9', 'Invent', 'nieuwe karnemelkstraat 27', '4576BT', 'koewacht'),
+(12, 'test', 'kevin.herdershof@hotmail.com', 'cb3595ef74b19f5cceaa310f1424d3f5', 'test', 'nieuwe karnemelkstraat 27', '4576BT', 'koewacht');
 
 -- --------------------------------------------------------
 
@@ -107,7 +141,10 @@ INSERT INTO `image` (`id`, `mailid`, `fakename`, `images`, `verify`) VALUES
 (66, 23, 'sword-art-online-201601228.jpg', 'sword-art-online-201601228_23.jpg', 1),
 (67, 24, '', 'sword-art-online-201601228_24.jpg', 0),
 (68, 25, '6b4.jpg', '6b4_25.jpg', 1),
-(69, 25, 'sword-art-online-201601228.jpg', 'sword-art-online-201601228_25.jpg', 2);
+(69, 25, 'sword-art-online-201601228.jpg', 'sword-art-online-201601228_25.jpg', 2),
+(70, 26, '6b4.jpg', '6b4_26.jpg', 0),
+(71, 27, 'failfive.png', 'failfive_27.png', 0),
+(72, 28, 'failfive.png', 'failfive_28.png', 0);
 
 -- --------------------------------------------------------
 
@@ -157,7 +194,10 @@ INSERT INTO `mail` (`id`, `onderwerp`, `verstuurder`, `beschrijving`, `naam`, `e
 (22, 'Tester', 'Gijs van den Abeele', 'vg', 'Jeffrey', 'kevin.herdershof@hotmail.com', 'a26d505e6ce536b9136a2a9ed993eb2b', '', '2016-10-17', 1),
 (23, 'ugh', 'Gijs van den Abeele', 'test', 'Jeffrey', 'kevin.herdershof@hotmail.com', '18102016-11.10.33-192.08.1.124', 'Het is allemaal goed hoor!', '2016-10-17', 2),
 (24, 'hg', 'Gijs van den Abeele', 'hg', 'Jeffrey', 'kevin.herdershof@hotmail.com', '4e94b7ab0309260589ed0aadfb3d815d', '', '2016-10-17', 1),
-(25, 'trestst', 'Gijs van den Abeele', 'beteer', 'Jeffrey', 'kevin.herdershof@hotmail.com', '24e5e77c2175ac216be7799e70582d6f', '', '2016-10-17', 1);
+(25, 'trestst', 'Gijs van den Abeele', 'beteer', 'Jeffrey', 'kevin.herdershof@hotmail.com', '24e5e77c2175ac216be7799e70582d6f', '', '2016-10-17', 1),
+(26, 'tes', 'Gijs van den Abeele', 'fdsa', 'Jeffrey', 'kevin.herdershof@hotmail.com', 'a93711aa230a485a6056151272d270a0', '', '2016-10-19', 1),
+(27, 'another', 'Gijs van den Abeele', 'one', 'Jeffrey', 'kevin.herdershof@hotmail.com', '0c1b8ceeb6ae1028a8aea7b84efc3ba9', '', '2016-10-19', 1),
+(28, 'hb', 'Gijs van den Abeele', 'bkh', 'Jeffrey', 'kevin.herdershof@hotmail.com', 'hfsdkhgasd', '', '2016-10-19', 1);
 
 -- --------------------------------------------------------
 
@@ -200,13 +240,19 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`) VALUES
 (7, '', '', 'd243da637503b04f6aeb432a774fb99b'),
 (8, 'kevin', 'kevin.herdershof@hotmail.com', 'd243da637503b04f6aeb432a774fb99b'),
 (10, 'jef', 'valckxj@outlook.com', '6a27f10aef159701c7a5ff07f0fb0a78'),
-(11, 'kevin', 'hoi@hoi.nl', '60474c9c10d7142b7508ce7a50acf414'),
+(11, 'He', 'hoi@hoi.nl', '60474c9c10d7142b7508ce7a50acf414'),
 (12, 'kevin', 'hey@hotmail.com', 'd243da637503b04f6aeb432a774fb99b'),
 (13, 'Kevin', 'hey@hoi.nl', '60474c9c10d7142b7508ce7a50acf414');
 
 --
 -- Indexen voor geëxporteerde tabellen
 --
+
+--
+-- Indexen voor tabel `clients`
+--
+ALTER TABLE `clients`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexen voor tabel `image`
@@ -240,15 +286,20 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT voor een tabel `clients`
+--
+ALTER TABLE `clients`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+--
 -- AUTO_INCREMENT voor een tabel `image`
 --
 ALTER TABLE `image`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
 --
 -- AUTO_INCREMENT voor een tabel `mail`
 --
 ALTER TABLE `mail`
-  MODIFY `id` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 --
 -- AUTO_INCREMENT voor een tabel `usermail`
 --
