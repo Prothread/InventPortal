@@ -39,6 +39,7 @@ class ClientController
     {
         $this->model->setClientName($clientinfo['naam']);
         $this->model->setClientEmail($clientinfo['email']);
+        $this->model->setClientPassword($clientinfo['password']);
         $this->model->setCompanyName($clientinfo['bedrijfsnaam']);
         $this->model->setClientAdres($clientinfo['adres']);
         $this->model->setClientPostcode($clientinfo['postcode']);
@@ -62,6 +63,7 @@ class ClientController
         $this->model->setClientId($clientinfo['id']);
         $this->model->setClientName($clientinfo['naam']);
         $this->model->setClientEmail($clientinfo['email']);
+        $this->model->setClientPassword($clientinfo['password']);
         $this->model->setCompanyName($clientinfo['bedrijfsnaam']);
         $this->model->setClientAdres($clientinfo['adres']);
         $this->model->setClientPostcode($clientinfo['postcode']);
@@ -74,6 +76,24 @@ class ClientController
     }
 
     /**
+     * Haal de klant op voor het inlogscherm
+     *
+     * @param array $userinfo
+     * @return bool
+     */
+
+    public function getClient(array $userinfo)
+    {
+        $this->model->setClientEmail($userinfo['email']);
+        $this->model->setClientPassword($userinfo['password']);
+
+        if ($result = $this->model->getClient()) {
+            return $result;
+        }
+        return false;
+    }
+
+    /**
      * Haal klant op met een id
      *
      * @return mixed
@@ -82,6 +102,18 @@ class ClientController
     public function getClientById($id)
     {
         return $this->model->getClientById($id);
+    }
+
+    /**
+     * Haal de klant op met een meegestuude email
+     *
+     * @param $email
+     * @return mixed
+     */
+
+    public function getClientByEmail($email)
+    {
+        return $this->model->getClientByEmail($email);
     }
 
     /**
