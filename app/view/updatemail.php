@@ -1,5 +1,7 @@
 <?php
 
+$mysqli = mysqli_connect();
+
 $upload = new BlockController();
 $myupload = $upload->getUploadById($session->getMailId());
 
@@ -75,13 +77,16 @@ $mymail = new MailController();
 //Saving mail information
 
     $myid = $_POST['id'];
+    $answer = mysqli_real_escape_string( $mysqli, $_POST['answer']) ;
+    $UID = mysqli_real_escape_string( $mysqli, $_POST['UID'] );
+    $verified = mysqli_real_escape_string( $mysqli, $_POST['verified'] );
 
     $mailinfo = [
         'userid' => intval($_POST['userid']),
         'id' => intval($myid),
-        'answer' => strip_tags($_POST['answer']),
-        'key' => strip_tags($_POST['UID']),
-        'verified' => strip_tags($_POST['verified'])
+        'answer' => strip_tags($answer),
+        'key' => strip_tags($UID),
+        'verified' => strip_tags($verified)
     ];
     var_dump($mailinfo);
 

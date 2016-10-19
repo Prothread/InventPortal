@@ -55,9 +55,6 @@ if($session->exists('usr_id')){
  */
 
 switch($page) {
-    case 'upload':
-        include '../app/view/uploadoverzicht.php';
-        break;
     case 'dashboard':
         include '../app/view/dashboard.php';
         break;
@@ -67,7 +64,7 @@ switch($page) {
     case 'uploading':
         include '../app/Model/upload.php';
         break;
-    case 'phpmail':
+    case 'uploadoverzicht':
         include '../app/view/phpmail.php';
         break;
     case 'verify':

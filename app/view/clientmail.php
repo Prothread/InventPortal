@@ -6,6 +6,8 @@
  * Time: 09:01
  */
 
+$mysqli = mysqli_connect();
+
 $user = new UserController();
 $myuser = $_SESSION['usr_name'];
 
@@ -103,14 +105,22 @@ $mailer->AltBody = $altcontent;
 
 //Saving mail information
 
+$naam = mysqli_real_escape_string( $mysqli, $_POST['showname']);
+$email = mysqli_real_escape_string( $mysqli, $_POST['email']);
+$bedrijfsnaam = mysqli_real_escape_string( $mysqli, $_POST['companyname']);
+
+$adres = mysqli_real_escape_string( $mysqli, $_POST['companyadress']);
+$postcode = mysqli_real_escape_string( $mysqli, $_POST['postcode']);
+$plaats = mysqli_real_escape_string( $mysqli, $_POST['plaats']);
+
 $clientinfo = [
-    'naam' => strip_tags( $_POST['showname'] ),
-    'email' => strip_tags( $_POST['email'] ),
+    'naam' => strip_tags( $naam ),
+    'email' => strip_tags( $email ),
     'password' => $token,
-    'bedrijfsnaam' => strip_tags( $_POST['companyname'] ),
-    'adres' => strip_tags( $_POST['companyadress'] ),
-    'postcode' => strip_tags( $_POST['postcode'] ),
-    'plaats' => strip_tags( $_POST['plaats'] )
+    'bedrijfsnaam' => strip_tags( $bedrijfsnaam ),
+    'adres' => strip_tags( $adres ),
+    'postcode' => strip_tags( $postcode ),
+    'plaats' => strip_tags( $plaats )
 ];
 
 $mailer->SMTPOptions = array(

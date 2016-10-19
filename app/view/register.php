@@ -1,5 +1,7 @@
 <?php
 
+$mysqli = mysqli_connect();
+
 if(isset($_SESSION['usr_id'])) {
     header("Location: index.php");
 }
@@ -12,15 +14,10 @@ $error = false;
 //check if form is submitted
 if (isset($_POST['signup'])) {
 
-    /*$name = mysqli_real_escape_string($con, $_POST['name']);
-    $email = mysqli_real_escape_string($con, $_POST['email']);
-    $password = mysqli_real_escape_string($con, $_POST['password']);
-    $cpassword = mysqli_real_escape_string($con, $_POST['cpassword']);*/
-
-    $name = ( $_POST['name'] );
-    $email = ( $_POST['email'] );
-    $password = ( $_POST['password'] );
-    $cpassword = ($_POST['cpassword'] );
+    $name =  mysqli_real_escape_string( $mysqli, $_POST['name'] );
+    $email =  mysqli_real_escape_string( $mysqli, $_POST['email'] );
+    $password = mysqli_real_escape_string( $mysqli, $_POST['password'] );
+    $cpassword = mysqli_real_escape_string( $mysqli, $_POST['cpassword'] );
 
     //name can contain only alpha characters and space
     if (!preg_match("/^[a-zA-Z ]+$/",$name)) {
@@ -42,9 +39,9 @@ if (isset($_POST['signup'])) {
     if (!$error) {
 
         $userinfo = [
-            'name' => $name,
-            'email' => $email,
-            'password' => $cpassword
+            'name' => strip_tags($name),
+            'email' => strip_tags($email),
+            'password' => strip_tags($cpassword)
         ];
 
         if($user->create($userinfo)) {

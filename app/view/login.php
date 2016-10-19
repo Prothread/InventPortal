@@ -6,14 +6,12 @@ $client = new ClientController();
 //check if form is submitted
 if (isset($_POST['login'])) {
 
-    //TODO --> mysqli_real_escape_string;
-
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+    $email = mysqli_real_escape_string( $mysqli, $_POST['email']);
+    $password = mysqli_real_escape_string( $mysqli, $_POST['password']);
 
     $userinfo = [
-        'email' => $email,
-        'password' => $password
+        'email' => strip_tags($email),
+        'password' => strip_tags($password)
     ];
 
     if($row = mysqli_fetch_array( $user->getUser($userinfo) )) {

@@ -92,7 +92,7 @@ else {
             </li>
 
             <li class="nav-button-upload">
-                <a href="index.php?page=phpmail">Upload</a>
+                <a href="index.php?page=uploadoverzicht">Upload</a>
             </li>
 
             <li class="nav-button-all">
