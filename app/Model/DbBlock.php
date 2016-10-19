@@ -15,8 +15,15 @@ class DbBlock extends Database
      * @return array|null
      */
 
-    public function getUploads(){
+    public function getUploads($limit = null, $offset = null){
         $sql = "SELECT * FROM `mail` ORDER BY `mail`.`id` DESC";
+
+        if($limit) {
+            $sql .= " LIMIT {$limit}";
+        }
+        if($offset) {
+            $sql .= " OFFSET {$offset}";
+        }
 
         $result = $this->dbQuery($sql);
 
@@ -60,6 +67,22 @@ class DbBlock extends Database
         if($value) {
             return $value;
         }
+    }
+
+    /**
+     * Tel aantal pagina's overzicht pagina
+     *
+     * @return mixed
+     */
+
+    public function countBlocks()
+    {
+        $query ="SELECT COUNT(`id`) AS 'total_blocks' FROM `mail`";
+
+        if($result = $this->dbFetchArray($query)){
+            return $result['total_blocks'];
+        }
+        return false;
     }
 
 }

@@ -34,8 +34,8 @@ class Block
      * @return array|null
      */
 
-    public function getUploads(){
-        return $this->db->getUploads();
+    public function getUploads($limit = null, $offset = null){
+        return $this->db->getUploads($limit, $offset);
     }
 
     /**
@@ -57,6 +57,17 @@ class Block
 
     public function getUploadById($id){
         return $this->db->getUploadById($id);
+    }
+
+    /**
+     * Tel aantal rijen overzicht pagina
+     *
+     * @return mixed
+     */
+
+    public function countBlocks()
+    {
+        return $this->db->countBlocks();
     }
 
 }

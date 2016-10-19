@@ -1,7 +1,13 @@
 <?php
 #OVERZICHT PAGE VAN ALLE ITEMS
 $uploads = new BlockController();
-$get_filled_info = $uploads->getUploads();
+
+$offset = isset($_GET['offset']) ? $_GET['offset'] : 0;
+$limit = 10;
+
+$count = $uploads->countBlocks();
+$get_filled_info = $uploads->getUploads($limit, $offset);
+
 ?>
 
 
@@ -29,7 +35,7 @@ $get_filled_info = $uploads->getUploads();
                     <tbody>
                     <?php
                     if($get_filled_info !== null) {
-                        foreach($uploads->getUploads() as $upload) {?>
+                        foreach($get_filled_info as $upload) {?>
                             <tr>
                                 <td>
                                     <?= $upload['id']?>
@@ -73,6 +79,13 @@ $get_filled_info = $uploads->getUploads();
                     ?>
                     </tbody>
                 </table>
+                <ul class="pagination">
+                    <?php for ( $i = 0; $i < ceil( $count / $limit ); $i++ ) : ?>
+                        <li>
+                            <a href="<?= "index.php?page=overzicht&offset=". $limit * $i ?>"> <?= ( $i + 1 ) ?> </a>
+                        </li>
+                    <?php endfor; ?>
+                </ul>
                 <hr size="1">
             </div>
         </div>

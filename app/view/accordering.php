@@ -19,7 +19,7 @@ $UID = date('dmY-G.i.s') . '-192.08.1.124';
 $verifiedimages = array();
 
 foreach ($uploadedimages as $img) {
-    
+
     if(isset($_SESSION['img'.$img['id']])) {
 
         $imageverify = $session->getImageVerify($img['id']);
