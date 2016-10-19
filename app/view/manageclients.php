@@ -1,5 +1,7 @@
 <?php
 #MANAGE CLIENTS PAGE
+
+$clients = new ClientController();
 ?>
 
 <div id="page-content-wrapper">
@@ -26,149 +28,34 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>
-                            Gianni Ford
-                            </td>
-                            <td>
-                            Ford Cars Limited
-                            </td>
-                            <td>
-                            g.ford@fordcars.com
-                            </td>
-                            <td>
-                            Fordweg 12
-                            </td>
-                            <td>
-                            4521BZ
-                            </td>
-                            <td>
-                            Terneuzen, Nederland
-                            </td>    
-                            <td>
-                            <a href="#"><img src="http://i65.tinypic.com/14l68f4.png" style="width: 24px; height: 24px;">
-                            </td>
-                        </tr>
 
-                        <tr>
-                            <td>
-                            Jeffrey Valckx
-                            </td>
-                            <td>
-                            Searchi B.V.
-                            </td>
-                            <td>
-                            info@searchi.com
-                            </td>
-                            <td>
-                            Haarmanweg 12
-                            </td>
-                            <td>
-                            4531BZ
-                            </td>
-                            <td>
-                            Terneuzen, Nederland
-                            </td>    
-                            <td>
-                            <a href="#"><img src="http://i65.tinypic.com/14l68f4.png" style="width: 24px; height: 24px;">
-                            </td>
-                        </tr>
+                        <?php foreach($clients->getAllClients() as $client) {?>
+                            <tr>
+                                <td>
+                                    <?= $client['naam']; ?>
+                                </td>
+                                <td>
+                                    <?= $client['bedrijfsnaam']; ?>
+                                </td>
+                                <td>
+                                    <?= $client['email']; ?>
+                                </td>
+                                <td>
+                                    <?= $client['adres']; ?>
+                                </td>
+                                <td>
+                                    <?= $client['postcode']; ?>
+                                </td>
+                                <td>
+                                    <?= $client['plaats']; ?>
+                                </td>
+                                <td>
+                                    <?php $clientid = $client['id']; ?>
+                                    <a href="?page=editclient&id=<?= $clientid ?>"><img src="http://i65.tinypic.com/14l68f4.png" style="width: 24px; height: 24px;">
+                                </td>
+                            </tr>
+                        <?php } ?>
 
-                        <tr>
-                            <td>
-                            Elopak
-                            </td>
-                            <td>
-                            Elopak B.V.
-                            </td>
-                            <td>
-                            elo@pak.nl
-                            </td>
-                            <td>
-                            Pakstraat 1-4
-                            </td>
-                            <td>
-                            4574BZ
-                            </td>
-                            <td>
-                            Terneuzen, Nederland
-                            </td>    
-                            <td>
-                            <a href="#"><img src="http://i65.tinypic.com/14l68f4.png" style="width: 24px; height: 24px;">
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                            ABC
-                            </td>
-                            <td>
-                            ABC B.V.
-                            </td>
-                            <td>
-                            info@abcbv.info
-                            </td>
-                            <td>
-                            Alfabetweg 76
-                            </td>
-                            <td>
-                            4226BZ
-                            </td>
-                            <td>
-                            Terneuzen, Nederland
-                            </td>    
-                            <td>
-                            <a href="#"><img src="http://i65.tinypic.com/14l68f4.png" style="width: 24px; height: 24px;">
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                            Advertentieblad
-                            </td>
-                            <td>
-                            ZVA
-                            </td>
-                            <td>
-                            druk@zva.nl
-                            </td>
-                            <td>
-                            Papierlaan 54
-                            </td>
-                            <td>
-                            4528BZ
-                            </td>
-                            <td>
-                            Terneuzen, Nederland
-                            </td>    
-                            <td>
-                            <a href="#"><img src="http://i65.tinypic.com/14l68f4.png" style="width: 24px; height: 24px;">
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                            Carco
-                            </td>
-                            <td>
-                            Carco B.V.
-                            </td>
-                            <td>
-                            wash@carco.be
-                            </td>
-                            <td>
-                            Bremheidelaan 10
-                            </td>
-                            <td>
-                            2300
-                            </td>
-                            <td>
-                            Turnhout, België
-                            </td>    
-                            <td>
-                            <a href="#"><img src="http://i65.tinypic.com/14l68f4.png" style="width: 24px; height: 24px;">
-                            </td>
-                        </tr>
                     </tbody>
                 </table>
             </div>

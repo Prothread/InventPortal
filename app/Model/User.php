@@ -120,6 +120,17 @@ class User
     }
 
     /**
+     * Haal alle gebruikers op
+     *
+     * @return mixed
+     */
+
+    public function getAllUsers()
+    {
+        return $this->db->getAllUsers();
+    }
+
+    /**
      * Haal de naam van de gebruikerinformatie op
      *
      * @return mixed

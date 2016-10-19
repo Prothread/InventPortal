@@ -53,9 +53,27 @@ class UserController
         return false;
     }
 
+    /**
+     * Haal user met de megegeven id
+     *
+     * @param $id
+     * @return array|null
+     */
+
     public function getUserById($id)
     {
         return $this->model->getUserById($id);
+    }
+
+    /**
+     * Haal alle users op
+     *
+     * @return mixed
+     */
+
+    public function getAllUsers()
+    {
+        return $this->model->getAllUsers();
     }
 
 }

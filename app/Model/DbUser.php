@@ -55,13 +55,26 @@ class DbUser extends Database
      * @return array|null
      */
 
-    public function getUserById($id){
+    public function getUserById($id)
+    {
         $sql = "SELECT * FROM `users` WHERE `id` = '{$id}'";
 
         $result = $this->dbQuery($sql);
         $value = mysqli_fetch_assoc($result);
 
         if($value) {
+            return $value;
+        }
+    }
+
+    public function getAllUsers()
+    {
+        $sql = "SELECT * FROM `users`";
+
+        $result = $this->dbQuery($sql);
+        $value = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+        if($value){
             return $value;
         }
     }

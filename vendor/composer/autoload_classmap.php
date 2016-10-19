@@ -8,8 +8,11 @@ $baseDir = dirname($vendorDir);
 return array(
     'Block' => $baseDir . '/app/Model/Block.php',
     'BlockController' => $baseDir . '/app/Controller/BlockController.php',
+    'Client' => $baseDir . '/app/Model/Client.php',
+    'ClientController' => $baseDir . '/app/Controller/ClientController.php',
     'Database' => $baseDir . '/app/Model/Database.php',
     'DbBlock' => $baseDir . '/app/Model/DbBlock.php',
+    'DbClient' => $baseDir . '/app/Model/DbClient.php',
     'DbImage' => $baseDir . '/app/Model/DbImage.php',
     'DbMail' => $baseDir . '/app/Model/DbMail.php',
     'DbUser' => $baseDir . '/app/Model/DbUser.php',

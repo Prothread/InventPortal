@@ -46,7 +46,7 @@ if(!$session->exists('usr_id') && $page !== 'wachtwoordvergeten' && $page !== 'w
     $page = 'dashboard';
 }
 
-if($session->exists('usr_id') || $page = 'accordering'){
+if($session->exists('usr_id')){
     require_once '../app/view/header.php';
 }
 
@@ -114,6 +114,9 @@ switch($page) {
         break;
     case 'login':
         include '../app/view/login.php';
+        break;
+    case 'editclient':
+        include '../app/view/editclient.php';
         break;
     default:
         include '../app/view/login.php';
