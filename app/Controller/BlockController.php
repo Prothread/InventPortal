@@ -33,8 +33,9 @@ class BlockController
      * @return array|null
      */
 
-    public function getUploads(){
-        return $this->model->getUploads();
+    public function getUploads($limit = null, $offset = null)
+    {
+        return $this->model->getUploads($limit, $offset);
     }
 
     /**
@@ -43,7 +44,8 @@ class BlockController
      * @return array|null
      */
 
-    public function getLastThreeUploads(){
+    public function getLastThreeUploads()
+    {
         return $this->model->getLastThreeUploads();
     }
 
@@ -54,8 +56,20 @@ class BlockController
      * @return array|null
      */
 
-    public function getUploadById($id){
+    public function getUploadById($id)
+    {
         return $this->model->getUploadById($id);
+    }
+
+    /**
+     * Tel het aantal rijen in de overzicht pagina
+     *
+     * @return mixed
+     */
+
+    public function countBlocks()
+    {
+        return $this->model->countBlocks();
     }
 
 }
