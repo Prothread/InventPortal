@@ -24,6 +24,7 @@ $get_filled_info = $uploads->getUploads($limit, $offset);
                 <table id="overzicht" class="sortable">
                     <thead>
                         <tr>
+                            <td><b>ID</b></td>
                             <td><b>Onderwerp</b></td>
                             <td><b>Verstuurder</b></td>
                             <td><b>Naam klant</b></td>
@@ -36,6 +37,9 @@ $get_filled_info = $uploads->getUploads($limit, $offset);
                     if($get_filled_info !== null) {
                         foreach($get_filled_info as $upload) {?>
                             <tr>
+                                <td>
+                                    <?= $upload['id']?>
+                                </td>
                                 <td>
                                     <a href="?page=item&id=<?=$upload['id']?>"><?= $upload['onderwerp']?></a>
                                 </td>
