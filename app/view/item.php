@@ -46,7 +46,7 @@ $uploadedimages = $image_controller->getImagebyMailID($upload['id']);
                                     <input type="file" name="myFile[]" id="imgInp" multiple onchange="loadFile(event);">
                                 </label>
                                 <br>
-                                <img class="preview" id="preview" alt="">
+                                <img src="http://i67.tinypic.com/mtxpbl.jpg" class="preview" id="preview" alt="">
                             </fieldset><br>
                             
                             <label>Beschrijving<span style="color:#bc2d4c">*</span></label><br>

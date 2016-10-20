@@ -150,14 +150,25 @@ class Client
     }
 
     /**
+     * Haal aantal resultaten van mails op
+     *
+     * @return mixed
+     */
+
+    public function countBlocks()
+    {
+        return $this->db->countBlocks();
+    }
+
+    /**
      * Redirect naar de database om alle klante op te halen
      *
      * @return array|null
      */
 
-    public function getAllClients()
+    public function getAllClients($limit = null, $offset = null)
     {
-        return $this->db->getAllClients();
+        return $this->db->getAllClients($limit, $offset);
     }
 
     /**

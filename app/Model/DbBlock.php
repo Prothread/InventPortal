@@ -70,7 +70,7 @@ class DbBlock extends Database
     }
 
     /**
-     * Tel aantal pagina's overzicht pagina
+     * Haal het aantal mails op
      *
      * @return mixed
      */

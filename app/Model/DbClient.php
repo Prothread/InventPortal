@@ -113,9 +113,16 @@ class DbClient extends Database
      * @return array|null
      */
 
-    public function getAllClients()
+    public function getAllClients($limit = null, $offset = null)
     {
         $sql = "SELECT * FROM `clients`";
+
+        if($limit) {
+            $sql .= " LIMIT {$limit}";
+        }
+        if($offset) {
+            $sql .= " OFFSET {$offset}";
+        }
 
         $result = $this->dbQuery($sql);
         $value = mysqli_fetch_all($result, MYSQLI_ASSOC);
@@ -123,6 +130,22 @@ class DbClient extends Database
         if($value){
             return $value;
         }
+    }
+
+    /**
+     * Haal het aantal geburikers op
+     *
+     * @return mixed
+     */
+
+    public function countBlocks()
+    {
+        $query ="SELECT COUNT(`id`) AS 'total_blocks' FROM `clients`";
+
+        if($result = $this->dbFetchArray($query)){
+            return $result['total_blocks'];
+        }
+        return false;
     }
 
 }

@@ -2,6 +2,12 @@
 #MANAGE CLIENTS PAGE
 
 $clients = new ClientController();
+
+$offset = isset($_GET['offset']) ? $_GET['offset'] : 0;
+$limit = 10;
+
+$count = $clients->countBlocks();
+$get_filled_info = $clients->getAllClients($limit, $offset);
 ?>
 
 <div id="page-content-wrapper">
@@ -29,7 +35,7 @@ $clients = new ClientController();
                     </thead>
                     <tbody>
 
-                        <?php foreach($clients->getAllClients() as $client) {?>
+                        <?php foreach($get_filled_info as $client) {?>
                             <tr>
                                 <td>
                                     <?= $client['naam']; ?>
@@ -58,6 +64,15 @@ $clients = new ClientController();
 
                     </tbody>
                 </table>
+
+                <ul class="pagination">
+                    <?php for ( $i = 0; $i < ceil( $count / $limit ); $i++ ) : ?>
+                        <li>
+                            <a href="<?= "index.php?page=manageclients&offset=". $limit * $i ?>"> <?= ( $i + 1 ) ?> </a>
+                        </li>
+                    <?php endfor; ?>
+                </ul>
+
             </div>
         </div>
     </div>

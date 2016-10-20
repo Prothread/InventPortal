@@ -122,9 +122,20 @@ class ClientController
      * @return array|null
      */
 
-    public function getAllClients()
+    public function getAllClients($limit = null, $offset = null)
     {
-        return $this->model->getAllClients();
+        return $this->model->getAllClients($limit, $offset);
+    }
+
+    /**
+     * Haal aantal resultaten van mails op
+     *
+     * @return mixed
+     */
+
+    public function countBlocks()
+    {
+        return $this->model->countBlocks();
     }
 
 }

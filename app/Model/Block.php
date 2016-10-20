@@ -60,7 +60,7 @@ class Block
     }
 
     /**
-     * Tel aantal rijen overzicht pagina
+     * Haal aantal resultaten van mails op
      *
      * @return mixed
      */
