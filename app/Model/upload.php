@@ -10,6 +10,7 @@ $name = mysqli_real_escape_string($mysqli, $_POST['mailname']);
 $email = mysqli_real_escape_string($mysqli, $_POST['mailto']);
 
 $imageFileName = new ImageController();
+
 if(isset($_POST['id'])) {
     $imageId = $_POST['id'];
 } else {
@@ -83,11 +84,6 @@ if (isset($_FILES['myFile'])) {
                     }
                     ?>
 
-                    <p>
-                        Name: <?= $myFile["name"][$i] ?><br>
-                        Type: <?= $myFile["type"][$i] ?><br>
-                        Size: <?= $myFile["size"][$i] ?><br>
-                    </p>
                     <?php
                 }
 
