@@ -1,54 +1,43 @@
 <?php
 
 $mysqli = mysqli_connect();
-
-if(isset($_SESSION['usr_id'])) {
-    header("Location: index.php");
-}
-
 $user = new UserController();
 
 //set validation error flag as false
 $error = false;
 
-//check if form is submitted
-if (isset($_POST['signup'])) {
 
-    $name =  mysqli_real_escape_string( $mysqli, $_POST['name'] );
-    $email =  mysqli_real_escape_string( $mysqli, $_POST['email'] );
+//check if form is submitted
+if (isset($_POST['newpassword'])) {
+
+    $id = $_SESSION['usr_id'];
+    $myuser = $user->getUserById($id);
+
     $password = mysqli_real_escape_string( $mysqli, $_POST['password'] );
+    $oldhash = $myuser['password'];
+
     $cpassword = mysqli_real_escape_string( $mysqli, $_POST['cpassword'] );
 
     //name can contain only alpha characters and space
-    if (!preg_match("/^[a-zA-Z ]+$/",$name)) {
-        $error = true;
-        $name_error = "Name must contain only alphabets and space";
-    }
-    if(!filter_var($email,FILTER_VALIDATE_EMAIL)) {
-        $error = true;
-        $email_error = "Voer een geldig e-mailadres in.";
-    }
     if(strlen($password) < 6) {
         $error = true;
         $password_error = "Het paswoord moet minimaal 6 tekens bevatten.";
     }
-    if($password != $cpassword) {
+
+    if($oldhash !== hash('sha256', $password)){
         $error = true;
-        $cpassword_error = "De ingevoerde wachtwoorden komen niet overeen.";
+        $password_error = "Het ingevulde huidige wachtwoord komt niet overeen..";
     }
+
     if (!$error) {
 
-        $userinfo = [
-            'name' => strip_tags($name),
-            'email' => strip_tags($email),
-            'password' => strip_tags($cpassword)
-        ];
+        $npassword = hash('sha256', $cpassword);
 
-        if($user->create($userinfo)) {
-            $successmsg = "Succesvol geregistreerd! <a href='index.php'>Klik hier om in te loggen.</a>";
+        if($user->updateUser($id, $npassword)) {
+            $successmsg = "Wachtwoord succesvol gewijzigd!";
         }
         else {
-            $errormsg = "Er is een probleem opgetreden tijdens het registeren, probeer het later opnieuw.";
+            $errormsg = "Er is een probleem opgetreden tijdens het veranderen van uw wachwoord, probeer het later opnieuw.";
         }
 
     }
@@ -63,7 +52,7 @@ if (isset($_POST['signup'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="assets/img/favicon.ico">
+    <link rel="icon" href="public/img/favicon.ico">
     <meta content="width=device-width, initial-scale=1.0" name="viewport" >
     <link rel="stylesheet" type="text/css" href="css/styles.css">
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
@@ -107,19 +96,7 @@ if (isset($_POST['signup'])) {
                 <div class="col-md-8 col-md-offset-2 centered">
                     <form role="form" method="post" name="signupform">
                         <fieldset>
-                            <legend>Nieuw account</legend>
-
-                            <div class="form-group">
-                                <label for="name">Naam</label>
-                                <input type="text" name="name" placeholder="Volledige naam" required value="<?php if($error) echo $name; ?>" class="form-control" />
-                                <span class="text-danger"><?php if (isset($name_error)) echo $name_error; ?></span>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="name">E-mail</label>
-                                <input type="text" name="email" placeholder="E-mail" required value="<?php if($error) echo $email; ?>" class="form-control" />
-                                <span class="text-danger"><?php if (isset($email_error)) echo $email_error; ?></span>
-                            </div>
+                            <legend>Nieuw wachtwoord</legend>
 
                             <div class="form-group">
                                 <label for="name">Wachtwoord</label>
@@ -128,25 +105,19 @@ if (isset($_POST['signup'])) {
                             </div>
 
                             <div class="form-group">
-                                <label for="name">Herhaal wachtwoord</label>
-                                <input type="password" name="cpassword" placeholder="Herhaal wachtwoord" required class="form-control" />
+                                <label for="name">Nieuw wachtwoord</label>
+                                <input type="password" name="cpassword" placeholder="Nieuw wachtwoord" required class="form-control" />
                                 <span class="text-danger"><?php if (isset($cpassword_error)) echo $cpassword_error; ?></span>
                             </div>
 
                             <div class="form-group">
-                                <input type="submit" name="signup" value="Aanmaken" class="btn btn-primary" />
+                                <input type="submit" name="newpassword" value="Aanpassen" class="btn btn-primary" />
                             </div>
                         </fieldset>
                     </form>
                     <span class="text-success"><?php if (isset($successmsg)) { echo $successmsg; } ?></span>
                     <span class="text-danger"><?php if (isset($errormsg)) { echo $errormsg; } ?></span>
                 </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4 col-md-offset-4 text-center">
-                <br />
-                Al een account? <a href="index.php">Inloggen</a>
             </div>
         </div>
 </div>

@@ -88,7 +88,6 @@ $mymail = new MailController();
         'key' => strip_tags($UID),
         'verified' => strip_tags($verified)
     ];
-    var_dump($mailinfo);
 
     $mailer->SMTPOptions = array(
         'ssl' => array(
@@ -104,7 +103,6 @@ $mymail = new MailController();
     } else {
         //If mail is send, create data and send it to the database
         $mymail->update($mailinfo);
-        echo 'Mail is verstuurd';
-        //var_dump($mymail);
+        echo 'Accordering is verstuurd';
     }
 

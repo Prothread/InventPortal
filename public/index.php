@@ -110,6 +110,9 @@ switch($page) {
     case 'register':
         include '../app/view/register.php';
         break;
+    case 'newpassword':
+        include '../app/view/newpassword.php';
+        break;
     case 'updatemail':
         include '../app/view/updatemail.php';
         break;

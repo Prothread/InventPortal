@@ -67,6 +67,18 @@ class DbUser extends Database
         }
     }
 
+    public function getUserByEmail($email)
+    {
+        $sql = "SELECT * FROM `users` WHERE `email` = '{$email}'";
+
+        $result = $this->dbQuery($sql);
+        $value = mysqli_fetch_assoc($result);
+
+        if($value) {
+            return $value;
+        }
+    }
+
     public function getAllUsers()
     {
         $sql = "SELECT * FROM `users`";
@@ -76,6 +88,15 @@ class DbUser extends Database
 
         if($value){
             return $value;
+        }
+    }
+
+    public function updateUser($id, $npassword)
+    {
+        $sql = "UPDATE `users` SET `password` = '{$npassword}' WHERE `id` = '{$id}'";
+
+        if($this->dbQuery($sql)){
+            return true;
         }
     }
 

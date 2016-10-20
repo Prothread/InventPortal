@@ -26,7 +26,8 @@ table {
 }
 
 #mybuttons {
-    border: 25px solid white;
+    position:relative;
+    left:10%;
 }
 body {
 	height: 600px;

@@ -10,63 +10,41 @@ $get_filled_info = $uploads->getLastThreeUploads();
             <div class="col-lg-12">
                 <p class="NameText">Home</p>
                 <hr size="1">
-                <input type="text" size="50" id="TableInput" onkeyup="searchTable()" placeholder="Zoek een product...">
                 <br>
-                <br>
-                <table id="overzicht" class="sortable">
-                    <thead>
-                        <tr>
-                            <th><b>Onderwerp</b></th>
-                            <th><b>Verstuurder</b></th>
-                            <th><b>Naam klant</b></th>
-                            <th><b>Datum</b></th>
-                            <th><b>Status</b></th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                    <?php
-                    if($get_filled_info !== null) {
-                        foreach ($uploads->getLastThreeUploads() as $upload) { ?>
-                            <tr>
-                                <td>
-                                    <a href="?page=item&id=<?=$upload['id']?>"><?= $upload['onderwerp']?></a>
-                                </td>
-                                <td>
-                                    <?= $upload['verstuurder'] ?>
-                                </td>
-                                <td>
-                                    <?= $upload['naam'] ?>
-                                </td>
-                                <td>
-                                    <?= date("d-m-Y", strtotime($upload['datum'])); ?>
-                                </td>
-                                <td>
-                                    <?php if ($upload['verified'] == 1) {?>
-                                        <img alt="Gezien" style="width: 50px; height: 50px;" src="../public/icons/gezien.png">
+                <?php
+                if($get_filled_info !== null) {
+                    foreach ($get_filled_info as $upload) { ?>
+                        <div class="col-sm-6 col-md-4">
+                            <div class="thumbnail">
+                                <div class="caption">
+                                    <h3><a href="?page=item&id=<?=$upload['id']?>"><?= $upload['onderwerp']?></a></h3>
+                                    <p>Door: <?= $upload['verstuurder'] ?></p>
+                                    <p>Klant: <?= $upload['naam'] ?></p>
+                                    <p>Datum:  <?= date("d-m-Y", strtotime($upload['datum'])); ?></p>
+                                    <p>Status: <?php if ($upload['verified'] == 1) {?>
+                                    <p><span style="Color: #bb2c4c">Gezien</span></p>
                                     <?php } elseif ($upload['verified'] == 2) {?>
-                                        <img alt="Geaccepteerd" src="../public/icons/akkoord.png">
+                                        <p><span style="Color: #bb2c4c">Geaccepteerd</span></p>
                                     <?php } elseif ($upload['verified'] == 3) {?>
-                                        <img alt="Geweigerd" src="../public/icons/geweigerd.png">
+                                        <p><span style="Color: #bb2c4c">Geweigerd</span></p>
                                     <?php } else {?>
-                                        <img alt="Uploaded" src="../public/icons/uploaded.png">
-                                    <?php } ?>
-                                </td>
-                            </tr>
-                        <?php }
-                    }
-                    else
-                    {
-                          ?>
-                        <tr>
-                            <td>
-                                Er zijn nog geen items. Voeg eerst een item toe via de upload pagina
-                            </td>
-                        </tr>
-                        <?php
-                    }
+                                    <p><span style="Color: #bb2c4c">Geüpload</span></p>
+                                    <?php } ?></p>
+                                </div>
+                            </div>
+                        </div>
+                    <?php }
+                }
+                else
+                {
                     ?>
-                    </tbody>
+                    <tr>
+                        <div class="alert alert-danger" role="alert">Er zijn nog geen items. Voeg een item toe op de uploadpagina.</div>
+                    </tr>
+                    <?php
+                }
+                ?>
+                </tbody>
                 </table>
                 <hr size="1">
             </div>

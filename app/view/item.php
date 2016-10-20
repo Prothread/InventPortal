@@ -1,10 +1,13 @@
 <?php
 #INDIVIDUAL ITEM PAGE
 
+$session = new Session();
 $uploads = new BlockController();
+
 $id = $_GET['id'];
+$id = $session->clean($id);
+
 $upload = $uploads->getUploadById($id);
-$imgarray = ( explode(", ", $upload['uniquename']) );
 
 $image_controller = new ImageController();
 $uploadedimages = $image_controller->getImagebyMailID($upload['id']);
@@ -46,7 +49,7 @@ $uploadedimages = $image_controller->getImagebyMailID($upload['id']);
                                     <input type="file" name="myFile[]" id="imgInp" multiple onchange="loadFile(event);">
                                 </label>
                                 <br>
-                                <img class="preview" id="preview" alt="">
+                                <img src="http://i67.tinypic.com/mtxpbl.jpg" class="preview" id="preview" alt="">
                             </fieldset><br>
                             
                             <label>Beschrijving<span style="color:#bc2d4c">*</span></label><br>

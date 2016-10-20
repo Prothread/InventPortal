@@ -62,7 +62,7 @@ class BlockController
     }
 
     /**
-     * Tel het aantal rijen in de overzicht pagina
+     * Haal aantal resultaten van mails op
      *
      * @return mixed
      */
@@ -71,5 +71,4 @@ class BlockController
     {
         return $this->model->countBlocks();
     }
-
 }

@@ -76,4 +76,15 @@ class UserController
         return $this->model->getAllUsers();
     }
 
+    /**
+     * Update user password
+     *
+     * @return mixed
+     */
+
+    public function updateUser($id, $npassword)
+    {
+        return $this->model->updateUser($id, $npassword);
+    }
+
 }

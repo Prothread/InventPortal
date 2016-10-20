@@ -120,6 +120,18 @@ class User
     }
 
     /**
+     * Haal de gebruiker op met behulp van het gebruiker email
+     *
+     * @param $email
+     * @return array|null
+     */
+
+    public function getUserByEmail($email)
+    {
+        return $this->db->getUserByEmail($email);
+    }
+
+    /**
      * Haal alle gebruikers op
      *
      * @return mixed
@@ -162,5 +174,17 @@ class User
     {
         return $this->Password;
     }
+
+    /**
+     * Update user password
+     *
+     * @return mixed
+     */
+
+    public function updateUser($id, $npassword)
+    {
+        return $this->db->updateUser($id, $npassword);
+    }
+
 
 }
