@@ -4,7 +4,6 @@
 $uploads = new BlockController();
 $id = $_GET['id'];
 $upload = $uploads->getUploadById($id);
-$imgarray = ( explode(", ", $upload['uniquename']) );
 
 $image_controller = new ImageController();
 $uploadedimages = $image_controller->getImagebyMailID($upload['id']);
