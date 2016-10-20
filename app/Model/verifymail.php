@@ -40,7 +40,7 @@ $mymail = $mail->getMailById($_GET['id']);
 if(isset( $mymail ) ) {
     $verifyemail = $mymail['email'];
 } else {
-    echo "Er is een fout opgetreden ";
+
 }
 
 /**
@@ -50,7 +50,7 @@ if(isset( $mymail ) ) {
  */
 
 if(isset( $_GET['key'] ) ) {
-
+    $_GET['key'] = $session->clean($_GET['key']);
     if($mymail['key'] == $_GET['key']) {
         $mailkey = ($mymail['key']);
     }
@@ -70,6 +70,9 @@ if(isset( $_GET['key'] ) ) {
  * Als de email en de key bestaan, ga dan door
  */
 if( isset( $_GET['id'] ) && isset( $mailkey ) ) {
+
+    $_GET['id'] = $session->clean($_GET['id']);
+
     $getter = $DbVerify->getVerifiedById($verifyemail, $mailkey);
     $DbVerify->setVerifiedById($getter['id']);
 

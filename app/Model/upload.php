@@ -1,9 +1,14 @@
 <?php
 #VERWERKT UPLOAD PROCESS
 
-/**
- *
- */
+$mysqli = mysqli_connect();
+
+$title = mysqli_real_escape_string($mysqli, $_POST['title']);
+$sender = mysqli_real_escape_string($mysqli, $_POST['fromname']);
+$description = mysqli_real_escape_string($mysqli, $_POST['additionalcontent']);
+$name = mysqli_real_escape_string($mysqli, $_POST['mailname']);
+$email = mysqli_real_escape_string($mysqli, $_POST['mailto']);
+
 $imageFileName = new ImageController();
 if(isset($_POST['id'])) {
     $imageId = $_POST['id'];
@@ -125,20 +130,30 @@ if($error == 0) {
     if (isset($_POST['submit'])) {
 
         /* TO, SUBJECT, CONTENT */
-        $to = $_POST['mailto']; //The 'To' field
-        $subject = $_POST['title'];
-        $content = "<img alt='MadalcoHeader' src='http://i68.tinypic.com/dw5a9f.png'>"."  <br/><br/>" . "Geachte " . $_POST['mailname'] . "," .
+        $to = $email; //The 'To' field
+        $subject = $title;
+        $content = "<img alt='MadalcoHeader' src='http://i68.tinypic.com/dw5a9f.png'>"."  <br/><br/>" . "Geachte " . $name . "," .
             " <br/><br/>" . "Uw proef staat te wachten op goedkeuring in het <b>Madalco Portaal!</b>" . "<br /><br />" .
             "<b>Titel van uw proef:</b>".
-            $_POST['title'] . "<br />" .
+            $title . "<br />" .
 
             "<b>Beschrijving van uw proef:</b> " .
-            $_POST['additionalcontent'] .
+            $description.
 
             "<br /><br />" . "U kunt uw proef " . "<a href='http://localhost/InventPortal/public/index.php?page=verify&id=$imageId&key=$token'>hier</a> " . "goedkeuren." .
 
-            "<br /> <br />Met vriendelijke groet, <br />" . $_POST['fromname'] . " </br>Madalco Media";;
-        $altcontent = "This is the content if the mailing system doesn't support a HMTL body";
+            "<br /> <br />Met vriendelijke groet, <br />" . $sender . " </br>Madalco Media";
+        $altcontent = "Geachte " . $name . "," .
+            " <br/><br/>" . "Uw proef staat te wachten op goedkeuring in het <b>Madalco Portaal!</b>" . "<br /><br />" .
+            "<b>Titel van uw proef:</b>".
+            $title . "<br />" .
+
+            "<b>Beschrijving van uw proef:</b> " .
+            $description.
+
+            "<br /><br />" . "U kunt uw proef " . "hier: http://localhost/InventPortal/public/index.php?page=verify&id=$imageId&key=$token " . "goedkeuren." .
+
+            "<br /> <br />Met vriendelijke groet, <br />" . $sender . " </br>Madalco Media";;
 
         $mailer = new PHPMailer();
 
@@ -153,9 +168,9 @@ if($error == 0) {
 
 //Now, send mail :
 //From - To :
-        $mailer->AddReplyTo($_POST['frommail'], $_POST['fromname']);
+        $mailer->AddReplyTo($_POST['frommail'], $sender);
         $mailer->From = $crendentials['email'];
-        $mailer->FromName = $_POST['fromname']; //Optional
+        $mailer->FromName = $sender; //Optional
         $mailer->addAddress($to);  // Add a recipient
 
 //Subject - Body :
@@ -169,17 +184,16 @@ if($error == 0) {
         $dbimages = implode(", ", $images);
         $uniqdbimages = implode(", ", $unique_names);
 
-
         if(isset($_POST['id'])) {
         $myid = $_POST['id'];
             $mailinfo = [
                 'id' => intval($myid),
-                'title' => strip_tags($_POST['title']),
-                'sender' => strip_tags($_POST['fromname']),
-                'description' => strip_tags($_POST['additionalcontent']),
-                'name' => strip_tags($_POST['mailname']),
-                'email' => strip_tags($_POST['mailto']),
-                'token' => strip_tags($token),
+                'title' => strip_tags($title),
+                'sender' => strip_tags($sender),
+                'description' => strip_tags($description),
+                'name' => strip_tags($name),
+                'email' => strip_tags($email),
+                'token' => $token,
                 'imgname' => strip_tags($dbimages),
                 'images' => strip_tags($uniqdbimages),
                 'datum' => date('Y-m-d'),
@@ -188,12 +202,12 @@ if($error == 0) {
         }
         else {
             $mailinfo = [
-                'title' => strip_tags($_POST['title']),
-                'sender' => strip_tags($_POST['fromname']),
-                'description' => strip_tags($_POST['additionalcontent']),
-                'name' => strip_tags($_POST['mailname']),
-                'email' => strip_tags($_POST['mailto']),
-                'token' => strip_tags($token),
+                'title' => strip_tags($title),
+                'sender' => strip_tags($sender),
+                'description' => strip_tags($description),
+                'name' => strip_tags($name),
+                'email' => strip_tags($email),
+                'token' => $token,
                 'imgname' => strip_tags($dbimages),
                 'images' => strip_tags($uniqdbimages),
                 'datum' => date('Y-m-d'),
@@ -221,7 +235,8 @@ if($error == 0) {
                 $mymail->create($mailinfo);
             }
 
-            //header('Location: index.php?page=uploading');
+            header('Location: index.php?page=uploadoverzicht');
+            Session::flash('error', 'Gebruiker bestaat niet.');
         }
     }
 }

@@ -11,6 +11,7 @@ $image_controller = new ImageController();
 
 $myupload = $upload->getUploadById($session->getMailId());
 $uploadedimages = $image_controller->getImagebyMailID($myupload['id']);
+
 $UID = date('dmY-G.i.s') . '-192.08.1.124';
 
 //TODO Check ip goede adress
@@ -95,26 +96,23 @@ else {
                                 <img style="pointer-events: none;z-index:5;" src="css/watermerk.png" width=250 height=200>
                             </div>
                         </div>
-                        <br />
+
+                        <?php
+                        if(isset($_SESSION['img'.$img['id']])) {
+                            if($session->getImageVerify($img['id']) == 1) { ?>
+                                <div id="akkoord" class="alert alert-success" style="text-align: center;" role="alert"><span class="glyphicon glyphicon-ok-circle"></span> Akkoord</div>
+                            <?php }
+
+                            if($session->getImageVerify($img['id']) == 2) {?>
+                                <div id="weiger" class="alert alert-danger" style="text-align: center;" role="alert"><span class="glyphicon glyphicon-remove-circle"></span> Geweigerd</div>
+                            <?php }
+                        }?>
+
                         <div id="mybuttons">
                             <a id="AccButtonA" href="?page=imageverify&img=<?= $img['id']; ?>"><button id="AccButton" onclick="VerifyAnswer()">Akkoord</button></a>
                             <a id="AccButtonA" href="?page=imagedecline&img=<?= $img['id']; ?>"><button id="AccButton" onclick="VerifyAnswer1()">Weiger</button></a>
 
-                            <!--<button id="AccButtonB" onclick="VerifyAnswer()"></button>
 
-                            <script>
-                                var AccButtonA = document.getElementById('AccButtonA');
-                                var AccButtonB = document.getElementById('AccButtonB');
-
-                                function VerifyAnswer(){
-                                    AccButtonA.style.background.opacity = 0.5;
-                                    AccButtonB.style.display = "block";
-                                }
-                                function VerifyAnswer1() {
-                                    AccButtonA.style.display = "block";
-                                    AccButtonB.style.display = "none";
-                                }
-                            </script>-->
 
                         </div>
                     </div>

@@ -48,6 +48,48 @@ class Session
     }
 
     /**
+     * Checkt of het een geldige email is
+     *
+     * @param $address
+     * @return bool
+     */
+
+    function isValidEmail($address) {
+        if (filter_var($address,FILTER_VALIDATE_EMAIL)==FALSE) {
+            return false;
+        }
+        /* explode out local and domain */
+        list($local,$domain)=explode('@',$address);
+
+        $localLength=strlen($local);
+        $domainLength=strlen($domain);
+
+        return (
+            /* check for proper lengths */
+            ($localLength>0 && $localLength<65) &&
+            ($domainLength>3 && $domainLength<256) &&
+            (
+                checkdnsrr($domain,'MX') ||
+                checkdnsrr($domain,'A')
+            )
+        );
+    }
+
+    /**
+     * Haalt alle tekens eruit, behalve alle alphabet letters en cijfers van 0 tot 9
+     *
+     * @param $string
+     * @return mixed
+     */
+
+    function clean($string) {
+        $string = str_replace(' ', '-', $string); // Replaces all spaces with hyphens.
+        $string = preg_replace('/[^A-Za-z0-9\-]/', '', $string); // Removes special chars.
+
+        return preg_replace('/-+/', '-', $string); // Replaces multiple hyphens with single one.
+    }
+
+    /**
      * SET MailID
      *
      * Creer een sessie voor je mail id

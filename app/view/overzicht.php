@@ -3,6 +3,7 @@
 $uploads = new BlockController();
 
 $offset = isset($_GET['offset']) ? $_GET['offset'] : 0;
+$_SESSION['offset'] = $offset;
 $limit = 10;
 
 $count = $uploads->countBlocks();
@@ -23,13 +24,13 @@ $get_filled_info = $uploads->getUploads($limit, $offset);
                 <br>
                 <table id="overzicht" class="sortable">
                     <thead>
-                        <tr>
-                            <td><b>Onderwerp</b></td>
-                            <td><b>Verstuurder</b></td>
-                            <td><b>Naam klant</b></td>
-                            <td><b>Datum</b></td>
-                            <td><b>Status</b></td>
-                        </tr>
+                    <tr>
+                        <td><b>Onderwerp</b></td>
+                        <td><b>Verstuurder</b></td>
+                        <td><b>Naam klant</b></td>
+                        <td><b>Datum</b></td>
+                        <td><b>Status</b></td>
+                    </tr>
                     </thead>
                     <tbody>
                     <?php
@@ -66,9 +67,9 @@ $get_filled_info = $uploads->getUploads($limit, $offset);
                     {
                         ?>
                         <tr>
-                            <td>
-                                Er zijn nog geen items. Voeg eerst een item toe via de upload pagina.
-                            </td>
+
+                            <div class="alert alert-danger" role="alert">Er zijn nog geen items. Voeg een item toe op de uploadpagina.</div>
+
                         </tr>
                         <?php
                     }

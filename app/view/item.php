@@ -1,8 +1,12 @@
 <?php
 #INDIVIDUAL ITEM PAGE
 
+$session = new Session();
 $uploads = new BlockController();
+
 $id = $_GET['id'];
+$id = $session->clean($id);
+
 $upload = $uploads->getUploadById($id);
 
 $image_controller = new ImageController();
