@@ -7,6 +7,9 @@ $uploads = new BlockController();
 $id = $_GET['id'];
 $id = $session->clean($id);
 
+//Check verified images
+$verimages = array();
+
 $upload = $uploads->getUploadById($id);
 
 $image_controller = new ImageController();
@@ -23,11 +26,6 @@ $uploadedimages = $image_controller->getImagebyMailID($upload['id']);
                         <hr size="1">
                         <form class="UploadForm" action="?page=uploading" method="post" enctype="multipart/form-data">
                             <input type="hidden" name="id" value="<?= $upload['id']?>">&emsp;&emsp;
-                            <label>Onderwerp<span style="color:#bc2d4c">*</span></label>
-                            <input type="text" name="title" size="50" value="<?= $upload['onderwerp']?>">&emsp;&emsp;
-                            <label>Verstuurder<span style="color:#bc2d4c">*</span></label>
-                            <input type="text" name="fromname" size="35" value="<?= $upload['verstuurder']?>">
-                            <br />
 
                             <?php foreach ($uploadedimages as $img) {
                             ?>
@@ -52,13 +50,34 @@ $uploadedimages = $image_controller->getImagebyMailID($upload['id']);
                                 if($isverified['verify'] == 2) {?>
                                     <div id="weiger" class="alert alert-danger" style="text-align: center;" role="alert"><span class="glyphicon glyphicon-remove-circle"></span> Geweigerd</div>
                                 <?php }
+
+                                    array_push($verimages, $isverified['verify']);
+
                                 }?>
-                                    
+
                                 </div>
                             <?php }
                             ?>
 
+                            <div style="clear: both;"></div>
+                            <?php if(in_array(2, $verimages)) { ?>
+                                <label>Onderwerp<span style="color:#bc2d4c">*</span></label>
+                                <input type="text" name="title" size="50" value="<?= $upload['onderwerp']?>">&emsp;&emsp;
+                                <label>Verstuurder<span style="color:#bc2d4c">*</span></label>
+                                <input type="text" name="fromname" size="35" value="<?= $upload['verstuurder']?>">
+                            <?php }
+                            else { ?>
+                                <label>Onderwerp<span style="color:#bc2d4c">*</span></label>
+                                <input disabled type="text" name="title" size="50" value="<?= $upload['onderwerp']?>">&emsp;&emsp;
+                                <label>Verstuurder<span style="color:#bc2d4c">*</span></label>
+                                <input disabled type="text" name="fromname" size="35" value="<?= $upload['verstuurder']?>">
+                            <?php } ?>
+                            <br />
+
                             <br><br>
+
+                            <?php if(in_array(2, $verimages)) { ?>
+
                             <fieldset style="clear:both">
                                 <label class="fileContainer">Nieuwe Bestand(en) uploaden*
                                     <input type="file" name="myFile[]" id="imgInp" multiple onchange="loadFile(event);">
@@ -83,6 +102,25 @@ $uploadedimages = $image_controller->getImagebyMailID($upload['id']);
 
                             <input type="submit" name="submit" size="50" value="submit mail">
                             <br>
+                            <?php }
+                            else {
+                            ?>
+                                <div style="clear:both"></div>
+                            <br />
+                            <label disabled="disabled" style="width:50px;">Beschrijving<span style="color:#bc2d4c">*</span></label><br>
+
+                            <input disabled="disabled" class="TaDescription" name="additionalcontent" value="<?= $upload['beschrijving']?>">
+                            <br><br>
+
+                            <label>Naam klant<span style="color:#bc2d4c">*</span></label>
+                            <input disabled="disabled" type="text" name="mailname" size="50" value="<?= $upload['naam']?>">&emsp;&emsp;
+
+                            <label>E-mailadres klant<span style="color:#bc2d4c">*</span></label>
+                            <input disabled="disabled" type="email" name="mailto" size="50" value="<?= $upload['email']?>">
+
+                            <input disabled="disabled" type="hidden" name="frommail" id="MailFrom" value="<?= $upload['onderwerp']?>">
+                            <br><br>
+                            <?php } ?>
                         </form>
                     </div>
                 </div>
