@@ -45,5 +45,6 @@ else if($_SESSION['client_id']){
 else {
     $permgroup = 0;
 }
+//var_dump($permgroup);
 
 //$perms = [SHOW_HOME, SHOW_UPLOAD, SHOW_BOARD];
