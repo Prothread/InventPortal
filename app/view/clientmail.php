@@ -137,5 +137,4 @@ if (!$mailer->send()) {
 } else {
     //If mail is send, create data and send it to the database
     $client->newClient($clientinfo);
-    echo 'Mail is verstuurd';
 }

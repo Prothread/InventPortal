@@ -75,6 +75,18 @@ class User
     }
 
     /**
+     * Haal de rechten van de gebruiker voor de pagina op
+     *
+     * @param $perm
+     * @return mixed
+     */
+
+    public function getPermission($row, $perm)
+    {
+        return $this->db->getPermission($row, $perm);
+    }
+
+    /**
      * Haal de rechten van de gebruiker op
      *
      * @param $id

@@ -72,8 +72,8 @@ class DbImage extends Database
     public function getImageVerify($id) {
         $sql = "SELECT * FROM `image` WHERE `id` = '{$id}'";
 
-        if($this->dbQuery($sql)){
-            return true;
+        if($result = $this->dbQuery($sql)){
+            return mysqli_fetch_assoc( $result );
         }
     }
 

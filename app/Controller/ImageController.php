@@ -45,8 +45,8 @@ class ImageController
      * @return mixed
      */
 
-    public function getImageVerify($img) {
-        return $this->model->getImageVerify($img);
+    public function getImageVerify($id) {
+        return $this->model->getImageVerify($id);
     }
 
     /**

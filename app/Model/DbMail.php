@@ -75,7 +75,7 @@ class DbMail extends Database
 
             if($this->dbQuery($sql)){
 
-                $sql1 = "INSERT INTO `usermail` (`userid`, `mailid`) VALUES ('{$mail->getMailUserId()}', '{$mail->getMailId()}')";
+                $sql1 = "INSERT INTO `usermail` (`userid`, `clientid`, `mailid`) VALUES ('{$mail->getMailUserId()}', '{$mail->getMailClientId()}', '{$mail->getMailId()}')";
 
                 if($this->dbQuery($sql1)) {
                     true;
