@@ -14,6 +14,7 @@ $get_filled_info = $uploads->getLastThreeUploads();
                 <?php
                 if($get_filled_info !== null) {
                     foreach ($get_filled_info as $upload) { ?>
+                        
                         <div class="col-sm-6 col-md-4">
                             <div class="thumbnail">
                                 <div class="caption">
@@ -39,7 +40,7 @@ $get_filled_info = $uploads->getLastThreeUploads();
                 {
                     ?>
                     <tr>
-                        <div class="alert alert-danger" role="alert">Er zijn nog geen items. Voeg een item toe op de uploadpagina.</div>
+                        <div class="alert alert-danger" role="alert">Er zijn nog geen items. Voeg een item toe op de upload pagina.</div>
                     </tr>
                     <?php
                 }
