@@ -97,12 +97,12 @@ else {
                 <a href="index.php?page=overzicht">Overzicht</a>
             </li>
 
-            <li class="nav-button-settings">
-                <a href="index.php?page=settings">Instellingen</a>
-            </li>
-
             <li class="nav-button-users">
                 <a href="index.php?page=manageclients">Klanten</a>
+            </li>
+
+            <li class="nav-button-settings">
+                <a href="index.php?page=settings">Instellingen</a>
             </li>
 
             <br>

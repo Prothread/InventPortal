@@ -20,7 +20,7 @@ class DbUser extends Database
     {
         $name = $user->getName();
         $email = $user->getEmail();
-        $password = $password = hash('sha256', $user->getPassword());
+        $password = hash('sha256', $user->getPassword());
 
         $sql = "INSERT INTO users(`name`,`email`,`password`) VALUES('" . $name . "', '" . $email . "', '" . $password . "')";
 
