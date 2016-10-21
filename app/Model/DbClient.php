@@ -18,7 +18,7 @@ class DbClient extends Database
 
     public function newClient(Client $client)
     {
-        $password = hash('sha256', $client->getClientPassword());
+        $password = $password = hash('sha256', $client->getClientPassword());
 
         $sql = "INSERT INTO `clients` (`naam`, `email`, `paswoord`, `bedrijfsnaam`, `adres`, `postcode`, `plaats`) VALUES ('{$client->getClientName()}', '{$client->getClientEmail()}',
         '{$password}', '{$client->getCompanyName()}', '{$client->getClientAdres()}', '{$client->getClientPostcode()}', '{$client->getClientPlaats()}')";
@@ -59,7 +59,9 @@ class DbClient extends Database
     public function getClient(Client $user)
     {
         $email = $user->getClientEmail();
+
         $password = hash('sha256', $user->getClientPassword());
+
 
         $sql = "SELECT * FROM clients WHERE email = '" . $email. "' and paswoord = '" .$password . "'";
 
