@@ -75,6 +75,18 @@ class User
     }
 
     /**
+     * Haal de rechten van de gebruiker op
+     *
+     * @param $id
+     * @return bool
+     */
+
+    public function getPermissionGroup($id)
+    {
+        return $this->db->getPermissionGroup($id);
+    }
+
+    /**
      * Geef de variabele $Naam een waarde
      *
      * @param $Name

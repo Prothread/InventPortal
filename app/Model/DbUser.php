@@ -49,6 +49,22 @@ class DbUser extends Database
     }
 
     /**
+     * Haal de rechten van de gebruiker op
+     *
+     * @param $id
+     * @return bool
+     */
+
+    public function getPermissionGroup($id)
+    {
+        $sql = "SELECT `permgroup` FROM `users` WHERE `id` = '{$id}'";
+
+        if($result = $this->dbQuery($sql)){
+            return mysqli_fetch_assoc( $result );
+        }
+    }
+
+    /**
      * Haal user op met het id van die gebruiker
      *
      * @param $id
@@ -78,6 +94,12 @@ class DbUser extends Database
             return $value;
         }
     }
+
+    /**
+     * Haal alle gebruikers op
+     *
+     * @return array|null
+     */
 
     public function getAllUsers()
     {

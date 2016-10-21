@@ -161,6 +161,18 @@ class Client
     }
 
     /**
+     * Haal de rechten van de gebruiker op
+     *
+     * @param $id
+     * @return bool
+     */
+
+    public function getPermissionGroup($id)
+    {
+        return $this->db->getPermissionGroup($id);
+    }
+
+    /**
      * Redirect naar de database om alle klante op te halen
      *
      * @return array|null
