@@ -40,8 +40,8 @@ class DbBlock extends Database
      * @return array|null
      */
 
-    public function getLastThreeUploads() {
-        $sql = "SELECT * FROM `mail` ORDER BY `id` DESC LIMIT 3";
+    public function getLastSixUploads() {
+        $sql = "SELECT * FROM `mail` ORDER BY `id` DESC LIMIT 6";
 
         $result = $this->dbQuery($sql);
         $row = mysqli_fetch_all($result, MYSQLI_ASSOC);

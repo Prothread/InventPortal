@@ -2,8 +2,11 @@
 #DASHBOARD PAGE LAAT RECENTE ITEMS ZIEN
 
 $uploads = new BlockController();
-$get_filled_info = $uploads->getLastThreeUploads();
+$get_filled_info = $uploads->getLastSixUploads();
 ?>
+<!-- TODO Download image zonder ../InventPorta/app/uploads/4k_22.jpg link -->
+<!-- <a href="../app/uploads/4k_22.jpg" download="4k_22.jpg">Download image</a> -->
+
 <div id="page-content-wrapper">
     <div class="container-fluid">
         <div class="row">

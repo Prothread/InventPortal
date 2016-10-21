@@ -44,8 +44,9 @@ class Block
      * @return array|null
      */
 
-    public function getLastThreeUploads(){
-        return $this->db->getLastThreeUploads();
+    public function getLastSixUploads()
+    {
+        return $this->db->getLastSixUploads();
     }
 
     /**

@@ -44,9 +44,9 @@ class BlockController
      * @return array|null
      */
 
-    public function getLastThreeUploads()
+    public function getLastSixUploads()
     {
-        return $this->model->getLastThreeUploads();
+        return $this->model->getLastSixUploads();
     }
 
     /**
