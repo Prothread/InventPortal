@@ -81,7 +81,9 @@ class User
      * @return mixed
      */
 
+    public function getPermission($row, $perm)
     {
+        return $this->db->getPermission($row, $perm);
     }
 
     /**

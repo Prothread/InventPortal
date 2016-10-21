@@ -42,7 +42,9 @@ class UserController
      * @return mixed
      */
 
+    public function getPermission($row, $perm)
     {
+        return $this->model->getPermission($row, $perm);
     }
 
     /**
