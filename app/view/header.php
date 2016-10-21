@@ -3,6 +3,8 @@
 
 $user = new UserController();
 
+include DIR_MODEL . 'permissions.php';
+
 if(isset($_SESSION['usr_name'])) {
     $myuser = $_SESSION['usr_name'];
 }

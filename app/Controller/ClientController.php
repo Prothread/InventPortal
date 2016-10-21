@@ -138,4 +138,16 @@ class ClientController
         return $this->model->countBlocks();
     }
 
+    /**
+     * Haal de groep van rechten vande gebruiker op
+     *
+     * @param $id
+     * @return mixed
+     */
+
+    public function getPermissionGroup($id)
+    {
+        return $this->model->getPermissionGroup($id);
+    }
+
 }

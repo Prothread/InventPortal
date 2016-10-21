@@ -59,7 +59,11 @@ class DbClient extends Database
     public function getClient(Client $user)
     {
         $email = $user->getClientEmail();
+<<<<<<< HEAD
         $password = hash('sha256', $user->getClientPassword());
+=======
+        $password = $password = hash('sha256', $user->getClientPassword());
+>>>>>>> origin/master
 
         $sql = "SELECT * FROM clients WHERE email = '" . $email. "' and paswoord = '" .$password . "'";
 
@@ -146,6 +150,22 @@ class DbClient extends Database
             return $result['total_blocks'];
         }
         return false;
+    }
+
+    /**
+     * Haal de rechten van de gebruiker op
+     *
+     * @param $id
+     * @return bool
+     */
+
+    public function getPermissionGroup($id)
+    {
+        $sql = "SELECT `permgroup` FROM `clients` WHERE `id` = '{$id}'";
+
+        if($result = $this->dbQuery($sql)){
+            return mysqli_fetch_assoc( $result );
+        }
     }
 
 }

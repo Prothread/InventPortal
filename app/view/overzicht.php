@@ -1,5 +1,6 @@
 <?php
 #OVERZICHT PAGE VAN ALLE ITEMS
+
 $uploads = new BlockController();
 
 $offset = isset($_GET['offset']) ? $_GET['offset'] : 0;

@@ -36,6 +36,18 @@ class UserController
     }
 
     /**
+     * Haal de groep van rechten vande gebruiker op
+     *
+     * @param $id
+     * @return mixed
+     */
+
+    public function getPermissionGroup($id)
+    {
+        return $this->model->getPermissionGroup($id);
+    }
+
+    /**
      * Haal user op
      *
      * @param array $userinfo

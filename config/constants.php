@@ -20,42 +20,19 @@ set_include_path( get_include_path() . PATH_SEPARATOR . $_SERVER['DOCUMENT_ROOT'
 define("WWW_ROOT",                          "");
  define("HOME",                             WWW_ROOT."/index.php");
  define("DIR_MODEL",                        WWW_ROOT."../app/Model/");
- define("DIR_VIEW",                         WWW_ROOT."../app/views/");
+ define("DIR_VIEW",                         WWW_ROOT."../app/view/");
  define("DIR_CONTROLLER",                   WWW_ROOT."../app/Controller/");
  define("DIR_MAILER",                       WWW_ROOT."../vendor/phpmailer/");
  define("DIR_IMAGE",                        WWW_ROOT."../app/uploads/");
- define("DIR_PUBLIC",                       WWW_ROOT."../public/css/");
- 
+
 // DATABASE CONNECTION
  define("FILE_DB",                          DIR_CONTROLLER."Database.php");
  
  //ERROR FILE
  define("FILE_ERROR",                       DIR_MODEL."error.php");
 
-
-
-
-
  //RECHTEN & BITFIELD
- define("FILE_M_RECHTBITFIELD",             DIR_MODEL."rechtBitfield.php");
- define("FILE_M_RECHTGROEP",                DIR_MODEL."rechtgroep.php");
- define("FILE_DB_RECHT",                    DIR_CONTROLLER."db_recht.php");
- define("FILE_M_BITFIELD",                  DIR_MODEL."bitfield.php");
- define("FILE_DB_RECHTGROEP",               DIR_CONTROLLER."db_rechtgroep.php");
- define("FILE_M_RECHT",                     DIR_MODEL."recht.php");
- 
- //LOGIN & UITLOGGEN
- define("FILE_DB_LOGINSTYSTEEM",            DIR_CONTROLLER."db_loginsysteem.php");
- define("FILE_M_LOGINSYSTEEM",              DIR_MODEL."loginsysteem.php");
- define("FILE_V_LOGINSCHERM",               DIR_VIEW."login_scherm.php");
- define("URL_WEERGEVEN_UITLOGGEN",          "Uitloggen");
- 
- //SESSION
- define("FILE_M_SESSION",                   DIR_MODEL."session.php");
- 
- // DASHBOARD
- define("FILE_V_DASHBOARD",                 DIR_VIEW."dashboard.php");
- define("URL_DASHBOARD",                    "?page=dashboard");
+ define("FILE_RECHT",                       DIR_MODEL."permissions.php");
 
 // ERROR
  define("TEXT_FORM_FIELD_ERROR_DEFAULT",       "Tekst veld mag niet leeg zijn!");           
