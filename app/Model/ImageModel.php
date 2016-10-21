@@ -45,8 +45,8 @@ class ImageModel
      * @return mixed
      */
 
-    public function getImageVerify($img){
-        return $this->db->getImageVerify($img);
+    public function getImageVerify($id){
+        return $this->db->getImageVerify($id);
     }
 
     /**

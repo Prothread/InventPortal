@@ -31,15 +31,30 @@ $uploadedimages = $image_controller->getImagebyMailID($upload['id']);
 
                             <?php foreach ($uploadedimages as $img) {
                             ?>
-                            <div id="imgakkoord" style="float:left;">
-                                <div style="border:0; width: auto; height: 410px">
-                                    <img id="myimage" style="pointer-events: none;" height="410" width="300" border="20px solid white" src="<?php echo DIR_IMAGE.$img['images'];?>" />
-                                    <div style="position:relative; left: 28px; top: -304px; width:150px;">
-                                        <img style="pointer-events: none;z-index:5;" src="css/watermerk.png" width=250 height=200>
+                                <div id="imgakkoord" style="float:left;">
+                                    <div style="border:0; width: auto; height: 410px">
+                                        <img id="myimage" style="pointer-events: none;" height="410" width="300" border="20px solid white" src="<?php echo DIR_IMAGE.$img['images'];?>" />
+                                        <div style="position:relative; left: 28px; top: -304px; width:150px;">
+                                            <img style="pointer-events: none;z-index:5;" src="css/watermerk.png" width=250 height=200>
+                                        </div>
                                     </div>
+                                    <br />
+
+                                <?php
+                                if(isset($img['id'])) {
+
+                                    $isverified = $image_controller->getImageVerify($img['id']);
+
+                                    if($isverified['verify'] == 1) { ?>
+                                    <div id="akkoord" class="alert alert-success" style="text-align: center;" role="alert"><span class="glyphicon glyphicon-ok-circle"></span> Akkoord</div>
+                                <?php }
+
+                                if($isverified['verify'] == 2) {?>
+                                    <div id="weiger" class="alert alert-danger" style="text-align: center;" role="alert"><span class="glyphicon glyphicon-remove-circle"></span> Geweigerd</div>
+                                <?php }
+                                }?>
+                                    
                                 </div>
-                                <br />
-                            </div>
                             <?php }
                             ?>
 
