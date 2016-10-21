@@ -36,6 +36,16 @@ class UserController
     }
 
     /**
+     * Haal de rechten van de gebruiker voor de pagina op
+     *
+     * @param $perm
+     * @return mixed
+     */
+
+    {
+    }
+
+    /**
      * Haal de groep van rechten vande gebruiker op
      *
      * @param $id

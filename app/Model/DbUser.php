@@ -49,6 +49,29 @@ class DbUser extends Database
     }
 
     /**
+     * Haal de rechten van de gebruiker voor de pagina op
+     *
+     *
+     */
+
+    public function getPermission($row, $perm)
+    {
+        $sql = "SELECT `{$row}` FROM `permissions` WHERE `permission` = '{$perm}'";
+
+        /*if($result = $this->dbQuery($sql)) {
+            return mysqli_fetch_assoc($result);
+        }*/
+
+        $result = $this->dbQuery($sql);
+        $value = mysqli_fetch_assoc($result);
+
+        if($value){
+            return $value[$row];
+        }
+
+    }
+
+    /**
      * Haal de rechten van de gebruiker op
      *
      * @param $id

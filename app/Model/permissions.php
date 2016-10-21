@@ -10,12 +10,6 @@ $user = new UserController();
 $client = new ClientController();
 $session = new Session();
 
-/*define("SHOW_HOME",         1);
-define("SHOW_UPLOAD",       1);
-define("SHOW_BOARD",        1);
-define("SHOW_SETTINGS",     1);
-define("SHOW_CLIENT",       1);*/
-
 /**
  * Checken of de klant een user of een client is
  */
@@ -36,15 +30,24 @@ else {
 
 if($_SESSION['usr_id']){
     $id = $user->getPermissionGroup($userid);
-    $permgroup = $id['permgroup'];
+    $permid = $id['permgroup'];
+    if($permid == 2) {
+        $permgroup = 'Gebruiker';
+    }
+    else if($permid == 3) {
+        $permgroup = 'Beheerder';
+    }
+    else if($permid == 4) {
+        $permgroup = 'Admin';
+    }
 }
 else if($_SESSION['client_id']){
     $id = $client->getPermissionGroup($clientid);
-    $permgroup = $id['permgroup'];
+    $permid = $id['permgroup'];
+    $permgroup = 'Klant';
 }
 else {
-    $permgroup = 0;
+    $permgroup = '';
 }
-//var_dump($permgroup);
 
-//$perms = [SHOW_HOME, SHOW_UPLOAD, SHOW_BOARD];
+$t = $user->getPermission($permgroup, 'CAN_SHOW_HOME');

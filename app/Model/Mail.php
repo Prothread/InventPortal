@@ -14,6 +14,14 @@ class Mail {
     private $MailUserId;
 
     /**
+     * Variabele om MailClientId op te slaan
+     *
+     * @var $MailClientId
+     */
+
+    private $MailClientId;
+
+    /**
      * Variabele om MailId op te slaan
      *
      * @var $MailId
@@ -178,6 +186,17 @@ class Mail {
     }
 
     /**
+     * Sla gegevens op in MailClientId variabele
+     *
+     * @param $MailClientId
+     */
+
+    public function setMailClientId($MailClientId)
+    {
+        $this->MailClientId = $MailClientId;
+    }
+
+    /**
      * Sla meegegeven informatie op in de MailId variabele
      *
      * @param $MailId
@@ -318,6 +337,11 @@ class Mail {
     public function getMailUserId()
     {
         return $this->MailUserId;
+    }
+
+    public function getMailClientId()
+    {
+        return $this->MailClientId;
     }
 
     /**

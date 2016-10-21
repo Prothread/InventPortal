@@ -18,7 +18,7 @@ class DbClient extends Database
 
     public function newClient(Client $client)
     {
-        $password = $password = hash('sha256', $client->getClientPassword());
+        $password = hash('sha256', $client->getClientPassword());
 
         $sql = "INSERT INTO `clients` (`naam`, `email`, `paswoord`, `bedrijfsnaam`, `adres`, `postcode`, `plaats`) VALUES ('{$client->getClientName()}', '{$client->getClientEmail()}',
         '{$password}', '{$client->getCompanyName()}', '{$client->getClientAdres()}', '{$client->getClientPostcode()}', '{$client->getClientPlaats()}')";
@@ -37,7 +37,7 @@ class DbClient extends Database
 
     public function updateClient(Client $client)
     {
-        $password = $password = hash('sha256', $client->getClientPassword());
+        $password = hash('sha256', $client->getClientPassword());
 
         $sql = "UPDATE `clients` SET `naam` = '{$client->getClientName()}', `email` = '{$client->getClientEmail()}', `paswoord` = '{$password}', `bedrijfsnaam` = '{$client->getCompanyName()}',
         `adres` = '{$client->getClientAdres()}', `postcode` = '{$client->getClientPostcode()}', `plaats` = '{$client->getClientPlaats()}') WHERE `id` = '{$client->getClientId()}'";
@@ -59,7 +59,7 @@ class DbClient extends Database
     public function getClient(Client $user)
     {
         $email = $user->getClientEmail();
-        $password = $password = hash('sha256', $user->getClientPassword());
+        $password = hash('sha256', $user->getClientPassword());
 
         $sql = "SELECT * FROM clients WHERE email = '" . $email. "' and paswoord = '" .$password . "'";
 

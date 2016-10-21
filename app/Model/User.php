@@ -75,6 +75,16 @@ class User
     }
 
     /**
+     * Haal de rechten van de gebruiker voor de pagina op
+     *
+     * @param $perm
+     * @return mixed
+     */
+
+    {
+    }
+
+    /**
      * Haal de rechten van de gebruiker op
      *
      * @param $id

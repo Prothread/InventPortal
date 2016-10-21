@@ -52,7 +52,7 @@ $uploadedimages = $image_controller->getImagebyMailID($upload['id']);
                                 <img src="http://i67.tinypic.com/mtxpbl.jpg" class="preview" id="preview" alt="">
                             </fieldset><br>
                             
-                            <label>Beschrijving<span style="color:#bc2d4c">*</span></label><br>
+                            <label style="width:50px;">Beschrijving<span style="color:#bc2d4c">*</span></label><br>
 
                             <input class="TaDescription" name="additionalcontent" value="<?= $upload['beschrijving']?>">
                             <br><br>

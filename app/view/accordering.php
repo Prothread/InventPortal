@@ -111,9 +111,6 @@ else {
                         <div id="mybuttons">
                             <a id="AccButtonA" href="?page=imageverify&img=<?= $img['id']; ?>"><button id="AccButton" onclick="VerifyAnswer()">Akkoord</button></a>
                             <a id="AccButtonA" href="?page=imagedecline&img=<?= $img['id']; ?>"><button id="AccButton" onclick="VerifyAnswer1()">Weiger</button></a>
-
-
-
                         </div>
                     </div>
                 <?php }
@@ -127,8 +124,9 @@ else {
                     <label>Opmerking<span style="color:#bc2d4c">*</span></label>
                     <input type="text" name="answer" size="50" required><br><br>
 
-                    <input type="hidden" name="userid" value="<?php if(isset($_SESSION['usr_id'])){ echo $_SESSION['usr_id']; } else {echo $myupload['id']; }?>">
-                    <input type="hidden" name="name" value="<?php if(isset($_SESSION['usr_id'])){ echo $_SESSION['usr_name']; } else {echo $myupload['naam']; }?>">
+                    <input type="hidden" name="userid" value="<?php if(isset($_SESSION['usr_id'])){ echo $_SESSION['usr_id']; } else {echo ''; }?>">
+                    <input type="hidden" name="clientid" value="<?php if($_SESSION['client_id']){ echo $_SESSION['client_id']; } else {echo ''; }?>">
+                    <input type="hidden" name="name" value="<?php if(isset($_SESSION['usr_id'])){ echo $_SESSION['usr_name']; } else if($_SESSION['client_id']){ echo $_SESSION['client_name']; } else {echo $myupload['naam']; }?>">
                     <input type="hidden" name="title" value="<?= $myupload['onderwerp']; ?>">
                     <input type="hidden" name="verstuurder" value="<?= $myupload['verstuurder']?>">
                     <input type="hidden" name="UID" value="<?= $UID; ?>">

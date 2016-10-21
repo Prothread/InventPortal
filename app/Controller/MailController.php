@@ -52,6 +52,7 @@ class MailController
     {
         if(isset($mailinfo['answer'])){
             $this->model->setMailUserId($mailinfo['userid']);
+            $this->model->setMailClientId($mailinfo['clientid']);
             $this->model->setMailId($mailinfo['id']);
             $this->model->setAnswer($mailinfo['answer']);
             $this->model->setToken($mailinfo['key']);
@@ -67,7 +68,6 @@ class MailController
             $this->model->setToken($mailinfo['token']);
             $this->model->setFakeImage($mailinfo['imgname']);
             $this->model->setImage($mailinfo['images']);
-            $this->model->setAnswer($mailinfo['answer']);
             $this->model->setDatum($mailinfo['datum']);
             $this->model->setVerified($mailinfo['verified']);
         }

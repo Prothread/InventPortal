@@ -69,7 +69,7 @@ $content = "<img alt='MadalcoHeader' src='http://i68.tinypic.com/dw5a9f.png'>" .
     "<br /> <br />Met vriendelijke groet, <br />" . "Madalco media";
 
 $altcontent = "Geachte leden van " . $_POST['companyname'] . "," .
-    " <br/><br/>" . $myuser['name'] . " heeft voor U het account: <b>" . $_POST['showname'] . "</b>" . "aangemaakt met de volgende informatie:<br /><br />" .
+    " <br/><br/>" . $myuser . " heeft voor U het account: <b>" . $_POST['showname'] . "</b>" . "aangemaakt met de volgende informatie:<br /><br />" .
     "<b>Email: </b>" .
     $_POST['email'] . '<br />' .
 
@@ -78,7 +78,7 @@ $altcontent = "Geachte leden van " . $_POST['companyname'] . "," .
 
     "<br /><br />" . "U kunt " . "http://localhost/InventPortal/public/index.php?page=login " . "inloggen." .
 
-    "<br /> <br />Met vriendelijke groet, <br />" . $myuser['name'];
+    "<br /> <br />Met vriendelijke groet, <br />" . $myuser;
 
 $mailer = new PHPMailer();
 
@@ -94,7 +94,7 @@ $mailer->SMTPSecure = $smtp['secure'];
 //Now, send mail :
 //From - To :
 $mailer->From = $crendentials['email'];
-$mailer->FromName = $myuser['name']; //Optional
+$mailer->FromName = $myuser; //Optional
 $mailer->addAddress($to);  // Add a recipient
 
 //Subject - Body :
@@ -137,5 +137,4 @@ if (!$mailer->send()) {
 } else {
     //If mail is send, create data and send it to the database
     $client->newClient($clientinfo);
-    echo 'Mail is verstuurd';
 }
