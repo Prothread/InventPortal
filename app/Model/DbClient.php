@@ -18,7 +18,7 @@ class DbClient extends Database
 
     public function newClient(Client $client)
     {
-        $password = $password = hash('sha256', $client->getClientPassword());
+        $password = hash('sha256', $client->getClientPassword());
 
         $sql = "INSERT INTO `clients` (`naam`, `email`, `paswoord`, `bedrijfsnaam`, `adres`, `postcode`, `plaats`) VALUES ('{$client->getClientName()}', '{$client->getClientEmail()}',
         '{$password}', '{$client->getCompanyName()}', '{$client->getClientAdres()}', '{$client->getClientPostcode()}', '{$client->getClientPlaats()}')";
