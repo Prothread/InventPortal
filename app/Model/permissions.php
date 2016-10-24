@@ -50,4 +50,5 @@ else {
     $permgroup = '';
 }
 
+
 $t = $user->getPermission($permgroup, 'CAN_SHOW_HOME');

@@ -81,7 +81,7 @@ else {
     </div>
     <h3 id="LoggedInAs"><?= $myuser; ?></h3>
 </div>
-</div>
+
 
 <div id="wrapper">
     <!-- Sidebar -->

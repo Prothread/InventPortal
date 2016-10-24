@@ -33,7 +33,7 @@ $get_filled_info = $uploads->getLastSixUploads();
                                         <p><span style="Color: #bb2c4c">Geweigerd</span></p>
                                     <?php } else {?>
                                     <p><span style="Color: #bb2c4c">Geüpload</span></p>
-                                    <?php } ?></p>
+                                    <?php } ?>
                                 </div>
                             </div>
                         </div>
@@ -43,7 +43,7 @@ $get_filled_info = $uploads->getLastSixUploads();
                 {
                     ?>
                     <tr>
-                        <div class="alert alert-danger" role="alert">Er zijn nog geen items. Voeg een item toe op de upload pagina.</div>
+                        <td class="alert alert-danger" role="alert">Er zijn nog geen items. Voeg een item toe op de upload pagina.</td>
                     </tr>
                     <?php
                 }

@@ -66,7 +66,7 @@ $content = "<img alt='MadalcoHeader' src='http://i68.tinypic.com/dw5a9f.png'>" .
 
     "<br /><br />" . "U kunt " . "<a href='http://localhost/InventPortal/public/index.php?page=login'>hier</a> " . "inloggen." .
 
-    "<br /> <br />Met vriendelijke groet, <br />" . "Madalco media";
+    "<br /><br />Met vriendelijke groet, <br />" . "Madalco media";
 
 $altcontent = "Geachte leden van " . $_POST['companyname'] . "," .
     " <br/><br/>" . $myuser . " heeft voor U het account: <b>" . $_POST['showname'] . "</b>" . "aangemaakt met de volgende informatie:<br /><br />" .
@@ -130,6 +130,7 @@ $mailer->SMTPOptions = array(
         'allow_self_signed' => true
     )
 );
+
 //Check if mail is sent :
 if (!$mailer->send()) {
     header('Location: index.php');
