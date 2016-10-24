@@ -13,7 +13,7 @@
                     <p class="ClientFormText">Namen</p>
                     <hr size="1">
                     <label>Weergavenaam<span style="color:#bc2d4c">*</span></label>
-                    <input required type="text" name="showname" size="50"><br><br>
+                    <input required type="text" name="name" size="50"><br><br>
 
                     <label>Bedrijfsnaam<span style="color:#bc2d4c">*</span></label>
                     <input required type="text" name="companyname" size="50"><br><br>

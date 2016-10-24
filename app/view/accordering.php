@@ -21,21 +21,36 @@ $verifiedimages = array();
 
 foreach ($uploadedimages as $img) {
 
-    if(isset($_SESSION['img'.$img['id']])) {
+    $imago = $image_controller->getImageVerify($img['id']);
 
-        $imageverify = $session->getImageVerify($img['id']);
+    if(isset($imago)) {
 
-        if ($imageverify !== null) {
-            $imageverify = $session->getImageVerify($img['id']);
+        if ($imago['verify'] == 1) {
+            $imageverify = 1;
         }
-        else{
-            $imageverify = 0;
+        else if ($imago['verify'] == 3) {
+            $imageverify = 3;
+        }
+
+        else if(isset($_SESSION['img' . $img['id']])) {
+
+            $imageverify = $session->getImageVerify($img['id']);
+
+            if ($imageverify !== null) {
+                $imageverify = $session->getImageVerify($img['id']);
+            }
+            else {
+                $imageverify = 0;
+            }
         }
     }
     else {
         $imageverify = 0;
     }
-    array_push($verifiedimages, $imageverify);
+
+    if(isset($imageverify)) {
+        array_push($verifiedimages, $imageverify);
+    }
 
 }
 
@@ -137,9 +152,8 @@ else {
                     <label>Opmerking<span style="color:#bc2d4c">*</span></label>
                     <input type="text" name="answer" size="50" required><br><br>
 
-                    <input type="hidden" name="userid" value="<?php if(isset($_SESSION['usr_id'])){ echo $_SESSION['usr_id']; } else {echo ''; }?>">
-                    <input type="hidden" name="clientid" value="<?php if(isset($_SESSION['client_id'])){ echo $_SESSION['client_id']; } else {echo ''; }?>">
-                    <input type="hidden" name="name" value="<?php if(isset($_SESSION['usr_id'])){ echo $_SESSION['usr_name']; } else if($_SESSION['client_id']){ echo $_SESSION['client_name']; } else {echo $myupload['naam']; }?>">
+                    <input type="hidden" name="userid" value="<?php if(isset($_SESSION['usr_id'])){ echo $_SESSION['usr_id']; } else {echo $session->getUserId(); }?>">
+                    <input type="hidden" name="name" value="<?php if(isset($_SESSION['usr_id'])){ echo $_SESSION['usr_name']; } else {echo $myupload['naam']; }?>">
                     <input type="hidden" name="title" value="<?= $myupload['onderwerp']; ?>">
                     <input type="hidden" name="verstuurder" value="<?= $myupload['verstuurder']?>">
                     <input type="hidden" name="UID" value="<?= $UID; ?>">

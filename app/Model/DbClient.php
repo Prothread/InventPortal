@@ -62,7 +62,6 @@ class DbClient extends Database
 
         $password = hash('sha256', $user->getClientPassword());
 
-
         $sql = "SELECT * FROM clients WHERE email = '" . $email. "' and paswoord = '" .$password . "'";
 
         if($result = $this->dbQuery($sql)){

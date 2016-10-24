@@ -1,13 +1,13 @@
 <?php
 #MANAGE CLIENTS PAGE
 
-$clients = new ClientController();
+$user = new UserController();
 
 $offset = isset($_GET['offset']) ? $_GET['offset'] : 0;
 $limit = 10;
 
-$count = $clients->countBlocks();
-$get_filled_info = $clients->getAllClients($limit, $offset);
+$count = $user->countBlocks();
+$get_filled_info = $user->getAllClients($limit, $offset, 1);
 ?>
 
 <div id="page-content-wrapper">

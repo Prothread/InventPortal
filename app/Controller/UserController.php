@@ -24,15 +24,73 @@ class UserController
 
     public function create(array $userinfo)
     {
+        if(isset($userinfo['id'])) {
+            $this->model->setUserId($userinfo['id']);
+        }
+
         $this->model->setName($userinfo['name']);
         $this->model->setEmail($userinfo['email']);
         $this->model->setPassword($userinfo['password']);
+
+        if(isset($userinfo['bedrijfsnaam'])) {
+            $this->model->setCompanyName($userinfo['bedrijfsnaam']);
+        }
+        if(isset($userinfo['adres'])) {
+            $this->model->setUserAdres($userinfo['adres']);
+        }
+        if(isset($userinfo['postcode'])) {
+            $this->model->setUserPostcode($userinfo['postcode']);
+        }
+        if(isset($userinfo['plaats'])) {
+            $this->model->setUserPlace($userinfo['plaats']);
+        }
+
+        $this->model->setUserPermgroup($userinfo['permgroup']);
 
         if ($result = $this->model->create()) {
             echo('Success, de user is succesvol aangemaakt.');
             return $result;
         }
 
+    }
+
+    /**
+     * Update klant
+     *
+     * @param array $userinfo
+     * @return mixed
+     */
+
+    public function update(array $userinfo)
+    {
+        if(isset($userinfo['id'])) {
+            $this->model->setUserId($userinfo['id']);
+        }
+
+        $this->model->setName($userinfo['name']);
+        $this->model->setEmail($userinfo['email']);
+        $this->model->setPassword($userinfo['password']);
+
+        if(isset($userinfo['bedrijfsnaam'])) {
+            $this->model->setCompanyName($userinfo['bedrijfsnaam']);
+        }
+        if(isset($userinfo['adres'])) {
+            $this->model->setUserAdres($userinfo['adres']);
+        }
+        if(isset($userinfo['postcode'])) {
+            $this->model->setUserPostcode($userinfo['postcode']);
+        }
+        if(isset($userinfo['plaats'])) {
+            $this->model->setUserPlace($userinfo['plaats']);
+        }
+
+        $this->model->setUserPermgroup($userinfo['permgroup']);
+
+
+        if ($result = $this->model->update()) {
+            echo('Success, de klant is succesvol bijgewerkt.');
+            return $result;
+        }
     }
 
     /**
@@ -90,17 +148,6 @@ class UserController
     }
 
     /**
-     * Haal alle users op
-     *
-     * @return mixed
-     */
-
-    public function getAllUsers()
-    {
-        return $this->model->getAllUsers();
-    }
-
-    /**
      * Update user password
      *
      * @return mixed
@@ -109,6 +156,39 @@ class UserController
     public function updateUser($id, $npassword)
     {
         return $this->model->updateUser($id, $npassword);
+    }
+
+    /**
+     * Haal alle gebruikers op
+     *
+     * @return array|null
+     */
+
+    public function getAllUsers($limit = null, $offset = null)
+    {
+        return $this->model->getAllUsers($limit, $offset);
+    }
+
+    /**
+     * Haal alle klanten op
+     *
+     * @return array|null
+     */
+
+    public function getAllClients($limit = null, $offset = null, $permgroup)
+    {
+        return $this->model->getAllClients($limit, $offset, $permgroup);
+    }
+
+    /**
+     * Haal aantal resultaten van mails op
+     *
+     * @return mixed
+     */
+
+    public function countBlocks()
+    {
+        return $this->model->countBlocks();
     }
 
 }

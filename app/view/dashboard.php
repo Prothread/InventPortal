@@ -3,9 +3,8 @@
 
 $uploads = new BlockController();
 $get_filled_info = $uploads->getLastSixUploads();
+
 ?>
-<!-- TODO Download image zonder ../InventPorta/app/uploads/4k_22.jpg link -->
-<!-- <a href="../app/uploads/4k_22.jpg" download="4k_22.jpg">Download image</a> -->
 
 <div id="page-content-wrapper">
     <div class="container-fluid">
@@ -13,6 +12,13 @@ $get_filled_info = $uploads->getLastSixUploads();
             <div class="col-lg-12">
                 <p class="NameText">Home</p>
                 <hr size="1">
+
+                <ul style=""class="nav nav-pills" role="tablist">
+                    <li role="presentation"><a href="#"><span class="glyphicon glyphicon-ok-sign"></span>  Geaccepteerd &nbsp;&nbsp;<span class="badge">2145</span></a></li>
+                    <li role="presentation"><a href="#"><span class="glyphicon glyphicon-remove-sign"></span>  Geweigerd &nbsp;&nbsp;<span class="badge">324</span></a></li>
+                    <li role="presentation"><a href="#"><span class="glyphicon glyphicon-question-sign"></span>  Openstaand &nbsp;&nbsp;<span class="badge">6</span></a></li>
+                </ul>
+
                 <br>
                 <?php
                 if($get_filled_info !== null) {

@@ -9,8 +9,14 @@ $image_controller = new ImageController();
 $uploadedimages = $image_controller->getImagebyMailID($myupload['id']);
 
 foreach ($uploadedimages as $img) {
-    $session->getImageVerify($img['id']);
-    $image_controller->setImageVerify($img['id'], $session->getImageVerify($img['id']));
+    if (isset($_SESSION['img' . $img['id']])) {
+        $imgver = $session->getImageVerify($img['id']);
+    }
+    else {
+        $imago = $image_controller->getImageVerify($img['id']);
+        $imgver = $imago['verify'];
+    }
+    $image_controller->setImageVerify($img['id'], $imgver);
 }
 
 $mymail = new MailController();
@@ -103,6 +109,7 @@ $mymail = new MailController();
     } else {
         //If mail is send, create data and send it to the database
         $mymail->update($mailinfo);
-        echo 'Accordering is verstuurd';
-    }
 
+        header('Location: index.php?page=accordering');
+        Session::flash('message', 'De accordering is verstuurd');
+    }

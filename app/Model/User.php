@@ -42,6 +42,46 @@ class User
     private $Password;
 
     /**
+     * Variabele om klant bedrijfsnaam in op te slaan
+     *
+     * @var $UserCompany
+     */
+
+    private $UserCompany;
+
+    /**
+     * Variabele om het adres van de klant in op te slaan
+     *
+     * @var $UserAdres
+     */
+
+    private $UserAdres;
+
+    /**
+     * Variabele om de postcode van het bedrijf van de klant in op te slaan
+     *
+     * @var $UserPostcode
+     */
+
+    private $UserPostcode;
+
+    /**
+     * Variabele om de plek van het bedrijf van de klant in op te slaan
+     *
+     * @var $UserPlace
+     */
+
+    private $UserPlace;
+
+    /**
+     * Variabele om rechtgroep van de gebruiker in op te slaan
+     *
+     * @var $UserPermGroup
+     */
+
+    private $UserPermGroup;
+
+    /**
      * Link naar de database user contructor
      *
      * User constructor.
@@ -61,6 +101,17 @@ class User
     public function create()
     {
         return $this->db->create($this);
+    }
+
+    /**
+     * Functie om gebruikers up te daten
+     *
+     * @return mixed
+     */
+
+    public function update()
+    {
+        return $this->db->update($this);
     }
 
     /**
@@ -132,6 +183,72 @@ class User
     }
 
     /**
+     * Sla het id van de gebruiker op
+     *
+     * @param $userid
+     */
+
+    public function setUserId($userid)
+    {
+        $this->UserId = $userid;
+    }
+
+    /**
+     * Sla de naam van het bedrijf op in zijn variabele
+     *
+     * @param $company
+     */
+
+    public function setCompanyName($company)
+    {
+        $this->UserCompany = $company;
+    }
+
+    /**
+     * Sla de naam van het adres van het bedrijf van de klant op in zijn variabele
+     *
+     * @param $useradres
+     */
+
+    public function setUserAdres($useradres)
+    {
+        $this->UserAdres = $useradres;
+    }
+
+    /**
+     * Sla de postcode van het bedrijf van de klant op in zijn variabele
+     *
+     * @param $userpostcode
+     */
+
+    public function setUserPostcode($userpostcode)
+    {
+        $this->UserPostcode = $userpostcode;
+    }
+
+    /**
+     * Haal de plaats van het bedrijf van de klant op
+     *
+     * @param $userplace
+     */
+
+    public function setUserPlace($userplace)
+    {
+        $this->UserPlace = $userplace;
+    }
+
+    /**
+     * Set rechtgroep voor de gebruiker
+     *
+     * @param $userperm
+     */
+
+    public function setUserPermgroup($userperm)
+    {
+        $this->UserPermGroup = $userperm;
+    }
+
+    /**
      * Haal de gebruiker op met behulp van het gebruiker id
      *
      * @param $id
@@ -156,14 +273,14 @@ class User
     }
 
     /**
-     * Haal alle gebruikers op
+     * Haal gebruiker id op
      *
      * @return mixed
      */
 
-    public function getAllUsers()
+    public function getUserId()
     {
-        return $this->db->getAllUsers();
+        return $this->UserId;
     }
 
     /**
@@ -200,6 +317,55 @@ class User
     }
 
     /**
+     * Haal de naam van het bedrijf van de klantop
+     *
+     * @return mixed
+     */
+
+    public function getCompanyName()
+    {
+        return $this->UserCompany;
+    }
+
+    /**
+     * Haal het adres van het bedrijf van de klant op
+     *
+     * @return mixed
+     */
+
+    public function getUserAdres()
+    {
+        return $this->UserAdres;
+    }
+
+    /**
+     * Haal de postoce van het bedrijf van de klant op
+     *
+     * @return mixed
+     */
+
+    public function getUserPostcode()
+    {
+        return $this->UserPostcode;
+    }
+
+    /**
+     * Haal de plaats van het bedrijf van de klant op
+     *
+     * @return mixed
+     */
+
+    public function getUserPlace()
+    {
+        return $this->UserPlace;
+    }
+
+    public function getPermGroup()
+    {
+        return $this->UserPermGroup;
+    }
+
+    /**
      * Update user password
      *
      * @return mixed
@@ -208,6 +374,39 @@ class User
     public function updateUser($id, $npassword)
     {
         return $this->db->updateUser($id, $npassword);
+    }
+
+    /**
+     * Haal alle gebruikers op
+     *
+     * @return array|null
+     */
+
+    public function getAllUsers($limit = null, $offset = null)
+    {
+        return $this->db->getAllUsers($limit, $offset);
+    }
+
+    /**
+     * Haal alle klanten op
+     *
+     * @return array|null
+     */
+
+    public function getAllClients($limit = null, $offset = null, $permgroup)
+    {
+        return $this->db->getAllClients($limit, $offset, $permgroup);
+    }
+
+    /**
+     * Haal aantal resultaten van mails op
+     *
+     * @return mixed
+     */
+
+    public function countBlocks()
+    {
+        return $this->db->countBlocks();
     }
 
 

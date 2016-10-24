@@ -22,11 +22,28 @@ class DbUser extends Database
         $email = $user->getEmail();
         $password = hash('sha256', $user->getPassword());
 
-        $sql = "INSERT INTO users(`name`,`email`,`password`) VALUES('" . $name . "', '" . $email . "', '" . $password . "')";
+        $sql = "INSERT INTO `users` (`naam`, `email`, `paswoord`, `permgroup`, `bedrijfsnaam`, `adres`, `postcode`, `plaats`) VALUES('" . $name . "', '" . $email . "', '" . $password . "', '{$user->getPermGroup()}',
+        '{$user->getCompanyName()}', '{$user->getUserAdres()}', '{$user->getUserPostcode()}', '{$user->getUserPlace()}')";
 
         if($this->dbQuery($sql)){
             return $this->dbLastInsertedId();
         }
+
+    }
+
+
+
+    public function update(User $user)
+    {
+        $password = hash('sha256', $user->getPassword());
+
+        $sql = "UPDATE `users` SET `naam` = '{$user->getName()}', `email` = '{$user->getEmail()}', `paswoord` = '{$password}', `bedrijfsnaam` = '{$user->getCompanyName()}', `permgroup` = '{$user->getPermGroup()}',
+        `adres` = '{$user->getUserAdres()}', `postcode` = '{$user->getUserPostcode()}', `plaats` = '{$user->getUserPlace()}') WHERE `id` = '{$user->getUserId()}'";
+
+        if($this->dbQuery($sql)){
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -41,7 +58,7 @@ class DbUser extends Database
         $email = $user->getEmail();
         $password = hash('sha256', $user->getPassword());
 
-        $sql = "SELECT * FROM users WHERE email = '" . $email. "' and password = '" .$password . "'";
+        $sql = "SELECT * FROM users WHERE email = '" . $email. "' and paswoord = '" .$password . "'";
 
         if($result = $this->dbQuery($sql)){
             return $result;
@@ -118,24 +135,6 @@ class DbUser extends Database
         }
     }
 
-    /**
-     * Haal alle gebruikers op
-     *
-     * @return array|null
-     */
-
-    public function getAllUsers()
-    {
-        $sql = "SELECT * FROM `users`";
-
-        $result = $this->dbQuery($sql);
-        $value = mysqli_fetch_all($result, MYSQLI_ASSOC);
-
-        if($value){
-            return $value;
-        }
-    }
-
     public function updateUser($id, $npassword)
     {
         $sql = "UPDATE `users` SET `password` = '{$npassword}' WHERE `id` = '{$id}'";
@@ -155,6 +154,72 @@ class DbUser extends Database
     public function dbLastInsertedId()
     {
         return $this->connection->insert_id;
+    }
+
+    /**
+     * Haal alle gebruikers op
+     *
+     * @return array|null
+     */
+
+    public function getAllUsers($limit = null, $offset = null)
+    {
+        $sql = "SELECT * FROM `users`";
+
+        if($limit) {
+            $sql .= " LIMIT {$limit}";
+        }
+        if($offset) {
+            $sql .= " OFFSET {$offset}";
+        }
+
+        $result = $this->dbQuery($sql);
+        $value = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+        if($value){
+            return $value;
+        }
+    }
+
+    /**
+     * Haal alle gebruikers op
+     *
+     * @return array|null
+     */
+
+    public function getAllClients($limit = null, $offset = null, $permgroup)
+    {
+        $sql = "SELECT * FROM `users` WHERE `permgroup` = '{$permgroup}'";
+
+        if($limit) {
+            $sql .= " LIMIT {$limit}";
+        }
+        if($offset) {
+            $sql .= " OFFSET {$offset}";
+        }
+
+        $result = $this->dbQuery($sql);
+        $value = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+        if($value){
+            return $value;
+        }
+    }
+
+    /**
+     * Haal aantal resultaten van mails op
+     *
+     * @return mixed
+     */
+
+    public function countBlocks()
+    {
+        $query ="SELECT COUNT(`id`) AS 'total_blocks' FROM `users`";
+
+        if($result = $this->dbFetchArray($query)){
+            return $result['total_blocks'];
+        }
+        return false;
     }
 
 }

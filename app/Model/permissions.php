@@ -11,40 +11,47 @@ $client = new ClientController();
 $session = new Session();
 
 /**
- * Checken of de klant een user of een client is
- */
-
-if(isset($_SESSION['usr_id'])) {
-    $userid = $_SESSION['usr_id'];
-}
-else if($_SESSION['client_id']) {
-    $userid = $_SESSION['client_id'];
-}
-else {
-    $userid = $session->getUserId();
-}
-
-/**
  * Haal de rechten van de user/client op
  */
 
-if($_SESSION['usr_id']){
-    $id = $user->getPermissionGroup($userid);
-    $permid = $id['permgroup'];
-    if($permid == 2) {
+if(isset($_SESSION['usr_id'])){
+    $id = $user->getPermissionGroup($_SESSION['usr_id']);
+    $id = $id['permgroup'];
+
+    if($id == 1) {
+        $permgroup = 'Klant';
+    }
+    else if($id == 2) {
         $permgroup = 'Gebruiker';
     }
-    else if($permid == 3) {
+    else if($id == 3) {
         $permgroup = 'Beheerder';
     }
-    else if($permid == 4) {
+    else if($id == 4) {
         $permgroup = 'Admin';
     }
+    else {
+        $permgroup = '';
+    }
 }
-else if($_SESSION['client_id']){
-    $id = $client->getPermissionGroup($clientid);
-    $permid = $id['permgroup'];
-    $permgroup = 'Klant';
+else if($session->getUserId()) {
+    $id = $user->getPermissionGroup($session->getUserId());
+
+    if($id == 1) {
+        $permgroup = 'Klant';
+    }
+    else if($id == 2) {
+        $permgroup = 'Gebruiker';
+    }
+    else if($id == 3) {
+        $permgroup = 'Beheerder';
+    }
+    else if($id == 4) {
+        $permgroup = 'Admin';
+    }
+    else {
+        $permgroup = '';
+    }
 }
 else {
     $permgroup = '';

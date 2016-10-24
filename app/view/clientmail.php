@@ -16,13 +16,11 @@ if(isset($_SESSION['usr_name'])) {
 }
 else if( isset($user) ) {
     $thisuser = $user->getUserById($session->getUserId());
-    $myuser = $thisuser['name'];
+    $myuser = $thisuser['naam'];
 }
 else {
     echo 'Admin';
 }
-
-$client = new ClientController();
 
 //Generate a random string.
 $token = openssl_random_pseudo_bytes(8);
@@ -57,7 +55,7 @@ $to = $_POST['email']; //The 'To' field
 $subject = "Madalco portal account gegevens";
 
 $content = "<img alt='MadalcoHeader' src='http://i68.tinypic.com/dw5a9f.png'>" . "  <br/><br/>" . "Geachte " . $_POST['companyname'] . "," .
-    " <br/><br/>" . $myuser . " heeft voor U het account: <b>" . $_POST['showname'] . "</b>." . "aangemaakt met de volgende informatie:<br /><br />" .
+    " <br/><br/>" . $myuser . " heeft voor U het account: <b>" . $_POST['name'] . "</b>." . "aangemaakt met de volgende informatie:<br /><br />" .
     "<b>Email: </b>" .
     $_POST['email'] . '<br/>' .
 
@@ -69,7 +67,7 @@ $content = "<img alt='MadalcoHeader' src='http://i68.tinypic.com/dw5a9f.png'>" .
     "<br /><br />Met vriendelijke groet, <br />" . "Madalco media";
 
 $altcontent = "Geachte leden van " . $_POST['companyname'] . "," .
-    " <br/><br/>" . $myuser . " heeft voor U het account: <b>" . $_POST['showname'] . "</b>" . "aangemaakt met de volgende informatie:<br /><br />" .
+    " <br/><br/>" . $myuser . " heeft voor U het account: <b>" . $_POST['name'] . "</b>" . "aangemaakt met de volgende informatie:<br /><br />" .
     "<b>Email: </b>" .
     $_POST['email'] . '<br />' .
 
@@ -105,7 +103,7 @@ $mailer->AltBody = $altcontent;
 
 //Saving mail information
 
-$naam = mysqli_real_escape_string( $mysqli, $_POST['showname']);
+$naam = mysqli_real_escape_string( $mysqli, $_POST['name']);
 $email = mysqli_real_escape_string( $mysqli, $_POST['email']);
 $bedrijfsnaam = mysqli_real_escape_string( $mysqli, $_POST['companyname']);
 
@@ -113,14 +111,15 @@ $adres = mysqli_real_escape_string( $mysqli, $_POST['companyadress']);
 $postcode = mysqli_real_escape_string( $mysqli, $_POST['postcode']);
 $plaats = mysqli_real_escape_string( $mysqli, $_POST['plaats']);
 
-$clientinfo = [
-    'naam' => strip_tags( $naam ),
+$userinfo = [
+    'name' => strip_tags( $naam ),
     'email' => strip_tags( $email ),
     'password' => $token,
     'bedrijfsnaam' => strip_tags( $bedrijfsnaam ),
     'adres' => strip_tags( $adres ),
     'postcode' => strip_tags( $postcode ),
-    'plaats' => strip_tags( $plaats )
+    'plaats' => strip_tags( $plaats ),
+    'permgroup' => 1
 ];
 
 $mailer->SMTPOptions = array(
@@ -137,5 +136,5 @@ if (!$mailer->send()) {
     echo 'Error sending mail : ' . $mailer->ErrorInfo;
 } else {
     //If mail is send, create data and send it to the database
-    $client->newClient($clientinfo);
+    $user->create($userinfo);
 }

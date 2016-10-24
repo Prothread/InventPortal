@@ -56,7 +56,7 @@ $uploadedimages = $image_controller->getImagebyMailID($upload['id']);
                                 <?php }
 
                                 if($isverified['verify'] == 0) {?>
-                                    <div id="weiger" class="alert alert-danger" style="text-align: center;" role="alert"><span class="glyphicon glyphicon-remove-circle"></span> Niet beoordeeld</div>
+                                    <div id="weiger" class="alert alert-info" style="text-align: center;" role="alert"><span class="glyphicon glyphicon-remove-circle"></span> Niet beoordeeld</div>
                                 <?php }
 
                                     array_push($verimages, $isverified['verify']);
@@ -127,8 +127,11 @@ $uploadedimages = $image_controller->getImagebyMailID($upload['id']);
                             <input disabled="disabled" type="email" name="mailto" size="50" value="<?= $upload['email']?>">
 
                             <input disabled="disabled" type="hidden" name="frommail" id="MailFrom" value="<?= $upload['onderwerp']?>">
+
+                                <?php foreach($uploadedimages as $img) { ?>
+                                <a href="index.php?page=download&file=<?= DIR_IMAGE . $img['images']; ?>">Download</a>
                             <br><br>
-                            <?php } ?>
+                            <?php }} ?>
                         </form>
                     </div>
                 </div>

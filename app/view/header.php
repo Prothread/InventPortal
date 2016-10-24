@@ -10,7 +10,10 @@ if(isset($_SESSION['usr_name'])) {
 }
 else if( isset($user) ) {
     $thisuser = $user->getUserById($session->getUserId());
-    $myuser = $thisuser['name'];
+    $myuser = $thisuser['naam'];
+}
+else if( isset($_SESSION['client_id'])) {
+    $myuser = $_SESSION['client_name'];
 }
 else {
     echo 'User';

@@ -41,7 +41,8 @@ if (isset($_POST['signup'])) {
         $userinfo = [
             'name' => strip_tags($name),
             'email' => strip_tags($email),
-            'password' => strip_tags($cpassword)
+            'password' => strip_tags($cpassword),
+            'permgroup' => $_POST['permgroup']
         ];
 
         if($user->create($userinfo)) {
@@ -132,6 +133,8 @@ if (isset($_POST['signup'])) {
                                 <input type="password" name="cpassword" placeholder="Herhaal wachtwoord" required class="form-control" />
                                 <span class="text-danger"><?php if (isset($cpassword_error)) echo $cpassword_error; ?></span>
                             </div>
+
+                            <input type="hidden" name="permgroup" value="2">
 
                             <div class="form-group">
                                 <input type="submit" name="signup" value="Aanmaken" class="btn btn-primary" />

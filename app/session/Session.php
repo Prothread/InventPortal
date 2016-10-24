@@ -82,7 +82,8 @@ class Session
      * @return bool
      */
 
-    function isValidEmail($address) {
+    function isValidEmail($address)
+    {
         if (filter_var($address,FILTER_VALIDATE_EMAIL)==FALSE) {
             return false;
         }
@@ -110,11 +111,25 @@ class Session
      * @return mixed
      */
 
-    function clean($string) {
+    function clean($string)
+    {
         $string = str_replace(' ', '-', $string); // Replaces all spaces with hyphens.
         $string = preg_replace('/[^A-Za-z0-9\-]/', '', $string); // Removes special chars.
 
         return preg_replace('/-+/', '-', $string); // Replaces multiple hyphens with single one.
+    }
+
+    /**
+     * Haal alles behalve de nummeres weg
+     *
+     * @param $string
+     * @return mixed
+     */
+
+    function cleantonumber($string)
+    {
+        $string = preg_replace("/[^0-9]/", "", $string);
+        return $string;
     }
 
     /**
@@ -125,7 +140,8 @@ class Session
      * @param $id
      */
 
-    public function setMailId($id){
+    public function setMailId($id)
+    {
         $_SESSION['id'] = $id;
     }
 
@@ -137,7 +153,8 @@ class Session
      * @return mixed
      */
 
-    public function getMailId(){
+    public function getMailId()
+    {
         return $_SESSION['id'];
     }
 
@@ -149,7 +166,8 @@ class Session
      * @param $id
      */
 
-    public function setUserId($id){
+    public function setUserId($id)
+    {
         $_SESSION['userid'] = $id;
     }
 
@@ -161,7 +179,8 @@ class Session
      * @return mixed
      */
 
-    public function getUserId(){
+    public function getUserId()
+    {
         return $_SESSION['userid'];
     }
 
@@ -172,7 +191,8 @@ class Session
      * @param $verify
      */
 
-    public function ImageVerify($imageid, $verify){
+    public function ImageVerify($imageid, $verify)
+    {
         $img_id = 'img' . $imageid;
         $_SESSION[$img_id] = $verify;
     }
@@ -186,7 +206,8 @@ class Session
      * @return mixed
      */
 
-    public function getImageVerify($imageid){
+    public function getImageVerify($imageid)
+    {
         $img_id = 'img' . $imageid;
         return $_SESSION[$img_id];
     }

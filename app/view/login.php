@@ -18,13 +18,11 @@ if (isset($_POST['login'])) {
 
     if($row = mysqli_fetch_array( $user->getUser($userinfo) )) {
         $_SESSION['usr_id'] = $row['id'];
+        $session->setUserId($row['id']);
+
         $_SESSION['usr_name'] = $row['name'];
     }
 
-    else if($row = mysqli_fetch_array( $client->getClient($userinfo) )) {
-        $_SESSION['client_id'] = $row['id'];
-        $_SESSION['client_name'] = $row['naam'];
-    }
     else {
         $errormsg = "Verkeerde combinatie, probeer het opnieuw.";
     }

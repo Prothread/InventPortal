@@ -9,9 +9,14 @@
 $imgcontrol = new ImageController();
 $session = new Session();
 
-if (isset($_GET['page']) == 'imageverify') {
+if(isset($_GET['page'])) {
 
-    //$imgcontrol->ImageDecline($_GET['img']);
-    $session->ImageVerify($_GET['img'], 2);
-    header('Location: ' . $_SERVER['HTTP_REFERER']);
+    $_GET['page'] = $session->cleantonumber($_GET['page']);
+
+    if (isset($_GET['page']) == 'imageverify') {
+
+        //$imgcontrol->ImageDecline($_GET['img']);
+        $session->ImageVerify($_GET['img'], 2);
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
+    }
 }
