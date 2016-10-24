@@ -93,11 +93,13 @@ class DbMail extends Database
                 $imagecontroller = new ImageController();
                 $images = $imagecontroller->getDeclinedImages($mail->getMailId());
 
-                foreach($images as $image) {
-                    $sql = "UPDATE `image` SET `verify` = '3' WHERE `id` = '{$image}'";
+                if (isset($images)) {
+                    foreach ($images as $image) {
+                        $sql = "UPDATE `image` SET `verify` = '3' WHERE `id` = '{$image}'";
 
-                    if($this->dbQuery($sql)) {
-                        true;
+                        if ($this->dbQuery($sql)) {
+                            true;
+                        }
                     }
                 }
 
