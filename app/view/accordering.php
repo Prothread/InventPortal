@@ -108,14 +108,27 @@ else {
                             <?php }
                         }?>
 
+                        <?php $imago = $image_controller->getImageVerify($img['id']);
+                        if($imago['verify'] == 1) { ?>
+                            <div id="akkoord" class="alert alert-success" style="text-align: center;" role="alert"><span class="glyphicon glyphicon-ok-circle"></span> Akkoord</div>
+                        <?php }
+                        else if($imago['verify'] == 3) { ?>
+                            <div id="weiger" class="alert alert-info" style="background-color:lightgrey; color:grey; text-align: center;" role="alert"><span class="glyphicon glyphicon-remove-circle"></span> Gewijzigd</div>
+                        <?php
+                        }
+                        else { ?>
                         <div id="mybuttons">
-                            <a id="AccButtonA" href="?page=imageverify&img=<?= $img['id']; ?>"><button id="AccButton" onclick="VerifyAnswer()">Akkoord</button></a>
-                            <a id="AccButtonA" href="?page=imagedecline&img=<?= $img['id']; ?>"><button id="AccButton" onclick="VerifyAnswer1()">Weiger</button></a>
+                            <a id="AccButtonA" href="?page=imageverify&img=<?= $img['id']; ?>"><button id="AccButton" ">Akkoord</button></a>
+                            <a id="AccButtonA" href="?page=imagedecline&img=<?= $img['id']; ?>"><button id="AccButton">Weiger</button></a>
                         </div>
-                    </div>
+                        <?php
+                        }
+                        ?>
+                        </div>
                 <?php }
                 ?>
 
+                <div style="clear: both;"></div>
                 <form class="UploadForm" action="?page=updatemail" style="clear:both;" method="post" enctype="multipart/form-data">
                     <br />
 
@@ -125,7 +138,7 @@ else {
                     <input type="text" name="answer" size="50" required><br><br>
 
                     <input type="hidden" name="userid" value="<?php if(isset($_SESSION['usr_id'])){ echo $_SESSION['usr_id']; } else {echo ''; }?>">
-                    <input type="hidden" name="clientid" value="<?php if($_SESSION['client_id']){ echo $_SESSION['client_id']; } else {echo ''; }?>">
+                    <input type="hidden" name="clientid" value="<?php if(isset($_SESSION['client_id'])){ echo $_SESSION['client_id']; } else {echo ''; }?>">
                     <input type="hidden" name="name" value="<?php if(isset($_SESSION['usr_id'])){ echo $_SESSION['usr_name']; } else if($_SESSION['client_id']){ echo $_SESSION['client_name']; } else {echo $myupload['naam']; }?>">
                     <input type="hidden" name="title" value="<?= $myupload['onderwerp']; ?>">
                     <input type="hidden" name="verstuurder" value="<?= $myupload['verstuurder']?>">
@@ -155,11 +168,11 @@ else {
                     $( "form" ).submit(function( event ) {
                         // TODO if verify = false goed neerzetten
                         if ( <?= $verify ?> === 1) {
-                            $( "#verify" ).text( "Validated..." ).show();
+                            $( "#verify" ).text( "Alle afbeeldingen zijn beordeeld!" ).show();
                             return;
                         }
 
-                        $( "#verify" ).text( "Not valid!" ).show().fadeOut( 2500 );
+                        $( "#verify" ).text( "Nog niet alle afbeeldingen zijn beoordeeld!" ).show().fadeOut( 2500 );
                         event.preventDefault();
                     });
                 </script>

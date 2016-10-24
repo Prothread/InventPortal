@@ -39,14 +39,25 @@ class ImageController
     }
 
     /**
-     * Kijk of de image al geverifieerd is
+     * Kijk hoe de image geverifieerd is
      *
-     * @param $img
+     * @param $id
      * @return mixed
      */
 
     public function getImageVerify($id) {
         return $this->model->getImageVerify($id);
+    }
+
+    /**
+     * Haal de images op die afgekeurd zijn
+     *
+     * @param $id
+     * @return mixed
+     */
+
+    public function getDeclinedImages($id) {
+        return $this->model->getDeclinedImages($id);
     }
 
     /**

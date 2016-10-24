@@ -90,14 +90,26 @@ class DbMail extends Database
         else {
             if ($this->dbQuery($sql)) {
 
-                $imgarray = (explode(", ", $mail->getImage()));
+                $imagecontroller = new ImageController();
+                $images = $imagecontroller->getDeclinedImages($mail->getMailId());
+
+                foreach($images as $image) {
+                    $sql = "UPDATE `image` SET `verify` = '3' WHERE `id` = '{$image}'";
+
+                    if($this->dbQuery($sql)) {
+                        true;
+                    }
+                }
+
+                $imgarray = ( explode(", ", $mail->getImage()) );
                 $fakeimgarray = ( explode(", ", $mail->getFakeImage()) );
 
                 $i=0;
-                foreach ($imgarray as $img) {
-                    $sql1 = "UPDATE `image` SET `fakename` = '{$fakeimgarray[$i]}' , `images` = '{$img}', `verify` = '{$mail->getVerified()}') WHERE `mailid` = '{$mail->getMailId()}'";
+                foreach($imgarray as $img){
+                    $sql2 = "INSERT INTO `image` (`mailid`, `fakename`, `images`, `verify`) VALUES ('{$mail->getMailId()}', '{$fakeimgarray[$i]}', '{$img}', '{$mail->getVerified()}')";
 
-                    if ($this->dbQuery($sql1)) {
+                    if($this->dbQuery($sql2)){
+                        $i++;
                         true;
                     }
                 }

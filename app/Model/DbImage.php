@@ -77,4 +77,19 @@ class DbImage extends Database
         }
     }
 
+    /**
+     * Haal de images op die afgekeurd zijn
+     *
+     * @param $id
+     * @return mixed
+     */
+
+    public function getDeclinedImages($id) {
+        $sql = "SELECT * FROM `image` WHERE `mailid` = '{$id}' && `verify` = '2'";
+
+        if($result = $this->dbQuery($sql)){
+            return mysqli_fetch_assoc( $result );
+        }
+    }
+
 }

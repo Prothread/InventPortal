@@ -20,6 +20,21 @@ class Session
     }
 
     /**
+     * Haal een sessie op
+     *
+     * @param string $name
+     * @return bool
+     */
+    public function get($name)
+    {
+        if (!$this->exists($name)) {
+            return false;
+        }
+
+        return $_SESSION[$name];
+    }
+
+    /**
      * DELETE Session
      *
      * Delete de sessie
@@ -45,6 +60,19 @@ class Session
             'type' => $type,
             'message' => $message
         ];
+    }
+
+    /**
+     * Verwijder een sessie
+     *
+     * @param $name
+     */
+
+    public function remove($name)
+    {
+        if (isset($name) && !empty($name)) {
+            unset($_SESSION[$name]);
+        }
     }
 
     /**

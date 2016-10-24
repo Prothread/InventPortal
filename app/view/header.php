@@ -115,3 +115,10 @@ else {
             </li>
         </ul>
     </div>
+<?php
+if($session->exists('flash')) {
+    foreach($session->get('flash') as $flash) {
+        echo "<div class='flash flash_{$flash['type']}'>{$flash['message']}</div>";
+    }
+    $session->remove('flash');
+} ?>

@@ -231,8 +231,8 @@ if($error == 0) {
                 $mymail->create($mailinfo);
             }
 
-            header('Location: index.php?page=uploadoverzicht');
-            Session::flash('error', 'Gebruiker bestaat niet.');
+            header('Location: index.php?page=overzicht');
+            Session::flash('message', 'Uw bestanden zijn geüpload.');
         }
     }
 }
