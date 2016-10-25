@@ -191,4 +191,15 @@ class UserController
         return $this->model->countBlocks();
     }
 
+    /**
+     * Zoeken in een tabel
+     *
+     * @return mixed
+     */
+
+    public function searchTable($term)
+    {
+        return $this->model->searchTable($term);
+    }
+
 }

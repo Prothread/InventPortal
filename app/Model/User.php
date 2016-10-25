@@ -409,5 +409,15 @@ class User
         return $this->db->countBlocks();
     }
 
+    /**
+     * Zoeken in een tabel
+     *
+     * @return mixed
+     */
+
+    public function searchTable($term)
+    {
+        return $this->db->searchTable($term);
+    }
 
 }

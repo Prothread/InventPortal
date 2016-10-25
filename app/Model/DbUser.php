@@ -222,4 +222,25 @@ class DbUser extends Database
         return false;
     }
 
+    /**
+     * Zoek hele tabel
+     *
+     * @param $term
+     * @return array|null
+     */
+
+    public function searchTable($term)
+    {
+        $sql = "SELECT * FROM mail WHERE onderwerp LIKE '%".$term."%' OR verstuurder LIKE '%".$term."%' OR naam LIKE '%".$term."%' OR datum LIKE '%".$term."%'";
+
+        $result = $this->dbQuery($sql);
+
+        $row = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+        if($row !== null) {
+            return $row;
+        }
+        return false;
+    }
+
 }

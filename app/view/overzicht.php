@@ -9,6 +9,12 @@ $limit = 10;
 $count = $uploads->countBlocks();
 $get_filled_info = $uploads->getUploads($limit, $offset);
 
+if(isset($_POST['sub'])) {
+    $mysqli = mysqli_connect();
+    $user = new UserController();
+
+    $term = mysqli_real_escape_string($mysqli, $_POST['term']);
+}
 ?>
 
 
@@ -19,7 +25,13 @@ $get_filled_info = $uploads->getUploads($limit, $offset);
             <div class="col-lg-12">
                 <p class="NameText">Overzicht</p>
                 <hr size="1">
-                <input type="text" size="50" id="TableInput" onkeyup="searchTable()" placeholder="Zoek een product...">
+                <!--<input type="text" size="50" id="TableInput" onkeyup="searchTable()" placeholder="Zoek een product...">-->
+
+                <form method="post" action="?page=overzicht">
+                    <input type="text" size="50" id="TableInput" name="term" placeholder="<?php if($term){ echo 'Gesorteerd op: ' . $term;} else { echo 'Zoek een product..'; }?>">
+                    <input type="submit" name="sub">
+                </form>
+
                 <br><br>
 
                 <div class="btn-group">
@@ -47,40 +59,91 @@ $get_filled_info = $uploads->getUploads($limit, $offset);
                     </thead>
                     <tbody>
                     <?php
-                    if($get_filled_info !== null) {
-                        foreach($get_filled_info as $upload) {?>
-                            <tr>
+
+                    if(isset($term)) {
+                        $seachtable = $user->searchTable($term);
+
+                        if(!empty($seachtable)){
+                            foreach ($seachtable as $upload) {
+                                ?>
+                                <tr>
                                 <td>
-                                    <?= $upload['id']?>
+                                    <?= $upload['id'] ?>
                                 </td>
                                 <td>
-                                    <a href="?page=item&id=<?=$upload['id']?>"><?= $upload['onderwerp']?></a>
+                                    <a href="?page=item&id=<?= $upload['id'] ?>"><?= $upload['onderwerp'] ?></a>
                                 </td>
                                 <td>
-                                    <?= $upload['verstuurder']?>
+                                    <?= $upload['verstuurder'] ?>
                                 </td>
                                 <td>
-                                    <?= $upload['naam']?>
+                                    <?= $upload['naam'] ?>
                                 </td>
                                 <td>
-                                    <?= date("d-m-Y", strtotime($upload['datum']));?>
+                                    <?= date("d-m-Y", strtotime($upload['datum'])); ?>
                                 </td>
                                 <td>
-                                    <?php if ($upload['verified'] == 1) {?>
-                                        <img alt="Gezien" style="width: 50px; height: 50px;" src="../public/icons/gezien.png">
-                                    <?php } elseif ($upload['verified'] == 2) {?>
+                                    <?php if ($upload['verified'] == 1) { ?>
+                                        <img alt="Gezien" style="width: 50px; height: 50px;"
+                                             src="../public/icons/gezien.png">
+                                    <?php } elseif ($upload['verified'] == 2) { ?>
                                         <img alt="Geaccepteerd" src="../public/icons/akkoord.png">
-                                    <?php } elseif ($upload['verified'] == 3) {?>
+                                    <?php } elseif ($upload['verified'] == 3) { ?>
                                         <img alt="Geweigerd" src="../public/icons/geweigerd.png">
-                                    <?php } else {?>
+                                    <?php } else { ?>
                                         <img alt="Uploaded" src="../public/icons/uploaded.png">
                                     <?php } ?>
                                 </td>
+                                </tr><?php }
+
+                        }
+                        else { ?>
+                            <tr>
+                                <td>
+                                    De zoekterm die U heeft meegegeven is niet gevonden.
+                                </td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
                             </tr>
                         <?php }
                     }
-                    else
-                    {
+                        else if ($get_filled_info !== null) {
+                            foreach ($get_filled_info as $upload) { ?>
+                                <tr>
+                                    <td>
+                                        <?= $upload['id'] ?>
+                                    </td>
+                                    <td>
+                                        <a href="?page=item&id=<?= $upload['id'] ?>"><?= $upload['onderwerp'] ?></a>
+                                    </td>
+                                    <td>
+                                        <?= $upload['verstuurder'] ?>
+                                    </td>
+                                    <td>
+                                        <?= $upload['naam'] ?>
+                                    </td>
+                                    <td>
+                                        <?= date("d-m-Y", strtotime($upload['datum'])); ?>
+                                    </td>
+                                    <td>
+                                        <?php if ($upload['verified'] == 1) { ?>
+                                            <img alt="Gezien" style="width: 50px; height: 50px;"
+                                                 src="../public/icons/gezien.png">
+                                        <?php } elseif ($upload['verified'] == 2) { ?>
+                                            <img alt="Geaccepteerd" src="../public/icons/akkoord.png">
+                                        <?php } elseif ($upload['verified'] == 3) { ?>
+                                            <img alt="Geweigerd" src="../public/icons/geweigerd.png">
+                                        <?php } else { ?>
+                                            <img alt="Uploaded" src="../public/icons/uploaded.png">
+                                        <?php } ?>
+                                    </td>
+                                </tr>
+                            <?php }
+                        }
+                    else {
                         ?>
                         <tr>
                             <td>
