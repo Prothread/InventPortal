@@ -13,8 +13,20 @@ table {
     width: 100%;
 }
 
+.alert_message {
+    color:#3c763d;
+    background-color:#dff0d8;
+    border-color:#d6e9c6;
+}
+
 #ConditionsLogoDiv {
     vertical-align: middle;
+}
+
+#statusbartext {
+    font-size: 17px;
+    line-height: 1.7;
+    color: #bb2c4c;
 }
 
 .AccordImgBorder {

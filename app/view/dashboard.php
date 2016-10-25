@@ -12,12 +12,21 @@ $get_filled_info = $uploads->getLastSixUploads();
             <div class="col-lg-12">
                 <p class="NameText">Home</p>
                 <hr size="1">
-
-                <ul style=""class="nav nav-pills" role="tablist">
-                    <li role="presentation"><a href="#"><span class="glyphicon glyphicon-ok-sign"></span>  Geaccepteerd &nbsp;&nbsp;<span class="badge">2145</span></a></li>
-                    <li role="presentation"><a href="#"><span class="glyphicon glyphicon-remove-sign"></span>  Geweigerd &nbsp;&nbsp;<span class="badge">324</span></a></li>
-                    <li role="presentation"><a href="#"><span class="glyphicon glyphicon-question-sign"></span>  Openstaand &nbsp;&nbsp;<span class="badge">6</span></a></li>
-                </ul>
+                <div class="well well-lg">
+                    <p class="NameText">Overzicht</p>
+                    <br>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-success progress-bar-striped active" style="width: 60%">
+                            <a id="statusbartext" href="#"><span class="glyphicon glyphicon-ok-sign"></span>  Geaccepteerd &nbsp;&nbsp;<span class="badge">2400</span></a>
+                        </div>
+                        <div class="progress-bar progress-bar-danger progress-bar-striped active" style="width: 25%">
+                            <a id="statusbartext" href="#"><span class="glyphicon glyphicon-remove-sign"></span>  Geweigerd &nbsp;&nbsp;<span class="badge">1000</span></a>
+                        </div>
+                        <div class="progress-bar progress-bar-warning progress-bar-striped active" style="width: 15%">
+                            <a id="statusbartext" href="#"><span class="glyphicon glyphicon-question-sign"></span>  Openstaand &nbsp;&nbsp;<span class="badge">600</span></a>
+                        </div>
+                    </div>
+                </div>
 
                 <br>
                 <?php

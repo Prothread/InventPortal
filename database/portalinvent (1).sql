@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 24 okt 2016 om 15:12
+-- Gegenereerd op: 25 okt 2016 om 10:17
 -- Serverversie: 10.1.13-MariaDB
 -- PHP-versie: 7.0.6
 
@@ -209,7 +209,10 @@ INSERT INTO `image` (`id`, `mailid`, `fakename`, `images`, `verify`) VALUES
 (131, 46, 'Vanamo_Logo.png', 'Vanamo_Logo_46.png', 1),
 (132, 46, 'xbox-logo_318-53731.jpg', 'xbox-logo_318-53731_46.jpg', 1),
 (133, 47, '2fc5229b52aa228de5931ad4a6fc3e7a.png', '2fc5229b52aa228de5931ad4a6fc3e7a_47.png', 1),
-(134, 47, '83900a5b6d403ddbfd4e843ea70828f4.jpg', '83900a5b6d403ddbfd4e843ea70828f4_47.jpg', 1);
+(134, 47, '83900a5b6d403ddbfd4e843ea70828f4.jpg', '83900a5b6d403ddbfd4e843ea70828f4_47.jpg', 1),
+(135, 48, 'Logo_TV_2015.png', 'Logo_TV_2015_48.png', 0),
+(136, 48, 'Vanamo_Logo.png', 'Vanamo_Logo_48.png', 0),
+(137, 48, 'xbox-logo_318-53731.jpg', 'xbox-logo_318-53731_48.jpg', 0);
 
 -- --------------------------------------------------------
 
@@ -281,7 +284,8 @@ INSERT INTO `mail` (`id`, `onderwerp`, `verstuurder`, `beschrijving`, `naam`, `e
 (44, 'voorbeeld5', 'Gijs van den Abeele', 'Dit is een voorbeeld', 'Jeffrey', 'kevin.herdershof@hotmail.com', '24102016-12.48.37-192.08.1.124', 'is goed', '2016-10-24', 2),
 (45, 'Gijs', 'Gijs van den Abeele', 'agh im back', 'Jeffrey', 'kevin.herdershof@hotmail.com', 'ef1ddf58783369b01d1998714fa50b8d', '', '2016-10-24', 0),
 (46, 'test', 'Gijs van den Abeele', 'wew', 'Jeffrey', 'kevin.herdershof@hotmail.com', '24102016-15.04.28-192.08.1.124', 'fsda', '2016-10-24', 3),
-(47, 'UGHGHGH', 'Gijs van den Abeele', 'fsa', 'Jeffrey', 'kevin.herdershof@hotmail.com', '24102016-15.10.50-192.08.1.124', 'fsa', '2016-10-24', 2);
+(47, 'UGHGHGH', 'Gijs van den Abeele', 'fsa', 'Jeffrey', 'kevin.herdershof@hotmail.com', '24102016-15.10.50-192.08.1.124', 'fsa', '2016-10-24', 2),
+(48, 'fsda', 'Gijs van den Abeele', 'fsda', 'Jeffrey', 'kevin.herdershof@hotmail.com', 'b81178a2202ecac40697c4699974b5f8', '', '2016-10-24', 1);
 
 -- --------------------------------------------------------
 
@@ -434,12 +438,12 @@ ALTER TABLE `clients`
 -- AUTO_INCREMENT voor een tabel `image`
 --
 ALTER TABLE `image`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=135;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=138;
 --
 -- AUTO_INCREMENT voor een tabel `mail`
 --
 ALTER TABLE `mail`
-  MODIFY `id` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `id` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 --
 -- AUTO_INCREMENT voor een tabel `usermail`
 --
