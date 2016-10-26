@@ -15,6 +15,7 @@ if(isset($_POST['sub'])) {
 
     $term = mysqli_real_escape_string($mysqli, $_POST['term']);
 }
+
 ?>
 
 
@@ -27,10 +28,31 @@ if(isset($_POST['sub'])) {
                 <hr size="1">
                 <!--<input type="text" size="50" id="TableInput" onkeyup="searchTable()" placeholder="Zoek een product...">-->
 
-                <form method="post" action="?page=overzicht">
-                    <input type="text" size="50" id="TableInput" name="term" placeholder="<?php if($term){ echo 'Gesorteerd op: ' . $term;} else { echo 'Zoek een product..'; }?>">
+                <form method="post" id="reg-form">
+                    <input type="text" size="50" id="Term"name="term" placeholder="<?php if(isset($term)){ echo 'Gesorteerd op: ' . $term;} else { echo 'Zoek een product..'; }?>" onkeyup="">
                     <input type="submit" name="sub">
                 </form>
+
+                <div id="form-content"></div>
+
+                <!--<script>
+                    $('#reg-form').submit(function(e){
+
+                        e.preventDefault(); // Prevent Default Submission
+
+                        $.post('?page=submit', $(this).serialize() )
+                            .done(function(data){
+                                $('#form-content').fadeOut('slow', function(){
+                                    $('#form-content').fadeIn('slow').html(data);
+                                });
+                            })
+                            .fail(function(){
+                                alert('Ajax Submit Failed ...');
+                            });
+                    });
+                </script>-->
+
+            </div>
 
                 <br><br>
 
@@ -61,10 +83,11 @@ if(isset($_POST['sub'])) {
                     <?php
 
                     if(isset($term)) {
-                        $seachtable = $user->searchTable($term);
 
-                        if(!empty($seachtable)){
-                            foreach ($seachtable as $upload) {
+                        $searchtable = $user->searchTable($term);
+
+                        if(!empty($searchtable)){
+                            foreach ($searchtable as $upload) {
                                 ?>
                                 <tr>
                                 <td>

@@ -27,14 +27,23 @@ $uploadedimages = $image_controller->getImagebyMailID($upload['id']);
                         <form class="UploadForm" action="?page=uploading" method="post" enctype="multipart/form-data">
                             <input type="hidden" name="id" value="<?= $upload['id']?>">&emsp;&emsp;
 
-                            <?php foreach ($uploadedimages as $img) {
+                            <?php
+                            $imgcount = 0;
+                            foreach ($uploadedimages as $img) {
                             ?>
                                 <div id="imgakkoord" style="float:left;">
-                                    <div style="border:0; width: auto; height: 410px">
+                                    <div style="border:0; width: 200px; height:250px;">
+                                        <!--
                                         <img id="myimage" style="pointer-events: none;" height="410" width="300" border="20px solid white" src="<?php echo DIR_IMAGE.$img['images'];?>" />
                                         <div style="position:relative; left: 28px; top: -304px; width:150px;">
                                             <img style="pointer-events: none;z-index:5;" src="css/watermerk.png" width=250 height=200>
                                         </div>
+                                        -->
+
+                                        <a href="#img1">
+                                            <div id="thumbnail2" style="background: url('css/proef.png') repeat, url(<?= DIR_IMAGE . $img['images']; ?>) no-repeat; background-size: 45%, cover;
+                                                background-position: 0%, 50%;"></div>
+                                        </a>
                                     </div>
                                     <br />
 
@@ -64,6 +73,14 @@ $uploadedimages = $image_controller->getImagebyMailID($upload['id']);
                                 }?>
 
                                 </div>
+                                <a href="#_" class="lightbox" id="img1">
+                                    <div id="lighter">
+                                        <div id="thumbnail2" style=" background: url('css/proef.png') repeat center, url(<?= DIR_IMAGE . $img['images']; ?>) no-repeat center;
+                                            background-size: 13%, contain;
+                                            max-width: 100%;
+                                            height:100%; "></div>
+                                    </div>
+                                </a>
                             <?php }
                             ?>
 

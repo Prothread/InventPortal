@@ -51,7 +51,9 @@ if(!$session->exists('usr_id') && $page == 'accordering') {
 }
 
 if($session->exists('usr_id')){
-    require_once '../app/view/header.php';
+    if($page !== 'submit') {
+        require_once '../app/view/header.php';
+    }
 }
 
 /**
@@ -124,6 +126,9 @@ switch($page) {
         break;
     case 'clientmail':
         include '../app/view/clientmail.php';
+        break;
+    case 'submit':
+        include '../app/view/submit.php';
         break;
     case 'download':
         include '../app/view/download.php';
