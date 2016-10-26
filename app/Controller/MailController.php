@@ -52,7 +52,6 @@ class MailController
     {
         if(isset($mailinfo['answer'])){
             $this->model->setMailUserId($mailinfo['userid']);
-            $this->model->setMailClientId($mailinfo['clientid']);
             $this->model->setMailId($mailinfo['id']);
             $this->model->setAnswer($mailinfo['answer']);
             $this->model->setToken($mailinfo['key']);

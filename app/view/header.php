@@ -121,7 +121,7 @@ else {
 <?php
 if($session->exists('flash')) {
     foreach($session->get('flash') as $flash) {
-        echo "<div class='flash flash_{$flash['type']}'>{$flash['message']}</div>";
+        echo "<div class='alert alert_{$flash['type']}'>{$flash['message']}</div>";
     }
     $session->remove('flash');
 } ?>

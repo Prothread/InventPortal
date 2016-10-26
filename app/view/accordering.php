@@ -1,10 +1,6 @@
 <?php
 #ACCORDERING PAGINA
 
-//TODO Mensen kunnen op de accorder pagina komen als ze niet ingelogd zijn
-// Haal hierbij het email op en vergelijk het met een van de gebruikers en als het akkoord gaat bij het accorderen
-// dat het bijgewerkt wordt bij de lijst van de geaccordeerde proeven/offertes van die gebruiker
-
 $upload = new BlockController();
 $session = new Session();
 $image_controller = new ImageController();
@@ -103,16 +99,22 @@ else {
                 <p> Omschrijving: <span style="color:#bc2d4c"><?= $myupload['beschrijving']?></span> </p>
 
                 <?php
-                foreach ($uploadedimages as $img) { ?>
+                $imgcount = 0;
+                foreach ($uploadedimages as $img) {
+                    $imgcount++;
+                    ?>
                     <div id="imgakkoord" style="float:left;">
-                        <div style="border:0; width: auto; height: 410px">
-                            <img id="myimage" style="pointer-events: none;" height="410" width="300" border="20px solid white" src="<?php echo DIR_IMAGE.$img['images'];?>" />
-                            <div style="position:relative; left: 28px; top: -304px; width:150px;">
-                                <img style="pointer-events: none;z-index:5;" src="css/watermerk.png" width=250 height=200>
-                            </div>
+                        <div style="border:0; width: 250px; height: 320px;">
+                            <a href="#img<?= $imgcount ?>">
+                                <div id="thumbnail2" style="background: url('css/proef.png') repeat, url(<?= DIR_IMAGE . $img['images']; ?>) no-repeat; background-size: 45%, cover;
+                                    background-position: 0%, 50%;"></div>
+                            </a>
                         </div>
 
                         <?php
+
+                        $imago = $image_controller->getImageVerify($img['id']);
+
                         if(isset($_SESSION['img'.$img['id']])) {
                             if($session->getImageVerify($img['id']) == 1) { ?>
                                 <div id="akkoord" class="alert alert-success" style="text-align: center;" role="alert"><span class="glyphicon glyphicon-ok-circle"></span> Akkoord</div>
@@ -121,12 +123,12 @@ else {
                             if($session->getImageVerify($img['id']) == 2) {?>
                                 <div id="weiger" class="alert alert-danger" style="text-align: center;" role="alert"><span class="glyphicon glyphicon-remove-circle"></span> Geweigerd</div>
                             <?php }
-                        }?>
+                        }
 
-                        <?php $imago = $image_controller->getImageVerify($img['id']);
-                        if($imago['verify'] == 1) { ?>
+                        else if($imago['verify'] == 1) { ?>
                             <div id="akkoord" class="alert alert-success" style="text-align: center;" role="alert"><span class="glyphicon glyphicon-ok-circle"></span> Akkoord</div>
                         <?php }
+
                         else if($imago['verify'] == 3) { ?>
                             <div id="weiger" class="alert alert-info" style="background-color:lightgrey; color:grey; text-align: center;" role="alert"><span class="glyphicon glyphicon-remove-circle"></span> Gewijzigd</div>
                         <?php
@@ -140,6 +142,14 @@ else {
                         }
                         ?>
                         </div>
+                    <a href="#_" class="lightbox" id="img<?=$imgcount ?>">
+                        <div id="lighter">
+                            <div id="thumbnail2" style=" background: url('css/proef.png') repeat center, url(<?= DIR_IMAGE . $img['images']; ?>) no-repeat center;
+                                background-size: 13%, contain;
+                                max-width: 100%;
+                                height:100%; "></div>
+                        </div>
+                    </a>
                 <?php }
                 ?>
 

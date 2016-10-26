@@ -45,6 +45,16 @@ class DbMail extends Database
                 }
             }
 
+            $user = new UserController();
+            $getbymail = $user->getUserByEmail($mail->getMailEmail());
+            $userid = $getbymail['id'];
+
+            $sql1 = "INSERT INTO `usermail` (`userid`, `mailid`, `status`) VALUES ('{$userid}', '{$myid}', '{$mail->getVerified()}')";
+
+            if($this->dbQuery($sql1)) {
+
+            }
+
             return $this->dbLastInsertedId();
         }
 
@@ -75,7 +85,7 @@ class DbMail extends Database
 
             if($this->dbQuery($sql)){
 
-                $sql1 = "INSERT INTO `usermail` (`userid`, `mailid`) VALUES ('{$mail->getMailUserId()}', '{$mail->getMailId()}')";
+                $sql1 = "UPDATE `usermail` SET `userid` = '{$mail->getMailUserId()}', `mailid` = '{$mail->getMailId()}', `status` = '{$mail->getVerified()}' WHERE `mailid` = '{$mail->getMailId()}'";
 
                 if($this->dbQuery($sql1)) {
                     true;
@@ -171,4 +181,6 @@ class DbMail extends Database
     {
         return $this->connection->insert_id;
     }
+
+
 }

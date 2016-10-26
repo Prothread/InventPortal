@@ -30,9 +30,10 @@ $uploadedimages = $image_controller->getImagebyMailID($upload['id']);
                             <?php
                             $imgcount = 0;
                             foreach ($uploadedimages as $img) {
+                                $imgcount++;
                             ?>
                                 <div id="imgakkoord" style="float:left;">
-                                    <div style="border:0; width: 200px; height:250px;">
+                                    <div style="border:0; width: 250px; height: 320px;">
                                         <!--
                                         <img id="myimage" style="pointer-events: none;" height="410" width="300" border="20px solid white" src="<?php echo DIR_IMAGE.$img['images'];?>" />
                                         <div style="position:relative; left: 28px; top: -304px; width:150px;">
@@ -40,7 +41,7 @@ $uploadedimages = $image_controller->getImagebyMailID($upload['id']);
                                         </div>
                                         -->
 
-                                        <a href="#img1">
+                                        <a href="#img<?= $imgcount ?>">
                                             <div id="thumbnail2" style="background: url('css/proef.png') repeat, url(<?= DIR_IMAGE . $img['images']; ?>) no-repeat; background-size: 45%, cover;
                                                 background-position: 0%, 50%;"></div>
                                         </a>
@@ -73,7 +74,7 @@ $uploadedimages = $image_controller->getImagebyMailID($upload['id']);
                                 }?>
 
                                 </div>
-                                <a href="#_" class="lightbox" id="img1">
+                                <a href="#_" class="lightbox" id="img<?=$imgcount ?>">
                                     <div id="lighter">
                                         <div id="thumbnail2" style=" background: url('css/proef.png') repeat center, url(<?= DIR_IMAGE . $img['images']; ?>) no-repeat center;
                                             background-size: 13%, contain;

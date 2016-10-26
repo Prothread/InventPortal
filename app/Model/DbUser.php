@@ -123,6 +123,13 @@ class DbUser extends Database
         }
     }
 
+    /**
+     * Haal de gebruiker op met behulp van het meegegeven email
+     *
+     * @param $email
+     * @return array|null
+     */
+
     public function getUserByEmail($email)
     {
         $sql = "SELECT * FROM `users` WHERE `email` = '{$email}'";

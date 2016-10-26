@@ -136,7 +136,7 @@ class UserController
     }
 
     /**
-     * Haal user met de megegeven id
+     * Haal user met de meegegeven id op
      *
      * @param $id
      * @return array|null
@@ -145,6 +145,18 @@ class UserController
     public function getUserById($id)
     {
         return $this->model->getUserById($id);
+    }
+
+    /**
+     * Haal user met het meegegeven email
+     *
+     * @param $email
+     * @return array|null
+     */
+
+    public function getUserByEmail($email)
+    {
+        return $this->model->getUserByEmail($email);
     }
 
     /**

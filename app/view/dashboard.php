@@ -6,7 +6,7 @@ $get_filled_info = $uploads->getLastSixUploads();
 
 $items = new MailController();
 $get_items_openstaand = $items->getUserMailByStatus(0);
-$get_items_geweigerd = $items->getUserMailByStatus(1);
+$get_items_geweigerd = $items->getUserMailByStatus(3);
 $get_items_geaccepteerd = $items->getUserMailByStatus(2);
 
 ?>
