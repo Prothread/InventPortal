@@ -15,8 +15,8 @@ if(isset($_POST['sub'])) {
 
     $term = mysqli_real_escape_string($mysqli, $_POST['term']);
 }
-?>
 
+?>
 
 <!-- Page Content -->
 <div id="page-content-wrapper">
@@ -28,7 +28,7 @@ if(isset($_POST['sub'])) {
                 <!--<input type="text" size="50" id="TableInput" onkeyup="searchTable()" placeholder="Zoek een product...">-->
 
                 <form method="post" action="?page=overzicht">
-                    <input type="text" size="50" id="TableInput" name="term" placeholder="<?php if($term){ echo 'Gesorteerd op: ' . $term;} else { echo 'Zoek een product..'; }?>">
+                    <input type="text" size="50" id="TableInput" name="term" placeholder="<?php if(isset($term)){ echo 'Gesorteerd op: ' . $term;} else { echo 'Zoek een product..'; }?>">
                     <input type="submit" name="sub">
                 </form>
 
@@ -99,9 +99,7 @@ if(isset($_POST['sub'])) {
                         }
                         else { ?>
                             <tr>
-                                <td>
-                                    De zoekterm die U heeft meegegeven is niet gevonden.
-                                </td>
+                                <td>De zoekterm die U heeft meegegeven is niet gevonden.</td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
