@@ -3,7 +3,6 @@
 $mysqli = mysqli_connect();
 
 $user = new UserController();
-$client = new ClientController();
 
 //check if form is submitted
 if (isset($_POST['login'])) {

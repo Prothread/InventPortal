@@ -143,11 +143,27 @@ $uploadedimages = $image_controller->getImagebyMailID($upload['id']);
                             <input disabled="disabled" type="email" name="mailto" size="50" value="<?= $upload['email']?>">
 
                             <input disabled="disabled" type="hidden" name="frommail" id="MailFrom" value="<?= $upload['onderwerp']?>">
-                            <br>
-                                <?php foreach($uploadedimages as $img) { ?>
-                                <a href="index.php?page=download&file=<?= DIR_IMAGE . $img['images']; ?>">Download</a>
-                            <br>
-                            <?php }} ?>
+                            <br><br>
+
+                            <table>
+                                <thead>
+                                    <td>Download links:</td>
+                                </thead>
+                                <tbody>
+                                <tr>
+                            <?php foreach($uploadedimages as $img) { ?>
+                                    <td style="float:left;margin-right:10px;">
+                                    <div class="imagedownload" style="background:url(<?= DIR_IMAGE . $img['images'] ?>); background-size: cover;">
+                                        <a id="downloadtext" href="index.php?page=download&file=<?= DIR_IMAGE . $img['images']; ?>"></a>
+                                    </div>
+                                    </td>
+                            <?php }?>
+                                </tr>
+                                </tbody>
+                            </table>
+
+                            <?php } ?>
+                            <div style="clear:both"></div>
                         </form>
                     </div>
                 </div>

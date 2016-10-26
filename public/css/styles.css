@@ -13,6 +13,21 @@ table {
     width: 100%;
 }
 
+.imagedownload {
+    position:relative;
+    width: 60px;
+    height: 60px;
+}
+#downloadtext {
+    position: absolute;
+    /* left: 30%; */
+    width: 100%;
+    height: 100%;
+    background: rgba(116, 109, 109, 0.3);
+    /* top: 45%; */
+    text-align: center;
+}
+
 .alert_message {
     color:#3c763d;
     background-color:#dff0d8;
@@ -630,4 +645,38 @@ table.table { width: 100%; }
 	tr {
 		margin-bottom: 35px;
 	}
+}
+    background-image: url('bg.jpg');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center 20%;
+}
+
+.error {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.error-code {
+    bottom: 60%;
+    color: #2d353c;
+    font-size: 96px;
+    line-height: 100px;
+}
+
+.error-desc {
+    font-size: 12px;
+    color: #647788;
+}
+
+.m-b-10 {
+    margin-bottom: 10px!important;
+}
+
+.m-b-20 {
+    margin-bottom: 20px!important;
+}
+
+.m-t-20 {
+    margin-top: 20px!important;
 }

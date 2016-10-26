@@ -11,6 +11,7 @@ $get_filled_info = $uploads->getUploads($limit, $offset);
 
 $items = new MailController();
 $get_items_openstaand = $items->getUserMailByStatus(0);
+$get_items_bekeken = $items->getUserMailByStatus(1);
 $get_items_geweigerd = $items->getUserMailByStatus(3);
 $get_items_geaccepteerd = $items->getUserMailByStatus(2);
 
@@ -39,7 +40,7 @@ if(isset($_POST['sub'])) {
                             <a id="statusbartext" href="#"><span class="glyphicon glyphicon-remove-sign"></span>  Geweigerd &nbsp;&nbsp;<span class="badge"><?= $get_items_geweigerd['COUNT(status)'] ?></span></a>
                         </div>
                         <div class="progress-bar progress-bar-warning progress-bar-striped active" style="width: 15%">
-                            <a id="statusbartext" href="#"><span class="glyphicon glyphicon-question-sign"></span>  Openstaand &nbsp;&nbsp;<span class="badge"><?= $get_items_openstaand['COUNT(status)'] ?></span></a>
+                            <a id="statusbartext" href="#"><span class="glyphicon glyphicon-question-sign"></span>  Openstaand &nbsp;&nbsp;<span class="badge"><?= $get_items_openstaand['COUNT(status)'] + $get_items_bekeken['COUNT(status)'] ?></span></a>
                         </div>
                     </div>
                 </div>
