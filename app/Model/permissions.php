@@ -7,7 +7,6 @@
  */
 
 $user = new UserController();
-$client = new ClientController();
 $session = new Session();
 
 /**

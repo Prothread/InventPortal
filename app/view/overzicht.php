@@ -148,7 +148,7 @@ if(isset($_POST['sub'])) {
                             </tr>
                         <?php }
                     }
-                        else if ($get_filled_info !== null) {
+                        else if ($get_filled_info !== null && isset($get_filled_info)) {
                             foreach ($get_filled_info as $upload) { ?>
                                 <tr>
                                     <td>

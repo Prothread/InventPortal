@@ -34,8 +34,8 @@ $get_filled_info = $user->getAllClients($limit, $offset, 1);
                         </tr>
                     </thead>
                     <tbody>
-
-                        <?php foreach($get_filled_info as $client) {?>
+                    <?php if(isset($get_filled_info)) {
+                         foreach ($get_filled_info as $client) { ?>
                             <tr>
                                 <td>
                                     <?= $client['naam']; ?>
@@ -57,10 +57,12 @@ $get_filled_info = $user->getAllClients($limit, $offset, 1);
                                 </td>
                                 <td>
                                     <?php $clientid = $client['id']; ?>
-                                    <a href="?page=editclient&id=<?= $clientid ?>"><img src="http://i65.tinypic.com/14l68f4.png" style="width: 24px; height: 24px;">
+                                    <a href="?page=editclient&id=<?= $clientid ?>"><img
+                                            src="http://i65.tinypic.com/14l68f4.png" style="width: 24px; height: 24px;">
                                 </td>
                             </tr>
-                        <?php } ?>
+                        <?php }
+                    }?>
 
                     </tbody>
                 </table>
