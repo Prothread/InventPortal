@@ -55,3 +55,5 @@ app/uploads/Aviary Photo_131115803557974574_11.png
 app/uploads/sword-art-online-201601228_34.jpg
 *.jpg
 app/view/submit.php
+app/view/overzicht.php
+public/index.php
