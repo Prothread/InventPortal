@@ -143,6 +143,25 @@ class DbMail extends Database
     }
 
     /**
+     * Haal mail op met id
+     *
+     * @param $status
+     * @return array|null
+     */
+
+    public function getUserMailByStatus($status)
+    {
+        $sql = "SELECT COUNT(status) FROM `usermail` WHERE `status` = '{$status}'";
+
+        $result = $this->dbQuery($sql);
+        $value = mysqli_fetch_assoc($result);
+
+        if($value) {
+            return $value;
+        }
+    }
+
+    /**
      * Geef aan dat het de laatste rij is die geimporteerd wordt in de database
      *
      * @return mixed

@@ -88,4 +88,15 @@ class MailController
         return $this->model->getMailById($id);
     }
 
+    /**
+     * Haal mail op met een mail id
+     *
+     * @param $status
+     * @return mixed
+     */
+    public function getUserMailByStatus($status)
+    {
+        return $this->model->getUserMailByStatus($status);
+    }
+
 }

@@ -9,15 +9,18 @@ $limit = 10;
 $count = $uploads->countBlocks();
 $get_filled_info = $uploads->getUploads($limit, $offset);
 
+$items = new MailController();
+$get_items_openstaand = $items->getUserMailByStatus(0);
+$get_items_geweigerd = $items->getUserMailByStatus(1);
+$get_items_geaccepteerd = $items->getUserMailByStatus(2);
+
 if(isset($_POST['sub'])) {
     $mysqli = mysqli_connect();
     $user = new UserController();
 
     $term = mysqli_real_escape_string($mysqli, $_POST['term']);
 }
-
 ?>
-
 
 <!-- Page Content -->
 <div id="page-content-wrapper">
@@ -26,10 +29,24 @@ if(isset($_POST['sub'])) {
             <div class="col-lg-12">
                 <p class="NameText">Overzicht</p>
                 <hr size="1">
+                <div class="well well-m">
+                    <br>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-success progress-bar-striped active" style="width: 60%">
+                            <a id="statusbartext" href="#"><span class="glyphicon glyphicon-ok-sign"></span>  Geaccepteerd &nbsp;&nbsp;<span class="badge"><?= $get_items_geaccepteerd['COUNT(status)'] ?></span></a>
+                        </div>
+                        <div class="progress-bar progress-bar-danger progress-bar-striped active" style="width: 25%">
+                            <a id="statusbartext" href="#"><span class="glyphicon glyphicon-remove-sign"></span>  Geweigerd &nbsp;&nbsp;<span class="badge"><?= $get_items_geweigerd['COUNT(status)'] ?></span></a>
+                        </div>
+                        <div class="progress-bar progress-bar-warning progress-bar-striped active" style="width: 15%">
+                            <a id="statusbartext" href="#"><span class="glyphicon glyphicon-question-sign"></span>  Openstaand &nbsp;&nbsp;<span class="badge"><?= $get_items_openstaand['COUNT(status)'] ?></span></a>
+                        </div>
+                    </div>
+                </div>
                 <!--<input type="text" size="50" id="TableInput" onkeyup="searchTable()" placeholder="Zoek een product...">-->
 
-                <form method="post" id="reg-form">
-                    <input type="text" size="50" id="Term"name="term" placeholder="<?php if(isset($term)){ echo 'Gesorteerd op: ' . $term;} else { echo 'Zoek een product..'; }?>" onkeyup="">
+                <form method="post" action="?page=overzicht">
+                    <input type="text" size="50" id="TableInput" name="term" placeholder="<?php if(isset($term)){ echo 'Gesorteerd op: ' . $term;} else { echo 'Zoek een product..'; }?>">
                     <input type="submit" name="sub">
                 </form>
 
@@ -122,9 +139,7 @@ if(isset($_POST['sub'])) {
                         }
                         else { ?>
                             <tr>
-                                <td>
-                                    De zoekterm die U heeft meegegeven is niet gevonden.
-                                </td>
+                                <td>De zoekterm die U heeft meegegeven is niet gevonden.</td>
                                 <td></td>
                                 <td></td>
                                 <td></td>

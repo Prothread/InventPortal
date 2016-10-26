@@ -92,14 +92,14 @@ $uploadedimages = $image_controller->getImagebyMailID($upload['id']);
                                 <input type="text" name="fromname" size="35" value="<?= $upload['verstuurder']?>">
                             <?php }
                             else { ?>
-                                <label>Onderwerp<span style="color:#bc2d4c">*</span></label>
-                                <input disabled type="text" name="title" size="50" value="<?= $upload['onderwerp']?>">&emsp;&emsp;
                                 <label>Verstuurder<span style="color:#bc2d4c">*</span></label>
                                 <input disabled type="text" name="fromname" size="35" value="<?= $upload['verstuurder']?>">
+                                <br>
+                                <label>Onderwerp<span style="color:#bc2d4c">*</span></label>
+                                <input disabled type="text" name="title" size="50" value="<?= $upload['onderwerp']?>">&emsp;&emsp;
                             <?php } ?>
-                            <br />
 
-                            <br><br>
+                            <br>
 
                             <?php if(in_array(2, $verimages) || in_array(0, $verimages)) { ?>
 
@@ -111,10 +111,8 @@ $uploadedimages = $image_controller->getImagebyMailID($upload['id']);
                                     <img src="http://i67.tinypic.com/mtxpbl.jpg" class="preview" id="preview" alt="">
                                 </fieldset><br>
 
-                                <label style="width:50px;">Beschrijving<span style="color:#bc2d4c">*</span></label><br>
-
+                                <label>Beschrijving<span style="color:#bc2d4c">*</span></label>
                                 <input class="TaDescription" name="additionalcontent" value="<?= $upload['beschrijving']?>">
-                                <br><br>
 
                                 <label>Naam klant<span style="color:#bc2d4c">*</span></label>
                                 <input type="text" name="mailname" size="50" value="<?= $upload['naam']?>">&emsp;&emsp;
@@ -139,15 +137,15 @@ $uploadedimages = $image_controller->getImagebyMailID($upload['id']);
 
                             <label>Naam klant<span style="color:#bc2d4c">*</span></label>
                             <input disabled="disabled" type="text" name="mailname" size="50" value="<?= $upload['naam']?>">&emsp;&emsp;
-
+                            <br>
                             <label>E-mailadres klant<span style="color:#bc2d4c">*</span></label>
                             <input disabled="disabled" type="email" name="mailto" size="50" value="<?= $upload['email']?>">
 
                             <input disabled="disabled" type="hidden" name="frommail" id="MailFrom" value="<?= $upload['onderwerp']?>">
-
+                            <br>
                                 <?php foreach($uploadedimages as $img) { ?>
                                 <a href="index.php?page=download&file=<?= DIR_IMAGE . $img['images']; ?>">Download</a>
-                            <br><br>
+                            <br>
                             <?php }} ?>
                         </form>
                     </div>

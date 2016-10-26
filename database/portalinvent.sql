@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 25 okt 2016 om 10:17
+-- Gegenereerd op: 26 okt 2016 om 09:59
 -- Serverversie: 10.1.13-MariaDB
--- PHP-versie: 7.0.6
+-- PHP-versie: 5.6.21
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -317,27 +317,28 @@ INSERT INTO `permissions` (`permission`, `Klant`, `Gebruiker`, `Beheerder`, `Adm
 CREATE TABLE `usermail` (
   `id` int(11) NOT NULL,
   `userid` int(11) NOT NULL,
-  `mailid` int(11) NOT NULL
+  `mailid` int(11) NOT NULL,
+  `status` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `usermail`
 --
 
-INSERT INTO `usermail` (`id`, `userid`, `mailid`) VALUES
-(2, 12, 23),
-(3, 12, 23),
-(4, 18, 30),
-(5, 18, 43),
-(6, 20, 44),
-(7, 20, 44),
-(8, 20, 44),
-(9, 20, 44),
-(10, 20, 44),
-(11, 20, 44),
-(12, 20, 44),
-(13, 0, 46),
-(14, 20, 47);
+INSERT INTO `usermail` (`id`, `userid`, `mailid`, `status`) VALUES
+(2, 12, 23, 0),
+(3, 12, 23, 2),
+(4, 18, 30, 2),
+(5, 18, 43, 1),
+(6, 20, 44, 2),
+(7, 20, 44, 0),
+(8, 20, 44, 0),
+(9, 20, 44, 1),
+(10, 20, 44, 0),
+(11, 20, 44, 0),
+(12, 20, 44, 2),
+(13, 0, 46, 0),
+(14, 20, 47, 0);
 
 -- --------------------------------------------------------
 
