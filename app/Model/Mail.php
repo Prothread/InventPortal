@@ -175,6 +175,17 @@ class Mail {
     }
 
     /**
+     * Haal meerdere mails op met een mail id
+     *
+     * @param $ids
+     * @return mixed
+     */
+    public function getMailsById($ids)
+    {
+        return $this->db->getMailsById($ids);
+    }
+
+    /**
      * Haal een mail op met een meegestuurd id
      *
      * @param $status
@@ -184,6 +195,39 @@ class Mail {
     public function getUserMailByStatus($status)
     {
         return $this->db->getUserMailByStatus($status);
+    }
+
+    /**
+     * Haal alle mail van de meegegeven gebruiker op
+     *
+     * @return mixed
+     */
+
+    public function getUserMailByUserId($id, $limit, $offset)
+    {
+        return $this->db->getUserMailByUserId($id, $limit, $offset);
+    }
+
+    /**
+     * Tel het aantal mails van de user
+     *
+     * @return mixed
+     */
+
+    public function countUserMailByUserId($id)
+    {
+        return $this->db->countUserMailByUserId($id);
+    }
+
+    /**
+     * Haal alle mail van de meegegeven gebruiker en de status op
+     *
+     * @return mixed
+     */
+
+    public function getUserMail($id, $status)
+    {
+        return $this->db->getUserMail($id, $status);
     }
 
     /**

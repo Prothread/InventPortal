@@ -236,9 +236,26 @@ class DbUser extends Database
      * @return array|null
      */
 
-    public function searchTable($term)
+    public function searchTable($term, $limit, $offset, $ids = null)
     {
-        $sql = "SELECT * FROM mail WHERE onderwerp LIKE '%".$term."%' OR verstuurder LIKE '%".$term."%' OR naam LIKE '%".$term."%' OR datum LIKE '%".$term."%'";
+        $sql = "SELECT * FROM mail ";
+
+        if($ids) {
+            $sql .= "WHERE `id` IN ($ids) AND onderwerp LIKE '%" . $term . "%' ";
+            $sql .= " OR `id` IN ($ids) AND verstuurder LIKE '%" . $term . "%'";
+            $sql .= " OR `id` IN ($ids) AND naam LIKE '%" . $term . "%'";
+            $sql .= " OR `id` IN ($ids) AND datum LIKE '%" . $term . "%'";
+        }
+        else {
+            $sql .= " WHERE onderwerp LIKE '".$term."' OR verstuurder LIKE '".$term."' OR naam LIKE '".$term."' OR datum LIKE '".$term."'";
+        }
+
+        if($limit) {
+            $sql .= " LIMIT {$limit}";
+        }
+        if($offset) {
+            $sql .= " OFFSET {$offset}";
+        }
 
         $result = $this->dbQuery($sql);
 

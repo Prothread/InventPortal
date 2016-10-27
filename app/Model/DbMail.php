@@ -153,6 +153,24 @@ class DbMail extends Database
     }
 
     /**
+     * Haal meerdere mails op met een mail id
+     *
+     * @param $ids
+     * @return mixed
+     */
+    public function getMailsById($ids)
+    {
+        $sql = "SELECT * FROM `mail` WHERE `id` IN ($ids)";
+
+        if($result = $this->dbQuery($sql)) {
+
+            $value = mysqli_fetch_all($result, MYSQLI_ASSOC);
+            return $value;
+        }
+        return false;
+    }
+
+    /**
      * Haal mail op met id
      *
      * @param $status
@@ -165,6 +183,65 @@ class DbMail extends Database
 
         $result = $this->dbQuery($sql);
         $value = mysqli_fetch_assoc($result);
+
+        if($value) {
+            return $value;
+        }
+    }
+
+    /**
+     * Haal alle mail van de meegegeven gebruiker op
+     *
+     * @return mixed
+     */
+
+    public function getUserMailByUserId($id, $limit = null, $offset = null)
+    {
+        $sql = "SELECT * FROM `usermail` WHERE `userid` = '{$id}'";
+
+        if($limit) {
+            $sql .= " LIMIT {$limit}";
+        }
+        if($offset) {
+            $sql .= " OFFSET {$offset}";
+        }
+
+        $result = $this->dbQuery($sql);
+        $value = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+        if($value) {
+            return $value;
+        }
+    }
+
+    /**
+     * Tel het aantal mails van de user
+     *
+     * @return mixed
+     */
+
+    public function countUserMailByUserId($id)
+    {
+        $query ="SELECT COUNT(`id`) AS 'total_blocks' FROM `usermail` WHERE `userid` = '{$id}'";
+
+        if($result = $this->dbFetchArray($query)){
+            return $result['total_blocks'];
+        }
+        return false;
+    }
+
+    /**
+     * Haal alle mail van de meegegeven gebruiker en de status op
+     *
+     * @return mixed
+     */
+
+    public function getUserMail($id, $status)
+    {
+        $sql = "SELECT * FROM `usermail` WHERE `userid` = '{$id}' AND `status` = '{$status}'";
+
+        $result = $this->dbQuery($sql);
+        $value = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
         if($value) {
             return $value;

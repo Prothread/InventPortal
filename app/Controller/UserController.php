@@ -209,9 +209,7 @@ class UserController
      * @return mixed
      */
 
-    public function searchTable($term)
     {
-        return $this->model->searchTable($term);
     }
 
 }

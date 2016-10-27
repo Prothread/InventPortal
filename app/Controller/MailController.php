@@ -88,7 +88,18 @@ class MailController
     }
 
     /**
-     * Haal mail op met een mail id
+     * Haal meerdere mails op met een mail id
+     *
+     * @param $ids
+     * @return mixed
+     */
+    public function getMailsById($ids)
+    {
+        return $this->model->getMailsById($ids);
+    }
+
+    /**
+     * Haal mail van gebruikers op met een mail id
      *
      * @param $status
      * @return mixed
@@ -96,6 +107,39 @@ class MailController
     public function getUserMailByStatus($status)
     {
         return $this->model->getUserMailByStatus($status);
+    }
+
+    /**
+     * Haal alle mail van het meegegeven id van de gebruiker op
+     *
+     * @return mixed
+     */
+
+    public function getUserMailByUserId($id, $limit, $offset)
+    {
+        return $this->model->getUserMailByUserId($id, $limit, $offset);
+    }
+
+    /**
+     * Tel het aantal mails van de user
+     *
+     * @return mixed
+     */
+
+    public function countUserMailByUserId($id)
+    {
+        return $this->model->countUserMailByUserId($id);
+    }
+
+    /**
+     * Haal alle mail van de meegegeven gebruiker en de status op
+     *
+     * @return mixed
+     */
+
+    public function getUserMail($id, $status)
+    {
+        return $this->model->getUserMail($id, $status);
     }
 
 }

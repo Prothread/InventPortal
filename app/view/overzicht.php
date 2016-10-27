@@ -20,7 +20,15 @@ if(isset($_POST['sub'])) {
     $user = new UserController();
 
     $term = mysqli_real_escape_string($mysqli, $_POST['term']);
+    $_SESSION['term'] = $term;
 }
+
+if(isset($term)) {
+    if ($term == '') {
+        unset($_SESSION['term']);
+    }
+}
+
 ?>
 
 <!-- Page Content -->
@@ -100,11 +108,12 @@ if(isset($_POST['sub'])) {
                     <tbody>
                     <?php
 
-                    if(isset($term)) {
+                    if(isset($_SESSION['term'])) {
 
-                        $searchtable = $user->searchTable($term);
+                        $count = count( $user->searchTable($_SESSION['term']) );
+                        $searchtable = $user->searchTable($_SESSION['term'], $limit, $offset);
 
-                        if(!empty($searchtable)){
+                        if (!empty($searchtable)) {
                             foreach ($searchtable as $upload) {
                                 ?>
                                 <tr>
@@ -137,8 +146,7 @@ if(isset($_POST['sub'])) {
                                 </td>
                                 </tr><?php }
 
-                        }
-                        else { ?>
+                        } else { ?>
                             <tr>
                                 <td>De zoekterm die U heeft meegegeven is niet gevonden.</td>
                                 <td></td>

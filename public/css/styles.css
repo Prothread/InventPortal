@@ -27,7 +27,9 @@ table {
     /* top: 45%; */
     text-align: center;
 }
-
+.alert {
+    margin-bottom:10px;
+}
 .alert_message {
     color:#3c763d;
     background-color:#dff0d8;
@@ -107,7 +109,6 @@ table {
 
 #mybuttons {
     position:relative;
-    left:10%;
 }
 body {
 	height: 600px;
@@ -647,10 +648,9 @@ table.table { width: 100%; }
 	}
 }
 #error404 {
-    background-image: url('bg.jpg');
-    background-repeat: no-repeat;
+    background: #000000 url('../img/bg.jpg');
+    height:130%;
     background-size: 100%;
-    background-position: center 20%;
 }
 
 .error {

@@ -118,10 +118,19 @@ else {
                         if(isset($_SESSION['img'.$img['id']])) {
                             if($session->getImageVerify($img['id']) == 1) { ?>
                                 <div id="akkoord" class="alert alert-success" style="text-align: center;" role="alert"><span class="glyphicon glyphicon-ok-circle"></span> Akkoord</div>
+                                <a href="?page=imagecancel&img=<?= $img['id'] ?>"><div id="cancel" style="color:black; text-align: center;" role="alert"><span class="glyphicon glyphicon-chevron-left"></span> Stap terug</div></a>
                             <?php }
 
-                            if($session->getImageVerify($img['id']) == 2) {?>
+                            else if($session->getImageVerify($img['id']) == 2) {?>
                                 <div id="weiger" class="alert alert-danger" style="text-align: center;" role="alert"><span class="glyphicon glyphicon-remove-circle"></span> Geweigerd</div>
+                                <a href="?page=imagecancel&img=<?= $img['id'] ?>"><div id="cancel" style="color:black; text-align: center;" role="alert"><span class="glyphicon glyphicon-chevron-left"></span> Stap terug</div></a>
+                            <?php }
+
+                            else { ?>
+                                <div id="mybuttons">
+                                    <a id="AccButtonA" href="?page=imageverify&img=<?= $img['id']; ?>"><button id="AccButton" ">Akkoord</button></a>
+                                    <a id="AccButtonA" href="?page=imagedecline&img=<?= $img['id']; ?>"><button id="AccButton">Weiger</button></a>
+                                </div>
                             <?php }
                         }
 

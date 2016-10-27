@@ -52,7 +52,7 @@ if(!$session->exists('usr_id') && $page == 'accordering') {
 
 if($session->exists('usr_id')){
     if($page !== 'submit') {
-        require_once '../app/view/header.php';
+        include_once '../app/view/header.php';
     }
 }
 
@@ -97,6 +97,12 @@ switch($page) {
     case 'imagedecline':
         include '../app/view/imagedecline.php';
         break;
+    case 'imagecancel':
+        include '../app/view/imagecancel.php';
+        break;
+    case 'profile':
+        include '../app/view/profile.php';
+        break;
     case 'manageclients':
         include '../app/view/manageclients.php';
         break;
@@ -134,7 +140,7 @@ switch($page) {
         include '../app/view/download.php';
         break;
     default:
-        include '../app/view/login.php';
+        include '../app/view/404.php';
         break;
 }
 

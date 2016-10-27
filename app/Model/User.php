@@ -415,9 +415,9 @@ class User
      * @return mixed
      */
 
-    public function searchTable($term)
+    public function searchTable($term, $limit = null, $offset = null, $ids = null)
     {
-        return $this->db->searchTable($term);
+        return $this->db->searchTable($term, $limit, $offset, $ids);
     }
 
 }
