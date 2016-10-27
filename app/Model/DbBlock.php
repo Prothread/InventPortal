@@ -15,15 +15,22 @@ class DbBlock extends Database
      * @return array|null
      */
 
-    public function getUploads($limit = null, $offset = null){
-        $sql = "SELECT * FROM `mail` ORDER BY `mail`.`id` DESC";
+    public function getUploads($table, $filter, $limit = null, $offset = null){
+        $sql = "SELECT * FROM `mail`";
 
+        if($table) {
+            $sql .= " ORDER BY $table";
+        }
+        if($filter) {
+            $sql .= " $filter";
+        }
         if($limit) {
             $sql .= " LIMIT {$limit}";
         }
         if($offset) {
             $sql .= " OFFSET {$offset}";
         }
+        var_dump($sql);
 
         $result = $this->dbQuery($sql);
 

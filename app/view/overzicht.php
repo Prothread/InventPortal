@@ -7,7 +7,10 @@ $offset = isset($_GET['offset']) ? $_GET['offset'] : 0;
 $limit = 10;
 
 $count = $uploads->countBlocks();
-$get_filled_info = $uploads->getUploads($limit, $offset);
+
+$table = 'id';
+$filter = 'DESC';
+$get_filled_info = $uploads->getUploads($table, $filter, $limit, $offset);
 
 $items = new MailController();
 $get_items_openstaand = $items->getUserMailByStatus(0);

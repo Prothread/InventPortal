@@ -24,6 +24,7 @@ $items = new MailController();
     $get_items_bekeken = $items->CountUserMailbyIdStatus($userid, 1);
     $get_items_geweigerd = $items->CountUserMailbyIdStatus($userid, 3);
     $get_items_geaccepteerd = $items->CountUserMailbyIdStatus($userid, 2);
+    $allitems = $get_items_geaccepteerd['COUNT(status)']+$get_items_geweigerd['COUNT(status)']+$get_items_openstaand['COUNT(status)']+ $get_items_bekeken['COUNT(status)'];
 
 
 //Zet alle mails in een array met een offset en een limit
@@ -76,15 +77,25 @@ if(isset($term)) {
                 <div class="well well-m">
                     <br>
                     <div class="progress">
-                        <div class="progress-bar progress-bar-success progress-bar-striped active" style="width: 60%">
-                            <a id="statusbartext" href="#"><span class="glyphicon glyphicon-ok-sign"></span>  Geaccepteerd &nbsp;&nbsp;<span class="badge"><?= $get_items_geaccepteerd['COUNT(status)'] ?></span></a>
+                        <div class="progress-bar progress-bar-success progress-bar-striped active" style="width: <?= ($get_items_geaccepteerd['COUNT(status)']/$allitems)*100 ?>%">
+                            <a id="statusbartext" href="#"><span class="glyphicon glyphicon-ok-sign"></span>  <span class="badge"><?= $get_items_geaccepteerd['COUNT(status)'] ?></span></a>
                         </div>
-                        <div class="progress-bar progress-bar-danger progress-bar-striped active" style="width: 25%">
-                            <a id="statusbartext" href="#"><span class="glyphicon glyphicon-remove-sign"></span>  Geweigerd &nbsp;&nbsp;<span class="badge"><?= $get_items_geweigerd['COUNT(status)'] ?></span></a>
+                        <div class="progress-bar progress-bar-danger progress-bar-striped active" style="width: <?= ($get_items_geweigerd['COUNT(status)']/$allitems)*100 ?>%">
+                            <a id="statusbartext" href="#"><span class="glyphicon glyphicon-remove-sign"></span  ><span class="badge"><?= $get_items_geweigerd['COUNT(status)'] ?></span></a>
                         </div>
-                        <div class="progress-bar progress-bar-warning progress-bar-striped active" style="width: 15%">
-                            <a id="statusbartext" href="#"><span class="glyphicon glyphicon-question-sign"></span>  Openstaand &nbsp;&nbsp;<span class="badge"><?= $get_items_openstaand['COUNT(status)'] + $get_items_bekeken['COUNT(status)'] ?></span></a>
+                        <div class="progress-bar progress-bar-warning progress-bar-striped active" style="width: <?= (($get_items_openstaand['COUNT(status)']+$get_items_bekeken['COUNT(status)'])/$allitems)*100 ?>%">
+                            <a id="statusbartext" href="#"><span class="glyphicon glyphicon-question-sign"></span>  <span class="badge"><?= $get_items_openstaand['COUNT(status)'] + $get_items_bekeken['COUNT(status)'] ?></span></a>
                         </div>
+                    </div>
+                    <div class="btn-group">
+                        <button type="button" style="width: 95px;" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <span style="color: #bb2c4c;">Legenda </span> <span style="color: #bb2c4c" class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" class="glyphicon glyphicon-ok-sign"> Goedgekeurd</a></li>
+                            <li><a href="#" class="glyphicon glyphicon-remove-sign"> Geweigerd</a></li>
+                            <li><a href="#" class="glyphicon glyphicon-question-sign"> Open</a></li>
+                        </ul>
                     </div>
                 </div>
                 <!--<input type="text" size="50" id="TableInput" onkeyup="searchTable()" placeholder="Zoek een product...">-->

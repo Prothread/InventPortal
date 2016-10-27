@@ -34,8 +34,8 @@ class Block
      * @return array|null
      */
 
-    public function getUploads($limit = null, $offset = null){
-        return $this->db->getUploads($limit, $offset);
+    public function getUploads($table, $filter, $limit = null, $offset = null){
+        return $this->db->getUploads($table, $filter, $limit, $offset);
     }
 
     /**
