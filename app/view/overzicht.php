@@ -46,13 +46,13 @@ if(isset($term)) {
                     <br>
                     <div class="progress">
                         <div class="progress-bar progress-bar-success progress-bar-striped active" style="min-width: 4em;width: <?= ($get_items_geaccepteerd['COUNT(status)']/$allitems)*100 ?>%">
-                            <a id="statusbartext" href="#"><span class="glyphicon glyphicon-ok-sign"></span>&nbsp;&nbsp;<span class="badge"><?= $get_items_geaccepteerd['COUNT(status)'] ?></span></a>
+                            <a id="statusbartext" href="#"><span class="glyphicon glyphicon-ok-sign"></span>  <span class="badge"><?= $get_items_geaccepteerd['COUNT(status)'] ?></span></a>
                         </div>
                         <div class="progress-bar progress-bar-danger progress-bar-striped active" style="min-width: 4em;width: <?= ($get_items_geweigerd['COUNT(status)']/$allitems)*100 ?>%">
-                            <a id="statusbartext" href="#"><span class="glyphicon glyphicon-remove-sign"></span>&nbsp;&nbsp;<span class="badge"><?= $get_items_geweigerd['COUNT(status)'] ?></span></a>
+                            <a id="statusbartext" href="#"><span class="glyphicon glyphicon-remove-sign"></span>  <span class="badge"><?= $get_items_geweigerd['COUNT(status)'] ?></span></a>
                         </div>
                         <div class="progress-bar progress-bar-warning progress-bar-striped active" style="min-width: 4em;width: <?= (($get_items_openstaand['COUNT(status)']+$get_items_bekeken['COUNT(status)'])/$allitems)*100 ?>%">
-                            <a id="statusbartext" href="#"><span class="glyphicon glyphicon-question-sign"></span>&nbsp;&nbsp;<span class="badge"><?= $get_items_openstaand['COUNT(status)'] + $get_items_bekeken['COUNT(status)'] ?></span></a>
+                            <a id="statusbartext" href="#"><span class="glyphicon glyphicon-question-sign"></span>  <span class="badge"><?= $get_items_openstaand['COUNT(status)'] + $get_items_bekeken['COUNT(status)'] ?></span></a>
                         </div>
                     </div>
                     <div class="btn-group">
