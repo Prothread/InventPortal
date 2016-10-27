@@ -198,6 +198,17 @@ class Mail {
     }
 
     /**
+     * Tel het aantal mails van de gebruiker met de status en hun id
+     *
+     * @param $id, $status
+     * @return mixed
+     */
+    public function CountUserMailbyIdStatus($id, $status)
+    {
+        return $this->db->CountUserMailbyIdStatus($id, $status);
+    }
+
+    /**
      * Haal alle mail van de meegegeven gebruiker op
      *
      * @return mixed

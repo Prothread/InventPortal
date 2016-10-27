@@ -8,16 +8,22 @@ $limit = 10;
 
 $items = new MailController();
 
-//Haal mail van de gebruiker op met zijn id en een status
-    $getuseritems = $items->getUserMail(20, 2);
-
-
 // Haal gebruiker id op
     $userid = 20;
+
+//Haal mail van de gebruiker op met zijn id en een status
+    $myuser = $items->getUserMail($userid, 2);
 
 
 // Tel aantal items er zijn voor die gebruiker
     $count = $items->countUserMailByUserId($userid);
+
+
+// Haal geaccepteerde/geweigerde per gebruiker op
+    $get_items_openstaand = $items->CountUserMailbyIdStatus($userid, 0);
+    $get_items_bekeken = $items->CountUserMailbyIdStatus($userid, 1);
+    $get_items_geweigerd = $items->CountUserMailbyIdStatus($userid, 3);
+    $get_items_geaccepteerd = $items->CountUserMailbyIdStatus($userid, 2);
 
 
 //Zet alle mails in een array met een offset en een limit

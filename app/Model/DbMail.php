@@ -231,6 +231,22 @@ class DbMail extends Database
     }
 
     /**
+     * Tel het aantal mails van de gebruiker met de status en hun id
+     *
+     * @param $id, $status
+     * @return mixed
+     */
+    public function CountUserMailbyIdStatus($id, $status)
+    {
+        $query ="SELECT COUNT(status) FROM `usermail` WHERE `userid` = '{$id}' AND `status` = '{$status}'";
+
+        if($result = $this->dbFetchArray($query)){
+            return $result;
+        }
+        return false;
+    }
+
+    /**
      * Haal alle mail van de meegegeven gebruiker en de status op
      *
      * @return mixed

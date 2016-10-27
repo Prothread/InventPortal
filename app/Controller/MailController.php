@@ -110,6 +110,17 @@ class MailController
     }
 
     /**
+     * Tel het aantal mails van de gebruiker met de status en hun id
+     *
+     * @param $id, $status
+     * @return mixed
+     */
+    public function CountUserMailbyIdStatus($id, $status)
+    {
+        return $this->model->CountUserMailbyIdStatus($id, $status);
+    }
+
+    /**
      * Haal alle mail van het meegegeven id van de gebruiker op
      *
      * @return mixed
