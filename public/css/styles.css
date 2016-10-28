@@ -27,9 +27,11 @@ table {
     /* top: 45%; */
     text-align: center;
 }
-.alert {
-    margin-bottom:10px;
+
+#downloadimagedd {
+    width: 85px;
 }
+
 .alert_message {
     color:#3c763d;
     background-color:#dff0d8;
@@ -109,6 +111,7 @@ table {
 
 #mybuttons {
     position:relative;
+    left:10%;
 }
 body {
 	height: 600px;
@@ -225,6 +228,7 @@ tr:nth-child(even) {
 	border-radius: 5px;
 	border: 1px solid #bb2c4c;
 	padding-left: 2px;
+    margin-left: 62px;
 }
 
 .UploadForm input[type=email] {
@@ -242,6 +246,13 @@ tr:nth-child(even) {
 	font-weight: bold;
 }
 
+.Description2 {
+    border-radius: 5px;
+    border: 1px solid #bb2c4c;
+    padding-left: 2px;
+}
+
+
 .MailSettings input[type=email] {
     border-radius: 5px;
     border: 1px solid #bb2c4c;
@@ -257,6 +268,16 @@ tr:nth-child(even) {
     font-weight: bold;
 }
 
+#SendSearch {
+    background-image: url('http://i66.tinypic.com/20f89w5.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 40px;
+    border: 1px solid #bb2c4c;
+    border-radius: 5px;
+    background-color: #FFF;
+    height: 28px;
+}
 
 .fileContainer {
     overflow: hidden;
@@ -267,9 +288,6 @@ tr:nth-child(even) {
 	border-radius: 5px;
 	border: 1px solid #bb2c4c;
 	padding-left: 7px;
-	background-image: url('http://i66.tinypic.com/20f89w5.png');
-	background-position: right;
-	background-repeat: no-repeat;
     width: 40%;
 }
 
@@ -648,9 +666,10 @@ table.table { width: 100%; }
 	}
 }
 #error404 {
-    background: #000000 url('../img/bg.jpg');
-    height:130%;
+    background-image: url('bg.jpg');
+    background-repeat: no-repeat;
     background-size: 100%;
+    background-position: center 20%;
 }
 
 .error {

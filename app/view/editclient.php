@@ -10,10 +10,10 @@
 
 $mysqli = mysqli_connect();
 
-$client = new ClientController();
+$client = new UserController();
 $id = $_GET['id'];
 
-$myclient = $client->getClientById($id);
+$myclient = $client->getUserById($id);
 
 if(isset($_POST['submit'])){
 
@@ -40,7 +40,7 @@ if(isset($_POST['submit'])){
         'plaats' => strip_tags( $plaats )
     ];
 
-    $client->updateClient($clientinfo);
+    $client->update($clientinfo);
 
 }
 ?>

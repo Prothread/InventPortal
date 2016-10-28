@@ -12,9 +12,6 @@ else if( isset($user) ) {
     $thisuser = $user->getUserById($session->getUserId());
     $myuser = $thisuser['naam'];
 }
-else if( isset($_SESSION['client_id'])) {
-    $myuser = $_SESSION['client_name'];
-}
 else {
     echo 'User';
 }
@@ -38,6 +35,7 @@ else {
     <!-- JQuery -->
     <script src="js/jquery-1.12.4.js"></script>
     <script src="js/jquery-ui.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <link rel="stylesheet" href="css/jquery-ui.css">
 
     <script src="http://www.google.com/jsapi"></script>

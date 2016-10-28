@@ -10,6 +10,18 @@ $count = $uploads->countBlocks();
 
 $table = 'id';
 $filter = 'DESC';
+
+if(isset($_SESSION['role'])) {
+    if($_SESSION['role'] == 1) {
+        $dat = 'ASC';
+        $filter = $dat;
+    }
+}
+
+if(isset($_SESSION['filter'])){
+    $table = $_SESSION['filter'];
+}
+
 $get_filled_info = $uploads->getUploads($table, $filter, $limit, $offset);
 
 $items = new MailController();
@@ -32,6 +44,8 @@ if(isset($term)) {
         unset($_SESSION['term']);
     }
 }
+var_dump($_SESSION['role']);
+var_dump($_SESSION['filter'])
 
 ?>
 
@@ -70,7 +84,7 @@ if(isset($term)) {
 
                 <form method="post" action="?page=overzicht">
                     <input type="text" size="50" id="TableInput" name="term" placeholder="<?php if(isset($term)){ echo 'Gesorteerd op: ' . $term;} else { echo 'Zoek een product..'; }?>">
-                    <input type="submit" name="sub">
+                    <input id="SendSearch" value="" type="submit" name="sub">
                 </form>
 
                 <div id="form-content"></div>
@@ -108,12 +122,95 @@ if(isset($term)) {
                     </ul>
                 </div>
 
-                <table id="overzicht" class="sortable table-striped">
+                <table id="overzicht" class="table-striped">
                     <thead>
                         <tr>
                             <td><b>ID</b></td>
-                            <td><b>Onderwerp</b></td>
-                            <td><b>Verstuurder</b></td>
+                            <td onclick="myAjax()" id="onderwerp"><!--<a href="?page=filter&filter=Onderwerp&id=1">--><b>Onderwerp</b><!--</a>--></td>
+
+
+                            <script>
+                                /*$('#onderwerp').click(function(){
+                                    // fire off the request to /redirect.php
+                                    request = $.ajax({
+                                        url: "index.php?page=filter",
+                                        type: "post",
+                                        data: 'Onderwerp'
+                                    });
+
+                                    // callback handler that will be called on success
+                                    request.done(function (response, textStatus, jqXHR){
+                                        // log a message to the console
+                                        console.log("Hooray, it worked!");
+                                    });
+
+                                    // callback handler that will be called on failure
+                                    request.fail(function (jqXHR, textStatus, errorThrown){
+                                        // log the error to the console
+                                        console.error(
+                                            "The following error occured: "+
+                                            textStatus, errorThrown
+                                        );
+                                    });
+                                });*/
+
+
+                                function myAjax() {
+                                    $.ajax({
+                                        type: "POST",
+                                        url: 'index.php?page=filter',
+                                        data:{id:'1', filter:'Onderwerp'},
+                                        success:function(html) {
+                                            alert(html);
+                                        }
+
+                                    });
+                                }
+                            </script>
+
+
+                            <td onclick="myAjax1()" id="verstuurder"><!--<a href="?page=filter&filter=verstuurder&id=1">--><b>Verstuurder</b><!--</a>--></td>
+
+
+                            <script>
+                                /*$('#verstuurder').click(function(){
+                                    // fire off the request to /redirect.php
+                                    request = $.ajax({
+                                        url: "../app/view/filter.php",
+                                        type: "post",
+                                        data: 'verstuurder'
+                                    });
+
+                                    // callback handler that will be called on success
+                                    request.done(function (response, textStatus, jqXHR){
+                                        // log a message to the console
+                                        console.log("Hooray, it worked!");
+                                    });
+
+                                    // callback handler that will be called on failure
+                                    request.fail(function (jqXHR, textStatus, errorThrown){
+                                        // log the error to the console
+                                        console.error(
+                                            "The following error occured: "+
+                                            textStatus, errorThrown
+                                        );
+                                    });
+                                });*/
+
+                                function myAjax1() {
+                                    $.ajax({
+                                        type: "POST",
+                                        url: 'index.php?page=filter',
+                                        data:{id:'1', filter:'verstuurder'},
+                                        success:function(html) {
+
+                                        }
+
+                                    });
+                                }
+                            </script>
+
+
                             <td><b>Naam klant</b></td>
                             <td><b>Datum</b></td>
                             <td><b>Status</b></td>

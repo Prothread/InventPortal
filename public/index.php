@@ -136,6 +136,12 @@ switch($page) {
     case 'submit':
         include '../app/view/submit.php';
         break;
+    case 'filter':
+        include '../app/view/filter.php';
+        break;
+    case 'datest':
+        include '../app/view/datest.php';
+        break;
     case 'download':
         include '../app/view/download.php';
         break;

@@ -15,6 +15,8 @@
                     <input required type="text" name="title" size="50" value="proeven@madalcomedia.nl">&emsp;&emsp;<br><br>
                     <label>E-mailadres versturen<span style="color:#bc2d4c">*</span></label>
                     <input required type="text" name="title" size="50" value="proeven@madalcomedia.nl">&emsp;&emsp;<br><br>
+                    <br>
+                    <input type="submit" name="submit" size="50" value="Opslaan">
                 </form>
             </div>
         </div>

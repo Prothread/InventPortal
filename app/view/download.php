@@ -65,6 +65,5 @@ function download_file( $fullPath ){
         readfile( $fullPath );
 
     } else
-        die('File Not Found');
-
+        die('<div class="alert alert-danger" role="alert">Het bestand dat u probeerde te downloaden kan niet worden gevonden.</div>');
 }
