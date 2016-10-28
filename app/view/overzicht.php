@@ -218,7 +218,7 @@ if(isset($term)) {
                                 </ul>
                             </div>
                         </td>
-
+                        
                         <td>
                             <div class="btn-group">
                                 <button type="button" style="width: 100%;" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -259,9 +259,6 @@ if(isset($term)) {
                                     <span style="color: #bb2c4c;">Status </span> <span style="color: #bb2c4c" class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><input type="submit" name="StatusASC" value="Oud-Nieuw" style="width:100%;"></li>
-                                    <li><input type="submit" name="StatusDESC" value="Nieuw-Oud" style="width:100%;"></li>
-                                    <br />
                                     <li><input type="submit" name="OpenASC" value="Open" style="width:100%;"></li>
                                     <li><input type="submit" name="GezienASC" value="Gezien"" style="width:100%;"></li>
                                     <li><input type="submit" name="GoedgekeurdASC" value="Goedgekeurd" style="width:100%;"></li>
