@@ -193,7 +193,7 @@ if(isset($term)) {
                 </ul>
             </div>
 
-            <form action="?page=datest" method="post">
+            <form action="?page=overzicht" method="post">
 
                 <table id="overzicht" class="table-striped">
                     <thead>
