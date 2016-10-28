@@ -30,7 +30,6 @@ class DbBlock extends Database
         if($offset) {
             $sql .= " OFFSET {$offset}";
         }
-        var_dump($sql);
 
         $result = $this->dbQuery($sql);
 
