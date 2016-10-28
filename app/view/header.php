@@ -100,13 +100,17 @@ else {
                 <a href="index.php?page=overzicht">Overzicht</a>
             </li>
 
+            <?php if($user->getPermission($permgroup, 'CAN_EDIT_CLIENT') == 1){ ?>
             <li class="nav-button-users">
                 <a href="index.php?page=manageclients">Klanten</a>
             </li>
+            <?php } ?>
 
+            <?php if($user->getPermission($permgroup, 'CAN_EDIT_SETTINGS') == 1){ ?>
             <li class="nav-button-settings">
                 <a href="index.php?page=settings">Instellingen</a>
             </li>
+            <?php } ?>
 
             <br>
             <br>

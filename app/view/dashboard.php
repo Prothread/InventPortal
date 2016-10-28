@@ -1,6 +1,14 @@
 <?php
 #DASHBOARD PAGE LAAT RECENTE ITEMS ZIEN
 
+if($user->getPermission($permgroup, 'CAN_SHOW_HOME') == 1){
+
+}
+else {
+    header('Location: index.php');
+    Session::flash('error', 'U heeft hier geen rechten voor.');
+}
+
 $uploads = new BlockController();
 $get_filled_info = $uploads->getLastSixUploads();
 

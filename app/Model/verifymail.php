@@ -1,7 +1,13 @@
 <?php
 #VERIFIES THE MAIL SERVER
 
-//TODO Error message voor key (als deze verwijderd is na he accorderen)
+if($user->getPermission($permgroup, 'CAN_ACCORD') == 1){
+
+}
+else {
+    header('Location: index.php');
+    Session::flash('error', 'U heeft hier geen rechten voor.');
+}
 
 /**
  * CREATE Session

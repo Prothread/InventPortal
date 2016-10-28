@@ -1,5 +1,13 @@
 <?php
 #SETTINGS PAGE
+
+if($user->getPermission($permgroup, 'CAN_EDIT_SETTINGS') == 1){
+
+}
+else {
+    header('Location: index.php');
+    Session::flash('error', 'U heeft hier geen rechten voor.');
+}
 ?>
 
 <div id="page-content-wrapper">

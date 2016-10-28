@@ -1,6 +1,14 @@
 <?php
 #INDIVIDUAL ITEM PAGE
 
+if($user->getPermission($permgroup, 'CAN_SHOW_ITEM') == 1){
+
+}
+else {
+    header('Location: index.php');
+    Session::flash('error', 'U heeft hier geen rechten voor.');
+}
+
 $session = new Session();
 $uploads = new BlockController();
 

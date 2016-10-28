@@ -1,5 +1,14 @@
 <?php
 #OVERZICHT PAGE VAN ALLE ITEMS
+
+if($user->getPermission($permgroup, 'CAN_SHOW_USEROVERZICHT') == 1){
+
+}
+else {
+    header('Location: index.php');
+    Session::flash('error', 'U heeft hier geen rechten voor.');
+}
+
 $uploads = new BlockController();
 
 $offset = isset($_GET['offset']) ? $_GET['offset'] : 0;

@@ -8,16 +8,13 @@
 
 $session =  new Session();
 
-/*
-// What we'll be outputting
-header('Content-type: image/jpeg');
+if($user->getPermission($permgroup, 'CAN_ACCORD') == 1){
 
-// It will be called:
-header('Content-Disposition: attachment; filename="downloaded.jpg"');
-
-// The PDF source is in original.pdf
-readfile('4k_22.jpg');
-*/
+}
+else {
+    header('Location: index.php');
+    Session::flash('error', 'U heeft hier geen rechten voor.');
+}
 
 $file = $_GET['file'];
 

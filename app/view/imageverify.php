@@ -1,5 +1,16 @@
 <?php
 
+if($user->getPermission($permgroup, 'CAN_ACCORD') == 1){
+
+}
+else if($user->getPermission($permgroup, 'CAN_EDIT_ACCORD') == 1) {
+
+}
+else {
+    header('Location: index.php');
+    Session::flash('error', 'U heeft hier geen rechten voor.');
+}
+
 $imgcontrol = new ImageController();
 $session = new Session();
 

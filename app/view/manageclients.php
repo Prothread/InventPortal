@@ -1,6 +1,14 @@
 <?php
 #MANAGE CLIENTS PAGE
 
+if($user->getPermission($permgroup, 'CAN_EDIT_CLIENT') == 1){
+
+}
+else {
+    header('Location: index.php');
+    Session::flash('error', 'U heeft hier geen rechten voor.');
+}
+
 $user = new UserController();
 
 $offset = isset($_GET['offset']) ? $_GET['offset'] : 0;

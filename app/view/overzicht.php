@@ -1,6 +1,13 @@
 <?php
 #OVERZICHT PAGE VAN ALLE ITEMS
 
+if($user->getPermission($permgroup, 'CAN_SHOW_OVERZICHT') == 1){
+
+}
+else {
+    header('Location: index.php?page=gebruikersoverzicht');
+}
+
 $uploads = new BlockController();
 
 $offset = isset($_GET['offset']) ? $_GET['offset'] : 0;

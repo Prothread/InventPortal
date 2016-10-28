@@ -1,5 +1,13 @@
 <?php
 #PAGE FOR CREATING CLIENTS
+
+if($user->getPermission($permgroup, 'CAN_CREATE_CLIENT') == 1){
+
+}
+else {
+    header('Location: index.php');
+    Session::flash('error', 'U heeft hier geen rechten voor.');
+}
 ?>
 
 <div id="page-content-wrapper">

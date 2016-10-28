@@ -1,6 +1,14 @@
 <?php
 #VERWERKT UPLOAD PROCESS
 
+if($user->getPermission($permgroup, 'CAN_UPLOAD') == 1){
+
+}
+else {
+    header('Location: index.php');
+    Session::flash('error', 'U heeft hier geen rechten voor.');
+}
+
 $mysqli = mysqli_connect();
 
 $title = mysqli_real_escape_string($mysqli, $_POST['title']);
@@ -17,7 +25,6 @@ if(isset($_POST['id'])) {
     $imageId = $imageFileName->getNewId();
     $imageId =  $imageId + 1;
 }
-
 
 $error = 0;
 

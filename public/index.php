@@ -76,9 +76,6 @@ switch($page) {
     case 'verify':
         include '../app/Model/verifymail.php';
         break;
-    case 'dbverify':
-        include '../app/Model/DbVerify.php';
-        break;
     case 'accordering':
         include '../app/view/accordering.php';
         break;
@@ -100,7 +97,7 @@ switch($page) {
     case 'imagecancel':
         include '../app/view/imagecancel.php';
         break;
-    case 'profile':
+    case 'gebruikersoverzicht':
         include '../app/view/profile.php';
         break;
     case 'manageclients':
@@ -132,15 +129,6 @@ switch($page) {
         break;
     case 'clientmail':
         include '../app/view/clientmail.php';
-        break;
-    case 'submit':
-        include '../app/view/submit.php';
-        break;
-    case 'filter':
-        include '../app/view/filter.php';
-        break;
-    case 'datest':
-        include '../app/view/datest.php';
         break;
     case 'download':
         include '../app/view/download.php';

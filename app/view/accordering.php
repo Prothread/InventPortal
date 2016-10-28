@@ -1,6 +1,14 @@
 <?php
 #ACCORDERING PAGINA
 
+if($user->getPermission($permgroup, 'CAN_ACCORD') == 1){
+
+}
+else {
+    header('Location: index.php');
+    Session::flash('error', 'U heeft hier geen rechten voor.');
+}
+
 $upload = new BlockController();
 $session = new Session();
 $image_controller = new ImageController();

@@ -6,6 +6,14 @@
  * Time: 09:01
  */
 
+if($user->getPermission($permgroup, 'CAN_CREATE_CLIENT') == 1){
+
+}
+else {
+    header('Location: index.php');
+    Session::flash('error', 'U heeft hier geen rechten voor.');
+}
+
 $mysqli = mysqli_connect();
 
 $user = new UserController();

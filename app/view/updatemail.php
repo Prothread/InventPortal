@@ -1,5 +1,13 @@
 <?php
 
+if($user->getPermission($permgroup, 'CAN_ACCORD') == 1){
+
+}
+else {
+    header('Location: index.php');
+    Session::flash('error', 'U heeft hier geen rechten voor.');
+}
+
 $mysqli = mysqli_connect();
 
 $upload = new BlockController();
