@@ -231,6 +231,18 @@ tr:nth-child(even) {
     margin-left: 62px;
 }
 
+.TaDescriptionActive {
+    border-radius: 5px;
+    border: 1px solid #bb2c4c;
+    padding-left: 2px;
+}
+
+@media(max-width:650px) {
+.TaDescriptionActive {
+        width: 100%;
+    }
+}
+
 .UploadForm input[type=email] {
 	border-radius: 5px;
 	border: 1px solid #bb2c4c;

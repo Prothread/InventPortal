@@ -9,20 +9,82 @@ $limit = 10;
 $count = $uploads->countBlocks();
 
 $table = 'id';
+$status = '';
 $filter = 'DESC';
 
-if(isset($_SESSION['role'])) {
-    if($_SESSION['role'] == 1) {
-        $dat = 'ASC';
-        $filter = $dat;
-    }
+//Filter onderwerp drodpown
+if(isset($_POST['OnderwerpASC'])) {
+    $filter = 'ASC';
+    $table = 'Onderwerp';
+}
+if(isset($_POST['OnderwerpDESC'])) {
+    $filter = 'DESC';
+    $table = 'Onderwerp';
 }
 
-if(isset($_SESSION['filter'])){
-    $table = $_SESSION['filter'];
+//Filter verstuurder dropdown
+if(isset($_POST['VerstuurderASC'])) {
+    $filter = 'ASC';
+    $table = 'Verstuurder';
+}
+if(isset($_POST['VerstuurderDESC'])) {
+    $filter = 'DESC';
+    $table = 'Verstuurder';
 }
 
-$get_filled_info = $uploads->getUploads($table, $filter, $limit, $offset);
+//Filter Naam klant dropdwon
+if(isset($_POST['NaamklASC'])) {
+    $filter = 'ASC';
+    $table = 'naam';
+}
+if(isset($_POST['NaamklDESC'])) {
+    $filter = 'DESC';
+    $table = 'naam';
+}
+
+//Filter Datum dropdown
+if(isset($_POST['DatumASC'])) {
+    $filter = 'ASC';
+    $table = 'datum';
+}
+if(isset($_POST['DatumDESC'])) {
+    $filter = 'DESC';
+    $table = 'datum';
+}
+
+//Filter Status dropdown
+if(isset($_POST['StatusASC'])) {
+    $filter = 'ASC';
+    $table = 'verified';
+}
+if(isset($_POST['StatusDESC'])) {
+    $filter = 'DESC';
+    $table = 'verified';
+}
+
+if(isset($_POST['OpenASC'])) {
+    $filter = 'ASC';
+    $status = '0';
+    $table = 'verified';
+}
+if(isset($_POST['GezienASC'])) {
+    $filter = 'ASC';
+    $status = '1';
+    $table = 'verified';
+}
+if(isset($_POST['GoedgekeurdASC'])) {
+    $filter = 'ASC';
+    $status = '2';
+    $table = 'verified';
+}
+if(isset($_POST['AfgekeurdASC'])) {
+    $filter = 'ASC';
+    $status = '3';
+    $table = 'verified';
+}
+
+
+$get_filled_info = $uploads->getUploads($table, $filter, $limit, $offset, $status);
 
 $items = new MailController();
 $get_items_openstaand = $items->getUserMailByStatus(0);
@@ -34,6 +96,7 @@ $allitems = $get_items_geaccepteerd['COUNT(status)']+$get_items_geweigerd['COUNT
 $geaccepteerd_percent = ($get_items_geaccepteerd['COUNT(status)']/$allitems)*100;
 $geweigerd_percent =  ($get_items_geweigerd['COUNT(status)']/$allitems)*100;
 $openstaand_percent = 100-($geaccepteerd_percent+$geweigerd_percent);
+
 if($geaccepteerd_percent==0){
     $openstaand_percent-=5;
 }
@@ -54,8 +117,6 @@ if(isset($term)) {
         unset($_SESSION['term']);
     }
 }
-var_dump($_SESSION['role']);
-var_dump($_SESSION['filter'])
 
 ?>
 
@@ -118,115 +179,93 @@ var_dump($_SESSION['filter'])
 
             </div>
 
-                <br><br>
+            <br><br>
 
-                <div class="btn-group">
-                    <button type="button" style="width: 95px;" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span style="color: #bb2c4c;">Legenda </span> <span style="color: #bb2c4c" class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a href="#"><img alt="Gezien" style="width: 45px; height: 45px;" src="../public/icons/gezien.png">   Item is gezien, maar nog niet geaccordeerd.</a></li>
-                        <li><a href="#"><img alt="Geaccepteerd" src="../public/icons/akkoord.png">   Het item is goedgekeurd.</a></li>
-                        <li><a href="#"><img alt="Geweigerd" src="../public/icons/geweigerd.png">   Het item is geweigerd.</a></li>
-                        <li><a href="#"><img alt="Uploaded" src="../public/icons/uploaded.png">   Het item is geüpload.</a></li>
-                    </ul>
-                </div>
+            <div class="btn-group">
+                <button type="button" style="width: 95px;" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span style="color: #bb2c4c;">Legenda </span> <span style="color: #bb2c4c" class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a href="#"><img alt="Gezien" style="width: 45px; height: 45px;" src="../public/icons/gezien.png">   Item is gezien, maar nog niet geaccordeerd.</a></li>
+                    <li><a href="#"><img alt="Geaccepteerd" src="../public/icons/akkoord.png">   Het item is goedgekeurd.</a></li>
+                    <li><a href="#"><img alt="Geweigerd" src="../public/icons/geweigerd.png">   Het item is geweigerd.</a></li>
+                    <li><a href="#"><img alt="Uploaded" src="../public/icons/uploaded.png">   Het item is geüpload.</a></li>
+                </ul>
+            </div>
+
+            <form action="?page=datest" method="post">
 
                 <table id="overzicht" class="table-striped">
                     <thead>
-                        <tr>
-                            <td><b>ID</b></td>
-                            <td onclick="myAjax()" id="onderwerp"><!--<a href="?page=filter&filter=Onderwerp&id=1">--><b>Onderwerp</b><!--</a>--></td>
+                    <tr>
+                        <td><b>ID</b></td>
 
+                        <td>
+                            <div class="btn-group">
+                                <button type="button" style="width: 100%;" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span style="color: #bb2c4c;">Onderwerp </span> <span style="color: #bb2c4c" class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><input type="submit" name="OnderwerpASC" value="A-Z" style="width:100%;"></li>
+                                    <li><input type="submit" name="OnderwerpDESC" value="Z-A" style="width:100%;"></li>
+                                </ul>
+                            </div>
+                        </td>
 
-                            <script>
-                                /*$('#onderwerp').click(function(){
-                                    // fire off the request to /redirect.php
-                                    request = $.ajax({
-                                        url: "index.php?page=filter",
-                                        type: "post",
-                                        data: 'Onderwerp'
-                                    });
+                        <td>
+                            <div class="btn-group">
+                                <button type="button" style="width: 100%;" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span style="color: #bb2c4c;">Verstuurder </span> <span style="color: #bb2c4c" class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><input type="submit" name="VerstuurderASC" value="A-Z" style="width:100%;"></li>
+                                    <li><input type="submit" name="VerstuurderDESC" value="Z-A" style="width:100%;"></li>
+                                </ul>
+                            </div>
+                        </td>
 
-                                    // callback handler that will be called on success
-                                    request.done(function (response, textStatus, jqXHR){
-                                        // log a message to the console
-                                        console.log("Hooray, it worked!");
-                                    });
-
-                                    // callback handler that will be called on failure
-                                    request.fail(function (jqXHR, textStatus, errorThrown){
-                                        // log the error to the console
-                                        console.error(
-                                            "The following error occured: "+
-                                            textStatus, errorThrown
-                                        );
-                                    });
-                                });*/
-
-
-                                function myAjax() {
-                                    $.ajax({
-                                        type: "POST",
-                                        url: 'index.php?page=filter',
-                                        data:{id:'1', filter:'Onderwerp'},
-                                        success:function(html) {
-                                            alert(html);
-                                        }
-
-                                    });
-                                }
-                            </script>
-
-
-                            <td onclick="myAjax1()" id="verstuurder"><!--<a href="?page=filter&filter=verstuurder&id=1">--><b>Verstuurder</b><!--</a>--></td>
-
-
-                            <script>
-                                /*$('#verstuurder').click(function(){
-                                    // fire off the request to /redirect.php
-                                    request = $.ajax({
-                                        url: "../app/view/filter.php",
-                                        type: "post",
-                                        data: 'verstuurder'
-                                    });
-
-                                    // callback handler that will be called on success
-                                    request.done(function (response, textStatus, jqXHR){
-                                        // log a message to the console
-                                        console.log("Hooray, it worked!");
-                                    });
-
-                                    // callback handler that will be called on failure
-                                    request.fail(function (jqXHR, textStatus, errorThrown){
-                                        // log the error to the console
-                                        console.error(
-                                            "The following error occured: "+
-                                            textStatus, errorThrown
-                                        );
-                                    });
-                                });*/
-
-                                function myAjax1() {
-                                    $.ajax({
-                                        type: "POST",
-                                        url: 'index.php?page=filter',
-                                        data:{id:'1', filter:'verstuurder'},
-                                        success:function(html) {
-
-                                        }
-
-                                    });
-                                }
-                            </script>
-
-
-                            <td><b>Naam klant</b></td>
-                            <td><b>Datum</b></td>
-                            <td><b>Status</b></td>
-                        </tr>
+                        <td>
+                            <div class="btn-group">
+                                <button type="button" style="width: 100%;" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span style="color: #bb2c4c;">Naam klant </span> <span style="color: #bb2c4c" class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><input type="submit" name="NaamklASC" value="A-Z" style="width:100%;"></li>
+                                    <li><input type="submit" name="NaamklDESC" value="Z-A" style="width:100%;"></li>
+                                </ul>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="btn-group">
+                                <button type="button" style="width: 100%;" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span style="color: #bb2c4c;">Datum </span> <span style="color: #bb2c4c" class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><input type="submit" name="DatumASC" value="Oud-Nieuw" style="width:100%;"></li>
+                                    <li><input type="submit" name="DatumDESC" value="Nieuw-Oud" style="width:100%;"></li>
+                                </ul>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="btn-group">
+                                <button type="button" style="width: 100%;" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span style="color: #bb2c4c;">Status </span> <span style="color: #bb2c4c" class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><input type="submit" name="StatusASC" value="Oud-Nieuw" style="width:100%;"></li>
+                                    <li><input type="submit" name="StatusDESC" value="Nieuw-Oud" style="width:100%;"></li>
+                                    <br />
+                                    <li><input type="submit" name="OpenASC" value="Open" style="width:100%;"></li>
+                                    <li><input type="submit" name="GezienASC" value="Gezien"" style="width:100%;"></li>
+                                    <li><input type="submit" name="GoedgekeurdASC" value="Goedgekeurd" style="width:100%;"></li>
+                                    <li><input type="submit" name="AfgekeurdASC" value="Afgekeurd" style="width:100%;"></li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
                     </thead>
                     <tbody>
+
                     <?php
 
                     if(isset($_SESSION['term'])) {
@@ -278,39 +317,40 @@ var_dump($_SESSION['filter'])
                             </tr>
                         <?php }
                     }
-                        else if ($get_filled_info !== null && isset($get_filled_info)) {
-                            foreach ($get_filled_info as $upload) { ?>
-                                <tr>
-                                    <td>
-                                        <?= $upload['id'] ?>
-                                    </td>
-                                    <td>
-                                        <a href="?page=item&id=<?= $upload['id'] ?>"><?= $upload['onderwerp'] ?></a>
-                                    </td>
-                                    <td>
-                                        <?= $upload['verstuurder'] ?>
-                                    </td>
-                                    <td>
-                                        <?= $upload['naam'] ?>
-                                    </td>
-                                    <td>
-                                        <?= date("d-m-Y", strtotime($upload['datum'])); ?>
-                                    </td>
-                                    <td>
-                                        <?php if ($upload['verified'] == 1) { ?>
-                                            <img alt="Gezien" style="width: 50px; height: 50px;"
-                                                 src="../public/icons/gezien.png">
-                                        <?php } elseif ($upload['verified'] == 2) { ?>
-                                            <img alt="Geaccepteerd" src="../public/icons/akkoord.png">
-                                        <?php } elseif ($upload['verified'] == 3) { ?>
-                                            <img alt="Geweigerd" src="../public/icons/geweigerd.png">
-                                        <?php } else { ?>
-                                            <img alt="Uploaded" src="../public/icons/uploaded.png">
-                                        <?php } ?>
-                                    </td>
-                                </tr>
-                            <?php }
-                        }
+                    else if ($get_filled_info !== null && isset($get_filled_info)) {
+                        foreach ($get_filled_info as $upload) {
+                            ?>
+                            <tr>
+                                <td>
+                                    <?= $upload['id'] ?>
+                                </td>
+                                <td>
+                                    <a href="?page=item&id=<?= $upload['id'] ?>"><?= $upload['onderwerp'] ?></a>
+                                </td>
+                                <td>
+                                    <?= $upload['verstuurder'] ?>
+                                </td>
+                                <td>
+                                    <?= $upload['naam'] ?>
+                                </td>
+                                <td>
+                                    <?= date("d-m-Y", strtotime($upload['datum'])); ?>
+                                </td>
+                                <td>
+                                    <?php if ($upload['verified'] == 1) { ?>
+                                        <img alt="Gezien" style="width: 50px; height: 50px;"
+                                             src="../public/icons/gezien.png">
+                                    <?php } elseif ($upload['verified'] == 2) { ?>
+                                        <img alt="Geaccepteerd" src="../public/icons/akkoord.png">
+                                    <?php } elseif ($upload['verified'] == 3) { ?>
+                                        <img alt="Geweigerd" src="../public/icons/geweigerd.png">
+                                    <?php } else { ?>
+                                        <img alt="Uploaded" src="../public/icons/uploaded.png">
+                                    <?php } ?>
+                                </td>
+                            </tr>
+                        <?php }
+                    }
                     else {
                         ?>
                         <tr>
@@ -323,15 +363,17 @@ var_dump($_SESSION['filter'])
                     ?>
                     </tbody>
                 </table>
-                <ul class="pagination">
-                    <?php for ( $i = 0; $i < ceil( $count / $limit ); $i++ ) : ?>
-                        <li>
-                            <a href="<?= "index.php?page=overzicht&offset=". $limit * $i ?>"> <?= ( $i + 1 ) ?> </a>
-                        </li>
-                    <?php endfor; ?>
-                </ul>
-                <hr size="1">
-            </div>
+            </form>
+
+            <ul class="pagination">
+                <?php for ( $i = 0; $i < ceil( $count / $limit ); $i++ ) : ?>
+                    <li>
+                        <a href="<?= "index.php?page=overzicht&offset=". $limit * $i ?>"> <?= ( $i + 1 ) ?> </a>
+                    </li>
+                <?php endfor; ?>
+            </ul>
+            <hr size="1">
         </div>
     </div>
+</div>
 </div>

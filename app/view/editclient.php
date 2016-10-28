@@ -31,13 +31,14 @@ if(isset($_POST['submit'])){
 
     $clientinfo = [
         'id' => intval($_POST['id']),
-        'naam' => strip_tags( $naam ),
+        'name' => strip_tags( $naam ),
         'email' => strip_tags( $email ),
         'password' => $token,
         'bedrijfsnaam' => strip_tags( $bedrijfsnaam ),
         'adres' => strip_tags( $adres ),
         'postcode' => strip_tags( $postcode ),
-        'plaats' => strip_tags( $plaats )
+        'plaats' => strip_tags( $plaats ),
+        'permgroup' => $_POST['permgroup']
     ];
 
     $client->update($clientinfo);
@@ -77,6 +78,8 @@ if(isset($_POST['submit'])){
 
                     <label>Plaats<span style="color:#bc2d4c">*</span></label>
                     <input required type="text" name="plaats" size="50" value="<?= $myclient['plaats']; ?>"><br><br>
+
+                    <input type="hidden" name="permgroup" value="2">
 
                     <br><br>
                     <input type="submit" name="submit" size="50" value="Versturen">

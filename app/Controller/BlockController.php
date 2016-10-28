@@ -33,9 +33,9 @@ class BlockController
      * @return array|null
      */
 
-    public function getUploads($table, $filter, $limit = null, $offset = null)
+    public function getUploads($table, $filter, $limit = null, $offset = null, $status = null)
     {
-        return $this->model->getUploads($table, $filter, $limit, $offset);
+        return $this->model->getUploads($table, $filter, $limit, $offset, $status);
     }
 
     /**

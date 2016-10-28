@@ -20,7 +20,7 @@ $get_filled_info = $user->getAllClients($limit, $offset, 1);
                 <br>
                 <br>
                 <a href="index.php?page=newclient"><div id="NewClientButton">Nieuwe klant</div></a>
-                <table id="overzicht" class="sortable">
+                <table id="overzicht" class="sortable table-striped">
                     <br><br>
                     <thead>
                         <tr>

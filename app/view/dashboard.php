@@ -83,7 +83,7 @@ if($geweigerd_percent==0){
                 {
                     ?>
                     <tr>
-                        <td class="alert alert-danger" role="alert">Er zijn nog geen items. Voeg een item toe op de upload pagina.</td>
+                        <div class="alert alert-danger" role="alert">Er is nog geen item om weer te geven. Voeg een item toe op de uploadpagina.</div>
                     </tr>
                     <?php
                 }

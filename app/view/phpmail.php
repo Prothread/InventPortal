@@ -26,7 +26,7 @@
                         </fieldset><br>
 
                         <label>Beschrijving<span style="color:#bc2d4c">*</span></label>
-                        <input maxlength="500" required class="TaDescription" name="additionalcontent" size="50" value="<?php if( isset($mailinfo['description']) ){echo $mailinfo['description'];}?>">
+                        <input maxlength="500" required class="TaDescriptionActive" name="additionalcontent" size="50" value="<?php if( isset($mailinfo['description']) ){echo $mailinfo['description'];}?>">
                         <br><br>
                         <a href="index.php?page=newclient"><div id="NewClientButton">Nieuwe klant</div></a>
                         <br>
@@ -39,7 +39,7 @@
                         <br>
 
                         <input type="hidden" name="frommail" id="MailFrom" value="<?php if( isset($mailinfo['title']) ){ echo $mailinfo['email'];}?>">
-                        <input type="hidden" name="mailto" id="" value="gijsvdabeele@gmail.com">
+                        <input type="hidden" name="mailto" id="" value="valckxj@outlook.com">
                         <input type="hidden" name="fromname" id="" value="Gijs van den Abeele">
                         <input type="hidden" name="mailname" id="" value="Jeffrey">
                         <br>

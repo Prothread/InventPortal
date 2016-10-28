@@ -15,9 +15,12 @@ class DbBlock extends Database
      * @return array|null
      */
 
-    public function getUploads($table, $filter, $limit = null, $offset = null){
+    public function getUploads($table, $filter, $limit = null, $offset = null, $status){
         $sql = "SELECT * FROM `mail`";
 
+        if($status) {
+            $sql .= " WHERE verified = '{$status}'";
+        }
         if($table) {
             $sql .= " ORDER BY $table";
         }
@@ -30,6 +33,7 @@ class DbBlock extends Database
         if($offset) {
             $sql .= " OFFSET {$offset}";
         }
+        var_dump($sql);
 
         $result = $this->dbQuery($sql);
 
