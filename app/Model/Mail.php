@@ -214,7 +214,7 @@ class Mail {
      * @return mixed
      */
 
-    public function getUserMailByUserId($id, $limit, $offset)
+    public function getUserMailByUserId($id, $limit = null, $offset = null)
     {
         return $this->db->getUserMailByUserId($id, $limit, $offset);
     }

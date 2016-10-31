@@ -126,7 +126,7 @@ class MailController
      * @return mixed
      */
 
-    public function getUserMailByUserId($id, $limit, $offset)
+    public function getUserMailByUserId($id, $limit = null, $offset = null)
     {
         return $this->model->getUserMailByUserId($id, $limit, $offset);
     }

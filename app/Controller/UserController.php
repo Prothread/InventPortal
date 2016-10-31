@@ -209,9 +209,9 @@ class UserController
      * @return mixed
      */
 
-    public function searchTable($term, $limit = null, $offset = null, $ids = null)
+    public function searchTable($term, $limit = null, $offset = null, $table = null, $filter = null, $ids = null, $status = null)
     {
-        return $this->model->searchTable($term, $limit , $offset, $ids);
+        return $this->model->searchTable($term, $limit , $offset, $table, $filter, $ids, $status);
     }
 
 }

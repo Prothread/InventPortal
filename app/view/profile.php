@@ -47,6 +47,82 @@ $items = new MailController();
 
 
 
+$table = 'id';
+$status = '';
+$filter = 'DESC';
+
+//Filter onderwerp drodpown
+if(isset($_POST['OnderwerpASC'])) {
+    $filter = 'ASC';
+    $table = 'Onderwerp';
+}
+if(isset($_POST['OnderwerpDESC'])) {
+    $filter = 'DESC';
+    $table = 'Onderwerp';
+}
+
+//Filter verstuurder dropdown
+if(isset($_POST['VerstuurderASC'])) {
+    $filter = 'ASC';
+    $table = 'Verstuurder';
+}
+if(isset($_POST['VerstuurderDESC'])) {
+    $filter = 'DESC';
+    $table = 'Verstuurder';
+}
+
+//Filter Naam klant dropdwon
+if(isset($_POST['NaamklASC'])) {
+    $filter = 'ASC';
+    $table = 'naam';
+}
+if(isset($_POST['NaamklDESC'])) {
+    $filter = 'DESC';
+    $table = 'naam';
+}
+
+//Filter Datum dropdown
+if(isset($_POST['DatumASC'])) {
+    $filter = 'ASC';
+    $table = 'datum';
+}
+if(isset($_POST['DatumDESC'])) {
+    $filter = 'DESC';
+    $table = 'datum';
+}
+
+//Filter Status dropdown
+if(isset($_POST['StatusASC'])) {
+    $filter = 'ASC';
+    $table = 'verified';
+}
+if(isset($_POST['StatusDESC'])) {
+    $filter = 'DESC';
+    $table = 'verified';
+}
+
+if(isset($_POST['OpenASC'])) {
+    $filter = 'ASC';
+    $status = '0';
+    $table = 'verified';
+}
+if(isset($_POST['GezienASC'])) {
+    $filter = 'ASC';
+    $status = '1';
+    $table = 'verified';
+}
+if(isset($_POST['GoedgekeurdASC'])) {
+    $filter = 'ASC';
+    $status = '2';
+    $table = 'verified';
+}
+if(isset($_POST['AfgekeurdASC'])) {
+    $filter = 'ASC';
+    $status = '3';
+    $table = 'verified';
+}
+
+
 //Zet alle mails in een array met een offset en een limit
     $getAllUserItems = $items->getUserMailByUserId($userid, $limit, $offset);
     foreach($getAllUserItems as $UserItem) {
@@ -66,7 +142,6 @@ $items = new MailController();
         $TheMails[] = intval( $AllMails['id'] );
     }
 $searchMail = (implode(",", $TheMails));
-
 
 if(isset($_POST['sub'])) {
     $mysqli = mysqli_connect();
@@ -116,7 +191,7 @@ if(isset($term)) {
                 </div>
                 <!--<input type="text" size="50" id="TableInput" onkeyup="searchTable()" placeholder="Zoek een product...">-->
 
-                <form method="post" action="?page=profile">
+                <form method="post" action="?page=gebruikersoverzicht">
                     <input type="text" size="50" id="TableInput" name="term" placeholder="<?php if(isset($term)){ echo 'Gesorteerd op: ' . $term;} else { echo 'Zoek een product..'; }?>">
                     <input type="submit" name="sub">
                 </form>
@@ -154,22 +229,82 @@ if(isset($term)) {
                 </ul>
             </div>
 
-            <table id="overzicht" class="sortable table-striped">
+            <form action="?page=gebruikersoverzicht" method="post">
+            <table id="overzicht" class="table-striped">
                 <thead>
                 <tr>
                     <td><b>ID</b></td>
-                    <td><b>Onderwerp</b></td>
-                    <td><b>Verstuurder</b></td>
-                    <td><b>Naam klant</b></td>
-                    <td><b>Datum</b></td>
-                    <td><b>Status</b></td>
+
+                    <td>
+                        <div class="btn-group">
+                            <button type="button" style="width: 100%;" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span style="color: #bb2c4c;">Onderwerp </span> <span style="color: #bb2c4c" class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><input type="submit" name="OnderwerpASC" value="A-Z" style="width:100%;"></li>
+                                <li><input type="submit" name="OnderwerpDESC" value="Z-A" style="width:100%;"></li>
+                            </ul>
+                        </div>
+                    </td>
+
+                    <td>
+                        <div class="btn-group">
+                            <button type="button" style="width: 100%;" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span style="color: #bb2c4c;">Verstuurder </span> <span style="color: #bb2c4c" class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><input type="submit" name="VerstuurderASC" value="A-Z" style="width:100%;"></li>
+                                <li><input type="submit" name="VerstuurderDESC" value="Z-A" style="width:100%;"></li>
+                            </ul>
+                        </div>
+                    </td>
+
+                    <td>
+                        <div class="btn-group">
+                            <button type="button" style="width: 100%;" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span style="color: #bb2c4c;">Naam klant </span> <span style="color: #bb2c4c" class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><input type="submit" name="NaamklASC" value="A-Z" style="width:100%;"></li>
+                                <li><input type="submit" name="NaamklDESC" value="Z-A" style="width:100%;"></li>
+                            </ul>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="btn-group">
+                            <button type="button" style="width: 100%;" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span style="color: #bb2c4c;">Datum </span> <span style="color: #bb2c4c" class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><input type="submit" name="DatumASC" value="Oud-Nieuw" style="width:100%;"></li>
+                                <li><input type="submit" name="DatumDESC" value="Nieuw-Oud" style="width:100%;"></li>
+                            </ul>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="btn-group">
+                            <button type="button" style="width: 100%;" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span style="color: #bb2c4c;">Status </span> <span style="color: #bb2c4c" class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><input type="submit" name="StatusASC" value="Oud-Nieuw" style="width:100%;"></li>
+                                <li><input type="submit" name="StatusDESC" value="Nieuw-Oud" style="width:100%;"></li>
+                                <br />
+                                <li><input type="submit" name="OpenASC" value="Open" style="width:100%;"></li>
+                                <li><input type="submit" name="GezienASC" value="Gezien"" style="width:100%;"></li>
+                                <li><input type="submit" name="GoedgekeurdASC" value="Goedgekeurd" style="width:100%;"></li>
+                                <li><input type="submit" name="AfgekeurdASC" value="Afgekeurd" style="width:100%;"></li>
+                            </ul>
+                        </div>
+                    </td>
                 </tr>
                 </thead>
                 <tbody>
                 <?php
                 if( isset($_SESSION['term']) ) {
-                    $count = count( $user->searchTable($_SESSION['term'], 0, 0, $searchMail) );
-                    $searchtable = $user->searchTable($_SESSION['term'], $limit, $offset, $searchMail);
+                    $count = count( $user->searchTable($_SESSION['term'], 0, 0, $table, $filter, $searchMail, $status) );
+                    $searchtable = $user->searchTable($_SESSION['term'], $limit, $offset, $table, $filter, $searchMail, $status);
+
                     if (!empty($searchtable)) {
                         foreach ($searchtable as $upload) {
                             ?>
@@ -258,6 +393,7 @@ if(isset($term)) {
                 ?>
                 </tbody>
             </table>
+            </form>
             <ul class="pagination">
                 <?php for ( $i = 0; $i < ceil( $count / $limit ); $i++ ) : ?>
                     <li>

@@ -236,18 +236,41 @@ class DbUser extends Database
      * @return array|null
      */
 
-    public function searchTable($term, $limit, $offset, $ids = null)
+    public function searchTable($term, $limit, $offset, $table = null, $filter = null, $ids = null, $status)
     {
         $sql = "SELECT * FROM mail ";
 
         if($ids) {
-            $sql .= "WHERE `id` IN ($ids) AND onderwerp LIKE '%" . $term . "%' ";
-            $sql .= " OR `id` IN ($ids) AND verstuurder LIKE '%" . $term . "%'";
-            $sql .= " OR `id` IN ($ids) AND naam LIKE '%" . $term . "%'";
-            $sql .= " OR `id` IN ($ids) AND datum LIKE '%" . $term . "%'";
+            if($status) {
+                $sql .= "WHERE `id` IN ($ids) AND onderwerp LIKE '%" . $term . "%' AND verified = '". $status ."'";
+                $sql .= " OR `id` IN ($ids) AND verstuurder LIKE '%" . $term . "%' AND verified = '". $status ."'";
+                $sql .= " OR `id` IN ($ids) AND naam LIKE '%" . $term . "%' AND verified = '". $status ."'";
+                $sql .= " OR `id` IN ($ids) AND datum LIKE '%" . $term . "%' AND verified = '". $status ."'";
+            }
+            else {
+                $sql .= "WHERE `id` IN ($ids) AND onderwerp LIKE '%" . $term . "%' ";
+                $sql .= " OR `id` IN ($ids) AND verstuurder LIKE '%" . $term . "%'";
+                $sql .= " OR `id` IN ($ids) AND naam LIKE '%" . $term . "%'";
+                $sql .= " OR `id` IN ($ids) AND datum LIKE '%" . $term . "%'";
+            }
         }
         else {
-            $sql .= " WHERE onderwerp LIKE '".$term."' OR verstuurder LIKE '".$term."' OR naam LIKE '".$term."' OR datum LIKE '".$term."'";
+            if($status) {
+                $sql .= " WHERE onderwerp LIKE '%".$term."%' AND verified = '". $status ."'";
+                $sql .= " OR verstuurder LIKE '%".$term."%' AND verified = '". $status ."'";
+                $sql .= " OR naam LIKE '%".$term."%' AND verified = '". $status ."'";
+                $sql .= " OR datum LIKE '%".$term."%' AND verified = '". $status ."'";
+            }
+            else {
+                $sql .= " WHERE onderwerp LIKE '%" . $term . "%' OR verstuurder LIKE '%" . $term . "%' OR naam LIKE '%" . $term . "%' OR datum LIKE '%" . $term . "%'";
+            }
+        }
+
+        if($table) {
+            $sql .= " ORDER BY $table";
+        }
+        if($filter) {
+            $sql .= " $filter";
         }
 
         if($limit) {
