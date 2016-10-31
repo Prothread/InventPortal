@@ -69,6 +69,7 @@ if (isset($_FILES['myFile'])) {
         if ($error == 0) {
 
             $unique_name = pathinfo($test, PATHINFO_FILENAME)."_".( $imageId ).'.'.$imageFileType;
+            $unique_name = preg_replace('/\s+/', '-', $unique_name);
             $uniqfile = $target_dir . $unique_name;
 
             array_push($unique_names, $unique_name);

@@ -138,32 +138,23 @@ if(isset($term)) {
                     <br>
                     <div class="progress">
                         <div class="progress-bar progress-bar-success progress-bar-striped active" style="min-width: 5%;width: <?= $geaccepteerd_percent ?>%">
-                            <a id="statusbartext" href="#"><span class="glyphicon glyphicon-ok-sign"></span>  <span class="badge"><?= $get_items_geaccepteerd['COUNT(status)'] ?></span></a>
+                            <a id="statusbartext" href="#" data-toggle="tooltip" title="Het aantal goedgekeurde items"><span class="glyphicon glyphicon-ok-sign"></span>  <span class="badge"><?= $get_items_geaccepteerd['COUNT(status)'] ?></span></a>
                         </div>
                         <div class="progress-bar progress-bar-danger progress-bar-striped active" style="min-width: 5%;width: <?= $geweigerd_percent ?>%">
-                            <a id="statusbartext" href="#"><span class="glyphicon glyphicon-remove-sign"></span>  <span class="badge"><?= $get_items_geweigerd['COUNT(status)'] ?></span></a>
+                            <a id="statusbartext" href="#" data-toggle="tooltip" title="Het aantal afgekeurde items"><span class="glyphicon glyphicon-remove-sign"></span>  <span class="badge"><?= $get_items_geweigerd['COUNT(status)'] ?></span></a>
                         </div>
                         <div class="progress-bar progress-bar-warning progress-bar-striped active" style="min-width: 5%;width: <?= $openstaand_percent ?>%">
-                            <a id="statusbartext" href="#"><span class="glyphicon glyphicon-question-sign"></span>  <span class="badge"><?= $get_items_openstaand['COUNT(status)'] + $get_items_bekeken['COUNT(status)'] ?></span></a>
+                            <a id="statusbartext" href="#" data-toggle="tooltip" title="In afwachting van"><span class="glyphicon glyphicon-question-sign"></span>  <span class="badge"><?= $get_items_openstaand['COUNT(status)'] + $get_items_bekeken['COUNT(status)'] ?></span></a>
                         </div>
-                    </div>
-                    <div class="btn-group">
-                        <button type="button" style="width: 95px;" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                            <span style="color: #bb2c4c;">Legenda </span> <span style="color: #bb2c4c" class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a href="#" class="glyphicon glyphicon-ok-sign"> Goedgekeurd</a></li>
-                            <li><a href="#" class="glyphicon glyphicon-remove-sign"> Geweigerd</a></li>
-                            <li><a href="#" class="glyphicon glyphicon-question-sign"> Open</a></li>
-                        </ul>
-                    </div>
+                        </div>
                 </div>
                 <!--<input type="text" size="50" id="TableInput" onkeyup="searchTable()" placeholder="Zoek een product...">-->
 
                 <form method="post" action="?page=overzicht">
-                    <input type="text" size="50" id="TableInput" name="term" placeholder="<?php if(isset($term)){ echo 'Gesorteerd op: ' . $term;} else { echo 'Zoek een product..'; }?>">
+                    <input type="text" size="50" id="TableInput" name="term" placeholder="<?php if(isset($_SESSION['term'])){ echo 'Gesorteerd op: ' . $_SESSION['term'];} else { echo 'Zoek een product..'; }?>">
                     <input id="SendSearch" value="" type="submit" name="sub">
                 </form>
+                <br />
 
                 <div id="form-content"></div>
 
@@ -186,10 +177,10 @@ if(isset($term)) {
 
             </div>
 
-            <br><br>
+            <br>
 
             <div class="btn-group">
-                <button type="button" style="width: 95px;" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <button type="button" style="width: 95px; margin-left: 13px;" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <span style="color: #bb2c4c;">Legenda </span> <span style="color: #bb2c4c" class="caret"></span>
                 </button>
                 <ul class="dropdown-menu">
@@ -199,7 +190,7 @@ if(isset($term)) {
                     <li><a href="#"><img alt="Uploaded" src="../public/icons/uploaded.png">   Het item is geüpload.</a></li>
                 </ul>
             </div>
-
+            <br /><br />
             <form action="?page=overzicht" method="post">
 
                 <table id="overzicht" class="table-striped">
@@ -213,8 +204,9 @@ if(isset($term)) {
                                     <span style="color: #bb2c4c;">Onderwerp </span> <span style="color: #bb2c4c" class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><input type="submit" name="OnderwerpASC" value="A-Z" style="width:100%;"></li>
-                                    <li><input type="submit" name="OnderwerpDESC" value="Z-A" style="width:100%;"></li>
+                                    <li><input type="submit" id="filterbutton" name="OnderwerpASC" value="A-Z" style="width:100%;"></li>
+                                    <br>
+                                    <li><input type="submit" id="filterbutton" name="OnderwerpDESC" value="Z-A" style="width:100%;"></li>
                                 </ul>
                             </div>
                         </td>
@@ -225,8 +217,9 @@ if(isset($term)) {
                                     <span style="color: #bb2c4c;">Verstuurder </span> <span style="color: #bb2c4c" class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><input type="submit" name="VerstuurderASC" value="A-Z" style="width:100%;"></li>
-                                    <li><input type="submit" name="VerstuurderDESC" value="Z-A" style="width:100%;"></li>
+                                    <li><input type="submit" id="filterbutton" name="VerstuurderASC" value="A-Z" style="width:100%;"></li>
+                                    <br>
+                                    <li><input type="submit" id="filterbutton" name="VerstuurderDESC" value="Z-A" style="width:100%;"></li>
                                 </ul>
                             </div>
                         </td>
@@ -237,8 +230,9 @@ if(isset($term)) {
                                     <span style="color: #bb2c4c;">Naam klant </span> <span style="color: #bb2c4c" class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><input type="submit" name="NaamklASC" value="A-Z" style="width:100%;"></li>
-                                    <li><input type="submit" name="NaamklDESC" value="Z-A" style="width:100%;"></li>
+                                    <li><input type="submit" id="filterbutton" name="NaamklASC" value="A-Z" style="width:100%;"></li>
+                                    <br>
+                                    <li><input type="submit" id="filterbutton" name="NaamklDESC" value="Z-A" style="width:100%;"></li>
                                 </ul>
                             </div>
                         </td>
@@ -248,8 +242,9 @@ if(isset($term)) {
                                     <span style="color: #bb2c4c;">Datum </span> <span style="color: #bb2c4c" class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><input type="submit" name="DatumASC" value="Oud-Nieuw" style="width:100%;"></li>
-                                    <li><input type="submit" name="DatumDESC" value="Nieuw-Oud" style="width:100%;"></li>
+                                    <li><input type="submit" id="filterbutton" name="DatumASC" value="Oud-Nieuw" style="width:100%;"></li>
+                                    <br>
+                                    <li><input type="submit" id="filterbutton" name="DatumDESC" value="Nieuw-Oud" style="width:100%;"></li>
                                 </ul>
                             </div>
                         </td>
@@ -259,13 +254,17 @@ if(isset($term)) {
                                     <span style="color: #bb2c4c;">Status </span> <span style="color: #bb2c4c" class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><input type="submit" name="StatusASC" value="Oud-Nieuw" style="width:100%;"></li>
-                                    <li><input type="submit" name="StatusDESC" value="Nieuw-Oud" style="width:100%;"></li>
+                                    <li><input type="submit" id="filterbutton" name="StatusASC" value="Oud-Nieuw" style="width:100%;"></li>
+                                    <br>
+                                    <li><input type="submit" id="filterbutton" name="StatusDESC" value="Nieuw-Oud" style="width:100%;"></li>
                                     <br />
-                                    <li><input type="submit" name="OpenASC" value="Open" style="width:100%;"></li>
-                                    <li><input type="submit" name="GezienASC" value="Gezien"" style="width:100%;"></li>
-                                    <li><input type="submit" name="GoedgekeurdASC" value="Goedgekeurd" style="width:100%;"></li>
-                                    <li><input type="submit" name="AfgekeurdASC" value="Afgekeurd" style="width:100%;"></li>
+                                    <li><input type="submit" id="filterbutton" name="OpenASC" value="Open" style="width:100%;"></li>
+                                    <br>
+                                    <li><input type="submit" id="filterbutton" name="GezienASC" value="Gezien" style="width:100%;"></li>
+                                    <br>
+                                    <li><input type="submit" id="filterbutton" name="GoedgekeurdASC" value="Goedgekeurd" style="width:100%;"></li>
+                                    <br>
+                                    <li><input type="submit" id="filterbutton" name="AfgekeurdASC" value="Afgekeurd" style="width:100%;"></li>
                                 </ul>
                             </div>
                         </td>
@@ -278,7 +277,7 @@ if(isset($term)) {
                     if(isset($_SESSION['term'])) {
 
                         $count = count( $user->searchTable($_SESSION['term']) );
-                        $searchtable = $user->searchTable($_SESSION['term'], $limit, $offset);
+                        $searchtable = $user->searchTable($_SESSION['term'], $limit, $offset, $table, $filter, '', $status);
 
                         if (!empty($searchtable)) {
                             foreach ($searchtable as $upload) {
@@ -361,9 +360,9 @@ if(isset($term)) {
                     else {
                         ?>
                         <tr>
-                            <td>
+                            <div class="alert alert-danger" role="alert">
                                 Er zijn nog geen items. Voeg eerst een item toe via de upload pagina.
-                            </td>
+                            </div>
                         </tr>
                         <?php
                     }

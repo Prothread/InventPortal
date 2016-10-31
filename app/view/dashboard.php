@@ -38,26 +38,16 @@ if($geweigerd_percent==0){
                 <hr size="1">
                 <div class="well well-m">
                     <br>
-                    <div class="progress">
+                   <div class="progress">
                         <div class="progress-bar progress-bar-success progress-bar-striped active" style="min-width: 5%;width: <?= $geaccepteerd_percent ?>%">
-                            <a id="statusbartext" href="#"><span class="glyphicon glyphicon-ok-sign"></span>  <span class="badge"><?= $get_items_geaccepteerd['COUNT(status)'] ?></span></a>
+                            <a id="statusbartext" href="#" data-toggle="tooltip" title="Het aantal goedgekeurde items"><span class="glyphicon glyphicon-ok-sign"></span>  <span class="badge"><?= $get_items_geaccepteerd['COUNT(status)'] ?></span></a>
                         </div>
                         <div class="progress-bar progress-bar-danger progress-bar-striped active" style="min-width: 5%;width: <?= $geweigerd_percent ?>%">
-                            <a id="statusbartext" href="#"><span class="glyphicon glyphicon-remove-sign"></span>  <span class="badge"><?= $get_items_geweigerd['COUNT(status)'] ?></span></a>
+                            <a id="statusbartext" href="#" data-toggle="tooltip" title="Het aantal afgekeurde items"><span class="glyphicon glyphicon-remove-sign"></span>  <span class="badge"><?= $get_items_geweigerd['COUNT(status)'] ?></span></a>
                         </div>
                         <div class="progress-bar progress-bar-warning progress-bar-striped active" style="min-width: 5%;width: <?= $openstaand_percent ?>%">
-                            <a id="statusbartext" href="#"><span class="glyphicon glyphicon-question-sign"></span>  <span class="badge"><?= $get_items_openstaand['COUNT(status)'] + $get_items_bekeken['COUNT(status)'] ?></span></a>
+                            <a id="statusbartext" href="#" data-toggle="tooltip" title="In afwachting van"><span class="glyphicon glyphicon-question-sign"></span>  <span class="badge"><?= $get_items_openstaand['COUNT(status)'] + $get_items_bekeken['COUNT(status)'] ?></span></a>
                         </div>
-                    </div>
-                    <div class="btn-group">
-                        <button type="button" style="width: 95px;" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                            <span style="color: #bb2c4c;">Legenda </span> <span style="color: #bb2c4c" class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a href="#" class="glyphicon glyphicon-ok-sign"> Goedgekeurd</a></li>
-                            <li><a href="#" class="glyphicon glyphicon-remove-sign"> Geweigerd</a></li>
-                            <li><a href="#" class="glyphicon glyphicon-question-sign"> Open</a></li>
-                        </ul>
                     </div>
                 </div>
 

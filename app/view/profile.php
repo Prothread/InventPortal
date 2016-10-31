@@ -287,13 +287,17 @@ if(isset($term)) {
                                 <span style="color: #bb2c4c;">Status </span> <span style="color: #bb2c4c" class="caret"></span>
                             </button>
                             <ul class="dropdown-menu">
-                                <li><input type="submit" name="StatusASC" value="Oud-Nieuw" style="width:100%;"></li>
-                                <li><input type="submit" name="StatusDESC" value="Nieuw-Oud" style="width:100%;"></li>
+                                <li><input type="submit" id="filterbutton" name="StatusASC" value="Oud-Nieuw" style="width:100%;"></li>
+                                <br>
+                                <li><input type="submit" id="filterbutton" name="StatusDESC" value="Nieuw-Oud" style="width:100%;"></li>
                                 <br />
-                                <li><input type="submit" name="OpenASC" value="Open" style="width:100%;"></li>
-                                <li><input type="submit" name="GezienASC" value="Gezien"" style="width:100%;"></li>
-                                <li><input type="submit" name="GoedgekeurdASC" value="Goedgekeurd" style="width:100%;"></li>
-                                <li><input type="submit" name="AfgekeurdASC" value="Afgekeurd" style="width:100%;"></li>
+                                <li><input type="submit" id="filterbutton" name="OpenASC" value="Open" style="width:100%;"></li>
+                                <br>
+                                <li><input type="submit" id="filterbutton" name="GezienASC" value="Gezien" style="width:100%;"></li>
+                                <br>
+                                <li><input type="submit" id="filterbutton" name="GoedgekeurdASC" value="Goedgekeurd" style="width:100%;"></li>
+                                <br>
+                                <li><input type="submit" id="filterbutton" name="AfgekeurdASC" value="Afgekeurd" style="width:100%;"></li>
                             </ul>
                         </div>
                     </td>

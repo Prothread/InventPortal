@@ -35,7 +35,6 @@ else {
     <!-- JQuery -->
     <script src="js/jquery-1.12.4.js"></script>
     <script src="js/jquery-ui.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <link rel="stylesheet" href="css/jquery-ui.css">
 
     <script src="http://www.google.com/jsapi"></script>
@@ -70,6 +69,7 @@ else {
 </head>
 
 <body>
+<div class="se-pre-con"></div>
 <div id="header">
     <div id="MenuSide"></div>
     <div id="MenuButton">
@@ -96,9 +96,11 @@ else {
                 <a href="index.php?page=uploadoverzicht">Upload</a>
             </li>
 
+            <?php if($user->getPermission($permgroup, 'CAN_UPLOAD') == 1){ ?>
             <li class="nav-button-all">
                 <a href="index.php?page=overzicht">Overzicht</a>
             </li>
+            <?php } ?>
 
             <?php if($user->getPermission($permgroup, 'CAN_EDIT_CLIENT') == 1){ ?>
             <li class="nav-button-users">

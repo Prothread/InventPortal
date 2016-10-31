@@ -3,6 +3,30 @@
 ?>
 </div>
 
+<script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.js"></script>
+
+<script>
+    $(window).load(function() {
+        // Animate loader off screen
+        $(".se-pre-con").fadeOut("slow");;
+    });
+</script>
+
+<script>
+$(document).ready(function(){
+
+/*! Fades in page on load */
+$('body').css('display', 'none');
+$('body').fadeIn(200);
+
+});
+</script>
+<script>
+     $(document).ready(function(){
+     $('[data-toggle="tooltip"]').tooltip();   
+     });
+</script>
+
 <script>
     function searchTable() {
         // Declare variables
