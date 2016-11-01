@@ -53,6 +53,7 @@ if(!$session->exists('usr_id') && $page == 'accordering') {
 if($session->exists('usr_id')){
     if($page !== 'submit') {
         include_once '../app/view/header.php';
+
     }
 }
 
