@@ -22,11 +22,15 @@ $allitems = $get_items_geaccepteerd['COUNT(status)']+$get_items_geweigerd['COUNT
 $geaccepteerd_percent = ($get_items_geaccepteerd['COUNT(status)']/$allitems)*100;
 $geweigerd_percent =  ($get_items_geweigerd['COUNT(status)']/$allitems)*100;
 $openstaand_percent = 100-($geaccepteerd_percent+$geweigerd_percent);
+
 if($geaccepteerd_percent==0){
-    $openstaand_percent-=5;
+    ?><style type="text/css">#geaccepteerd{  display:none;  }</style><?php
 }
 if($geweigerd_percent==0){
-    $openstaand_percent-=5;
+    ?><style type="text/css">#geweigerd{  display:none;  }</style><?php
+}
+if($openstaand_percent==0){
+    ?><style type="text/css">#openstaand{  display:none;  }</style><?php
 }
 ?>
 
@@ -39,14 +43,14 @@ if($geweigerd_percent==0){
                 <div class="well well-m">
                     <br>
                    <div class="progress">
-                        <div class="progress-bar progress-bar-success progress-bar-striped active" style="min-width: 5%;width: <?= $geaccepteerd_percent ?>%">
-                            <a id="statusbartext" href="#" data-toggle="tooltip" title="Het aantal goedgekeurde items"><span class="glyphicon glyphicon-ok-sign"></span>  <span class="badge"><?= $get_items_geaccepteerd['COUNT(status)'] ?></span></a>
+                        <div class="progress-bar progress-bar-success progress-bar-striped active" style="max-width:90%;width: <?= $geaccepteerd_percent ?>%">
+                            <a id="statusbartext" href="#" data-toggle="tooltip" title="Het aantal goedgekeurde items"><span id="geaccepteerd" class="glyphicon glyphicon-ok-sign"></span>  <span class="badge"><?= $get_items_geaccepteerd['COUNT(status)'] ?></span></a>
                         </div>
-                        <div class="progress-bar progress-bar-danger progress-bar-striped active" style="min-width: 5%;width: <?= $geweigerd_percent ?>%">
-                            <a id="statusbartext" href="#" data-toggle="tooltip" title="Het aantal afgekeurde items"><span class="glyphicon glyphicon-remove-sign"></span>  <span class="badge"><?= $get_items_geweigerd['COUNT(status)'] ?></span></a>
+                        <div class="progress-bar progress-bar-danger progress-bar-striped active" style="max-width:90%;width: <?= $geweigerd_percent ?>%">
+                            <a id="statusbartext" href="#" data-toggle="tooltip" title="Het aantal afgekeurde items"><span id="geweigerd" class="glyphicon glyphicon-remove-sign"></span>  <span class="badge"><?= $get_items_geweigerd['COUNT(status)'] ?></span></a>
                         </div>
-                        <div class="progress-bar progress-bar-warning progress-bar-striped active" style="min-width: 5%;width: <?= $openstaand_percent ?>%">
-                            <a id="statusbartext" href="#" data-toggle="tooltip" title="In afwachting van"><span class="glyphicon glyphicon-question-sign"></span>  <span class="badge"><?= $get_items_openstaand['COUNT(status)'] + $get_items_bekeken['COUNT(status)'] ?></span></a>
+                        <div class="progress-bar progress-bar-warning progress-bar-striped active" style="max-width:85%;width: <?= $openstaand_percent ?>%">
+                            <a id="statusbartext" href="#" data-toggle="tooltip" title="In afwachting van"><span id="openstaand" class="glyphicon glyphicon-question-sign"></span>  <span class="badge"><?= $get_items_openstaand['COUNT(status)'] + $get_items_bekeken['COUNT(status)'] ?></span></a>
                         </div>
                     </div>
                 </div>
@@ -55,7 +59,6 @@ if($geweigerd_percent==0){
                 <?php
                 if($get_filled_info !== null) {
                     foreach ($get_filled_info as $upload) { ?>
-                        
                         <div class="col-sm-6 col-md-4">
                             <div class="thumbnail">
                                 <div class="caption">
