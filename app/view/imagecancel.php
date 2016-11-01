@@ -6,6 +6,9 @@
  * Time: 13:41
  */
 
+require_once DIR_MODEL . 'permissions.php';
+
+$user = new UserController();
 if($user->getPermission($permgroup, 'CAN_ACCORD') == 1){
 
 }

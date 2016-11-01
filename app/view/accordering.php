@@ -98,6 +98,9 @@ else {
                             }
                             else {
                                 echo $fakename['fakename'] . ', ';
+                                echo '<br />';
+                                $unique_name = pathinfo($fakename['images'], PATHINFO_FILENAME);
+                                var_dump($unique_name);
                             }
                         }?>
                     </span>
@@ -114,8 +117,7 @@ else {
                     <div id="imgakkoord" style="float:left;">
                         <div style="border:0; width: 250px; height: 320px;">
                             <a href="#img<?= $imgcount ?>">
-                                <div id="thumbnail2" style="background: url('css/proef.png') repeat, url(<?= DIR_IMAGE . $img['images']; ?>) no-repeat; background-size: 45%, cover;
-                                    background-position: 0%, 50%;"></div>
+                                <div id="thumbnail2" style="background: url('index.php?page=image&img=<?= $img['images']?>') no-repeat scroll 50% 50%;background-size:cover;"></div>
                             </a>
                         </div>
 
@@ -161,10 +163,7 @@ else {
                         </div>
                     <a href="#_" class="lightbox" id="img<?=$imgcount ?>">
                         <div id="lighter">
-                            <div id="thumbnail2" style=" background: url('css/proef.png') repeat center, url(<?= DIR_IMAGE . $img['images']; ?>) no-repeat center;
-                                background-size: 13%, contain;
-                                max-width: 100%;
-                                height:100%; "></div>
+                            <div id="thumbnail2" style=" background: url('index.php?page=image&img=<?= $img['images']?>') no-repeat scroll 50% 50%;background-size:contain;"></div>
                         </div>
                     </a>
                 <?php }

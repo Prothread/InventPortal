@@ -24,6 +24,7 @@ define("WWW_ROOT",                          "");
  define("DIR_CONTROLLER",                   WWW_ROOT."../app/Controller/");
  define("DIR_MAILER",                       WWW_ROOT."../vendor/phpmailer/");
  define("DIR_IMAGE",                        WWW_ROOT."../app/uploads/");
+ define("DIR_PUBLIC",                        WWW_ROOT."../public/css/");
 
 // DATABASE CONNECTION
  define("FILE_DB",                          DIR_CONTROLLER."Database.php");
