@@ -22,6 +22,14 @@ $upload = $uploads->getUploadById($id);
 
 $image_controller = new ImageController();
 $uploadedimages = $image_controller->getImagebyMailID($upload['id']);
+
+
+$checknewarray = array();
+foreach ($uploadedimages as $img) {
+    $isverified = $image_controller->getImageVerify($img['id']);
+    array_push($checknewarray, $isverified['verify']);
+}
+
 ?>
 
 <div id="Mail">
@@ -50,8 +58,7 @@ $uploadedimages = $image_controller->getImagebyMailID($upload['id']);
                                         -->
 
                                     <a href="#img<?= $imgcount ?>">
-                                        <div id="thumbnail2" style="background: url('css/proef.png') repeat, url(<?= DIR_IMAGE . $img['images']; ?>) no-repeat; background-size: 45%, cover;
-                                            background-position: 0%, 50%;"></div>
+                                        <div id="thumbnail2" style="background: url('index.php?page=image&img=<?= $img['images']?>') no-repeat scroll 50% 50%;background-size:cover;"></div>
                                     </a>
                                 </div>
                                 <br />
@@ -84,10 +91,7 @@ $uploadedimages = $image_controller->getImagebyMailID($upload['id']);
                             </div>
                             <a href="#_" class="lightbox" id="img<?=$imgcount ?>">
                                 <div id="lighter" class="w3-animate-opacity">
-                                    <div id="thumbnail2" style=" background: url('css/proef.png') repeat center, url(<?= DIR_IMAGE . $img['images']; ?>) no-repeat center;
-                                        background-size: 13%, contain;
-                                        max-width: 100%;
-                                        height:100%; "></div>
+                                    <div id="thumbnail2" style="background: url('index.php?page=image&img=<?= $img['images']?>') no-repeat scroll 50% 50%;background-size:contain;"></div>
                                 </div>
                             </a>
                         <?php }

@@ -1,13 +1,7 @@
 <?php
 #VERIFIES THE MAIL SERVER
 
-if($user->getPermission($permgroup, 'CAN_ACCORD') == 1){
-
-}
-else {
-    header('Location: index.php');
-    Session::flash('error', 'U heeft hier geen rechten voor.');
-}
+require_once 'permissions.php';
 
 /**
  * CREATE Session
@@ -112,6 +106,15 @@ if( isset( $_GET['id'] ) && isset( $mailkey ) ) {
     }
 
     $session->setUserId( $userid );
+
+    $user = new UserController();
+    if($user->getPermission($permgroup, 'CAN_ACCORD') == 1){
+
+    }
+    else {
+        header('Location: index.php');
+        Session::flash('error', 'U heeft hier geen rechten voor.');
+    }
 
     /**
      * Redirect to the next page

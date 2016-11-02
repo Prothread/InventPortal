@@ -11,6 +11,9 @@ $session =  new Session();
 if($user->getPermission($permgroup, 'CAN_ACCORD') == 1){
 
 }
+else if($user->getPermission($permgroup, 'CAN_EDIT_ACCORD')) {
+
+}
 else {
     header('Location: index.php');
     Session::flash('error', 'U heeft hier geen rechten voor.');

@@ -35,6 +35,7 @@ if(isset($_SESSION['usr_id'])){
 }
 else if($session->getUserId()) {
     $id = $user->getPermissionGroup($session->getUserId());
+    $id = $id['permgroup'];
 
     if($id == 1) {
         $permgroup = 'Klant';
@@ -53,8 +54,5 @@ else if($session->getUserId()) {
     }
 }
 else {
-    $permgroup = '';
+    $permgroup = 'Klant';
 }
-
-
-$t = $user->getPermission($permgroup, 'CAN_SHOW_HOME');
