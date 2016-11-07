@@ -748,10 +748,19 @@ ul.sidebar-nav {
     display: none;
   }
 }
+#NoMail {
+    width: 100%;
+    background-color: lightblue;
+    text-align: center;
+    padding: 15px;
+    font-family: cursive;
+}
 
 .sidebar-nav .nav-button-home a { background:url("../img/icons/home-white.png") no-repeat 40px 5px }
+.sidebar-nav .nav-button-overzicht a { background:url("../img/icons/person.png") no-repeat 40px 5px }
 .sidebar-nav .nav-button-upload a { background:url("../img/icons/upload-white.png") no-repeat 40px 5px }
 .sidebar-nav .nav-button-all a { background:url("../img/icons/seen-white.png") no-repeat 40px 5px }
+.sidebar-nav .nav-button-accord a { background:url("../img/icons/status-seen.png") no-repeat 40px 5px }
 .sidebar-nav .nav-button-settings a { background:url("../img/icons/settings-white.png") no-repeat 40px 5px }
 .sidebar-nav .nav-button-users a { background:url("../img/icons/person-white.png") no-repeat 40px 5px }
 .sidebar-nav .nav-button-logout a { background:url("../img/icons/logout-white.png") no-repeat 40px 7px }
@@ -760,6 +769,7 @@ ul.sidebar-nav {
 .sidebar-nav .nav-button-home a:hover { background:url("../img/icons/home-hover.png") no-repeat 40px 5px }
 .sidebar-nav .nav-button-upload a:hover { background:url("../img/icons/upload-hover.png") no-repeat 40px 5px }
 .sidebar-nav .nav-button-all a:hover { background:url("../img/icons/seen-hover.png") no-repeat 40px 5px }
+.sidebar-nav .nav-button-accord a:hover { background:url("../img/icons/status-seen-pink.png") no-repeat 40px 5px }
 .sidebar-nav .nav-button-settings a:hover { background:url("../img/icons/settings-hover.png") no-repeat 40px 5px }
 .sidebar-nav .nav-button-users a:hover { background:url("../img/icons/person-hover.png") no-repeat 40px 5px }
 .sidebar-nav .nav-button-logout a:hover { background:url("../img/icons/logout-hover.png") no-repeat 40px 7px }

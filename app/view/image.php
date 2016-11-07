@@ -18,6 +18,16 @@ if(isset($_GET['img'])) {
     switch ($ext) {
         case "pdf":
             $ctype="application/pdf";
+            $filename = 'Custom file name for the.pdf'; /* Note: Always use .pdf at the end. */
+
+            header('Content-type: application/pdf');
+            header('Content-Disposition: inline; filename="' . $filename . '"');
+            header('Content-Transfer-Encoding: binary');
+            header('Content-Length: ' . filesize($fullPath));
+            header('Accept-Ranges: bytes');
+
+            readfile($fullPath);
+            return true;
             break;
         //case "zip": $ctype="application/zip"; break;
         case "gif":

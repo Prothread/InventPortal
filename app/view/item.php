@@ -118,18 +118,23 @@ foreach ($uploadedimages as $img) {
                                             $imgcount++;
                                             ?>
                                             <div id="imgakkoord" style="float:left;">
-                                                <div style="border:0; width: 250px; height: 320px;">
-                                                    <!--
-                                        <img id="myimage" style="pointer-events: none;" height="410" width="300" border="20px solid white" src="<?php echo DIR_IMAGE.$img['images'];?>" />
-                                        <div style="position:relative; left: 28px; top: -304px; width:150px;">
-                                            <img style="pointer-events: none;z-index:5;" src="css/watermerk.png" width=250 height=200>
-                                        </div>
-                                        -->
-
-                                                    <a href="#img<?= $imgcount ?>">
-                                                        <div id="thumbnail2" style="background: url('index.php?page=image&img=<?= $img['images']?>') no-repeat scroll 50% 50%;background-size:cover;"></div>
-                                                    </a>
-                                                </div>
+                                                <a href="#img<?= $imgcount ?>">
+                                                    <script>
+                                                        var re = /(?:\.([^.]+))?$/;
+                                                        var ext = re.exec("<?= $img['images'] ?>")[1];   // "txt"
+                                                        if(ext == 'pdf') {
+                                                            document.write('<div style="border: 0; width: 350px; height: 320px;">');
+                                                            document.write('<embed onclick="#img<?= $imgcount ?>" width="350px" height="100%" src="index.php?page=image&img=<?= $img["images"]?>"></embed>');
+                                                            document.write('</div>');
+                                                        }
+                                                        else {
+                                                            document.write('<div style="border: 0; width: 250px; height: 320px;">');
+                                                            document.write('<div id="thumbnail2" style="background: url("index.php?page=image&img=<?= $img["images"]?>") no-repeat scroll 50% 50%;background-size:cover;"></div>');
+                                                            document.write('</div>');
+                                                        }
+                                                    </script>
+                                                    <!-- <div id="thumbnail2" style="background: url('index.php?page=image&img=<?= $img['images']?>') no-repeat scroll 50% 50%;background-size:cover;"></div> -->
+                                                </a>
                                                 <br />
 
                                                 <?php

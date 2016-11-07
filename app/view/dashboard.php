@@ -12,6 +12,11 @@ else {
 $uploads = new BlockController();
 $get_filled_info = $uploads->getLastSixUploads();
 
+if($get_filled_info == null) {
+    echo '<div id="NoMail">Er zijn nog geen proeven of offertes geüpload </div>';
+    return false;
+}
+
 $items = new MailController();
 $get_items_openstaand = $items->getUserMailByStatus(0);
 $get_items_bekeken = $items->getUserMailByStatus(1);

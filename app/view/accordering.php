@@ -13,8 +13,13 @@ $upload = new BlockController();
 $session = new Session();
 $image_controller = new ImageController();
 
-$myupload = $upload->getUploadById($session->getMailId());
-$uploadedimages = $image_controller->getImagebyMailID($myupload['id']);
+if($session->getMailId() !== null) {
+    $myupload = $upload->getUploadById($session->getMailId());
+    $uploadedimages = $image_controller->getImagebyMailID($myupload['id']);
+}
+else {
+    return 'Er is iets misgegaan';
+}
 
 $UID = date('dmY-G.i.s') . '-192.08.1.124';
 

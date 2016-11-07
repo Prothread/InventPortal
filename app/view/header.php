@@ -80,9 +80,14 @@ else {
     </div>
 
 <div id="NameSide">
-    <div id="UserPhoto">
+<?php if($user->getPermission($permgroup, 'CAN_SHOW_USEROVERZICHT') == 1){ ?>
+    <a href="index.php?page=gebruikersoverzicht">
+    <div id="UserPhoto" style="padding-bottom: 1px;
+    /* border-radius: 70px; */
+    background-color: #b1163a;">
+        <h3 id="LoggedInAs"><?= $myuser; ?></h3>
     </div>
-    <h3 id="LoggedInAs"><?= $myuser; ?></h3>
+<?php } ?>
 </div>
 
 
@@ -98,9 +103,9 @@ else {
                 <a href="index.php?page=dashboard">Home</a>
             </li>
 
-            <?php if($user->getPermission($permgroup, 'CAN_SHOW_USEROVERZICHT')){ ?>
+            <?php if ($user->getPermission($permgroup, 'CAN_SHOW_OVERZICHT') == 1) { ?>
                 <li class="nav-button-all">
-                    <a href="index.php?page=gebruikersoverzicht">Uw overzicht</a>
+                    <a href="index.php?page=overzicht">Overzicht</a>
                 </li>
             <?php } ?>
 
@@ -110,46 +115,37 @@ else {
                 </li>
             <?php } ?>
 
-            <h5 style="margin-left:15px;"><i style="color: #FFF;" class="glyphicon glyphicon-ok"></i>
-                <small><b><span style="color: #FFF;">ACCORDERINGEN</span></b></small>
-            </h5>
-            <?php if($user->getPermission($permgroup, 'CAN_UPLOAD') == 1){ ?>
+            <?php if ($user->getPermission($permgroup, 'CAN_UPLOAD') == 1) { ?>
                 <li class="nav-button-upload">
                     <a href="index.php?page=uploadoverzicht">Upload</a>
                 </li>
             <?php } ?>
 
-            <?php if($user->getPermission($permgroup, 'CAN_SHOW_OVERZICHT')){ ?>
-            <li class="nav-button-all">
-                <a href="index.php?page=overzicht">Overzicht</a>
-            </li>
-            <?php } ?>
-
-            <?php if($_SESSION['accord'] = '1' && $user->getPermission($permgroup, 'CAN_ACCORD')) { ?>
-            <li class="nav-button-all">
-                <a href="index.php?page=accordering">Accordering</a>
-            </li>
-            <?php } ?>
-
-            <h5 style="margin-left:15px;"><i style="color: #FFF;" class="glyphicon glyphicon-user"></i>
-                <small><b><span style="color: #FFF;">PERSONEN</span></b></small>
-            </h5>
-            <?php if($user->getPermission($permgroup, 'CAN_SHOW_KLANTPAGINA') == 1){ ?>
-
-                <li class="nav-button-users">
-                    <a href="index.php?page=manageclients">Klanten</a>
+            <?php if ($session->get('accord') == 1 && $user->getPermission($permgroup, 'CAN_ACCORD') == 1) { ?>
+                <li class="nav-button-accord">
+                    <a href="index.php?page=accordering">Accordering</a>
                 </li>
             <?php } ?>
 
-            <?php if($user->getPermission($permgroup, 'CAN_SHOW_USERS') == 1){ ?>
-                <li class="nav-button-users">
-                    <a href="index.php?page=manageusers">Gebruikers</a>
-                </li>
-            <?php } ?>
+            <?php if($user->getPermission($permgroup, 'CAN_SHOW_KLANTPAGINA') == 1 || $user->getPermission($permgroup, 'CAN_SHOW_USERS') == 1) { ?>
+                <h5 style="margin-left:15px;"><i style="color: #FFF;" class="glyphicon glyphicon-user"></i>
+                    <small><b><span style="color: #FFF;">PERSONEN</span></b></small>
+                </h5>
+                <?php if ($user->getPermission($permgroup, 'CAN_SHOW_KLANTPAGINA') == 1) { ?>
 
+                    <li class="nav-button-users">
+                        <a href="index.php?page=manageclients">Klanten</a>
+                    </li>
+                <?php } ?>
+
+                <?php if ($user->getPermission($permgroup, 'CAN_SHOW_USERS') == 1) { ?>
+                    <li class="nav-button-users">
+                        <a href="index.php?page=manageusers">Gebruikers</a>
+                    </li>
+                <?php }
+            }?>
             <br>
             <br>
-
             <li class="nav-button-logout">
                 <a href="?page=logout">Uitloggen</a>
             </li>

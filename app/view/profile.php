@@ -17,12 +17,16 @@ $limit = 10;
 $items = new MailController();
 
 // Haal gebruiker id op
-    $userid = 20;
+    $userid = $_SESSION['usr_id'];
 
 
 //Haal mail van de gebruiker op met zijn id en een status
     $myuser = $items->getUserMail($userid, 2);
 
+    if($myuser == null) {
+        echo '<div id="NoMail">U heeft nog geen proeven of offertes op uw account staan </div>';
+        return false;
+    }
 
 // Tel aantal items er zijn voor die gebruiker
     $count = $items->countUserMailByUserId($userid);
@@ -185,7 +189,7 @@ if(isset($term)) {
 
                 </div>
                 <!--<input type="text" size="50" id="TableInput" onkeyup="searchTable()" placeholder="Zoek een product...">-->
-            
+
                 <form method="post" action="?page=gebruikersoverzicht">
                     <input type="text" size="50" id="TableInput" name="term" placeholder="<?php if(isset($_SESSION['myterm'])){ echo 'Gesorteerd op: ' . $_SESSION['myterm'];} else { echo 'Zoek een product..'; }?>">
                     <input id="SendSearch" value="" type="submit" name="sub">

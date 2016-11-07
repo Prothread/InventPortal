@@ -140,6 +140,9 @@ switch($page) {
     case 'manageusers':
         include '../app/view/manageusers.php';
         break;
+    case 'pdf':
+        include '../app/view/pdf.php';
+        break;
     default:
         include '../app/view/404.php';
         break;
