@@ -76,6 +76,7 @@ $admin = $settings->getAdminSettings();
 <div class="se-pre-con"></div>
     <div id="header" style="background: <?= $admin['Header'];?>">
         <div id="MenuSide">
+            <img src="<?= DIR_PUBLIC . $admin['Logo'] ?>" style="width:auto;height:100%;" /> <!-- ../public/css/madlogo.png -->
         </div>
         <div id="MenuButton">
             <a href="#menu-toggle" class="btn btn-default" id="menu-toggle"><img src="https://cdn4.iconfinder.com/data/icons/wirecons-free-vector-icons/32/menu-alt-20.png"></a>
