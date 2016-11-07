@@ -82,6 +82,38 @@ class User
     private $UserPermGroup;
 
     /**
+     * Variabele voor de smtp setting
+     *
+     * @var $SettingSMTP
+     */
+
+    private $SettingSMTP;
+
+    /**
+     * Variabele voor de email admin setting
+     *
+     * @var $SettingEmail
+     */
+
+    private $SettingEmail;
+
+    /**
+     * Variabele voor het logo van de header
+     *
+     * @var $SettingLogo
+     */
+
+    private $SettingLogo;
+
+    /**
+     * Variabele voor de kleur van de header
+     *
+     * @var $SettingHeader
+     */
+
+    private $SettingHeader;
+
+    /**
      * Link naar de database user contructor
      *
      * User constructor.
@@ -123,6 +155,110 @@ class User
     public function getUser()
     {
         return $this->db->getUser($this);
+    }
+
+    /**
+     * Haal de admin instellingen op
+     *
+     * @return bool
+     */
+
+    public function getAdminSettings()
+    {
+        return $this->db->getAdminSettings();
+    }
+
+    /**
+     * Set de smtp setting
+     *
+     * @param $smtp
+     */
+
+    public function setSettingsSMTP($smtp)
+    {
+        $this->SettingSMTP = $smtp;
+    }
+
+    /**
+     * Set de email van de mailclient
+     *
+     * @param $mail
+     */
+
+    public function setSettingsEmail($mail)
+    {
+        $this->SettingEmail = $mail;
+    }
+
+    /**
+     * Set het logo van de header
+     *
+     * @param $logo
+     */
+
+    public function setSettingsLogo($logo)
+    {
+        $this->SettingLogo = $logo;
+    }
+
+    /**
+     * Set de kleur van de header
+     *
+     * @param $headerkleur
+     */
+
+    public function setSettingsHeader($headerkleur)
+    {
+        $this->SettingHeader = $headerkleur;
+    }
+
+    /**
+     * Haal de smtp setting op
+     *
+     * @return mixed
+     */
+
+    public function getSettingSMTP()
+    {
+        return $this->SettingSMTP;
+    }
+
+    /**
+     * Haal de email setting op
+     *
+     * @return mixed
+     */
+
+    public function getSettingEmail()
+    {
+        return $this->SettingEmail;
+    }
+
+    /**
+     * Haal de logo setting op
+     *
+     * @return mixed
+     */
+
+    public function getSettingLogo()
+    {
+        return $this->SettingLogo;
+    }
+
+    public function updateSettings()
+    {
+        return $this->db->updateSettings($this);
+    }
+
+    /**
+     * Haal de headerkleur setting op
+     *
+     * @return mixed
+     */
+
+    public function getSettingHeader()
+    {
+        return $this->SettingHeader;
     }
 
     /**

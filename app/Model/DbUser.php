@@ -66,6 +66,32 @@ class DbUser extends Database
     }
 
     /**
+     * Haal admin instellingen op
+     *
+     * @return bool
+     */
+
+    public function getAdminSettings()
+    {
+        $sql = "SELECT * FROM `settings` WHERE `id` = '0'";
+
+        if($result = $this->dbQuery($sql)) {
+            return mysqli_fetch_assoc( $result );
+        }
+        return false;
+    }
+
+    public function updateSettings(User $setting)
+    {
+        $sql = "UPDATE `settings` SET `SMTP` = '{$setting->getSettingSMTP()}', `Email` = '{$setting->getSettingEmail()}', `Logo` = '{$setting->getSettingLogo()}', `Header` = '{$setting->getSettingHeader()}'";
+
+        if($this->dbQuery($sql)) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
      * Haal de rechten van de gebruiker voor de pagina op
      *
      *

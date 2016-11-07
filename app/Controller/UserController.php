@@ -106,6 +106,37 @@ class UserController
     }
 
     /**
+     * Haal de instellingen van de admin op
+     *
+     * @return mixed
+     */
+
+    public function getAdminSettings()
+    {
+        return $this->model->getAdminSettings();
+    }
+
+    /**
+     * Setters voor de instellingen van de admin
+     *
+     * @param $settingsarray
+     * @return bool
+     */
+
+    public function updateSettings($settingsarray)
+    {
+        $this->model->setSettingsSMTP($settingsarray['SMTP']);
+        $this->model->setSettingsEmail($settingsarray['Email']);
+        $this->model->setSettingsLogo($settingsarray['Logo']);
+        $this->model->setSettingsHeader($settingsarray['Header']);
+
+        if($result = $this->model->updateSettings()) {
+            return $result;
+        }
+        return false;
+    }
+
+    /**
      * Haal de groep van rechten vande gebruiker op
      *
      * @param $id

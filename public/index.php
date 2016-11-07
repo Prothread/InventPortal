@@ -35,7 +35,7 @@ if(isset($_GET['page'])) {
 
 /**
  * If: Als er niemand ingelogd is of de pagina is niet registreren/wachtwoord vergeten of wachtwoord herstellen
- * Dan: De pagina is login
+ * Dan: De pagina si login
  *
  * Anders: de gebruiker is ingelogd en gaat naar het dashboard
  */
@@ -136,12 +136,6 @@ switch($page) {
         break;
     case 'download':
         include '../app/view/download.php';
-        break;
-    case 'manageusers':
-        include '../app/view/manageusers.php';
-        break;
-    case 'pdf':
-        include '../app/view/pdf.php';
         break;
     default:
         include '../app/view/404.php';

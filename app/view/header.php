@@ -15,6 +15,10 @@ else if( isset($user) ) {
 else {
     echo 'User';
 }
+
+$settings = new UserController();
+$admin = $settings->getAdminSettings();
+
 ?>
 
 <html lang="nl">
@@ -70,9 +74,8 @@ else {
 
 <body>
 <div class="se-pre-con"></div>
-    <div id="header">
+    <div id="header" style="background: <?= $admin['Header'];?>">
         <div id="MenuSide">
-            <img src="../public/css/madlogo.png" style="width:auto;height:auto;" />
         </div>
         <div id="MenuButton">
             <a href="#menu-toggle" class="btn btn-default" id="menu-toggle"><img src="https://cdn4.iconfinder.com/data/icons/wirecons-free-vector-icons/32/menu-alt-20.png"></a>
