@@ -145,8 +145,13 @@ if(isset($term)) {
                         <div class="progress-bar progress-bar-danger progress-bar-striped active" style="width: <?= $geweigerd_percent ?>%">
                             <a id="statusbartext" href="#" data-toggle="tooltip" title="Het aantal afgekeurde items"><span id="geweigerd" class="glyphicon glyphicon-remove-sign"></span>  <span class="badge"><?= $get_items_geweigerd['COUNT(status)'] ?></span></a>
                         </div>
+
+                        <div class="progress-bar progress-bar-warning progress-bar-striped active" style="max-width:85%;width: <?= $openstaand_percent ?>%">
+                            <a id="statusbartext" href="#" data-toggle="tooltip" title="In afwachting van beoordeling"><span id="openstaand" class="glyphicon glyphicon-question-sign"></span>  <span class="badge"><?= $get_items_openstaand['COUNT(status)'] + $get_items_bekeken['COUNT(status)'] ?></span></a>
+
                         <div class="progress-bar progress-bar-warning progress-bar-striped active" style="width: <?= $openstaand_percent ?>%">
                             <a id="statusbartext" href="#" data-toggle="tooltip" title="In afwachting van"><span id="openstaand" class="glyphicon glyphicon-question-sign"></span>  <span class="badge"><?= $get_items_openstaand['COUNT(status)'] + $get_items_bekeken['COUNT(status)'] ?></span></a>
+
                         </div>
                     </div>
                 </div>
