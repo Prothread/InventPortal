@@ -115,26 +115,22 @@ foreach ($uploadedimages as $img) {
                                         <?php
                                         $imgcount = 0;
                                         foreach ($uploadedimages as $img) {
+                                            $demimages = $img['images'];
+                                            $deimage = pathinfo($demimages);
                                             $imgcount++;
                                             ?>
                                             <div id="imgakkoord" style="float:left;">
-                                                <a href="#img<?= $imgcount ?>">
-                                                    <script>
-                                                        var re = /(?:\.([^.]+))?$/;
-                                                        var ext = re.exec("<?= $img['images'] ?>")[1];   // "txt"
-                                                        if(ext == 'pdf') {
-                                                            document.write('<div style="border: 0; width: 350px; height: 320px;">');
-                                                            document.write('<embed onclick="#img<?= $imgcount ?>" width="350px" height="100%" src="index.php?page=image&img=<?= $img["images"]?>"></embed>');
-                                                            document.write('</div>');
-                                                        }
-                                                        else {
-                                                            document.write('<div style="border: 0; width: 250px; height: 320px;">');
-                                                            document.write('<div id="thumbnail2" style="background: url("index.php?page=image&img=<?= $img["images"]?>") no-repeat scroll 50% 50%;background-size:cover;"></div>');
-                                                            document.write('</div>');
-                                                        }
-                                                    </script>
-                                                    <!-- <div id="thumbnail2" style="background: url('index.php?page=image&img=<?= $img['images']?>') no-repeat scroll 50% 50%;background-size:cover;"></div> -->
-                                                </a>
+                                                <div style="border:0; width: 250px; max-width: ; height: 320px; text-align:center">
+
+                                                    <a href="#img<?= $imgcount ?>">
+                                                        <?php if($deimage['extension'] == 'pdf') { ?>
+                                                            <embed width="100%" height="100%" src="index.php?page=image&img=<?= $img["images"]?>"></embed>
+                                                            <a href="#img<?= $imgcount ?>">PDF Lightbox</a>
+                                                        <?php } else { ?>
+                                                            <div id="thumbnail2" style="background: url('index.php?page=image&img=<?= $img['images']?>') no-repeat scroll 50% 50%;background-size:contain;"></div>
+                                                        <?php } ?>
+                                                    </a>
+                                                </div>
                                                 <br />
 
                                                 <?php
@@ -165,7 +161,11 @@ foreach ($uploadedimages as $img) {
                                             </div>
                                             <a href="#_" class="lightbox" id="img<?=$imgcount ?>">
                                                 <div id="lighter" class="w3-animate-opacity">
-                                                    <div id="thumbnail2" style="background: url('index.php?page=image&img=<?= $img['images']?>') no-repeat scroll 50% 50%;background-size:contain;"></div>
+                                                    <?php if($deimage['extension'] == 'pdf') { ?>
+                                                        <embed width="100%" height="100%" src="index.php?page=image&img=<?= $img["images"]?>"></embed>
+                                                    <?php } else { ?>
+                                                        <div id="thumbnail2" style="background: url('index.php?page=image&img=<?= $img['images']?>') no-repeat scroll 50% 50%;background-size:contain;"></div>
+                                                    <?php } ?>
                                                 </div>
                                             </a>
                                         <?php }
