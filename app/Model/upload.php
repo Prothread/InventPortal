@@ -136,7 +136,7 @@ if($error == 0) {
         /* TO, SUBJECT, CONTENT */
         $to = $email; //The 'To' field
         $subject = $title;
-        $content = "<img alt='MadalcoHeader' src='http://i68.tinypic.com/dw5a9f.png'>"."  <br/><br/>" . "Geachte " . $name . "," .
+        $content = "<img alt='MadalcoHeader' src='https://picoolio.net/images/2016/11/04/headerbgcc759.png'>"."  <br/><br/>" . "Geachte " . $name . "," .
             " <br/><br/>" . "Uw proef staat te wachten op goedkeuring in het <b>Madalco Portaal!</b>" . "<br /><br />" .
             "<b>Titel van uw proef:</b>".
             $title . "<br />" .

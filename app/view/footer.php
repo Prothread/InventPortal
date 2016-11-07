@@ -3,7 +3,198 @@
 ?>
 </div>
 
-<script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.js"></script>
+
+<script>
+        var vote;
+        $("#AccButton, #AccButton1,#AccButton2").click(function(event) {
+            vote = $(this).val();
+        });
+
+        $("form#mybuttons").submit(function(event) {
+            //$form = $(this);
+            var imgid = $(this).children('input#ImageID').val();
+            var refs = $(this).children('input#refreshcount').val();
+            var ref = '#' + 'refresh' + refs;
+
+            var dataString = $('form#mybuttons').serialize() + '&img=' + imgid + '&vote=' + vote;
+
+                $.ajax({
+                    type: "POST",
+                    url: "?page=imageverify",
+                    data: dataString,
+                    cache: false,
+                    success: function(result){
+                        $(ref).load("?page=accordering " + ref);
+                        $('#refsh').load("?page=accordering #refsh");
+                        $('#refsa').load("?page=accordering #refsa");
+                    }
+                });
+
+            event.preventDefault();
+        });
+</script>
+
+<script>
+    var vote;
+    $("#filterbutton").click(function(event) {
+        vote = $(this).val();
+    });
+
+    $("form#filterz").submit(function(event) {
+        //$form = $(this);
+        var imgid = $(this).children('input#ImageID').val();
+        var refs = $(this).children('input#refreshcount').val();
+        var ref = '#' + 'refresh' + refs;
+
+        var dataString = $('form#mybuttons').serialize() + '&img=' + imgid + '&vote=' + vote;
+
+        $.ajax({
+            type: "POST",
+            url: "?page=imageverify",
+            data: dataString,
+            cache: false,
+            success: function(result){
+                $(ref).load("?page=accordering " + ref);
+                $('#refsh').load("?page=accordering #refsh");
+                $('#refsa').load("?page=accordering #refsa");
+            }
+        });
+
+        event.preventDefault();
+    });
+</script>
+
+<script>
+    updateList = function() {
+        var input = document.getElementById('imgInp');
+        var output = document.getElementById('fileList');
+
+        output.innerHTML = '<ul>';
+        for (var i = 0; i < input.files.length; ++i) {
+            output.innerHTML += '<li>' + input.files.item(i).name + '</li>';
+        }
+        output.innerHTML += '</ul>';
+    };
+
+    function handleFileSelect(evt) {
+        var files = evt.target.files; // FileList object
+
+        // files is a FileList of File objects. List some properties.
+        var output = [];
+        for (var i = 0, f; f = files[i]; i++) {
+
+            output.push('<li><strong>', escape(f.name), '</strong> (', f.type || 'n/a', ') - ',
+                f.size, ' bytes, last modified: ',
+                f.lastModifiedDate ? f.lastModifiedDate.toLocaleDateString() : 'n/a',
+                '</li>');
+        }
+        document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
+    }
+
+    document.getElementById('imgInp').addEventListener('change', handleFileSelect, false);
+
+</script>
+
+<script>
+
+    $(function () {
+        $("#imgInp").change(function () {
+            if (typeof (FileReader) != "undefined") {
+                var dvPreview = $("#fileList");
+                dvPreview.html("");
+                var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.jpg|.jpeg|.gif|.png|.bmp)$/;
+                $($(this)[0].files).each(function () {
+                    var file = $(this);
+                    if (regex.test(file[0].name.toLowerCase())) {
+                        var reader = new FileReader();
+                        reader.onload = function (e) {
+                            var img = $("<img />");
+                            img.attr("style", "height:200px;width: 200px");
+                            img.attr("src", e.target.result);
+                            dvPreview.append(img);
+                        }
+                        reader.readAsDataURL(file[0]);
+                    } else {
+                        alert(file[0].name + " is not a valid image file.");
+                        dvPreview.html("");
+                        return false;
+                    }
+                });
+            } else {
+                alert("This browser does not support HTML5 FileReader.");
+            }
+        });
+    });
+
+</script>
+
+<script>
+    function handleFileSelect1(evt) {
+        evt.stopPropagation();
+        evt.preventDefault();
+
+        var files = evt.dataTransfer.files; // FileList object.
+
+        // files is a FileList of File objects. List some properties.
+        var output = [];
+        for (var i = 0, f; f = files[i]; i++) {
+            output.push('<li><strong>', escape(f.name), '</strong> (', f.type || 'n/a', ') - ',
+                f.size, ' bytes, last modified: ',
+                f.lastModifiedDate ? f.lastModifiedDate.toLocaleDateString() : 'n/a',
+                '</li>');
+        }
+        document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
+    }
+
+    function handleDragOver(evt) {
+        evt.stopPropagation();
+        evt.preventDefault();
+        evt.dataTransfer.dropEffect = 'copy'; // Explicitly show this is a copy.
+    }
+
+    // Setup the dnd listeners.
+    var dropZone = document.getElementById('drop_zone');
+    dropZone.addEventListener('dragover', handleDragOver, false);
+    dropZone.addEventListener('drop', handleFileSelect1, false);
+</script>
+
+<script>
+    $(document).ready(function () {
+        //Initialize tooltips
+        $('.nav-tabs > li a[title]').tooltip();
+
+        //Wizard
+        $('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
+
+            var $target = $(e.target);
+
+            if ($target.parent().hasClass('disabled')) {
+                return false;
+            }
+        });
+
+        $(".next-step").click(function (e) {
+
+            var $active = $('.wizard .nav-tabs li.active');
+            $active.next().removeClass('disabled');
+            nextTab($active);
+
+        });
+        $(".prev-step").click(function (e) {
+
+            var $active = $('.wizard .nav-tabs li.active');
+            prevTab($active);
+
+        });
+    });
+
+    function nextTab(elem) {
+        $(elem).next().find('a[data-toggle="tab"]').click();
+    }
+    function prevTab(elem) {
+        $(elem).prev().find('a[data-toggle="tab"]').click();
+    }
+</script>
 
 <script>
     $(window).load(function() {
@@ -13,18 +204,18 @@
 </script>
 
 <script>
-$(document).ready(function(){
+    $(document).ready(function(){
 
-/*! Fades in page on load */
-$('body').css('display', 'none');
-$('body').fadeIn(200);
+        /*! Fades in page on load */
+        $('body').css('display', 'none');
+        $('body').fadeIn(200);
 
-});
+    });
 </script>
 <script>
-     $(document).ready(function(){
-     $('[data-toggle="tooltip"]').tooltip();   
-     });
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip();
+    });
 </script>
 
 <script>

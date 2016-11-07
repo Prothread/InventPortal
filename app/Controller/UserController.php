@@ -187,9 +187,34 @@ class UserController
      * @return array|null
      */
 
-    public function getAllClients($limit = null, $offset = null, $permgroup)
+    public function getAllClients($table, $filter, $limit = null, $offset = null, $permgroup)
     {
-        return $this->model->getAllClients($limit, $offset, $permgroup);
+        return $this->model->getAllClients($table, $filter, $limit, $offset, $permgroup);
+    }
+
+    /**
+     * Haal alle gebruikers op die geen klant zijn
+     *
+     * @param null $limit
+     * @param null $offset
+     * @param $permgroup
+     * @return array|null
+     */
+
+    public function getAllUsersByPerm($table, $filter, $limit = null, $offset = null, $permgroup)
+    {
+        return $this->model->getAllUsersByPerm($table, $filter, $limit, $offset, $permgroup);
+    }
+
+    /**
+     * Haal aantal klanten op
+     *
+     * @return mixed
+     */
+
+    public function countClients()
+    {
+        return $this->model->countClients();
     }
 
     /**
@@ -209,9 +234,9 @@ class UserController
      * @return mixed
      */
 
-    public function searchTable($term, $limit = null, $offset = null, $table = null, $filter = null, $ids = null, $status = null)
+    public function searchTable($term, $limit = null, $offset = null, $table = null, $filter = null, $ids = null)
     {
-        return $this->model->searchTable($term, $limit , $offset, $table, $filter, $ids, $status);
+        return $this->model->searchTable($term, $limit , $offset, $table, $filter , $ids);
     }
 
 }

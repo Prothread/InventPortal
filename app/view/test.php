@@ -13,7 +13,7 @@
 
 
 <!--<div style="border:0;">
-    <img src="<?/*=  DIR_IMAGE . '4k_22.jpg' */?>" width=309 height=159 />
+    <img src="<?/*=  DIR_IMAGE . '4k_22.jpeg' */?>" width=309 height=159 />
     <div style="position:relative; left: 0px; top: -159px; width:150px;">
         <img src="css/watermerk.png" width=300 height=150>
     </div>
@@ -22,7 +22,7 @@
 <!-- thumbnail image wrapped in a link -->
 
 <a href="#img1">
-    <img src="<?= DIR_IMAGE . '4k_22.jpg'?>" class="thumbnail">
+    <img src="<?= DIR_IMAGE . '4k_22.jpeg'?>" class="thumbnail">
 
     <div id="thumbnail"></div>
     <div id="thumbnail2"></div>
@@ -32,13 +32,13 @@
         max-width: 40%;
     }
     #thumbnail {
-        background: url('css/proef.png') repeat center, url(<?= DIR_IMAGE . '4k_22.jpg'?>);
+        background: url('css/proef.png') repeat center, url(<?= DIR_IMAGE . '4k_22.jpeg'?>);
         background-size: 100%;
         max-width: 60%;
         height: 220px;
     }
     #thumbnail2 {
-        background: url('css/proef.png') repeat, url(<?= DIR_IMAGE . '4k_22.jpg'?>) ;
+        background: url('css/proef.png') repeat, url(<?= DIR_IMAGE . '4k_22.jpeg'?>) ;
         background-size: 100px, 100%;
         max-width: 60%;
         height: 220px;
@@ -81,14 +81,14 @@
     }
 
     .lightbox #thumbnail {
-        background: url('css/proef.png') repeat center, url(<?= DIR_IMAGE . '4k_22.jpg'?>);
+        background: url('css/proef.png') repeat center, url(<?= DIR_IMAGE . '4k_22.jpeg'?>);
         background-size: 100%;
         max-width: 100%;
         height:100%;
     }
 
     .lightbox #thumbnail2 {
-        background: url('css/proef.png') repeat, url(<?= DIR_IMAGE . '4k_22.jpg'?>) no-repeat;
+        background: url('css/proef.png') repeat, url(<?= DIR_IMAGE . '4k_22.jpeg'?>) no-repeat;
         background-size: 13%, 100%;
         max-width: 100%;
         height:100%;
@@ -109,7 +109,7 @@
 <a href="#_" class="lightbox" id="img1">
     <div id="lighter">
         <!--<img id="lightboximage2" src="css/proef.png">
-        <img id="lightboximage1" src="<?/*= DIR_IMAGE . '4k_22.jpg'*/?>">-->
+        <img id="lightboximage1" src="<?/*= DIR_IMAGE . '4k_22.jpeg'*/?>">-->
 
         <div id="thumbnail2"></div>
 

@@ -1,7 +1,7 @@
 <?php
 #MANAGE CLIENTS PAGE
 
-if($user->getPermission($permgroup, 'CAN_EDIT_CLIENT') == 1){
+if($user->getPermission($permgroup, 'CAN_SHOW_KLANTPAGINA') == 1){
 
 }
 else {
@@ -14,8 +14,88 @@ $user = new UserController();
 $offset = isset($_GET['offset']) ? $_GET['offset'] : 0;
 $limit = 10;
 
-$count = $user->countBlocks();
-$get_filled_info = $user->getAllClients($limit, $offset, 1);
+$table = 'id';
+$status = '';
+$filter = 'DESC';
+
+//Filter Naam klant dropdwon
+if(isset($_POST['NaamASC'])) {
+    $filter = 'ASC';
+    $table = 'naam';
+}
+if(isset($_POST['NaamDESC'])) {
+    $filter = 'DESC';
+    $table = 'naam';
+}
+
+//Filter bedrijfsnaam dropdwon
+if(isset($_POST['BedrijfnaamASC'])) {
+    $filter = 'ASC';
+    $table = 'bedrijfsnaam';
+}
+if(isset($_POST['BedrijfnaamDESC'])) {
+    $filter = 'DESC';
+    $table = 'bedrijfsnaam';
+}
+
+//Filter email dropdwon
+if(isset($_POST['EmailASC'])) {
+    $filter = 'ASC';
+    $table = 'email';
+}
+if(isset($_POST['EmailDESC'])) {
+    $filter = 'DESC';
+    $table = 'email';
+}
+
+//Filter adres dropdwon
+if(isset($_POST['AdresASC'])) {
+    $filter = 'ASC';
+    $table = 'adres';
+}
+if(isset($_POST['AdresDESC'])) {
+    $filter = 'DESC';
+    $table = 'adres';
+}
+
+//Filter postcode dropdwon
+if(isset($_POST['PostcodeASC'])) {
+    $filter = 'ASC';
+    $table = 'postcode';
+}
+if(isset($_POST['PostcodeDESC'])) {
+    $filter = 'DESC';
+    $table = 'postcode';
+}
+
+//Filter postcode dropdwon
+if(isset($_POST['PlaatsASC'])) {
+    $filter = 'ASC';
+    $table = 'plaats';
+}
+if(isset($_POST['PlaatsDESC'])) {
+    $filter = 'DESC';
+    $table = 'plaats';
+}
+
+$count = $user->countClients();
+$get_filled_info = $user->getAllClients($table, $filter, $limit, $offset, 1);
+//$get_filled_info = $uploads->getUploads($table, $filter, $limit, $offset, $status);
+
+if(isset($_POST['sub'])) {
+    $mysqli = mysqli_connect();
+    $mail = new MailController();
+
+    $term = mysqli_real_escape_string($mysqli, $_POST['term']);
+    $_SESSION['termuser'] = $term;
+}
+
+if(isset($term)) {
+    if ($term == '') {
+        unset($_SESSION['termuser']);
+    }
+}
+
 ?>
 
 <div id="page-content-wrapper">
@@ -24,25 +104,142 @@ $get_filled_info = $user->getAllClients($limit, $offset, 1);
             <div class="col-lg-12">
                 <p class="NameText">Klantenbeheer</p>
                 <hr size="1">
-                <input type="text" size="50" id="TableInput" onkeyup="searchTable()" placeholder="Zoek een klant...">
+
+                <form method="post" action="?page=manageclients">
+                    <input type="text" size="50" id="TableInput" name="term" placeholder="<?php if(isset($_SESSION['termuser'])){ echo 'Gesorteerd op: ' . $_SESSION['termuser'];} else { echo 'Zoek een product..'; }?>">
+                    <input id="SendSearch" value="" type="submit" name="sub">
+                </form>
+
                 <br>
                 <br>
                 <a href="index.php?page=newclient"><div id="NewClientButton">Nieuwe klant</div></a>
-                <table id="overzicht" class="sortable table-striped">
+
+                <form action="?page=manageclients" method="post">
+                <table id="overzicht" class="table-striped">
                     <br><br>
                     <thead>
                         <tr>
-                            <th><b>Weergavenaam</b></th>
-                            <th><b>Bedrijfsnaam</b></th>
-                            <th><b>E-mailadres</b></th>
-                            <th><b>Adres</b></th>
-                            <th><b>Postcode</b></th>
-                            <th><b>Plaats</b></th>
-                            <th><b>Edit</b></th>
+                            <th>
+                                <div class="btn-group">
+                                    <button type="button" style="width: 100%;" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span style="color: #bb2c4c;">Weergavenaam </span> <span style="color: #bb2c4c" class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><input type="submit" id="filterbutton" name="NaamASC" value="A-Z" style="width:100%;"></li>
+                                        <br>
+                                        <li><input type="submit" id="filterbutton" name="NaamDESC" value="Z-A" style="width:100%;"></li>
+                                    </ul>
+                                </div>
+                            </th>
+
+                            <th>
+                                <div class="btn-group">
+                                    <button type="button" style="width: 100%;" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span style="color: #bb2c4c;">Bedrijfsnaam </span> <span style="color: #bb2c4c" class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><input type="submit" id="filterbutton" name="BedrijfnaamASC" value="A-Z" style="width:100%;"></li>
+                                        <br>
+                                        <li><input type="submit" id="filterbutton" name="BedrijfnaamDESC" value="Z-A" style="width:100%;"></li>
+                                    </ul>
+                                </div>
+                            </th>
+
+                            <th>
+                                <div class="btn-group">
+                                    <button type="button" style="width: 100%;" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span style="color: #bb2c4c;">E-mail </span> <span style="color: #bb2c4c" class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><input type="submit" id="filterbutton" name="EmailASC" value="A-Z" style="width:100%;"></li>
+                                        <br>
+                                        <li><input type="submit" id="filterbutton" name="EmailDESC" value="Z-A" style="width:100%;"></li>
+                                    </ul>
+                                </div>
+                            </th>
+
+                            <th>
+                                <div class="btn-group">
+                                    <button type="button" style="width: 100%;" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span style="color: #bb2c4c;">Adres </span> <span style="color: #bb2c4c" class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><input type="submit" id="filterbutton" name="AdresASC" value="A-Z" style="width:100%;"></li>
+                                        <br>
+                                        <li><input type="submit" id="filterbutton" name="AdresDESC" value="Z-A" style="width:100%;"></li>
+                                    </ul>
+                                </div>
+                            </th>
+
+                            <th>
+                                <div class="btn-group">
+                                    <button type="button" style="width: 100%;" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span style="color: #bb2c4c;">Postcode </span> <span style="color: #bb2c4c" class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><input type="submit" id="filterbutton" name="PostcodeASC" value="A-Z" style="width:100%;"></li>
+                                        <br>
+                                        <li><input type="submit" id="filterbutton" name="PostcodeDESC" value="Z-A" style="width:100%;"></li>
+                                    </ul>
+                                </div>
+                            </th>
+
+                            <th>
+                                <div class="btn-group">
+                                    <button type="button" style="width: 100%;" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span style="color: #bb2c4c;">Plaats </span> <span style="color: #bb2c4c" class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><input type="submit" id="filterbutton" name="PlaatsASC" value="A-Z" style="width:100%;"></li>
+                                        <br>
+                                        <li><input type="submit" id="filterbutton" name="PlaatsDESC" value="Z-A" style="width:100%;"></li>
+                                    </ul>
+                                </div>
+                            </th>
+
+                            <th>
+                                <b>
+                                    Edit
+                                </b>
+                            </th>
+
                         </tr>
                     </thead>
                     <tbody>
-                    <?php if(isset($get_filled_info)) {
+                    <?php if(isset($_SESSION['termuser'])) {
+
+                        $count = count( $user->searchTable($_SESSION['termuser']) );
+                        $searchtable = $user->searchTable($_SESSION['termuser'], $limit, $offset, $table, $filter, '1');
+
+                        foreach ($searchtable as $client) { ?>
+                            <tr>
+                                <td>
+                                    <?= $client['naam']; ?>
+                                </td>
+                                <td>
+                                    <?= $client['bedrijfsnaam']; ?>
+                                </td>
+                                <td>
+                                    <?= $client['email']; ?>
+                                </td>
+                                <td>
+                                    <?= $client['adres']; ?>
+                                </td>
+                                <td>
+                                    <?= $client['postcode']; ?>
+                                </td>
+                                <td>
+                                    <?= $client['plaats']; ?>
+                                </td>
+                                <td>
+                                    <?php $clientid = $client['id']; ?>
+                                    <a href="?page=editclient&id=<?= $clientid ?>"><img
+                                            src="../public/img/icons/settings-hover.png" style="width: 24px; height: 24px;">
+                                </td>
+                            </tr>
+                        <?php }
+                    }
+                    else {
                          foreach ($get_filled_info as $client) { ?>
                             <tr>
                                 <td>
@@ -66,7 +263,7 @@ $get_filled_info = $user->getAllClients($limit, $offset, 1);
                                 <td>
                                     <?php $clientid = $client['id']; ?>
                                     <a href="?page=editclient&id=<?= $clientid ?>"><img
-                                            src="http://i65.tinypic.com/14l68f4.png" style="width: 24px; height: 24px;">
+                                            src="../public/img/icons/settings-hover.png" style="width: 24px; height: 24px;">
                                 </td>
                             </tr>
                         <?php }
@@ -74,6 +271,7 @@ $get_filled_info = $user->getAllClients($limit, $offset, 1);
 
                     </tbody>
                 </table>
+                </form>
 
                 <ul class="pagination">
                     <?php for ( $i = 0; $i < ceil( $count / $limit ); $i++ ) : ?>

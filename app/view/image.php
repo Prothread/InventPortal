@@ -62,30 +62,48 @@ if(isset($_GET['img'])) {
         $imageWidth, $imageHeight
     );
 
-
 //Get new dimensions
     $imgWidth = imagesx($image);
     $imgHeight = imagesy($image);
 
-// Paste the logo
-    imagecopy(
+    if($imgWidth < $logoWidth) {
+        imagecopyresampled(
         // destination
-        $image,
-        // source
-        $stamp,
-        // destination x and y
-        ($imageWidth - $logoWidth) /2, ($imageHeight - $logoHeight) /2,
-        // source x and y
-        0, 0,
+            $image,
+            // source
+            $stamp,
+            // destination x and y
+            0, 0,
+            // source x and y
+            0, 0,
 
-        /*
-        //Width and height wannabe
-        $imgWidth/1.2, $imgHeight/1.2,
-        */
 
-        // width and height of the area of the source to copy
-        $logoWidth, $logoHeight
-    );
+            //Width and height wannabe
+            $imgWidth, $imgHeight,
+
+
+            // width and height of the area of the source to copy
+            $logoWidth, $logoHeight
+        );
+    }
+
+    else {
+// Paste the logo
+        imagecopy(
+        // destination
+            $image,
+            // source
+            $stamp,
+            // destination x and y
+            ($imageWidth - $logoWidth) / 2, ($imageHeight - $logoHeight) / 2,
+            // source x and y
+            0, 0,
+
+            // width and height of the area of the source to copy
+            $logoWidth, $logoHeight
+        );
+    }
+
 
 // Output and free memory
     header("Content-Type: $ctype");

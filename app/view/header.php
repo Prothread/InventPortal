@@ -65,17 +65,19 @@ else {
 
     <link rel="icon"
           type="image/png"
-          href="../../images/favicon.png">
+          href="<?= DIR_PUBLIC . 'images/favicon.png'?>">
 </head>
 
 <body>
 <div class="se-pre-con"></div>
-<div id="header">
-    <div id="MenuSide"></div>
-    <div id="MenuButton">
-        <a href="#menu-toggle" class="btn btn-default" id="menu-toggle"><img src="https://cdn4.iconfinder.com/data/icons/wirecons-free-vector-icons/32/menu-alt-20.png"></a>
+    <div id="header">
+        <div id="MenuSide">
+            <img src="../public/css/madlogo.png" style="width:auto;height:auto;" />
+        </div>
+        <div id="MenuButton">
+            <a href="#menu-toggle" class="btn btn-default" id="menu-toggle"><img src="https://cdn4.iconfinder.com/data/icons/wirecons-free-vector-icons/32/menu-alt-20.png"></a>
+        </div>
     </div>
-</div>
 
 <div id="NameSide">
     <div id="UserPhoto">
@@ -88,30 +90,61 @@ else {
     <!-- Sidebar -->
     <div id="sidebar-wrapper">
         <ul class="sidebar-nav">
+
+            <h5 style="margin-left:15px;"><i style="color: #FFF;" class="glyphicon glyphicon-home"></i>
+                <small><b><span style="color: #FFF;">MANAGEMENT</span></b></small>
+            </h5>
             <li class="nav-button-home">
                 <a href="index.php?page=dashboard">Home</a>
             </li>
 
-            <li class="nav-button-upload">
-                <a href="index.php?page=uploadoverzicht">Upload</a>
-            </li>
+            <?php if($user->getPermission($permgroup, 'CAN_SHOW_USEROVERZICHT')){ ?>
+                <li class="nav-button-all">
+                    <a href="index.php?page=gebruikersoverzicht">Uw overzicht</a>
+                </li>
+            <?php } ?>
 
+            <?php if($user->getPermission($permgroup, 'CAN_EDIT_SETTINGS') == 1){ ?>
+                <li class="nav-button-settings">
+                    <a href="index.php?page=settings">Instellingen</a>
+                </li>
+            <?php } ?>
+
+            <h5 style="margin-left:15px;"><i style="color: #FFF;" class="glyphicon glyphicon-ok"></i>
+                <small><b><span style="color: #FFF;">ACCORDERINGEN</span></b></small>
+            </h5>
             <?php if($user->getPermission($permgroup, 'CAN_UPLOAD') == 1){ ?>
+                <li class="nav-button-upload">
+                    <a href="index.php?page=uploadoverzicht">Upload</a>
+                </li>
+            <?php } ?>
+
+            <?php if($user->getPermission($permgroup, 'CAN_SHOW_OVERZICHT')){ ?>
             <li class="nav-button-all">
                 <a href="index.php?page=overzicht">Overzicht</a>
             </li>
             <?php } ?>
 
-            <?php if($user->getPermission($permgroup, 'CAN_EDIT_CLIENT') == 1){ ?>
-            <li class="nav-button-users">
-                <a href="index.php?page=manageclients">Klanten</a>
+            <?php if($_SESSION['accord'] = '1' && $user->getPermission($permgroup, 'CAN_ACCORD')) { ?>
+            <li class="nav-button-all">
+                <a href="index.php?page=accordering">Accordering</a>
             </li>
             <?php } ?>
 
-            <?php if($user->getPermission($permgroup, 'CAN_EDIT_SETTINGS') == 1){ ?>
-            <li class="nav-button-settings">
-                <a href="index.php?page=settings">Instellingen</a>
-            </li>
+            <h5 style="margin-left:15px;"><i style="color: #FFF;" class="glyphicon glyphicon-user"></i>
+                <small><b><span style="color: #FFF;">PERSONEN</span></b></small>
+            </h5>
+            <?php if($user->getPermission($permgroup, 'CAN_SHOW_KLANTPAGINA') == 1){ ?>
+
+                <li class="nav-button-users">
+                    <a href="index.php?page=manageclients">Klanten</a>
+                </li>
+            <?php } ?>
+
+            <?php if($user->getPermission($permgroup, 'CAN_SHOW_USERS') == 1){ ?>
+                <li class="nav-button-users">
+                    <a href="index.php?page=manageusers">Gebruikers</a>
+                </li>
             <?php } ?>
 
             <br>
@@ -127,5 +160,4 @@ if($session->exists('flash')) {
     foreach($session->get('flash') as $flash) {
         echo "<div class='alert alert_{$flash['type']}'>{$flash['message']}</div>";
     }
-    $session->remove('flash');
-} ?>
+    $session->remove('flash');} ?>

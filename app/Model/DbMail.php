@@ -214,6 +214,19 @@ class DbMail extends Database
         }
     }
 
+    public function testfunction()
+    {
+        $sql = "SELECT * FROM `usermail` INNER JOIN `mail` ON `usermail`.`mailid` = `mail`.`id` WHERE `usermail`.`userid` = '20'";
+
+        $result = $this->dbQuery($sql);
+        $return = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+        if($return) {
+            return $return;
+        }
+        return false;
+    }
+
     /**
      * Tel het aantal mails van de user
      *
@@ -273,6 +286,73 @@ class DbMail extends Database
     public function dbLastInsertedId()
     {
         return $this->connection->insert_id;
+    }
+
+    /**
+     * Zoek in tabel van mail
+     *
+     * @param $term
+     * @param $limit
+     * @param $offset
+     * @param null $table
+     * @param null $filter
+     * @param null $ids
+     * @param $status
+     * @return array|bool|null
+     */
+
+    public function searchTable($term, $limit, $offset, $table = null, $filter = null, $ids = null, $status)
+    {
+        $sql = "SELECT * FROM mail ";
+
+        if($ids) {
+            if($status) {
+                $sql .= "WHERE `id` IN ($ids) AND onderwerp LIKE '%" . $term . "%' AND verified = '". $status ."'";
+                $sql .= " OR `id` IN ($ids) AND verstuurder LIKE '%" . $term . "%' AND verified = '". $status ."'";
+                $sql .= " OR `id` IN ($ids) AND naam LIKE '%" . $term . "%' AND verified = '". $status ."'";
+                $sql .= " OR `id` IN ($ids) AND datum LIKE '%" . $term . "%' AND verified = '". $status ."'";
+            }
+            else {
+                $sql .= "WHERE `id` IN ($ids) AND onderwerp LIKE '%" . $term . "%' ";
+                $sql .= " OR `id` IN ($ids) AND verstuurder LIKE '%" . $term . "%'";
+                $sql .= " OR `id` IN ($ids) AND naam LIKE '%" . $term . "%'";
+                $sql .= " OR `id` IN ($ids) AND datum LIKE '%" . $term . "%'";
+            }
+        }
+        else {
+            if($status) {
+                $sql .= " WHERE onderwerp LIKE '%".$term."%' AND verified = '". $status ."'";
+                $sql .= " OR verstuurder LIKE '%".$term."%' AND verified = '". $status ."'";
+                $sql .= " OR naam LIKE '%".$term."%' AND verified = '". $status ."'";
+                $sql .= " OR datum LIKE '%".$term."%' AND verified = '". $status ."'";
+            }
+            else {
+                $sql .= " WHERE onderwerp LIKE '%" . $term . "%' OR verstuurder LIKE '%" . $term . "%' OR naam LIKE '%" . $term . "%' OR datum LIKE '%" . $term . "%'";
+            }
+        }
+
+        if($table) {
+            $sql .= " ORDER BY $table";
+        }
+        if($filter) {
+            $sql .= " $filter";
+        }
+
+        if($limit) {
+            $sql .= " LIMIT {$limit}";
+        }
+        if($offset) {
+            $sql .= " OFFSET {$offset}";
+        }
+
+        $result = $this->dbQuery($sql);
+
+        $row = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+        if($row !== null) {
+            return $row;
+        }
+        return false;
     }
 
 

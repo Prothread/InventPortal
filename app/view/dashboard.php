@@ -59,22 +59,29 @@ if($openstaand_percent==0){
                 <?php
                 if($get_filled_info !== null) {
                     foreach ($get_filled_info as $upload) { ?>
+
                         <div class="col-sm-6 col-md-4">
                             <div class="thumbnail">
-                                <div class="caption">
-                                    <h3><a href="?page=item&id=<?=$upload['id']?>"><?= $upload['onderwerp']?></a></h3>
-                                    <p>Door: <?= $upload['verstuurder'] ?></p>
-                                    <p>Klant: <?= $upload['naam'] ?></p>
-                                    <p>Datum:  <?= date("d-m-Y", strtotime($upload['datum'])); ?></p>
-                                    <p>Status: <?php if ($upload['verified'] == 1) {?>
-                                    <p><span style="Color: #bb2c4c">Gezien</span></p>
-                                    <?php } elseif ($upload['verified'] == 2) {?>
-                                        <p><span style="Color: #bb2c4c">Geaccepteerd</span></p>
-                                    <?php } elseif ($upload['verified'] == 3) {?>
-                                        <p><span style="Color: #bb2c4c">Geweigerd</span></p>
-                                    <?php } else {?>
-                                    <p><span style="Color: #bb2c4c">Geüpload</span></p>
-                                    <?php } ?>
+                                <div class="well">
+                                    <div class="caption">
+                                        <div class="widget-header bg-success"></div>
+                                        <div class="widget-body text-center">
+                                            <img alt="Profile Picture" class="widget-img img-circle img-border" src="css/madalco.png">
+                                            <h3><a href="?page=item&id=<?=$upload['id']?>"><?= $upload['onderwerp']?></a></h3>
+                                            <p>Door: <?= $upload['verstuurder'] ?></p>
+                                            <p>Klant: <?= $upload['naam'] ?></p>
+                                            <p>Datum:  <?= date("d-m-Y", strtotime($upload['datum'])); ?></p>
+                                            <p>Status: <?php if ($upload['verified'] == 1) {?>
+                                            <p><span style="Color: #bb2c4c">Gezien</span></p>
+                                            <?php } elseif ($upload['verified'] == 2) {?>
+                                                <p><span style="Color: #bb2c4c">Geaccepteerd</span></p>
+                                            <?php } elseif ($upload['verified'] == 3) {?>
+                                                <p><span style="Color: #bb2c4c">Geweigerd</span></p>
+                                            <?php } else {?>
+                                                <p><span style="Color: #bb2c4c">Geüpload</span></p>
+                                            <?php } ?>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -91,7 +98,6 @@ if($openstaand_percent==0){
                 ?>
                 </tbody>
                 </table>
-                <hr size="1">
             </div>
         </div>
     </div>

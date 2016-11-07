@@ -189,15 +189,80 @@ class DbUser extends Database
     }
 
     /**
-     * Haal alle gebruikers op
+     * Haal alle gebruikers op die een klant zijn
      *
+     * @param null $limit
+     * @param null $offset
+     * @param $permgroup
      * @return array|null
      */
 
-    public function getAllClients($limit = null, $offset = null, $permgroup)
+    public function getAllClients($table, $filter, $limit = null, $offset = null, $permgroup)
     {
-        $sql = "SELECT * FROM `users` WHERE `permgroup` = '{$permgroup}'";
+        $sql = "SELECT * FROM `users`";
 
+        if($permgroup) {
+            $sql .= " WHERE permgroup = '{$permgroup}'";
+        }
+        if($table) {
+            $sql .= " ORDER BY $table";
+        }
+        if($filter) {
+            $sql .= " $filter";
+        }
+        if($limit) {
+            $sql .= " LIMIT {$limit}";
+        }
+        if($offset) {
+            $sql .= " OFFSET {$offset}";
+        }
+
+        $result = $this->dbQuery($sql);
+        $value = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+        if($value){
+            return $value;
+        }
+    }
+
+    /**
+     * Tel het aantal gebruikers
+     *
+     * @return bool
+     */
+
+    public function countClients()
+    {
+        $query ="SELECT COUNT(`id`) AS 'total_blocks' FROM `users` WHERE `permgroup` = '1'";
+
+        if($result = $this->dbFetchArray($query)){
+            return $result['total_blocks'];
+        }
+        return false;
+    }
+
+    /**
+     * Haal alle gebruikers op die geen klanten zijn
+     *
+     * @param null $limit
+     * @param null $offset
+     * @param $permgroup
+     * @return array|null
+     */
+
+    public function getAllUsersByPerm($table, $filter, $limit = null, $offset = null, $permgroup)
+    {
+        $sql = "SELECT * FROM `users`";
+
+        if($permgroup) {
+            $sql .= " WHERE permgroup != '{$permgroup}'";
+        }
+        if($table) {
+            $sql .= " ORDER BY $table";
+        }
+        if($filter) {
+            $sql .= " $filter";
+        }
         if($limit) {
             $sql .= " LIMIT {$limit}";
         }
@@ -236,34 +301,25 @@ class DbUser extends Database
      * @return array|null
      */
 
-    public function searchTable($term, $limit, $offset, $table = null, $filter = null, $ids = null, $status)
+    public function searchTable($term, $limit, $offset, $table = null, $filter = null, $ids = null)
     {
-        $sql = "SELECT * FROM mail ";
+        $sql = "SELECT * FROM `users` ";
 
         if($ids) {
-            if($status) {
-                $sql .= "WHERE `id` IN ($ids) AND onderwerp LIKE '%" . $term . "%' AND verified = '". $status ."'";
-                $sql .= " OR `id` IN ($ids) AND verstuurder LIKE '%" . $term . "%' AND verified = '". $status ."'";
-                $sql .= " OR `id` IN ($ids) AND naam LIKE '%" . $term . "%' AND verified = '". $status ."'";
-                $sql .= " OR `id` IN ($ids) AND datum LIKE '%" . $term . "%' AND verified = '". $status ."'";
-            }
-            else {
-                $sql .= "WHERE `id` IN ($ids) AND onderwerp LIKE '%" . $term . "%' ";
-                $sql .= " OR `id` IN ($ids) AND verstuurder LIKE '%" . $term . "%'";
-                $sql .= " OR `id` IN ($ids) AND naam LIKE '%" . $term . "%'";
-                $sql .= " OR `id` IN ($ids) AND datum LIKE '%" . $term . "%'";
-            }
+            $sql .= "WHERE `permgroup` IN ($ids) AND naam LIKE '%" . $term . "%'";
+            $sql .= " OR `permgroup` IN ($ids) AND email LIKE '%" . $term . "%'";
+            $sql .= " OR `permgroup` IN ($ids) AND bedrijfsnaam LIKE '%" . $term . "%'";
+            $sql .= " OR `permgroup` IN ($ids) AND adres LIKE '%" . $term . "%'";
+            $sql .= " OR `permgroup` IN ($ids) AND postcode LIKE '%" . $term . "%'";
+            $sql .= " OR `permgroup` IN ($ids) AND plaats LIKE '%" . $term . "%'";
         }
         else {
-            if($status) {
-                $sql .= " WHERE onderwerp LIKE '%".$term."%' AND verified = '". $status ."'";
-                $sql .= " OR verstuurder LIKE '%".$term."%' AND verified = '". $status ."'";
-                $sql .= " OR naam LIKE '%".$term."%' AND verified = '". $status ."'";
-                $sql .= " OR datum LIKE '%".$term."%' AND verified = '". $status ."'";
-            }
-            else {
-                $sql .= " WHERE onderwerp LIKE '%" . $term . "%' OR verstuurder LIKE '%" . $term . "%' OR naam LIKE '%" . $term . "%' OR datum LIKE '%" . $term . "%'";
-            }
+            $sql .= "WHERE naam LIKE '%" . $term . "%'";
+            $sql .= " OR email LIKE '%" . $term . "%'";
+            $sql .= " OR bedrijfsnaam LIKE '%" . $term . "%'";
+            $sql .= " OR adres LIKE '%" . $term . "%'";
+            $sql .= " OR postcode LIKE '%" . $term . "%'";
+            $sql .= " OR plaats LIKE '%" . $term . "%'";
         }
 
         if($table) {

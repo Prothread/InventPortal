@@ -137,6 +137,9 @@ switch($page) {
     case 'download':
         include '../app/view/download.php';
         break;
+    case 'manageusers':
+        include '../app/view/manageusers.php';
+        break;
     default:
         include '../app/view/404.php';
         break;

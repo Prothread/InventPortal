@@ -87,7 +87,7 @@ if(isset($_POST['submit'])){
                     <label>Plaats<span style="color:#bc2d4c">*</span></label>
                     <input required type="text" name="plaats" size="50" value="<?= $myclient['plaats']; ?>"><br><br>
 
-                    <input type="hidden" name="permgroup" value="2">
+                    <input type="hidden" name="permgroup" value="1">
 
                     <br><br>
                     <input type="submit" name="submit" size="50" value="Versturen">

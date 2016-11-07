@@ -39,7 +39,7 @@ class Block
     }
 
     /**
-     * Haal de laatste 3 uploads op
+     * Haal de laatste 6 uploads op
      *
      * @return array|null
      */

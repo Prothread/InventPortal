@@ -122,6 +122,10 @@ if(isset($_POST['AfgekeurdASC'])) {
     $table = 'verified';
 }
 
+//Makkelijker manier
+/* $gaa = new DbMail();
+$gad = $gaa->testfunction();
+var_dump( $gad[8]['id'] ); */
 
 //Zet alle mails in een array met een offset en een limit
     $getAllUserItems = $items->getUserMailByUserId($userid, $limit, $offset);
@@ -130,13 +134,13 @@ if(isset($_POST['AfgekeurdASC'])) {
         $getMails[] = $mail;
     }
 
-
 // Tel het aantal items die er zijn
     $getAllUserItems1 = $items->getUserMailByUserId($userid, 0, 0);
     foreach($getAllUserItems1 as $UserItem1) {
         $mail1 = $items->getMailById($UserItem1['mailid']);
         $getAllMails[] = $mail1;
     }
+
 // Haal alle items van de gebruiker op en zet deze in een array
     foreach($getAllMails as $AllMails) {
         $TheMails[] = intval( $AllMails['id'] );
@@ -147,12 +151,12 @@ if(isset($_POST['sub'])) {
     $mysqli = mysqli_connect();
     $user = new UserController();
     $term = mysqli_real_escape_string($mysqli, $_POST['term']);
-    $_SESSION['term'] = $term;
+    $_SESSION['myterm'] = $term;
 }
 
 if(isset($term)) {
     if ($term == '') {
-        unset($_SESSION['term']);
+        unset($_SESSION['myterm']);
     }
 }
 ?>
@@ -167,34 +171,27 @@ if(isset($term)) {
                 <div class="well well-m">
                     <br>
                     <div class="progress">
-                        <div class="progress-bar progress-bar-success progress-bar-striped active" style="min-width: 5%;width: <?= $geaccepteerd_percent ?>%">
-                            <a id="statusbartext" href="#"><span class="glyphicon glyphicon-ok-sign"></span>  <span class="badge"><?= $get_items_geaccepteerd['COUNT(status)'] ?></span></a>
+                        <div class="progress-bar progress-bar-success progress-bar-striped active" style="width: <?= $geaccepteerd_percent ?>%">
+                            <a id="statusbartext" href="#" data-toggle="tooltip" title="Het aantal goedgekeurde items"><span id="geaccepteerd" class="glyphicon glyphicon-ok-sign"></span>  <span class="badge"><?= $get_items_geaccepteerd['COUNT(status)'] ?></span></a>
                         </div>
-                        <div class="progress-bar progress-bar-danger progress-bar-striped active" style="min-width: 5%;width: <?= $geweigerd_percent ?>%">
-                            <a id="statusbartext" href="#"><span class="glyphicon glyphicon-remove-sign"></span>  <span class="badge"><?= $get_items_geweigerd['COUNT(status)'] ?></span></a>
+                        <div class="progress-bar progress-bar-danger progress-bar-striped active" style="width: <?= $geweigerd_percent ?>%">
+                            <a id="statusbartext" href="#" data-toggle="tooltip" title="Het aantal afgekeurde items"><span id="geweigerd" class="glyphicon glyphicon-remove-sign"></span>  <span class="badge"><?= $get_items_geweigerd['COUNT(status)'] ?></span></a>
                         </div>
-                        <div class="progress-bar progress-bar-warning progress-bar-striped active" style="min-width: 5%;width: <?= $openstaand_percent ?>%">
-                            <a id="statusbartext" href="#"><span class="glyphicon glyphicon-question-sign"></span>  <span class="badge"><?= $get_items_openstaand['COUNT(status)'] + $get_items_bekeken['COUNT(status)'] ?></span></a>
+                        <div class="progress-bar progress-bar-warning progress-bar-striped active" style="width: <?= $openstaand_percent ?>%">
+                            <a id="statusbartext" href="#" data-toggle="tooltip" title="In afwachting van"><span id="openstaand" class="glyphicon glyphicon-question-sign"></span>  <span class="badge"><?= $get_items_openstaand['COUNT(status)'] + $get_items_bekeken['COUNT(status)'] ?></span></a>
                         </div>
-                    </div>
-
-                    <div class="btn-group">
-                        <button type="button" style="width: 95px;" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                            <span style="color: #bb2c4c;">Legenda </span> <span style="color: #bb2c4c" class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a href="#" class="glyphicon glyphicon-ok-sign"> Goedgekeurd</a></li>
-                            <li><a href="#" class="glyphicon glyphicon-remove-sign"> Geweigerd</a></li>
-                            <li><a href="#" class="glyphicon glyphicon-question-sign"> Open</a></li>
-                        </ul>
                     </div>
                 </div>
-                <!--<input type="text" size="50" id="TableInput" onkeyup="searchTable()" placeholder="Zoek een product...">-->
 
+                </div>
+                <!--<input type="text" size="50" id="TableInput" onkeyup="searchTable()" placeholder="Zoek een product...">-->
+            
                 <form method="post" action="?page=gebruikersoverzicht">
-                    <input type="text" size="50" id="TableInput" name="term" placeholder="<?php if(isset($term)){ echo 'Gesorteerd op: ' . $term;} else { echo 'Zoek een product..'; }?>">
-                    <input type="submit" name="sub">
+                    <input type="text" size="50" id="TableInput" name="term" placeholder="<?php if(isset($_SESSION['myterm'])){ echo 'Gesorteerd op: ' . $_SESSION['myterm'];} else { echo 'Zoek een product..'; }?>">
+                    <input id="SendSearch" value="" type="submit" name="sub">
                 </form>
+                <br />
+
 
                 <div id="form-content"></div>
 
@@ -217,17 +214,17 @@ if(isset($term)) {
 
             <br><br>
 
-            <div class="btn-group">
-                <button type="button" style="width: 95px;" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span style="color: #bb2c4c;">Legenda </span> <span style="color: #bb2c4c" class="caret"></span>
-                </button>
-                <ul class="dropdown-menu">
-                    <li><a href="#"><img alt="Gezien" style="width: 45px; height: 45px;" src="../public/icons/gezien.png">   Item is gezien, maar nog niet geaccordeerd.</a></li>
-                    <li><a href="#"><img alt="Geaccepteerd" src="../public/icons/akkoord.png">   Het item is goedgekeurd.</a></li>
-                    <li><a href="#"><img alt="Geweigerd" src="../public/icons/geweigerd.png">   Het item is geweigerd.</a></li>
-                    <li><a href="#"><img alt="Uploaded" src="../public/icons/uploaded.png">   Het item is geüpload.</a></li>
-                </ul>
-            </div>
+        <div class="btn-group">
+            <button type="button" style="width: 95px; margin-left: 13px;" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span style="color: #bb2c4c;">Legenda </span> <span style="color: #bb2c4c" class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a href="#"><img alt="Gezien" style="width: 45px; height: 45px;" src="../public/icons/gezien.png">   Item is gezien, maar nog niet geaccordeerd.</a></li>
+                <li><a href="#"><img alt="Geaccepteerd" src="../public/icons/akkoord.png">   Het item is goedgekeurd.</a></li>
+                <li><a href="#"><img alt="Geweigerd" src="../public/icons/geweigerd.png">   Het item is geweigerd.</a></li>
+                <li><a href="#"><img alt="Uploaded" src="../public/icons/uploaded.png">   Het item is geüpload.</a></li>
+            </ul>
+        </div>
 
             <form action="?page=gebruikersoverzicht" method="post">
             <table id="overzicht" class="table-striped">
@@ -305,9 +302,9 @@ if(isset($term)) {
                 </thead>
                 <tbody>
                 <?php
-                if( isset($_SESSION['term']) ) {
-                    $count = count( $user->searchTable($_SESSION['term'], 0, 0, $table, $filter, $searchMail, $status) );
-                    $searchtable = $user->searchTable($_SESSION['term'], $limit, $offset, $table, $filter, $searchMail, $status);
+                if( isset($_SESSION['myterm']) ) {
+                    $count = count( $items->searchTable($_SESSION['myterm'], 0, 0, $table, $filter, $searchMail, $status) );
+                    $searchtable = $items->searchTable($_SESSION['myterm'], $limit, $offset, $table, $filter, $searchMail, $status);
 
                     if (!empty($searchtable)) {
                         foreach ($searchtable as $upload) {
@@ -401,7 +398,7 @@ if(isset($term)) {
             <ul class="pagination">
                 <?php for ( $i = 0; $i < ceil( $count / $limit ); $i++ ) : ?>
                     <li>
-                        <a href="<?= "index.php?page=profile&offset=". $limit * $i ?>"> <?= ( $i + 1 ) ?> </a>
+                        <a href="<?= "index.php?page=gebruikersoverzicht&offset=". $limit * $i ?>"> <?= ( $i + 1 ) ?> </a>
                     </li>
                 <?php endfor; ?>
             </ul>

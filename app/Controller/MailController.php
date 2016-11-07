@@ -153,4 +153,15 @@ class MailController
         return $this->model->getUserMail($id, $status);
     }
 
+    /**
+     * Zoeken in een tabel
+     *
+     * @return mixed
+     */
+
+    public function searchTable($term, $limit = null, $offset = null, $table = null, $filter = null, $ids = null, $status = null)
+    {
+        return $this->model->searchTable($term, $limit , $offset, $table, $filter, $ids, $status);
+    }
+
 }

@@ -58,7 +58,7 @@ $mymail = new MailController();
     $subject = $_POST['title'];
     $myid = $_POST['id'];
 
-    $content = "<img alt='MadalcoHeader' src='http://i68.tinypic.com/dw5a9f.png'>" . "  <br/><br/>" . "Geachte " . $_POST['verstuurder'] . "," .
+    $content = "<img alt='MadalcoHeader' src='https://picoolio.net/images/2016/11/04/headerbgcc759.png'>" . "  <br/><br/>" . "Geachte " . $_POST['verstuurder'] . "," .
         " <br/><br/>" . $_POST['name'] . " heeft uw proef <b>" . $_POST['keuring'] . "</b>." . "<br /><br />" .
         "<b>Titel van uw proef: </b>" .
         $_POST['title'] .
@@ -120,6 +120,7 @@ $mymail = new MailController();
     } else {
         //If mail is send, create data and send it to the database
         $mymail->update($mailinfo);
+        unset($_SESSION['accord']);
 
         header('Location: index.php?page=accordering');
         Session::flash('message', 'De accordering is verstuurd');

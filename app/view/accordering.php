@@ -21,57 +21,6 @@ $UID = date('dmY-G.i.s') . '-192.08.1.124';
 //TODO Check ip goede adress
 //$UID = date('dmY-G.i.s') . '' . $_SERVER['REMOTE_ADDR'];
 
-$verifiedimages = array();
-
-foreach ($uploadedimages as $img) {
-
-    $imago = $image_controller->getImageVerify($img['id']);
-
-    if(isset($imago)) {
-
-        if ($imago['verify'] == 1) {
-            $imageverify = 1;
-        }
-        else if ($imago['verify'] == 3) {
-            $imageverify = 3;
-        }
-
-        else if(isset($_SESSION['img' . $img['id']])) {
-
-            $imageverify = $session->getImageVerify($img['id']);
-
-            if ($imageverify !== null) {
-                $imageverify = $session->getImageVerify($img['id']);
-            }
-            else {
-                $imageverify = 0;
-            }
-        }
-    }
-    else {
-        $imageverify = 0;
-    }
-
-    if(isset($imageverify)) {
-        array_push($verifiedimages, $imageverify);
-    }
-
-}
-
-if (in_array(2, $verifiedimages)) {
-    $verified = 3;
-    $verifytext = "afgekeurd";
-} else {
-    $verified = 2;
-    $verifytext = 'goedgekeurd';
-}
-
-if(in_array( 0, $verifiedimages)) {
-    $verify = 0;
-}
-else {
-    $verify = 1;
-}
 ?>
 
 <!-- Page Content -->
@@ -82,12 +31,62 @@ else {
                 <p class="NameText">Productaccordering</p>
                 <hr size="1">
 
-                <p> Onderwerp: <span style="color:#bc2d4c"><?= $myupload['onderwerp']; ?></span></p>
+                <div class="wizard">
+                    <div class="wizard-inner">
+                        <div class="connecting-line"></div>
+                        <ul class="nav nav-tabs" role="tablist">
 
-                <p> Verstuurder: <span style="color:#bc2d4c"><?= $myupload['verstuurder']?></span> </p>
+                            <li role="presentation" class="active">
+                                <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Informatie">
+                            <span class="round-tab">
+                                <i class="glyphicon glyphicon-folder-open"></i>
+                            </span>
+                                </a>
+                            </li>
 
-                <p> Bestand(en):
-                    <a href="#">
+                            <li role="presentation" class="disabled">
+                                <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="Uploaden">
+                            <span class="round-tab">
+                                <i class="glyphicon glyphicon-picture"></i>
+                            </span>
+                                </a>
+                            </li>
+                            <li role="presentation" class="disabled">
+                                <a href="#step3" data-toggle="tab" aria-controls="step3" role="tab" title="Beschrijving">
+                            <span class="round-tab">
+                                <i class="glyphicon glyphicon-pencil"></i>
+                            </span>
+                                </a>
+                            </li>
+
+                            <li role="presentation" class="disabled">
+                                <a href="#step4" data-toggle="tab" aria-controls="complete" role="tab" title="Klant & Versturen">
+                            <span class="round-tab">
+                                <i class="glyphicon glyphicon-ok"></i>
+                            </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <br />
+                    <div class="tab-content">
+                        <div class="tab-pane active" role="tabpanel" id="step1">
+                            <div class="well" style="font-size: 15px; font-style: italic;">Hieronder ziet u het onderwerp van uw proef en degene die de proef naar u gestuurd heeft. </div>
+                            <p> Onderwerp: <span style="color:#bc2d4c"><?= $myupload['onderwerp']; ?></span></p>
+
+                            <p> Verstuurder: <span style="color:#bc2d4c"><?= $myupload['verstuurder']?></span> </p>
+                            <br><br>
+                            <ul class="list-inline pull-right">
+                                <li><button type="button" class="btn btn-primary next-step">Volgende</button></li>
+                            </ul>
+                        </div>
+
+
+                        <div class="tab-pane" role="tabpanel" id="step2">
+                            <div class="well" style="font-size: 15px; font-style: italic;">Hieronder ziet u de proef en de omschrijving. <br> Bent u het eens met uw proef? Dan drukt u op accepteren. Is de proef nog niet helemaal goed? Dan drukt u op weigeren. <br><br>In de volgende stap kunt u uw keuze nader verklaren door een opmerking achter te laten.  </div>
+                            <br>
+                            <p> Bestand(en):
+                                <a href="#">
                     <span style="color:#bc2d4c">
                         <?php
                         $numItems = count($uploadedimages);
@@ -98,128 +97,202 @@ else {
                             }
                             else {
                                 echo $fakename['fakename'] . ', ';
-                                echo '<br />';
-                                $unique_name = pathinfo($fakename['images'], PATHINFO_FILENAME);
-                                var_dump($unique_name);
                             }
                         }?>
                     </span>
-                    </a>
-                </p>
+                                </a>
+                            </p>
 
-                <p> Omschrijving: <span style="color:#bc2d4c"><?= $myupload['beschrijving']?></span> </p>
+                            <?php
+                            $imgcount = 0;
+                            $verifiedimages = array();
+                            foreach ($uploadedimages as $img) {
+                                $imgcount++;
+                                ?>
+                                <div id="refresh<?= $imgcount ?>">
+                                <div id="imgakkoord" style="float:left;">
+                                    <div style="border:0; width: 250px; height: 320px;">
+                                        <a href="#img<?= $imgcount ?>">
+                                            <div id="thumbnail2" style="background: url('index.php?page=image&img=<?= $img['images']?>') no-repeat scroll 50% 50%;background-size:cover;"></div>
+                                        </a>
+                                    </div>
 
-                <?php
-                $imgcount = 0;
-                foreach ($uploadedimages as $img) {
-                    $imgcount++;
-                    ?>
-                    <div id="imgakkoord" style="float:left;">
-                        <div style="border:0; width: 250px; height: 320px;">
-                            <a href="#img<?= $imgcount ?>">
-                                <div id="thumbnail2" style="background: url('index.php?page=image&img=<?= $img['images']?>') no-repeat scroll 50% 50%;background-size:cover;"></div>
-                            </a>
-                        </div>
+                                    <?php
 
-                        <?php
+                                    $imago = $image_controller->getImageVerify($img['id']);
 
-                        $imago = $image_controller->getImageVerify($img['id']);
+                                    if(isset($_SESSION['img'.$img['id']])) {
+                                        if($session->getImageVerify($img['id']) == 1) { ?>
+                                            <div id="akkoord" class="alert alert-success" style="text-align: center;" role="alert"><span class="glyphicon glyphicon-ok-circle"></span> Akkoord</div>
+                                            <a href="?page=imagecancel&img=<?= $img['id'] ?>"><div id="cancel" style="color:black; text-align: center;" role="alert"><span class="glyphicon glyphicon-chevron-left"></span> Stap terug</div></a>
+                                        <?php }
 
-                        if(isset($_SESSION['img'.$img['id']])) {
-                            if($session->getImageVerify($img['id']) == 1) { ?>
-                                <div id="akkoord" class="alert alert-success" style="text-align: center;" role="alert"><span class="glyphicon glyphicon-ok-circle"></span> Akkoord</div>
-                                <a href="?page=imagecancel&img=<?= $img['id'] ?>"><div id="cancel" style="color:black; text-align: center;" role="alert"><span class="glyphicon glyphicon-chevron-left"></span> Stap terug</div></a>
-                            <?php }
+                                        else if($session->getImageVerify($img['id']) == 2) {?>
+                                            <div id="weiger" class="alert alert-danger" style="text-align: center;" role="alert"><span class="glyphicon glyphicon-remove-circle"></span> Geweigerd</div>
+                                            <a href="?page=imagecancel&img=<?= $img['id'] ?>"><div id="cancel" style="color:black; text-align: center;" role="alert"><span class="glyphicon glyphicon-chevron-left"></span> Stap terug</div></a>
+                                        <?php }
 
-                            else if($session->getImageVerify($img['id']) == 2) {?>
-                                <div id="weiger" class="alert alert-danger" style="text-align: center;" role="alert"><span class="glyphicon glyphicon-remove-circle"></span> Geweigerd</div>
-                                <a href="?page=imagecancel&img=<?= $img['id'] ?>"><div id="cancel" style="color:black; text-align: center;" role="alert"><span class="glyphicon glyphicon-chevron-left"></span> Stap terug</div></a>
-                            <?php }
+                                        else { ?>
+                                            <form id="mybuttons" method="post">
+                                                <input type="hidden" id="refreshcount" value="<?= $imgcount ?>">
+                                                <input type="hidden" id="ImageID" value="<?= $img['id'] ?>">
+                                                <input type="submit" id="AccButton" value="1">
+                                                <input type="submit" id="AccButton1" value="2">
+                                            </form>
+                                        <?php }
+                                    }
 
-                            else { ?>
-                                <div id="mybuttons">
-                                    <a id="AccButtonA" href="?page=imageverify&img=<?= $img['id']; ?>"><button id="AccButton" ">Akkoord</button></a>
-                                    <a id="AccButtonA" href="?page=imagedecline&img=<?= $img['id']; ?>"><button id="AccButton">Weiger</button></a>
+                                    else if($imago['verify'] == 1) { ?>
+                                        <div id="akkoord" class="alert alert-success" style="text-align: center;" role="alert"><span class="glyphicon glyphicon-ok-circle"></span> Akkoord</div>
+                                    <?php }
+
+                                    else if($imago['verify'] == 3) { ?>
+                                        <div id="weiger" class="alert alert-info" style="background-color:lightgrey; color:grey; text-align: center;" role="alert"><span class="glyphicon glyphicon-remove-circle"></span> Gewijzigd</div>
+                                        <?php
+                                    }
+                                    else { ?>
+                                        <form id="mybuttons" method="post">
+                                            <input type="hidden" id="refreshcount" value="<?= $imgcount ?>">
+                                            <input type="hidden" id="ImageID" value="<?= $img['id'] ?>">
+                                            <input type="submit" id="AccButton" value="1">
+                                            <input type="submit" id="AccButton1" value="2">
+                                        </form>
+                                        <?php
+                                    }
+
+                                    if(isset($imago)) {
+
+                                        if ($imago['verify'] == 1) {
+                                            $imageverify = 1;
+                                        }
+                                        else if ($imago['verify'] == 3) {
+                                            $imageverify = 3;
+                                        }
+
+                                        else if(isset($_SESSION['img' . $img['id']])) {
+
+                                            $imageverify = $session->getImageVerify($img['id']);
+
+                                            if ($imageverify !== null) {
+                                                $imageverify = $session->getImageVerify($img['id']);
+                                            }
+                                            else {
+                                                $imageverify = 0;
+                                            }
+                                        }
+                                    }
+                                    else {
+                                        $imageverify = 0;
+                                    }
+                                    if(isset($imageverify)) {
+                                        array_push($verifiedimages, $imageverify);
+                                    }
+
+                                    ?>
+                                    </div>
                                 </div>
-                            <?php }
-                        }
+                                <a href="#_" class="lightbox" id="img<?=$imgcount ?>">
+                                    <div id="lighter">
+                                        <div id="thumbnail2" style="background: url('index.php?page=image&img=<?= $img['images']?>') no-repeat scroll 50% 50%;background-size:contain;"></div>
+                                    </div>
+                                </a>
+                            <?php
+                                }?><div id="refsh"><?php
+                            if (in_array(2, $verifiedimages)) {
+                                $verified = 3;
+                                $verifytext = "afgekeurd";
+                            } else {
+                                $verified = 2;
+                                $verifytext = 'goedgekeurd';
+                            }
 
-                        else if($imago['verify'] == 1) { ?>
-                            <div id="akkoord" class="alert alert-success" style="text-align: center;" role="alert"><span class="glyphicon glyphicon-ok-circle"></span> Akkoord</div>
-                        <?php }
+                            if(in_array( 0, $verifiedimages)) {
+                                $verify = 0;
+                            }
+                            else {
+                                $verify = 1;
+                            }
+                                var_dump($verifiedimages);
+                                var_dump($verify);
+                                var_dump($verified);
+                                var_dump($verifytext);
+                                ?>
 
-                        else if($imago['verify'] == 3) { ?>
-                            <div id="weiger" class="alert alert-info" style="background-color:lightgrey; color:grey; text-align: center;" role="alert"><span class="glyphicon glyphicon-remove-circle"></span> Gewijzigd</div>
-                        <?php
-                        }
-                        else { ?>
-                        <div id="mybuttons">
-                            <a id="AccButtonA" href="?page=imageverify&img=<?= $img['id']; ?>"><button id="AccButton" ">Akkoord</button></a>
-                            <a id="AccButtonA" href="?page=imagedecline&img=<?= $img['id']; ?>"><button id="AccButton">Weiger</button></a>
+                                <input type="text" name="verified" value="<?php if(isset($verified)){ echo $verified; }?>">
+                                <input type="text" name="keuring" value="<?php if(isset($verified)) { echo $verifytext; }?>">
+
+                            <script>
+                                $( "#form" ).submit(function( event ) {
+                                    // TODO if verify = false goed neerzetten
+                                    if ( <?= $verify ?> === 1) {
+                                        $( "#verify" ).text( "Alle afbeeldingen zijn beoordeeld!" ).show();
+                                        return true;
+                                    }
+
+                                    $( "#verify" ).text( "Nog niet alle afbeeldingen zijn beoordeeld!" ).show().fadeOut( 5000 );
+                                    event.preventDefault();
+                                });
+                            </script>
+
+                            </div><?php
+                            ?>
+
+                            <div style="clear: both;"></div>
+                            <form id="form" class="UploadForm" action="?page=updatemail" style="clear:both;" method="post" enctype="multipart/form-data">
+                                <br />
+
+                                <input type="hidden" name="id" value="<?= $myupload['id']; ?>">
+
+                                <p> Omschrijving: <span style="color:#bc2d4c"><?= $myupload['beschrijving']?></span> </p>
+
+
+                                <br>
+                                <ul class="list-inline pull-right">
+                                    <li><button type="button" class="btn btn-primary next-step">Volgende</button></li>
+                                </ul>
                         </div>
-                        <?php
-                        }
-                        ?>
+
+
+                        <div class="tab-pane" role="tabpanel" id="step3">
+                            <div class="well" style="font-size: 15px; font-style: italic;">De opmerking die u invult wordt teruggestuurd naar de verstuurder. Verklaar uw keuze nader of voer een andere opmerking of mening in.</div>
+                            <br>
+                            <label>Opmerking<span style="color:#bc2d4c">*</span></label>
+                            <input id="AccOpm" type="text" name="answer" size="50" required><br><br>
+                            <ul class="list-inline pull-right">
+                                <li><button type="button" class="btn btn-primary next-step">Volgende</button></li>
+                            </ul>
                         </div>
-                    <a href="#_" class="lightbox" id="img<?=$imgcount ?>">
-                        <div id="lighter">
-                            <div id="thumbnail2" style=" background: url('index.php?page=image&img=<?= $img['images']?>') no-repeat scroll 50% 50%;background-size:contain;"></div>
+
+                        <input type="hidden" name="userid" value="<?php if(isset($_SESSION['usr_id'])){ echo $_SESSION['usr_id']; } else {echo $session->getUserId(); }?>">
+                        <input type="hidden" name="name" value="<?php if(isset($_SESSION['usr_id'])){ echo $_SESSION['usr_name']; } else {echo $myupload['naam']; }?>">
+                        <input type="hidden" name="title" value="<?= $myupload['onderwerp']; ?>">
+                        <input type="hidden" name="verstuurder" value="<?= $myupload['verstuurder']?>">
+                        <input type="hidden" name="UID" value="<?= $UID; ?>">
+
+                        <p id="verify"></p>
+
+                        <input type="hidden" name="fromname" id="" value="Kevin Ernst">
+                        <input type="hidden" name="mailto" id="" value="kevin.herdershof@hotmail.com">
+
+                        <div class="tab-pane" role="tabpanel" id="step4">
+                            <div class="well" style="font-size: 15px; font-style: italic;">Zoek hieronder de klant waar de proef naar moet worden verstuurd of maak een nieuwe klant aan. </div>
+                            <br>
+                            <label id="Voorwaarden">Ik heb de <a href="index.php?page=conditions"><span style="color:#bc2d4c">algemene voorwaarden</span></a> gelezen en ga hiermee akkoord</label>
+                            <input type="checkbox" name="yeahright" required>
+                            <br><br>
+
+                            <input type="submit" id="verstuuracc" name="submit" value="Verstuur" >
+
+                            <br><br>
+                            <label>Uw IP-adres: <?PHP
+                                echo ''.$_SERVER['REMOTE_ADDR'];
+                                ?></label>
+                            </form>
                         </div>
-                    </a>
-                <?php }
-                ?>
 
-                <div style="clear: both;"></div>
-                <form class="UploadForm" action="?page=updatemail" style="clear:both;" method="post" enctype="multipart/form-data">
-                    <br />
+                        <br>
+                        <br>
 
-                    <input type="hidden" name="id" value="<?= $myupload['id']; ?>">
-
-                    <label>Opmerking<span style="color:#bc2d4c">*</span></label>
-                    <input type="text" name="answer" size="50" required><br><br>
-
-                    <input type="hidden" name="userid" value="<?php if(isset($_SESSION['usr_id'])){ echo $_SESSION['usr_id']; } else {echo $session->getUserId(); }?>">
-                    <input type="hidden" name="name" value="<?php if(isset($_SESSION['usr_id'])){ echo $_SESSION['usr_name']; } else {echo $myupload['naam']; }?>">
-                    <input type="hidden" name="title" value="<?= $myupload['onderwerp']; ?>">
-                    <input type="hidden" name="verstuurder" value="<?= $myupload['verstuurder']?>">
-                    <input type="hidden" name="UID" value="<?= $UID; ?>">
-
-                    <input type="hidden" name="verified" value="<?php if(isset($verified)){ echo $verified; }?>">
-                    <input type="hidden" name="keuring" value="<?php if(isset($verified)) { echo $verifytext; }?>">
-
-                    <p id="verify"></p>
-
-                    <input type="hidden" name="fromname" id="" value="Kevin Ernst">
-                    <input type="hidden" name="mailto" id="" value="kevin.herdershof@hotmail.com">
-
-                    <label id="Voorwaarden">Ik heb de <a href="index.php?page=conditions"><span style="color:#bc2d4c">algemene voorwaarden</span></a> gelezen en ga hiermee akkoord</label>
-                    <input type="checkbox" name="yeahright" required>
-                    <br><br>
-
-                    <input type="submit" name="submit" value="Verstuur!" >
-
-                    <br><br>
-                    <label>Uw IP-adres: <?PHP
-                        echo ''.$_SERVER['REMOTE_ADDR'];
-                        ?></label>
-                </form>
-
-                <script>
-                    $( "form" ).submit(function( event ) {
-                        // TODO if verify = false goed neerzetten
-                        if ( <?= $verify ?> === 1) {
-                            $( "#verify" ).text( "Alle afbeeldingen zijn beordeeld!" ).show();
-                            return;
-                        }
-
-                        $( "#verify" ).text( "Nog niet alle afbeeldingen zijn beoordeeld!" ).show().fadeOut( 2500 );
-                        event.preventDefault();
-                    });
-                </script>
-
-                <br>
-                <br>
-
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>

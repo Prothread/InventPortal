@@ -7,6 +7,177 @@ button {
     width:20px;
 }
 
+.wizard {
+    margin: 20px auto;
+    background: #fff;
+}
+
+    .wizard .nav-tabs {
+        position: relative;
+        margin: 40px auto;
+        margin-bottom: 0;
+        border-bottom-color: #bb2c4c;
+    }
+
+    .wizard > div.wizard-inner {
+        position: relative;
+    }
+
+.widget-img {
+    position: absolute;
+    width: 64px;
+    height: 64px;
+    left: 50%;
+    margin-left: -32px;
+    top: -32px;
+    background-color: #fff;
+    border: 3px solid #e3e3e3;
+    -webkit-box-shadow: -1px 62px 129px 0px rgba(0,0,0,0.58);
+    -moz-box-shadow: -1px 62px 129px 0px rgba(0,0,0,0.58);
+    box-shadow: -1px 62px 129px 0px rgba(0,0,0,0.58);
+
+}
+.img-md {
+    width: 62px;
+    height: 62px;
+}
+.widget-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 100%;
+}
+
+.connecting-line {
+    height: 2px;
+    background: #e0e0e0;
+    position: absolute;
+    width: 80%;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    top: 50%;
+    z-index: 1;
+}
+
+.wizard .nav-tabs > li.active > a, .wizard .nav-tabs > li.active > a:hover, .wizard .nav-tabs > li.active > a:focus {
+    color: #bb2c4c;
+    cursor: default;
+    border: 0;
+    border-bottom-color: transparent;
+}
+
+span.round-tab {
+    width: 70px;
+    height: 70px;
+    line-height: 70px;
+    display: inline-block;
+    border-radius: 100px;
+    background: #fff;
+    border: 2px solid #e0e0e0;
+    z-index: 2;
+    position: absolute;
+    left: 0;
+    text-align: center;
+    font-size: 25px;
+}
+span.round-tab i{
+    color:#555555;
+}
+.wizard li.active span.round-tab {
+    background: #fff;
+    border: 2px solid #bb2c4c;
+    
+}
+.wizard li.active span.round-tab i{
+    color: #bb2c4c;
+}
+
+span.round-tab:hover {
+    color: #333;
+    border: 2px solid #bb2c4c;
+}
+
+.wizard .nav-tabs > li {
+    width: 25%;
+}
+
+.wizard li:after {
+    content: " ";
+    position: absolute;
+    left: 46%;
+    opacity: 0;
+    margin: 0 auto;
+    bottom: 0px;
+    border: 5px solid transparent;
+    border-bottom-color: #e0e0e0;
+    transition: 0.1s ease-in-out;
+}
+
+.wizard .glyphicon {
+    margin-top: 16px;
+}
+
+.wizard li.active:after {
+    content: " ";
+    position: absolute;
+    left: 46%;
+    opacity: 1;
+    margin: 0 auto;
+    bottom: 0px;
+    border: 10px solid transparent;
+    border-bottom-color: #bb2c4c;
+}
+
+.wizard .nav-tabs > li a {
+    width: 70px;
+    height: 70px;
+    margin: 20px auto;
+    border-radius: 100%;
+    padding: 0;
+}
+
+    .wizard .nav-tabs > li a:hover {
+        background: transparent;
+    }
+
+.wizard .tab-pane {
+    position: relative;
+    padding-top: 50px;
+}
+
+.wizard h3 {
+    margin-top: 0;
+}
+
+@media( max-width : 585px ) {
+
+    .wizard {
+        width: 90%;
+        height: auto !important;
+    }
+
+    span.round-tab {
+        font-size: 16px;
+        width: 50px;
+        height: 50px;
+        line-height: 50px;
+    }
+
+    .wizard .nav-tabs > li a {
+        width: 50px;
+        height: 50px;
+        line-height: 50px;
+    }
+
+    .wizard li.active:after {
+        content: " ";
+        position: absolute;
+        left: 35%;
+    }
+}
+
 table {
     font-family: cabinregular, 'serif';
     border-collapse: collapse;
@@ -17,23 +188,6 @@ table {
 .badgebox
 {
     opacity: 0;
-}
-
-#SendSearch {
-    background-image: url(http://i66.tinypic.com/20f89w5.png);
-    background-position: center;
-    background-repeat: no-repeat;
-    width: 40px;
-    border: 1px solid #bb2c4c;
-    border-radius: 5px;
-    background-color: #FFF;
-    height: 28px;
-}
-#TableInput {
-    border-radius: 5px;
-    border: 1px solid #bb2c4c;
-    padding-left: 7px;
-    width: 40%;
 }
 
 #filterbutton {
@@ -215,6 +369,12 @@ tr:nth-child(even) {
 	padding-left: 2px;
 }
 
+#AccOpm {
+    border-radius: 5px;
+    border: 1px solid #bb2c4c;
+    padding-left: 2px;
+}
+
 .NewClient input[type=text] {
     border-radius: 5px;
     border: 1px solid #bb2c4c;
@@ -222,6 +382,15 @@ tr:nth-child(even) {
 }
 
 .NewClient input[type=submit] {
+    border-radius: .5em;
+    border: 1px solid #bb2c4c;
+    background-color: #bb2c4c;
+    padding: 0.5em;
+    color: white;
+    font-weight: bold;
+}
+
+#verstuuracc {
     border-radius: .5em;
     border: 1px solid #bb2c4c;
     background-color: #bb2c4c;
@@ -359,9 +528,27 @@ tr:nth-child(even) {
     font-weight: bold;
 }
 
+#SendSearch {
+    background-image: url('../img/icons/search.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 40px;
+    border: 1px solid #bb2c4c;
+    border-radius: 5px;
+    background-color: #FFF;
+    height: 28px;
+}
+
 .fileContainer {
     overflow: hidden;
     position: relative;
+}
+
+#TableInput {
+	border-radius: 5px;
+	border: 1px solid #bb2c4c;
+	padding-left: 7px;
+    width: 40%;
 }
 
 @media(max-width:650px) {
@@ -374,7 +561,6 @@ tr:nth-child(even) {
 	border-radius: 5px;
 	border: 1px solid #bb2c4c;
 	padding-left: 7px;
-	background-image: url('http://i66.tinypic.com/20f89w5.png');
 	background-position: right;
 	background-repeat: no-repeat;
 }
@@ -432,11 +618,7 @@ tr:nth-child(even) {
 	font-weight: bold;
 }
 
-#tags {
-	background-image: url('http://i66.tinypic.com/20f89w5.png');
-	background-position: right;
-	background-repeat: no-repeat;
-}
+
 
 .NameText table {
     font-family: cabinregular, 'serif';
@@ -453,10 +635,13 @@ tr:nth-child(even) {
     position:relative;
     width: 100%;
     height: 130px;
-    background-image: url('headerbg.png');
+    background: #d4254e;
+    /*background-image: url('headerbg.png');*/
     background-repeat: no-repeat;
     margin-left: -8px;
 }
+
+
 
 #preview {
 	width: 527px;
@@ -564,20 +749,20 @@ ul.sidebar-nav {
   }
 }
 
-.sidebar-nav .nav-button-home a { background:url("http://i63.tinypic.com/2hokbgz.png") no-repeat 40px 5px }
-.sidebar-nav .nav-button-upload a { background:url("http://i65.tinypic.com/2hrd10x.png") no-repeat 40px 5px }
-.sidebar-nav .nav-button-all a { background:url("http://i65.tinypic.com/2m69uki.png") no-repeat 40px 5px }
-.sidebar-nav .nav-button-settings a { background:url("http://i63.tinypic.com/2qjf1p0.png") no-repeat 40px 5px }
-.sidebar-nav .nav-button-users a { background:url("http://i67.tinypic.com/20zy22u.png") no-repeat 40px 5px }
-.sidebar-nav .nav-button-logout a { background:url("http://i63.tinypic.com/2nb8v9x.png") no-repeat 40px 7px }
+.sidebar-nav .nav-button-home a { background:url("../img/icons/home-white.png") no-repeat 40px 5px }
+.sidebar-nav .nav-button-upload a { background:url("../img/icons/upload-white.png") no-repeat 40px 5px }
+.sidebar-nav .nav-button-all a { background:url("../img/icons/seen-white.png") no-repeat 40px 5px }
+.sidebar-nav .nav-button-settings a { background:url("../img/icons/settings-white.png") no-repeat 40px 5px }
+.sidebar-nav .nav-button-users a { background:url("../img/icons/person-white.png") no-repeat 40px 5px }
+.sidebar-nav .nav-button-logout a { background:url("../img/icons/logout-white.png") no-repeat 40px 7px }
 
 
-.sidebar-nav .nav-button-home a:hover { background:url("http://i66.tinypic.com/2u6my6s.png") no-repeat 40px 5px }
-.sidebar-nav .nav-button-upload a:hover { background:url("http://i67.tinypic.com/2e4cf44.png") no-repeat 40px 5px }
-.sidebar-nav .nav-button-all a:hover { background:url("http://i66.tinypic.com/2gufn2q.png") no-repeat 40px 5px }
-.sidebar-nav .nav-button-settings a:hover { background:url("http://i68.tinypic.com/qyy3qs.png") no-repeat 40px 5px }
-.sidebar-nav .nav-button-users a:hover { background:url("http://i64.tinypic.com/qn0dix.png") no-repeat 40px 5px }
-.sidebar-nav .nav-button-logout a:hover { background:url("http://i63.tinypic.com/21m8f3r.jpg") no-repeat 40px 7px }
+.sidebar-nav .nav-button-home a:hover { background:url("../img/icons/home-hover.png") no-repeat 40px 5px }
+.sidebar-nav .nav-button-upload a:hover { background:url("../img/icons/upload-hover.png") no-repeat 40px 5px }
+.sidebar-nav .nav-button-all a:hover { background:url("../img/icons/seen-hover.png") no-repeat 40px 5px }
+.sidebar-nav .nav-button-settings a:hover { background:url("../img/icons/settings-hover.png") no-repeat 40px 5px }
+.sidebar-nav .nav-button-users a:hover { background:url("../img/icons/person-hover.png") no-repeat 40px 5px }
+.sidebar-nav .nav-button-logout a:hover { background:url("../img/icons/logout-hover.png") no-repeat 40px 7px }
 
 
 #wrapper {

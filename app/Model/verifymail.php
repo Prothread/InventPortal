@@ -115,6 +115,7 @@ if( isset( $_GET['id'] ) && isset( $mailkey ) ) {
         header('Location: index.php');
         Session::flash('error', 'U heeft hier geen rechten voor.');
     }
+    $_SESSION['accord'] = '1';
 
     /**
      * Redirect to the next page

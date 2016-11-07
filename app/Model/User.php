@@ -379,6 +379,8 @@ class User
     /**
      * Haal alle gebruikers op
      *
+     * @param null $limit
+     * @param null $offset
      * @return array|null
      */
 
@@ -390,14 +392,41 @@ class User
     /**
      * Haal alle klanten op
      *
+     * @param null $limit
+     * @param null $offset
+     * @param $permgroup
      * @return array|null
      */
 
-    public function getAllClients($limit = null, $offset = null, $permgroup)
+    public function getAllClients($table, $filter, $limit = null, $offset = null, $permgroup)
     {
-        return $this->db->getAllClients($limit, $offset, $permgroup);
+        return $this->db->getAllClients($table, $filter, $limit, $offset, $permgroup);
     }
 
+    /**
+     * Haal aantal klanten op
+     *
+     * @return mixed
+     */
+
+    public function countClients()
+    {
+        return $this->db->countClients();
+    }
+
+    /**
+     * Haal alle gebruikres op die geen klant zijn
+     *
+     * @param null $limit
+     * @param null $offset
+     * @param $permgroup
+     * @return mixed
+     */
+
+    public function getAllUsersByPerm($table, $filter, $limit = null, $offset = null, $permgroup)
+    {
+        return $this->db->getAllUsersByPerm($table, $filter, $limit, $offset, $permgroup);
+    }
     /**
      * Haal aantal resultaten van mails op
      *
@@ -415,9 +444,9 @@ class User
      * @return mixed
      */
 
-    public function searchTable($term, $limit = null, $offset = null, $table = null, $filter = null, $ids = null, $status = null)
+    public function searchTable($term, $limit = null, $offset = null, $table = null, $filter = null, $ids = null)
     {
-        return $this->db->searchTable($term, $limit, $offset, $table, $filter, $ids, $status);
+        return $this->db->searchTable($term, $limit, $offset, $table, $filter, $ids);
     }
 
 }

@@ -115,7 +115,7 @@ if($openstaand_percent==0){
 
 if(isset($_POST['sub'])) {
     $mysqli = mysqli_connect();
-    $user = new UserController();
+    $mail = new MailController();
 
     $term = mysqli_real_escape_string($mysqli, $_POST['term']);
     $_SESSION['term'] = $term;
@@ -193,7 +193,7 @@ if(isset($term)) {
                 </ul>
             </div>
             <br /><br />
-            <form action="?page=overzicht" method="post">
+            <form id="filterz" action="?page=overzicht" method="post">
 
                 <table id="overzicht" class="table-striped">
                     <thead>
@@ -278,8 +278,8 @@ if(isset($term)) {
 
                     if(isset($_SESSION['term'])) {
 
-                        $count = count( $user->searchTable($_SESSION['term']) );
-                        $searchtable = $user->searchTable($_SESSION['term'], $limit, $offset, $table, $filter, '', $status);
+                        $count = count( $mail->searchTable($_SESSION['term']) );
+                        $searchtable = $mail->searchTable($_SESSION['term'], $limit, $offset, $table, $filter, '', $status);
 
                         if (!empty($searchtable)) {
                             foreach ($searchtable as $upload) {
