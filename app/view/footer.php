@@ -3,6 +3,113 @@
 ?>
 </div>
 
+<script>
+    $(document).ready(function() {});
+
+    $.getScript('http://www.chartjs.org/assets/Chart.js',function(){
+
+        var data = [{
+            label: "Geweigerd",
+            value: 20,
+            color: "#dd2c4c"
+        }, {
+            label: "Goedgekeurd",
+            value: 80,
+            color: "#5c1863"
+        },
+        ]
+
+        var options = {
+            animateRotate: true
+        };
+
+        //Get the context of the canvas element we want to select
+        var c = $('#myChart');
+        var ct = c.get(0).getContext('2d');
+        var ctx = document.getElementById("myChart").getContext("2d");
+        /*************************************************************************/
+        myNewChart = new Chart(ct).Doughnut(data, options);
+
+    })
+</script>
+
+<script>
+    jQuery(document).ready(function(){
+        jQuery('.skillbar').each(function(){
+            jQuery(this).find('.skillbar-bar').animate({
+                width:jQuery(this).attr('data-percent')
+            },2000);
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function() {});
+
+    $.getScript('http://www.chartjs.org/assets/Chart.js',function(){
+
+        var data = [{
+            label: "Davy",
+            value: 30,
+            color: "#b20a30"
+        }, {
+            label: "Alexander",
+            value: 20,
+            color: "#dd2c4c"
+        },
+            {
+                label: "Dylan",
+                value: 20,
+                color: "#5c1863"
+            },
+            {
+                label: "Marc",
+                value: 30,
+                color: "#822b8b"
+            },
+        ]
+
+        var options = {
+            animateScale: true
+        };
+
+        //Get the context of the canvas element we want to select
+        var c = $('#ProcAcc');
+        var ct = c.get(0).getContext('2d');
+        var ctx = document.getElementById("ProcAcc").getContext("2d");
+        /*************************************************************************/
+        ProcAcc = new Chart(ct).Doughnut(data, options);
+
+    })
+</script>
+
+<script>
+    $('.counter').each(function() {
+        var $this = $(this),
+            countTo = $this.attr('data-count');
+
+        $({ countNum: $this.text()}).animate({
+                countNum: countTo
+            },
+
+            {
+
+                duration: 2000,
+                easing:'linear',
+                step: function() {
+                    $this.text(Math.floor(this.countNum));
+                },
+                complete: function() {
+                    $this.text(this.countNum);
+                    //alert('finished');
+                }
+
+            });
+
+
+
+    });
+</script>
 
 <script>
         var vote;

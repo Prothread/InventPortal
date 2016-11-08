@@ -1,4 +1,4 @@
-label {
+talabel {
     width: 114px;
     margin-right: 15px;
     display: inline-block;
@@ -7,15 +7,28 @@ button {
     width:20px;
 }
 
-.LastUpload {
-    font-size: 20px;
-    padding-left: 20px;
+.counter {
+    margin:1.5%;
+    font-size:50px;
+    border-radius: 50%;
+    height: 196px;
+    vertical-align: middle;
+    color: #dd2c4c;
+    font-size: 100px;
 }
 
-@media(max-width:650px) {
-    .LastUpload {
-        text-align: center;
-    }
+.overzichtcount {
+  margin:1.5%;
+  font-size:20px;
+  border-radius: 50%;
+  height: 196px;
+  vertical-align: middle;
+  color: #dd2c4c;
+  font-size: 100px;
+}
+
+.DashWidgets {
+    width: 100%;
 }
 
 .skillbar {
@@ -44,7 +57,7 @@ button {
     position:absolute;
     top:0;
     left:0;
-    width:110px;
+width:110px;
     font-weight:bold;
     font-size:13px;
     color:#ffffff;
@@ -172,7 +185,7 @@ span.round-tab i{
 .wizard li.active span.round-tab {
     background: #fff;
     border: 2px solid #bb2c4c;
-
+    
 }
 .wizard li.active span.round-tab i{
     color: #bb2c4c;
@@ -293,7 +306,7 @@ table {
 {
     /* Set something to make the badge looks focused */
     /* This really depends on the application, in my case it was: */
-
+    
     /* Adding a light border */
     box-shadow: inset 0px 0px 5px;
     /* Taking the difference out of the padding */
@@ -539,8 +552,8 @@ tr:nth-child(even) {
 }
 
 #preview {
-    max-width: 100%;
-    display:block;
+    max-width: 100%; 
+    display:block; 
     height: auto;
 }
 
@@ -633,6 +646,7 @@ tr:nth-child(even) {
 	border: 1px solid #bb2c4c;
 	padding-left: 7px;
     width: 40%;
+    margin-left: 13px;
 }
 
 @media(max-width:650px) {
@@ -719,7 +733,9 @@ tr:nth-child(even) {
     position:relative;
     width: 100%;
     height: 130px;
+    background: #d4254e;
     /*background-image: url('headerbg.png');*/
+    background-repeat: no-repeat;
     margin-left: -8px;
 }
 
@@ -830,19 +846,10 @@ ul.sidebar-nav {
     display: none;
   }
 }
-#NoMail {
-    width: 100%;
-    background-color: lightblue;
-    text-align: center;
-    padding: 15px;
-    font-family: cursive;
-}
 
 .sidebar-nav .nav-button-home a { background:url("../img/icons/home-white.png") no-repeat 40px 5px }
-.sidebar-nav .nav-button-overzicht a { background:url("../img/icons/person.png") no-repeat 40px 5px }
 .sidebar-nav .nav-button-upload a { background:url("../img/icons/upload-white.png") no-repeat 40px 5px }
 .sidebar-nav .nav-button-all a { background:url("../img/icons/seen-white.png") no-repeat 40px 5px }
-.sidebar-nav .nav-button-accord a { background:url("../img/icons/status-seen.png") no-repeat 40px 5px }
 .sidebar-nav .nav-button-settings a { background:url("../img/icons/settings-white.png") no-repeat 40px 5px }
 .sidebar-nav .nav-button-users a { background:url("../img/icons/person-white.png") no-repeat 40px 5px }
 .sidebar-nav .nav-button-logout a { background:url("../img/icons/logout-white.png") no-repeat 40px 7px }
@@ -851,7 +858,6 @@ ul.sidebar-nav {
 .sidebar-nav .nav-button-home a:hover { background:url("../img/icons/home-hover.png") no-repeat 40px 5px }
 .sidebar-nav .nav-button-upload a:hover { background:url("../img/icons/upload-hover.png") no-repeat 40px 5px }
 .sidebar-nav .nav-button-all a:hover { background:url("../img/icons/seen-hover.png") no-repeat 40px 5px }
-.sidebar-nav .nav-button-accord a:hover { background:url("../img/icons/status-seen-pink.png") no-repeat 40px 5px }
 .sidebar-nav .nav-button-settings a:hover { background:url("../img/icons/settings-hover.png") no-repeat 40px 5px }
 .sidebar-nav .nav-button-users a:hover { background:url("../img/icons/person-hover.png") no-repeat 40px 5px }
 .sidebar-nav .nav-button-logout a:hover { background:url("../img/icons/logout-hover.png") no-repeat 40px 7px }
@@ -867,18 +873,18 @@ ul.sidebar-nav {
 
 table.table { width: 100%; }
 
-.table th, .table td {
-  text-align: left;
+.table th, .table td { 
+  text-align: left; 
   padding: 0.25em;
 }
 
-.table tr {
+.table tr { 
   border-bottom: 0 solid #FFFFFF;
 }
 
 @media screen and (max-width: 800px) {
-  tr {
-    display: flex;
+  tr { 
+    display: flex; 
     flex-direction: row;
     flex-wrap: wrap;
     margin: 0.5em 0;
@@ -911,6 +917,18 @@ table.table { width: 100%; }
   text-align: center;
 }
 
+.LastUpload {
+    font-size: 20px;
+    padding-left: 20px;
+}
+
+@media(max-width:650px) {
+.LastUpload {
+        text-align: center;
+    }
+}
+
+
 #wrapper.toggled {
     padding-left: 250px;
 }
@@ -920,7 +938,7 @@ table.table { width: 100%; }
     position: absolute;
     left: 250px;
     width: 0;
-    height: 130%;
+    height: 170%;
     margin-left: -250px;
     overflow-y: auto;
     background: #283033;

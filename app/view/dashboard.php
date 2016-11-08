@@ -45,20 +45,74 @@ if($openstaand_percent==0){
             <div class="col-lg-12">
                 <p class="NameText">Home</p>
                 <hr size="1">
-                <div class="well well-m">
-                    <br>
-                   <div class="progress">
-                        <div class="progress-bar progress-bar-success progress-bar-striped active" style="width: <?= $geaccepteerd_percent ?>%">
-                            <a id="statusbartext" href="#" data-toggle="tooltip" title="Het aantal goedgekeurde items"><span id="geaccepteerd" class="glyphicon glyphicon-ok-sign"></span>  <span class="badge"><?= $get_items_geaccepteerd['COUNT(status)'] ?></span></a>
-                        </div>
-                        <div class="progress-bar progress-bar-danger progress-bar-striped active" style="width: <?= $geweigerd_percent ?>%">
-                            <a id="statusbartext" href="#" data-toggle="tooltip" title="Het aantal afgekeurde items"><span id="geweigerd" class="glyphicon glyphicon-remove-sign"></span>  <span class="badge"><?= $get_items_geweigerd['COUNT(status)'] ?></span></a>
-                        </div>
-                        <div class="progress-bar progress-bar-warning progress-bar-striped active" style="width: <?= $openstaand_percent ?>%">
-                            <a id="statusbartext" href="#" data-toggle="tooltip" title="In afwachting van"><span id="openstaand" class="glyphicon glyphicon-question-sign"></span>  <span class="badge"><?= $get_items_openstaand['COUNT(status)'] + $get_items_bekeken['COUNT(status)'] ?></span></a>
+
+                <div class="col-sm-6 col-md-4">
+                    <div class="thumbnail">
+                        <div class="well">
+                            <div class="caption">
+                                <div class="widget-header bg-success"></div>
+                                <div class="widget-body text-center">
+                                    <div>
+                                        <p style="text-align: center;">Verschil akkoord & geweigerd</p>
+                                        <canvas id="myChart" width="200" height="200"></canvas>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
+
+                <div class="col-sm-6 col-md-4">
+                    <div class="thumbnail">
+                        <div style="text-align: center;" class="well">
+                            <div class="caption">
+                                <div class="widget-header bg-success"></div>
+                                <div class="widget-body text-center">
+                                    <div>
+                                        <p style="text-align: center;">Totaal aantal opdrachten</p>
+                                        <div class="counter overzichtcount" data-count="1263">0</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4">
+                    <div class="thumbnail">
+                        <div class="well">
+                            <div class="caption">
+                                <div class="widget-header bg-success"></div>
+                                <div class="widget-body text-center">
+                                    <p style="text-align: center;">Procent akkoord per persoon</p>
+                                    <div class="skillbar clearfix " data-percent="70%">
+                                        <div class="skillbar-title" style="background: #5c1863;"><span>Marc</span></div>
+                                        <div class="skillbar-bar" style="background: #a625b3;"></div>
+                                        <div class="skill-bar-percent">70%</div>
+                                    </div> <!-- End Skill Bar -->
+
+                                    <div class="skillbar clearfix " data-percent="70%">
+                                        <div class="skillbar-title" style="background: #b41236;"><span>Davy</span></div>
+                                        <div class="skillbar-bar" style="background: #ba2e4d;"></div>
+                                        <div class="skill-bar-percent">70%</div>
+                                    </div> <!-- End Skill Bar -->
+
+                                    <div class="skillbar clearfix " data-percent="50%">
+                                        <div class="skillbar-title" style="background: #de1340;"><span>Alexander</span></div>
+                                        <div class="skillbar-bar" style="background: #dd4869;"></div>
+                                        <div class="skill-bar-percent">50%</div>
+                                    </div> <!-- End Skill Bar -->
+
+                                    <div class="skillbar clearfix " data-percent="50%">
+                                        <div class="skillbar-title" style="background: #822b8b;"><span>Dylan</span></div>
+                                        <div class="skillbar-bar" style="background: #b340bf;"></div>
+                                        <div class="skill-bar-percent">50%</div>
+                                    </div> <!-- End Skill Bar -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
                 <br>
                 <?php
