@@ -10,11 +10,11 @@
 
         var data = [{
             label: "Geweigerd",
-            value: 20,
+            value: <?=round($_SESSION['geweigerd_percent'])?>,
             color: "#dd2c4c"
         }, {
             label: "Goedgekeurd",
-            value: 80,
+            value: <?=round($_SESSION['geaccepteerd_percent'])?>,
             color: "#5c1863"
         },
         ]
