@@ -99,11 +99,7 @@ class DbUser extends Database
 
     public function getPermission($row, $perm)
     {
-        $sql = "SELECT `{$row}` FROM `permissions` WHERE `permission` = '{$perm}'";
-
-        /*if($result = $this->dbQuery($sql)) {
-            return mysqli_fetch_assoc($result);
-        }*/
+        $sql = "SELECT * FROM `permissions` WHERE `permission` = '{$perm}'";
 
         $result = $this->dbQuery($sql);
         $value = mysqli_fetch_assoc($result);

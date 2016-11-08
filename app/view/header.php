@@ -18,7 +18,6 @@ else {
 
 $settings = new UserController();
 $admin = $settings->getAdminSettings();
-
 ?>
 
 <html lang="nl">
@@ -84,14 +83,13 @@ $admin = $settings->getAdminSettings();
     </div>
 
 <div id="NameSide">
-<?php if($user->getPermission($permgroup, 'CAN_SHOW_USEROVERZICHT') == 1){ ?>
-    <a href="index.php?page=gebruikersoverzicht">
-    <div id="UserPhoto" style="padding-bottom: 1px;
-    /* border-radius: 70px; */
-    background-color: #b1163a;">
-        <h3 id="LoggedInAs"><?= $myuser; ?></h3>
+    <div id="UserPhoto">
     </div>
-<?php } ?>
+    <a style="text-decoration: none;" href="index.php?page=gebruikersoverzicht">
+        <div style="text-decoration: none;" id="UserBlock">
+            <h3 id="LoggedInAs"><?= $myuser; ?></h3>
+        </div>
+    </a>
 </div>
 
 
@@ -107,16 +105,20 @@ $admin = $settings->getAdminSettings();
                 <a href="index.php?page=dashboard">Home</a>
             </li>
 
-            <?php if ($user->getPermission($permgroup, 'CAN_SHOW_OVERZICHT') == 1) { ?>
-                <li class="nav-button-all">
-                    <a href="index.php?page=overzicht">Overzicht</a>
-                </li>
-            <?php } ?>
+            <li class="nav-button-all">
+                <a href="index.php?page=overzicht">Overzicht</a>
+            </li>
 
             <?php if($user->getPermission($permgroup, 'CAN_EDIT_SETTINGS') == 1){ ?>
                 <li class="nav-button-settings">
                     <a href="index.php?page=settings">Instellingen</a>
                 </li>
+            <?php } ?>
+
+            <?php if ($user->getPermission($permgroup, 'CAN_UPLOAD') == 1 || $user->getPermission($permgroup, 'CAN_ACCORD') == 1) { ?>
+                <h5 style="margin-left:15px;"><i style="color: #FFF;" class="glyphicon glyphicon-ok"></i>
+                    <small><b><span style="color: #FFF;">ACCORDERINGEN</span></b></small>
+                </h5>
             <?php } ?>
 
             <?php if ($user->getPermission($permgroup, 'CAN_UPLOAD') == 1) { ?>
@@ -125,13 +127,12 @@ $admin = $settings->getAdminSettings();
                 </li>
             <?php } ?>
 
-            <?php if ($session->get('accord') == 1 && $user->getPermission($permgroup, 'CAN_ACCORD') == 1) { ?>
+            <?php if ($user->getPermission($permgroup, 'CAN_ACCORD') == 1) { ?>
                 <li class="nav-button-accord">
                     <a href="index.php?page=accordering">Accordering</a>
                 </li>
             <?php } ?>
 
-            <?php if($user->getPermission($permgroup, 'CAN_SHOW_KLANTPAGINA') == 1 || $user->getPermission($permgroup, 'CAN_SHOW_USERS') == 1) { ?>
                 <h5 style="margin-left:15px;"><i style="color: #FFF;" class="glyphicon glyphicon-user"></i>
                     <small><b><span style="color: #FFF;">PERSONEN</span></b></small>
                 </h5>
@@ -146,8 +147,7 @@ $admin = $settings->getAdminSettings();
                     <li class="nav-button-users">
                         <a href="index.php?page=manageusers">Gebruikers</a>
                     </li>
-                <?php }
-            }?>
+                <?php }?>
             <br>
             <br>
             <li class="nav-button-logout">
@@ -156,8 +156,10 @@ $admin = $settings->getAdminSettings();
         </ul>
     </div>
 <?php
+
 if($session->exists('flash')) {
     foreach($session->get('flash') as $flash) {
         echo "<div class='alert alert_{$flash['type']}'>{$flash['message']}</div>";
     }
-    $session->remove('flash');} ?>
+    $session->remove('flash');
+} ?>

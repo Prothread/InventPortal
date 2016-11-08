@@ -84,10 +84,10 @@ if($openstaand_percent==0){
                                 <div class="widget-header bg-success"></div>
                                 <div class="widget-body text-center">
                                     <p style="text-align: center;">Procent akkoord per persoon</p>
-                                    <div class="skillbar clearfix " data-percent="70%">
+                                    <div class="skillbar clearfix " data-percent="75%">
                                         <div class="skillbar-title" style="background: #5c1863;"><span>Marc</span></div>
                                         <div class="skillbar-bar" style="background: #a625b3;"></div>
-                                        <div class="skill-bar-percent">70%</div>
+                                        <div class="skill-bar-percent">75%</div>
                                     </div> <!-- End Skill Bar -->
 
                                     <div class="skillbar clearfix " data-percent="70%">
@@ -102,10 +102,10 @@ if($openstaand_percent==0){
                                         <div class="skill-bar-percent">50%</div>
                                     </div> <!-- End Skill Bar -->
 
-                                    <div class="skillbar clearfix " data-percent="50%">
+                                    <div class="skillbar clearfix " data-percent="60%">
                                         <div class="skillbar-title" style="background: #822b8b;"><span>Dylan</span></div>
                                         <div class="skillbar-bar" style="background: #b340bf;"></div>
-                                        <div class="skill-bar-percent">50%</div>
+                                        <div class="skill-bar-percent">60%</div>
                                     </div> <!-- End Skill Bar -->
                                 </div>
                             </div>
