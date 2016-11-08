@@ -22,21 +22,11 @@ $get_items_openstaand = $items->getUserMailByStatus(0);
 $get_items_bekeken = $items->getUserMailByStatus(1);
 $get_items_geweigerd = $items->getUserMailByStatus(3);
 $get_items_geaccepteerd = $items->getUserMailByStatus(2);
-$allitems = $get_items_geaccepteerd['COUNT(status)']+$get_items_geweigerd['COUNT(status)']+$get_items_openstaand['COUNT(status)']+ $get_items_bekeken['COUNT(status)'];
+$total_accept_weiger = $get_items_geaccepteerd['COUNT(status)']+$get_items_geweigerd['COUNT(status)'];
+$total_items = $get_items_geaccepteerd['COUNT(status)']+$get_items_geweigerd['COUNT(status)']+$get_items_openstaand['COUNT(status)']+$get_items_bekeken['COUNT(status)'];
+$_SESSION['geaccepteerd_percent'] = ($get_items_geaccepteerd['COUNT(status)']/$total_accept_weiger)*100;
+$_SESSION['geweigerd_percent'] = ($get_items_geweigerd['COUNT(status)']/$total_accept_weiger)*100;
 
-$geaccepteerd_percent = ($get_items_geaccepteerd['COUNT(status)']/$allitems)*100;
-$geweigerd_percent =  ($get_items_geweigerd['COUNT(status)']/$allitems)*100;
-$openstaand_percent = 100-($geaccepteerd_percent+$geweigerd_percent);
-
-if($geaccepteerd_percent==0){
-    ?><style type="text/css">#geaccepteerd{  display:none;  }</style><?php
-}
-if($geweigerd_percent==0){
-    ?><style type="text/css">#geweigerd{  display:none;  }</style><?php
-}
-if($openstaand_percent==0){
-    ?><style type="text/css">#openstaand{  display:none;  }</style><?php
-}
 ?>
 
 <div id="page-content-wrapper">
@@ -70,7 +60,7 @@ if($openstaand_percent==0){
                                 <div class="widget-body text-center">
                                     <div>
                                         <p style="text-align: center;">Totaal aantal opdrachten</p>
-                                        <div class="counter overzichtcount" data-count="1263">0</div>
+                                        <div class="counter overzichtcount" data-count="<?= $total_items ?>">0</div>
                                     </div>
                                 </div>
                             </div>
