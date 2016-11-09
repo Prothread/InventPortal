@@ -77,29 +77,14 @@ if (isset($_FILES['myFile'])) {
 
                 if (move_uploaded_file($test1, $uniqfile)) {
                     array_push($images, $test);
-                    if($imageFileType == "pdf"){
-                        echo "The file " . $test . " has been uploaded."; ?><br /><?php
-                        ?>
-                        <object data="<?= DIR_IMAGE.$unique_name ?>" type="application/pdf" width="700px" height="700px">
-                            <embed src="<?= DIR_IMAGE.$unique_name ?>">
-                            </embed>
-                        </object>
-                            <?php
-                    }
-                    else{
-                        echo "The file " . $test . " has been uploaded."; ?><br /><?php
-                        echo '<img style="width:300px; height: auto;" src="../app/uploads/' . $unique_name  . '">';
-                    }
-                    ?>
-
-                    <?php
                 }
 
-            } else {
+        }
+        else {
 
-            }
         }
     }
+}
 
 if($error == 0) {
     $mymail = new MailController();

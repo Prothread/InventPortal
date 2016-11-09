@@ -162,8 +162,9 @@ $UID = date('dmY-G.i.s') . '-192.08.1.124';
                                             <input type="submit" id="AccButton" value="1">
                                             <input type="submit" id="AccButton1" value="2">
                                         </form>
+
                                         <?php
-                                    }
+                                    }?><div id="refsa"><?php
 
                                     if(isset($imago)) {
 
@@ -190,10 +191,14 @@ $UID = date('dmY-G.i.s') . '-192.08.1.124';
                                         $imageverify = 0;
                                     }
                                     if(isset($imageverify)) {
-                                        array_push($verifiedimages, $imageverify);
+                                        $sessionverify = $session->getImageVerify($img['id']);
+
+                                        $verifiedimages['img' . $img['id']] = $sessionverify;
+                                        //array_push($verifiedimages, $imageverify);
                                     }
 
                                     ?>
+                                    </div>
                                     </div>
                                 </div>
                                 <a href="#_" class="lightbox" id="img<?=$imgcount ?>">
@@ -206,25 +211,26 @@ $UID = date('dmY-G.i.s') . '-192.08.1.124';
                             if (in_array(2, $verifiedimages)) {
                                 $verified = 3;
                                 $verifytext = "afgekeurd";
-                            } else {
+                            }
+                            else if(in_array(0, $verifiedimages) || in_array(null, $verifiedimages) || empty($verifiedimages)) {
+                                $verified = 1;
+                                $verifytext = '';
+                            }
+                            else {
                                 $verified = 2;
                                 $verifytext = 'goedgekeurd';
                             }
 
-                            if(in_array( 0, $verifiedimages)) {
+                            if(in_array( 0, $verifiedimages) || in_array(null, $verifiedimages) || empty($verifiedimages)) {
                                 $verify = 0;
                             }
                             else {
                                 $verify = 1;
                             }
-                                var_dump($verifiedimages);
-                                var_dump($verify);
-                                var_dump($verified);
-                                var_dump($verifytext);
                                 ?>
 
-                                <input type="text" name="verified" value="<?php if(isset($verified)){ echo $verified; }?>">
-                                <input type="text" name="keuring" value="<?php if(isset($verified)) { echo $verifytext; }?>">
+                                <input type="hidden" name="verified" value="<?php if(isset($verified)){ echo $verified; }?>">
+                                <input type="hidden" name="keuring" value="<?php if(isset($verifytext)) { echo $verifytext; }?>">
 
                             <script>
                                 $( "#form" ).submit(function( event ) {
