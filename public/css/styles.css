@@ -1,15 +1,93 @@
-talabel {
+.equal, .equal > div[class*='col-'] {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    flex:1 1 auto;
+}
+
+.item {
+    border-radius: 5px;
+}
+
+@media screen and (max-width: 480px) {
+    #GlyphiconHead {
+        visibility: hidden;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    #GlyphiconHead {
+        visibility: hidden;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    #TitleFont {
+        font-size: 14px;
+    }
+}
+
+#OnTime {
+    width: 100%;
+    height: auto;
+    background-color: #eaeaea;
+    padding-top:8px;
+    padding-bottom: 4px;
+    border-left: 7px solid #6FDC6F;
+    color: #000;
+}
+
+#TooLate {
+    width: 100%;
+    height: auto;
+    background-color: #eaeaea;
+    padding-top:8px;
+    padding-bottom: 4px;
+    border-left: 7px solid #f63535;
+    color: #000;
+}
+
+#OneDayToDL {
+    width: 100%;
+    height: auto;
+    background-color: #eaeaea;
+    padding-top:8px;
+    padding-bottom: 4px;
+    border-left: 7px solid #f6aa35;
+    color: #000;
+}
+
+.stylish-input-group .input-group-addon{
+    background: white !important;
+    border: 1px solid #ccc;
+}
+.stylish-input-group .form-control{
+    border-right:0;
+    box-shadow:0 0 0;
+    border-color:#ccc;
+}
+.stylish-input-group button{
+    border:0;
+    background:transparent;
+}
+.panel-header {
+    background-color: #dd2c4c;
+}
+
+#talabel {
     width: 114px;
     margin-right: 15px;
     display: inline-block;
-    }
+}
+
 button {
     width:20px;
 }
 
 .counter {
     margin:1.5%;
-    font-size:50px;
     border-radius: 50%;
     height: 196px;
     vertical-align: middle;
@@ -18,18 +96,15 @@ button {
 }
 
 .overzichtcount {
-  margin:1.5%;
-  font-size:20px;
-  border-radius: 50%;
-  height: 196px;
-  vertical-align: middle;
-  color: #dd2c4c;
-  font-size: 100px;
+    margin:1.5%;
+    border-radius: 50%;
+    height: 196px;
+    vertical-align: middle;
+    color: #dd2c4c;
+    font-size: 100px;
 }
 
-.DashWidgets {
-    width: 100%;
-}
+
 
 .skillbar {
     position:relative;
@@ -57,7 +132,7 @@ button {
     position:absolute;
     top:0;
     left:0;
-width:110px;
+    width:110px;
     font-weight:bold;
     font-size:13px;
     color:#ffffff;
@@ -109,16 +184,16 @@ width:110px;
     background: #fff;
 }
 
-    .wizard .nav-tabs {
-        position: relative;
-        margin: 40px auto;
-        margin-bottom: 0;
-        border-bottom-color: #bb2c4c;
-    }
+.wizard .nav-tabs {
+    position: relative;
+    margin: 40px auto;
+    margin-bottom: 0;
+    border-bottom-color: #bb2c4c;
+}
 
-    .wizard > div.wizard-inner {
-        position: relative;
-    }
+.wizard > div.wizard-inner {
+    position: relative;
+}
 
 .widget-img {
     position: absolute;
@@ -185,7 +260,7 @@ span.round-tab i{
 .wizard li.active span.round-tab {
     background: #fff;
     border: 2px solid #bb2c4c;
-    
+
 }
 .wizard li.active span.round-tab i{
     color: #bb2c4c;
@@ -235,9 +310,9 @@ span.round-tab:hover {
     padding: 0;
 }
 
-    .wizard .nav-tabs > li a:hover {
-        background: transparent;
-    }
+.wizard .nav-tabs > li a:hover {
+    background: transparent;
+}
 
 .wizard .tab-pane {
     position: relative;
@@ -306,7 +381,7 @@ table {
 {
     /* Set something to make the badge looks focused */
     /* This really depends on the application, in my case it was: */
-    
+
     /* Adding a light border */
     box-shadow: inset 0px 0px 5px;
     /* Taking the difference out of the padding */
@@ -416,9 +491,9 @@ table {
 }
 
 .algvw {
-color: #fff;
-background-color: #bb2c4c;
-border-color: #bb2c4c;
+    color: #fff;
+    background-color: #bb2c4c;
+    border-color: #bb2c4c;
 }
 
 .no-js #loader { display: none;  }
@@ -434,9 +509,9 @@ border-color: #bb2c4c;
 }
 
 .algvw:hover {
-color: #fff;
-background-color: #bb2c4c;
-border-color: #bb2c4c;
+    color: #fff;
+    background-color: #bb2c4c;
+    border-color: #bb2c4c;
 }
 
 #mybuttons {
@@ -444,7 +519,7 @@ border-color: #bb2c4c;
     left: 2%;
 }
 body {
-	height: 600px;
+    height: 600px;
 }
 
 #Voorwaarden {
@@ -461,9 +536,9 @@ tr:nth-child(even) {
 }
 
 .UploadForm input[type=text] {
-	border-radius: 5px;
-	border: 1px solid #bb2c4c;
-	padding-left: 2px;
+    border-radius: 5px;
+    border: 1px solid #bb2c4c;
+    padding-left: 2px;
 }
 
 #AccOpm {
@@ -503,26 +578,26 @@ tr:nth-child(even) {
 }
 
 @media(max-width:650px) {
-.UploadForm input[type=text] {
+    .UploadForm input[type=text] {
         width: 100%;
     }
 }
 
 @media(max-width:650px) {
-#preview {
+    #preview {
         width: 100%;
         height: 100%;
     }
 }
 
 @media(max-width:650px) {
-.NewClient input[type=text] {
+    .NewClient input[type=text] {
         width: 100%;
     }
 }
 
 @media(max-width:650px) {
-.NewClient input[type=email] {
+    .NewClient input[type=email] {
         width: 100%;
     }
 }
@@ -534,45 +609,45 @@ tr:nth-child(even) {
 }
 
 @media(max-width:650px) {
-.MailSettings input[type=text] {
+    .MailSettings input[type=text] {
         width: 100%;
     }
 }
 
 @media(max-width:650px) {
-.NameText {
+    .NameText {
         text-align: center;
     }
 }
 
 @media(max-width:650px) {
-.ClientFormText {
+    .ClientFormText {
         text-align: center;
     }
 }
 
 #preview {
-    max-width: 100%; 
-    display:block; 
+    max-width: 100%;
+    display:block;
     height: auto;
 }
 
 @media(max-width:650px) {
-#tags {
+    #tags {
         width: 100%;
     }
 }
 
 @media(max-width:650px) {
-.TaDescription {
+    .TaDescription {
         width: 100%;
     }
 }
 
 .TaDescription {
-	border-radius: 5px;
-	border: 1px solid #bb2c4c;
-	padding-left: 2px;
+    border-radius: 5px;
+    border: 1px solid #bb2c4c;
+    padding-left: 2px;
     margin-left: 62px;
 }
 
@@ -583,24 +658,24 @@ tr:nth-child(even) {
 }
 
 @media(max-width:650px) {
-.TaDescriptionActive {
+    .TaDescriptionActive {
         width: 100%;
     }
 }
 
 .UploadForm input[type=email] {
-	border-radius: 5px;
-	border: 1px solid #bb2c4c;
-	padding-left: 2px;
+    border-radius: 5px;
+    border: 1px solid #bb2c4c;
+    padding-left: 2px;
 }
 
 .UploadForm input[type=submit] {
-	border-radius: .5em;
-	border: 1px solid #bb2c4c;
-	background-color: #bb2c4c;
-	padding: 0.5em;
-	color: white;
-	font-weight: bold;
+    border-radius: .5em;
+    border: 1px solid #bb2c4c;
+    background-color: #bb2c4c;
+    padding: 0.5em;
+    color: white;
+    font-weight: bold;
 }
 
 .Description2 {
@@ -642,9 +717,9 @@ tr:nth-child(even) {
 }
 
 #TableInput {
-	border-radius: 5px;
-	border: 1px solid #bb2c4c;
-	padding-left: 7px;
+    border-radius: 5px;
+    border: 1px solid #bb2c4c;
+    padding-left: 7px;
     width: 40%;
     margin-left: 13px;
 }
@@ -656,11 +731,11 @@ tr:nth-child(even) {
 }
 
 #UserTable {
-	border-radius: 5px;
-	border: 1px solid #bb2c4c;
-	padding-left: 7px;
-	background-position: right;
-	background-repeat: no-repeat;
+    border-radius: 5px;
+    border: 1px solid #bb2c4c;
+    padding-left: 7px;
+    background-position: right;
+    background-repeat: no-repeat;
 }
 
 #UserBlock {
@@ -673,6 +748,7 @@ tr:nth-child(even) {
     width: 150px;
     margin-top: 28px;
     height: 50px;
+    text-align: right;
 }
 
 .fileContainer [type=file] {
@@ -690,11 +766,11 @@ tr:nth-child(even) {
 /* Example stylistic flourishes */
 
 .fileContainer {
-	background: #bb2c4c;
-	border-radius: .5em;
-	padding: 0.5em;
-	color: white;
-	padding-left: 1%;
+    background: #bb2c4c;
+    border-radius: .5em;
+    padding: 0.5em;
+    color: white;
+    padding-left: 1%;
 }
 
 .fileContainer [type=file] {
@@ -714,18 +790,18 @@ tr:nth-child(even) {
 }
 
 .SMTPSettings input[type=text] {
-	border-radius: 5px;
-	border: 1px solid #bb2c4c;
-	padding-left: 12px;
+    border-radius: 5px;
+    border: 1px solid #bb2c4c;
+    padding-left: 12px;
 }
 
 .SMTPSettings input[type=submit] {
-	border-radius: .5em;
-	border: 1px solid #bb2c4c;
-	background-color: #bb2c4c;
-	padding: 0.5em;
-	color: white;
-	font-weight: bold;
+    border-radius: .5em;
+    border: 1px solid #bb2c4c;
+    background-color: #bb2c4c;
+    padding: 0.5em;
+    color: white;
+    font-weight: bold;
 }
 
 
@@ -751,11 +827,9 @@ tr:nth-child(even) {
     margin-left: -8px;
 }
 
-
-
 #preview {
-	width: 527px;
-	height: 301px;
+    width: 527px;
+    height: 301px;
 }
 
 ul.sidebar-nav {
@@ -774,8 +848,6 @@ ul.sidebar-nav {
     height: 130px;
     margin-right: 25px;
     left: 5px;
-    top: 5px;
-    bottom: 5px;
     right: 70%;
 }
 
@@ -820,18 +892,16 @@ ul.sidebar-nav {
     text-decoration: none;
 }
 
-#AccButton1 {
-    width: 120px;
-    height: 28px;
-    border-radius: .5em;
-    border: 1px solid #bb2c4c;
-    background-color: #bb2c4c;
-    padding: 0.5em;
-    color: white;
-    font-weight: bold;
-    line-height: 8px;
-    text-align: center;
-    text-decoration: none;
+@media screen and (max-width: 600px) {
+    .skillbar-title {
+        width: 100%;
+    }
+    .skillbar-title span {
+        text-align: left;
+    }
+    .skill-bar-percent {
+        color: #FFF;
+    }
 }
 
 #NewClientButton {
@@ -848,11 +918,18 @@ ul.sidebar-nav {
     text-decoration: none;
 }
 
+#MenuSeperator {
+    margin-left: 15px;
+    color: #FFF;
+    font-family: cabinregular, 'serif';
+    font-size: 12px;
+}
+
 #LoggedInAs{
     color: #dd2c4c;
     padding-top: 1px;
     line-height: 7px;
-    padding-left: 3px;
+    padding-right: 10px;
 }
 
 #LogOut{
@@ -874,21 +951,30 @@ ul.sidebar-nav {
     }
 }
 
+@media screen and (max-width: 600px) {
+    #TableInput {
+        width: 100%;
+        margin: 0 auto;
+    }
+}
+
 .sidebar-nav .nav-button-home a { background:url("../img/icons/home-white.png") no-repeat 40px 5px }
 .sidebar-nav .nav-button-upload a { background:url("../img/icons/upload-white.png") no-repeat 40px 5px }
 .sidebar-nav .nav-button-all a { background:url("../img/icons/seen-white.png") no-repeat 40px 5px }
 .sidebar-nav .nav-button-settings a { background:url("../img/icons/settings-white.png") no-repeat 40px 5px }
 .sidebar-nav .nav-button-users a { background:url("../img/icons/person-white.png") no-repeat 40px 5px }
 .sidebar-nav .nav-button-logout a { background:url("../img/icons/logout-white.png") no-repeat 40px 7px }
+.sidebar-nav .nav-button-accord a { background:url("../icons/acc.png") no-repeat 40px 7px }
+.sidebar-nav .nav-button-status a { background:url("../icons/timewhite.png") no-repeat 40px 7px }
 
-
+.sidebar-nav .nav-button-status a:hover { background:url("../icons/timehover.png") no-repeat 40px 5px }
 .sidebar-nav .nav-button-home a:hover { background:url("../img/icons/home-hover.png") no-repeat 40px 5px }
 .sidebar-nav .nav-button-upload a:hover { background:url("../img/icons/upload-hover.png") no-repeat 40px 5px }
 .sidebar-nav .nav-button-all a:hover { background:url("../img/icons/seen-hover.png") no-repeat 40px 5px }
 .sidebar-nav .nav-button-settings a:hover { background:url("../img/icons/settings-hover.png") no-repeat 40px 5px }
 .sidebar-nav .nav-button-users a:hover { background:url("../img/icons/person-hover.png") no-repeat 40px 5px }
 .sidebar-nav .nav-button-logout a:hover { background:url("../img/icons/logout-hover.png") no-repeat 40px 7px }
-
+.sidebar-nav .nav-button-accord a:hover { background:url("../icons/acchover.png") no-repeat 40px 7px }
 
 #wrapper {
     padding-left: 0;
@@ -900,35 +986,35 @@ ul.sidebar-nav {
 
 table.table { width: 100%; }
 
-.table th, .table td { 
-  text-align: left; 
-  padding: 0.25em;
+.table th, .table td {
+    text-align: left;
+    padding: 0.25em;
 }
 
-.table tr { 
-  border-bottom: 0 solid #FFFFFF;
+.table tr {
+    border-bottom: 0 solid #FFFFFF;
 }
 
 @media screen and (max-width: 800px) {
-  tr { 
-    display: flex; 
-    flex-direction: row;
-    flex-wrap: wrap;
-    margin: 0.5em 0;
-  }
+    tr {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin: 0.5em 0;
+    }
 
-  td, th {
-    flex: 1 1 150px;
-  }
+    td, th {
+        flex: 1 1 150px;
+    }
 
-  td.edit-buttons, td.empty {
-    /*flex: 1 0 90%;
-    text-align: center;*/
-  }
+    td.edit-buttons, td.empty {
+        /*flex: 1 0 90%;
+        text-align: center;*/
+    }
 }
 
 .NameText {
-	font-size: 20px;
+    font-size: 20px;
 }
 
 .ClientFormText {
@@ -937,11 +1023,11 @@ table.table { width: 100%; }
 }
 
 .LastOne {
-  width: 99%;
-  height: 200px;
-  background: #b20a30;
-  border-radius: 5px;
-  text-align: center;
+    width: 99%;
+    height: 200px;
+    background: #b20a30;
+    border-radius: 5px;
+    text-align: center;
 }
 
 .LastUpload {
@@ -950,11 +1036,22 @@ table.table { width: 100%; }
 }
 
 @media(max-width:650px) {
-.LastUpload {
+    .LastUpload {
         text-align: center;
     }
 }
 
+
+@media screen and (max-width: 600px) {
+    .ChangeLogo {
+        color: transparent;
+    }
+}
+
+#mychart {
+    width: 100%;
+    height: 200px;
+}
 
 #wrapper.toggled {
     padding-left: 250px;
@@ -1056,9 +1153,9 @@ table.table { width: 100%; }
     }
 }
 @media(max-width:768px) {
-	tr {
-		margin-bottom: 35px;
-	}
+    tr {
+        margin-bottom: 35px;
+    }
 }
 #error404 {
     background-image: url('bg.jpg');

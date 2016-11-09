@@ -140,6 +140,9 @@ switch($page) {
     case 'settingsupload':
         include '../app/Model/settingupload.php';
         break;
+    case 'statusportal':
+        include '../app/view/statusportal.php';
+        break;
     default:
         include '../app/view/404.php';
         break;

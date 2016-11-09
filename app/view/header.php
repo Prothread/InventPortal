@@ -98,9 +98,12 @@ $admin = $settings->getAdminSettings();
     <div id="sidebar-wrapper">
         <ul class="sidebar-nav">
 
-
             <li class="nav-button-home">
                 <a href="index.php?page=dashboard">Home</a>
+            </li>
+
+            <li class="nav-button-status">
+                <a href="?page=statusportal">Statusportaal</a>
             </li>
 
             <?php if($user->getPermission($permgroup, 'CAN_EDIT_SETTINGS') == 1){ ?>
@@ -113,6 +116,10 @@ $admin = $settings->getAdminSettings();
                  <a href="index.php?page=overzicht">Overzicht</a>
              </li>
 
+            <?php if ($user->getPermission($permgroup, 'CAN_UPLOAD') == 1 || $user->getPermission($permgroup, 'CAN_ACCORD') == 1) { ?>
+                <br><p id="MenuSeperator"><span style="color: #FFF;" class="glyphicon glyphicon-ok"></span> ACCORDERINGEN</p>
+            <?php } ?>
+
             <?php if ($user->getPermission($permgroup, 'CAN_UPLOAD') == 1) { ?>
                 <li class="nav-button-upload">
                     <a href="index.php?page=uploadoverzicht">Upload</a>
@@ -124,7 +131,11 @@ $admin = $settings->getAdminSettings();
                     <a href="index.php?page=accordering">Accordering</a>
                 </li>
             <?php } ?>
-            
+
+            <?php if($user->getPermission($permgroup, 'CAN_SHOW_KLANTPAGINA') == 1 || $user->getPermission($permgroup, 'CAN_SHOW_USERS') == 1) {?>
+                <p id="MenuSeperator"><span style="color: #FFF;" class="glyphicon glyphicon-user"></span> PERSONEN</p>
+            <?php } ?>
+
                 <?php if ($user->getPermission($permgroup, 'CAN_SHOW_KLANTPAGINA') == 1) { ?>
 
                     <li class="nav-button-users">
