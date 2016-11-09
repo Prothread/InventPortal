@@ -136,18 +136,19 @@ $admin = $settings->getAdminSettings();
                 <p id="MenuSeperator"><span style="color: #FFF;" class="glyphicon glyphicon-user"></span> PERSONEN</p>
             <?php } ?>
 
-                <?php if ($user->getPermission($permgroup, 'CAN_SHOW_KLANTPAGINA') == 1) { ?>
+            <?php if ($user->getPermission($permgroup, 'CAN_SHOW_KLANTPAGINA') == 1) { ?>
 
-                    <li class="nav-button-users">
-                        <a href="index.php?page=manageclients">Klanten</a>
-                    </li>
-                <?php } ?>
+                <li class="nav-button-users">
+                    <a href="index.php?page=manageclients">Klanten</a>
+                </li>
+            <?php } ?>
 
-                <?php if ($user->getPermission($permgroup, 'CAN_SHOW_USERS') == 1) { ?>
-                    <li class="nav-button-users">
-                        <a href="index.php?page=manageusers">Gebruikers</a>
-                    </li>
-                <?php }?>
+            <?php if ($user->getPermission($permgroup, 'CAN_SHOW_USERS') == 1) { ?>
+                <li class="nav-button-users">
+                    <a href="index.php?page=manageusers">Gebruikers</a>
+                </li>
+            <?php }?>
+            
             <br>
             <br>
             <li class="nav-button-logout">
