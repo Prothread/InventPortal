@@ -34,6 +34,12 @@ if(isset($_GET['page'])) {
 }
 
 /**
+ * TODO EXTRA: Redirect
+ * Kan gebruikt worden voor eventuele redirect als er nog niet in gelogd is
+ */
+//$_SESSION['returnurl'] = ($_SERVER['REQUEST_URI']);
+
+/**
  * If: Als er niemand ingelogd is of de pagina is niet registreren/wachtwoord vergeten of wachtwoord herstellen
  * Dan: De pagina si login
  *
@@ -103,6 +109,9 @@ switch($page) {
         break;
     case 'manageclients':
         include '../app/view/manageclients.php';
+        break;
+    case 'manageusers':
+        include '../app/view/manageusers.php';
         break;
     case 'conditions':
         include '../app/view/conditions.php';
