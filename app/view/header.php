@@ -98,15 +98,9 @@ $admin = $settings->getAdminSettings();
     <div id="sidebar-wrapper">
         <ul class="sidebar-nav">
 
-            <h5 style="margin-left:15px;"><i style="color: #FFF;" class="glyphicon glyphicon-home"></i>
-                <small><b><span style="color: #FFF;">MANAGEMENT</span></b></small>
-            </h5>
+
             <li class="nav-button-home">
                 <a href="index.php?page=dashboard">Home</a>
-            </li>
-
-            <li class="nav-button-all">
-                <a href="index.php?page=overzicht">Overzicht</a>
             </li>
 
             <?php if($user->getPermission($permgroup, 'CAN_EDIT_SETTINGS') == 1){ ?>
@@ -115,11 +109,9 @@ $admin = $settings->getAdminSettings();
                 </li>
             <?php } ?>
 
-            <?php if ($user->getPermission($permgroup, 'CAN_UPLOAD') == 1 || $user->getPermission($permgroup, 'CAN_ACCORD') == 1) { ?>
-                <h5 style="margin-left:15px;"><i style="color: #FFF;" class="glyphicon glyphicon-ok"></i>
-                    <small><b><span style="color: #FFF;">ACCORDERINGEN</span></b></small>
-                </h5>
-            <?php } ?>
+             <li class="nav-button-all">
+                 <a href="index.php?page=overzicht">Overzicht</a>
+             </li>
 
             <?php if ($user->getPermission($permgroup, 'CAN_UPLOAD') == 1) { ?>
                 <li class="nav-button-upload">
@@ -132,10 +124,7 @@ $admin = $settings->getAdminSettings();
                     <a href="index.php?page=accordering">Accordering</a>
                 </li>
             <?php } ?>
-
-                <h5 style="margin-left:15px;"><i style="color: #FFF;" class="glyphicon glyphicon-user"></i>
-                    <small><b><span style="color: #FFF;">PERSONEN</span></b></small>
-                </h5>
+            
                 <?php if ($user->getPermission($permgroup, 'CAN_SHOW_KLANTPAGINA') == 1) { ?>
 
                     <li class="nav-button-users">

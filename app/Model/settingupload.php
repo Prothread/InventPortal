@@ -24,13 +24,13 @@ if (isset($_FILES['fileToUpload'])) {
 
         if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "pdf") {
             $error = 1;
-            echo "Sorry, only JPG, JPEG, PNG, PDF & GIF files are allowed.";
+            echo "Sorry, je moet een JPG, JPEG, PNG, PDF of GIF uploaden.";
             ?><br/><?php
         }
 
         if ($myFile["size"] > 10485760) {
             $error = 1;
-            echo $test . " File too big!";
+            echo $test . " Bestand is te groot!!";
             ?><br/><?php
         }
 

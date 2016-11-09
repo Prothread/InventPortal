@@ -25,7 +25,8 @@ $session = new Session();
 
 if(isset($_GET['page'])) {
 
-    $_GET['page'] = $session->cleantonumber($_GET['page']);
+    $_GET['page'] = $session->clean($_GET['page']);
+    $_GET['img'] = $session->cleantonumber( $_GET['img'] );
 
     if (isset($_GET['page']) == 'imagecancel') {
 

@@ -820,6 +820,20 @@ ul.sidebar-nav {
     text-decoration: none;
 }
 
+#AccButton1 {
+    width: 120px;
+    height: 28px;
+    border-radius: .5em;
+    border: 1px solid #bb2c4c;
+    background-color: #bb2c4c;
+    padding: 0.5em;
+    color: white;
+    font-weight: bold;
+    line-height: 8px;
+    text-align: center;
+    text-decoration: none;
+}
+
 #NewClientButton {
     width: 160px;
     height: 28px;

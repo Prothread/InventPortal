@@ -25,26 +25,4 @@ define("WWW_ROOT",                          "");
  define("DIR_MAILER",                       WWW_ROOT."../vendor/phpmailer/");
  define("DIR_IMAGE",                        WWW_ROOT."../app/uploads/");
  define("DIR_PUBLIC",                        WWW_ROOT."../public/css/");
-
-// DATABASE CONNECTION
- define("FILE_DB",                          DIR_CONTROLLER."Database.php");
- 
- //ERROR FILE
- define("FILE_ERROR",                       DIR_MODEL."error.php");
-
- //RECHTEN & BITFIELD
- define("FILE_RECHT",                       DIR_MODEL."permissions.php");
-
-// ERROR
- define("TEXT_FORM_FIELD_ERROR_DEFAULT",       "Tekst veld mag niet leeg zijn!");           
- define("TEXT_FORM_FIELD_ERROR_USERNAME",       "Gebruikersnaam is niet geldig!");  
- define("TEXT_FORM_FIELD_ERROR_VOORNAAM",   "Voornaam is niet geldig!");
- define("TEXT_FORM_FIELD_ERROR_TUSSENVOEGSEL",  "Tussenvoegsel is niet geldig!");
- define("TEXT_FORM_FIELD_ERROR_ACHTERNAAM", "Achternaam is niet geldig!");
- define("TEXT_FORM_FIELD_ERROR_GEBOORTEDATUM",       "Geboortedatum is niet geldig!");
- define("TEXT_FORM_FIELD_ERROR_ADRES",       "Adres is niet geldig!");
- define("TEXT_FORM_FIELD_ERROR_WOONPLAATS",       "Woonplaats is niet geldig!");
- define("TEXT_FORM_FIELD_ERROR_TELEFOONPRIVE",       "Privé nummer is niet geldig!");
- define("TEXT_FORM_FIELD_ERROR_TELEFOONWERK",       "Werk nummer is niet geldig!");
- define("TEXT_FORM_FIELD_ERROR_INDIENST",       "In dienst datum is niet geldig!");
- define("TEXT_FORM_FIELD_ERROR_RECHT",       "Recht is niet geldig!");
+define("DIR_ICONS",                        WWW_ROOT."../public/img/Icons/");

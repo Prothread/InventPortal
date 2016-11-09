@@ -137,6 +137,9 @@ switch($page) {
     case 'download':
         include '../app/view/download.php';
         break;
+    case 'settingsupload':
+        include '../app/Model/settingupload.php';
+        break;
     default:
         include '../app/view/404.php';
         break;
