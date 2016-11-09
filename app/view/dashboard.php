@@ -13,7 +13,7 @@ $uploads = new BlockController();
 $get_filled_info = $uploads->getLastSixUploads();
 
 if($get_filled_info == null) {
-    echo '<div id="NoMail">Er zijn nog geen proeven of offertes geüpload </div>';
+    echo '<div id="NoMail">Er zijn nog geen proeven of offertes geüpload</div>';
     return false;
 }
 
@@ -24,8 +24,8 @@ $get_items_geweigerd = $items->getUserMailByStatus(3);
 $get_items_geaccepteerd = $items->getUserMailByStatus(2);
 $total_accept_weiger = $get_items_geaccepteerd['COUNT(status)']+$get_items_geweigerd['COUNT(status)'];
 $total_items = $get_items_geaccepteerd['COUNT(status)']+$get_items_geweigerd['COUNT(status)']+$get_items_openstaand['COUNT(status)']+$get_items_bekeken['COUNT(status)'];
-$_SESSION['geaccepteerd_percent'] = ($get_items_geaccepteerd['COUNT(status)']/$total_accept_weiger)*100;
-$_SESSION['geweigerd_percent'] = ($get_items_geweigerd['COUNT(status)']/$total_accept_weiger)*100;
+$_SESSION['geaccepteerd_percent'] = $get_items_geaccepteerd['COUNT(status)'];
+$_SESSION['geweigerd_percent'] = $get_items_geweigerd['COUNT(status)'];
 
 ?>
 

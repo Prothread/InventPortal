@@ -99,19 +99,8 @@ $get_items_geweigerd = $items->getUserMailByStatus(3);
 $get_items_geaccepteerd = $items->getUserMailByStatus(2);
 $allitems = $get_items_geaccepteerd['COUNT(status)']+$get_items_geweigerd['COUNT(status)']+$get_items_openstaand['COUNT(status)']+ $get_items_bekeken['COUNT(status)'];
 
-$geaccepteerd_percent = ($get_items_geaccepteerd['COUNT(status)']/$allitems)*100;
-$geweigerd_percent =  ($get_items_geweigerd['COUNT(status)']/$allitems)*100;
-$openstaand_percent = 100-($geaccepteerd_percent+$geweigerd_percent);
+$openstaand = $get_items_openstaand['COUNT(status)']+$get_items_bekeken['COUNT(status)'];
 
-if($geaccepteerd_percent==0){
-    ?><style type="text/css">#geaccepteerd{  display:none;  }</style><?php
-}
-if($geweigerd_percent==0){
-    ?><style type="text/css">#geweigerd{  display:none;  }</style><?php
-}
-if($openstaand_percent==0){
-    ?><style type="text/css">#openstaand{  display:none;  }</style><?php
-}
 
 if(isset($_POST['sub'])) {
     $mysqli = mysqli_connect();
@@ -144,7 +133,7 @@ if(isset($term)) {
                                 <div class="widget-body text-center">
                                     <div>
                                         <p style="text-align: center;">Open opdrachten</p>
-                                        <div class="counter" data-count="32">0</div>
+                                        <div class="counter" data-count="<?=$openstaand?>">0</div>
                                     </div>
                                 </div>
                             </div>
@@ -180,13 +169,13 @@ if(isset($term)) {
                                     <div class="skillbar clearfix " data-percent="75%">
                                         <div class="skillbar-title" style="background: #de1340;"><span>Goedgekeurd</span></div>
                                         <div class="skillbar-bar" style="background: #dd4869;"></div>
-                                        <div class="skill-bar-percent">1011</div>
+                                        <div class="skill-bar-percent"><?=$get_items_geaccepteerd['COUNT(status)']?></div>
                                     </div> <!-- End Skill Bar -->
 
                                     <div class="skillbar clearfix " data-percent="50%">
                                         <div class="skillbar-title" style="background: #822b8b;"><span>Afgekeurd</span></div>
                                         <div class="skillbar-bar" style="background: #b340bf;"></div>
-                                        <div class="skill-bar-percent">252</div>
+                                        <div class="skill-bar-percent"><?=$get_items_geweigerd['COUNT(status)']?></div>
                                     </div> <!-- End Skill Bar -->
                                     <br />
                                     <br />
@@ -241,12 +230,11 @@ if(isset($term)) {
                 </ul>
             </div>
             <br /><br />
-            <form id="filterz" action="?page=overzicht" method="post">
+            <form id="filters" action="?page=overzicht" method="post">
 
                 <table id="overzicht" class="table-striped">
                     <thead>
                     <tr>
-                        <td><b>ID</b></td>
 
                         <td>
                             <div class="btn-group">
@@ -334,9 +322,6 @@ if(isset($term)) {
                                 ?>
                                 <tr>
                                 <td>
-                                    <?= $upload['id'] ?>
-                                </td>
-                                <td>
                                     <a href="?page=item&id=<?= $upload['id'] ?>"><?= $upload['onderwerp'] ?></a>
                                 </td>
                                 <td>
@@ -377,9 +362,6 @@ if(isset($term)) {
                         foreach ($get_filled_info as $upload) {
                             ?>
                             <tr>
-                                <td>
-                                    <?= $upload['id'] ?>
-                                </td>
                                 <td>
                                     <a href="?page=item&id=<?= $upload['id'] ?>"><?= $upload['onderwerp'] ?></a>
                                 </td>
