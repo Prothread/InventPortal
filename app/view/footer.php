@@ -133,7 +133,6 @@
                     success: function(result){
                         $(ref).load("?page=accordering " + ref);
                         $('#refsh').load("?page=accordering #refsh");
-                        $('#refsa').load("?page=accordering #refsa");
                     }
                 });
 
@@ -209,15 +208,22 @@
             if (typeof (FileReader) != "undefined") {
                 var dvPreview = $("#fileList");
                 dvPreview.html("");
-                var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.jpg|.jpeg|.gif|.png|.bmp)$/;
+                var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.jpg|.jpeg|.gif|.png|.pdf)$/;
                 $($(this)[0].files).each(function () {
                     var file = $(this);
                     if (regex.test(file[0].name.toLowerCase())) {
                         var reader = new FileReader();
                         reader.onload = function (e) {
-                            var img = $("<img />");
-                            img.attr("style", "height:200px;width: auto");
-                            img.attr("src", e.target.result);
+                            if(file[0].name.indexOf('.pdf') == -1) {
+                                var img = $("<img />");
+                                img.attr("style", "height:200px;width: auto");
+                                img.attr("src", e.target.result);
+                            }
+                            else {
+                                var img = $("<embed />");
+                                img.attr("style", "height:200px;width: auto");
+                                img.attr("src", e.target.result);
+                            }
                             dvPreview.append(img);
                         }
                         reader.readAsDataURL(file[0]);
