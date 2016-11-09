@@ -148,7 +148,7 @@ $admin = $settings->getAdminSettings();
                     <a href="index.php?page=manageusers">Gebruikers</a>
                 </li>
             <?php }?>
-            
+
             <br>
             <br>
             <li class="nav-button-logout">

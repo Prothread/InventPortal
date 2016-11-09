@@ -28,6 +28,7 @@ foreach ($uploadedimages as $img) {
         $imgver = $imago['verify'];
     }
     $image_controller->setImageVerify($img['id'], $imgver);
+    unset($_SESSION['img' . $img['id']]);
 }
 
 $mymail = new MailController();
@@ -59,7 +60,7 @@ $mymail = new MailController();
     $myid = $_POST['id'];
 
     $content = "<img alt='MadalcoHeader' src='https://picoolio.net/images/2016/11/04/headerbgcc759.png'>" . "  <br/><br/>" . "Geachte " . $_POST['verstuurder'] . "," .
-        " <br/><br/>" . $_POST['name'] . " heeft uw proef <b>" . $_POST['keuring'] . "</b>." . "<br /><br />" .
+        " <br/><br/>" . $_POST['name'] . " heeft uw proef <b>" . $_SESSION['verifytext'] . "</b>." . "<br /><br />" .
         "<b>Titel van uw proef: </b>" .
         $_POST['title'] .
 
@@ -96,7 +97,7 @@ $mymail = new MailController();
     $myid = $_POST['id'];
     $answer = mysqli_real_escape_string( $mysqli, $_POST['answer']) ;
     $UID = mysqli_real_escape_string( $mysqli, $_POST['UID'] );
-    $verified = mysqli_real_escape_string( $mysqli, $_POST['verified'] );
+    $verified = mysqli_real_escape_string( $mysqli, $_SESSION['verified'] );
 
     $mailinfo = [
         'userid' => intval($_POST['userid']),
@@ -121,6 +122,8 @@ $mymail = new MailController();
         //If mail is send, create data and send it to the database
         $mymail->update($mailinfo);
         unset($_SESSION['accord']);
+        unset($_SESSION['verified']);
+        unset($_SESSION['verifytext']);
 
         header('Location: index.php?page=accordering');
         Session::flash('message', 'De accordering is verstuurd');

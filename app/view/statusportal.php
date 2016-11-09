@@ -70,22 +70,22 @@
 
                             <div id="betweenwhite" style="height: 6px;"></div>
 
-                        <div id="OneDayToDL" class="item">
+                            <div id="OneDayToDL" class="item">
                                 <span class="lettertype" id="textright" style="text-align:right; margin-left: 4px;">Eén dag tot deadline</span>
 
                                 <div id="smallaf" style="text-align: right; font-size: 13px; margin-right: 5px;">Jeffrey</div>
                             </div>
-                       </div>
 
                             <div id="betweenwhite" style="height: 6px;"></div>
 
-                       <div id="TooLate" class="item">
+                            <div id="TooLate" class="item">
                                 <span class="lettertype" id="textright" style="text-align:right; margin-left: 4px;">Te laat</span>
 
                                 <div id="smallaf" style="text-align: right; font-size: 13px; margin-right: 5px;">Jeffrey</div>
                             </div>
                     </div>
                </div>
+           </div>
 
                 <div style="width: 20px; background-color: #FFF" id="middle"></div>
 

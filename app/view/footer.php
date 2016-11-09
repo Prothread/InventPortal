@@ -133,6 +133,8 @@
                     success: function(result){
                         $(ref).load("?page=accordering " + ref);
                         $('#refsh').load("?page=accordering #refsh");
+                        $('#refer1').load("?page=accordering #refer1");
+                        $('#refer').load("?page=accordering #refer");
                     }
                 });
 

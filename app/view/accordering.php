@@ -190,6 +190,7 @@ $UID = date('dmY-G.i.s') . '-192.08.1.124';
                                     else {
                                         $imageverify = 0;
                                     }
+
                                     if(isset($imageverify)) {
                                         $sessionverify = $session->getImageVerify($img['id']);
 
@@ -227,26 +228,10 @@ $UID = date('dmY-G.i.s') . '-192.08.1.124';
                             else {
                                 $verify = 1;
                             }
+                                $_SESSION['verified'] = $verified;
+                                $_SESSION['verifytext'] = $verifytext;
                                 ?>
-
-                                <input type="hidden" name="verified" value="<?php if(isset($verified)){ echo $verified; }?>">
-                                <input type="hidden" name="keuring" value="<?php if(isset($verifytext)) { echo $verifytext; }?>">
-
-                            <script>
-                                $( "#form" ).submit(function( event ) {
-                                    // TODO if verify = false goed neerzetten
-                                    if ( <?= $verify ?> === 1) {
-                                        $( "#verify" ).text( "Alle afbeeldingen zijn beoordeeld!" ).show();
-                                        return true;
-                                    }
-
-                                    $( "#verify" ).text( "Nog niet alle afbeeldingen zijn beoordeeld!" ).show().fadeOut( 5000 );
-                                    event.preventDefault();
-                                });
-                            </script>
-
-                            </div><?php
-                            ?>
+                            </div>
 
                             <div style="clear: both;"></div>
                             <form id="form" class="UploadForm" action="?page=updatemail" style="clear:both;" method="post" enctype="multipart/form-data">
@@ -280,6 +265,10 @@ $UID = date('dmY-G.i.s') . '-192.08.1.124';
                         <input type="hidden" name="verstuurder" value="<?= $myupload['verstuurder']?>">
                         <input type="hidden" name="UID" value="<?= $UID; ?>">
 
+                        <div id="refer1">
+                            <input type="text" id="totalverify" value="<?= $verify ?>">
+                        </div>
+
                         <p id="verify"></p>
 
                         <input type="hidden" name="fromname" id="" value="Kevin Ernst">
@@ -299,6 +288,22 @@ $UID = date('dmY-G.i.s') . '-192.08.1.124';
                                 echo ''.$_SERVER['REMOTE_ADDR'];
                                 ?></label>
                             </form>
+
+                            <div id="refer">
+                                <script>
+                                    $( "#form" ).submit(function( event ) {
+                                        // TODO if verify = false goed neerzetten
+                                        if ( $('#totalverify').val() == 1) {
+                                            $( "#verify" ).text( "Alle afbeeldingen zijn beoordeeld!" ).show();
+                                            return true;
+                                        }
+
+                                        $( "#verify" ).text( "Nog niet alle afbeeldingen zijn beoordeeld!" ).show().fadeOut( 5000 );
+                                        event.preventDefault();
+                                    });
+                                </script>
+                            </div>
+
                         </div>
 
                         <br>
