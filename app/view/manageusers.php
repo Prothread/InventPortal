@@ -127,7 +127,7 @@ if(isset($term)) {
 
                 <br>
                 <br>
-                <a href="index.php?page=newclient"><div id="NewClientButton">Nieuwe gebruiker</div></a>
+                <a href="index.php?page=newuser"><div id="NewClientButton">Nieuwe gebruiker</div></a>
 
                 <form method="post" id="filtertable">
                 <table id="overzicht" class="sortable table-striped">

@@ -95,6 +95,9 @@ switch($page) {
     case 'newclient':
         include '../app/view/newclient.php';
         break;
+    case 'newuser':
+        include '../app/view/newuser.php';
+        break;
     case 'imageverify':
         include '../app/view/imageverify.php';
         break;
