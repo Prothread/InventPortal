@@ -11,10 +11,28 @@ input[type="file"] {
     display: none;
 }
 .custom-file-upload {
-    border: 1px solid #ccc;
-    display: inline-block;
-    padding: 6px 12px;
-    cursor: pointer;
+    background-color: #bb2c4c; 
+    border: 1px solid #bb2c4c;
+    color: #FFF;
+      display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+      touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
 }
 
 .widgetwell {
@@ -881,7 +899,7 @@ tr:nth-child(even) {
 
 #UserBlock {
     background-color: #FFF;
-    margin-right: 8px;
+    margin-right: 50px;
     border-radius: 5px;
     white-space: nowrap;
     overflow: hidden;
@@ -893,6 +911,10 @@ tr:nth-child(even) {
     -webkit-box-shadow: 1px 15px 14px 3px rgba(0,0,0,0.16);
     -moz-box-shadow: 1px 15px 14px 3px rgba(0,0,0,0.16);
     box-shadow: 1px 15px 14px 3px rgba(0,0,0,0.16);
+    background-image: url("../icons/profile.png");
+    background-repeat:no-repeat;
+    background-position: left;
+    background-size: 50%;
 }
 
 #UserBlock:hover {
@@ -903,7 +925,11 @@ tr:nth-child(even) {
 }
 
 #PaginationButton {
-    border: 1px solid #bb2c4c;
+    color: #dd2c4c;
+}
+
+#PaginationForm {
+    padding: -10px;
 }
 
 .fileContainer [type=file] {
