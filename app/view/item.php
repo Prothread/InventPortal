@@ -88,17 +88,17 @@ foreach ($uploadedimages as $img) {
 
                                     <li role="presentation" class="active">
                                         <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Uploads">
-                            <span class="round-tab">
-                                <i class="glyphicon glyphicon glyphicon-picture"></i>
-                            </span>
+                                            <span class="round-tab">
+                                                <i class="glyphicon glyphicon glyphicon-picture"></i>
+                                            </span>
                                         </a>
                                     </li>
 
                                     <li role="presentation">
                                         <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="Informatie">
-                            <span class="round-tab">
-                                <i class="glyphicon glyphicon-pencil"></i>
-                            </span>
+                                            <span class="round-tab">
+                                                <i class="glyphicon glyphicon-pencil"></i>
+                                            </span>
                                         </a>
                                     </li>
                                 </ul>
@@ -238,7 +238,7 @@ foreach ($uploadedimages as $img) {
                                                 -->
 
                                                 <div class="form-group">
-                                                    <label class="col-md-4 control-label" for="textinput" class="fileContainer">Bestand uploaden</label>
+                                                    <label class="col-md-4 control-label fileContainer" for="textinput">Bestand uploaden</label>
                                                     <div class="col-md-4">
                                                         <label for="file-upload" class="custom-file-upload">
                                                             <i class="fa fa-cloud-upload"></i> Uploaden

@@ -57,15 +57,25 @@ else {
                         </div>
 
 
-                        <form class="UploadForm" action="?page=uploading" method="post" enctype="multipart/form-data">
+                        <form action="?page=uploading" method="post" enctype="multipart/form-data" class="form-horizontal">
                             <div class="tab-content">
                                 <div class="tab-pane active" role="tabpanel" id="step1">
                                     <div class="well" style="font-size: 15px; font-style: italic;">Vul hieronder het onderwerp van de proef in en controleer of uw naam juist is. </div>
-                                    <br>
-                                    <label>Onderwerp<span style="color:#bc2d4c">*</span></label>
-                                    <input maxlength="50" required type="text" name="title" size="50" value="<?php if( isset($mailinfo['title']) ){echo $mailinfo['title'];}?>">&emsp;&emsp;<br><br>
-                                    <label>Verstuurder<span style="color:#bc2d4c">*</span>:</label>
-                                    <label>Testadmin</label>
+
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" for="textinput">Onderwerp</label>
+                                        <div class="col-md-4">
+                                            <input required class="form-control input-md" id="textinput" type="text" name="title" size="50" placeholder="<?php if( isset($mailinfo['title']) ){echo $mailinfo['title'];}?>">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" for="textinput">Verstuurder<span style="color:#bc2d4c">*</span></label>
+                                        <div class="col-md-4">
+                                            <input required class="form-control input-md" id="textinput" type="text" name="verstuurder" size="50" value="Testadmin" disabled>
+                                        </div>
+                                    </div>
+
                                     <br><br>
                                     <ul class="list-inline pull-right">
                                         <li><button type="button" class="btn btn-primary next-step">Volgende</button></li>
@@ -74,18 +84,33 @@ else {
                                 <div class="tab-pane" role="tabpanel" id="step2">
                                     <div class="well" style="font-size: 15px; font-style: italic;">Upload hieronder de bestanden die met de proef meegestuurd moeten worden. </div>
                                     <br>
-                                    <fieldset>
-                                        <label class="fileContainer">Bestand uploaden*
-                                            <input required type="file" name="myFile[]" id="imgInp" multiple>
+                                    <fieldset style="clear:both">
+                                        <!--
+                                        <label class="fileContainer">Nieuwe Bestand(en) uploaden*
+                                            <input type="file" name="myFile[]" id="imgInp" multiple onchange="loadFile(event);">
                                         </label>
+                                        -->
+
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label" for="textinput">Bestanden uploaden</label>
+                                            <div class="col-md-4">
+                                                <label for="file-upload" class="custom-file-upload">
+                                                    <i class="fa fa-cloud-upload"></i> Uploaden
+                                                </label>
+                                                <input required type="file" name="myFile[]" class="imgInp" id="file-upload" multiple>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label" for="textinput">Geselecteerde bestanden:</label>
+                                            <div class="col-md-4">
+                                                <div id="fileList"></div>
+
+                                                <output id="list"></output>
+                                            </div>
+                                        </div>
+
                                         <br>
-
-                                        <br/>Selected files:
-                                        <div id="fileList"></div>
-
-                                        <output id="list"></output>
-
-                                    </fieldset><br>
+                                    </fieldset>
                                     <ul class="list-inline pull-right">
                                         <li><button type="button" class="btn btn-primary next-step">Volgende</button></li>
                                     </ul>
@@ -94,9 +119,14 @@ else {
                                 <div class="tab-pane" role="tabpanel" id="step3">
                                     <div class="well" style="font-size: 15px; font-style: italic;">Vul hieronder een beschrijving of eventuele extra informatie in. </div>
                                     <br>
-                                    <label>Beschrijving<span style="color:#bc2d4c">*</span></label>
-                                    <input maxlength="500" required class="TaDescriptionActive" name="additionalcontent" size="50" value="<?php if( isset($mailinfo['description']) ){echo $mailinfo['description'];}?>">
-                                    <br><br>
+
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" for="textinput">Beschrijving<span style="color:#bc2d4c">*</span></label>
+                                        <div class="col-md-4">
+                                            <input required class="form-control input-md" id="textinput" type="text" name="additionalcontent" value="<?php if( isset($mailinfo['description']) ){echo $mailinfo['description'];}?>">
+                                        </div>
+                                    </div>
+
                                     <ul class="list-inline pull-right">
                                         <li><button type="button" class="btn btn-primary next-step">Volgende</button></li>
                                     </ul>
@@ -113,14 +143,16 @@ else {
                                     <div id="suggestions">
                                         Klantensuggesties voor <span class="searchterm"></span>...
                                     </div>
-                                    <br>
-                                    <input type="submit" name="submit" size="50" value="Versturen">
-                                </div>
 
-                                <input type="hidden" name="frommail" id="MailFrom" value="<?php if( isset($mailinfo['title']) ){ echo $mailinfo['email'];}?>">
-                                <input type="hidden" name="mailto" id="" value="valckxj@outlook.com">
-                                <input type="hidden" name="fromname" id="" value="Gijs van den Abeele">
-                                <input type="hidden" name="mailname" id="" value="Jeffrey">
+                                    <input type="hidden" name="frommail" id="MailFrom" value="<?php if( isset($mailinfo['title']) ){ echo $mailinfo['email'];}?>">
+                                    <input type="hidden" name="mailto" id="" value="kevin.herdershof@hotmail.com">
+                                    <input type="hidden" name="fromname" id="" value="Gijs van den Abeele">
+                                    <input type="hidden" name="mailname" id="" value="Jeffrey">
+                                    <br>
+                                    <ul class="list-inline pull-right">
+                                        <li><input type="submit" name="submit" value="Aanmaken" class="btn btn-primary next-step"></li>
+                                    </ul>
+                                </div>
                                 <br>
                                 <br>
                         </form>
