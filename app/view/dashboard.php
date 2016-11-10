@@ -37,7 +37,7 @@ $_SESSION['geweigerd_percent'] = $get_items_geweigerd['COUNT(status)'];
 
                 <div class="col-sm-6 col-md-4">
                     <div class="thumbnail">
-                        <div class="well">
+                        <div class="well widgetwell">
                             <div class="caption">
                                 <div class="widget-header bg-success"></div>
                                 <div class="widget-body text-center">
@@ -53,7 +53,7 @@ $_SESSION['geweigerd_percent'] = $get_items_geweigerd['COUNT(status)'];
 
                 <div class="col-sm-6 col-md-4">
                     <div class="thumbnail">
-                        <div style="text-align: center;" class="well">
+                        <div style="text-align: center;" class="well widgetwell">
                             <div class="caption">
                                 <div class="widget-header bg-success"></div>
                                 <div class="widget-body text-center">
@@ -68,7 +68,7 @@ $_SESSION['geweigerd_percent'] = $get_items_geweigerd['COUNT(status)'];
                 </div>
                 <div class="col-sm-6 col-md-4">
                     <div class="thumbnail">
-                        <div class="well">
+                        <div class="well widgetwell">
                             <div class="caption">
                                 <div class="widget-header bg-success"></div>
                                 <div class="widget-body text-center">
@@ -110,7 +110,7 @@ $_SESSION['geweigerd_percent'] = $get_items_geweigerd['COUNT(status)'];
 
                         <div class="col-sm-6 col-md-4">
                             <div class="thumbnail">
-                                <div class="well">
+                                <div class="well widgetwell">
                                     <div class="caption">
                                         <div class="widget-header bg-success"></div>
                                         <div class="widget-body text-center">

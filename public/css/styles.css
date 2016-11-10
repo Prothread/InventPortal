@@ -17,6 +17,12 @@ input[type="file"] {
     cursor: pointer;
 }
 
+.widgetwell {
+    -webkit-box-shadow: 1px 15px 14px 3px rgba(0,0,0,0.16);
+    -moz-box-shadow: 1px 15px 14px 3px rgba(0,0,0,0.16);
+    box-shadow: 1px 15px 14px 3px rgba(0,0,0,0.16);
+}
+
 .item {
     border-radius: 5px;
 }
@@ -806,6 +812,9 @@ tr:nth-child(even) {
     margin-top: 28px;
     height: 50px;
     text-align: right;
+    -webkit-box-shadow: 1px 15px 14px 3px rgba(0,0,0,0.16);
+    -moz-box-shadow: 1px 15px 14px 3px rgba(0,0,0,0.16);
+    box-shadow: 1px 15px 14px 3px rgba(0,0,0,0.16);
 }
 
 .fileContainer [type=file] {
