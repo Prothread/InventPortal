@@ -106,7 +106,7 @@ foreach ($uploadedimages as $img) {
                             <?php
                             }
                             ?>
-                            <form class="UploadForm" action="?page=uploading" method="post" enctype="multipart/form-data">
+                            <form class="form-horizontal" action="?page=uploading" method="post" enctype="multipart/form-data">
                                 <input type="hidden" name="id" value="<?= $upload['id']?>">&emsp;&emsp;
                                 <div class="tab-content">
                                     <div class="tab-pane active" role="tabpanel" id="step1">
@@ -176,6 +176,7 @@ foreach ($uploadedimages as $img) {
                                         </ul>
                                     </div>
 
+
                                     <div class="tab-pane" role="tabpanel" id="step2">
                                         <div class="well" style="font-size: 15px; font-style: italic;">Bekijk de informatie.</div>
 
@@ -183,12 +184,21 @@ foreach ($uploadedimages as $img) {
 
                                         <div style="clear: both;"></div>
                                         <?php if(in_array(2, $verimages) || in_array(0, $verimages)) { ?>
-                                        <label>Onderwerp<span style="color:#bc2d4c">*</span></label>
-                                        <input type="text" name="title" size="50" value="<?= $upload['onderwerp']?>">&emsp;&emsp;
-                                        <br>
-                                        <br>
-                                        <label>Verstuurder<span style="color:#bc2d4c">*</span></label>
-                                        <input type="text" name="fromname" size="50" value="<?= $upload['verstuurder']?>">
+
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label" for="textinput">Onderwerp<span style="color:#bc2d4c">*</span></label>
+                                            <div class="col-md-4">
+                                                <input name="title" class="form-control input-md" id="textinput" required type="text" size="50" value="<?= $upload['onderwerp']?>">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label" for="textinput">Verstuurder<span style="color:#bc2d4c">*</span></label>
+                                            <div class="col-md-4">
+                                                <input name="fromname" class="form-control input-md" id="textinput" required type="text" size="50" value="<?= $upload['verstuurder']?>">
+                                            </div>
+                                        </div>
+
                                         <br>
                                         <ul class="list-inline pull-right">
                                             <li><button type="button" class="btn btn-primary next-step">Volgende</button></li>
@@ -196,94 +206,141 @@ foreach ($uploadedimages as $img) {
                                     </div>
                                     <?php }
                                     else { ?>
-                                        <label>Verstuurder<span style="color:#bc2d4c">*</span></label>
-                                        <input disabled type="text" name="fromname" size="50" value="<?= $upload['verstuurder']?>">
-                                        <br>
-                                        <br>
-                                        <label>Onderwerp<span style="color:#bc2d4c">*</span></label>
-                                        <input disabled type="text" name="title" size="50" value="<?= $upload['onderwerp']?>">&emsp;&emsp;
+
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label" for="textinput">Verstuurder<span style="color:#bc2d4c">*</span></label>
+                                            <div class="col-md-4">
+                                                <input disabled name="fromname" class="form-control input-md" id="textinput" type="text" size="50" value="<?= $upload['verstuurder']?>">
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label" for="textinput">Onderwerp<span style="color:#bc2d4c">*</span></label>
+                                            <div class="col-md-4">
+                                                <input disabled name="title" class="form-control input-md" id="textinput" type="text" size="50" value="<?= $upload['onderwerp']?>">
+                                            </div>
+                                        </div>
+
+
                                     <?php } ?>
 
-                                    <br>
 
                                     <?php if(in_array(2, $verimages) || in_array(0, $verimages)) { ?>
-                                    <div class="tab-pane" role="tabpanel" id="step3">
-                                        <div class="well" style="font-size: 15px; font-style: italic;">Upload indien nodig nieuwe bestanden. </div>
-                                        <br>
-                                        <br>
-                                        <fieldset style="clear:both">
-                                            <label class="fileContainer">Nieuwe Bestand(en) uploaden*
-                                                <input type="file" name="myFile[]" id="imgInp" multiple onchange="loadFile(event);">
-                                            </label>
+                                        <div class="tab-pane" role="tabpanel" id="step3">
+                                            <div class="well" style="font-size: 15px; font-style: italic;">Upload indien nodig nieuwe bestanden. </div>
                                             <br>
-                                            <img src="../public/css/NoUpload.png" class="preview" id="preview" alt="">
-                                        </fieldset>
-                                        <br><br>
-                                        <ul class="list-inline pull-right">
-                                            <li><button type="button" class="btn btn-primary next-step">Volgende</button></li>
-                                        </ul>
-                                    </div>
-                                    <div class="tab-pane" role="tabpanel" id="step4">
-                                        <div class="well" style="font-size: 15px; font-style: italic;">Pas hieronder eventueel de beschrijving aan en verstuur de proef opnieuw. </div>
-                                        <br>
-                                        <label>Beschrijving<span style="color:#bc2d4c">*</span></label>
-                                        <input class="Description2" size="50" name="additionalcontent" value="<?= $upload['beschrijving']?>">
-                                        <br><br>
+                                            <fieldset style="clear:both">
+                                                <!--
+                                                <label class="fileContainer">Nieuwe Bestand(en) uploaden*
+                                                    <input type="file" name="myFile[]" id="imgInp" multiple onchange="loadFile(event);">
+                                                </label>
+                                                -->
 
+                                                <div class="form-group">
+                                                    <label class="col-md-4 control-label" for="textinput" class="fileContainer">Bestand uploaden</label>
+                                                    <div class="col-md-4">
+                                                        <label for="file-upload" class="custom-file-upload">
+                                                            <i class="fa fa-cloud-upload"></i> Uploaden
+                                                        </label>
+                                                        <input required type="file" name="myFile[]" class="imgInp" id="file-upload" multiple>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-md-4 control-label" for="textinput">Geselecteerde bestanden:</label>
+                                                    <div class="col-md-4">
+                                                        <div id="fileList"></div>
+
+                                                        <output id="list"></output>
+                                                    </div>
+                                                </div>
+
+                                                <br>
+                                            </fieldset>
+                                            <br><br>
+                                            <ul class="list-inline pull-right">
+                                                <li><button type="button" class="btn btn-primary next-step">Volgende</button></li>
+                                            </ul>
+                                        </div>
+                                        <div class="tab-pane" role="tabpanel" id="step4">
+                                        <div class="well" style="font-size: 15px; font-style: italic;">Pas hieronder eventueel de beschrijving aan en verstuur de proef opnieuw. </div>
+
+                                        <br>
+
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label" for="textinput">Beschrijving<span style="color:#bc2d4c">*</span></label>
+                                            <div class="col-md-4">
+                                                <input name="additionalcontent" class="form-control input-md" id="textinput" type="text" size="50" value="<?= $upload['beschrijving']?>">
+                                            </div>
+                                        </div>
+                                        <br><br>
                                         <input type="hidden" name="frommail" id="MailFrom" value="<?= $upload['onderwerp']?>">
                                         <br><br>
                                         <input type="hidden" name="mailname" size="50" value="<?= $upload['naam']?>">&emsp;&emsp;
                                         <input type="hidden" name="mailto" size="50" value="<?= $upload['email']?>">
 
                                         <ul class="list-inline pull-right">
-                                            <li><input type="submit" name="submit" size="50" value="Versturen"></li>
+                                            <li>  <input class="btn btn-primary btn-success" name="submit" style="max-width: 100px; background-color: #bb2c4c; border: 1px solid #bb2c4c" type="submit" value="Opslaan"></li>
                                         </ul>
                                         <br>
-                                        <?php }
+                                    <?php }
 
-                                        // VOOR ALS HET AL GEACCORDEERD IS
+                                    // VOOR ALS HET AL GEACCORDEERD IS
 
-                                        else {
-                                            ?>
-                                            <div style="clear:both"></div>
-                                            <br />
-                                            <label disabled="disabled" style="width:50px;">Beschrijving<span style="color:#bc2d4c">*</span></label>
+                                    else {
+                                        ?>
 
-                                            <input disabled="disabled" size="50" class="TaDescription" name="additionalcontent" value="<?= $upload['beschrijving']?>">
-                                            <br><br>
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label" for="textinput">Beschrijving<span style="color:#bc2d4c">*</span></label>
+                                            <div class="col-md-4">
+                                                <input disabled name="additionalcontent" class="form-control input-md" id="textinput" type="text" size="50" value="<?= $upload['beschrijving']?>">
+                                            </div>
+                                        </div>
 
-                                            <label>Naam klant<span style="color:#bc2d4c">*</span></label>
-                                            <input disabled="disabled" type="text" name="mailname" size="50" value="<?= $upload['naam']?>">&emsp;&emsp;
-                                            <br><br>
-                                            <label>E-mailadres klant<span style="color:#bc2d4c">*</span></label>
-                                            <input disabled="disabled" type="email" name="mailto" size="50" value="<?= $upload['email']?>">
 
-                                            <input disabled="disabled" type="hidden" name="frommail" id="MailFrom" value="<?= $upload['onderwerp']?>">
-                                            <br><br>
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label" for="textinput">Naam klant<span style="color:#bc2d4c">*</span></label>
+                                            <div class="col-md-4">
+                                                <input disabled name="mailname" class="form-control input-md" id="textinput" type="text" size="50" value="<?= $upload['naam']?>">
+                                            </div>
+                                        </div>
 
-                                            <table>
-                                                <thead>
-                                                <td>Downloads:</td>
-                                                </thead>
-                                                <tbody>
-                                                <tr>
-                                                    <?php foreach($uploadedimages as $img) { ?>
-                                                        <td style="float:left;margin-right:10px;">
-                                                            <div class="btn-group">
-                                                                <button type="button" id="downloadimagedd" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                    <div class="imagedownload" style="background:url(<?= DIR_IMAGE . $img['images'] ?>); background-size: cover;"> <span class="caret"></span>
-                                                                </button>
-                                                                <ul class="dropdown-menu">
-                                                                    <li><a href="index.php?page=download&file=<?= DIR_IMAGE . $img['images']; ?>">Download</a></li>
-                                                                </ul>
-                                                            </div>
-                                                        </td>
-                                                    <?php }?>
-                                                </tr>
-                                                </tbody>
-                                            </table>
-                                        <?php } ?>
-                                        <div style="clear:both"></div>
+
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label" for="textinput">E-mailadres klant<span style="color:#bc2d4c">*</span></label>
+                                            <div class="col-md-4">
+                                                <input disabled name="mailto" class="form-control input-md" id="textinput" type="text" size="50" value="<?= $upload['email']?>">
+                                            </div>
+                                        </div>
+
+                                        <input disabled="disabled" type="hidden" name="frommail" id="MailFrom" value="<?= $upload['onderwerp']?>">
+                                        </div>
+                                        <br><br>
+
+
+                                        <thead>
+                                        <td>Downloads:</td>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <?php foreach($uploadedimages as $img) { ?>
+                                                <td style="float:left;margin-right:10px;">
+                                                    <div class="btn-group">
+                                                        <button type="button" id="downloadimagedd" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                            <div class="imagedownload" style="background:url(<?= DIR_IMAGE . $img['images'] ?>); background-size: cover;"> <span class="caret"></span>
+                                                        </button>
+                                                        <ul class="dropdown-menu">
+                                                            <li><a href="index.php?page=download&file=<?= DIR_IMAGE . $img['images']; ?>">Download</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </td>
+                                            <?php }?>
+                                        </tr>
+                                        </tbody>
+                                        </table>
+                                    <?php } ?>
+                                    <div style="clear:both"></div>
+                                </div>
                             </form>
                         </div>
                     </div>

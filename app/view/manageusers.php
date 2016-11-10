@@ -77,10 +77,25 @@ if(isset($_POST['PlaatsDESC'])) {
     $filter = 'DESC';
     $table = 'plaats';
 }
+?>
+<div id="filterrefresh"><?php
+    $table = 'id';
+    $status = '';
+    $filter = 'DESC';
+
+    if(isset($_SESSION['filter'])) {
+        $filter = $_SESSION['filter'];
+    }
+    if(isset($_SESSION['filter'])) {
+        $table = $_SESSION['table'];
+    }
+    var_dump($_SESSION['filter']);
+    var_dump($_SESSION['table']);
 
 $getAllUsers = $user->getAllUsersByPerm($table, $filter, 0, 0, 1);
 $get_filled_info = $user->getAllUsersByPerm($table, $filter, $limit, $offset, 1);
-$count = count($getAllUsers);
+    foreach($get_filled_info as $info){ var_dump($info['naam']); };
+$count = count($getAllUsers);?></div><?php
 
 if(isset($_POST['sub'])) {
     $mysqli = mysqli_connect();
@@ -114,7 +129,7 @@ if(isset($term)) {
                 <br>
                 <a href="index.php?page=newclient"><div id="NewClientButton">Nieuwe gebruiker</div></a>
 
-                <form action="?page=manageusers" method="post">
+                <form method="post" id="filtertable">
                 <table id="overzicht" class="sortable table-striped">
                     <br><br>
                     <thead>
@@ -126,9 +141,9 @@ if(isset($term)) {
                                     <span style="color: #bb2c4c;">Weergavenaam </span> <span style="color: #bb2c4c" class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><input type="submit" id="filterbutton" name="NaamASC" value="A-Z" style="width:100%;"></li>
+                                    <li><input type="submit" id="filterbutton" name="Naam-ASC" value="A-Z" style="width:100%;"></li>
                                     <br>
-                                    <li><input type="submit" id="filterbutton" name="NaamDESC" value="Z-A" style="width:100%;"></li>
+                                    <li><input type="submit" id="filterbutton1" name="Naam-DESC" value="Z-A" style="width:100%;"></li>
                                 </ul>
                             </div>
                         </th>
@@ -139,9 +154,9 @@ if(isset($term)) {
                                     <span style="color: #bb2c4c;">Bedrijfsnaam </span> <span style="color: #bb2c4c" class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><input type="submit" id="filterbutton" name="BedrijfnaamASC" value="A-Z" style="width:100%;"></li>
+                                    <li><input type="submit" id="filterbutton" name="Bedrijfnaam-ASC" value="A-Z" style="width:100%;"></li>
                                     <br>
-                                    <li><input type="submit" id="filterbutton" name="BedrijfnaamDESC" value="Z-A" style="width:100%;"></li>
+                                    <li><input type="submit" id="filterbutton" name="Bedrijfnaam-DESC" value="Z-A" style="width:100%;"></li>
                                 </ul>
                             </div>
                         </th>

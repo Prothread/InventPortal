@@ -59,41 +59,76 @@ if(isset($_POST['submit'])){
         <div class="row">
             <div class="col-lg-12">
                 <p class="NameText">Klant bijwerken</p>
-                <hr size="1">
                 <br>
-                <form class="NewClient" method="post" enctype="multipart/form-data">
-                    <p class="ClientFormText">Namen</p>
-                    <hr size="1">
 
-                    <input type="hidden" name="id" value="<?= $myclient['id']; ?>">
+                <form method="post" enctype="multipart/form-data" class="form-horizontal">
+                    <fieldset>
 
-                    <label>Naam klant<span style="color:#bc2d4c">*</span></label>
-                    <input required type="text" name="showname" size="50" value="<?= $myclient['naam']; ?>"><br><br>
+                        <input type="hidden" name="id" value="<?= $myclient['id']; ?>">
 
-                    <label>Bedrijfsnaam<span style="color:#bc2d4c">*</span></label>
-                    <input required type="text" name="companyname" size="50" value="<?= $myclient['bedrijfsnaam']; ?>"><br><br>
+                        <p class="ClientFormText">Namen</p>
+                        <hr size="1">
 
-                    <p class="ClientFormText">Contactgegevens</p>
-                    <hr size="1">
-                    <label>E-mailadres<span style="color:#bc2d4c">*</span></label>
-                    <input required type="email" name="email" size="50" value="<?= $myclient['email']; ?>" placeholder="voorbeeld@voorbeeld.nl"><br><br>
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="textinput">Naam</label>
+                            <div class="col-md-4">
+                                <input class="form-control input-md" id="textinput" required type="text" name="showname" size="50" value="<?= $myclient['naam']; ?>">
+                            </div>
+                        </div>
 
-                    <label>Bedrijfsadres<span style="color:#bc2d4c">*</span></label>
-                    <input required type="text" name="companyadress" size="50" value="<?= $myclient['adres']; ?>"><br><br>
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="textinput">Bedrijfsnaam</label>
+                            <div class="col-md-4">
+                                <input class="form-control input-md" id="textinput" required type="text" name="companyname" size="50" value="<?= $myclient['bedrijfsnaam']; ?>">
+                            </div>
+                        </div>
 
-                    <label>Postcode<span style="color:#bc2d4c">*</span></label>
-                    <input required type="text" name="postcode" size="8" value="<?= $myclient['postcode']; ?>"><br><br>
+                        <p class="ClientFormText">Contactgegevens</p>
+                        <hr size="1">
 
-                    <label>Plaats<span style="color:#bc2d4c">*</span></label>
-                    <input required type="text" name="plaats" size="50" value="<?= $myclient['plaats']; ?>"><br><br>
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="textinput">E-mail</label>
+                            <div class="col-md-4">
+                                <input class="form-control input-md" id="textinput" required type="email" name="email" size="50" value="<?= $myclient['email']; ?>">
+                            </div>
+                        </div>
 
-                    <input type="hidden" name="permgroup" value="1">
+                        <!-- Select Basic -->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="textinput">Adres</label>
+                            <div class="col-md-4">
+                                <input class="form-control input-md" id="textinput" required type="text" name="companyadress" size="50" value="<?= $myclient['adres']; ?>">
+                            </div>
+                        </div>
 
-                    <br><br>
-                    <input type="submit" name="submit" size="50" value="Versturen">
-                </form
-            </div>
-        </div>
-    </div>
-</div>
+                        <!-- Password input-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="textinput">Postcode</label>
+                            <div class="col-md-4">
+                                <input class="form-control input-md" id="textinput" required type="text" name="postcode" size="50" value="<?= $myclient['postcode']; ?>">
+                            </div>
+                        </div>
+
+                        <!-- Password input-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="textinput">Plaats</label>
+                            <div class="col-md-4">
+                                <input class="form-control input-md" id="textinput" required type="text" name="plaats" size="50" value="<?= $myclient['plaats']; ?>">
+                            </div>
+                        </div>
+
+                        <input type="hidden" name="permgroup" value="1">
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="textinput"></label>
+                            <div class="col-md-4">
+                                <input class="btn btn-primary btn-success" name="submit"  style="max-width: 100px; background-color: #bb2c4c; border: 1px solid #dd2c4c" type="submit" value="Opslaan">
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+
 

@@ -152,6 +152,9 @@ switch($page) {
     case 'statusportal':
         include '../app/view/statusportal.php';
         break;
+    case 'filter':
+        include '../app/Model/Filtering.php';
+        break;
     default:
         include '../app/view/404.php';
         break;

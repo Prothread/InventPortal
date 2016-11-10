@@ -125,66 +125,7 @@ if(isset($term)) {
             <div class="col-lg-12">
                 <p class="NameText">Overzicht</p>
                 <hr size="1">
-                <div class="col-sm-6 col-md-4">
-                    <div class="thumbnail">
-                        <div class="well">
-                            <div class="caption">
-                                <div class="widget-header bg-success"></div>
-                                <div class="widget-body text-center">
-                                    <div>
-                                        <p style="text-align: center;">Open opdrachten</p>
-                                        <div class="counter" data-count="<?=$openstaand?>">0</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="col-sm-6 col-md-4">
-                    <div class="thumbnail">
-                        <div style="text-align: center;" class="well">
-                            <div class="caption">
-                                <div class="widget-header bg-success"></div>
-                                <div class="widget-body text-center">
-                                    <div>
-                                        <p style="text-align: center;">Verschil akkoord & geweigerd</p>
-                                        <canvas id="myChart" width="200" height="200"></canvas>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-4">
-                    <div class="thumbnail">
-                        <div class="well">
-                            <div class="caption">
-                                <div class="widget-header bg-success"></div>
-                                <div class="widget-body text-center">
-                                    <p style="text-align: center;">Overzicht</p>
-                                    <br />
-                                    <br />
-                                    <div class="skillbar clearfix " data-percent="75%">
-                                        <div class="skillbar-title" style="background: #de1340;"><span>Goedgekeurd</span></div>
-                                        <div class="skillbar-bar" style="background: #dd4869;"></div>
-                                        <div class="skill-bar-percent"><?=$get_items_geaccepteerd['COUNT(status)']?></div>
-                                    </div> <!-- End Skill Bar -->
-
-                                    <div class="skillbar clearfix " data-percent="50%">
-                                        <div class="skillbar-title" style="background: #822b8b;"><span>Afgekeurd</span></div>
-                                        <div class="skillbar-bar" style="background: #b340bf;"></div>
-                                        <div class="skill-bar-percent"><?=$get_items_geweigerd['COUNT(status)']?></div>
-                                    </div> <!-- End Skill Bar -->
-                                    <br />
-                                    <br />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
 
                 <!--<input type="text" size="50" id="TableInput" onkeyup="searchTable()" placeholder="Zoek een product...">-->

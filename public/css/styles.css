@@ -7,6 +7,16 @@
     flex:1 1 auto;
 }
 
+input[type="file"] {
+    display: none;
+}
+.custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+
 .item {
     border-radius: 5px;
 }
@@ -553,6 +563,27 @@ tr:nth-child(even) {
     padding-left: 2px;
 }
 
+.EditClient input[type=text] {
+    border-radius: 5px;
+    border: 1px solid #bb2c4c;
+    padding-left: 2px;
+}
+
+.EditClient input[type=email] {
+    border-radius: 5px;
+    border: 1px solid #bb2c4c;
+    padding-left: 2px;
+}
+
+.EditClient input [type=submit] {
+    border-radius: .5em;
+    border: 1px solid #bb2c4c;
+    background-color: #bb2c4c;
+    padding: 0.5em;
+    color: white;
+    font-weight: bold;
+}
+
 .NewClient input[type=submit] {
     border-radius: .5em;
     border: 1px solid #bb2c4c;
@@ -578,9 +609,30 @@ tr:nth-child(even) {
 }
 
 @media(max-width:650px) {
+    .EditClient input[type=text] {
+        width: 100%;
+    }
+}
+
+@media(max-width:650px) {
     .UploadForm input[type=text] {
         width: 100%;
     }
+}
+
+@media(max-width:650px) {
+    .EditClient input[type=email] {
+        width: 100%;
+    }
+}
+
+.EditClient input [type=submit]{
+    border-radius: .5em;
+    border: 1px solid #bb2c4c;
+    background-color: #bb2c4c;
+    padding: 0.5em;
+    color: white;
+    font-weight: bold;
 }
 
 @media(max-width:650px) {
@@ -647,8 +699,7 @@ tr:nth-child(even) {
 .TaDescription {
     border-radius: 5px;
     border: 1px solid #bb2c4c;
-    padding-left: 2px;
-    margin-left: 62px;
+
 }
 
 .TaDescriptionActive {
@@ -711,6 +762,13 @@ tr:nth-child(even) {
     height: 28px;
 }
 
+.well-dash {
+    -webkit-box-shadow: 0px 10px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 10px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 10px 5px 0px rgba(0,0,0,0.75);
+}
+
+
 .fileContainer {
     overflow: hidden;
     position: relative;
@@ -721,7 +779,6 @@ tr:nth-child(even) {
     border: 1px solid #bb2c4c;
     padding-left: 7px;
     width: 40%;
-    margin-left: 13px;
 }
 
 @media(max-width:650px) {
@@ -879,19 +936,6 @@ ul.sidebar-nav {
 }
 
 #AccButton {
-    width: 120px;
-    height: 28px;
-    border-radius: .5em;
-    border: 1px solid #bb2c4c;
-    background-color: #bb2c4c;
-    padding: 0.5em;
-    color: white;
-    font-weight: bold;
-    line-height: 8px;
-    text-align: center;
-    text-decoration: none;
-}
-#AccButton1 {
     width: 120px;
     height: 28px;
     border-radius: .5em;
@@ -1171,7 +1215,7 @@ table.table { width: 100%; }
     }
 }
 #error404 {
-    background-image: url('bg.jpg');
+    background-color: #FFF;
     background-repeat: no-repeat;
     background-size: 100%;
     background-position: center 20%;

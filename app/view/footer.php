@@ -143,6 +143,42 @@
 </script>
 
 <script>
+    var filter;
+    var filtername;
+    var filtersort;
+
+    $("#filterbutton, #filterbutton1").click(function(event) {
+        filter = $(this).attr("name");
+        alert(filter);
+
+        filter = (filter.split("-"));
+        filtername = filter[0];
+        filtersort = filter[1];
+    });
+
+    $("form#filtertable").submit(function(event) {
+
+        var dataString = $('form#filtertable').serialize() + '&filter=' + filtersort + '&table=' + filtername;
+        alert(dataString);
+
+        $.ajax({
+            type: "POST",
+            url: "?page=filter",
+            data: dataString,
+            cache: false,
+            success: function(result){
+                //$(ref).load("?page=accordering " + ref);
+                $('.row').load("?page=manageusers .col-lg-12");
+                $('#filterrefresh').load("?page=manageusers #filterrefresh");
+                $('.pagination').load("?page=manageusers .pagination");
+            }
+        });
+
+        event.preventDefault();
+    });
+</script>
+
+<script>
     var vote;
     $("#filterbutton").click(function(event) {
         vote = $(this).val();
@@ -173,17 +209,6 @@
 </script>
 
 <script>
-    updateList = function() {
-        var input = document.getElementById('imgInp');
-        var output = document.getElementById('fileList');
-
-        output.innerHTML = '<ul>';
-        for (var i = 0; i < input.files.length; ++i) {
-            output.innerHTML += '<li>' + input.files.item(i).name + '</li>';
-        }
-        output.innerHTML += '</ul>';
-    };
-
     function handleFileSelect(evt) {
         var files = evt.target.files; // FileList object
 
@@ -199,14 +224,14 @@
         document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
     }
 
-    document.getElementById('imgInp').addEventListener('change', handleFileSelect, false);
+    document.getElementById('file-upload').addEventListener('change', handleFileSelect, false);
 
 </script>
 
 <script>
 
     $(function () {
-        $("#imgInp").change(function () {
+        $(".imgInp").change(function () {
             if (typeof (FileReader) != "undefined") {
                 var dvPreview = $("#fileList");
                 dvPreview.html("");
