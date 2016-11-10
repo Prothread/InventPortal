@@ -402,16 +402,19 @@ if(isset($term)) {
             </form>
 
             <ul class="pagination">
+            <table>
+              <tr>
                 <?php for ( $i = 0; $i < ceil( $count / $limit ); $i++ ) : ?>
                     <li>
-                        <a>
-                            <form method="post" action="<?= "index.php?page=overzicht&offset=". $limit * $i ?>">
+                            <th><form method="post" action="<?= "index.php?page=overzicht&offset=". $limit * $i ?>">
                                 <input type="hidden" id="TableInput" name="term" value="<?php if(isset($_SESSION['term'])){ echo $_SESSION['term']; }else{ echo ''; }?>">
-                                <input id="" value="<?= ( $i + 1 ) ?>" type="submit" name="sub">
-                            </form>
-                        </a>
+                                <input class="btn btn-secondary" id="PaginationButton" value="<?= ( $i + 1 ) ?>" type="submit" name="sub">
+                            </form></th>
+                        
                     </li>
                 <?php endfor; ?>
+                </tr>
+                </table>
             </ul>
             <hr size="1">
         </div>
