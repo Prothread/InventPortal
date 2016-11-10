@@ -876,11 +876,19 @@ tr:nth-child(even) {
     position: relative;
 }
 
+.sidebar-nav li:hover {
+        -webkit-animation: swing 1s ease;
+        animation: swing 1s ease;
+        -webkit-animation-iteration-count: 1;
+        animation-iteration-count: 1;
+}
+
 #TableInput {
     border-radius: 5px;
     border: 1px solid #bb2c4c;
     padding-left: 7px;
     width: 40%;
+    margin-left: 15px;
 }
 
 @media(max-width:650px) {
@@ -888,7 +896,7 @@ tr:nth-child(even) {
         width: 100%;
     }
 }
-
+Ft
 #UserTable {
     border-radius: 5px;
     border: 1px solid #bb2c4c;
