@@ -24,7 +24,7 @@ $items = new MailController();
     $myuser = $items->getUserMail($userid, 2);
 
     if($myuser == null) {
-        echo '<div id="NoMail">U heeft nog geen proeven of offertes op uw account staan </div>';
+        echo '<div class="alert alert-danger" role="alert">U heeft nog geen proeven of offertes op uw account staan </div>';
         return false;
     }
 

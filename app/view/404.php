@@ -17,7 +17,7 @@ unset($contenter);
         <h3 style="color: #dd2c4c; font-family: 'Abhaya Libre', serif; font-size: 40px;" class="font-bold">De pagina die u zocht, werd niet gevonden...</h3>
         <div style="color: #000; font-family: 'Open Sans', sans-serif; font-size: 20px;" class="error-desc">
             Sorry, de door u opgevraagde pagina kon niet worden getoond. Mogelijk bestaat de pagina niet. <br/>
-            Ververs de pagina of druk op de knop om terug te gaan naar de homepage.
+            Wij raden u aan de juiste pagina te zoeken in het menu, of terug te gaan naar de homepagina.
             <div>
                 <br>
                 <a class=" login-detail-panel-button btn" href="#">
