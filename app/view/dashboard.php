@@ -28,7 +28,7 @@ $_SESSION['geaccepteerd_percent'] = $get_items_geaccepteerd['COUNT(status)'];
 $_SESSION['geweigerd_percent'] = $get_items_geweigerd['COUNT(status)'];
 
 ?>
-
+<p>BETER SYNCepingting DIE SHIT</p>
 <div id="page-content-wrapper">
     <div class="container-fluid">
         <div class="row">
@@ -120,7 +120,7 @@ $_SESSION['geweigerd_percent'] = $get_items_geweigerd['COUNT(status)'];
                                             <p>Door: <?= $upload['verstuurder'] ?></p>
                                             <p>Klant: <?= $upload['naam'] ?></p>
                                             <p>Datum:  <?= date("d-m-Y", strtotime($upload['datum'])); ?></p>
-                                            <p>Status: <?php if ($upload['verified'] == 1) {?>
+                                            <p>Status: <?php if ($upload['verified'] == 1) {?></p>
                                             <p><span style="Color: #bb2c4c">Gezien</span></p>
                                             <?php } elseif ($upload['verified'] == 2) {?>
                                                 <p><span style="Color: #bb2c4c">Geaccepteerd</span></p>
