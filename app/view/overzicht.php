@@ -3,8 +3,7 @@
 
 if($user->getPermission($permgroup, 'CAN_SHOW_OVERZICHT') == 1){
 
-}
-else {
+} else {
     header('Location: index.php?page=gebruikersoverzicht');
 }
 
@@ -352,11 +351,10 @@ if(isset($term)) {
               <tr>
                 <?php for ( $i = 0; $i < ceil( $count / $limit ); $i++ ) : ?>
                     <li>
-                            <th><form id="PaginationForm" method="post" action="<?= "index.php?page=overzicht&offset=". $limit * $i ?>">
-                                <input type="hidden" id="TableInput" name="term" value="<?php if(isset($_SESSION['term'])){ echo $_SESSION['term']; }else{ echo ''; }?>">
-                                <input class="btn btn-default" id="PaginationButton" value="<?= ( $i + 1 ) ?>" type="submit" name="sub">
-                            </form></th>
-                        
+                        <th><form id="PaginationForm" method="post" action="<?= "index.php?page=overzicht&offset=". $limit * $i ?>">
+                            <input type="hidden" id="TableInput" name="term" value="<?php if(isset($_SESSION['term'])){ echo $_SESSION['term']; }else{ echo ''; }?>">
+                            <input class="btn btn-default" id="PaginationButton" value="<?= ( $i + 1 ) ?>" type="submit" name="sub">
+                        </form></th>
                     </li>
                 <?php endfor; ?>
                 </tr>

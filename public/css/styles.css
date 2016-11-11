@@ -973,7 +973,8 @@ tr:nth-child(even) {
 
 #UserBlock {
     background-color: #FFF;
-    margin-right: 50px;
+    margin-left:-100px;
+
     border-radius: 5px;
     white-space: nowrap;
     overflow: hidden;

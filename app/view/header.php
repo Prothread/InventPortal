@@ -86,7 +86,7 @@ $admin = $settings->getAdminSettings();
         <div id="UserPhoto">
         </div>
         <a style="text-decoration: none;" href="index.php?page=gebruikersoverzicht">
-            <div style="text-decoration: none;" id="UserBlock">
+            <div id="UserBlock" style="text-decoration: none;">
                 <h3 id="LoggedInAs"><?= $myuser; ?></h3>
             </div>
         </a>
