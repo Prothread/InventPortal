@@ -15,7 +15,8 @@ else {
         <div class="row">
             <div class="col-lg-12">
                 <p class="NameText">Instellingen</p>
-                <hr size="1">
+                <br>
+                <br>
                 <p class="ClientFormText">E-mailverkeer</p>
                 <hr size="1">
                 <form method="post" enctype="multipart/form-data" class="form-horizontal" action="?page=settingsupload">
