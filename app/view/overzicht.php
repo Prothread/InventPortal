@@ -123,11 +123,25 @@ if(isset($term)) {
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
-                <p class="NameText">Overzicht</p>
-                <hr size="1">
-                
+            <table style="width:100%">
+            <tr>
+            <th style="text-align: left;"><p class="NameText" style="font-weight: normal;">Overzicht</p></th>
+            <th style="text-align: right;"><div class="btn-group">
+                <button type="button" style="width: 95px; margin-left: 13px;" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span style="color: #bb2c4c;">Legenda </span> <span style="color: #bb2c4c" class="caret"></span>
+                </button>
+                <ul class="dropdown-menu dropdown-pull-right">
+                    <li><a href="#"><img alt="Gezien" style="width: 45px; height: 45px;" src="../public/icons/gezien.png">   Item is gezien, maar nog niet geaccordeerd.</a></li>
+                    <li><a href="#"><img alt="Geaccepteerd" src="../public/icons/akkoord.png">   Het item is goedgekeurd.</a></li>
+                    <li><a href="#"><img alt="Geweigerd" src="../public/icons/geweigerd.png">   Het item is geweigerd.</a></li>
+                    <li><a href="#"><img alt="Uploaded" src="../public/icons/uploaded.png">   Het item is geüpload.</a></li>
+                </ul>
             </div>
-
+            </th> 
+            </tr>
+            </table>
+            <hr size="1">
+            <br>
 
                 <!--<input type="text" size="50" id="TableInput" onkeyup="searchTable()" placeholder="Zoek een product...">-->
 
@@ -160,18 +174,8 @@ if(isset($term)) {
 
             <br>
 
-            <div class="btn-group">
-                <button type="button" style="width: 95px; margin-left: 13px;" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span style="color: #bb2c4c;">Legenda </span> <span style="color: #bb2c4c" class="caret"></span>
-                </button>
-                <ul class="dropdown-menu">
-                    <li><a href="#"><img alt="Gezien" style="width: 45px; height: 45px;" src="../public/icons/gezien.png">   Item is gezien, maar nog niet geaccordeerd.</a></li>
-                    <li><a href="#"><img alt="Geaccepteerd" src="../public/icons/akkoord.png">   Het item is goedgekeurd.</a></li>
-                    <li><a href="#"><img alt="Geweigerd" src="../public/icons/geweigerd.png">   Het item is geweigerd.</a></li>
-                    <li><a href="#"><img alt="Uploaded" src="../public/icons/uploaded.png">   Het item is geüpload.</a></li>
-                </ul>
-            </div>
-            <br /><br />
+        
+            <br><br><br>
             <form id="filters" action="?page=overzicht" method="post">
                 <table id="overzicht" class="table-striped">
                     <thead>

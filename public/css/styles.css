@@ -946,7 +946,6 @@ tr:nth-child(even) {
     border: 1px solid #bb2c4c;
     padding-left: 7px;
     width: 40%;
-    margin-left: 15px;
 }
 
 @media(max-width:650px) {
@@ -954,7 +953,16 @@ tr:nth-child(even) {
         width: 100%;
     }
 }
-Ft
+.dropdown-pull-right {
+  float: right !important;
+  right: 0;
+  left: auto;
+}
+
+.dropdown-pull-right > .dropdown-menu {
+  right: 0;
+  left: auto;
+}
 #UserTable {
     border-radius: 5px;
     border: 1px solid #bb2c4c;
