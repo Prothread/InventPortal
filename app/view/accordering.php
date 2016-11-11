@@ -33,6 +33,7 @@ $UID = date('dmY-G.i.s') . '-192.08.1.124';
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
+                <form id="form" action="?page=updatemail" method="post" enctype="multipart/form-data" class="form-horizontal">
                 <p class="NameText">Productaccordering</p>
                 <hr size="1">
 
@@ -234,13 +235,11 @@ $UID = date('dmY-G.i.s') . '-192.08.1.124';
                             </div>
 
                             <div style="clear: both;"></div>
-                            <form id="form" class="UploadForm" action="?page=updatemail" style="clear:both;" method="post" enctype="multipart/form-data">
                                 <br />
 
                                 <input type="hidden" name="id" value="<?= $myupload['id']; ?>">
 
                                 <p> Omschrijving: <span style="color:#bc2d4c"><?= $myupload['beschrijving']?></span> </p>
-
 
                                 <br>
                                 <ul class="list-inline pull-right">
@@ -249,11 +248,19 @@ $UID = date('dmY-G.i.s') . '-192.08.1.124';
                         </div>
 
 
+
+
                         <div class="tab-pane" role="tabpanel" id="step3">
                             <div class="well" style="font-size: 15px; font-style: italic;">De opmerking die u invult wordt teruggestuurd naar de verstuurder. Verklaar uw keuze nader of voer een andere opmerking of mening in.</div>
                             <br>
-                            <label>Opmerking<span style="color:#bc2d4c">*</span></label>
-                            <input id="AccOpm" type="text" name="answer" size="50" required><br><br>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="textinput">Opmerking<span style="color:#bc2d4c">*</span></label>
+                                <div class="col-md-4">
+                                    <input name="answer" class="form-control input-md" id="textinput" type="text" size="50">
+                                </div>
+                            </div>
+
                             <ul class="list-inline pull-right">
                                 <li><button type="button" class="btn btn-primary next-step">Volgende</button></li>
                             </ul>
@@ -266,7 +273,7 @@ $UID = date('dmY-G.i.s') . '-192.08.1.124';
                         <input type="hidden" name="UID" value="<?= $UID; ?>">
 
                         <div id="refer1">
-                            <input type="text" id="totalverify" value="<?= $verify ?>">
+                            <input type="hidden" id="totalverify" value="<?= $verify ?>">
                         </div>
 
                         <p id="verify"></p>
@@ -287,7 +294,7 @@ $UID = date('dmY-G.i.s') . '-192.08.1.124';
                             <label>Uw IP-adres: <?PHP
                                 echo ''.$_SERVER['REMOTE_ADDR'];
                                 ?></label>
-                            </form>
+
 
                             <div id="refer">
                                 <script>
@@ -308,7 +315,10 @@ $UID = date('dmY-G.i.s') . '-192.08.1.124';
 
                         <br>
                         <br>
-
                     </div>
                 </div>
+                </form>
             </div>
+            </div>
+        </div>
+    </div>

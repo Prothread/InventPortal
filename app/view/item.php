@@ -238,7 +238,7 @@ foreach ($uploadedimages as $img) {
                                                 -->
 
                                                 <div class="form-group">
-                                                    <label class="col-md-4 control-label fileContainer" for="textinput">Bestand uploaden</label>
+                                                    <label class="col-md-4 control-label" for="textinput">Bestanden uploaden</label>
                                                     <div class="col-md-4">
                                                         <label for="file-upload" class="custom-file-upload">
                                                             <i class="fa fa-cloud-upload"></i> Uploaden
@@ -317,26 +317,26 @@ foreach ($uploadedimages as $img) {
                                         </div>
                                         <br><br>
 
-
-                                        <thead>
-                                        <td>Downloads:</td>
-                                        </thead>
-                                        <tbody>
-                                        <tr>
-                                            <?php foreach($uploadedimages as $img) { ?>
-                                                <td style="float:left;margin-right:10px;">
-                                                    <div class="btn-group">
-                                                        <button type="button" id="downloadimagedd" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                            <div class="imagedownload" style="background:url(<?= DIR_IMAGE . $img['images'] ?>); background-size: cover;"> <span class="caret"></span>
-                                                        </button>
-                                                        <ul class="dropdown-menu">
-                                                            <li><a href="index.php?page=download&file=<?= DIR_IMAGE . $img['images']; ?>">Download</a></li>
-                                                        </ul>
-                                                    </div>
-                                                </td>
-                                            <?php }?>
-                                        </tr>
-                                        </tbody>
+                                        <table>
+                                            <thead>
+                                            <td>Downloads:</td>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <?php foreach($uploadedimages as $img) { ?>
+                                                    <td style="float:left;margin-right:10px;">
+                                                        <div class="btn-group">
+                                                            <button type="button" id="downloadimagedd" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                <div class="imagedownload" style="background: url('index.php?page=image&img=<?= $img['images']?>'); background-size: cover;"> <span class="caret"></span>
+                                                            </button>
+                                                            <ul class="dropdown-menu">
+                                                                <li><a href="index.php?page=download&file=<?= DIR_IMAGE . $img['images']; ?>">Download</a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                <?php }?>
+                                            </tr>
+                                            </tbody>
                                         </table>
                                     <?php } ?>
                                     <div style="clear:both"></div>

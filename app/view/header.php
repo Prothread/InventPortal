@@ -38,7 +38,14 @@ $admin = $settings->getAdminSettings();
     <!-- JQuery -->
     <script src="js/jquery-1.12.4.js"></script>
     <script src="js/jquery-ui.min.js"></script>
+    <script src="js/jquery-3.1.1.min.js"></script>
     <link rel="stylesheet" href="css/jquery-ui.css">
+
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
+    <script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
     <script src="http://www.google.com/jsapi"></script>
     <script type="text/javascript">
@@ -68,7 +75,7 @@ $admin = $settings->getAdminSettings();
 
     <link rel="icon"
           type="image/png"
-          href="<?= DIR_PUBLIC . 'images/favicon.png'?>">
+          href="<?= DIR_PUBLIC . 'favicon.png'?>">
 </head>
 
 <body>

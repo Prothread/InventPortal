@@ -94,8 +94,8 @@ if(isset($_POST['PlaatsDESC'])) {
 
 $getAllUsers = $user->getAllUsersByPerm($table, $filter, 0, 0, 1);
 $get_filled_info = $user->getAllUsersByPerm($table, $filter, $limit, $offset, 1);
-    foreach($get_filled_info as $info){ var_dump($info['naam']); };
-$count = count($getAllUsers);?></div><?php
+$count = count($getAllUsers);?>
+</div><?php
 
 if(isset($_POST['sub'])) {
     $mysqli = mysqli_connect();

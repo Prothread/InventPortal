@@ -2,6 +2,14 @@
 #FOOTER
 ?>
 </div>
+</body>
+
+<script>
+    $(document).ready(function(){
+        $('#myTable').dataTable();
+    });
+</script>
+
 
 <script>
     $(document).ready(function() {});
@@ -142,41 +150,58 @@
         });
 </script>
 
-<script>
-    var filter;
-    var filtername;
-    var filtersort;
+<div id="selfer">
+    <div id="self">
+        <script>
+                var filter;
+                var filtername;
+                var filtersort;
 
-    $("#filterbutton, #filterbutton1").click(function(event) {
-        filter = $(this).attr("name");
-        alert(filter);
 
-        filter = (filter.split("-"));
-        filtername = filter[0];
-        filtersort = filter[1];
-    });
+                $("#filterbutton, #filterbutton1").click(function (event) {
+                    filter = $(this).attr("name");
+                    alert(filter);
 
-    $("form#filtertable").submit(function(event) {
+                    filter = (filter.split("-"));
+                    filtername = filter[0];
+                    filtersort = filter[1];
+                });
 
-        var dataString = $('form#filtertable').serialize() + '&filter=' + filtersort + '&table=' + filtername;
-        alert(dataString);
 
-        $.ajax({
-            type: "POST",
-            url: "?page=filter",
-            data: dataString,
-            cache: false,
-            success: function(result){
-                //$(ref).load("?page=accordering " + ref);
-                $('.row').load("?page=manageusers .col-lg-12");
-                $('#filterrefresh').load("?page=manageusers #filterrefresh");
-                $('.pagination').load("?page=manageusers .pagination");
-            }
-        });
 
-        event.preventDefault();
-    });
-</script>
+                $("form#filtertable").submit(function (event) {
+                    event.preventDefault();
+
+                    var dataString = $('form#filtertable').serialize() + '&filter=' + filtersort + '&table=' + filtername;
+                    alert(dataString);
+
+                    $.ajax({
+                        type: "POST",
+                        url: "?page=filter",
+                        data: dataString,
+                        cache: false,
+                        success: function (result) {
+                            //$(ref).load("?page=accordering " + ref);
+                            $('.row').load("?page=manageusers .col-lg-12");
+                            $('#filterrefresh').load("?page=manageusers #filterrefresh");
+                            $('.pagination').load("?page=manageusers .pagination");
+                            //$('#selfer').load("?page=footer #self");
+                        }
+                    });
+
+                });
+
+
+
+
+
+                /* Coole functie?
+                $( "#cart" ).on( "mouseenter mouseleave", function( event ) {
+                    $( this ).toggleClass( "active" );
+                }); */
+        </script>
+    </div>
+</div>
 
 <script>
     var vote;
@@ -430,9 +455,6 @@
 
 </script>
 
-<!-- jQuery -->
-<script src="js/jquery.js"></script>
-
 <!-- Bootstrap JS -->
 <script src="js/bootstrap.min.js"></script>
 
@@ -444,6 +466,5 @@
     });
 </script>
 
-</body>
 </html>
 

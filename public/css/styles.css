@@ -1373,3 +1373,18 @@ table.table { width: 100%; }
 .m-t-20 {
     margin-top: 20px!important;
 }
+.container {
+    width:100% !important;
+}
+.table-striped > tbody > tr:nth-of-type(2n+1) {
+    background-color: #f9e2e5 !important;
+}
+tr:nth-child(2n) {
+    background-color: #FFFFFF !important;
+}
+.table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {
+    background-color: #f9e2e5 !important;
+}
+.even {
+    background-color: #FFFFFF !important;
+}
