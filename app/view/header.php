@@ -82,15 +82,15 @@ $admin = $settings->getAdminSettings();
         </div>
     </div>
 
-<div id="NameSide">
-    <div id="UserPhoto">
-    </div>
-    <a style="text-decoration: none;" href="index.php?page=gebruikersoverzicht">
-        <div style="text-decoration: none;" id="UserBlock">
-            <h3 id="LoggedInAs"><?= $myuser; ?></h3>
+    <div id="NameSide">
+        <div id="UserPhoto">
         </div>
-    </a>
-</div>
+        <a style="text-decoration: none;" href="index.php?page=gebruikersoverzicht">
+            <div style="text-decoration: none;" id="UserBlock">
+                <h3 id="LoggedInAs"><?= $myuser; ?></h3>
+            </div>
+        </a>
+    </div>
 
 
 <div id="wrapper">
