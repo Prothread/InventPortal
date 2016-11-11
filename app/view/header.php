@@ -18,8 +18,8 @@ else {
 
 $settings = new UserController();
 $admin = $settings->getAdminSettings();
-?>
 
+?>
 <html lang="nl">
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -38,7 +38,6 @@ $admin = $settings->getAdminSettings();
     <!-- JQuery -->
     <script src="js/jquery-1.12.4.js"></script>
     <script src="js/jquery-ui.min.js"></script>
-    <script src="js/jquery-3.1.1.min.js"></script>
     <link rel="stylesheet" href="css/jquery-ui.css">
 
     <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
@@ -64,8 +63,6 @@ $admin = $settings->getAdminSettings();
     <script src="js/html5shiv.js"></script>
     <script src="js/respond.min.js"></script>
     <![endif]-->
-
-
 
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -102,6 +99,7 @@ $admin = $settings->getAdminSettings();
 
 <div id="wrapper">
     <!-- Sidebar -->
+
     <div id="sidebar-wrapper">
         <ul class="sidebar-nav">
 
@@ -119,12 +117,12 @@ $admin = $settings->getAdminSettings();
                 </li>
             <?php } ?>
 
-             <li class="nav-button-all">
-                 <a href="index.php?page=overzicht">Overzicht</a>
-             </li>
+            <li class="nav-button-all">
+                <a href="index.php?page=overzicht">Overzicht</a>
+            </li>
 
             <?php if ($user->getPermission($permgroup, 'CAN_UPLOAD') == 1 || $user->getPermission($permgroup, 'CAN_ACCORD') == 1) { ?>
-                <br><p id="MenuSeperator"><span style="color: #FFF;" class="glyphicon glyphicon-ok"></span> ACCORDERINGEN</p>
+                <p id="MenuSeperator"><span style="color: #FFF;" class="glyphicon glyphicon-ok"></span> ACCORDERINGEN</p>
             <?php } ?>
 
             <?php if ($user->getPermission($permgroup, 'CAN_UPLOAD') == 1) { ?>
@@ -140,12 +138,10 @@ $admin = $settings->getAdminSettings();
             <?php } ?>
 
             <?php if($user->getPermission($permgroup, 'CAN_SHOW_KLANTPAGINA') == 1 || $user->getPermission($permgroup, 'CAN_SHOW_USERS') == 1) {?>
-                <br>
                 <p id="MenuSeperator"><span style="color: #FFF;" class="glyphicon glyphicon-user"></span> PERSONEN</p>
             <?php } ?>
 
             <?php if ($user->getPermission($permgroup, 'CAN_SHOW_KLANTPAGINA') == 1) { ?>
-
                 <li class="nav-button-users">
                     <a href="index.php?page=manageclients">Klanten</a>
                 </li>
@@ -155,7 +151,7 @@ $admin = $settings->getAdminSettings();
                 <li class="nav-button-users">
                     <a href="index.php?page=manageusers">Gebruikers</a>
                 </li>
-            <?php }?>
+            <?php } ?>
 
             <br>
             <br>
@@ -163,12 +159,12 @@ $admin = $settings->getAdminSettings();
                 <a href="?page=logout">Uitloggen</a>
             </li>
         </ul>
+
     </div>
 <?php
-
 if($session->exists('flash')) {
     foreach($session->get('flash') as $flash) {
         echo "<div class='alert alert_{$flash['type']}'>{$flash['message']}</div>";
     }
     $session->remove('flash');
-} ?>
+}

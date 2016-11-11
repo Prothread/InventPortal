@@ -1463,3 +1463,6 @@ tr:nth-child(2n) {
 .even {
     background-color: #FFFFFF !important;
 }
+#myTable .sorting:hover {
+    background-color: aliceblue;
+}
