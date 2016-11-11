@@ -34,7 +34,6 @@ class MailController
         $this->model->setDatum($mailinfo['datum']);
         $this->model->setVerified($mailinfo['verified']);
         if ($result = $this->model->create()) {
-            echo('Success, de mail is succesvol verzonden.');
             return $result;
         }
         return false;

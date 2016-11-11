@@ -133,25 +133,46 @@ else {
                                 </div>
 
                                 <div class="tab-pane" role="tabpanel" id="step4">
-                                    <div class="well" style="font-size: 15px; font-style: italic;">Zoek hieronder de klant waar de proef naar moet worden verstuurd of maak een nieuwe klant aan. </div>
-                                    <br>
+                                        <div class="form-group">
+                                    <label class="col-md-4 control-label" for="textinput">Nieuwe klant aanmaken</label>  
+                                    <div class="col-md-4">
                                     <a href="index.php?page=newclient"><div id="NewClientButton">Nieuwe klant</div></a>
-                                    <br>
-                                    <label>Klant zoeken<span style="color:#bc2d4c">*</label>
-                                    <input type="text" id="tags" name="suggestions" class="suggestionsinput" size="50" value="">
-                                    <br><br>
-                                    <div id="suggestions">
-                                        Klantensuggesties voor <span class="searchterm"></span>...
+                                    </div>
                                     </div>
 
+                                    <br>
+
+                                    
+                                    <div class="form-group">
+                                    <label class="col-md-4 control-label" for="textinput">Klant zoeken</label>  
+                                    <div class="col-md-4">
+                                    <input class="form-control input-md suggestionsinput" id="tags" type="text" name="suggestions" size="50" placeholder="Zoek een klant..."> 
+                                    </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                    <label class="col-md-4 control-label" for="textinput"></label>  
+                                    <div class="col-md-4">
+                                     <div id="suggestions">
+                                        Klantensuggesties voor <span class="searchterm"></span>...
+                                    </div>
+                                    </div>
+                                    </div>
+
+                                    <br>
+                                    <br>
+
+
+                                    <ul class="list-inline pull-right">
+                                        <li><input class="btn btn-primary btn-success" name="submit" style="max-width: 100px; background-color: #bb2c4c; border: 1px solid #bb2c4c" type="submit" value="Versturen"></li>
+                                    </ul>
+
                                     <input type="hidden" name="frommail" id="MailFrom" value="<?php if( isset($mailinfo['title']) ){ echo $mailinfo['email'];}?>">
-                                    <input type="hidden" name="mailto" id="" value="kevin.herdershof@hotmail.com">
+                                    <input type="hidden" name="mailto" id="" value="valckxj@outlook.com">
                                     <input type="hidden" name="fromname" id="" value="Gijs van den Abeele">
                                     <input type="hidden" name="mailname" id="" value="Jeffrey">
                                     <br>
-                                    <ul class="list-inline pull-right">
-                                        <li><input type="submit" name="submit" value="Aanmaken" class="btn btn-primary next-step"></li>
-                                    </ul>
+                                   
                                 </div>
                                 <br>
                                 <br>

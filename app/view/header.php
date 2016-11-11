@@ -89,15 +89,15 @@ $admin = $settings->getAdminSettings();
         </div>
     </div>
 
-<div id="NameSide">
-    <div id="UserPhoto">
-    </div>
-    <a style="text-decoration: none;" href="index.php?page=gebruikersoverzicht">
-        <div style="text-decoration: none;" id="UserBlock">
-            <h3 id="LoggedInAs"><?= $myuser; ?></h3>
+    <div id="NameSide">
+        <div id="UserPhoto">
         </div>
-    </a>
-</div>
+        <a style="text-decoration: none;" href="index.php?page=gebruikersoverzicht">
+            <div id="UserBlock" style="text-decoration: none;">
+                <h3 id="LoggedInAs"><?= $myuser; ?></h3>
+            </div>
+        </a>
+    </div>
 
 
 <div id="wrapper">
@@ -140,6 +140,7 @@ $admin = $settings->getAdminSettings();
             <?php } ?>
 
             <?php if($user->getPermission($permgroup, 'CAN_SHOW_KLANTPAGINA') == 1 || $user->getPermission($permgroup, 'CAN_SHOW_USERS') == 1) {?>
+                <br>
                 <p id="MenuSeperator"><span style="color: #FFF;" class="glyphicon glyphicon-user"></span> PERSONEN</p>
             <?php } ?>
 
