@@ -118,6 +118,7 @@ $admin = $settings->getAdminSettings();
             </li>
 
             <?php if ($user->getPermission($permgroup, 'CAN_UPLOAD') == 1 || $user->getPermission($permgroup, 'CAN_ACCORD') == 1) { ?>
+                <br>
                 <p id="MenuSeperator"><span style="color: #FFF;" class="glyphicon glyphicon-ok"></span> ACCORDERINGEN</p>
             <?php } ?>
 
@@ -134,6 +135,7 @@ $admin = $settings->getAdminSettings();
             <?php } ?>
 
             <?php if($user->getPermission($permgroup, 'CAN_SHOW_KLANTPAGINA') == 1 || $user->getPermission($permgroup, 'CAN_SHOW_USERS') == 1) {?>
+                <br>
                 <p id="MenuSeperator"><span style="color: #FFF;" class="glyphicon glyphicon-user"></span> PERSONEN</p>
             <?php } ?>
 
