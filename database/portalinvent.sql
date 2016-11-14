@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 10 nov 2016 om 13:21
+-- Gegenereerd op: 07 nov 2016 om 16:57
 -- Serverversie: 10.1.13-MariaDB
 -- PHP-versie: 7.0.6
 
@@ -128,7 +128,7 @@ INSERT INTO `image` (`id`, `mailid`, `fakename`, `images`, `verify`) VALUES
 (87, 35, '005_charmeleon_by_rayo123000-d8mriq9.png, 131Lapras_Pokemon_Myst', '131Lapras_Pokemon_Mystery_Dungeon_Explorers_of_Time_and_Darkness', 0),
 (88, 35, '005_charmeleon_by_rayo123000-d8mriq9.png, 131Lapras_Pokemon_Myst', 'Celeste0502-image-celeste0502-36795437-1200-960_35.jpg', 0),
 (89, 36, '005_charmeleon_by_rayo123000-d8mriq9.png, 131Lapras_Pokemon_Myst', '005_charmeleon_by_rayo123000-d8mriq9_36.png', 0),
-(90, 36, '005_charmeleon_by_rayo123000-d8mriq9.png, 131Lapras_Pokemon_Myst', '131Lapras_Pokemon_Mystery_Dungeon_Explorers_of_Time_and_Darkness', 3),
+(90, 36, '005_charmeleon_by_rayo123000-d8mriq9.png, 131Lapras_Pokemon_Myst', '131Lapras_Pokemon_Mystery_Dungeon_Explorers_of_Time_and_Darkness', 0),
 (91, 36, '005_charmeleon_by_rayo123000-d8mriq9.png, 131Lapras_Pokemon_Myst', 'Celeste0502-image-celeste0502-36795437-1200-960_36.jpg', 0),
 (92, 37, '131Lapras_Pokemon_Mystery_Dungeon_Explorers_of_Time_and_Darkness', '131Lapras_Pokemon_Mystery_Dungeon_Explorers_of_Time_and_Darkness', 0),
 (93, 37, 'Celeste0502-image-celeste0502-36795437-1200-960_37.jpg', 'Celeste0502-image-celeste0502-36795437-1200-960_37.jpg', 0),
@@ -212,47 +212,7 @@ INSERT INTO `image` (`id`, `mailid`, `fakename`, `images`, `verify`) VALUES
 (171, 76, 'Logo_TV_2015.png', 'Logo_TV_2015_76.png', 1),
 (172, 76, 'TmT5UPrT.jpg', 'TmT5UPrT_76.jpg', 2),
 (173, 76, 'Vanamo_Logo.png', 'Vanamo_Logo_76.png', 1),
-(174, 77, 'pdf-sample_49.pdf', 'pdf-sample_49_77.pdf', 0),
-(175, 78, 'Logo_TV_2015.png', 'Logo_TV_2015_78.png', 0),
-(176, 78, 'pdf-sample_49.pdf', 'pdf-sample_49_78.pdf', 0),
-(177, 78, 'TmT5UPrT.jpg', 'TmT5UPrT_78.jpg', 0),
-(178, 79, 'TmT5UPrT.jpg', 'TmT5UPrT_79.jpg', 1),
-(179, 80, 'Logo_TV_2015.png', 'Logo_TV_2015_80.png', 0),
-(180, 80, 'TmT5UPrT.jpg', 'TmT5UPrT_80.jpg', 0),
-(181, 81, '2fc5229b52aa228de5931ad4a6fc3e7a.png', '2fc5229b52aa228de5931ad4a6fc3e7a_81.png', 1),
-(182, 81, 'Logo_TV_2015.png', 'Logo_TV_2015_81.png', 2),
-(183, 82, 'Logo_TV_2015.png', 'Logo_TV_2015_82.png', 0),
-(184, 82, 'pdf-sample_49.pdf', 'pdf-sample_49_82.pdf', 0),
-(185, 82, 'TmT5UPrT.jpg', 'TmT5UPrT_82.jpg', 0),
-(186, 83, 'Logo_TV_2015.png', 'Logo_TV_2015_83.png', 0),
-(187, 83, 'TmT5UPrT.jpg', 'TmT5UPrT_83.jpg', 0),
-(188, 84, '2fc5229b52aa228de5931ad4a6fc3e7a.png', '2fc5229b52aa228de5931ad4a6fc3e7a_84.png', 0),
-(189, 84, 'Logo_TV_2015.png', 'Logo_TV_2015_84.png', 0),
-(190, 84, 'TmT5UPrT.jpg', 'TmT5UPrT_84.jpg', 0),
-(191, 85, '2fc5229b52aa228de5931ad4a6fc3e7a.png', '2fc5229b52aa228de5931ad4a6fc3e7a_85.png', 0),
-(192, 85, 'Logo_TV_2015.png', 'Logo_TV_2015_85.png', 0),
-(193, 85, 'TmT5UPrT.jpg', 'TmT5UPrT_85.jpg', 0),
-(194, 86, '2fc5229b52aa228de5931ad4a6fc3e7a.png', '2fc5229b52aa228de5931ad4a6fc3e7a_86.png', 0),
-(195, 86, 'fairy_tail__natsu_after_1_year_by_ar_ua-d8gjzsq.jpg', 'fairy_tail__natsu_after_1_year_by_ar_ua-d8gjzsq_86.jpg', 0),
-(196, 86, 'Logo_TV_2015.png', 'Logo_TV_2015_86.png', 0),
-(197, 86, 'TmT5UPrT.jpg', 'TmT5UPrT_86.jpg', 0),
-(198, 86, 'xbox-logo_318-53731.jpg', 'xbox-logo_318-53731_86.jpg', 0),
-(199, 87, '2fc5229b52aa228de5931ad4a6fc3e7a.png', '2fc5229b52aa228de5931ad4a6fc3e7a_87.png', 1),
-(200, 87, 'TmT5UPrT.jpg', 'TmT5UPrT_87.jpg', 1),
-(201, 87, 'xbox-logo_318-53731.jpg', 'xbox-logo_318-53731_87.jpg', 2),
-(202, 88, 'Logo_TV_2015.png', 'Logo_TV_2015_88.png', 1),
-(203, 88, 'pdf-sample_49.pdf', 'pdf-sample_49_88.pdf', 2),
-(204, 88, 'TmT5UPrT.jpg', 'TmT5UPrT_88.jpg', 0),
-(205, 89, 'Logo_TV_2015.png', 'Logo_TV_2015_89.png', 1),
-(206, 89, 'pdf-sample_49.pdf', 'pdf-sample_49_89.pdf', 2),
-(207, 89, 'TmT5UPrT.jpg', 'TmT5UPrT_89.jpg', 1),
-(208, 90, '2fc5229b52aa228de5931ad4a6fc3e7a.png', '2fc5229b52aa228de5931ad4a6fc3e7a_90.png', 1),
-(209, 90, 'TmT5UPrT.jpg', 'TmT5UPrT_90.jpg', 3),
-(210, 90, 'xbox-logo_318-53731.jpg', 'xbox-logo_318-53731_90.jpg', 1),
-(211, 90, 'Vanamo_Logo.png', 'Vanamo_Logo_90.png', 0),
-(212, 90, 'xbox-logo_318-53731.jpg', 'xbox-logo_318-53731_90.jpg', 0),
-(213, 90, 'Vanamo_Logo.png', 'Vanamo_Logo_90.png', 0),
-(214, 90, 'xbox-logo_318-53731.jpg', 'xbox-logo_318-53731_90.jpg', 0);
+(174, 77, 'pdf-sample_49.pdf', 'pdf-sample_49_77.pdf', 0);
 
 -- --------------------------------------------------------
 
@@ -352,20 +312,7 @@ INSERT INTO `mail` (`id`, `onderwerp`, `verstuurder`, `beschrijving`, `naam`, `e
 (74, 'Let''s go', 'Gijs van den Abeele', 'afs', 'Jeffrey', 'kevin.herdershof@hotmail.com', 'eaa369f1b7c0e9426672cb67629f4536', '', '2016-11-02', 0),
 (75, 'Dit is a', 'Gijs van den Abeele', 'need multiple', 'Jeffrey', 'kevin.herdershof@hotmail.com', '02112016-14.18.26-192.08.1.124', 'asdf', '2016-11-02', 2),
 (76, 'DATEST BOIII', 'Gijs van den Abeele', '4jonge', 'Jeffrey', 'kevin.herdershof@hotmail.com', '02112016-15.19.09-192.08.1.124', 'asdf', '2016-11-02', 3),
-(77, 'pdf', 'Gijs van den Abeele', 'lala', 'Jeffrey', 'valckxj@outlook.com', '0f834438f50c707d87a0bf0f8f875c67', '', '2016-11-07', 0),
-(78, 'test', 'Gijs van den Abeele', 'wew', 'Jeffrey', 'valckxj@outlook.com', '9161349f6108805481bfc293b0efa79c', '', '2016-11-08', 0),
-(79, 'aight', 'Madalco Mail', 'wewad', 'Jeffrey', 'kevin.herdershof@hotmail.com', '08112016-14.49.20-192.08.1.124', 'asdf', '2016-11-08', 0),
-(80, 'Ultimate test', 'Madalco Mail', 'wew', 'Jeffrey', 'kevin.herdershof@hotmail.com', '52e03c8ae7468041b25277855c1a6fa8', '', '2016-11-08', 1),
-(81, 'asdf', 'Madalco Mail', 'asdf', 'Jeffrey', 'kevin.herdershof@hotmail.com', '09112016-9.02.24-192.08.1.124', 'af', '2016-11-08', 0),
-(82, 'Ultimate test 2', 'Madalco Mail', 'wew', 'Jeffrey', 'kevin.herdershof@hotmail.com', 'e71012925952444773486a8570869e39', '', '2016-11-09', 1),
-(83, 'wew', 'Madalco Mail', 'tes', 'Jeffrey', 'kevin.herdershof@hotmail.com', '7cfd1aa09cac09af38900405ec95eac9', '', '2016-11-09', 1),
-(84, 'aha', 'Madalco Mail', 'afa', 'Jeffrey', 'kevin.herdershof@hotmail.com', '6b0a2591b69206ef6164bcf8fbe600fc', '', '2016-11-09', 1),
-(85, 'Jonge', 'Madalco Mail', 'asdf', 'Jeffrey', 'kevin.herdershof@hotmail.com', '6ed95f6003409547520a625ad4e5e5c9', '', '2016-11-09', 1),
-(86, 'so much testing', 'Madalco Mail', 'asdf', 'Jeffrey', 'kevin.herdershof@hotmail.com', '10572a4c25eabd75348eae10cf0f812f', '', '2016-11-09', 1),
-(87, 'de 3', 'Madalco Mail', 'POKERFAZE', 'Jeffrey', 'kevin.herdershof@hotmail.com', '09112016-9.56.10-192.08.1.124', 'is nog niet goed', '2016-11-09', 0),
-(88, 'this is it', 'Gijs van den Abeele', 'asdf', 'Jeffrey', 'kevin.herdershof@hotmail.com', '09112016-14.11.53-192.08.1.124', 'test', '2016-11-09', 0),
-(89, 'another test', 'Gijs van den Abeele', 'asdf', 'Jeffrey', 'kevin.herdershof@hotmail.com', '09112016-14.28.11-192.08.1.124', '25', '2016-11-09', 0),
-(90, 'RKOP', 'Gijs van den Abeele', 'Dumerdum', 'Jeffrey', 'kevin.herdershof@hotmail.com', 'b35cad78a9c1f09cee6ceb348111a80b', 'as', '2016-11-10', 0);
+(77, 'pdf', 'Gijs van den Abeele', 'lala', 'Jeffrey', 'valckxj@outlook.com', '0f834438f50c707d87a0bf0f8f875c67', '', '2016-11-07', 0);
 
 -- --------------------------------------------------------
 
@@ -420,7 +367,7 @@ CREATE TABLE `settings` (
 --
 
 INSERT INTO `settings` (`id`, `SMTP`, `Email`, `Logo`, `Header`) VALUES
-(0, 'smtp.madalcomedia.nl', 'madalcomedia.nl', 'madlogo.png', '#dd2c4c');
+(0, 'smtp.madalcomedia.nl', 'no-reply@madalcomedia.nl', 'madlogo.png', '#dd2c4c');
 
 -- --------------------------------------------------------
 
@@ -471,20 +418,7 @@ INSERT INTO `usermail` (`id`, `userid`, `mailid`, `status`) VALUES
 (30, 20, 74, 0),
 (31, 20, 75, 2),
 (32, 20, 76, 3),
-(33, 10, 77, 0),
-(34, 10, 78, 0),
-(35, 20, 79, 0),
-(36, 20, 80, 0),
-(37, 20, 81, 0),
-(38, 20, 82, 0),
-(39, 20, 83, 0),
-(40, 20, 84, 0),
-(41, 20, 85, 0),
-(42, 20, 86, 0),
-(43, 20, 87, 0),
-(44, 20, 88, 0),
-(45, 20, 89, 0),
-(46, 20, 90, 3);
+(33, 10, 77, 0);
 
 -- --------------------------------------------------------
 
@@ -532,8 +466,7 @@ INSERT INTO `users` (`id`, `naam`, `email`, `paswoord`, `permgroup`, `bedrijfsna
 (37, 'hatethis', 'kak@live.nl', 'a98ec5c5044800c88e862f007b98d89815fc40ca155d6ce7909530d792e909ce', 1, '', '', '', ''),
 (38, 'kekkaksk', 'kaak@live.nl', 'a98ec5c5044800c88e862f007b98d89815fc40ca155d6ce7909530d792e909ce', 4, '', '', '', ''),
 (39, 'Ok dan', 'kaaak@live.nl', 'c31bc0c9e89e03b7730407573c7928887967e3b8b79abb0abd56b7ae87323fe5', 1, 'Invent', 'test', '4882', 'fds'),
-(40, 'Ok dan', 'keak@live.nl', '4154e1be4db6d4ac549c4101a130a75b93fc27aa95a7eb1421769f90915a8f8a', 1, 'Invent', 'test', '4882', 'fds'),
-(41, 'Davy', 'invent@inveter.nl', 'a130d4170c417564e1b97737fcab5f710da3d0dc41ff604054a5c6b52ede2ed7', 1, 'Invent', 'zadlaan', '5332DB', 'US');
+(40, 'Ok dan', 'keak@live.nl', '4154e1be4db6d4ac549c4101a130a75b93fc27aa95a7eb1421769f90915a8f8a', 1, 'Invent', 'test', '4882', 'fds');
 
 --
 -- Indexen voor geëxporteerde tabellen
@@ -580,22 +513,22 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT voor een tabel `image`
 --
 ALTER TABLE `image`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=215;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=175;
 --
 -- AUTO_INCREMENT voor een tabel `mail`
 --
 ALTER TABLE `mail`
-  MODIFY `id` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
+  MODIFY `id` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
 --
 -- AUTO_INCREMENT voor een tabel `usermail`
 --
 ALTER TABLE `usermail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 --
 -- AUTO_INCREMENT voor een tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
