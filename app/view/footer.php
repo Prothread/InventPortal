@@ -5,13 +5,6 @@
 </body>
 
 <script>
-    $(document).ready(function(){
-        $('#myTable').dataTable();
-    });
-</script>
-
-
-<script>
     $(document).ready(function() {});
 
     $.getScript('http://www.chartjs.org/assets/Chart.js',function(){
@@ -454,6 +447,7 @@
     };
 
 </script>
+
 
 <!-- Bootstrap JS -->
 <script src="js/bootstrap.min.js"></script>
