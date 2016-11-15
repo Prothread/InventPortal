@@ -54,13 +54,13 @@ $get_filled_info = $uploads->getUploads($table, $filter, 0, 0, $status);
                                     <span style="display:none" id="status"><?= $upload['verified']; ?></span>
                                     <?php if ($upload['verified'] == 1) { ?>
                                         <img alt="Gezien" style="width: 50px; height: 50px;"
-                                             src="../public/icons/gezien.png">
+                                             src="public/icons/gezien.png">
                                     <?php } elseif ($upload['verified'] == 2) { ?>
-                                        <img alt="Geaccepteerd" src="../public/icons/akkoord.png">
+                                        <img alt="Geaccepteerd" src="public/icons/akkoord.png">
                                     <?php } elseif ($upload['verified'] == 3) { ?>
-                                        <img alt="Geweigerd" src="../public/icons/geweigerd.png">
+                                        <img alt="Geweigerd" src="public/icons/geweigerd.png">
                                     <?php } else { ?>
-                                        <img alt="Uploaded" src="../public/icons/uploaded.png">
+                                        <img alt="Uploaded" src="public/icons/uploaded.png">
                                     <?php } ?>
                                 </td>
                             </tr>
