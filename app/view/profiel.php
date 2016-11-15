@@ -1,13 +1,5 @@
 <?php
-#PAGE FOR CREATING CLIENTS
-
-if($user->getPermission($permgroup, 'CAN_CREATE_CLIENT') == 1){
-
-}
-else {
-    header('Location: index.php');
-    Session::flash('error', 'U heeft hier geen rechten voor.');
-}
+#PAGE FOR SHOWING PROFILE
 ?>
 
 <div id="page-content-wrapper">
@@ -19,10 +11,20 @@ else {
             <tr>
             <th style="text-align: left;"><p class="NameText" style="font-weight: normal;">Uw profiel</p></th>
             <th style="text-align: right;">
-            <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
-            <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span>  Mijn overzicht</button>
-            <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
-            <span class="btn-label"><i class="glyphicon glyphicon-pencil"></i></span>Wijzig profiel</button>               
+            <a href="?page=gebruikersoverzicht">
+                <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
+                <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span>  Mijn overzicht</button>
+            </a>
+
+            <a href="?page=editprofiel">
+                <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
+                <span class="btn-label"><i class="glyphicon glyphicon-pencil"></i></span>Wijzig profiel</button>
+            </a>
+
+            <a href="?page=newpassword">
+                <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
+                <span class="btn-label"><i class="glyphicon glyphicon-lock"></i></span>Wijzig wachtwoord</button>
+            </a>
 
             </th>
             </th> 

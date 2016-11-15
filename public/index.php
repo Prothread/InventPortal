@@ -134,6 +134,9 @@ switch($page) {
     case 'newpassword':
         include '../app/view/newpassword.php';
         break;
+    case 'editprofiel':
+        include '../app/view/editprofiel.php';
+        break;
     case 'updatemail':
         include '../app/view/updatemail.php';
         break;
