@@ -107,6 +107,8 @@ $_SESSION['geweigerd_percent'] = $get_items_geweigerd['COUNT(status)'];
                 </div>
             </div>
 
+            <br><br><br>
+
             <br>
             <?php
             if($get_filled_info !== null) {

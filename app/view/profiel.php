@@ -19,8 +19,8 @@ else {
             <tr>
             <th style="text-align: left;"><p class="NameText" style="font-weight: normal;">Uw profiel</p></th>
             <th style="text-align: right;">
-            <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
-            <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span>  Mijn overzicht</button>
+            <a href="index.php?page=gebruikersoverzicht"><button type="button" class="btn btn-labeled btn-success MyOverviewButton">
+            <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span>  Mijn overzicht</button></a>
             <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
             <span class="btn-label"><i class="glyphicon glyphicon-pencil"></i></span>Wijzig profiel</button>               
 
@@ -98,9 +98,7 @@ else {
 </div>
 
 <br />
-
-
-<hr>
+<br />
 
 <?php if ($user->getPermission($permgroup, 'CAN_EDIT_SETTINGS') == 1) { ?>
 <div class="col-lg-12 profile">

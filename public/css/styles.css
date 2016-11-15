@@ -76,9 +76,9 @@ input[type="file"] {
 }
 
 .fade-in.one {
-  -webkit-animation-delay: 2s;
-  -moz-animation-delay: 1.5s;
-  animation-delay: 1.5s;
+  -webkit-animation-delay: 0.5s;
+  -moz-animation-delay: 0.5s;
+  animation-delay: 0.5s;
 }
 
 .custom-file-upload {
