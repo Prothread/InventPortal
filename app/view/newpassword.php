@@ -14,9 +14,10 @@ if (isset($_POST['newpassword'])) {
     $myuser = $user->getUserById($id);
 
     $password = mysqli_real_escape_string( $mysqli, $_POST['password'] );
-    $oldhash = $myuser['password'];
+    $oldhash = $myuser['paswoord'];
 
     $cpassword = mysqli_real_escape_string( $mysqli, $_POST['cpassword'] );
+    $newcpassword = mysqli_real_escape_string( $mysqli, $_POST['newcpassword'] );
 
     //name can contain only alpha characters and space
     if(strlen($password) < 6) {
@@ -26,7 +27,12 @@ if (isset($_POST['newpassword'])) {
 
     if($oldhash !== hash('sha256', $password)){
         $error = true;
-        $password_error = "Het ingevulde huidige wachtwoord komt niet overeen..";
+        $password_error = "Het ingevulde huidige wachtwoord komt niet overeen.";
+    }
+
+    if($cpassword !== $newcpassword){
+        $error = true;
+        $password_error = "De ingevulde nieuwe wachtwoorden komen niet overeen";
     }
 
     if (!$error) {
@@ -107,6 +113,12 @@ if (isset($_POST['newpassword'])) {
                             <div class="form-group">
                                 <label for="name">Nieuw wachtwoord</label>
                                 <input type="password" name="cpassword" placeholder="Nieuw wachtwoord" required class="form-control" />
+                                <span class="text-danger"><?php if (isset($cpassword_error)) echo $cpassword_error; ?></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="name">Herhaal nieuw wachtwoord</label>
+                                <input type="password" name="newcpassword" placeholder="Nieuw wachtwoord" required class="form-control" />
                                 <span class="text-danger"><?php if (isset($cpassword_error)) echo $cpassword_error; ?></span>
                             </div>
 

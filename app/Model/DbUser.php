@@ -166,7 +166,7 @@ class DbUser extends Database
 
     public function updateUser($id, $npassword)
     {
-        $sql = "UPDATE `users` SET `password` = '{$npassword}' WHERE `id` = '{$id}'";
+        $sql = "UPDATE `users` SET `paswoord` = '{$npassword}' WHERE `id` = '{$id}'";
 
         if($this->dbQuery($sql)){
             return true;

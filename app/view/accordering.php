@@ -167,6 +167,7 @@ $UID = date('dmY-G.i.s') . '-192.08.1.124';
                                         <?php
                                     }?><div id="refsa"><?php
 
+
                                     if(isset($imago)) {
 
                                         if ($imago['verify'] == 1) {
@@ -240,7 +241,7 @@ $UID = date('dmY-G.i.s') . '-192.08.1.124';
                                 <input type="hidden" name="id" value="<?= $myupload['id']; ?>">
 
                                 <p> Omschrijving: <span style="color:#bc2d4c"><?= $myupload['beschrijving']?></span> </p>
-
+                                
                                 <br>
                                 <ul class="list-inline pull-right">
                                     <li><button type="button" class="btn btn-primary next-step">Volgende</button></li>
