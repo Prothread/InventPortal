@@ -58,15 +58,15 @@ if (isset($_POST['login'])) {
     <title>Inloggen</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="../public/css/bootstrap.css" rel="stylesheet">
+    <link href="public/css/bootstrap.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="../public/css/ionicons.min.css" rel="stylesheet">
-    <link href="../public/css/loginstyle.css" rel="stylesheet">
+    <link href="public/css/ionicons.min.css" rel="stylesheet">
+    <link href="public/css/loginstyle.css" rel="stylesheet">
 
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="../public/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="public/js/ie10-viewport-bug-workaround.js"></script>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -88,7 +88,7 @@ if (isset($_POST['login'])) {
 
                         <form role="form" method="post" name="loginform">
                 <fieldset>
-                    <img style="width: 254px; height: 256px;" src="../public/img/madalco.png">
+                    <img style="width: 254px; height: 256px;" src="public/img/madalco.png">
                     <br>
                     <br>
                         <label for="name">E-mailadres</label>
