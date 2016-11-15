@@ -16,6 +16,22 @@ input[type="file"] {
     background-color: #bb2c4c;
     border: none;
 }
+#slide {
+    position: absolute;
+    left: -1000px;
+    -webkit-animation: slide 1s forwards;
+    -webkit-animation-delay: 0s;
+    animation: slide 1s forwards;
+    animation-delay: 0s;
+}
+
+@-webkit-keyframes slide {
+    100% { left: 0; }
+}
+
+@keyframes slide {
+    100% { left: 0; }
+}
 
 @media(max-width:650px) {
     .UploadForm input[type=text] {
@@ -38,6 +54,32 @@ input[type="file"] {
 .btn-label {position: relative;left: -12px;display: inline-block;padding: 7px 4px; ;border-radius: 3px 0 0 3px;}
 .btn-labeled {padding-top: 0;padding-bottom: 2;}
 
+/* Keyframes for the fade-in */
+@-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+
+.fade-in {
+  opacity:0;
+  opacity: 1 \9; /*just in case ie*/
+  -webkit-animation:fadeIn ease-in 1;
+  -moz-animation:fadeIn ease-in 1;
+  animation:fadeIn ease-in 1;
+
+  -webkit-animation-fill-mode:forwards;
+  -moz-animation-fill-mode:forwards;
+  animation-fill-mode:forwards;
+
+  -webkit-animation-duration:1s;
+  -moz-animation-duration:1s;
+  animation-duration:1s;
+}
+
+.fade-in.one {
+  -webkit-animation-delay: 2s;
+  -moz-animation-delay: 1.5s;
+  animation-delay: 1.5s;
+}
 
 .custom-file-upload {
     background-color: #bb2c4c; 
@@ -65,7 +107,7 @@ input[type="file"] {
 }
 
 .loginbar {
-    background-color: rgba(0, 0, 0, 0.9);
+    background-color: rgba(0, 0, 0, 0.85);
     border-radius: 20px;
     -webkit-box-shadow: 1px 29px 28px 9px rgba(0,0,0,0.75);
     -moz-box-shadow: 1px 29px 28px 9px rgba(0,0,0,0.75);

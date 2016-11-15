@@ -83,12 +83,12 @@ if (isset($_POST['login'])) {
       </div>
       <div class="container">
         <div class="row">
-          <div class="col-md-8 col-md-offset-2 centered loginbar">
+          <div class="col-md-8 col-md-offset-2 centered loginbar" id="slide">
 
 
                         <form role="form" method="post" name="loginform">
                 <fieldset>
-                    <img style="width: 254px; height: 256px;" src="public/img/madalco.png">
+                    <img style="width: 254px; height: 256px;" src="public/img/madalco.png" class="fade-in one">
                     <br>
                     <br>
                         <label for="name">E-mailadres</label>
