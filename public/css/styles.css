@@ -10,6 +10,35 @@
 input[type="file"] {
     display: none;
 }
+
+.MyOverviewButton {
+    width: 150px;
+    background-color: #bb2c4c;
+    border: none;
+}
+
+@media(max-width:650px) {
+    .UploadForm input[type=text] {
+        width: 100%;
+    }
+}
+
+.MyOverviewButton:hover {
+    background-color: #dd2c4c;
+}
+
+.MyOverviewButton:focus {
+    background-color: #dd2c4c;
+}
+
+.MyOverviewButton:active {
+    background-color: #dd2c4c;
+}
+
+.btn-label {position: relative;left: -12px;display: inline-block;padding: 7px 4px; ;border-radius: 3px 0 0 3px;}
+.btn-labeled {padding-top: 0;padding-bottom: 2;}
+
+
 .custom-file-upload {
     background-color: #bb2c4c; 
     border: 1px solid #bb2c4c;

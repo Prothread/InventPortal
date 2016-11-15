@@ -15,14 +15,26 @@ else {
         <div class="row">
             <div class="col-lg-12 profile">
 <div class="container">
-    <p class="NameText">Profiel</p>
+   <table style="width:100%">
+            <tr>
+            <th style="text-align: left;"><p class="NameText" style="font-weight: normal;">Uw profiel</p></th>
+            <th style="text-align: right;">
+            <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
+            <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span>  Mijn overzicht</button>
+            <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
+            <span class="btn-label"><i class="glyphicon glyphicon-pencil"></i></span>Wijzig profiel</button>               
+
+            </th>
+            </th> 
+            </tr>
+            </table>
     <hr>
 
     <div class="row">
       <!-- left column -->
       <div class="col-md-3">
         <div class="text-center">
-          <img src="https://s-media-cache-ak0.pinimg.com/originals/4b/cf/83/4bcf8321d96c3470cea9bdd84b6d577c.png" width="100px" height="100px;" class="avatar img-circle" alt="avatar">
+          <img src="https://hamacher.com/wp-content/uploads/2014/07/laughter.jpg" width="150px" height="150px;" class="avatar img-circle" alt="avatar">
           
           <input class="form-control" type="file">
         </div>
@@ -67,6 +79,12 @@ else {
               <input disabled class="form-control" value="Vogelwaarde" type="text">
             </div>
           </div>
+            <div class="form-group">
+            <label class="col-lg-3 control-label">Rechten:</label>
+            <div class="col-lg-8">
+              <input disabled class="form-control" value="Admin" type="text">
+            </div>
+          </div>
           <!--<div class="form-group">
             <label class="col-md-3 control-label"></label>
             <div class="col-md-8">
@@ -78,7 +96,7 @@ else {
       </div>
   </div>
 </div>
-<hr>
+<br />
             <div class="col-lg-12 profile">
 <div class="container">
     <p class="NameText">Admin-instellingen</p>

@@ -46,7 +46,7 @@ if(isset($_GET['page'])) {
  * Anders: de gebruiker is ingelogd en gaat naar het dashboard
  */
 
-if(!$session->exists('usr_id') && $page !== 'wachtwoordvergeten' && $page !== 'wachtwoordherstellen' && $page !== 'image' && $page !== 'register' && $page !== 'accordering' && $page !== 'verify' && $page !== 'imagedecline' && $page !== 'imageverify' && $page !== 'updatemail' && $page !== 'imagecancel') {
+if(!$session->exists('usr_id') && $page !== 'forgetpassword' && $page !== 'wachtwoordherstellen' && $page !== 'image' && $page !== 'register' && $page !== 'accordering' && $page !== 'verify' && $page !== 'imagedecline' && $page !== 'imageverify' && $page !== 'updatemail' && $page !== 'imagecancel') {
     $page = 'login';
 } else if($session->exists('usr_id') && $page=='login') {
     $page = 'dashboard';
@@ -128,6 +128,9 @@ switch($page) {
     case 'register':
         include '../app/view/register.php';
         break;
+    case 'forgetpassword':
+        include '../app/view/forgetpassword.php';
+        break;    
     case 'newpassword':
         include '../app/view/newpassword.php';
         break;
