@@ -218,23 +218,20 @@ class UserController
      * @return array|null
      */
 
-    public function getAllClients($table, $filter, $limit = null, $offset = null, $permgroup)
+    public function getAllClients()
     {
-        return $this->model->getAllClients($table, $filter, $limit, $offset, $permgroup);
+        return $this->model->getAllClients();
     }
 
     /**
      * Haal alle gebruikers op die geen klant zijn
      *
-     * @param null $limit
-     * @param null $offset
-     * @param $permgroup
      * @return array|null
      */
 
-    public function getAllUsersByPerm($table, $filter, $limit = null, $offset = null, $permgroup)
+    public function getAllUsersByPerm($permgroup)
     {
-        return $this->model->getAllUsersByPerm($table, $filter, $limit, $offset, $permgroup);
+        return $this->model->getAllUsersByPerm($permgroup);
     }
 
     /**

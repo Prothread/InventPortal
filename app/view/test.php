@@ -1,12 +1,15 @@
 <?php
+#OVERZICHT PAGE VAN ALLE ITEMS
+
+if($user->getPermission($permgroup, 'CAN_SHOW_OVERZICHT') == 1){
+
+} else {
+    header('Location: index.php?page=gebruikersoverzicht');
+}
 
 $uploads = new BlockController();
 
-$table = 'id';
-$status = '';
-$filter = 'DESC';
-
-$get_filled_info = $uploads->getUploads($table, $filter, 0, 0, $status);
+$get_filled_info = $uploads->getUploads();
 
 ?>
 
