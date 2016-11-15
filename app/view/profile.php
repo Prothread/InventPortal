@@ -49,26 +49,20 @@ foreach($getAllUserItems as $UserItem) {
             <br />
             <div class="row">
 
-
+                <?php if($getMails !== null) {?>
                 <table id="myTable" class="table table-striped" >
                     <thead>
                     <tr>
-                        <?php if($getMails !== null) {?>
                             <th style="display:none">ID</th>
                             <th>Onderwerp</th>
                             <th>Verstuurder</th>
                             <th>Naam</th>
                             <th>Datum</th>
                             <th>Status</th>
-                        <?php }
-                        else { ?>
-                            <th></th>
-                        <?php } ?>
                     </tr>
                     </thead>
                     <tbody>
                     <?php
-                    if($getMails !== null) {
                         foreach ($getMails as $upload) { ?>
                             <tr>
                                 <td style="display:none">
@@ -100,13 +94,13 @@ foreach($getAllUserItems as $UserItem) {
                                     <?php } ?>
                                 </td>
                             </tr>
-                        <?php }
-                    }
-                    else { ?>
-                        <td>U heeft nog geen proeven geaccordeerd</td>
-                    <?php }?>
+                        <?php } ?>
                     </tbody>
                 </table>
+                <?php }
+                else { ?>
+                    <div id="weiger" class="alert alert-info" style="text-align: center;" role="alert"><span class="glyphicon glyphicon-remove-circle"></span> Er zijn nog geen gebruikers aangemaakt</div>
+                <?php } ?>
             </div>
         </div>
     </div>
