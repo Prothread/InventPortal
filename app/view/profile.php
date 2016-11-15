@@ -188,7 +188,6 @@ if(isset($term)) {
                 </div>
 
                 </div>
-                <!--<input type="text" size="50" id="TableInput" onkeyup="searchTable()" placeholder="Zoek een product...">-->
 
                 <form method="post" action="?page=gebruikersoverzicht">
                     <input type="text" size="50" id="TableInput" name="term" placeholder="<?php if(isset($_SESSION['myterm'])){ echo 'Gesorteerd op: ' . $_SESSION['myterm'];} else { echo 'Zoek een product..'; }?>">
