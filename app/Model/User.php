@@ -528,15 +528,12 @@ class User
     /**
      * Haal alle klanten op
      *
-     * @param null $limit
-     * @param null $offset
-     * @param $permgroup
      * @return array|null
      */
 
-    public function getAllClients($table, $filter, $limit = null, $offset = null, $permgroup)
+    public function getAllClients()
     {
-        return $this->db->getAllClients($table, $filter, $limit, $offset, $permgroup);
+        return $this->db->getAllClients();
     }
 
     /**
@@ -553,15 +550,12 @@ class User
     /**
      * Haal alle gebruikres op die geen klant zijn
      *
-     * @param null $limit
-     * @param null $offset
-     * @param $permgroup
      * @return mixed
      */
 
-    public function getAllUsersByPerm($table, $filter, $limit = null, $offset = null, $permgroup)
+    public function getAllUsersByPerm($permgroup)
     {
-        return $this->db->getAllUsersByPerm($table, $filter, $limit, $offset, $permgroup);
+        return $this->db->getAllUsersByPerm($permgroup);
     }
     /**
      * Haal aantal resultaten van mails op

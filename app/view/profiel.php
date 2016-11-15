@@ -79,7 +79,9 @@ else {
   </div>
 </div>
 <hr>
-            <div class="col-lg-12 profile">
+
+<?php if ($user->getPermission($permgroup, 'CAN_EDIT_SETTINGS') == 1) { ?>
+<div class="col-lg-12 profile">
 <div class="container">
     <p class="NameText">Admin-instellingen</p>
     <hr>
@@ -151,6 +153,7 @@ else {
         </form>
       </div>
   </div>
+        <?php } ?>
 </div>
 <hr>
 

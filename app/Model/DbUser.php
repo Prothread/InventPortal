@@ -213,16 +213,16 @@ class DbUser extends Database
     /**
      * Haal alle gebruikers op die een klant zijn
      *
-     * @param null $limit
-     * @param null $offset
-     * @param $permgroup
      * @return array|null
      */
 
-    public function getAllClients($table, $filter, $limit = null, $offset = null, $permgroup)
+    public function getAllClients(/*$table, $filter, $limit = null, $offset = null, $permgroup*/)
     {
         $sql = "SELECT * FROM `users`";
 
+        $sql .= "WHERE permgroup = '1'";
+
+        /*
         if($permgroup) {
             $sql .= " WHERE permgroup = '{$permgroup}'";
         }
@@ -238,6 +238,7 @@ class DbUser extends Database
         if($offset) {
             $sql .= " OFFSET {$offset}";
         }
+        */
 
         $result = $this->dbQuery($sql);
         $value = mysqli_fetch_all($result, MYSQLI_ASSOC);
@@ -266,19 +267,18 @@ class DbUser extends Database
     /**
      * Haal alle gebruikers op die geen klanten zijn
      *
-     * @param null $limit
-     * @param null $offset
-     * @param $permgroup
      * @return array|null
      */
 
-    public function getAllUsersByPerm($table, $filter, $limit = null, $offset = null, $permgroup)
+    public function getAllUsersByPerm(/*$table, $filter, $limit = null, $offset = null, */ $permgroup )
     {
         $sql = "SELECT * FROM `users`";
+
 
         if($permgroup) {
             $sql .= " WHERE permgroup != '{$permgroup}'";
         }
+        /*
         if($table) {
             $sql .= " ORDER BY $table";
         }
@@ -291,6 +291,7 @@ class DbUser extends Database
         if($offset) {
             $sql .= " OFFSET {$offset}";
         }
+        */
 
         $result = $this->dbQuery($sql);
         $value = mysqli_fetch_all($result, MYSQLI_ASSOC);
