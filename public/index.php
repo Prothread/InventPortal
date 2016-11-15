@@ -155,6 +155,9 @@ switch($page) {
     case 'statusportal':
         include '../app/view/statusportal.php';
         break;
+    case 'profiel':
+    include '../app/view/profiel.php';
+    break;
     case 'filter':
         include '../app/Model/Filtering.php';
         break;
