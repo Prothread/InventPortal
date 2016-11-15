@@ -1771,7 +1771,7 @@ pre code {
     width: 75%;
   }
   .col-md-8 {
-    width: 66.66666667%;
+    width: 33%;
   }
   .col-md-7 {
     width: 58.33333333%;
@@ -1807,7 +1807,7 @@ pre code {
     right: 75%;
   }
   .col-md-pull-8 {
-    right: 66.66666667%;
+    right: 50%;
   }
   .col-md-pull-7 {
     right: 58.33333333%;
@@ -1846,7 +1846,7 @@ pre code {
     left: 75%;
   }
   .col-md-push-8 {
-    left: 66.66666667%;
+    left: 50%;
   }
   .col-md-push-7 {
     left: 58.33333333%;
@@ -1903,7 +1903,7 @@ pre code {
     margin-left: 25%;
   }
   .col-md-offset-2 {
-    margin-left: 16.66666667%;
+ 
   }
   .col-md-offset-1 {
     margin-left: 8.33333333%;
@@ -2096,7 +2096,7 @@ th {
   padding: 8px;
   line-height: 1.42857143;
   vertical-align: top;
-  border-top: 1px solid #ddd;
+  border-top: 0px solid #ddd;
 }
 .table > thead > tr > th {
   vertical-align: bottom;

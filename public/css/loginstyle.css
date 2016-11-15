@@ -189,7 +189,7 @@ input {
 /* HEADER SECTION */
 #h {
 	
-	padding-top: 180px;
+	padding-top: 120px;
 	text-align:center;
 	background-attachment: relative;
 	background-position: center center;
@@ -376,7 +376,7 @@ ul {
 }
 
 label {
-	color: #5b1763;
+	color: #FFF;
 }
 
 legend {
@@ -398,3 +398,4 @@ legend {
 li {
 	color: black;
 }
+

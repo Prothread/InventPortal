@@ -81,7 +81,7 @@ if (isset($_POST['login'])) {
       </div>
       <div class="container">
         <div class="row">
-          <div class="col-md-8 col-md-offset-2 centered">
+          <div class="col-md-8 col-md-offset-2 centered loginbar">
 
 
                         <form role="form" method="post" name="loginform">
@@ -97,6 +97,7 @@ if (isset($_POST['login'])) {
                         <br />
                         <input type="submit" name="login" value="Inloggen" class="btn btn-primary" />
                         <br />
+                        <br />
                 </fieldset>
             </form>
             <span class="text-danger"><?php if (isset($errormsg)) { echo $errormsg; } ?></span>
@@ -105,7 +106,6 @@ if (isset($_POST['login'])) {
     <div class="row">
         <div class="col-md-4 col-md-offset-4 text-center">    
         <br />
-        Nog geen account? <a id="linktext" href="?page=register">Maak er hier een aan!</a>
         </div>
     </div>
 </div>

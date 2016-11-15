@@ -35,6 +35,13 @@ input[type="file"] {
   border-radius: 4px;
 }
 
+.loginbar {
+    background-color: rgba(0, 0, 0, 0.9);
+    border-radius: 20px;
+    -webkit-box-shadow: 1px 29px 28px 9px rgba(0,0,0,0.75);
+    -moz-box-shadow: 1px 29px 28px 9px rgba(0,0,0,0.75);
+    box-shadow: 1px 29px 28px 9px rgba(0,0,0,0.75);
+}
 
 .widgetwell {
     -webkit-box-shadow: 1px 15px 14px 3px rgba(0,0,0,0.16);
@@ -1062,7 +1069,6 @@ tr:nth-child(even) {
 }
 
 
-
 .NameText table {
     font-family: cabinregular, 'serif';
     border-collapse: collapse;
@@ -1083,6 +1089,7 @@ tr:nth-child(even) {
     background-repeat: no-repeat;
     margin-left: -8px;
 }
+
 
 #preview {
     width: 527px;
