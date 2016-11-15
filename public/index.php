@@ -158,6 +158,9 @@ switch($page) {
     case 'filter':
         include '../app/Model/Filtering.php';
         break;
+    case 'profiel':
+        include '../app/view/profiel.php';
+        break;
     default:
         include '../app/view/404.php';
         break;
