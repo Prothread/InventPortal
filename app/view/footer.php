@@ -7,31 +7,33 @@
 <script>
     $(document).ready(function() {});
 
-    $.getScript('http://www.chartjs.org/assets/Chart.js',function(){
+    if($('#myChart').length) {
+        $.getScript('http://www.chartjs.org/assets/Chart.js', function () {
 
-        var data = [{
-            label: "Geweigerd",
-            value: <?=round($_SESSION['geweigerd_percent'])?>,
-            color: "#dd2c4c"
-        }, {
-            label: "Goedgekeurd",
-            value: <?=round($_SESSION['geaccepteerd_percent'])?>,
-            color: "#5c1863"
-        },
-        ]
+            var data = [{
+                label: "Geweigerd",
+                value: <?=round($_SESSION['geweigerd_percent'])?>,
+                color: "#dd2c4c"
+            }, {
+                label: "Goedgekeurd",
+                value: <?=round($_SESSION['geaccepteerd_percent'])?>,
+                color: "#5c1863"
+            },
+            ]
 
-        var options = {
-            animateRotate: true
-        };
+            var options = {
+                animateRotate: true
+            };
 
-        //Get the context of the canvas element we want to select
-        var c = $('#myChart');
-        var ct = c.get(0).getContext('2d');
-        var ctx = document.getElementById("myChart").getContext("2d");
-        /*************************************************************************/
-        myNewChart = new Chart(ct).Doughnut(data, options);
+            //Get the context of the canvas element we want to select
+            var c = $('#myChart');
+            var ct = c.get(0).getContext('2d');
+            var ctx = document.getElementById("myChart").getContext("2d");
+            /*************************************************************************/
+            myNewChart = new Chart(ct).Doughnut(data, options);
 
-    })
+        })
+    }
 </script>
 
 <script>
@@ -47,41 +49,43 @@
 <script>
     $(document).ready(function() {});
 
-    $.getScript('http://www.chartjs.org/assets/Chart.js',function(){
+    if($('#ProcAcc').length) {
+        $.getScript('http://www.chartjs.org/assets/Chart.js', function () {
 
-        var data = [{
-            label: "Davy",
-            value: 30,
-            color: "#b20a30"
-        }, {
-            label: "Alexander",
-            value: 20,
-            color: "#dd2c4c"
-        },
-            {
-                label: "Dylan",
-                value: 20,
-                color: "#5c1863"
-            },
-            {
-                label: "Marc",
+            var data = [{
+                label: "Davy",
                 value: 30,
-                color: "#822b8b"
+                color: "#b20a30"
+            }, {
+                label: "Alexander",
+                value: 20,
+                color: "#dd2c4c"
             },
-        ]
+                {
+                    label: "Dylan",
+                    value: 20,
+                    color: "#5c1863"
+                },
+                {
+                    label: "Marc",
+                    value: 30,
+                    color: "#822b8b"
+                },
+            ]
 
-        var options = {
-            animateScale: true
-        };
+            var options = {
+                animateScale: true
+            };
 
-        //Get the context of the canvas element we want to select
-        var c = $('#ProcAcc');
-        var ct = c.get(0).getContext('2d');
-        var ctx = document.getElementById("ProcAcc").getContext("2d");
-        /*************************************************************************/
-        ProcAcc = new Chart(ct).Doughnut(data, options);
+            //Get the context of the canvas element we want to select
+            var c = $('#ProcAcc');
+            var ct = c.get(0).getContext('2d');
+            var ctx = document.getElementById("ProcAcc").getContext("2d");
+            /*************************************************************************/
+            ProcAcc = new Chart(ct).Doughnut(data, options);
 
-    })
+        })
+    }
 </script>
 
 <script>
@@ -227,22 +231,24 @@
 </script>
 
 <script>
-    function handleFileSelect(evt) {
-        var files = evt.target.files; // FileList object
+    if($('#file-upload').length) {
+        function handleFileSelect(evt) {
+            var files = evt.target.files; // FileList object
 
-        // files is a FileList of File objects. List some properties.
-        var output = [];
-        for (var i = 0, f; f = files[i]; i++) {
+            // files is a FileList of File objects. List some properties.
+            var output = [];
+            for (var i = 0, f; f = files[i]; i++) {
 
-            output.push('<li><strong>', escape(f.name), '</strong> (', f.type || 'n/a', ') - ',
-                f.size, ' bytes, last modified: ',
-                f.lastModifiedDate ? f.lastModifiedDate.toLocaleDateString() : 'n/a',
-                '</li>');
+                output.push('<li><strong>', escape(f.name), '</strong> (', f.type || 'n/a', ') - ',
+                    f.size, ' bytes, last modified: ',
+                    f.lastModifiedDate ? f.lastModifiedDate.toLocaleDateString() : 'n/a',
+                    '</li>');
+            }
+            document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
         }
-        document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
-    }
 
-    document.getElementById('file-upload').addEventListener('change', handleFileSelect, false);
+        document.getElementById('file-upload').addEventListener('change', handleFileSelect, false);
+    }
 
 </script>
 
@@ -286,6 +292,7 @@
 
 </script>
 
+<!--
 <script>
     function handleFileSelect1(evt) {
         evt.stopPropagation();
@@ -315,6 +322,7 @@
     dropZone.addEventListener('dragover', handleDragOver, false);
     dropZone.addEventListener('drop', handleFileSelect1, false);
 </script>
+-->
 
 <script>
     $(document).ready(function () {
