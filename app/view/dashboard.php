@@ -27,10 +27,12 @@ $total_items = $get_items_geaccepteerd['COUNT(status)']+$get_items_geweigerd['CO
 $_SESSION['geaccepteerd_percent'] = $get_items_geaccepteerd['COUNT(status)'];
 $_SESSION['geweigerd_percent'] = $get_items_geweigerd['COUNT(status)'];
 
-$url = "Location: index.php?page=" . urlencode($_SERVER['REQUEST_URI']);
-var_dump( urlencode($_SERVER['REQUEST_URI']) );
-var_dump( htmlspecialchars($url) );
-
+//Potentiele redirect code
+/*
+    $url = "Location: index.php?page=" . urlencode($_SERVER['REQUEST_URI']);
+    var_dump( urlencode($_SERVER['REQUEST_URI']) );
+    var_dump( htmlspecialchars($url) );
+*/
 ?>
 <div id="page-content-wrapper">
     <div class="container-fluid">
