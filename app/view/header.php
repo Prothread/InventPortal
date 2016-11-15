@@ -40,10 +40,9 @@ $admin = $settings->getAdminSettings();
     <script src="js/jquery-ui.min.js"></script>
     <link rel="stylesheet" href="css/jquery-ui.css">
 
-    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
-    <script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <!-- Datatable css + jquery -->
+    <link rel="stylesheet" href="css/jquery.dataTables.min.css">
+    <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
     <script src="http://www.google.com/jsapi"></script>
 
     <!--Sort table-->
@@ -107,20 +106,11 @@ $admin = $settings->getAdminSettings();
                 <a href="?page=statusportal">Statusportaal</a>
             </li>
 
-            <?php if($user->getPermission($permgroup, 'CAN_EDIT_SETTINGS') == 1){ ?>
-                <li class="nav-button-settings">
-                    <a href="index.php?page=settings">Instellingen</a>
-                </li>
-            <?php } ?>
-
             <li class="nav-button-all">
                 <a href="index.php?page=overzicht">Overzicht</a>
             </li>
 
-            <?php if ($user->getPermission($permgroup, 'CAN_UPLOAD') == 1 || $user->getPermission($permgroup, 'CAN_ACCORD') == 1) { ?>
-                <br>
-                <p id="MenuSeperator"><span style="color: #FFF;" class="glyphicon glyphicon-ok"></span> ACCORDERINGEN</p>
-            <?php } ?>
+            <p id="MenuSeperator"><span style="color: #FFF;" class="glyphicon glyphicon-ok"></span> ACCORDERINGEN</p>
 
             <?php if ($user->getPermission($permgroup, 'CAN_UPLOAD') == 1) { ?>
                 <li class="nav-button-upload">
@@ -128,18 +118,17 @@ $admin = $settings->getAdminSettings();
                 </li>
             <?php } ?>
 
-            <?php if ($user->getPermission($permgroup, 'CAN_ACCORD') == 1) { ?>
+            <?php if ($user->getPermission($permgroup, 'CAN_ACCORD') == 1 && isset($_SESSION['accord'])) { ?>
                 <li class="nav-button-accord">
                     <a href="index.php?page=accordering">Accordering</a>
                 </li>
             <?php } ?>
 
-            <?php if($user->getPermission($permgroup, 'CAN_SHOW_KLANTPAGINA') == 1 || $user->getPermission($permgroup, 'CAN_SHOW_USERS') == 1) {?>
-                <br>
-                <p id="MenuSeperator"><span style="color: #FFF;" class="glyphicon glyphicon-user"></span> PERSONEN</p>
+            <?php if ($user->getPermission($permgroup, 'CAN_SHOW_KLANTPAGINA') == 1 || $user->getPermission($permgroup, 'CAN_SHOW_USERS') == 1) { ?>
+                <p id="MenuSeperator"><span style="color: #FFF;" class="glyphicon glyphicon-ok"></span> GEBRUIKERS</p>
             <?php } ?>
 
-            <?php if ($user->getPermission($permgroup, 'CAN_SHOW_KLANTPAGINA') == 1) { ?>
+            <?php if ($user->getPermission($permgroup, 'CAN_SHOW_KLANTPAGINA') == 1 ) { ?>
                 <li class="nav-button-users">
                     <a href="index.php?page=manageclients">Klanten</a>
                 </li>
@@ -159,8 +148,7 @@ $admin = $settings->getAdminSettings();
         </ul>
 
     </div>
-<?php
-if($session->exists('flash')) {
+<?php if($session->exists('flash')) {
     foreach($session->get('flash') as $flash) {
         echo "<div class='alert alert_{$flash['type']}'>{$flash['message']}</div>";
     }
