@@ -69,7 +69,10 @@ class UserController
 
         $this->model->setName($userinfo['name']);
         $this->model->setEmail($userinfo['email']);
-        $this->model->setPassword($userinfo['password']);
+
+        if(isset($userinfo['password'])) {
+            $this->model->setPassword($userinfo['password']);
+        }
 
         if(isset($userinfo['bedrijfsnaam'])) {
             $this->model->setCompanyName($userinfo['bedrijfsnaam']);
@@ -88,7 +91,7 @@ class UserController
 
 
         if ($result = $this->model->update()) {
-            echo('Success, de klant is succesvol bijgewerkt.');
+            Session::flash('message', 'De gebruiker is succesvol bijgewerkt');
             return $result;
         }
     }
@@ -265,6 +268,32 @@ class UserController
     public function searchTable($term, $limit = null, $offset = null, $table = null, $filter = null, $ids = null)
     {
         return $this->model->searchTable($term, $limit , $offset, $table, $filter , $ids);
+    }
+
+    /**
+     * Sla een token voor wachtwoord vergeten op
+     *
+     * @param $token
+     * @return mixed
+     */
+
+    public function passForget($mail, $token)
+    {
+        return $this->model->passForget($mail, $token);
+    }
+
+    /**
+     * Functie voor het resetten van de gebruikers wachtwoord
+     *
+     * @param $mail
+     * @param $token
+     * @param $pass
+     * @return mixed
+     */
+
+    public function resetPassword($mail, $token, $pass)
+    {
+        return $this->model->resetPassword($mail, $token, $pass);
     }
 
 }

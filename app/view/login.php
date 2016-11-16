@@ -4,8 +4,6 @@ $mysqli = mysqli_connect();
 
 $user = new UserController();
 
-$redirect = NULL;
-
 //check if form is submitted
 if (isset($_POST['login'])) {
 
@@ -21,7 +19,7 @@ if (isset($_POST['login'])) {
         $_SESSION['usr_id'] = $row['id'];
         $session->setUserId($row['id']);
 
-        $_SESSION['usr_name'] = $row['name'];
+        $_SESSION['usr_name'] = $row['naam'];
     }
 
     else {
@@ -29,7 +27,12 @@ if (isset($_POST['login'])) {
     }
 
     if(isset($_SESSION['usr_id'])!="") {
-        header("Location: index.php?page=dashboard");
+        if($_GET['page']) {
+            header("Refresh:0");
+        }
+        else {
+            header("Location: index.php?page=dashboard");
+        }
     }
 
 }
