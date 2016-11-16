@@ -91,7 +91,7 @@ class UserController
 
 
         if ($result = $this->model->update()) {
-            echo('Success, de klant is succesvol bijgewerkt.');
+            Session::flash('message', 'De gebruiker is succesvol bijgewerkt');
             return $result;
         }
     }
