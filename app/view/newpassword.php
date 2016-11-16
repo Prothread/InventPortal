@@ -20,7 +20,7 @@ if (isset($_POST['newpassword'])) {
     $newcpassword = mysqli_real_escape_string( $mysqli, $_POST['newcpassword'] );
 
     //name can contain only alpha characters and space
-    if(strlen($password) < 6) {
+    if(strlen($cpassword) < 6) {
         $error = true;
         $password_error = "Het paswoord moet minimaal 6 tekens bevatten.";
     }
