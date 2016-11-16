@@ -92,7 +92,12 @@ else {
         <div id="UserPhoto">
         </div>
         <a style="text-decoration: none;" href="?page=profiel">
-            <div id="UserBlock" style="text-decoration: none; background-image: url('<?= $imgsrc ?>')">
+            <div id="UserBlock" style="text-decoration: none;">
+                <style>
+                    #UserBlock::before {
+                        background-image: url('<?= $imgsrc ?>')
+                    }
+                </style>
                 <h3 id="LoggedInAs"><?= $myuser; ?></h3>
             </div>
         </a>
