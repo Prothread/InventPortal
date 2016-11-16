@@ -19,6 +19,13 @@ else {
 $settings = new UserController();
 $admin = $settings->getAdminSettings();
 
+$userinfo = $user->getUserById($_SESSION['usr_id']);
+if($userinfo['profimg'] !== null) {
+    $imgsrc = DIR_IMG . $userinfo['profimg'];
+}
+else {
+    $imgsrc = '../icons/profile.png';
+}
 ?>
 <html lang="nl">
 <head>
@@ -85,7 +92,7 @@ $admin = $settings->getAdminSettings();
         <div id="UserPhoto">
         </div>
         <a style="text-decoration: none;" href="?page=profiel">
-            <div id="UserBlock" style="text-decoration: none;">
+            <div id="UserBlock" style="text-decoration: none; background-image: url('<?= $imgsrc ?>')">
                 <h3 id="LoggedInAs"><?= $myuser; ?></h3>
             </div>
         </a>

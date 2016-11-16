@@ -38,7 +38,12 @@ class DbUser extends Database
         $password = hash('sha256', $user->getPassword());
 
         $sql = "UPDATE `users` SET `naam` = '{$user->getName()}', `email` = '{$user->getEmail()}', `paswoord` = '{$password}', `bedrijfsnaam` = '{$user->getCompanyName()}', `permgroup` = '{$user->getPermGroup()}',
-        `adres` = '{$user->getUserAdres()}', `postcode` = '{$user->getUserPostcode()}', `plaats` = '{$user->getUserPlace()}' WHERE `id` = '{$user->getUserId()}'";
+        `adres` = '{$user->getUserAdres()}', `postcode` = '{$user->getUserPostcode()}', `plaats` = '{$user->getUserPlace()}' ";
+
+        if( $user->getProfileImage() !== null) {
+            $sql .= ", `profimg` = '{$user->getProfileImage()}' ";
+        }
+        $sql .= " WHERE `id` = '{$user->getUserId()}'";
 
         if($this->dbQuery($sql)){
             return true;

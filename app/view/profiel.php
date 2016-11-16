@@ -41,7 +41,7 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);
       <!-- left column -->
       <div class="col-md-3">
         <div class="text-center">
-          <img src="https://hamacher.com/wp-content/uploads/2014/07/laughter.jpg" width="150px" height="150px;" class="avatar img-circle" alt="avatar">
+            <img src="<?= DIR_IMG . $userinfo['profimg'] ?>" width="150px" height="150px;" class="avatar img-circle" alt="avatar">
           
           <input class="form-control" type="file">
         </div>
@@ -127,54 +127,53 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);
       <!-- edit form column -->
       <div class="col-md-9 personal-info">
       <form method="post" enctype="multipart/form-data" class="form-horizontal" action="?page=settingsupload">
-          <div class="form-group">
-                  <label class="col-lg-3 control-label" for="textinput">SMTP-adres</label>
-                      <div class="col-md-4">
-                          <input class="form-control input-md" id="textinput" required type="text" name="smtp" size="50" value="<?= $admin['SMTP'] ?>">
-                      </div>
-          </div>
+            <div class="form-group">
+              <label class="col-lg-3 control-label" for="textinput">SMTP-adres</label>
+              <div class="col-md-4">
+                  <input class="form-control input-md" id="textinput" required type="text" name="smtp" size="50" value="<?= $admin['SMTP'] ?>">
+              </div>
+            </div>
 
-          <div class="form-group">
-                        <label class="col-lg-3 control-label" for="textinput">E-mailadres</label>
-                        <div class="col-md-4">
-                            <input class="form-control input-md" id="textinput" required type="text" name="email" size="50" value="<?= $admin['Email'] ?>">
-                        </div>
-                    </div>
+            <div class="form-group">
+                <label class="col-lg-3 control-label" for="textinput">E-mailadres</label>
+                <div class="col-md-4">
+                    <input class="form-control input-md" id="textinput" required type="text" name="email" size="50" value="<?= $admin['Email'] ?>">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-lg-3 control-label" for="textinput">Logo uploaden</label>
+                <div class="col-md-4">
+                    <label for="file-upload" class="custom-file-upload">
+                        <i class="fa fa-cloud-upload"></i> Uploaden
+                    </label>
+                    <input required type="file" name="fileToUpload" class="imgInp btn btn-primary btn-success" id="file-upload">
+                </div>
+            </div>
 
            <div class="form-group">
-                        <label class="col-lg-3 control-label" for="textinput">Logo uploaden</label>
-                        <div class="col-md-4">
-                            <label for="file-upload" class="custom-file-upload">
-                                <i class="fa fa-cloud-upload"></i> Uploaden
-                            </label>
-                            <input required type="file" name="fileToUpload" class="imgInp btn btn-primary btn-success" id="file-upload">
-                        </div>
-                    </div>
-                   <div class="form-group">
-                        <label class="col-lg-3 control-label" for="textinput">Geselecteerd bestand</label>
-                        <div class="col-md-4">
-                            <div id="fileList"></div>
+                <label class="col-lg-3 control-label" for="textinput">Geselecteerd bestand</label>
+                <div class="col-md-4">
+                    <div id="fileList"></div>
 
-                            <output id="list"></output>
-                        </div>
-                    </div>
-                              <div class="form-group">
-                        <label class="col-lg-3 control-label" for="textinput">Achtergrondkleur header</label>
-                        <div class="col-md-4">
-                            <input class="form-control input-md" id="textinput" required type="text" name="headerkleur" size="50" value="<?= $admin['Header'] ?>">
-                        </div>
-                    </div>
-                        <div class="form-group">
-                        <label class="col-lg-3 control-label" for="textinput"></label>
-                        <div class="col-md-4">
-                            <input class="btn btn-primary btn-success" name="submit" style="max-width: 100px; background-color: #bb2c4c; border: 1px solid #bb2c4c" type="submit" value="Opslaan">
-                        </div>
-                    </div>
+                    <output id="list"></output>
+                </div>
+            </div>
 
-          <!--<div class="form-group">
-            <label class="col-md-3 control-label"></label>
-            <div class="col-md-8">
-              <input disabled class="btn btn-primary" value="Opslaan" type="button">-->
+              <div class="form-group">
+                <label class="col-lg-3 control-label" for="textinput">Achtergrondkleur header</label>
+                <div class="col-md-4">
+                    <input class="form-control input-md" id="textinput" required type="text" name="headerkleur" size="50" value="<?= $admin['Header'] ?>">
+                </div>
+            </div>
+
+                <div class="form-group">
+                <label class="col-lg-3 control-label" for="textinput"></label>
+                <div class="col-md-4">
+                    <input class="btn btn-primary btn-success" name="submit" style="max-width: 100px; background-color: #bb2c4c; border: 1px solid #bb2c4c" type="submit" value="Opslaan">
+                </div>
+            </div>
+
               <span></span>
             </div>
           </div>

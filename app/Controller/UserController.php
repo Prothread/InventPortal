@@ -67,6 +67,10 @@ class UserController
             $this->model->setUserId($userinfo['id']);
         }
 
+        if(isset($userinfo['profimg'])) {
+            $this->model->setProfileImage($userinfo['profimg']);
+        }
+
         $this->model->setName($userinfo['name']);
         $this->model->setEmail($userinfo['email']);
 

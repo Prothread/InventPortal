@@ -27,6 +27,14 @@ class User
     private $UserId;
 
     /**
+     * Variabele om de naam van de profielfoto op te slaan
+     *
+     * @var $ProfImg
+     */
+
+    private $ProfImg;
+
+    /**
      * Variabele voor het opslaan/ophalen van de email van de user
      *
      * @var $Email
@@ -330,6 +338,17 @@ class User
     }
 
     /**
+     * Sla de naam van de profielfoto op
+     *
+     * @param $profileimg
+     */
+
+    public function setProfileImage($profileimg)
+    {
+        $this->ProfImg = $profileimg;
+    }
+
+    /**
      * Sla de naam van het bedrijf op in zijn variabele
      *
      * @param $company
@@ -417,6 +436,17 @@ class User
     public function getUserId()
     {
         return $this->UserId;
+    }
+
+    /**
+     * Haal profielimage op
+     *
+     * @return mixed
+     */
+
+    public function getProfileImage()
+    {
+        return $this->ProfImg;
     }
 
     /**

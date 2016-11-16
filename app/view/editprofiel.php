@@ -5,30 +5,6 @@ $user = new UserController();
 $mysqli = mysqli_connect();
 
 $userinfo = $user->getUserById($_SESSION['usr_id']);
-
-if(isset($_POST['submit'])) {
-    $naam = mysqli_real_escape_string($mysqli, $_POST['naam']);
-    $bedrijfsnaam = mysqli_real_escape_string($mysqli, $_POST['bedrijfsnaam']);
-    $email = mysqli_real_escape_string($mysqli, $_POST['email']);
-    $adres = mysqli_real_escape_string($mysqli, $_POST['adres']);
-    $postcode = mysqli_real_escape_string($mysqli, $_POST['postcode']);
-    $plaats = mysqli_real_escape_string($mysqli, $_POST['plaats']);
-    $rechten = mysqli_real_escape_string($mysqli, $_POST['rechten']);
-
-    $userinfo = [
-        'id' => $userinfo['id'],
-        'name' => $naam,
-        'bedrijfsnaam' => $bedrijfsnaam,
-        'email' => $email,
-        'adres' => $adres,
-        'postcode' => $postcode,
-        'plaats' => $plaats,
-        'permgroup' => $rechten
-    ];
-
-    $user->update($userinfo);
-
-}
 ?>
 
 <div id="page-content-wrapper">
@@ -64,20 +40,36 @@ if(isset($_POST['submit'])) {
                         <!-- left column -->
                         <div class="col-md-3">
                             <div class="text-center">
-                                <img src="https://hamacher.com/wp-content/uploads/2014/07/laughter.jpg" width="150px" height="150px;" class="avatar img-circle" alt="avatar">
-
-                                <input class="form-control" type="file">
+                                <img src="<?= DIR_IMG . $userinfo['profimg'] ?>" width="150px" height="150px;" class="avatar img-circle" alt="avatar">
                             </div>
                         </div>
 
                         <!-- edit form column -->
                         <div class="col-md-9 personal-info">
-                            <form class="form-horizontal" role="form" action="?page=editprofiel" method="post">
+                            <form class="form-horizontal" role="form" action="?page=editingprofile" enctype="multipart/form-data" method="post">
+
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label" for="textinput">Logo uploaden</label>
+                                    <div class="col-md-4">
+                                        <label for="file-upload" class="custom-file-upload">
+                                            <i class="fa fa-cloud-upload"></i> Uploaden
+                                        </label>
+                                        <input required type="file" name="fileToUpload" class="imgInp btn btn-primary btn-success" id="file-upload">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label" for="textinput">Geselecteerd bestand</label>
+                                    <div class="col-md-4">
+                                        <div id="fileList"></div>
+
+                                        <output id="list"></output>
+                                    </div>
+                                </div>
 
                                 <div class="form-group">
                                     <label class="col-lg-3 control-label">Naam</label>
                                     <div class="col-lg-8">
-                                        <input class="form-control" value="<?= $userinfo['name'] ?>" type="text" name="naam">
+                                        <input class="form-control" value="<?= $userinfo['naam'] ?>" type="text" name="naam">
                                     </div>
                                 </div>
                                 <div class="form-group">

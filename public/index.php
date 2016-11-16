@@ -173,6 +173,9 @@ switch($page) {
     case 'passreset':
         include '../app/Model/passreset.php';
         break;
+    case 'editingprofile':
+        include '../app/Model/editingprofile.php';
+        break;
     case 'filter':
         include '../app/Model/Filtering.php';
         break;
