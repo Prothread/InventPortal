@@ -122,14 +122,14 @@ $_SESSION['geweigerd_percent'] = $get_items_geweigerd['COUNT(status)'];
                                     <div class="widget-body text-center">
                                         <img alt="Profile Picture" class="widget-img img-circle img-border" src="css/madalco.png">
                                         <h3><a href="?page=item&id=<?=$upload['id']?>"><?= $upload['onderwerp']?></a></h3>
-                                        <p>Door: <?= $upload['verstuurder'] ?></p>
-                                        <p>Klant: <?= $upload['naam'] ?></p>
+                                        <p>Door:   <?= $upload['verstuurder'] ?></p>
+                                        <p>Klant:  <?= $upload['naam'] ?></p>
                                         <p>Datum:  <?= date("d-m-Y", strtotime($upload['datum'])); ?></p>
                                         <p>Status: <?php if ($upload['verified'] == 1) {?></p>
                                         <p><span style="Color: #bb2c4c">Gezien</span></p>
-                                        <?php } elseif ($upload['verified'] == 2) {?>
+                                        <?php } else if ($upload['verified'] == 2) {?>
                                             <p><span style="Color: #bb2c4c">Geaccepteerd</span></p>
-                                        <?php } elseif ($upload['verified'] == 3) {?>
+                                        <?php } else if ($upload['verified'] == 3) {?>
                                             <p><span style="Color: #bb2c4c">Geweigerd</span></p>
                                         <?php } else {?>
                                             <p><span style="Color: #bb2c4c">Geüpload</span></p>

@@ -133,7 +133,6 @@ if (isset($_POST['newpassword'])) {
             </div>
         </div>
 </div>
-
 <script src="../public/js/jquery-1.10.2.js"></script>
 <script src="../public/js/bootstrap.min.js"></script>
           </div>
