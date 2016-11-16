@@ -69,7 +69,10 @@ class UserController
 
         $this->model->setName($userinfo['name']);
         $this->model->setEmail($userinfo['email']);
-        $this->model->setPassword($userinfo['password']);
+
+        if(isset($userinfo['password'])) {
+            $this->model->setPassword($userinfo['password']);
+        }
 
         if(isset($userinfo['bedrijfsnaam'])) {
             $this->model->setCompanyName($userinfo['bedrijfsnaam']);
