@@ -84,13 +84,12 @@ $admin = $settings->getAdminSettings();
     <div id="NameSide">
         <div id="UserPhoto">
         </div>
-        <a style="text-decoration: none;" href="index.php?page=profiel">
+        <a style="text-decoration: none;" href="?page=profiel">
             <div id="UserBlock" style="text-decoration: none;">
                 <h3 id="LoggedInAs"><?= $myuser; ?></h3>
             </div>
         </a>
     </div>
-
 
 <div id="wrapper">
     <!-- Sidebar -->
@@ -99,7 +98,7 @@ $admin = $settings->getAdminSettings();
         <ul class="sidebar-nav">
 
             <li class="nav-button-home">
-                <a href="index.php?page=dashboard">Home</a>
+                <a href="?page=dashboard">Home</a>
             </li>
 
             <li class="nav-button-status">
@@ -107,7 +106,7 @@ $admin = $settings->getAdminSettings();
             </li>
 
             <li class="nav-button-all">
-                <a href="index.php?page=overzicht">Overzicht</a>
+                <a href="?page=overzicht">Overzicht</a>
             </li>
 
             <br />
@@ -115,13 +114,13 @@ $admin = $settings->getAdminSettings();
 
             <?php if ($user->getPermission($permgroup, 'CAN_UPLOAD') == 1) { ?>
                 <li class="nav-button-upload">
-                    <a href="index.php?page=uploadoverzicht">Upload</a>
+                    <a href="?page=uploadoverzicht">Upload</a>
                 </li>
             <?php } ?>
 
             <?php if ($user->getPermission($permgroup, 'CAN_ACCORD') == 1 && isset($_SESSION['accord'])) { ?>
                 <li class="nav-button-accord">
-                    <a href="index.php?page=accordering">Accordering</a>
+                    <a href="?page=accordering">Accordering</a>
                 </li>
             <?php } ?>
 
@@ -132,13 +131,13 @@ $admin = $settings->getAdminSettings();
 
             <?php if ($user->getPermission($permgroup, 'CAN_SHOW_KLANTPAGINA') == 1 ) { ?>
                 <li class="nav-button-users">
-                    <a href="index.php?page=manageclients">Klanten</a>
+                    <a href="?page=manageclients">Klanten</a>
                 </li>
             <?php } ?>
 
             <?php if ($user->getPermission($permgroup, 'CAN_SHOW_USERS') == 1) { ?>
                 <li class="nav-button-users">
-                    <a href="index.php?page=manageusers">Gebruikers</a>
+                    <a href="?page=manageusers">Gebruikers</a>
                 </li>
             <?php } ?>
 
