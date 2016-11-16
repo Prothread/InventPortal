@@ -22,6 +22,8 @@ $get_filled_info = $user->getAllUsersByPerm(1);
                     <p class="NameText">Overzicht</p>
                     <hr size="1">
 
+                    <a href="index.php?page=newuser"><div id="NewClientButton">Nieuwe gebruiker</div></a>
+
                 <?php if($get_filled_info !== null) { ?>
 
                     <table id="myTable" class="table table-striped">

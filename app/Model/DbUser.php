@@ -369,4 +369,33 @@ class DbUser extends Database
         return false;
     }
 
+    /**
+     * Sla token voor wachtwoord vergeten op
+     *
+     * @param $mail
+     * @param $token
+     * @return bool
+     */
+
+    public function passForget($mail, $token)
+    {
+        $sql = "UPDATE `users` SET `paswoordvergeten` = '{$token}' WHERE `email` = '{$mail}'";
+
+        if($this->dbQuery($sql)) {
+            return true;
+        }
+        return false;
+    }
+
+    public function resetPassword($mail, $token, $pass)
+    {
+        $password = hash('sha256', $pass);
+        $sql = "UPDATE `users` SET `paswoord` = '{$password}', `paswoordvergeten` = '' WHERE `email` = '{$mail}' AND `paswoordvergeten` = '{$token}'";
+
+        if($this->dbQuery($sql)) {
+            return true;
+        }
+        return false;
+    }
+
 }

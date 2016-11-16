@@ -579,4 +579,30 @@ class User
         return $this->db->searchTable($term, $limit, $offset, $table, $filter, $ids);
     }
 
+    /**
+     * Sla een token voor wachtwoord vergeten op
+     *
+     * @param $token
+     * @return mixed
+     */
+
+    public function passForget($mail, $token)
+    {
+        return $this->db->passForget($mail, $token);
+    }
+
+    /**
+     * Functie voor het resetten van het wachtwoord van de gebruiker
+     *
+     * @param $mail
+     * @param $token
+     * @param $pass
+     * @return mixed
+     */
+
+    public function resetPassword($mail, $token, $pass)
+    {
+        return $this->db->resetPassword($mail, $token, $pass);
+    }
+
 }

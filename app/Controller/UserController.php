@@ -267,4 +267,30 @@ class UserController
         return $this->model->searchTable($term, $limit , $offset, $table, $filter , $ids);
     }
 
+    /**
+     * Sla een token voor wachtwoord vergeten op
+     *
+     * @param $token
+     * @return mixed
+     */
+
+    public function passForget($mail, $token)
+    {
+        return $this->model->passForget($mail, $token);
+    }
+
+    /**
+     * Functie voor het resetten van de gebruikers wachtwoord
+     *
+     * @param $mail
+     * @param $token
+     * @param $pass
+     * @return mixed
+     */
+
+    public function resetPassword($mail, $token, $pass)
+    {
+        return $this->model->resetPassword($mail, $token, $pass);
+    }
+
 }

@@ -162,8 +162,17 @@ switch($page) {
         include '../app/view/statusportal.php';
         break;
     case 'profiel':
-    include '../app/view/profiel.php';
-    break;
+        include '../app/view/profiel.php';
+        break;
+    case 'passwordforget':
+        include '../app/view/passwordforget.php';
+        break;
+    case 'resetpassword':
+        include '../app/view/resetpassword.php';
+        break;
+    case 'passreset':
+        include '../app/Model/passreset.php';
+        break;
     case 'filter':
         include '../app/Model/Filtering.php';
         break;
