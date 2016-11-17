@@ -43,8 +43,8 @@ else {
     <link href="css/styles.css" rel="stylesheet">
 
     <!-- JQuery -->
-    <script src="js/jquery-1.12.4.js"></script>
-    <script src="js/jquery-ui.min.js"></script>
+    <script src="public/js/jquery-1.12.4.js"></script>
+    <script src="public/js/jquery-ui.min.js"></script>
     <link rel="stylesheet" href="css/jquery-ui.css">
 
     <!-- Datatable css + jquery -->
@@ -93,11 +93,7 @@ else {
         </div>
         <a style="text-decoration: none;" href="?page=profiel">
             <div id="UserBlock" style="text-decoration: none;">
-                <style>
-                    #UserBlock::before {
-                        background-image: url('<?= $imgsrc ?>')
-                    }
-                </style>
+                <div id="UserBlockImage" style="background-image: url('<?= $imgsrc ?>');"></div>
                 <h3 id="LoggedInAs"><?= $myuser; ?></h3>
             </div>
         </a>

@@ -24,7 +24,6 @@ if(isset($_POST['submit'])) {
     ];
 
     if (isset($_FILES['fileToUpload'])) {
-        echo 'wot';
         $error = 0;
 
         $myFile = $_FILES['fileToUpload'];

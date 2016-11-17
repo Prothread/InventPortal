@@ -103,6 +103,7 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);
                                     </div>
                                 </div>
 
+                                <?php if($user->getPermission($permgroup, 'CAN_EDIT_USER')) { ?>
                                 <div class="form-group">
                                     <label class="col-lg-3 control-label" for="textinput">Rechtgroepen</label>
                                     <div class="col-lg-8">
@@ -112,6 +113,7 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);
                                         <label class="col-sm-3 control-label" for="textinput">Admin: 4</label>
                                     </div>
                                 </div>
+                                <?php } ?>
 
                                 <?php if($user->getPermission($permgroup, 'CAN_EDIT_USER')) { ?>
                                     <div class="form-group">
