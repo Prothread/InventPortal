@@ -47,7 +47,7 @@ $get_filled_info = $user->getAllUsersByPerm(1);
                                     <?= $upload['id']; ?>
                                 </td>
                                 <td>
-                                    <a href="?page=item&id=<?= $upload['id'] ?>"><?= $upload['naam'] ?></a>
+                                    <a href="?page=gebruikerprofiel&id=<?= $upload['id'] ?>"><?= $upload['naam'] ?></a>
                                 </td>
                                 <td>
                                     <?= $upload['bedrijfsnaam'] ?>

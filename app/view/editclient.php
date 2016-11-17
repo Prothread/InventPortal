@@ -31,6 +31,7 @@ if(isset($_POST['submit'])){
     $adres = mysqli_real_escape_string( $mysqli, $_POST['companyadress']);
     $postcode = mysqli_real_escape_string( $mysqli, $_POST['postcode']);
     $plaats = mysqli_real_escape_string( $mysqli, $_POST['plaats']);
+    $rechten = mysqli_real_escape_string($mysqli, $_POST['rechten']);
 
     //Generate a random string.
     $token = openssl_random_pseudo_bytes(8);
@@ -46,10 +47,11 @@ if(isset($_POST['submit'])){
         'adres' => strip_tags( $adres ),
         'postcode' => strip_tags( $postcode ),
         'plaats' => strip_tags( $plaats ),
-        'permgroup' => $_POST['permgroup']
+        'permgroup' => $rechten
     ];
 
     $client->update($clientinfo);
+    header('Location: index.php?page=dashboard');
 
 }
 ?>
@@ -120,7 +122,28 @@ if(isset($_POST['submit'])){
                             </div>
                         </div>
 
-                        <input type="hidden" name="permgroup" value="1">
+                        <?php if($user->getPermission($permgroup, 'CAN_EDIT_USER')) { ?>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="textinput">Rechtgroepen</label>
+                                <div class="col-md-4">
+                                    <label class="col-md-2 control-label" for="textinput">Klant: 1</label>
+                                    <label class="col-sm-3 control-label" for="textinput">Gebruiker: 2</label>
+                                    <label class="col-sm-3 control-label" for="textinput">Beheerder: 3</label>
+                                    <label class="col-sm-3 control-label" for="textinput">Admin: 4</label>
+                                </div>
+                            </div>
+                        <?php } ?>
+
+                        <?php if($user->getPermission($permgroup, 'CAN_EDIT_USER')) { ?>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Rechten:</label>
+                                <div class="col-md-4">
+                                    <input class="form-control" value="<?= $userinfo['permgroup'] ?>" type="text" name="rechten">
+                                </div>
+                            </div>
+                        <?php } else {?>
+                            <input class="form-control" value="<?= $userinfo['permgroup'] ?>" type="hidden" name="rechten">
+                        <?php } ?>
 
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput"></label>
