@@ -77,11 +77,12 @@ if (isset($_POST['newpassword'])) {
                                 <input type="password" name="newcpassword" placeholder="Nieuw wachtwoord" required class="form-control" />
                                 <span class="text-danger"><?php if (isset($cpassword_error)) echo $cpassword_error; ?></span>
                             </div>
-                            
+                            <br>
+                            <p style="font-size: 16px;">De sterkte van uw gekozen wachtwoord</p>
                             <div class="progress progress-striped active">
                               <div id="jak_pstrength" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
                             </div>
-
+                            <br>
                             <div class="form-group">
                                 <input type="submit" name="newpassword" value="Aanpassen" class="btn btn-primary" />
                             </div>

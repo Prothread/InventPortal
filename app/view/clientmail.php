@@ -60,19 +60,19 @@ $smtp = array(
 );
 /* TO, SUBJECT, CONTENT */
 $to = $_POST['email']; //The 'To' field
-$subject = "Madalco portal account gegevens";
+$subject = "Accountgegevens Madalco-portaal";
 
 $content = "<img alt='MadalcoHeader' src='https://picoolio.net/images/2016/11/04/headerbgcc759.png'>" . "  <br/><br/>" . "Geachte " . $_POST['companyname'] . "," .
-    " <br/><br/>" . $myuser . " heeft voor U het account: <b>" . $_POST['name'] . "</b>." . "aangemaakt met de volgende informatie:<br /><br />" .
-    "<b>Email: </b>" .
+    " <br/><br/>" . $myuser . " heeft voor u het account <b> " . $_POST['name'] . "</b> " . " aangemaakt, hieronder uw gegevens:<br /><br />" .
+    "<b>E-mailadres: </b>" .
     $_POST['email'] . '<br/>' .
 
     "<b>Wachtwoord: </b>" .
     $token .
 
-    "<br /><br />" . "U kunt " . "<a href='http://localhost/InventPortal/public/index.php?page=login'>hier</a> " . "inloggen." .
+    "<br /><br />" . "U kunt " . "<a href='http://localhost/InventPortal/public/index.php?page=login'>hier</a> " . "inloggen met de gegevens uit deze mail." .
 
-    "<br /><br />Met vriendelijke groet, <br />" . "Madalco media";
+    "<br /><br />Met vriendelijke groet, <br />" . "Madalco Media";
 
 $altcontent = "Geachte leden van " . $_POST['companyname'] . "," .
     " <br/><br/>" . $myuser . " heeft voor U het account: <b>" . $_POST['name'] . "</b>" . "aangemaakt met de volgende informatie:<br /><br />" .
