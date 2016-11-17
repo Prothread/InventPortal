@@ -76,12 +76,14 @@ if(isset($_POST['submit'])) {
         if (isset($_POST['submit'])) {
 
             /* TO, SUBJECT, CONTENT */
+            $to = $email; //The 'To' field
             $subject = "Aanvraag voor wachtwoord vergeten";
             $content = "<img alt='MadalcoHeader' src='https://picoolio.net/images/2016/11/04/headerbgcc759.png'>"."  <br/><br/>" . "Geachte " . $getbyemail['naam'] . "," .
                 " <br/><br/>" . "Wachtwoord vergeten: " . "<br /><br />" .
                 "<b>Link om uw wachtwoord te veranderen: </b>".
                 "<a href='$link'>Link</a>" . "<br /><br />" .
 
+                "Als U dit niet heeft aangevraagd, kunt U dit negeren of dit aangeven bij de administrators " .
 
                 "<br /> <br />Met vriendelijke groet, <br />" . " Madalco Media";
             $altcontent = "Geachte " . $getbyemail['naam'] . "," .
