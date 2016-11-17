@@ -77,6 +77,13 @@ if (isset($_POST['login'])) {
 
   <body>
 
+  <?php if($session->exists('flash')) {
+      foreach($session->get('flash') as $flash) {
+          echo "<div class='alert alert_{$flash['type']}'>{$flash['message']}</div>";
+      }
+      $session->remove('flash');
+  }?>
+
     <div id="h">
       <div class="social hidden-xs">
 
