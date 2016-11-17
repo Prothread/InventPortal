@@ -33,6 +33,12 @@ if(isset($_GET['page'])) {
 
 */
 $imgid = $_POST['img'];
-$verify = $_POST['vote'];
+
+if($_POST['vote'] == "Akkoord") {
+    $verify = 1;
+}
+else if($_POST['vote'] == "Weiger") {
+    $verify = 2;
+}
 
 $session->ImageVerify($imgid, $verify);

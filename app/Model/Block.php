@@ -50,6 +50,18 @@ class Block
     }
 
     /**
+     * Haal de laatste 6 items van de gebruiker op
+     *
+     * @param $userID
+     * @return mixed
+     */
+
+    public function getLastSixUserUploads($userID)
+    {
+        return $this->db->getLastSixUserUploads($userID);
+    }
+
+    /**
      * Haal een upload op met het id dat je meegeeft
      *
      * @param $id

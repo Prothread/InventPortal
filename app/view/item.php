@@ -198,7 +198,7 @@ foreach ($uploadedimages as $img) {
                                                 <input name="fromname" class="form-control input-md" id="textinput" required type="text" size="50" value="<?= $upload['verstuurder']?>">
                                             </div>
                                         </div>
-                                        
+
                                         <?php if(isset($upload['answer']) && $upload['answer'] !== '') { ?>
                                         <br />
                                         <div class="form-group">

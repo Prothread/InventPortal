@@ -1,7 +1,7 @@
 <?php
 #OVERZICHT PAGE VAN ALLE ITEMS
 
-if($user->getPermission($permgroup, 'CAN_SHOW_OVERZICHT') == 1){
+if($user->getPermission($permgroup, 'CAN_SHOW_USEROVERZICHT') == 1){
 
 } else {
     header('Location: index.php?page=gebruikersoverzicht');

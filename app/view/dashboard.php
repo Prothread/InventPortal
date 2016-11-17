@@ -5,8 +5,8 @@ if($user->getPermission($permgroup, 'CAN_SHOW_HOME') == 1){
 
 }
 else {
-    header('Location: index.php');
-    Session::flash('error', 'U heeft hier geen rechten voor.');
+    header('Location: index.php?page=userdashboard');
+    //Session::flash('error', 'U heeft hier geen rechten voor.');
 }
 
 $uploads = new BlockController();
@@ -27,12 +27,6 @@ $total_items = $get_items_geaccepteerd['COUNT(status)']+$get_items_geweigerd['CO
 $_SESSION['geaccepteerd_percent'] = $get_items_geaccepteerd['COUNT(status)'];
 $_SESSION['geweigerd_percent'] = $get_items_geweigerd['COUNT(status)'];
 
-//Potentiele redirect code
-/*
-    $url = "Location: index.php?page=" . urlencode($_SERVER['REQUEST_URI']);
-    var_dump( urlencode($_SERVER['REQUEST_URI']) );
-    var_dump( htmlspecialchars($url) );
-*/
 ?>
 <div id="page-content-wrapper">
     <div class="container-fluid">

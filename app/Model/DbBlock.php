@@ -63,6 +63,25 @@ class DbBlock extends Database
     }
 
     /**
+     * Haal de laatste 6 items van de gebruiker op
+     *
+     * @param $userID
+     * @return mixed
+     */
+
+    public function getLastSixUserUploads($userID)
+    {
+        $sql = "SELECT * FROM `usermail` JOIN `mail` ON `usermail`.`mailid` = `mail`.`id` WHERE `usermail`.`userid` = '{$userID}' ORDER BY `mail`.`id` DESC LIMIT 6";
+
+        $result = $this->dbQuery($sql);
+        $row = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+        if($row) {
+            return $row;
+        }
+    }
+
+    /**
      * Haal een upload op met het id dat je meegeeft
      *
      * @param $id

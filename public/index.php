@@ -114,6 +114,9 @@ switch($page) {
     case 'gebruikersoverzicht':
         include '../app/view/profile.php';
         break;
+    case 'userdashboard':
+        include '../app/view/userdashboard.php';
+        break;
     case 'manageclients':
         include '../app/view/manageclients.php';
         break;

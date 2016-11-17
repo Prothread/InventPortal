@@ -147,8 +147,8 @@ $UID = date('dmY-G.i.s') . '-192.08.1.124';
                                             <form id="mybuttons" method="post">
                                                 <input type="hidden" id="refreshcount" value="<?= $imgcount ?>">
                                                 <input type="hidden" id="ImageID" value="<?= $img['id'] ?>">
-                                                <input type="submit" id="AccButton" value="1">
-                                                <input type="submit" id="AccButton1" value="2">
+                                                <input type="submit" id="AccButton" value="Akkoord">
+                                                <input type="submit" id="AccButton1" value="Weiger">
                                             </form>
                                         <?php }
                                     }
@@ -165,8 +165,8 @@ $UID = date('dmY-G.i.s') . '-192.08.1.124';
                                         <form id="mybuttons" method="post">
                                             <input type="hidden" id="refreshcount" value="<?= $imgcount ?>">
                                             <input type="hidden" id="ImageID" value="<?= $img['id'] ?>">
-                                            <input type="submit" id="AccButton" value="1">
-                                            <input type="submit" id="AccButton1" value="2">
+                                            <input type="submit" id="AccButton" value="Akkoord">
+                                            <input type="submit" id="AccButton1" value="Weiger">
                                         </form>
 
                                         <?php
