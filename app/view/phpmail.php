@@ -169,7 +169,7 @@ else {
 
                                     <input type="hidden" name="frommail" id="MailFrom" value="<?php if( isset($mailinfo['title']) ){ echo $mailinfo['email'];}?>">
 
-                                    <input type="hidden" name="mailto" id="" value="kevin.herdershof@hotmail.com">
+                                    <input type="hidden" name="mailto" id="" value="valckxj@outlook.com">
 
                                     <input type="hidden" name="fromname" id="" value="Gijs van den Abeele">
                                     <input type="hidden" name="mailname" id="" value="Jeffrey">

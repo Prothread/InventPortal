@@ -58,7 +58,7 @@ if(isset($_POST['submit'])){
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
-                <p class="NameText">Klant bijwerken</p>
+                <p class="NameText">User bijwerken</p>
                 <br>
 
                 <form method="post" enctype="multipart/form-data" class="form-horizontal">

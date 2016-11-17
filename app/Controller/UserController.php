@@ -48,7 +48,7 @@ class UserController
         $this->model->setUserPermgroup($userinfo['permgroup']);
 
         if ($result = $this->model->create()) {
-            echo('Success, de user is succesvol aangemaakt.');
+            Session::flash('message', 'De gebruiker is succesvol aangemaakt.');
             return $result;
         }
 

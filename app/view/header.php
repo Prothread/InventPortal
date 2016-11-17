@@ -47,6 +47,9 @@ else {
     <script src="js/jquery-ui.min.js"></script>
     <link rel="stylesheet" href="css/jquery-ui.css">
 
+    <!-- paswoord coolness -->
+    <script src="js/jaktutorial.js"></script>
+
     <!-- Datatable css + jquery -->
     <link rel="stylesheet" href="css/jquery.dataTables.min.css">
     <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
