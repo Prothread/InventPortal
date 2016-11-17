@@ -198,6 +198,16 @@ foreach ($uploadedimages as $img) {
                                                 <input name="fromname" class="form-control input-md" id="textinput" required type="text" size="50" value="<?= $upload['verstuurder']?>">
                                             </div>
                                         </div>
+                                        
+                                        <?php if(isset($upload['answer']) && $upload['answer'] !== '') { ?>
+                                        <br />
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label" for="textinput">Beschijving van de klant</label>
+                                            <div class="col-md-4">
+                                                <input disabled name="mailanswer" class="form-control input-md" id="textinput" type="text" size="50" value="<?= $upload['answer']?>">
+                                            </div>
+                                        </div>
+                                        <?php } ?>
 
                                         <br>
                                         <ul class="list-inline pull-right">
@@ -297,6 +307,7 @@ foreach ($uploadedimages as $img) {
                                             </div>
                                         </div>
 
+                                        <br /><br />
 
                                         <div class="form-group">
                                             <label class="col-md-4 control-label" for="textinput">Naam klant<span style="color:#bc2d4c">*</span></label>
@@ -314,6 +325,14 @@ foreach ($uploadedimages as $img) {
                                         </div>
 
                                         <input disabled="disabled" type="hidden" name="frommail" id="MailFrom" value="<?= $upload['onderwerp']?>">
+
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label" for="textinput">Beschijving van de klant</label>
+                                            <div class="col-md-4">
+                                                <input disabled name="mailanswer" class="form-control input-md" id="textinput" type="text" size="50" value="<?= $upload['answer']?>">
+                                            </div>
+                                        </div>
+
                                         </div>
                                         <br><br>
 
