@@ -122,8 +122,7 @@ if (isset($_POST['login'])) {
     </div>
 </div>
 
-<script src="../public/js/jquery-1.10.2.js"></script>
-<script src="../public/js/bootstrap.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
           </div>
         </div><!--/row-->
       </div><!--/container-->
@@ -140,8 +139,8 @@ if (isset($_POST['login'])) {
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="../public/js/jquery.min.js"></script>
-    <script src="../public/js/bootstrap.min.js"></script>
-    <script src="../public/js/retina-1.1.0.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/retina-1.1.0.js"></script>
   </body>
 </html>
