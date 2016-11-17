@@ -14,7 +14,7 @@ else {
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
-                <p class="NameText">Nieuwe klant</p>
+                <p class="NameText">Nieuwe gebruiker</p>
                 <br>
 
 
