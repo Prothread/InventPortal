@@ -71,22 +71,28 @@ else {
 
                         <br />
 
-                        <div class="form-group">
-                            <label class="col-md-4 control-label" for="textinput">Rechtgroepen</label>
-                            <div class="col-md-4">
-                                <label class="col-sm-3 control-label" for="textinput">Klant: 1</label>
-                                <label class="col-sm-3 control-label" for="textinput">Gebruiker: 2</label>
-                                <label class="col-sm-3 control-label" for="textinput">Beheerder: 3</label>
-                                <label class="col-sm-3 control-label" for="textinput">Admin: 4</label>
+                        <?php if($user->getPermission($permgroup, 'CAN_EDIT_USER')) { ?>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="textinput">Rechtgroepen</label>
+                                <div class="col-md-4">
+                                    <label class="col-md-2 control-label" for="textinput">Klant: 1</label>
+                                    <label class="col-sm-3 control-label" for="textinput">Gebruiker: 2</label>
+                                    <label class="col-sm-3 control-label" for="textinput">Beheerder: 3</label>
+                                    <label class="col-sm-3 control-label" for="textinput">Admin: 4</label>
+                                </div>
                             </div>
-                        </div>
+                        <?php } ?>
 
-                        <div class="form-group">
-                            <label class="col-md-4 control-label" for="textinput">Rechtgroep</label>
-                            <div class="col-md-4">
-                                <input class="form-control input-md" id="textinput" type="text" name="permgroup" size="50" value="2" placeholder="Rechtgroep">
+                        <?php if($user->getPermission($permgroup, 'CAN_EDIT_USER')) { ?>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Rechten:</label>
+                                <div class="col-md-4">
+                                    <input class="form-control" value="<?= $userinfo['permgroup'] ?>" type="text" name="rechten">
+                                </div>
                             </div>
-                        </div>
+                        <?php } else {?>
+                            <input class="form-control" value="<?= $userinfo['permgroup'] ?>" type="hidden" name="rechten">
+                        <?php } ?>
 
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput"></label>

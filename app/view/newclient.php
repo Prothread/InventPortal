@@ -69,7 +69,7 @@ else {
                             </div>
                         </div>
 
-                        <input type="hidden" name="permgroup" value="1">
+                        <input type="hidden" name="rechten" value="1">
 
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput"></label>
