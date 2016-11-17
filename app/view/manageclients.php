@@ -76,7 +76,8 @@ $get_filled_info = $user->getAllClients();
 
                     <?php }
                     else { ?>
-                        <div id="weiger" class="alert alert-info" style="text-align: center;" role="alert"><span class="glyphicon glyphicon-remove-circle"></span> Er zijn nog geen gebruikers aangemaakt</div>
+                        <br/>
+                        <div id="weiger" class="alert alert-danger" style="text-align: center;" role="alert"><span class="glyphicon glyphicon-remove-circle"></span> Er zijn nog geen gebruikers aangemaakt</div>
                     <?php } ?>
                 </div>
             </div>

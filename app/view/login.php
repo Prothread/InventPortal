@@ -4,6 +4,8 @@ $mysqli = mysqli_connect();
 
 $user = new UserController();
 
+$redirect = NULL;
+
 //check if form is submitted
 if (isset($_POST['login'])) {
 
@@ -19,7 +21,7 @@ if (isset($_POST['login'])) {
         $_SESSION['usr_id'] = $row['id'];
         $session->setUserId($row['id']);
 
-        $_SESSION['usr_name'] = $row['naam'];
+        $_SESSION['usr_name'] = $row['name'];
     }
 
     else {
@@ -27,12 +29,7 @@ if (isset($_POST['login'])) {
     }
 
     if(isset($_SESSION['usr_id'])!="") {
-        if($_GET['page']) {
-            header("Refresh:0");
-        }
-        else {
-            header("Location: index.php?page=dashboard");
-        }
+        header("Location: index.php?page=dashboard");
     }
 
 }
@@ -88,7 +85,7 @@ if (isset($_POST['login'])) {
         <div class="row">
           <div class="col-md-8 col-md-offset-2 centered loginbar" id="slide">
 
-          <p>hoi</p>
+
                         <form role="form" method="post" name="loginform">
                 <fieldset>
                     <img style="width: 254px; height: 256px;" src="public/img/madalco.png" class="fade-in one">
