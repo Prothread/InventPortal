@@ -107,6 +107,9 @@ if (isset($_POST['login'])) {
                         <input type="submit" name="login" value="Inloggen" class="btn btn-primary" />
                         <br />
                         <br />
+                        <a style="color: #fff;"href="index.php?page=forgetpassword">Wachtwoord vergeten?</a>
+                        <br/>
+                        <br/>
                 </fieldset>
             </form>
             <span class="text-danger"><?php if (isset($errormsg)) { echo $errormsg; } ?></span>

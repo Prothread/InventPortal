@@ -277,7 +277,7 @@ $UID = date('dmY-G.i.s') . '-192.08.1.124';
                             <input type="hidden" id="totalverify" value="<?= $verify ?>">
                         </div>
 
-                        <p id="verify"></p>
+                        <div id="verify" style="display: none" class="alert alert-danger" role="alert"></div>
 
                         <input type="hidden" name="fromname" id="" value="Kevin Ernst">
                         <input type="hidden" name="mailto" id="" value="kevin.herdershof@hotmail.com">
