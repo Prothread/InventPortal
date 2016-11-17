@@ -43,8 +43,8 @@ else {
     <link href="css/styles.css" rel="stylesheet">
 
     <!-- JQuery -->
-    <script src="public/js/jquery-1.12.4.js"></script>
-    <script src="public/js/jquery-ui.min.js"></script>
+    <script src="js/jquery-1.12.4.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
     <link rel="stylesheet" href="css/jquery-ui.css">
 
     <!-- Datatable css + jquery -->
@@ -54,9 +54,6 @@ else {
 
     <!--Sort table-->
     <script src="js/sorttable.js" type="text/javascript"></script>
-
-    <!-- Bootstrap CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Eigen CSS -->
     <link href="css/styles.css" rel="stylesheet">
