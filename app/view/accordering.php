@@ -13,6 +13,11 @@ $upload = new BlockController();
 $session = new Session();
 $image_controller = new ImageController();
 
+if($session->getMailId() == null) {
+    header('Location: index.php');
+    Session::flash('message', 'Er is niks om te accorderen');
+}
+
 if($session->getMailId() !== null) {
     $myupload = $upload->getUploadById($session->getMailId());
     $uploadedimages = $image_controller->getImagebyMailID($myupload['id']);
@@ -33,7 +38,7 @@ $UID = date('dmY-G.i.s') . '-192.08.1.124';
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
-                <form id="form" action="?page=updatemail" method="post" enctype="multipart/form-data" class="form-horizontal">
+
                 <p class="NameText">Productaccordering</p>
                 <hr size="1">
 
@@ -236,6 +241,7 @@ $UID = date('dmY-G.i.s') . '-192.08.1.124';
                             </div>
 
                             <div style="clear: both;"></div>
+                            <form id="form" action="?page=updatemail" method="post" enctype="multipart/form-data" class="form-horizontal">
                                 <br />
 
                                 <input type="hidden" name="id" value="<?= $myupload['id']; ?>">
@@ -277,7 +283,7 @@ $UID = date('dmY-G.i.s') . '-192.08.1.124';
                             <input type="hidden" id="totalverify" value="<?= $verify ?>">
                         </div>
 
-                        <div id="verify" style="display: none" class="alert alert-danger" role="alert"></div>
+                        <div id="verify" style="display: none" class="alert alert-info" role="alert"></div>
 
                         <input type="hidden" name="fromname" id="" value="Kevin Ernst">
                         <input type="hidden" name="mailto" id="" value="kevin.herdershof@hotmail.com">

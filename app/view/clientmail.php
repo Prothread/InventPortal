@@ -63,6 +63,7 @@ $to = $_POST['email']; //The 'To' field
 $subject = "Accountgegevens Madalco-portaal";
 
 $content = "<img alt='MadalcoHeader' src='https://picoolio.net/images/2016/11/04/headerbgcc759.png'>" . "  <br/><br/>" . "Geachte " . $_POST['companyname'] . "," .
+
     " <br/><br/>" . $myuser . " heeft voor u het account <b> " . $_POST['name'] . "</b> " . " aangemaakt, hieronder uw gegevens:<br /><br />" .
     "<b>E-mailadres: </b>" .
     $_POST['email'] . '<br/>' .

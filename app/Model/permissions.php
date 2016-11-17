@@ -30,7 +30,7 @@ if(isset($_SESSION['usr_id'])){
         $permgroup = 'Admin';
     }
     else {
-        $permgroup = '';
+        $permgroup = 'Klant';
     }
 }
 else if($session->getUserId()) {
@@ -50,7 +50,7 @@ else if($session->getUserId()) {
         $permgroup = 'Admin';
     }
     else {
-        $permgroup = '';
+        $permgroup = 'Klant';
     }
 }
 else {
