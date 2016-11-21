@@ -27,8 +27,7 @@ $get_filled_info = $uploads->getUploads();
                                     <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> Mijn overzicht</button>
                             </a>
 
-                            <button type="button" class="btn btn-labeled btn-success Mebuts">
-                            <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> Mijn overzicht</button>
+                           
 
                         </th>
                         </th>
