@@ -1,4 +1,10 @@
 <?php
+
+$status = new StatusController();
+$StatusItems = $status->getItems();
+
+$user = new UserController;
+
 ?>
 
 <div id="page-content-wrapper">
@@ -15,41 +21,50 @@
                 <hr size="1">
                <div class="row equal">
             <div width: "100%" class="col-lg-12 text-left">
+            <?php if($StatusItems !==  null) { ?>
                
                <div style="width: 30%; border: 1px #e0e0e0; background-color: #FFF;" class="panel">
                <div style="background-color: #dd2c4c; height: 30px; -moz-border-radius: 0px; -webkit-border-radius: 3px 3px 0px 0px; border-radius: 3px 3px 0px 0px; " class="panel-header">
-                            <h3 id="TitleFont" style="line-height: 1.5; margin-left: 4px; color: #FFF; font-weight: normal; text-align: center;" class="panel-title"><span id="GlyphiconHead" class="glyphicon glyphicon-flag"></span> Leads</h3>
-                        </div>
+                  <h3 id="TitleFont" style="line-height: 1.5; margin-left: 4px; color: #FFF; font-weight: normal; text-align: center;" class="panel-title"><span id="GlyphiconHead" class="glyphicon glyphicon-flag"></span> Leads</h3>
+               </div>
                    <div class="inner" style="width: 95%; margin: 0px auto;">
                        
                         <div class="panel-body">
 
-                            <div id="betweenwhite" style="height: 6px;"></div>
+                        <?php foreach($StatusItems as $StatusItem) { ?>
+                        <?php 
+                        if($StatusItem['category']=='Lead'){
+                          $thisuser = $user->getUserById(  $StatusItem['person']  ); 
+                          $today = date('Y-m-d');
+                          $nextday = date('Y-m-d', strtotime('+1 day'));
 
-                            <div id="OnTime" class="item">
-                                <span class="lettertype" id="textright" style="text-align:right; margin-left: 4px;">Op tijd</span>
+                          $statusdate = $StatusItem['deadline'];
 
-                                <div id="smallaf" style="text-align: right; font-size: 13px; margin-right: 5px;">Jeffrey</div>
+                          if($today < $statusdate) {
+                            $rightdate = 'OnTime';
+                          }
+                          if($nextday == $statusdate) {
+                            $rightdate = 'OneDayToDL';
+                          }
+                          if($today == $statusdate) {
+                            $rightdate = 'OneDayToDL';
+                          }
+                          if($today > $statusdate) {
+                            $rightdate = 'TooLate';
+                          }
+                        ?>
+                          <div>
+                            <div id="<?= $rightdate ?>" class="item">
+                                  <a style="text-decoration: none;" data-toggle="modal" data-target="#Sure"><img src="https://cdn3.iconfinder.com/data/icons/flat-actions-icons-9/792/Close_Icon-16.png"></a>
+                                  <span class="lettertype" id="textright" style="text-align:right; margin-left: 4px;"><?= $StatusItem['subject']?></span>
+
+                                  <div id="smallaf" style="text-align: right; font-size: 13px; margin-right: 5px;"><?= $thisuser['naam'] ?></div>
 
 
+                              </div>
                             </div>
-
                             <div id="betweenwhite" style="height: 6px;"></div>
-
-                            <div id="TooLate" class="item">
-                                <span class="lettertype" id="textright" style="text-align:right; margin-left: 4px;">Te laat</span>
-
-                                <div id="smallaf" style="text-align: right; font-size: 13px; margin-right: 5px;">Jeffrey</div>
-                            </div>
-
-                            <div id="betweenwhite" style="height: 6px;"></div>
-
-                            <div id="OneDayToDL" class="item">
-                                <span class="lettertype" id="textright" style="text-align:right; margin-left: 4px;">Eén dag tot deadline</span>
-
-                                <div id="smallaf" style="text-align: right; font-size: 13px; margin-right: 5px;">Jeffrey</div>
-                            </div>
-
+                        <?php }} ?>
 
                         </div>
                     </div>
@@ -63,34 +78,45 @@
                    <div style="background-color: #dd2c4c; height: 30px; -moz-border-radius: 0px; -webkit-border-radius: 3px 3px 0px 0px; border-radius: 3px 3px 0px 0px; text-align: center;" class="panel-header">
                         <h3 id="TitleFont" style="line-height: 1.5; margin-left: 4px; color: #FFF; font-weight: normal;" class="panel-title"><span id="GlyphiconHead" class="glyphicon glyphicon-pencil"></span> Offertes</h3>
                    </div>
-                   <div class="inner" style="width: 95%; margin: 0px auto;">
+                    <div class="inner" style="width: 95%; margin: 0px auto;">
                        <div class="panel-body">
-                           
-                            <div id="betweenwhite" style="height: 6px;"></div>
 
-                            <div id="OnTime" class="item">
-                                <span class="lettertype" id="textright" style="text-align:right; margin-left: 4px;">Op tijd</span>
+                        <?php foreach($StatusItems as $StatusItem) { ?>
+                        <?php 
+                        if($StatusItem['category']=='Offerte'){
+                          $thisuser = $user->getUserById(  $StatusItem['person']  ); 
+                          $today = date('Y-m-d');
+                          $nextday = date('Y-m-d', strtotime('+1 day'));
 
-                                <div id="smallaf" style="text-align: right; font-size: 13px; margin-right: 5px;">Jeffrey</div>
+                          $statusdate = $StatusItem['deadline'];
+
+                          if($today < $statusdate) {
+                            $rightdate = 'OnTime';
+                          }
+                          if($nextday == $statusdate) {
+                            $rightdate = 'OneDayToDL';
+                          }
+                          if($today == $statusdate) {
+                            $rightdate = 'OneDayToDL';
+                          }
+                          if($today > $statusdate) {
+                            $rightdate = 'TooLate';
+                          }
+                        ?>
+                          <div>
+                            <div id="<?= $rightdate ?>" class="item">
+                                  <span class="lettertype" id="textright" style="text-align:right; margin-left: 4px;"><?= $StatusItem['subject']?></span>
+
+                                  <div id="smallaf" style="text-align: right; font-size: 13px; margin-right: 5px;"><?= $thisuser['naam'] ?></div>
+
+
+                              </div>
                             </div>
-
                             <div id="betweenwhite" style="height: 6px;"></div>
+                        <?php }} ?>
 
-                            <div id="OneDayToDL" class="item">
-                                <span class="lettertype" id="textright" style="text-align:right; margin-left: 4px;">Eén dag tot deadline</span>
-
-                                <div id="smallaf" style="text-align: right; font-size: 13px; margin-right: 5px;">Jeffrey</div>
-                            </div>
-
-                            <div id="betweenwhite" style="height: 6px;"></div>
-
-                            <div id="TooLate" class="item">
-                                <span class="lettertype" id="textright" style="text-align:right; margin-left: 4px;">Te laat</span>
-
-                                <div id="smallaf" style="text-align: right; font-size: 13px; margin-right: 5px;">Jeffrey</div>
-                            </div>
+                        </div>
                     </div>
-               </div>
            </div>
 
                 <div style="width: 20px; background-color: #FFF" id="middle"></div>
@@ -100,35 +126,48 @@
                         <h3 id="TitleFont" style="line-height: 1.5; margin-left: 4px; color: #FFF; font-weight: normal;" class="panel-title"><span id="GlyphiconHead" class="glyphicon glyphicon-folder-open"></span>&nbsp; Projecten</h3>
                    </div>
 
+                   
                    <div class="inner" style="width: 95%; margin: 0px auto;">
-                       <div class="panel-body">
-                            
-                            <div id="betweenwhite" style="height: 6px;"></div>
+                       
+                        <div class="panel-body">
 
-                            <div id="OnTime" class="item">
-                                <span class="lettertype" id="textright" style="text-align:right; margin-left: 4px;">Op tijd</span>
+                        <?php foreach($StatusItems as $StatusItem) { ?>
+                        <?php 
+                        if($StatusItem['category']=='Project'){
+                          $thisuser = $user->getUserById(  $StatusItem['person']  ); 
+                          $today = date('Y-m-d');
+                          $nextday = date('Y-m-d', strtotime('+1 day'));
 
-                                <div id="smallaf" style="text-align: right; font-size: 13px; margin-right: 5px;">Jeffrey</div>
-                            </div>            
+                          $statusdate = $StatusItem['deadline'];
 
-                            <div id="betweenwhite" style="height: 6px;"></div>
+                          if($today < $statusdate) {
+                            $rightdate = 'OnTime';
+                          }
+                          if($nextday == $statusdate) {
+                            $rightdate = 'OneDayToDL';
+                          }
+                          if($today == $statusdate) {
+                            $rightdate = 'OneDayToDL';
+                          }
+                          if($today > $statusdate) {
+                            $rightdate = 'TooLate';
+                          }
+                        ?>
+                          <div>
+                            <div id="<?= $rightdate ?>" class="item">
+                                  <span class="lettertype" id="textright" style="text-align:right; margin-left: 4px;"><?= $StatusItem['subject']?></span>
 
-                            <div id="OneDayToDL" class="item">
-                                <span class="lettertype" id="textright" style="text-align:right; margin-left: 4px;">Eén dag tot deadline</span>
+                                  <div id="smallaf" style="text-align: right; font-size: 13px; margin-right: 5px;"><?= $thisuser['naam'] ?></div>
 
-                                <div id="smallaf" style="text-align: right; font-size: 13px; margin-right: 5px;">Jeffrey</div>
+
+                              </div>
                             </div>
+                            <div id="betweenwhite" style="height: 6px;"></div>
+                        <?php }} ?>
 
-                        <div id="betweenwhite" style="height: 6px;"></div>
+                        </div>
+                    </div>
 
-                       <div id="TooLate" class="item">
-                                <span class="lettertype" id="textright" style="text-align:right; margin-left: 4px;">Te laat</span>
-
-                                <div id="smallaf" style="text-align: right; font-size: 13px; margin-right: 5px;">Jeffrey</div>
-                            </div>
-
-                       </div>
-                   </div>
                </div>
                 <div style="width: 20px; background-color: #FFF" id="middle"></div>
 
@@ -137,40 +176,53 @@
                         <h3 id="TitleFont" style="line-height: 1.5; margin-left: 4px; color: #FFF; font-weight: normal;" class="panel-title"><span id="GlyphiconHead" class="glyphicon glyphicon-exclamation-sign"></span>  To-do</h3>
                    </div>
 
-                   <div class="inner" style="width: 95%; margin: 0px auto;">
-                       <div class="panel-body">
-                            
-                            <div id="betweenwhite" style="height: 6px;"></div>
+                                      <div class="inner" style="width: 95%; margin: 0px auto;">
+                       
+                        <div class="panel-body">
 
-                                <div id="OnTime" class="item">
-                                    <span class="lettertype" id="textright" style="text-align:right; margin-left: 4px;">Op tijd</span>
+                        <?php foreach($StatusItems as $StatusItem) { ?>
+                        <?php 
+                        if($StatusItem['category']=='To-do'){
+                          $thisuser = $user->getUserById(  $StatusItem['person']  ); 
+                          $today = date('Y-m-d');
+                          $nextday = date('Y-m-d', strtotime('+1 day'));
 
-                                    <div id="smallaf" style="text-align: right; font-size: 13px; margin-right: 5px;">Jeffrey</div>
-                                </div>
+                          $statusdate = $StatusItem['deadline'];
 
-                                <div id="betweenwhite" style="height: 6px;"></div>
+                          if($today < $statusdate) {
+                            $rightdate = 'OnTime';
+                          }
+                          if($nextday == $statusdate) {
+                            $rightdate = 'OneDayToDL';
+                          }
+                          if($today == $statusdate) {
+                            $rightdate = 'OneDayToDL';
+                          }
+                          if($today > $statusdate) {
+                            $rightdate = 'TooLate';
+                          }
+                        ?>
+                          <div>
+                            <div id="<?= $rightdate ?>" class="item">
+                                  <span class="lettertype" id="textright" style="text-align:right; margin-left: 4px;"><?= $StatusItem['subject']?></span>
 
-                       <div id="TooLate" class="item">
-                                <span class="lettertype" id="textright" style="text-align:right; margin-left: 4px;">Te laat</span>
+                                  <div id="smallaf" style="text-align: right; font-size: 13px; margin-right: 5px;"><?= $thisuser['naam'] ?></div>
 
-                                <div id="smallaf" style="text-align: right; font-size: 13px; margin-right: 5px;">Jeffrey</div>
+
+                              </div>
                             </div>
-
                             <div id="betweenwhite" style="height: 6px;"></div>
+                        <?php }} ?>
 
-                            <div id="OneDayToDL" class="item">
-                                <span class="lettertype" id="textright" style="text-align:right; margin-left: 4px;">Eén dag tot deadline</span>
+                        </div>
+                    </div>
 
-                                <div id="smallaf" style="text-align: right; font-size: 13px; margin-right: 5px;">Jeffrey</div>
-                            </div>
 
-                       </div>
-                   </div>
                </div>
+<?php } else {?><div class="alert alert-info" role="alert">Er zijn nog geen items aangemaakt</div><?php } ?>
 
-                </ul>
-            </div>
-        </div>
+              </div>
+             </div>
             </div>
         </div>
     </div>
@@ -193,6 +245,15 @@
                                               <form action="?page=nieuwstatusitem" method="post" enctype="multipart/form-data" class="form-horizontal">
                                                   <fieldset>
 
+
+                                                      <div class="form-group">
+                                                          <label class="col-md-4 control-label" for="textinput">Onderwerp</label>
+                                                          <div class="col-md-4">
+                                                              <input class="form-control input-md" maxlength="40" id="textinput" type="text" name="onderwerp" placeholder="Onderwerp">
+                                                          </div>
+                                                      </div>
+
+
                                                       <div class="form-group">
                                                           <label class="col-md-4 control-label" for="textinput">Persoon</label>
                                                           <div class="col-md-4">
@@ -200,12 +261,6 @@
                                                           </div>
                                                       </div>
 
-                                                      <div class="form-group">
-                                                          <label class="col-md-4 control-label" for="textinput">Onderwerp</label>
-                                                          <div class="col-md-4">
-                                                              <input class="form-control input-md" id="textinput" type="text" name="onderwerp" placeholder="Onderwerp">
-                                                          </div>
-                                                      </div>
 
                                                       <div class="form-group">
                                                           <label class="col-md-4 control-label" for="textinput">Deadline</label>
@@ -216,8 +271,14 @@
 
                                                       <div class="form-group">
                                                           <label class="col-md-4 control-label" for="textinput">Categorie</label>
+                                                          
                                                           <div class="col-md-4">
-                                                              <input class="form-control input-md" id="textinput" type="text" name="category" placeholder="Categorie">
+                                                            <select class="form-control" name="category">
+                                                              <option>Lead</option>
+                                                              <option>Offerte</option>
+                                                              <option>Project</option>
+                                                              <option>To-do</option>
+                                                            </select>
                                                           </div>
                                                       </div>
 
@@ -236,5 +297,24 @@
                                             </div>
                                           </div>
                                           
+                                        </div>
+                                      </div>
+
+                                      <!-- Modal -->
+                                      <div class="modal fade" id="Sure" role="dialog">
+                                        <div class="modal-dialog">
+                                        
+                                          <!-- Modal content-->
+                                          <div class="modal-content">
+                                            <div class="modal-header">
+                                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                              <h4 class="modal-title">Weet u zeker dat u dit item wilt verwijderen?</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                              <br>
+                                             </div>
+                                            <div class="modal-footer">
+
+                                            </div>
                                         </div>
                                       </div>

@@ -13,4 +13,15 @@ class DbStatus extends Database
 		return false;
 	}
 
+	public function getItems(){
+		$sql = "SELECT * FROM `status_item`";
+
+		$result = $this->dbQuery($sql);
+		$fetch_all = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+		if($fetch_all) {
+			return $fetch_all;
+		}
+	}
+
 }

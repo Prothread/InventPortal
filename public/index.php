@@ -192,6 +192,9 @@ switch($page) {
     case 'allimgdown':
         include '../app/view/allimgdown.php';
         break;
+    case 'nieuwstatusitem':
+        include '../app/view/nieuwstatusitem.php';
+        break;
     default:
         include '../app/view/404.php';
         break;

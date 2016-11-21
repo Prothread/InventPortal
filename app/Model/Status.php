@@ -2,7 +2,12 @@
 
 class Status
 {
-	$private $db;
+	private $db;
+
+	public function __construct()
+    {
+        $this->db = new DbStatus();
+    }
 
 	private $StatusName;
 	private $StatusSubject;
@@ -44,13 +49,18 @@ class Status
 		return $this->StatusDeadline;
 	}
 
-	public function getCategoryName()
+	public function getCategory()
 	{
 		return $this->StatusCategory;
 	}
 
 	public function create()
 	{
-		return $this->db->create();
+		return $this->db->create($this);
+	}
+
+	public function getItems()
+	{
+		return $this->db->getItems();
 	}
 }
