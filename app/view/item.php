@@ -416,10 +416,93 @@ foreach ($uploadedimages as $img) {
                                             </div>
                                         </div>
 
+                                            <?php if($comments !== null) { ?>
+                                                <?php $i = 0; $o = 0;?>
+                                                <div class="form-group">
+                                                    <label class="col-md-4 control-label" for="textinput">Interne opmerkingen</label>
+                                                    <div class="col-md-4">
+                                                        <ul id="comments">
+                                                            <span>Gesorteed op !importance!</span>
+                                                            <?php foreach($comments as $comment) {?>
+                                                                <?php
+                                                                $i++;
+                                                                $importance = $comment['commentgroep'];
+                                                                if($importance == '1') {
+                                                                    $importancecolor = '#5a5454';
+                                                                }
+                                                                else if($importance == '2') {
+                                                                    $importancecolor = '#9a1734';
+                                                                }
+                                                                else if($importance == '3') {
+                                                                    $importancecolor = '#dd2c4c';
+                                                                }
+                                                                else if($importance == '4') {
+                                                                    $importancecolor = 'red';
+                                                                }
+                                                                ?>
+                                                                <!-- <div class="form-group">
+                                                    <label class="col-md-4 control-label" for="textinput"><span style="color: <?= $importancecolor ?>">Opmerking <?= $i ?>: </span></label>
+                                                    <div class="col-md-4">
+                                                        <textarea disabled class="form-control input-md" id="textinput"><?= $comment['comment']?></textarea>
+                                                    </div>
+                                                </div> -->
+                                                                <a href="" class="question<?= $i ?>"><li style="color: <?= $importancecolor ?>"><div id="leftside"><?= $comment['comment']?></div><div id="rightdate"><?= $comment['datum'] ?></div></li></a>
+                                                            <?php } ?>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="allanswers">
+
+                                                    <div class="form-group new_member_box_display" id="answer">
+                                                        <label class="col-md-4 control-label" for="textinput"><span>Opmerking </span></label>
+                                                        <div class="col-md-4">
+                                                            <textarea disabled class="form-control input-md" id="textinput1">*selecteer een opmerking*</textarea>
+                                                        </div>
+                                                    </div>
+
+                                                    <?php foreach($comments as $comment){ ?>
+                                                        <?php $o++;
+                                                        $importance = $comment['commentgroep'];
+                                                        if($importance == '1') {
+                                                            $importancecolor = '#5a5454';
+                                                        }
+                                                        else if($importance == '2') {
+                                                            $importancecolor = '#9a1734';
+                                                        }
+                                                        else if($importance == '3') {
+                                                            $importancecolor = '#dd2c4c';
+                                                        }
+                                                        else if($importance == '4') {
+                                                            $importancecolor = 'red';
+                                                        }?>
+                                                        <div class="form-group isanswer" id="answer<?= $o ?>">
+                                                            <label class="col-md-4 control-label" for="textinput"><span style="color:<?= $importancecolor ?>">Opmerking <?= $o ?> </span><br /><?= date("d-m-Y", strtotime($comment['datum'])); ?></label>
+                                                            <div class="col-md-4">
+                                                                <textarea disabled class="form-control input-md" id="textinput1"><?= $comment['comment']; ?></textarea>
+                                                            </div>
+                                                        </div>
+                                                    <?php } ?>
+                                                </div>
+
+
+
+                                                <script>
+                                                    $('[class^="question"]').on('click', function(e){
+                                                        e.preventDefault();
+                                                        var numb = this.className.replace('question', '');
+                                                        $('[id^="answer"]').hide();
+                                                        $('#answer' + numb).show();
+                                                    });
+                                                </script>
+
+                                            <?php } ?>
+
                                         </div>
                                         <br><br>
+
+
                             </form>
-                                        <table id="wghy">
+                                        <table>
                                             <thead>
                                                 <tr>
                                                     <td>Downloads:</td>
@@ -456,9 +539,11 @@ foreach ($uploadedimages as $img) {
                                             </tr>
                                             </tbody>
                                         </table>
-                                    <?php } ?>
                                     <?php if($user->getPermission($permgroup, 'CAN_EDIT_ACCORD') == 1){ ?>
-                                        <a href="?page=allimgdown&id=<?= $_GET['id']?>">Maak alle files downloadbaar</a>
+                                    <a href="?page=allimgdown&id=<?= $_GET['id']?>">Maak alle files downloadbaar</a>
+                                    <?php } ?>
+
+
                                     <?php } ?>
 
                                 <div style="clear:both"></div>
