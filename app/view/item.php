@@ -517,8 +517,8 @@ foreach ($uploadedimages as $img) {
                                                                 <div class="imagedownload" style="background: url('index.php?page=image&img=<?= $img['images']?>'); background-size: cover;"> <span class="caret"></span>
                                                             </button>
                                                             <ul class="dropdown-menu">
-                                                            <?php if($img['downloadable'] == 1) { ?>
-                                                                <li><a href="index.php?page=download&file=<?= DIR_IMAGE . $img['images']; ?>">Download</a></li>
+                                                            <?php if($img['downloadable'] == 1 || substr( $img['images'], -3) == 'pdf') { ?>
+                                                                <li><a href="?page=download&file=<?= DIR_IMAGE . $img['images']; ?>">Download</a></li>
                                                             <?php }
                                                             else { ?>
                                                                 <?php if($user->getPermission($permgroup, 'CAN_EDIT_ACCORD') == 1){ ?>

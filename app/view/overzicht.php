@@ -27,10 +27,6 @@ $get_filled_info = $uploads->getUploads();
                                     <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> Mijn overzicht</button>
                             </a>
 
-                            <button type="button" class="btn btn-labeled btn-success Mebuts">
-                            <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> Mijn overzicht</button>
-
-                        </th>
                         </th>
                     </tr>
                 </table>
@@ -104,10 +100,5 @@ $get_filled_info = $uploads->getUploads();
             "order": [[ 0, "desc" ]]
         });
 
-    });
-
-    $('.Mebuts').click(function(){
-        $('#date').trigger();
-        $('#myTable_filter input').val("2<");
     });
 </script>
