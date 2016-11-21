@@ -189,6 +189,9 @@ switch($page) {
     case 'filter':
         include '../app/Model/Filtering.php';
         break;
+    case 'allimgdown':
+        include '../app/view/allimgdown.php';
+        break;
     default:
         include '../app/view/404.php';
         break;

@@ -183,6 +183,36 @@
         });
 </script>
 
+<script>
+    var id;
+    var itemid;
+    $(".imgdownload").on('click', function(event) {
+        id = $(this).attr('id');
+        itemid = $(this).attr('class');
+        itemid = itemid.replace('imgdownload', '');
+        itemid = itemid.replace(' id', '');
+    });
+
+    $("form#downloadbuttons").on( 'submit', function(event) {
+
+        var linkid = ' .' + id;
+
+        var dataString = $('form#downloadbuttons').serialize() + '&id=' + id + '&vote=' + 1;
+
+        $.ajax({
+            type: "POST",
+            url: "?page=setimagedownload",
+            data: dataString,
+            cache: false,
+            success: function(result){
+                $(linkid).load("?page=item&id=" + itemid + linkid);
+            }
+        });
+
+        event.preventDefault();
+    });
+</script>
+
 <div id="selfer">
     <div id="self">
         <script>

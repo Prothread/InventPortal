@@ -419,7 +419,7 @@ foreach ($uploadedimages as $img) {
                                         </div>
                                         <br><br>
                             </form>
-                                        <table>
+                                        <table id="wghy">
                                             <thead>
                                                 <tr>
                                                     <td>Downloads:</td>
@@ -428,23 +428,28 @@ foreach ($uploadedimages as $img) {
                                             <tbody>
                                             <tr>
                                                 <?php foreach($uploadedimages as $img) { ?>
-                                                    <td style="float:left;margin-right:10px;">
+                                                    <td style="float:left;margin-right:10px;" class="imgdownloader img<?= $img['id']?>">
                                                         <div class="btn-group">
                                                             <button type="button" id="downloadimagedd" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                                 <div class="imagedownload" style="background: url('index.php?page=image&img=<?= $img['images']?>'); background-size: cover;"> <span class="caret"></span>
                                                             </button>
-                                                            <?php if($img['downloadable'] == 1) { ?>
                                                             <ul class="dropdown-menu">
+                                                            <?php if($img['downloadable'] == 1) { ?>
                                                                 <li><a href="index.php?page=download&file=<?= DIR_IMAGE . $img['images']; ?>">Download</a></li>
-                                                            </ul>
                                                             <?php }
                                                             else { ?>
-                                                            <ul class="dropdown-menu">
-                                                                <li><a href="#" class="downloadimage" id="img<?= $img['id'] ?>">Maak downloadbaar</a></li>
-                                                                                                                                <br />
+                                                                <?php if($user->getPermission($permgroup, 'CAN_EDIT_ACCORD') == 1){ ?>
+                                                                    <li>
+                                                                        <form id="downloadbuttons" method="post">
+                                                                            <span>Maak downloadbaar: </span>
+                                                                            <input type="submit" class="imgdownload id<?= $_GET['id'] ?>" id="img<?= $img['id'] ?>">
+                                                                        </form>
+                                                                    </li>
+                                                                <?php } ?>
+                                                                <br />
                                                                 <li>U kunt dit product nog niet downloaden</li>
-                                                            </ul>
                                                             <?php } ?>
+                                                            </ul>
                                                         </div>
                                                     </td>
                                                 <?php }?>
@@ -452,29 +457,12 @@ foreach ($uploadedimages as $img) {
                                             </tbody>
                                         </table>
                                     <?php } ?>
+                                    <?php if($user->getPermission($permgroup, 'CAN_EDIT_ACCORD') == 1){ ?>
+                                        <a href="?page=allimgdown&id=<?= $_GET['id']?>">Maak alle files downloadbaar</a>
+                                    <?php } ?>
 
-                                <script>
-                                    $('.downloadimage').on('click', function(event) {
-                                        vote = 1;
-                                        var dataString = 'id=' + $('.downloadimage').attr('id') + '&vote=' + vote;
-                                        alert(dataString);
-
-                                        $.ajax({
-                                            type: "POST",
-                                            url: "?page=setimagedownload",
-                                            data: dataString,
-                                            cache: false,
-                                            success: function(result){
-                                                $('.downloadimage').load("?page=item #dropdown-menu");
-                                            }
-                                        });
-
-                                        event.preventDefault();
-                                    });
-                                </script>
-
-                                    <div style="clear:both"></div>
-                                </div>
+                                <div style="clear:both"></div>
+                            </div>
 
                         </div>
                     </div>
