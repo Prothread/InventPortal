@@ -25,6 +25,7 @@ input[type="file"] {
     animation-delay: 0s;
 }
 
+
 @-webkit-keyframes slide {
     100% { left: 0; }
 }
