@@ -55,7 +55,7 @@ $user = new UserController;
                         ?>
                           <div>
                             <div id="<?= $rightdate ?>" class="item">
-                                  <a style="text-decoration: none;" data-toggle="modal" data-target="#Sure"><img src="https://cdn3.iconfinder.com/data/icons/flat-actions-icons-9/792/Close_Icon-16.png"></a>
+
                                   <span class="lettertype" id="textright" style="text-align:right; margin-left: 4px;"><?= $StatusItem['subject']?></span>
 
                                   <div id="smallaf" style="text-align: right; font-size: 13px; margin-right: 5px;"><?= $thisuser['naam'] ?></div>
