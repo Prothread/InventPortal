@@ -83,4 +83,16 @@ class ImageController
         return $this->model->setImageVerify($id, $verify);
     }
 
+    /**
+     * Verander de verify tabel van de image om aan te geven dat hij goedgekeurd of afgekeurd wordt
+     *
+     * @param $id
+     * @param $vote
+     * @return bool
+     */
+
+    public function setDownloadable($id, $vote) {
+        return $this->model->setDownloadable($id, $vote);
+    }
+
 }

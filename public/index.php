@@ -117,6 +117,9 @@ switch($page) {
     case 'userdashboard':
         include '../app/view/userdashboard.php';
         break;
+    case 'setimagedownload':
+        include '../app/view/setimagedownload.php';
+        break;
     case 'manageclients':
         include '../app/view/manageclients.php';
         break;

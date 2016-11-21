@@ -1572,3 +1572,37 @@ tr:nth-child(2n) {
 #myTable .sorting:hover {
     background-color: aliceblue;
 }
+#comments {
+    width: 100%;
+    height: 12em;
+    -webkit-margin-before: 0px;
+    overflow: hidden;
+    overflow-y: scroll;
+    -webkit-padding-start: 0px;
+}
+#comments li {
+    width: 100%;
+    background-color: #e0e0e0;
+    padding: 5px;
+    max-height: 31px;
+    display: block;
+    font-size: 16px;
+    overflow: hidden;
+    word-wrap: break-word;
+    margin-bottom: 5px;
+}
+.allanswers .isanswer {
+    display:none;
+}
+#textinput1 {
+    height: 80px;
+}
+#leftside {
+    width: 75%;
+    float: left;
+}
+#rightdate {
+    width: 25%;
+    float: right;
+    text-align: center;
+}

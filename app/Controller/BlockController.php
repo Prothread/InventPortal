@@ -74,6 +74,18 @@ class BlockController
     }
 
     /**
+     * Haal de interne opmerkingen op
+     *
+     * @param $id
+     * @return array|null
+     */
+
+    public function getComments($id)
+    {
+        return $this->model->getComments($id);
+    }
+
+    /**
      * Haal aantal resultaten van mails op
      *
      * @return mixed

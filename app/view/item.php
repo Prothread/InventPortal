@@ -19,6 +19,7 @@ $id = $session->clean($id);
 $verimages = array();
 
 $upload = $uploads->getUploadById($id);
+$comments = $uploads->getComments($id);
 
 $image_controller = new ImageController();
 $uploadedimages = $image_controller->getImagebyMailID($upload['id']);
@@ -204,9 +205,91 @@ foreach ($uploadedimages as $img) {
                                         <div class="form-group">
                                             <label class="col-md-4 control-label" for="textinput">Beschijving van de klant</label>
                                             <div class="col-md-4">
-                                                <input disabled name="mailanswer" class="form-control input-md" id="textinput" type="text" size="50" value="<?= $upload['answer']?>">
+                                                <textarea disabled class="form-control input-md" id="textinput1"><?= $upload['answer']?></textarea>
                                             </div>
                                         </div>
+                                        <?php } ?>
+
+                                        <br />
+                                        <?php if($comments !== null) { ?>
+                                            <?php $i = 0; $o = 0;?>
+                                            <div class="form-group">
+                                                <label class="col-md-4 control-label" for="textinput">Interne opmerkingen</label>
+                                                <div class="col-md-4">
+                                                    <ul id="comments">
+                                                        <span>Gesorteed op !importance!</span>
+                                                        <?php foreach($comments as $comment) {?>
+                                                            <?php
+                                                            $i++;
+                                                            $importance = $comment['commentgroep'];
+                                                            if($importance == '1') {
+                                                                $importancecolor = '#5a5454';
+                                                            }
+                                                            else if($importance == '2') {
+                                                                $importancecolor = '#9a1734';
+                                                            }
+                                                            else if($importance == '3') {
+                                                                $importancecolor = '#dd2c4c';
+                                                            }
+                                                            else if($importance == '4') {
+                                                                $importancecolor = 'red';
+                                                            }
+                                                            ?>
+                                                            <!-- <div class="form-group">
+                                                    <label class="col-md-4 control-label" for="textinput"><span style="color: <?= $importancecolor ?>">Opmerking <?= $i ?>: </span></label>
+                                                    <div class="col-md-4">
+                                                        <textarea disabled class="form-control input-md" id="textinput"><?= $comment['comment']?></textarea>
+                                                    </div>
+                                                </div> -->
+                                                            <a href="" class="question<?= $i ?>"><li style="color: <?= $importancecolor ?>"><div id="leftside"><?= $comment['comment']?></div><div id="rightdate"><?= $comment['datum'] ?></div></li></a>
+                                                        <?php } ?>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="allanswers">
+
+                                            <div class="form-group new_member_box_display" id="answer">
+                                                <label class="col-md-4 control-label" for="textinput"><span>Opmerking </span></label>
+                                                <div class="col-md-4">
+                                                    <textarea disabled class="form-control input-md" id="textinput1">*selecteer een opmerking*</textarea>
+                                                </div>
+                                            </div>
+
+                                                <?php foreach($comments as $comment){ ?>
+                                                    <?php $o++;
+                                                    $importance = $comment['commentgroep'];
+                                                    if($importance == '1') {
+                                                        $importancecolor = '#5a5454';
+                                                    }
+                                                    else if($importance == '2') {
+                                                        $importancecolor = '#9a1734';
+                                                    }
+                                                    else if($importance == '3') {
+                                                        $importancecolor = '#dd2c4c';
+                                                    }
+                                                    else if($importance == '4') {
+                                                        $importancecolor = 'red';
+                                                    }?>
+                                                    <div class="form-group isanswer" id="answer<?= $o ?>">
+                                                        <label class="col-md-4 control-label" for="textinput">Opmerking <?= $o ?> <br /><?= date("d-m-Y", strtotime($comment['datum'])); ?></label>
+                                                        <div class="col-md-4">
+                                                            <textarea disabled class="form-control input-md" id="textinput1"><?= $comment['comment']; ?></textarea>
+                                                        </div>
+                                                    </div>
+                                                <?php } ?>
+                                            </div>
+
+
+
+                                            <script>
+                                                $('[class^="question"]').on('click', function(e){
+                                                    e.preventDefault();
+                                                    var numb = this.className.replace('question', '');
+                                                    $('[id^="answer"]').hide();
+                                                    $('#answer' + numb).show();
+                                                });
+                                            </script>
+
                                         <?php } ?>
 
                                         <br>
@@ -335,10 +418,12 @@ foreach ($uploadedimages as $img) {
 
                                         </div>
                                         <br><br>
-
+                            </form>
                                         <table>
                                             <thead>
-                                            <td>Downloads:</td>
+                                                <tr>
+                                                    <td>Downloads:</td>
+                                                </tr>
                                             </thead>
                                             <tbody>
                                             <tr>
@@ -348,9 +433,18 @@ foreach ($uploadedimages as $img) {
                                                             <button type="button" id="downloadimagedd" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                                 <div class="imagedownload" style="background: url('index.php?page=image&img=<?= $img['images']?>'); background-size: cover;"> <span class="caret"></span>
                                                             </button>
+                                                            <?php if($img['downloadable'] == 1) { ?>
                                                             <ul class="dropdown-menu">
                                                                 <li><a href="index.php?page=download&file=<?= DIR_IMAGE . $img['images']; ?>">Download</a></li>
                                                             </ul>
+                                                            <?php }
+                                                            else { ?>
+                                                            <ul class="dropdown-menu">
+                                                                <li><a href="#" class="downloadimage" id="img<?= $img['id'] ?>">Maak downloadbaar</a></li>
+                                                                                                                                <br />
+                                                                <li>U kunt dit product nog niet downloaden</li>
+                                                            </ul>
+                                                            <?php } ?>
                                                         </div>
                                                     </td>
                                                 <?php }?>
@@ -358,9 +452,30 @@ foreach ($uploadedimages as $img) {
                                             </tbody>
                                         </table>
                                     <?php } ?>
+
+                                <script>
+                                    $('.downloadimage').on('click', function(event) {
+                                        vote = 1;
+                                        var dataString = 'id=' + $('.downloadimage').attr('id') + '&vote=' + vote;
+                                        alert(dataString);
+
+                                        $.ajax({
+                                            type: "POST",
+                                            url: "?page=setimagedownload",
+                                            data: dataString,
+                                            cache: false,
+                                            success: function(result){
+                                                $('.downloadimage').load("?page=item #dropdown-menu");
+                                            }
+                                        });
+
+                                        event.preventDefault();
+                                    });
+                                </script>
+
                                     <div style="clear:both"></div>
                                 </div>
-                            </form>
+
                         </div>
                     </div>
                 </div>

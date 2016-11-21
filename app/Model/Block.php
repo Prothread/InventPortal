@@ -68,8 +68,21 @@ class Block
      * @return array|null
      */
 
-    public function getUploadById($id){
+    public function getUploadById($id)
+    {
         return $this->db->getUploadById($id);
+    }
+
+    /**
+     * Haal de interne opmerkingen op
+     *
+     * @param $id
+     * @return array|null
+     */
+
+    public function getComments($id)
+    {
+        return $this->db->getComments($id);
     }
 
     /**

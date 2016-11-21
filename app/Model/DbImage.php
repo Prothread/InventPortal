@@ -92,4 +92,21 @@ class DbImage extends Database
         }
     }
 
+    /**
+     * Verander de verify tabel van de image om aan te geven dat hij goedgekeurd of afgekeurd wordt
+     *
+     * @param $id
+     * @param $vote
+     * @return bool
+     */
+
+    public function setDownloadable($id, $vote) {
+        $sql = "UPDATE `image` SET `downloadable` = '{$vote}' WHERE `id` = '{$id}'";
+
+        if($result = $this->dbQuery($sql)){
+            return true;
+        }
+        return false;
+    }
+
 }

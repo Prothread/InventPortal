@@ -100,6 +100,25 @@ class DbBlock extends Database
     }
 
     /**
+     * Haal de interne opmerkingen op
+     *
+     * @param $id
+     * @return array|null
+     */
+
+    public function getComments($id)
+    {
+        $sql = "SELECT * FROM `comments` WHERE `mailid` = '{$id}' ORDER BY `commentgroep` DESC";
+
+        $result = $this->dbQuery($sql);
+        $value = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+        if($value) {
+            return $value;
+        }
+    }
+
+    /**
      * Haal het aantal mails op
      *
      * @return mixed

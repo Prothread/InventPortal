@@ -199,6 +199,7 @@ $UID = date('dmY-G.i.s') . '-192.08.1.124';
                                     }
 
                                     if(isset($imageverify)) {
+                                        $session->ImageVerify($img['id'], $imageverify);
                                         $sessionverify = $session->getImageVerify($img['id']);
 
                                         $verifiedimages['img' . $img['id']] = $sessionverify;

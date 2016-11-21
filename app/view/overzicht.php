@@ -17,11 +17,24 @@ $get_filled_info = $uploads->getUploads();
     <div id="page-content-wrapper">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-12">
-                    <p class="NameText">Overzicht</p>
-                    <hr size="1">
+                <table style="width:100%">
+                    <tr>
+                        <th style="text-align: left;"><p class="NameText" style="font-weight: normal;">Overzicht</p></th>
+                        <th style="text-align: right;">
 
-                </div>
+                            <a href="?page=gebruikersoverzicht">
+                                <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
+                                    <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> Mijn overzicht</button>
+                            </a>
+
+                            <button type="button" class="btn btn-labeled btn-success Mebuts">
+                            <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> Mijn overzicht</button>
+
+                        </th>
+                        </th>
+                    </tr>
+                </table>
+                <hr>
 
                 <table id="myTable" class="table table-striped" >
                     <thead>
@@ -31,7 +44,7 @@ $get_filled_info = $uploads->getUploads();
                         <th>Onderwerp</th>
                         <th>Verstuurder</th>
                         <th>Naam</th>
-                        <th>Datum</th>
+                        <th id="date">Datum</th>
                         <th>Status</th>
                         <?php }
                         else {?>
@@ -91,5 +104,10 @@ $get_filled_info = $uploads->getUploads();
             "order": [[ 0, "desc" ]]
         });
 
+    });
+
+    $('.Mebuts').click(function(){
+        $('#date').trigger();
+        $('#myTable_filter input').val("2<");
     });
 </script>

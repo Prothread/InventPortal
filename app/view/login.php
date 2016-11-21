@@ -29,7 +29,12 @@ if (isset($_POST['login'])) {
     }
 
     if(isset($_SESSION['usr_id'])!="") {
-        header("Location: index.php?page=dashboard");
+        if($_GET['page']) {
+            header("Refresh:0");
+        }
+        else {
+            header("Location: index.php?page=dashboard");
+        }
     }
 
 }
