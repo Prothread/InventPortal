@@ -119,6 +119,7 @@ $bedrijfsnaam = mysqli_real_escape_string( $mysqli, $_POST['companyname']);
 $adres = mysqli_real_escape_string( $mysqli, $_POST['companyadress']);
 $postcode = mysqli_real_escape_string( $mysqli, $_POST['postcode']);
 $plaats = mysqli_real_escape_string( $mysqli, $_POST['plaats']);
+$rechten = mysqli_real_escape_string( $mysqli, $_POST['rechten']);
 
 $userinfo = [
     'name' => strip_tags( $naam ),
@@ -128,7 +129,7 @@ $userinfo = [
     'adres' => strip_tags( $adres ),
     'postcode' => strip_tags( $postcode ),
     'plaats' => strip_tags( $plaats ),
-    'permgroup' => 1
+    'permgroup' => $rechten
 ];
 
 $mailer->SMTPOptions = array(
