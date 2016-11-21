@@ -136,7 +136,8 @@ else {
                                         <div class="form-group">
                                     <label class="col-md-4 control-label" for="textinput">Nieuwe klant aanmaken</label>  
                                     <div class="col-md-4">
-                                    <a href="index.php?page=newclient"><div id="NewClientButton">Nieuwe klant</div></a>
+                                            <!-- <a href="#newclient"><div id="NewClientButton">Nieuwe klant</div></a> -->  
+                                            <div id="NewClientButton" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Nieuwe Klant</div>
                                     </div>
                                     </div>
 
@@ -161,6 +162,89 @@ else {
 
                                     <br>
                                     <br>
+
+                                      <!-- Modal -->
+                                      <div class="modal fade" id="myModal" role="dialog">
+                                        <div class="modal-dialog">
+                                        
+                                          <!-- Modal content-->
+                                          <div class="modal-content">
+                                            <div class="modal-header">
+                                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                              <h4 class="modal-title">Nieuwe klant</h4>
+                                            </div>
+                                            <div class="modal-body">
+
+                                                    <form action="?page=clientmail" method="post" enctype="multipart/form-data" class="form-horizontal">
+                                                        <fieldset>
+
+                                                            <p class="ClientFormText">Namen</p>
+                                                            <hr size="1">
+
+                                                            <div class="form-group">
+                                                                <label class="col-md-4 control-label" for="textinput">Naam</label>
+                                                                <div class="col-md-4">
+                                                                    <input required class="form-control input-md" id="textinput" type="text" name="name" size="50" placeholder="Naam">
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label class="col-md-4 control-label" for="textinput">Bedrijfsnaam</label>
+                                                                <div class="col-md-4">
+                                                                    <input class="form-control input-md" id="textinput" required type="text" name="companyname" size="50" placeholder="Bedrijfsnaam">
+                                                                </div>
+                                                            </div>
+
+                                                            <p class="ClientFormText">Contactgegevens</p>
+                                                            <hr size="1">
+
+                                                            <div class="form-group">
+                                                                <label class="col-md-4 control-label" for="textinput">E-mail</label>
+                                                                <div class="col-md-4">
+                                                                    <input class="form-control input-md" id="textinput" required type="email" name="email" size="50" placeholder="E-mailadres">
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label class="col-md-4 control-label" for="textinput">Adres</label>
+                                                                <div class="col-md-4">
+                                                                    <input class="form-control input-md" id="textinput" required type="text" name="companyadress" size="50" placeholder="Adres">
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label class="col-md-4 control-label" for="textinput">Postcode</label>
+                                                                <div class="col-md-4">
+                                                                    <input class="form-control input-md" id="textinput" required type="text" name="postcode" size="50" placeholder="Postcode">
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label class="col-md-4 control-label" for="textinput">Plaats</label>
+                                                                <div class="col-md-4">
+                                                                    <input class="form-control input-md" id="textinput" required type="text" name="plaats" size="50" placeholder="Plaats">
+                                                                </div>
+                                                            </div>
+
+                                                            <input type="hidden" name="permgroup" value="1">
+
+                                                            <div class="form-group">
+                                                                <label class="col-md-4 control-label" for="textinput"></label>
+                                                                <div class="col-md-4">
+                                                                    <input class="btn btn-primary btn-success" name="submit"  style="max-width: 100px; background-color: #bb2c4c; border: 1px solid #dd2c4c" type="submit" value="Aanmaken">
+                                                                </div>
+                                                            </div>
+                                                        </fieldset>
+                                                    </form>
+                                            </div>
+                                            <div class="modal-footer">
+
+                                            </div>
+                                          </div>
+                                          
+                                        </div>
+                                      </div>
+
 
 
                                     <ul class="list-inline pull-right">

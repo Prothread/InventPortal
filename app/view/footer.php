@@ -493,8 +493,7 @@
 </script>
 
 
-<!-- Bootstrap JS -->
-<script src="js/bootstrap.min.js"></script>
+
 
 <!-- Menuscript -->
 <script>

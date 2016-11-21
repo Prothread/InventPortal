@@ -45,6 +45,7 @@ else {
     <!-- JQuery -->
     <script src="js/jquery-1.12.4.js"></script>
     <script src="js/jquery-ui.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="css/jquery-ui.css">
 
     <!-- Datatable css + jquery -->
