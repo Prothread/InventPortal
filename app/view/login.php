@@ -19,9 +19,7 @@ if (isset($_POST['login'])) {
 
     if($row = mysqli_fetch_array( $user->getUser($userinfo) )) {
         $_SESSION['usr_id'] = $row['id'];
-        $session->setUserId($row['id']);
-
-        $_SESSION['usr_name'] = $row['name'];
+        $_SESSION['usr_name'] = $row['naam'];
     }
 
     else {

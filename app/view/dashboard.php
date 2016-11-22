@@ -31,7 +31,6 @@ foreach($get_user_info as $user){
 }
 arsort($percentarray);
 
-var_dump($percentarray);
 $i=0;
 while($i<4) {
     if (array_key_exists($namearray[$i], $percentarray)) {
