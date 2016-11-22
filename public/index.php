@@ -26,8 +26,8 @@ isset($_GET['page']) ? $page = $_GET['page'] : $page = 'dashboard';
  * If: Haal page van url op
  * Anders: pagina is dashboard
  */
-
 if(isset($_GET['page'])) {
+
     $page = $_GET['page'];
 } else {
     $page = 'dashboard';
@@ -112,7 +112,7 @@ switch($page) {
         include '../app/view/imagecancel.php';
         break;
     case 'gebruikersoverzicht':
-        include '../app/view/profile.php';
+        include '../app/view/userprofile.php';
         break;
     case 'userdashboard':
         include '../app/view/userdashboard.php';
@@ -172,7 +172,7 @@ switch($page) {
         include '../app/view/statusportal.php';
         break;
     case 'profiel':
-        include '../app/view/profiel.php';
+        include '../app/view/profile.php';
         break;
     case 'gebruikerprofiel':
         include '../app/view/gebruikerprofiel.php';

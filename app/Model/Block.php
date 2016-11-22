@@ -50,6 +50,18 @@ class Block
     }
 
     /**
+     * Haal alle usermail info op met id
+     *
+     * @return mixed
+     */
+
+
+    public function getAllUserUploads($id)
+    {
+        return $this->db->getAllUserUploads($id);
+    }
+
+    /**
      * Haal de laatste 6 items van de gebruiker op
      *
      * @param $userID
@@ -94,6 +106,28 @@ class Block
     public function countBlocks()
     {
         return $this->db->countBlocks();
+    }
+
+    /**
+     * Telt alle user uploads
+     *
+     * @return array|null
+     */
+
+    public function getAllUserUploadsCount($id)
+    {
+        return $this->db->getAllUserUploadsCount($id);
+    }
+
+    /**
+     * Telt alle user uploads met verified 2
+     *
+     * @return array|null
+     */
+
+    public function getAllUserUploadsCountByVerified($id)
+    {
+        return $this->db->getAllUserUploadsCountByVerified($id);
     }
 
 }

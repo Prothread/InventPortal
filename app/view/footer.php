@@ -90,7 +90,7 @@
 
             var data = [{
                 label: "Davy",
-                value: 30,
+                value: 40,
                 color: "#b20a30"
             }, {
                 label: "Alexander",

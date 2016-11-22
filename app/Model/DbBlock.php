@@ -82,6 +82,64 @@ class DbBlock extends Database
     }
 
     /**
+     * Haal alle usermail info op met id
+     *
+     * @param $id
+     * @return mixed
+     */
+
+    public function getAllUserUploads($id)
+    {
+        $sql = "SELECT * FROM `usermail` JOIN `mail` ON `usermail`.`mailid` = `mail`.`id` WHERE `usermail`.`userid` = '{$id}' ORDER BY `mail`.`id`";
+
+        $result = $this->dbQuery($sql);
+        $row = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+        if($row) {
+            return $row;
+        }
+    }
+
+    /**
+     * Haal alle usermail info op met id
+     *
+     * @param $id
+     * @return mixed
+     */
+
+    public function getAllUserUploadsCount($id)
+    {
+        $sql = "SELECT COUNT('id') FROM `usermail` JOIN `mail` ON `usermail`.`mailid` = `mail`.`id` WHERE `usermail`.`userid` = '{$id}' ORDER BY `mail`.`id`";
+
+        $result = $this->dbQuery($sql);
+        $row = mysqli_fetch_assoc($result);
+
+        if($row) {
+            return $row;
+        }
+    }
+
+    /**
+     * Haal alle usermail info op met id
+     *
+     * @param $id
+     * @return mixed
+     */
+
+    public function getAllUserUploadsCountByVerified($id)
+    {
+        $sql = "SELECT COUNT('id') FROM `usermail` JOIN `mail` ON `usermail`.`mailid` = `mail`.`id` WHERE `usermail`.`userid` = '{$id}' AND `mail`.`verified` = '2' ORDER BY `mail`.`id`";
+
+        $result = $this->dbQuery($sql);
+        $row = mysqli_fetch_assoc($result);
+
+        if($row) {
+            return $row;
+        }
+    }
+
+
+    /**
      * Haal een upload op met het id dat je meegeeft
      *
      * @param $id

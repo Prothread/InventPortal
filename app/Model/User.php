@@ -587,6 +587,17 @@ class User
     {
         return $this->db->getAllUsersByPerm($permgroup);
     }
+
+    /**
+     * Haal alle gebruikres op die geen klant zijn
+     *
+     * @return mixed
+     */
+
+    public function getFourUsersByPerm($permgroup)
+    {
+        return $this->db->getFourUsersByPerm($permgroup);
+    }
     /**
      * Haal aantal resultaten van mails op
      *

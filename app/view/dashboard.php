@@ -1,7 +1,7 @@
 <?php
 #DASHBOARD PAGE LAAT RECENTE ITEMS ZIEN
 
-if($user->getPermission($permgroup, 'CAN_SHOW_HOME') == 1){
+if($user->getPermission($permgroup, 'CAN_SHOW_HOME') == 1) {
 
 }
 else {
@@ -10,7 +10,32 @@ else {
 }
 
 $uploads = new BlockController();
+$get_all_items = $uploads->getUploads();
 $get_filled_info = $uploads->getLastSixUploads();
+
+$users = new UserController();
+$get_user_info = $users->getAllUsersByPerm(2);
+
+$percentarray = [];
+foreach($get_user_info as $user){
+    $useruploadcount = $uploads->getAllUserUploadsCount($user['id']);
+    $userverifiedcount = $uploads->getAllUserUploadsCountByVerified($user['id']);
+    if($useruploadcount["COUNT('id')"] > 0){
+        $percent=round(($userverifiedcount["COUNT('id')"]/$useruploadcount["COUNT('id')"])*100);
+    }else{
+        $percent='N/A';
+    }
+    $percentarray[$user['naam']] = $percent;
+}
+var_dump($percentarray);
+$namearray=['Kevin', 'kekkaksk', 'Jeffrey', 'Davy'];
+$i=0;
+while($i<4) {
+    if (array_key_exists($namearray[$i], $percentarray)) {
+        ${'p'.$i} = $percentarray[$namearray[$i]];
+        $i++;
+    }
+}
 
 if($get_filled_info == null) {
     echo '<div id="NoMail">Er zijn nog geen proeven of offertes geüpload</div>';
@@ -26,7 +51,6 @@ $total_accept_weiger = $get_items_geaccepteerd['COUNT(status)']+$get_items_gewei
 $total_items = $get_items_geaccepteerd['COUNT(status)']+$get_items_geweigerd['COUNT(status)']+$get_items_openstaand['COUNT(status)']+$get_items_bekeken['COUNT(status)'];
 $_SESSION['geaccepteerd_percent'] = $get_items_geaccepteerd['COUNT(status)'];
 $_SESSION['geweigerd_percent'] = $get_items_geweigerd['COUNT(status)'];
-
 ?>
 <div id="page-content-wrapper">
     <div class="container-fluid">
@@ -71,28 +95,28 @@ $_SESSION['geweigerd_percent'] = $get_items_geweigerd['COUNT(status)'];
                                 <div class="widget-header bg-success"></div>
                                 <div class="widget-body text-center">
                                     <p style="text-align: center;">Procent akkoord per persoon</p>
-                                    <div class="skillbar clearfix " data-percent="75%">
-                                        <div class="skillbar-title" style="background: #5c1863;"><span>Marc</span></div>
+                                    <div class="skillbar clearfix " data-percent="<?=$p0?>%">
+                                        <div class="skillbar-title" style="background: #5c1863;"><span>Kevin</span></div>
                                         <div class="skillbar-bar" style="background: #a625b3;"></div>
-                                        <div class="skill-bar-percent">75%</div>
+                                        <div class="skill-bar-percent"><?=$p0?>%</div>
                                     </div> <!-- End Skill Bar -->
 
-                                    <div class="skillbar clearfix " data-percent="70%">
-                                        <div class="skillbar-title" style="background: #b41236;"><span>Davy</span></div>
+                                    <div class="skillbar clearfix " data-percent="<?=$p1?>%">
+                                        <div class="skillbar-title" style="background: #b41236;"><span>kekkaksk</span></div>
                                         <div class="skillbar-bar" style="background: #ba2e4d;"></div>
-                                        <div class="skill-bar-percent">70%</div>
+                                        <div class="skill-bar-percent"><?=$p1?>%</div>
                                     </div> <!-- End Skill Bar -->
 
-                                    <div class="skillbar clearfix " data-percent="50%">
-                                        <div class="skillbar-title" style="background: #de1340;"><span>Alexander</span></div>
+                                    <div class="skillbar clearfix " data-percent="<?=$p2?>%">
+                                        <div class="skillbar-title" style="background: #de1340;"><span>Jeffrey</span></div>
                                         <div class="skillbar-bar" style="background: #dd4869;"></div>
-                                        <div class="skill-bar-percent">50%</div>
+                                        <div class="skill-bar-percent"><?=$p2?>%</div>
                                     </div> <!-- End Skill Bar -->
 
-                                    <div class="skillbar clearfix " data-percent="60%">
-                                        <div class="skillbar-title" style="background: #822b8b;"><span>Dylan</span></div>
+                                    <div class="skillbar clearfix " data-percent="<?= $p3 ?>%">
+                                        <div class="skillbar-title" style="background: #822b8b;"><span>Davy</span></div>
                                         <div class="skillbar-bar" style="background: #b340bf;"></div>
-                                        <div class="skill-bar-percent">60%</div>
+                                        <div class="skill-bar-percent"><?=$p3?>%</div>
                                     </div> <!-- End Skill Bar -->
                                 </div>
                             </div>

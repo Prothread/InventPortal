@@ -48,7 +48,7 @@ class UserController
         $this->model->setUserPermgroup($userinfo['permgroup']);
 
         if ($result = $this->model->create()) {
-            Session::flash('message', 'De gebruiker is succesvol aangemaakt.');
+            echo('Success, de user is succesvol aangemaakt.');
             return $result;
         }
 
@@ -218,6 +218,29 @@ class UserController
     {
         return $this->model->getAllUsers($limit, $offset);
     }
+
+    /**
+     * Haal alle goede accorderingen op bij een bepaalde gebruiker
+     *
+     * @return array|null
+     */
+
+    public function getUserAcceptedByName($verstuurder)
+    {
+        return $this->model->getUserAcceptedByName($verstuurder);
+    }
+
+    /**
+     * Haal alle accorderingen op bij een bepaalde gebruiker
+     *
+     * @return array|null
+     */
+
+    public function getUserItemsByName($verstuurder)
+    {
+        return $this->model->getUserItemsByName($verstuurder);
+    }
+
 
     /**
      * Haal alle klanten op

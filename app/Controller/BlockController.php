@@ -39,6 +39,28 @@ class BlockController
     }
 
     /**
+     * Telt alle user uploads
+     *
+     * @return array|null
+     */
+
+    public function getAllUserUploadsCount($id)
+    {
+        return $this->model->getAllUserUploadsCount($id);
+    }
+
+    /**
+     * Telt alle user uploads met verified 2
+     *
+     * @return array|null
+     */
+
+    public function getAllUserUploadsCountByVerified($id)
+    {
+        return $this->model->getAllUserUploadsCountByVerified($id);
+    }
+
+    /**
      * Haal de laatste 6 uploads op
      *
      * @return array|null
@@ -48,6 +70,9 @@ class BlockController
     {
         return $this->model->getLastSixUploads();
     }
+
+
+
 
     /**
      * Haal de laatste 6 items van de gebruiker op
