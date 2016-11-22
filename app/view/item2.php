@@ -27,8 +27,13 @@ else {
 $session = new Session();
 $uploads = new BlockController();
 
-$id = $_POST['rowid'];
-$id = $session->clean($id);
+if(isset($_POST['rowid'])) {
+    $id = $_POST['rowid'];
+    $id = $session->clean($id);
+}
+else {
+    return 'Geen item gevonden';
+}
 
 //Check verified images
 $verimages = array();
