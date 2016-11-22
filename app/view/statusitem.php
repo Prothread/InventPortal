@@ -13,7 +13,7 @@ $user = new UserController;
             <div class="col-lg-12">
             <table style="width:100%">
             <tr>
-              <th align="left" style="font-weight: normal;"><p class="NameText">Statusportaal</p></th>
+              <th align="left" style="font-weight: normal;"><p class="NameText">Item</p></th>
               <th style="text-align: right;"><div id="NewClientButton" style="background-color: #dd2c4c;" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Nieuw item</div></th>
             </tr>
             </table>
@@ -56,7 +56,7 @@ $user = new UserController;
                           <div>
                             <div id="<?= $rightdate ?>" class="item">
 
-                                  <a href="?page=statusitem"><span class="lettertype" id="textright" style="text-align:right; margin-left: 4px; text-decoration: none; color: #000;"><?= $StatusItem['subject']?></span></a>
+                                  <span class="lettertype" id="textright" style="text-align:right; margin-left: 4px;"><a href="?page=statusportal"><?= $StatusItem['subject']?></span></a>
 
                                   <div id="smallaf" style="text-align: right; font-size: 13px; margin-right: 5px;"><?= $thisuser['naam'] ?></div>
 
@@ -229,92 +229,92 @@ $user = new UserController;
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="myModal" role="dialog">
-<div class="modal-dialog">
-
-  <!-- Modal content-->
-  <div class="modal-content">
-    <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal">&times;</button>
-      <h4 class="modal-title">Nieuw item</h4>
-    </div>
-    <div class="modal-body">
-      <br>
-
-
-      <form action="?page=nieuwstatusitem" method="post" enctype="multipart/form-data" class="form-horizontal">
-          <fieldset>
+                                      <div class="modal fade" id="myModal" role="dialog">
+                                        <div class="modal-dialog">
+                                        
+                                          <!-- Modal content-->
+                                          <div class="modal-content">
+                                            <div class="modal-header">
+                                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                              <h4 class="modal-title">Nieuw item</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                              <br>
 
 
-              <div class="form-group">
-                  <label class="col-md-4 control-label" for="textinput">Onderwerp</label>
-                  <div class="col-md-4">
-                      <input class="form-control input-md" maxlength="40" id="textinput" type="text" name="onderwerp" placeholder="Onderwerp">
-                  </div>
-              </div>
+                                              <form action="?page=nieuwstatusitem" method="post" enctype="multipart/form-data" class="form-horizontal">
+                                                  <fieldset>
 
 
-              <div class="form-group">
-                  <label class="col-md-4 control-label" for="textinput">Persoon</label>
-                  <div class="col-md-4">
-                      <input required class="form-control input-md" id="textinput" type="text" name="name" size="50" placeholder="Naam persoon">
-                  </div>
-              </div>
+                                                      <div class="form-group">
+                                                          <label class="col-md-4 control-label" for="textinput">Onderwerp</label>
+                                                          <div class="col-md-4">
+                                                              <input class="form-control input-md" maxlength="40" id="textinput" type="text" name="onderwerp" placeholder="Onderwerp">
+                                                          </div>
+                                                      </div>
 
 
-              <div class="form-group">
-                  <label class="col-md-4 control-label" for="textinput">Deadline</label>
-                  <div class="col-md-4">
-                      <input class="form-control input-md" id="textinput" type="date" name="deadline" size="50" placeholder="Deadline opdracht">
-                  </div>
-              </div>
-
-              <div class="form-group">
-                  <label class="col-md-4 control-label" for="textinput">Categorie</label>
-
-                  <div class="col-md-4">
-                    <select class="form-control" name="category">
-                      <option>Lead</option>
-                      <option>Offerte</option>
-                      <option>Project</option>
-                      <option>To-do</option>
-                    </select>
-                  </div>
-              </div>
+                                                      <div class="form-group">
+                                                          <label class="col-md-4 control-label" for="textinput">Persoon</label>
+                                                          <div class="col-md-4">
+                                                              <input required class="form-control input-md" id="textinput" type="text" name="name" size="50" placeholder="Naam persoon">
+                                                          </div>
+                                                      </div>
 
 
-              <div class="form-group">
-                  <label class="col-md-4 control-label" for="textinput"></label>
-                  <div class="col-md-4">
-                      <input class="btn btn-primary btn-success" name="submit"  style="max-width: 100px; background-color: #bb2c4c; border: 1px solid #dd2c4c" type="submit" value="Aanmaken">
-                  </div>
-              </div>
-          </fieldset>
-      </form>
-    </div>
-    <div class="modal-footer">
+                                                      <div class="form-group">
+                                                          <label class="col-md-4 control-label" for="textinput">Deadline</label>
+                                                          <div class="col-md-4">
+                                                              <input class="form-control input-md" id="textinput" type="date" name="deadline" size="50" placeholder="Deadline opdracht">
+                                                          </div>
+                                                      </div>
 
-    </div>
-  </div>
+                                                      <div class="form-group">
+                                                          <label class="col-md-4 control-label" for="textinput">Categorie</label>
+                                                          
+                                                          <div class="col-md-4">
+                                                            <select class="form-control" name="category">
+                                                              <option>Lead</option>
+                                                              <option>Offerte</option>
+                                                              <option>Project</option>
+                                                              <option>To-do</option>
+                                                            </select>
+                                                          </div>
+                                                      </div>
 
-</div>
-</div>
 
-<!-- Modal -->
-<div class="modal fade" id="Sure" role="dialog">
-<div class="modal-dialog">
+                                                      <div class="form-group">
+                                                          <label class="col-md-4 control-label" for="textinput"></label>
+                                                          <div class="col-md-4">
+                                                              <input class="btn btn-primary btn-success" name="submit"  style="max-width: 100px; background-color: #bb2c4c; border: 1px solid #dd2c4c" type="submit" value="Aanmaken">
+                                                          </div>
+                                                      </div>
+                                                  </fieldset>
+                                              </form>
+                                            </div>
+                                            <div class="modal-footer">
 
-  <!-- Modal content-->
-  <div class="modal-content">
-    <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal">&times;</button>
-      <h4 class="modal-title">Weet u zeker dat u dit item wilt verwijderen?</h4>
-    </div>
-    <div class="modal-body">
-      <br>
-     </div>
-    <div class="modal-footer">
+                                            </div>
+                                          </div>
+                                          
+                                        </div>
+                                      </div>
 
-    </div>
-</div>
-</div>
+                                      <!-- Modal -->
+                                      <div class="modal fade" id="Sure" role="dialog">
+                                        <div class="modal-dialog">
+                                        
+                                          <!-- Modal content-->
+                                          <div class="modal-content">
+                                            <div class="modal-header">
+                                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                              <h4 class="modal-title">Weet u zeker dat u dit item wilt verwijderen?</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                              <br>
+                                             </div>
+                                            <div class="modal-footer">
+
+                                            </div>
+                                        </div>
+                                      </div>
