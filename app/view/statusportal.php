@@ -229,92 +229,92 @@ $user = new UserController;
 </div>
 
 <!-- Modal -->
-                                      <div class="modal fade" id="myModal" role="dialog">
-                                        <div class="modal-dialog">
-                                        
-                                          <!-- Modal content-->
-                                          <div class="modal-content">
-                                            <div class="modal-header">
-                                              <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                              <h4 class="modal-title">Nieuw item</h4>
-                                            </div>
-                                            <div class="modal-body">
-                                              <br>
+<div class="modal fade" id="myModal" role="dialog">
+<div class="modal-dialog">
+
+  <!-- Modal content-->
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <h4 class="modal-title">Nieuw item</h4>
+    </div>
+    <div class="modal-body">
+      <br>
 
 
-                                              <form action="?page=nieuwstatusitem" method="post" enctype="multipart/form-data" class="form-horizontal">
-                                                  <fieldset>
+      <form action="?page=nieuwstatusitem" method="post" enctype="multipart/form-data" class="form-horizontal">
+          <fieldset>
 
 
-                                                      <div class="form-group">
-                                                          <label class="col-md-4 control-label" for="textinput">Onderwerp</label>
-                                                          <div class="col-md-4">
-                                                              <input class="form-control input-md" maxlength="40" id="textinput" type="text" name="onderwerp" placeholder="Onderwerp">
-                                                          </div>
-                                                      </div>
+              <div class="form-group">
+                  <label class="col-md-4 control-label" for="textinput">Onderwerp</label>
+                  <div class="col-md-4">
+                      <input class="form-control input-md" maxlength="40" id="textinput" type="text" name="onderwerp" placeholder="Onderwerp">
+                  </div>
+              </div>
 
 
-                                                      <div class="form-group">
-                                                          <label class="col-md-4 control-label" for="textinput">Persoon</label>
-                                                          <div class="col-md-4">
-                                                              <input required class="form-control input-md" id="textinput" type="text" name="name" size="50" placeholder="Naam persoon">
-                                                          </div>
-                                                      </div>
+              <div class="form-group">
+                  <label class="col-md-4 control-label" for="textinput">Persoon</label>
+                  <div class="col-md-4">
+                      <input required class="form-control input-md" id="textinput" type="text" name="name" size="50" placeholder="Naam persoon">
+                  </div>
+              </div>
 
 
-                                                      <div class="form-group">
-                                                          <label class="col-md-4 control-label" for="textinput">Deadline</label>
-                                                          <div class="col-md-4">
-                                                              <input class="form-control input-md" id="textinput" type="date" name="deadline" size="50" placeholder="Deadline opdracht">
-                                                          </div>
-                                                      </div>
+              <div class="form-group">
+                  <label class="col-md-4 control-label" for="textinput">Deadline</label>
+                  <div class="col-md-4">
+                      <input class="form-control input-md" id="textinput" type="date" name="deadline" size="50" placeholder="Deadline opdracht">
+                  </div>
+              </div>
 
-                                                      <div class="form-group">
-                                                          <label class="col-md-4 control-label" for="textinput">Categorie</label>
-                                                          
-                                                          <div class="col-md-4">
-                                                            <select class="form-control" name="category">
-                                                              <option>Lead</option>
-                                                              <option>Offerte</option>
-                                                              <option>Project</option>
-                                                              <option>To-do</option>
-                                                            </select>
-                                                          </div>
-                                                      </div>
+              <div class="form-group">
+                  <label class="col-md-4 control-label" for="textinput">Categorie</label>
+
+                  <div class="col-md-4">
+                    <select class="form-control" name="category">
+                      <option>Lead</option>
+                      <option>Offerte</option>
+                      <option>Project</option>
+                      <option>To-do</option>
+                    </select>
+                  </div>
+              </div>
 
 
-                                                      <div class="form-group">
-                                                          <label class="col-md-4 control-label" for="textinput"></label>
-                                                          <div class="col-md-4">
-                                                              <input class="btn btn-primary btn-success" name="submit"  style="max-width: 100px; background-color: #bb2c4c; border: 1px solid #dd2c4c" type="submit" value="Aanmaken">
-                                                          </div>
-                                                      </div>
-                                                  </fieldset>
-                                              </form>
-                                            </div>
-                                            <div class="modal-footer">
+              <div class="form-group">
+                  <label class="col-md-4 control-label" for="textinput"></label>
+                  <div class="col-md-4">
+                      <input class="btn btn-primary btn-success" name="submit"  style="max-width: 100px; background-color: #bb2c4c; border: 1px solid #dd2c4c" type="submit" value="Aanmaken">
+                  </div>
+              </div>
+          </fieldset>
+      </form>
+    </div>
+    <div class="modal-footer">
 
-                                            </div>
-                                          </div>
-                                          
-                                        </div>
-                                      </div>
+    </div>
+  </div>
 
-                                      <!-- Modal -->
-                                      <div class="modal fade" id="Sure" role="dialog">
-                                        <div class="modal-dialog">
-                                        
-                                          <!-- Modal content-->
-                                          <div class="modal-content">
-                                            <div class="modal-header">
-                                              <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                              <h4 class="modal-title">Weet u zeker dat u dit item wilt verwijderen?</h4>
-                                            </div>
-                                            <div class="modal-body">
-                                              <br>
-                                             </div>
-                                            <div class="modal-footer">
+</div>
+</div>
 
-                                            </div>
-                                        </div>
-                                      </div>
+<!-- Modal -->
+<div class="modal fade" id="Sure" role="dialog">
+<div class="modal-dialog">
+
+  <!-- Modal content-->
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <h4 class="modal-title">Weet u zeker dat u dit item wilt verwijderen?</h4>
+    </div>
+    <div class="modal-body">
+      <br>
+     </div>
+    <div class="modal-footer">
+
+    </div>
+</div>
+</div>

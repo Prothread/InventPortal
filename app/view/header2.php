@@ -1,7 +1,7 @@
 <?php
-#HEADER FOR LOGIN
+#HEADER
 ?>
-<html lang="nl">
+    <html lang="nl">
     <head>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
@@ -47,5 +47,5 @@
               type="image/png"
               href="<?= DIR_PUBLIC . 'favicon.png'?>">
     </head>
-<body>
-    <div id="wrapper">
+    <body>
+    <div>

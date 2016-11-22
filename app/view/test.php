@@ -1,94 +1,144 @@
 <?php
 #OVERZICHT PAGE VAN ALLE ITEMS
-?>
-<div class="container">
-  <h2>Modal Example</h2>
-  <!-- Trigger the modal with a button -->
-  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
 
-  <!-- Modal -->
-  <div class="modal fade" id="myModal" role="dialog">
+if($user->getPermission($permgroup, 'CAN_SHOW_OVERZICHT') == 1){
+
+} else {
+    header('Location: index.php?page=gebruikersoverzicht');
+}
+
+$uploads = new BlockController();
+
+$verified = '0, 1';
+$get_filled_info = $uploads->getOlderUploads($verified);
+
+?>
+
+<div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Modal Header</h4>
-        </div>
-        <div class="modal-body">
-          <p class="NameText">Nieuwe klant</p>
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Nieuw item</h4>
+            </div>
+            <div class="modal-body">
                 <br>
 
+                <div class="fetched-data"></div>
 
-                <form action="?page=clientmail" method="post" enctype="multipart/form-data" class="form-horizontal">
-                    <fieldset>
+            </div>
+            <div class="modal-footer">
 
-                        <p class="ClientFormText">Namen</p>
-                        <hr size="1">
-
-                        <div class="form-group">
-                            <label class="col-md-4 control-label" for="textinput">Naam</label>
-                            <div class="col-md-4">
-                                <input required class="form-control input-md" id="textinput" type="text" name="name" size="50" placeholder="Naam">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-md-4 control-label" for="textinput">Bedrijfsnaam</label>
-                            <div class="col-md-4">
-                                <input class="form-control input-md" id="textinput" required type="text" name="companyname" size="50" placeholder="Bedrijfsnaam">
-                            </div>
-                        </div>
-
-                        <p class="ClientFormText">Contactgegevens</p>
-                        <hr size="1">
-
-                        <div class="form-group">
-                            <label class="col-md-4 control-label" for="textinput">E-mail</label>
-                            <div class="col-md-4">
-                                <input class="form-control input-md" id="textinput" required type="email" name="email" size="50" placeholder="E-mailadres">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-md-4 control-label" for="textinput">Adres</label>
-                            <div class="col-md-4">
-                                <input class="form-control input-md" id="textinput" required type="text" name="companyadress" size="50" placeholder="Adres">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-md-4 control-label" for="textinput">Postcode</label>
-                            <div class="col-md-4">
-                                <input class="form-control input-md" id="textinput" required type="text" name="postcode" size="50" placeholder="Postcode">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-md-4 control-label" for="textinput">Plaats</label>
-                            <div class="col-md-4">
-                                <input class="form-control input-md" id="textinput" required type="text" name="plaats" size="50" placeholder="Plaats">
-                            </div>
-                        </div>
-
-                        <input type="hidden" name="permgroup" value="1">
-
-                        <div class="form-group">
-                            <label class="col-md-4 control-label" for="textinput"></label>
-                            <div class="col-md-4">
-                                <input class="btn btn-primary btn-success" name="submit"  style="max-width: 100px; background-color: #bb2c4c; border: 1px solid #dd2c4c" type="submit" value="Aanmaken">
-                            </div>
-                        </div>
-                    </fieldset>
-                </form>
+            </div>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-      
+
     </div>
-  </div>
-  
 </div>
+<script>
+    $(document).ready(function(){
+        $('#myModal').on('show.bs.modal', function (e) {
+            var rowid = $(e.relatedTarget).data('id');
+            $.ajax({
+                type : 'post',
+                url : '?page=item2', //Here you will fetch records
+                data :  'rowid='+ rowid, //Pass $id
+                success : function(data){
+                    $('.fetched-data').html(data);//Show fetched data from database
+                }
+            });
+        });
+    });
+</script>
+
+<div class="container">
+    <div id="page-content-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <table style="width:100%">
+                    <tr>
+                        <th style="text-align: left;"><p class="NameText" style="font-weight: normal;">Overzicht</p></th>
+                        <th style="text-align: right;">
+
+                            <a href="?page=gebruikersoverzicht">
+                                <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
+                                    <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> Mijn overzicht</button>
+                            </a>
+
+                        </th>
+                    </tr>
+                </table>
+                <hr>
+
+                <table id="myTable" class="table table-striped" >
+                    <thead>
+                    <tr>
+                        <?php if($get_filled_info !== null) {?>
+                            <th style="display:none">ID</th>
+                            <th>Onderwerp</th>
+                            <th>Verstuurder</th>
+                            <th>Naam</th>
+                            <th id="date">Datum</th>
+                            <th>Status</th>
+                        <?php }
+                        else {?>
+                            <th></th>
+                        <?php } ?>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    if($get_filled_info !== null) {
+                        foreach ($get_filled_info as $upload) { ?>
+                            <tr>
+                                <td style="display:none">
+                                    <?= $upload['id']; ?>
+                                </td>
+                                <td>
+                                    <a href="#myModal" data-toggle="modal" data-id="<?= $upload['id']?>" href="#upl<?= $upload['id']?>"><?= $upload['onderwerp'] ?></a>
+                                </td>
+                                <td>
+                                    <?= $upload['verstuurder'] ?>
+                                </td>
+                                <td>
+                                    <?= $upload['naam'] ?>
+                                </td>
+                                <td>
+                                    <?= date("d-m-Y", strtotime($upload['datum'])); ?>
+                                </td>
+                                <td>
+                                    <span style="display:none" id="status"><?= $upload['verified']; ?></span>
+                                    <?php if ($upload['verified'] == 1) { ?>
+                                        <img alt="Gezien" style="width: 50px; height: 50px;"
+                                             src="public/icons/gezien.png">
+                                    <?php } elseif ($upload['verified'] == 2) { ?>
+                                        <img alt="Geaccepteerd" src="public/icons/akkoord.png">
+                                    <?php } elseif ($upload['verified'] == 3) { ?>
+                                        <img alt="Geweigerd" src="public/icons/geweigerd.png">
+                                    <?php } else { ?>
+                                        <img alt="Uploaded" src="public/icons/uploaded.png">
+                                    <?php } ?>
+                                </td>
+                            </tr>
+                        <?php }
+                    }
+                    else {?>
+                        <td>U heeft nog geen proeven geaccordeerd</td>
+                    <?php } ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function(){
+        $('#myTable').dataTable({
+            "order": [[ 0, "desc" ]]
+        });
+
+    });
+</script>
+

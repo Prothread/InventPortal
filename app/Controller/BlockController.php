@@ -28,7 +28,7 @@ class BlockController
     }
 
     /**
-     * Haal ale uploads op
+     * Haal alle uploads op
      *
      * @return array|null
      */
@@ -58,6 +58,17 @@ class BlockController
     public function getAllUserUploadsCountByVerified($id)
     {
         return $this->model->getAllUserUploadsCountByVerified($id);
+    }
+
+    /**
+     * Haal alle uploads op die ouder zijn dan 7 dagen (me eventuele verified)
+     *
+     * @return array|null
+     */
+
+    public function getOlderUploads($verified = null)
+    {
+        return $this->model->getOlderUploads($verified);
     }
 
     /**

@@ -34,8 +34,20 @@ class Block
      * @return array|null
      */
 
-    public function getUploads(){
+    public function getUploads()
+    {
         return $this->db->getUploads();
+    }
+
+    /**
+     * Haal alle uploads op die ouder zijn dan 7 dagen
+     *
+     * @return array|null
+     */
+
+    public function getOlderUploads($verified = null)
+    {
+        return $this->db->getOlderUploads($verified);
     }
 
     /**

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 07 nov 2016 om 16:57
+-- Gegenereerd op: 22 nov 2016 om 13:34
 -- Serverversie: 10.1.13-MariaDB
 -- PHP-versie: 7.0.6
 
@@ -23,6 +23,30 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Tabelstructuur voor tabel `comments`
+--
+
+CREATE TABLE `comments` (
+  `id` int(11) NOT NULL,
+  `mailid` int(11) NOT NULL,
+  `comment` varchar(200) NOT NULL,
+  `commentgroep` int(11) NOT NULL,
+  `datum` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `comments`
+--
+
+INSERT INTO `comments` (`id`, `mailid`, `comment`, `commentgroep`, `datum`) VALUES
+(1, 100, 'Primare kleuren zijn geel en rood.', 1, '2016-11-18'),
+(2, 100, 'Het is beter, maar nog niet helemaal goed. Als je de onderkant afrond is de proef voor mij goedgekeurd', 2, '2016-11-17'),
+(3, 100, 'Iets belangrijker', 3, '2016-11-08'),
+(4, 100, 'Belangrijkst', 4, '2016-11-03');
+
+-- --------------------------------------------------------
+
+--
 -- Tabelstructuur voor tabel `image`
 --
 
@@ -31,188 +55,254 @@ CREATE TABLE `image` (
   `mailid` int(11) NOT NULL,
   `fakename` varchar(64) NOT NULL,
   `images` varchar(64) NOT NULL,
-  `verify` int(1) NOT NULL
+  `verify` int(1) NOT NULL,
+  `downloadable` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `image`
 --
 
-INSERT INTO `image` (`id`, `mailid`, `fakename`, `images`, `verify`) VALUES
-(1, 1, '', '6b4_1.jpg', 3),
-(2, 1, '', 'sword-art-online-201601228_1.jpg', 3),
-(3, 2, '', '6b4_2.jpg', 0),
-(4, 2, '', 'sword-art-online-201601228_2.jpg', 3),
-(5, 3, '', '6b4_3.jpg', 0),
-(6, 3, '', 'sword-art-online-201601228_3.jpg', 0),
-(7, 4, '', '6b4_4.jpg', 1),
-(8, 4, '', 'sword-art-online-201601228_4.jpg', 1),
-(9, 5, '', '005_charmeleon_by_rayo123000-d8mriq9_5.png', 0),
-(10, 5, '', '131Lapras_Pokemon_Mystery_Dungeon_Explorers_of_Time_and_Darkness', 0),
-(11, 5, '', 'Celeste0502-image-celeste0502-36795437-1200-960_5.jpg', 0),
-(12, 5, '', 'Goodra_5.jpg', 0),
-(13, 5, '', 'Hatsune3_5.png', 0),
-(14, 5, '', 'Kangaroo-in-Sunset-photos_5.jpg', 0),
-(15, 5, '', 'lina_5.jpg', 0),
-(16, 6, '', '005_charmeleon_by_rayo123000-d8mriq9_6.png', 0),
-(17, 6, '', '131Lapras_Pokemon_Mystery_Dungeon_Explorers_of_Time_and_Darkness', 0),
-(18, 6, '', 'Celeste0502-image-celeste0502-36795437-1200-960_6.jpg', 0),
-(19, 6, '', 'Goodra_6.jpg', 0),
-(20, 6, '', 'Hatsune3_6.png', 0),
-(21, 6, '', 'Kangaroo-in-Sunset-photos_6.jpg', 0),
-(22, 6, '', 'lina_6.jpg', 0),
-(23, 7, '', '005_charmeleon_by_rayo123000-d8mriq9_7.png', 0),
-(24, 7, '', '131Lapras_Pokemon_Mystery_Dungeon_Explorers_of_Time_and_Darkness', 0),
-(25, 7, '', 'Celeste0502-image-celeste0502-36795437-1200-960_7.jpg', 0),
-(26, 7, '', 'Goodra_7.jpg', 0),
-(27, 7, '', 'Hatsune3_7.png', 0),
-(28, 7, '', 'Kangaroo-in-Sunset-photos_7.jpg', 0),
-(29, 7, '', 'lina_7.jpg', 0),
-(30, 7, '', 'maxresdefault_7.jpg', 0),
-(31, 7, '', 'saomusicmodpic_7.jpg', 0),
-(32, 8, '', '005_charmeleon_by_rayo123000-d8mriq9_8.png', 0),
-(33, 8, '', '131Lapras_Pokemon_Mystery_Dungeon_Explorers_of_Time_and_Darkness', 0),
-(34, 8, '', 'Celeste0502-image-celeste0502-36795437-1200-960_8.jpg', 0),
-(35, 8, '', 'Goodra_8.jpg', 0),
-(36, 8, '', 'Hatsune3_8.png', 0),
-(37, 8, '', 'Kangaroo-in-Sunset-photos_8.jpg', 0),
-(38, 8, '', 'lina_8.jpg', 0),
-(39, 8, '', 'maxresdefault_8.jpg', 0),
-(40, 8, '', 'saomusicmodpic_8.jpg', 0),
-(41, 9, '', 'Celeste0502-image-celeste0502-36795437-1200-960_9.jpg', 0),
-(42, 9, '', 'Goodra_9.jpg', 1),
-(43, 10, '', '', 3),
-(44, 11, '', '', 3),
-(45, 12, '', '4k_12.jpg', 0),
-(46, 12, '', 'NCLdctC_12.jpg', 0),
-(47, 13, '', '4k_13.jpg', 0),
-(48, 13, '', 'NCLdctC_13.jpg', 0),
-(49, 14, '', '4k_14.jpg', 0),
-(50, 14, '', 'NCLdctC_14.jpg', 0),
-(51, 15, '', '4k_15.jpg', 0),
-(52, 15, '', 'NCLdctC_15.jpg', 0),
-(53, 16, '', '4k_16.jpg', 0),
-(54, 17, '', '4k_17.jpg', 0),
-(55, 17, '', 'NCLdctC_17.jpg', 0),
-(56, 18, '', '4k_18.jpg', 1),
-(57, 18, '', 'NCLdctC_18.jpg', 2),
-(58, 19, '', '4k_19.jpg', 0),
-(59, 19, '', 'NCLdctC_19.jpg', 0),
-(60, 20, '', '4k_20.jpg', 1),
-(61, 20, '', 'NCLdctC_20.jpg', 2),
-(62, 21, '', '4k_21.jpg', 0),
-(63, 22, '', '4k_22.jpg', 1),
-(64, 22, '', 'NCLdctC_22.jpg', 2),
-(65, 23, '6b4.jpg', '6b4_23.jpg', 1),
-(66, 23, 'sword-art-online-201601228.jpg', 'sword-art-online-201601228_23.jpg', 1),
-(67, 24, '', 'sword-art-online-201601228_24.jpg', 0),
-(68, 25, '6b4.jpg', '6b4_25.jpg', 1),
-(69, 25, 'sword-art-online-201601228.jpg', 'sword-art-online-201601228_25.jpg', 2),
-(70, 26, '6b4.jpg', '6b4_26.jpg', 0),
-(71, 27, 'failfive.png', 'failfive_27.png', 0),
-(72, 28, 'failfive.png', 'failfive_28.png', 0),
-(73, 29, '6b4.jpg', '6b4_29.jpg', 0),
-(74, 30, '6b4.jpg, failfive.png, sword-art-online-201601228.jpg', '6b4_30.jpg', 1),
-(75, 30, '6b4.jpg, failfive.png, sword-art-online-201601228.jpg', 'failfive_30.png', 1),
-(76, 30, '6b4.jpg, failfive.png, sword-art-online-201601228.jpg', 'sword-art-online-201601228_30.jpg', 1),
-(77, 31, '6b4.jpg, failfive.png', '6b4_31.jpg', 0),
-(78, 31, '6b4.jpg, failfive.png', 'failfive_31.png', 0),
-(79, 32, '', '', 0),
-(80, 33, '6b4.jpg, failfive.png, sword-art-online-201601228.jpg', '6b4_33.jpg', 0),
-(81, 33, '6b4.jpg, failfive.png, sword-art-online-201601228.jpg', 'failfive_33.png', 0),
-(82, 33, '6b4.jpg, failfive.png, sword-art-online-201601228.jpg', 'sword-art-online-201601228_33.jpg', 0),
-(83, 34, '6b4.jpg, failfive.png, sword-art-online-201601228.jpg', '6b4_34.jpg', 0),
-(84, 34, '6b4.jpg, failfive.png, sword-art-online-201601228.jpg', 'failfive_34.png', 0),
-(85, 34, '6b4.jpg, failfive.png, sword-art-online-201601228.jpg', 'sword-art-online-201601228_34.jpg', 0),
-(86, 35, '005_charmeleon_by_rayo123000-d8mriq9.png, 131Lapras_Pokemon_Myst', '005_charmeleon_by_rayo123000-d8mriq9_35.png', 0),
-(87, 35, '005_charmeleon_by_rayo123000-d8mriq9.png, 131Lapras_Pokemon_Myst', '131Lapras_Pokemon_Mystery_Dungeon_Explorers_of_Time_and_Darkness', 0),
-(88, 35, '005_charmeleon_by_rayo123000-d8mriq9.png, 131Lapras_Pokemon_Myst', 'Celeste0502-image-celeste0502-36795437-1200-960_35.jpg', 0),
-(89, 36, '005_charmeleon_by_rayo123000-d8mriq9.png, 131Lapras_Pokemon_Myst', '005_charmeleon_by_rayo123000-d8mriq9_36.png', 0),
-(90, 36, '005_charmeleon_by_rayo123000-d8mriq9.png, 131Lapras_Pokemon_Myst', '131Lapras_Pokemon_Mystery_Dungeon_Explorers_of_Time_and_Darkness', 0),
-(91, 36, '005_charmeleon_by_rayo123000-d8mriq9.png, 131Lapras_Pokemon_Myst', 'Celeste0502-image-celeste0502-36795437-1200-960_36.jpg', 0),
-(92, 37, '131Lapras_Pokemon_Mystery_Dungeon_Explorers_of_Time_and_Darkness', '131Lapras_Pokemon_Mystery_Dungeon_Explorers_of_Time_and_Darkness', 0),
-(93, 37, 'Celeste0502-image-celeste0502-36795437-1200-960_37.jpg', 'Celeste0502-image-celeste0502-36795437-1200-960_37.jpg', 0),
-(94, 37, 'Goodra_37.jpg', 'Goodra_37.jpg', 0),
-(95, 38, '131Lapras_Pokemon_Mystery_Dungeon_Explorers_of_Time_and_Darkness', '131Lapras_Pokemon_Mystery_Dungeon_Explorers_of_Time_and_Darkness', 0),
-(96, 38, 'Celeste0502-image-celeste0502-36795437-1200-960_38.jpg', 'Celeste0502-image-celeste0502-36795437-1200-960_38.jpg', 0),
-(97, 38, 'Goodra_38.jpg', 'Goodra_38.jpg', 0),
-(98, 39, '131Lapras_Pokemon_Mystery_Dungeon_Explorers_of_Time_and_Darkness', '131Lapras_Pokemon_Mystery_Dungeon_Explorers_of_Time_and_Darkness', 0),
-(99, 39, 'Celeste0502-image-celeste0502-36795437-1200-960_39.jpg', 'Celeste0502-image-celeste0502-36795437-1200-960_39.jpg', 0),
-(100, 39, 'Goodra_39.jpg', 'Goodra_39.jpg', 0),
-(101, 40, '131Lapras_Pokemon_Mystery_Dungeon_Explorers_of_Time_and_Darkness', '131Lapras_Pokemon_Mystery_Dungeon_Explorers_of_Time_and_Darkness', 0),
-(102, 40, 'Celeste0502-image-celeste0502-36795437-1200-960_40.jpg', 'Celeste0502-image-celeste0502-36795437-1200-960_40.jpg', 0),
-(103, 40, 'Goodra_40.jpg', 'Goodra_40.jpg', 0),
-(104, 41, '131Lapras_Pokemon_Mystery_Dungeon_Explorers_of_Time_and_Darkness', '131Lapras_Pokemon_Mystery_Dungeon_Explorers_of_Time_and_Darkness', 0),
-(105, 41, 'Celeste0502-image-celeste0502-36795437-1200-960_41.jpg', 'Celeste0502-image-celeste0502-36795437-1200-960_41.jpg', 0),
-(106, 41, 'Goodra_41.jpg', 'Goodra_41.jpg', 0),
-(107, 42, '005_charmeleon_by_rayo123000-d8mriq9.png', '005_charmeleon_by_rayo123000-d8mriq9_42.png', 0),
-(108, 42, '131Lapras_Pokemon_Mystery_Dungeon_Explorers_of_Time_and_Darkness', '131Lapras_Pokemon_Mystery_Dungeon_Explorers_of_Time_and_Darkness', 0),
-(109, 42, 'Celeste0502-image-celeste0502-36795437-1200-960.jpg', 'Celeste0502-image-celeste0502-36795437-1200-960_42.jpg', 0),
-(110, 42, 'Goodra.jpg', 'Goodra_42.jpg', 0),
-(111, 43, '2fc5229b52aa228de5931ad4a6fc3e7a.png', '2fc5229b52aa228de5931ad4a6fc3e7a_43.png', 1),
-(112, 43, '83900a5b6d403ddbfd4e843ea70828f4.jpg', '83900a5b6d403ddbfd4e843ea70828f4_43.jpg', 3),
-(113, 43, 'Logo_TV_2015.png', 'Logo_TV_2015_43.png', 1),
-(114, 44, '2fc5229b52aa228de5931ad4a6fc3e7a - kopie.png', '2fc5229b52aa228de5931ad4a6fc3e7a - kopie_44.png', 0),
-(115, 44, '2fc5229b52aa228de5931ad4a6fc3e7a.png', '2fc5229b52aa228de5931ad4a6fc3e7a_44.png', 0),
-(116, 44, '83900a5b6d403ddbfd4e843ea70828f4.jpg', '83900a5b6d403ddbfd4e843ea70828f4_44.jpg', 0),
-(117, 0, 'Logo_TV_2015.png', 'Logo_TV_2015_44.png', 0),
-(118, 0, 'Logo_TV_2015.png', 'Logo_TV_2015_44.png', 0),
-(119, 0, 'Logo_TV_2015.png', 'Logo_TV_2015_44.png', 0),
-(120, 0, 'Logo_TV_2015.png', 'Logo_TV_2015_44.png', 0),
-(121, 0, 'Logo_TV_2015.png', 'Logo_TV_2015_44.png', 0),
-(122, 0, 'Vanamo_Logo.png', 'Vanamo_Logo_44.png', 0),
-(123, 0, 'Logo_TV_2015.png', 'Logo_TV_2015_44.png', 0),
-(124, 44, 'xbox-logo_318-53731.jpg', 'xbox-logo_318-53731_44.jpg', 1),
-(125, 44, 'Vanamo_Logo.png', 'Vanamo_Logo_44.png', 1),
-(126, 45, 'Vanamo_Logo.png', 'Vanamo_Logo_45.png', 0),
-(127, 45, 'xbox-logo_318-53731.jpg', 'xbox-logo_318-53731_45.jpg', 0),
-(128, 43, 'Vanamo_Logo.png', 'Vanamo_Logo_43.png', 0),
-(129, 46, '83900a5b6d403ddbfd4e843ea70828f4.jpg', '83900a5b6d403ddbfd4e843ea70828f4_46.jpg', 1),
-(130, 46, 'Logo_TV_2015.png', 'Logo_TV_2015_46.png', 2),
-(131, 46, 'Vanamo_Logo.png', 'Vanamo_Logo_46.png', 1),
-(132, 46, 'xbox-logo_318-53731.jpg', 'xbox-logo_318-53731_46.jpg', 1),
-(133, 47, '2fc5229b52aa228de5931ad4a6fc3e7a.png', '2fc5229b52aa228de5931ad4a6fc3e7a_47.png', 1),
-(134, 47, '83900a5b6d403ddbfd4e843ea70828f4.jpg', '83900a5b6d403ddbfd4e843ea70828f4_47.jpg', 1),
-(135, 48, 'Logo_TV_2015.png', 'Logo_TV_2015_48.png', 0),
-(136, 48, 'Vanamo_Logo.png', 'Vanamo_Logo_48.png', 0),
-(137, 48, 'xbox-logo_318-53731.jpg', 'xbox-logo_318-53731_48.jpg', 0),
-(138, 49, '6b4.jpg', '6b4_49.jpg', 0),
-(139, 50, '6b4.jpg', '6b4_50.jpg', 1),
-(140, 51, '6b4.jpg', '6b4_51.jpg', 1),
-(141, 51, 'sword-art-online-201601228.jpg', 'sword-art-online-201601228_51.jpg', 1),
-(142, 52, '6b4.jpg', '6b4_52.jpg', 0),
-(143, 53, 'failfive.png', 'failfive_53.png', 0),
-(144, 54, '6b4.jpg', '6b4_54.jpg', 0),
-(145, 55, '6b4.jpg', '6b4_55.jpg', 0),
-(146, 56, '6b4.jpg', '6b4_56.jpg', 0),
-(147, 57, '6b4.jpg', '6b4_57.jpg', 0),
-(148, 58, '6b4.jpg', '6b4_58.jpg', 0),
-(149, 58, 'sword-art-online-201601228.jpg', 'sword-art-online-201601228_58.jpg', 0),
-(150, 60, '6b4.jpg', '6b4_60.jpg', 0),
-(151, 62, 'sword-art-online-201601228.jpg', 'sword-art-online-201601228_62.jpg', 0),
-(152, 63, 'sword-art-online-201601228.jpg', 'sword-art-online-201601228_63.jpg', 0),
-(153, 64, '6b4.jpg', '6b4_64.jpg', 1),
-(154, 64, 'failfive.png', 'failfive_64.png', 2),
-(155, 65, 'Logo_TV_2015.png', 'Logo_TV_2015_65.png', 1),
-(156, 65, 'Vanamo_Logo.png', 'Vanamo_Logo_65.png', 1),
-(157, 66, 'xbox-logo_318-53731.jpg', 'xbox-logo_318-53731_66.jpg', 0),
-(158, 67, '2fc5229b52aa228de5931ad4a6fc3e7a.png', '2fc5229b52aa228de5931ad4a6fc3e7a_67.png', 0),
-(159, 67, '83900a5b6d403ddbfd4e843ea70828f4.jpg', '83900a5b6d403ddbfd4e843ea70828f4_67.jpg', 0),
-(160, 68, 'Vanamo_Logo.png', 'Vanamo_Logo_68.png', 0),
-(161, 69, '6b4.jpg', '6b4_69.jpg', 1),
-(162, 70, 'Vanamo_Logo_65 (1).png', 'Vanamo_Logo_65-(1)_70.png', 0),
-(163, 71, 'Logo_TV_2015.png', 'Logo_TV_2015_71.png', 0),
-(164, 72, '83900a5b6d403ddbfd4e843ea70828f4.jpg', '83900a5b6d403ddbfd4e843ea70828f4_72.jpg', 1),
-(165, 73, 'fairy_tail__natsu_after_1_year_by_ar_ua-d8gjzsq.jpg', 'fairy_tail__natsu_after_1_year_by_ar_ua-d8gjzsq_73.jpg', 0),
-(166, 74, 'Vanamo_Logo.png', 'Vanamo_Logo_74.png', 0),
-(167, 74, 'Vanamo_Logo.png', 'Vanamo_Logo_74.png', 0),
-(168, 75, '2fc5229b52aa228de5931ad4a6fc3e7a.png', '2fc5229b52aa228de5931ad4a6fc3e7a_75.png', 1),
-(169, 75, '83900a5b6d403ddbfd4e843ea70828f4.jpg', '83900a5b6d403ddbfd4e843ea70828f4_75.jpg', 2),
-(170, 76, 'fairy_tail__natsu_after_1_year_by_ar_ua-d8gjzsq.jpg', 'fairy_tail__natsu_after_1_year_by_ar_ua-d8gjzsq_76.jpg', 1),
-(171, 76, 'Logo_TV_2015.png', 'Logo_TV_2015_76.png', 1),
-(172, 76, 'TmT5UPrT.jpg', 'TmT5UPrT_76.jpg', 2),
-(173, 76, 'Vanamo_Logo.png', 'Vanamo_Logo_76.png', 1),
-(174, 77, 'pdf-sample_49.pdf', 'pdf-sample_49_77.pdf', 0);
+INSERT INTO `image` (`id`, `mailid`, `fakename`, `images`, `verify`, `downloadable`) VALUES
+(1, 1, '', '6b4_1.jpg', 3, 0),
+(2, 1, '', 'sword-art-online-201601228_1.jpg', 3, 0),
+(3, 2, '', '6b4_2.jpg', 0, 0),
+(4, 2, '', 'sword-art-online-201601228_2.jpg', 3, 0),
+(5, 3, '', '6b4_3.jpg', 0, 0),
+(6, 3, '', 'sword-art-online-201601228_3.jpg', 0, 0),
+(7, 4, '', '6b4_4.jpg', 1, 0),
+(8, 4, '', 'sword-art-online-201601228_4.jpg', 1, 0),
+(9, 5, '', '005_charmeleon_by_rayo123000-d8mriq9_5.png', 0, 0),
+(10, 5, '', '131Lapras_Pokemon_Mystery_Dungeon_Explorers_of_Time_and_Darkness', 0, 0),
+(11, 5, '', 'Celeste0502-image-celeste0502-36795437-1200-960_5.jpg', 0, 0),
+(12, 5, '', 'Goodra_5.jpg', 0, 0),
+(13, 5, '', 'Hatsune3_5.png', 0, 0),
+(14, 5, '', 'Kangaroo-in-Sunset-photos_5.jpg', 0, 0),
+(15, 5, '', 'lina_5.jpg', 0, 0),
+(16, 6, '', '005_charmeleon_by_rayo123000-d8mriq9_6.png', 0, 0),
+(17, 6, '', '131Lapras_Pokemon_Mystery_Dungeon_Explorers_of_Time_and_Darkness', 0, 0),
+(18, 6, '', 'Celeste0502-image-celeste0502-36795437-1200-960_6.jpg', 0, 0),
+(19, 6, '', 'Goodra_6.jpg', 0, 0),
+(20, 6, '', 'Hatsune3_6.png', 0, 0),
+(21, 6, '', 'Kangaroo-in-Sunset-photos_6.jpg', 0, 0),
+(22, 6, '', 'lina_6.jpg', 0, 0),
+(23, 7, '', '005_charmeleon_by_rayo123000-d8mriq9_7.png', 0, 0),
+(24, 7, '', '131Lapras_Pokemon_Mystery_Dungeon_Explorers_of_Time_and_Darkness', 0, 0),
+(25, 7, '', 'Celeste0502-image-celeste0502-36795437-1200-960_7.jpg', 0, 0),
+(26, 7, '', 'Goodra_7.jpg', 0, 0),
+(27, 7, '', 'Hatsune3_7.png', 0, 0),
+(28, 7, '', 'Kangaroo-in-Sunset-photos_7.jpg', 0, 0),
+(29, 7, '', 'lina_7.jpg', 0, 0),
+(30, 7, '', 'maxresdefault_7.jpg', 0, 0),
+(31, 7, '', 'saomusicmodpic_7.jpg', 0, 0),
+(32, 8, '', '005_charmeleon_by_rayo123000-d8mriq9_8.png', 0, 0),
+(33, 8, '', '131Lapras_Pokemon_Mystery_Dungeon_Explorers_of_Time_and_Darkness', 0, 0),
+(34, 8, '', 'Celeste0502-image-celeste0502-36795437-1200-960_8.jpg', 0, 0),
+(35, 8, '', 'Goodra_8.jpg', 0, 0),
+(36, 8, '', 'Hatsune3_8.png', 0, 0),
+(37, 8, '', 'Kangaroo-in-Sunset-photos_8.jpg', 0, 0),
+(38, 8, '', 'lina_8.jpg', 0, 0),
+(39, 8, '', 'maxresdefault_8.jpg', 0, 0),
+(40, 8, '', 'saomusicmodpic_8.jpg', 0, 0),
+(41, 9, '', 'Celeste0502-image-celeste0502-36795437-1200-960_9.jpg', 0, 0),
+(42, 9, '', 'Goodra_9.jpg', 1, 0),
+(43, 10, '', '', 3, 0),
+(44, 11, '', '', 3, 0),
+(45, 12, '', '4k_12.jpg', 0, 0),
+(46, 12, '', 'NCLdctC_12.jpg', 0, 0),
+(47, 13, '', '4k_13.jpg', 0, 0),
+(48, 13, '', 'NCLdctC_13.jpg', 0, 0),
+(49, 14, '', '4k_14.jpg', 0, 0),
+(50, 14, '', 'NCLdctC_14.jpg', 0, 0),
+(51, 15, '', '4k_15.jpg', 0, 0),
+(52, 15, '', 'NCLdctC_15.jpg', 0, 0),
+(53, 16, '', '4k_16.jpg', 0, 0),
+(54, 17, '', '4k_17.jpg', 0, 0),
+(55, 17, '', 'NCLdctC_17.jpg', 0, 0),
+(56, 18, '', '4k_18.jpg', 1, 0),
+(57, 18, '', 'NCLdctC_18.jpg', 2, 0),
+(58, 19, '', '4k_19.jpg', 0, 0),
+(59, 19, '', 'NCLdctC_19.jpg', 0, 0),
+(60, 20, '', '4k_20.jpg', 1, 0),
+(61, 20, '', 'NCLdctC_20.jpg', 2, 0),
+(62, 21, '', '4k_21.jpg', 0, 0),
+(63, 22, '', '4k_22.jpg', 1, 0),
+(64, 22, '', 'NCLdctC_22.jpg', 2, 0),
+(65, 23, '6b4.jpg', '6b4_23.jpg', 1, 0),
+(66, 23, 'sword-art-online-201601228.jpg', 'sword-art-online-201601228_23.jpg', 1, 0),
+(67, 24, '', 'sword-art-online-201601228_24.jpg', 0, 0),
+(68, 25, '6b4.jpg', '6b4_25.jpg', 1, 0),
+(69, 25, 'sword-art-online-201601228.jpg', 'sword-art-online-201601228_25.jpg', 2, 0),
+(70, 26, '6b4.jpg', '6b4_26.jpg', 0, 0),
+(71, 27, 'failfive.png', 'failfive_27.png', 0, 0),
+(72, 28, 'failfive.png', 'failfive_28.png', 0, 0),
+(73, 29, '6b4.jpg', '6b4_29.jpg', 0, 0),
+(74, 30, '6b4.jpg, failfive.png, sword-art-online-201601228.jpg', '6b4_30.jpg', 1, 0),
+(75, 30, '6b4.jpg, failfive.png, sword-art-online-201601228.jpg', 'failfive_30.png', 1, 0),
+(76, 30, '6b4.jpg, failfive.png, sword-art-online-201601228.jpg', 'sword-art-online-201601228_30.jpg', 1, 0),
+(77, 31, '6b4.jpg, failfive.png', '6b4_31.jpg', 0, 0),
+(78, 31, '6b4.jpg, failfive.png', 'failfive_31.png', 0, 0),
+(79, 32, '', '', 0, 0),
+(80, 33, '6b4.jpg, failfive.png, sword-art-online-201601228.jpg', '6b4_33.jpg', 0, 0),
+(81, 33, '6b4.jpg, failfive.png, sword-art-online-201601228.jpg', 'failfive_33.png', 0, 0),
+(82, 33, '6b4.jpg, failfive.png, sword-art-online-201601228.jpg', 'sword-art-online-201601228_33.jpg', 0, 0),
+(83, 34, '6b4.jpg, failfive.png, sword-art-online-201601228.jpg', '6b4_34.jpg', 0, 0),
+(84, 34, '6b4.jpg, failfive.png, sword-art-online-201601228.jpg', 'failfive_34.png', 0, 0),
+(85, 34, '6b4.jpg, failfive.png, sword-art-online-201601228.jpg', 'sword-art-online-201601228_34.jpg', 0, 0),
+(86, 35, '005_charmeleon_by_rayo123000-d8mriq9.png, 131Lapras_Pokemon_Myst', '005_charmeleon_by_rayo123000-d8mriq9_35.png', 0, 0),
+(87, 35, '005_charmeleon_by_rayo123000-d8mriq9.png, 131Lapras_Pokemon_Myst', '131Lapras_Pokemon_Mystery_Dungeon_Explorers_of_Time_and_Darkness', 0, 0),
+(88, 35, '005_charmeleon_by_rayo123000-d8mriq9.png, 131Lapras_Pokemon_Myst', 'Celeste0502-image-celeste0502-36795437-1200-960_35.jpg', 0, 0),
+(89, 36, '005_charmeleon_by_rayo123000-d8mriq9.png, 131Lapras_Pokemon_Myst', '005_charmeleon_by_rayo123000-d8mriq9_36.png', 0, 0),
+(90, 36, '005_charmeleon_by_rayo123000-d8mriq9.png, 131Lapras_Pokemon_Myst', '131Lapras_Pokemon_Mystery_Dungeon_Explorers_of_Time_and_Darkness', 3, 0),
+(91, 36, '005_charmeleon_by_rayo123000-d8mriq9.png, 131Lapras_Pokemon_Myst', 'Celeste0502-image-celeste0502-36795437-1200-960_36.jpg', 0, 0),
+(92, 37, '131Lapras_Pokemon_Mystery_Dungeon_Explorers_of_Time_and_Darkness', '131Lapras_Pokemon_Mystery_Dungeon_Explorers_of_Time_and_Darkness', 0, 0),
+(93, 37, 'Celeste0502-image-celeste0502-36795437-1200-960_37.jpg', 'Celeste0502-image-celeste0502-36795437-1200-960_37.jpg', 0, 0),
+(94, 37, 'Goodra_37.jpg', 'Goodra_37.jpg', 0, 0),
+(95, 38, '131Lapras_Pokemon_Mystery_Dungeon_Explorers_of_Time_and_Darkness', '131Lapras_Pokemon_Mystery_Dungeon_Explorers_of_Time_and_Darkness', 0, 0),
+(96, 38, 'Celeste0502-image-celeste0502-36795437-1200-960_38.jpg', 'Celeste0502-image-celeste0502-36795437-1200-960_38.jpg', 0, 0),
+(97, 38, 'Goodra_38.jpg', 'Goodra_38.jpg', 0, 0),
+(98, 39, '131Lapras_Pokemon_Mystery_Dungeon_Explorers_of_Time_and_Darkness', '131Lapras_Pokemon_Mystery_Dungeon_Explorers_of_Time_and_Darkness', 0, 0),
+(99, 39, 'Celeste0502-image-celeste0502-36795437-1200-960_39.jpg', 'Celeste0502-image-celeste0502-36795437-1200-960_39.jpg', 0, 0),
+(100, 39, 'Goodra_39.jpg', 'Goodra_39.jpg', 3, 1),
+(101, 40, '131Lapras_Pokemon_Mystery_Dungeon_Explorers_of_Time_and_Darkness', '131Lapras_Pokemon_Mystery_Dungeon_Explorers_of_Time_and_Darkness', 0, 0),
+(102, 40, 'Celeste0502-image-celeste0502-36795437-1200-960_40.jpg', 'Celeste0502-image-celeste0502-36795437-1200-960_40.jpg', 0, 0),
+(103, 40, 'Goodra_40.jpg', 'Goodra_40.jpg', 0, 0),
+(104, 41, '131Lapras_Pokemon_Mystery_Dungeon_Explorers_of_Time_and_Darkness', '131Lapras_Pokemon_Mystery_Dungeon_Explorers_of_Time_and_Darkness', 0, 0),
+(105, 41, 'Celeste0502-image-celeste0502-36795437-1200-960_41.jpg', 'Celeste0502-image-celeste0502-36795437-1200-960_41.jpg', 0, 0),
+(106, 41, 'Goodra_41.jpg', 'Goodra_41.jpg', 0, 0),
+(107, 42, '005_charmeleon_by_rayo123000-d8mriq9.png', '005_charmeleon_by_rayo123000-d8mriq9_42.png', 0, 0),
+(108, 42, '131Lapras_Pokemon_Mystery_Dungeon_Explorers_of_Time_and_Darkness', '131Lapras_Pokemon_Mystery_Dungeon_Explorers_of_Time_and_Darkness', 0, 0),
+(109, 42, 'Celeste0502-image-celeste0502-36795437-1200-960.jpg', 'Celeste0502-image-celeste0502-36795437-1200-960_42.jpg', 0, 0),
+(110, 42, 'Goodra.jpg', 'Goodra_42.jpg', 0, 0),
+(111, 43, '2fc5229b52aa228de5931ad4a6fc3e7a.png', '2fc5229b52aa228de5931ad4a6fc3e7a_43.png', 1, 0),
+(112, 43, '83900a5b6d403ddbfd4e843ea70828f4.jpg', '83900a5b6d403ddbfd4e843ea70828f4_43.jpg', 3, 0),
+(113, 43, 'Logo_TV_2015.png', 'Logo_TV_2015_43.png', 1, 0),
+(114, 44, '2fc5229b52aa228de5931ad4a6fc3e7a - kopie.png', '2fc5229b52aa228de5931ad4a6fc3e7a - kopie_44.png', 0, 0),
+(115, 44, '2fc5229b52aa228de5931ad4a6fc3e7a.png', '2fc5229b52aa228de5931ad4a6fc3e7a_44.png', 0, 0),
+(116, 44, '83900a5b6d403ddbfd4e843ea70828f4.jpg', '83900a5b6d403ddbfd4e843ea70828f4_44.jpg', 0, 0),
+(117, 0, 'Logo_TV_2015.png', 'Logo_TV_2015_44.png', 0, 0),
+(118, 0, 'Logo_TV_2015.png', 'Logo_TV_2015_44.png', 0, 0),
+(119, 0, 'Logo_TV_2015.png', 'Logo_TV_2015_44.png', 0, 0),
+(120, 0, 'Logo_TV_2015.png', 'Logo_TV_2015_44.png', 0, 0),
+(121, 0, 'Logo_TV_2015.png', 'Logo_TV_2015_44.png', 0, 0),
+(122, 0, 'Vanamo_Logo.png', 'Vanamo_Logo_44.png', 0, 0),
+(123, 0, 'Logo_TV_2015.png', 'Logo_TV_2015_44.png', 0, 0),
+(124, 44, 'xbox-logo_318-53731.jpg', 'xbox-logo_318-53731_44.jpg', 1, 0),
+(125, 44, 'Vanamo_Logo.png', 'Vanamo_Logo_44.png', 1, 0),
+(126, 45, 'Vanamo_Logo.png', 'Vanamo_Logo_45.png', 0, 0),
+(127, 45, 'xbox-logo_318-53731.jpg', 'xbox-logo_318-53731_45.jpg', 0, 0),
+(128, 43, 'Vanamo_Logo.png', 'Vanamo_Logo_43.png', 0, 0),
+(129, 46, '83900a5b6d403ddbfd4e843ea70828f4.jpg', '83900a5b6d403ddbfd4e843ea70828f4_46.jpg', 1, 0),
+(130, 46, 'Logo_TV_2015.png', 'Logo_TV_2015_46.png', 2, 0),
+(131, 46, 'Vanamo_Logo.png', 'Vanamo_Logo_46.png', 1, 0),
+(132, 46, 'xbox-logo_318-53731.jpg', 'xbox-logo_318-53731_46.jpg', 1, 0),
+(133, 47, '2fc5229b52aa228de5931ad4a6fc3e7a.png', '2fc5229b52aa228de5931ad4a6fc3e7a_47.png', 1, 0),
+(134, 47, '83900a5b6d403ddbfd4e843ea70828f4.jpg', '83900a5b6d403ddbfd4e843ea70828f4_47.jpg', 1, 0),
+(135, 48, 'Logo_TV_2015.png', 'Logo_TV_2015_48.png', 0, 0),
+(136, 48, 'Vanamo_Logo.png', 'Vanamo_Logo_48.png', 0, 0),
+(137, 48, 'xbox-logo_318-53731.jpg', 'xbox-logo_318-53731_48.jpg', 0, 0),
+(138, 49, '6b4.jpg', '6b4_49.jpg', 0, 0),
+(139, 50, '6b4.jpg', '6b4_50.jpg', 1, 0),
+(140, 51, '6b4.jpg', '6b4_51.jpg', 1, 0),
+(141, 51, 'sword-art-online-201601228.jpg', 'sword-art-online-201601228_51.jpg', 1, 0),
+(142, 52, '6b4.jpg', '6b4_52.jpg', 0, 0),
+(143, 53, 'failfive.png', 'failfive_53.png', 0, 0),
+(144, 54, '6b4.jpg', '6b4_54.jpg', 0, 0),
+(145, 55, '6b4.jpg', '6b4_55.jpg', 0, 0),
+(146, 56, '6b4.jpg', '6b4_56.jpg', 0, 0),
+(147, 57, '6b4.jpg', '6b4_57.jpg', 0, 0),
+(148, 58, '6b4.jpg', '6b4_58.jpg', 0, 0),
+(149, 58, 'sword-art-online-201601228.jpg', 'sword-art-online-201601228_58.jpg', 0, 0),
+(150, 60, '6b4.jpg', '6b4_60.jpg', 0, 0),
+(151, 62, 'sword-art-online-201601228.jpg', 'sword-art-online-201601228_62.jpg', 0, 0),
+(152, 63, 'sword-art-online-201601228.jpg', 'sword-art-online-201601228_63.jpg', 0, 0),
+(153, 64, '6b4.jpg', '6b4_64.jpg', 1, 0),
+(154, 64, 'failfive.png', 'failfive_64.png', 2, 0),
+(155, 65, 'Logo_TV_2015.png', 'Logo_TV_2015_65.png', 1, 0),
+(156, 65, 'Vanamo_Logo.png', 'Vanamo_Logo_65.png', 1, 0),
+(157, 66, 'xbox-logo_318-53731.jpg', 'xbox-logo_318-53731_66.jpg', 0, 0),
+(158, 67, '2fc5229b52aa228de5931ad4a6fc3e7a.png', '2fc5229b52aa228de5931ad4a6fc3e7a_67.png', 0, 0),
+(159, 67, '83900a5b6d403ddbfd4e843ea70828f4.jpg', '83900a5b6d403ddbfd4e843ea70828f4_67.jpg', 0, 0),
+(160, 68, 'Vanamo_Logo.png', 'Vanamo_Logo_68.png', 0, 0),
+(161, 69, '6b4.jpg', '6b4_69.jpg', 1, 0),
+(162, 70, 'Vanamo_Logo_65 (1).png', 'Vanamo_Logo_65-(1)_70.png', 0, 0),
+(163, 71, 'Logo_TV_2015.png', 'Logo_TV_2015_71.png', 0, 0),
+(164, 72, '83900a5b6d403ddbfd4e843ea70828f4.jpg', '83900a5b6d403ddbfd4e843ea70828f4_72.jpg', 1, 0),
+(165, 73, 'fairy_tail__natsu_after_1_year_by_ar_ua-d8gjzsq.jpg', 'fairy_tail__natsu_after_1_year_by_ar_ua-d8gjzsq_73.jpg', 0, 0),
+(166, 74, 'Vanamo_Logo.png', 'Vanamo_Logo_74.png', 0, 0),
+(167, 74, 'Vanamo_Logo.png', 'Vanamo_Logo_74.png', 0, 0),
+(168, 75, '2fc5229b52aa228de5931ad4a6fc3e7a.png', '2fc5229b52aa228de5931ad4a6fc3e7a_75.png', 1, 0),
+(169, 75, '83900a5b6d403ddbfd4e843ea70828f4.jpg', '83900a5b6d403ddbfd4e843ea70828f4_75.jpg', 2, 0),
+(170, 76, 'fairy_tail__natsu_after_1_year_by_ar_ua-d8gjzsq.jpg', 'fairy_tail__natsu_after_1_year_by_ar_ua-d8gjzsq_76.jpg', 1, 0),
+(171, 76, 'Logo_TV_2015.png', 'Logo_TV_2015_76.png', 1, 0),
+(172, 76, 'TmT5UPrT.jpg', 'TmT5UPrT_76.jpg', 2, 0),
+(173, 76, 'Vanamo_Logo.png', 'Vanamo_Logo_76.png', 1, 0),
+(174, 77, 'pdf-sample_49.pdf', 'pdf-sample_49_77.pdf', 0, 0),
+(175, 78, 'Logo_TV_2015.png', 'Logo_TV_2015_78.png', 0, 0),
+(176, 78, 'pdf-sample_49.pdf', 'pdf-sample_49_78.pdf', 0, 0),
+(177, 78, 'TmT5UPrT.jpg', 'TmT5UPrT_78.jpg', 0, 0),
+(178, 79, 'TmT5UPrT.jpg', 'TmT5UPrT_79.jpg', 1, 0),
+(179, 80, 'Logo_TV_2015.png', 'Logo_TV_2015_80.png', 0, 0),
+(180, 80, 'TmT5UPrT.jpg', 'TmT5UPrT_80.jpg', 0, 0),
+(181, 81, '2fc5229b52aa228de5931ad4a6fc3e7a.png', '2fc5229b52aa228de5931ad4a6fc3e7a_81.png', 1, 0),
+(182, 81, 'Logo_TV_2015.png', 'Logo_TV_2015_81.png', 2, 0),
+(183, 82, 'Logo_TV_2015.png', 'Logo_TV_2015_82.png', 0, 0),
+(184, 82, 'pdf-sample_49.pdf', 'pdf-sample_49_82.pdf', 0, 0),
+(185, 82, 'TmT5UPrT.jpg', 'TmT5UPrT_82.jpg', 0, 0),
+(186, 83, 'Logo_TV_2015.png', 'Logo_TV_2015_83.png', 0, 0),
+(187, 83, 'TmT5UPrT.jpg', 'TmT5UPrT_83.jpg', 0, 0),
+(188, 84, '2fc5229b52aa228de5931ad4a6fc3e7a.png', '2fc5229b52aa228de5931ad4a6fc3e7a_84.png', 0, 0),
+(189, 84, 'Logo_TV_2015.png', 'Logo_TV_2015_84.png', 0, 0),
+(190, 84, 'TmT5UPrT.jpg', 'TmT5UPrT_84.jpg', 0, 0),
+(191, 85, '2fc5229b52aa228de5931ad4a6fc3e7a.png', '2fc5229b52aa228de5931ad4a6fc3e7a_85.png', 0, 0),
+(192, 85, 'Logo_TV_2015.png', 'Logo_TV_2015_85.png', 0, 0),
+(193, 85, 'TmT5UPrT.jpg', 'TmT5UPrT_85.jpg', 0, 0),
+(194, 86, '2fc5229b52aa228de5931ad4a6fc3e7a.png', '2fc5229b52aa228de5931ad4a6fc3e7a_86.png', 0, 0),
+(195, 86, 'fairy_tail__natsu_after_1_year_by_ar_ua-d8gjzsq.jpg', 'fairy_tail__natsu_after_1_year_by_ar_ua-d8gjzsq_86.jpg', 0, 0),
+(196, 86, 'Logo_TV_2015.png', 'Logo_TV_2015_86.png', 0, 0),
+(197, 86, 'TmT5UPrT.jpg', 'TmT5UPrT_86.jpg', 0, 0),
+(198, 86, 'xbox-logo_318-53731.jpg', 'xbox-logo_318-53731_86.jpg', 0, 0),
+(199, 87, '2fc5229b52aa228de5931ad4a6fc3e7a.png', '2fc5229b52aa228de5931ad4a6fc3e7a_87.png', 1, 0),
+(200, 87, 'TmT5UPrT.jpg', 'TmT5UPrT_87.jpg', 1, 0),
+(201, 87, 'xbox-logo_318-53731.jpg', 'xbox-logo_318-53731_87.jpg', 2, 0),
+(202, 88, 'Logo_TV_2015.png', 'Logo_TV_2015_88.png', 1, 0),
+(203, 88, 'pdf-sample_49.pdf', 'pdf-sample_49_88.pdf', 2, 0),
+(204, 88, 'TmT5UPrT.jpg', 'TmT5UPrT_88.jpg', 0, 0),
+(205, 89, 'Logo_TV_2015.png', 'Logo_TV_2015_89.png', 1, 0),
+(206, 89, 'pdf-sample_49.pdf', 'pdf-sample_49_89.pdf', 2, 0),
+(207, 89, 'TmT5UPrT.jpg', 'TmT5UPrT_89.jpg', 1, 0),
+(208, 90, '2fc5229b52aa228de5931ad4a6fc3e7a.png', '2fc5229b52aa228de5931ad4a6fc3e7a_90.png', 1, 0),
+(209, 90, 'TmT5UPrT.jpg', 'TmT5UPrT_90.jpg', 3, 0),
+(210, 90, 'xbox-logo_318-53731.jpg', 'xbox-logo_318-53731_90.jpg', 1, 0),
+(211, 90, 'Vanamo_Logo.png', 'Vanamo_Logo_90.png', 0, 0),
+(212, 90, 'xbox-logo_318-53731.jpg', 'xbox-logo_318-53731_90.jpg', 0, 0),
+(213, 90, 'Vanamo_Logo.png', 'Vanamo_Logo_90.png', 0, 0),
+(214, 90, 'xbox-logo_318-53731.jpg', 'xbox-logo_318-53731_90.jpg', 0, 0),
+(215, 91, '83900a5b6d403ddbfd4e843ea70828f4.jpg', '83900a5b6d403ddbfd4e843ea70828f4_91.jpg', 0, 0),
+(216, 91, 'Logo_TV_2015.png', 'Logo_TV_2015_91.png', 0, 0),
+(217, 91, 'TmT5UPrT.jpg', 'TmT5UPrT_91.jpg', 0, 0),
+(218, 92, '2fc5229b52aa228de5931ad4a6fc3e7a.png', '2fc5229b52aa228de5931ad4a6fc3e7a_92.png', 0, 0),
+(219, 92, 'Logo_TV_2015.png', 'Logo_TV_2015_92.png', 0, 0),
+(220, 92, 'xbox-logo_318-53731.jpg', 'xbox-logo_318-53731_92.jpg', 0, 0),
+(221, 93, '2fc5229b52aa228de5931ad4a6fc3e7a.png', '2fc5229b52aa228de5931ad4a6fc3e7a_93.png', 1, 0),
+(222, 93, 'Logo_TV_2015.png', 'Logo_TV_2015_93.png', 1, 0),
+(223, 93, 'xbox-logo_318-53731.jpg', 'xbox-logo_318-53731_93.jpg', 1, 0),
+(224, 94, '2fc5229b52aa228de5931ad4a6fc3e7a.png', '2fc5229b52aa228de5931ad4a6fc3e7a_94.png', 0, 0),
+(225, 94, '83900a5b6d403ddbfd4e843ea70828f4.jpg', '83900a5b6d403ddbfd4e843ea70828f4_94.jpg', 0, 0),
+(226, 95, '2fc5229b52aa228de5931ad4a6fc3e7a.png', '2fc5229b52aa228de5931ad4a6fc3e7a_95.png', 0, 0),
+(227, 95, '83900a5b6d403ddbfd4e843ea70828f4.jpg', '83900a5b6d403ddbfd4e843ea70828f4_95.jpg', 0, 0),
+(228, 96, '2fc5229b52aa228de5931ad4a6fc3e7a.png', '2fc5229b52aa228de5931ad4a6fc3e7a_96.png', 0, 0),
+(229, 96, 'xbox-logo_318-53731.jpg', 'xbox-logo_318-53731_96.jpg', 0, 0),
+(230, 97, '2fc5229b52aa228de5931ad4a6fc3e7a.png', '2fc5229b52aa228de5931ad4a6fc3e7a_97.png', 0, 0),
+(231, 97, 'xbox-logo_318-53731.jpg', 'xbox-logo_318-53731_97.jpg', 0, 0),
+(232, 98, '2fc5229b52aa228de5931ad4a6fc3e7a.png', '2fc5229b52aa228de5931ad4a6fc3e7a_98.png', 0, 0),
+(233, 98, 'xbox-logo_318-53731.jpg', 'xbox-logo_318-53731_98.jpg', 0, 0),
+(234, 99, '2fc5229b52aa228de5931ad4a6fc3e7a.png', '2fc5229b52aa228de5931ad4a6fc3e7a_99.png', 1, 0),
+(235, 100, 'Logo_TV_2015.png', 'Logo_TV_2015_100.png', 1, 1),
+(236, 100, 'pdf-sample_49.pdf', 'pdf-sample_49_100.pdf', 3, 1),
+(237, 100, 'TmT5UPrT.jpg', 'TmT5UPrT_100.jpg', 1, 1),
+(238, 100, 'pdf-sample_49.pdf', 'pdf-sample_49_100.pdf', 1, 0),
+(239, 100, 'pdf-sample_49.pdf', 'pdf-sample_49_100.pdf', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -312,7 +402,30 @@ INSERT INTO `mail` (`id`, `onderwerp`, `verstuurder`, `beschrijving`, `naam`, `e
 (74, 'Let''s go', 'Gijs van den Abeele', 'afs', 'Jeffrey', 'kevin.herdershof@hotmail.com', 'eaa369f1b7c0e9426672cb67629f4536', '', '2016-11-02', 0),
 (75, 'Dit is a', 'Gijs van den Abeele', 'need multiple', 'Jeffrey', 'kevin.herdershof@hotmail.com', '02112016-14.18.26-192.08.1.124', 'asdf', '2016-11-02', 2),
 (76, 'DATEST BOIII', 'Gijs van den Abeele', '4jonge', 'Jeffrey', 'kevin.herdershof@hotmail.com', '02112016-15.19.09-192.08.1.124', 'asdf', '2016-11-02', 3),
-(77, 'pdf', 'Gijs van den Abeele', 'lala', 'Jeffrey', 'valckxj@outlook.com', '0f834438f50c707d87a0bf0f8f875c67', '', '2016-11-07', 0);
+(77, 'pdf', 'Gijs van den Abeele', 'lala', 'Jeffrey', 'valckxj@outlook.com', '0f834438f50c707d87a0bf0f8f875c67', '', '2016-11-07', 0),
+(78, 'test', 'Gijs van den Abeele', 'wew', 'Jeffrey', 'valckxj@outlook.com', '9161349f6108805481bfc293b0efa79c', '', '2016-11-08', 0),
+(79, 'aight', 'Madalco Mail', 'wewad', 'Jeffrey', 'kevin.herdershof@hotmail.com', '08112016-14.49.20-192.08.1.124', 'asdf', '2016-11-08', 0),
+(80, 'Ultimate test', 'Madalco Mail', 'wew', 'Jeffrey', 'kevin.herdershof@hotmail.com', '52e03c8ae7468041b25277855c1a6fa8', '', '2016-11-08', 1),
+(81, 'asdf', 'Madalco Mail', 'asdf', 'Jeffrey', 'kevin.herdershof@hotmail.com', '09112016-9.02.24-192.08.1.124', 'af', '2016-11-08', 0),
+(82, 'Ultimate test 2', 'Madalco Mail', 'wew', 'Jeffrey', 'kevin.herdershof@hotmail.com', 'e71012925952444773486a8570869e39', '', '2016-11-09', 1),
+(83, 'wew', 'Madalco Mail', 'tes', 'Jeffrey', 'kevin.herdershof@hotmail.com', '7cfd1aa09cac09af38900405ec95eac9', '', '2016-11-09', 1),
+(84, 'aha', 'Madalco Mail', 'afa', 'Jeffrey', 'kevin.herdershof@hotmail.com', '6b0a2591b69206ef6164bcf8fbe600fc', '', '2016-11-09', 1),
+(85, 'Jonge', 'Madalco Mail', 'asdf', 'Jeffrey', 'kevin.herdershof@hotmail.com', '6ed95f6003409547520a625ad4e5e5c9', '', '2016-11-09', 1),
+(86, 'so much testing', 'Madalco Mail', 'asdf', 'Jeffrey', 'kevin.herdershof@hotmail.com', '10572a4c25eabd75348eae10cf0f812f', '', '2016-11-09', 1),
+(87, 'de 3', 'Madalco Mail', 'POKERFAZE', 'Jeffrey', 'kevin.herdershof@hotmail.com', '09112016-9.56.10-192.08.1.124', 'is nog niet goed', '2016-11-09', 0),
+(88, 'this is it', 'Gijs van den Abeele', 'asdf', 'Jeffrey', 'kevin.herdershof@hotmail.com', '09112016-14.11.53-192.08.1.124', 'test', '2016-11-09', 0),
+(89, 'another test', 'Gijs van den Abeele', 'asdf', 'Jeffrey', 'kevin.herdershof@hotmail.com', '09112016-14.28.11-192.08.1.124', '25', '2016-11-09', 0),
+(90, 'RKOP', 'Gijs van den Abeele', 'Dumerdum', 'Jeffrey', 'kevin.herdershof@hotmail.com', 'b35cad78a9c1f09cee6ceb348111a80b', 'as', '2016-11-10', 0),
+(91, 'Joffer', 'Gijs van den Abeele', 'logo,tes,fanta', 'Jeffrey', 'kevin.herdershof@hotmail.com', '01a59d06dfafb638fefa3a1485ae892d', '', '2016-11-10', 0),
+(92, 'hakep', 'Gijs van den Abeele', 'elell', 'Jeffrey', 'kevin.herdershof@hotmail.com', '0030a848cac901890acc929ef97eeb0f', '', '2016-11-10', 0),
+(93, 'hakep', 'Gijs van den Abeele', 'elell', 'Jeffrey', 'kevin.herdershof@hotmail.com', '10112016-16.20.14-192.08.1.124', 'goeg', '2016-11-10', 2),
+(94, 'datest', 'Gijs van den Abeele', 'redirect test', 'Jeffrey', 'valckxj@outlook.com', '13be4cbe131546d98ad4e9cbaa304974', '', '2016-11-14', 0),
+(95, 'dess upload', 'Gijs van den Abeele', 'fanta ', 'Jeffrey', 'valckxj@outlook.com', '530cb2a470166ac1012e832e73f5a1e2', '', '2016-11-16', 0),
+(96, 'dees upload', 'Gijs van den Abeele', '@home', 'Jeffrey', 'kevin.herdershof@hotmail.com', '7924640b1260d019c82b517a7b118ad7', '', '2016-11-16', 1),
+(97, 'aeght', 'Gijs van den Abeele', 'it good yes?', 'Jeffrey', 'valckxj@outlook.com', '574d4c0ef2ec9c8ca24d085db26c5559', '', '2016-11-17', 0),
+(98, 'aeght', 'Gijs van den Abeele', 'it good yes?', 'Jeffrey', 'valckxj@outlook.com', '4d312e1b4c78fa535ac24ba1f024861c', '', '2016-11-17', 0),
+(99, 'Try again', 'Gijs van den Abeele', 'aeg', 'Jeffrey', 'kevin.herdershof@hotmail.com', '17112016-12.17.55-192.08.1.124', 'wew', '2016-11-17', 2),
+(100, 'Jonge', 'Gijs van den Abeele', 'gaat niet rip ofzo jonge', 'Jeffrey', 'kevin.herdershof@hotmail.com', '18112016-12.11.45-192.08.1.124', 'asdf', '2016-11-18', 2);
 
 -- --------------------------------------------------------
 
@@ -367,7 +480,7 @@ CREATE TABLE `settings` (
 --
 
 INSERT INTO `settings` (`id`, `SMTP`, `Email`, `Logo`, `Header`) VALUES
-(0, 'smtp.madalcomedia.nl', 'no-reply@madalcomedia.nl', 'madlogo.png', '#dd2c4c');
+(0, 'smtp.madalcomedia.nl', 'madalcomedia.nl', 'madlogo.png', '#dd2c4c');
 
 -- --------------------------------------------------------
 
@@ -418,7 +531,30 @@ INSERT INTO `usermail` (`id`, `userid`, `mailid`, `status`) VALUES
 (30, 20, 74, 0),
 (31, 20, 75, 2),
 (32, 20, 76, 3),
-(33, 10, 77, 0);
+(33, 10, 77, 0),
+(34, 10, 78, 0),
+(35, 20, 79, 0),
+(36, 20, 80, 0),
+(37, 20, 81, 0),
+(38, 20, 82, 0),
+(39, 20, 83, 0),
+(40, 20, 84, 0),
+(41, 20, 85, 0),
+(42, 20, 86, 0),
+(43, 20, 87, 0),
+(44, 20, 88, 0),
+(45, 20, 89, 0),
+(46, 20, 90, 3),
+(47, 20, 91, 0),
+(48, 20, 92, 0),
+(49, 20, 93, 2),
+(50, 10, 94, 0),
+(51, 10, 95, 0),
+(52, 20, 96, 0),
+(53, 10, 97, 0),
+(54, 10, 98, 0),
+(55, 38, 99, 2),
+(56, 38, 100, 2);
 
 -- --------------------------------------------------------
 
@@ -428,6 +564,7 @@ INSERT INTO `usermail` (`id`, `userid`, `mailid`, `status`) VALUES
 
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
+  `profimg` varchar(100) NOT NULL DEFAULT 'profile.png',
   `naam` varchar(30) NOT NULL,
   `email` varchar(60) NOT NULL,
   `paswoord` varchar(256) NOT NULL,
@@ -435,42 +572,50 @@ CREATE TABLE `users` (
   `bedrijfsnaam` varchar(64) NOT NULL,
   `adres` varchar(64) NOT NULL,
   `postcode` varchar(8) NOT NULL,
-  `plaats` varchar(64) NOT NULL
+  `plaats` varchar(64) NOT NULL,
+  `paswoordvergeten` varchar(256) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `users`
 --
 
-INSERT INTO `users` (`id`, `naam`, `email`, `paswoord`, `permgroup`, `bedrijfsnaam`, `adres`, `postcode`, `plaats`) VALUES
-(7, '', '', 'd243da637503b04f6aeb432a774fb99b', 2, '', '', '', ''),
-(10, 'Jeffrey', 'valckxj@outlook.com', '6a27f10aef159701c7a5ff07f0fb0a78', 4, '', '', '', ''),
-(11, 'He', 'hoi@hoi.nl', '60474c9c10d7142b7508ce7a50acf414', 2, '', '', '', ''),
-(12, 'kevin', 'hey@hotmail.com', 'd243da637503b04f6aeb432a774fb99b', 2, '', '', '', ''),
-(13, 'Kevin', 'hey@hoi.nl', '60474c9c10d7142b7508ce7a50acf414', 2, '', '', '', ''),
-(15, 'Ed ONeil', 'hey@heyy.nl', 'a98ec5c5044800c88e862f007b98d89815fc40ca', 2, '', '', '', ''),
-(16, 'Kevin', 'kef@hotmail.com', '60474c9c10d7142b7508ce7a50acf414', 2, '', '', '', ''),
-(17, 'kef', 'keffer@test.nl', 'ecd71870d1963316a97e3ac3408c9835ad8cf0f3', 2, '', '', '', ''),
-(18, 'keffer', 'keffie@hotmail.com', 'a98ec5c5044800c88e862f007b98d89815fc40ca155d6ce7909530d792e909ce', 2, '', '', '', ''),
-(20, 'Kevin', 'kevin.herdershof@hotmail.com', 'a98ec5c5044800c88e862f007b98d89815fc40ca155d6ce7909530d792e909ce', 1, '', '', '', ''),
-(21, 'Kevin', 'kerst@info.nl', 'a98ec5c5044800c88e862f007b98d89815fc40ca155d6ce7909530d792e909ce', 2, '', '', '', ''),
-(23, 'Kevin Ernst', 'keffer.herdershof@hotmail.com', '0f838011dfa4d248e2bb23e492bcf500a744c878067a0ca7052f263e16a45f23', 2, 'Scalda', 'nieuwe karnemelkstraat 27', '4576BT', 'koewacht'),
-(26, 'Kevin Ernst', 'kef.herdershof@hotmail.com', 'b3e5523d4f907aa0988ac57494741b9b1599ddfbc3b8d761783e5b0c0ee098ba', 2, 'Scalda', 'Nw Karnemelkstraat 27', '4576BA', 'koew8'),
-(27, 'test', 'afe@hot.nl', 'a98ec5c5044800c88e862f007b98d89815fc40ca155d6ce7909530d792e909ce', 1, '', '', '', ''),
-(28, 'Kevin', 'kaka@hotmail.com', 'a98ec5c5044800c88e862f007b98d89815fc40ca155d6ce7909530d792e909ce', 2, '', '', '', ''),
-(30, '', 'keff@hotmail.com', 'a98ec5c5044800c88e862f007b98d89815fc40ca155d6ce7909530d792e909ce', 1, '', '', '', ''),
-(32, 'kakker', 'kakkie@hotmail.com', 'a98ec5c5044800c88e862f007b98d89815fc40ca155d6ce7909530d792e909ce', 1, '', '', '', ''),
-(33, 'meingod', 'kak@hotmail.com', 'a98ec5c5044800c88e862f007b98d89815fc40ca155d6ce7909530d792e909ce', 1, '', '', '', ''),
-(34, 'Kevin Ernst', 'kaffer.herdershof@hotmail.com', '02c78b1026ff3f82087064c7d1ec5ead1ae19ea15dbbb94761b50a7795c04276', 1, 'Scalda', 'nieuwe karnemelkstraat 27', '4576BT', '1'),
-(36, 'SOMUCHFUN', 'kafk@live.nl', 'a98ec5c5044800c88e862f007b98d89815fc40ca155d6ce7909530d792e909ce', 1, '', '', '', ''),
-(37, 'hatethis', 'kak@live.nl', 'a98ec5c5044800c88e862f007b98d89815fc40ca155d6ce7909530d792e909ce', 1, '', '', '', ''),
-(38, 'kekkaksk', 'kaak@live.nl', 'a98ec5c5044800c88e862f007b98d89815fc40ca155d6ce7909530d792e909ce', 4, '', '', '', ''),
-(39, 'Ok dan', 'kaaak@live.nl', 'c31bc0c9e89e03b7730407573c7928887967e3b8b79abb0abd56b7ae87323fe5', 1, 'Invent', 'test', '4882', 'fds'),
-(40, 'Ok dan', 'keak@live.nl', '4154e1be4db6d4ac549c4101a130a75b93fc27aa95a7eb1421769f90915a8f8a', 1, 'Invent', 'test', '4882', 'fds');
+INSERT INTO `users` (`id`, `profimg`, `naam`, `email`, `paswoord`, `permgroup`, `bedrijfsnaam`, `adres`, `postcode`, `plaats`, `paswoordvergeten`) VALUES
+(7, 'profile.png', '', '', 'd243da637503b04f6aeb432a774fb99b', 2, '', '', '', '', '82bb7483d61948038b12c761bede3360'),
+(10, 'profile.png', 'Jeffrey', 'valckxj@outlook.com', '6a27f10aef159701c7a5ff07f0fb0a78', 4, '', '', '', '', ''),
+(11, 'profile.png', 'He', 'hoi@hoi.nl', '60474c9c10d7142b7508ce7a50acf414', 2, '', '', '', '', ''),
+(12, 'profile.png', 'kevin', 'hey@hotmail.com', 'd243da637503b04f6aeb432a774fb99b', 2, '', '', '', '', ''),
+(13, 'profile.png', 'Kevin', 'hey@hoi.nl', '60474c9c10d7142b7508ce7a50acf414', 2, '', '', '', '', ''),
+(15, 'profile.png', 'Ed ONeil', 'hey@heyy.nl', 'a98ec5c5044800c88e862f007b98d89815fc40ca', 2, '', '', '', '', ''),
+(16, 'profile.png', 'Kevin', 'kef@hotmail.com', '60474c9c10d7142b7508ce7a50acf414', 2, '', '', '', '', ''),
+(17, 'profile.png', 'kef', 'keffer@test.nl', 'ecd71870d1963316a97e3ac3408c9835ad8cf0f3', 2, '', '', '', '', ''),
+(18, 'profile.png', 'keffer', 'keffie@hotmail.com', 'a98ec5c5044800c88e862f007b98d89815fc40ca155d6ce7909530d792e909ce', 2, '', '', '', '', ''),
+(20, 'profile.png', 'Kevin', 'kevin.herdershof@hotmail.com', 'a98ec5c5044800c88e862f007b98d89815fc40ca155d6ce7909530d792e909ce', 1, '', '', '', '', ''),
+(21, 'profile.png', 'Kevin', 'kerst@info.nl', 'a98ec5c5044800c88e862f007b98d89815fc40ca155d6ce7909530d792e909ce', 2, '', '', '', '', ''),
+(23, 'profile.png', 'Kevin Ernst', 'keffer.herdershof@hotmail.com', '0f838011dfa4d248e2bb23e492bcf500a744c878067a0ca7052f263e16a45f23', 2, 'Scalda', 'nieuwe karnemelkstraat 27', '4576BT', 'koewacht', ''),
+(26, 'profile.png', 'Kevin Ernst', 'kef.herdershof@hotmail.com', 'b3e5523d4f907aa0988ac57494741b9b1599ddfbc3b8d761783e5b0c0ee098ba', 2, 'Scalda', 'Nw Karnemelkstraat 27', '4576BA', 'koew8', ''),
+(27, 'profile.png', 'test', 'afe@hot.nl', 'a98ec5c5044800c88e862f007b98d89815fc40ca155d6ce7909530d792e909ce', 1, '', '', '', '', ''),
+(28, 'profile.png', 'Kevin', 'kaka@hotmail.com', 'a98ec5c5044800c88e862f007b98d89815fc40ca155d6ce7909530d792e909ce', 2, '', '', '', '', ''),
+(30, 'profile.png', '', 'keff@hotmail.com', 'a98ec5c5044800c88e862f007b98d89815fc40ca155d6ce7909530d792e909ce', 1, '', '', '', '', ''),
+(32, 'profile.png', 'kakker', 'kakkie@hotmail.com', 'a98ec5c5044800c88e862f007b98d89815fc40ca155d6ce7909530d792e909ce', 1, '', '', '', '', ''),
+(33, 'profile.png', 'meingod', 'kak@hotmail.com', 'a98ec5c5044800c88e862f007b98d89815fc40ca155d6ce7909530d792e909ce', 1, '', '', '', '', ''),
+(34, 'profile.png', 'Kevin Ernst', 'kaffer.herdershof@hotmail.com', '02c78b1026ff3f82087064c7d1ec5ead1ae19ea15dbbb94761b50a7795c04276', 1, 'Scalda', 'nieuwe karnemelkstraat 27', '4576BT', '1', ''),
+(36, 'profile.png', 'SOMUCHFUN', 'kafk@live.nl', 'a98ec5c5044800c88e862f007b98d89815fc40ca155d6ce7909530d792e909ce', 1, '', '', '', '', ''),
+(37, 'profile.png', 'hatethis', 'kak@live.nl', 'a98ec5c5044800c88e862f007b98d89815fc40ca155d6ce7909530d792e909ce', 1, '', '', '', '', ''),
+(38, 'profile.png', 'Kaak', 'kaak@live.nl', 'a98ec5c5044800c88e862f007b98d89815fc40ca155d6ce7909530d792e909ce', 4, 'Invent', 'kaaklaan 3', '42905', 'Terneuzen', ''),
+(39, 'profile.png', 'Ok dan', 'kaaak@live.nl', 'c31bc0c9e89e03b7730407573c7928887967e3b8b79abb0abd56b7ae87323fe5', 1, 'Invent', 'test', '4882', 'fds', ''),
+(40, 'profile.png', 'Ok dan', 'keak@live.nl', '4154e1be4db6d4ac549c4101a130a75b93fc27aa95a7eb1421769f90915a8f8a', 1, 'Invent', 'test', '4882', 'fds', ''),
+(43, 'profile.png', 'fsadjkl', 'kaal@live.nl', 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 2, 'asdf', 'asdf', 'sadf', 'asdf', '');
 
 --
 -- Indexen voor geëxporteerde tabellen
 --
+
+--
+-- Indexen voor tabel `comments`
+--
+ALTER TABLE `comments`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexen voor tabel `image`
@@ -510,25 +655,30 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT voor een tabel `comments`
+--
+ALTER TABLE `comments`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
 -- AUTO_INCREMENT voor een tabel `image`
 --
 ALTER TABLE `image`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=175;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=240;
 --
 -- AUTO_INCREMENT voor een tabel `mail`
 --
 ALTER TABLE `mail`
-  MODIFY `id` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
+  MODIFY `id` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
 --
 -- AUTO_INCREMENT voor een tabel `usermail`
 --
 ALTER TABLE `usermail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 --
 -- AUTO_INCREMENT voor een tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

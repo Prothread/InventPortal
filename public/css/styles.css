@@ -770,6 +770,7 @@ table {
 }
 body {
     height: 600px;
+    padding: 0 !important;
 }
 
 #Voorwaarden {

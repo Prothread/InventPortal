@@ -26,7 +26,7 @@ $get_filled_info = $uploads->getUploads();
                                 <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
                                     <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> Mijn overzicht</button>
                             </a>
-                            
+
                         </th>
                     </tr>
                 </table>
@@ -85,7 +85,7 @@ $get_filled_info = $uploads->getUploads();
                         <?php }
                     }
                     else {?>
-                        <td>U heeft nog geen proeven geaccordeerd</td>
+                        <td>Er zijn nog geen proeven aangemaakt</td>
                     <?php } ?>
                     </tbody>
                 </table>

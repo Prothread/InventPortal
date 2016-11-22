@@ -46,6 +46,31 @@ class DbBlock extends Database
     }
 
     /**
+     * Haal alle uploads op die ouder zijn dan 7 dagen
+     *
+     * @return array|null
+     */
+
+    public function getOlderUploads($verified = null)
+    {
+        $date = date('Y-m-d');
+
+        $sql = "SELECT * FROM `mail` WHERE `datum` <";
+        $sql .= " '{$date}'";
+
+        if($verified) {
+            $sql .= " AND `verified` IN({$verified})";
+        }
+
+        $result = $this->dbQuery($sql);
+        $row = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+        if($row){
+            return $row;
+        }
+    }
+
+    /**
      * Haal de laatste 6 uploads op
      *
      * @return array|null
