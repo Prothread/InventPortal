@@ -27,7 +27,6 @@ foreach($get_user_info as $user){
     }
     $percentarray[$user['naam']] = $percent;
 }
-var_dump($percentarray);
 $namearray=['Kevin', 'kekkaksk', 'Jeffrey', 'Davy'];
 $i=0;
 while($i<4) {
