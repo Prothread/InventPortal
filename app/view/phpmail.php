@@ -163,113 +163,7 @@ else {
                                     <br>
                                     <br>
 
-                                      <!-- Modal -->
-                                      <div class="modal fade" id="myModal" role="dialog">
-                                        <div class="modal-dialog">
-                                        
-                                          <!-- Modal content-->
-                                          <div class="modal-content">
-                                            <div class="modal-header">
-                                              <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                              <h4 class="modal-title">Nieuwe klant</h4>
-                                            </div>
-                                            <div class="modal-body">
 
-                                                    <form action="?page=clientmail" method="post" enctype="multipart/form-data" class="form-horizontal newclient">
-                                                        <fieldset>
-
-                                                            <p class="ClientFormText">Namen</p>
-                                                            <hr size="1">
-
-                                                            <div class="form-group">
-                                                                <label class="col-md-4 control-label" for="textinput">Naam</label>
-                                                                <div class="col-md-4">
-                                                                    <input required class="form-control input-md" id="textinput" type="text" name="name" size="50" placeholder="Naam">
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="form-group">
-                                                                <label class="col-md-4 control-label" for="textinput">Bedrijfsnaam</label>
-                                                                <div class="col-md-4">
-                                                                    <input class="form-control input-md" id="textinput" required type="text" name="companyname" size="50" placeholder="Bedrijfsnaam">
-                                                                </div>
-                                                            </div>
-
-                                                            <p class="ClientFormText">Contactgegevens</p>
-                                                            <hr size="1">
-
-                                                            <div class="form-group">
-                                                                <label class="col-md-4 control-label" for="textinput">E-mail</label>
-                                                                <div class="col-md-4">
-                                                                    <input class="form-control input-md" id="textinput" required type="email" name="email" size="50" placeholder="E-mailadres">
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="form-group">
-                                                                <label class="col-md-4 control-label" for="textinput">Adres</label>
-                                                                <div class="col-md-4">
-                                                                    <input class="form-control input-md" id="textinput" required type="text" name="companyadress" size="50" placeholder="Adres">
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="form-group">
-                                                                <label class="col-md-4 control-label" for="textinput">Postcode</label>
-                                                                <div class="col-md-4">
-                                                                    <input class="form-control input-md" id="textinput" required type="text" name="postcode" size="50" placeholder="Postcode">
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="form-group">
-                                                                <label class="col-md-4 control-label" for="textinput">Plaats</label>
-                                                                <div class="col-md-4">
-                                                                    <input class="form-control input-md" id="textinput" required type="text" name="plaats" size="50" placeholder="Plaats">
-                                                                </div>
-                                                            </div>
-
-                                                            <input type="hidden" name="permgroup" value="1">
-
-                                                            <div class="form-group">
-                                                                <label class="col-md-4 control-label" for="textinput"></label>
-                                                                <div class="col-md-4">
-                                                                    <input class="btn btn-primary btn-success" name="submit"  style="max-width: 100px; background-color: #bb2c4c; border: 1px solid #dd2c4c" type="submit" value="Aanmaken">
-                                                                </div>
-                                                            </div>
-                                                        </fieldset>
-                                                    </form>
-                                                <script>
-                                                    $("form.newclient").on('submit', function (event) {
-
-                                                        var dataString = $('form.newclient').serialize() +
-                                                            '&name=' + <?= $_POST['name'] ?> +
-                                                            '&companyname=' + <?= $_POST['companyname'] ?> +
-                                                            '&email=' + <?= $_POST['email'] ?> +
-                                                            '&companyadress=' + <?= $_POST['companyadress'] ?> +
-                                                            '&postcode=' + <?= $_POST['postcode'] ?> +
-                                                            '&plaats=' + <?= $_POST['plaats'] ?>;
-                                                        alert(dataString);
-
-                                                        $.ajax({
-                                                            type: "POST",
-                                                            url: "?page=clientmail",
-                                                            data: dataString,
-                                                            cache: false,
-                                                            success: function (result) {
-                                                                alert('success');
-                                                            }
-                                                        });
-
-                                                        event.preventDefault();
-
-                                                    });
-                                                </script>
-                                            </div>
-                                            <div class="modal-footer">
-
-                                            </div>
-                                          </div>
-                                          
-                                        </div>
-                                      </div>
 
 
 
@@ -292,6 +186,116 @@ else {
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Nieuwe klant</h4>
+                </div>
+                <div class="modal-body">
+
+                    <form action="?page=clientmail" method="post" enctype="multipart/form-data" class="form-horizontal newclient" id="createclient">
+                        <fieldset>
+
+                            <p class="ClientFormText">Namen</p>
+                            <hr size="1">
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="textinput">Naam</label>
+                                <div class="col-md-4">
+                                    <input required class="form-control input-md" id="textinput" type="text" name="name" size="50" placeholder="Naam">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="textinput">Bedrijfsnaam</label>
+                                <div class="col-md-4">
+                                    <input class="form-control input-md" id="textinput" required type="text" name="companyname" size="50" placeholder="Bedrijfsnaam">
+                                </div>
+                            </div>
+
+                            <p class="ClientFormText">Contactgegevens</p>
+                            <hr size="1">
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="textinput">E-mail</label>
+                                <div class="col-md-4">
+                                    <input class="form-control input-md" id="textinput" required type="email" name="email" size="50" placeholder="E-mailadres">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="textinput">Adres</label>
+                                <div class="col-md-4">
+                                    <input class="form-control input-md" id="textinput" required type="text" name="companyadress" size="50" placeholder="Adres">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="textinput">Postcode</label>
+                                <div class="col-md-4">
+                                    <input class="form-control input-md" id="textinput" required type="text" name="postcode" size="50" placeholder="Postcode">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="textinput">Plaats</label>
+                                <div class="col-md-4">
+                                    <input class="form-control input-md" id="textinput" required type="text" name="plaats" size="50" placeholder="Plaats">
+                                </div>
+                            </div>
+
+                            <input type="hidden" name="rechten" value="1">
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="textinput"></label>
+                                <div class="col-md-4">
+                                    <input class="btn btn-primary btn-success" name="submit"  style="max-width: 100px; background-color: #bb2c4c; border: 1px solid #dd2c4c" type="submit" value="Aanmaken">
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                    <script>
+                        $("form#createclient").submit(function (event) {
+
+                            var dataString = $('form#createclient').serialize() +
+                                '&name=' + <?= $_POST['name'] ?> +
+                                '&companyname=' + <?= $_POST['companyname'] ?> +
+                                '&email=' + <?= $_POST['email'] ?> +
+                                '&companyadress=' + <?= $_POST['companyadress'] ?> +
+                                '&postcode=' + <?= $_POST['postcode'] ?> +
+                                '&plaats=' + <?= $_POST['plaats'] ?> +
+                                '&rechten=' + <?= $_POST['rechten'] ?>;
+                            alert(dataString);
+
+                            $.ajax({
+                                type: "POST",
+                                url: "?page=clientmail",
+                                data: dataString,
+                                cache: false,
+                                success: function (result) {
+                                    alert('success');
+                                }
+                            });
+
+                            event.preventDefault();
+
+                        });
+                    </script>
+                </div>
+                <div class="modal-footer">
+
+                </div>
+            </div>
+
         </div>
     </div>
 

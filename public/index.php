@@ -214,6 +214,9 @@ switch($page) {
     case 'deletestatusitem':
         include '../app/view/deletestatusitem.php';
         break;
+    case 'changefilter':
+        include '../app/Model/ChangeFilter.php';
+        break;
     default:
         include '../app/view/404.php';
         break;

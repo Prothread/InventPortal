@@ -82,8 +82,16 @@ class BlockController
         return $this->model->getLastSixUploads();
     }
 
+    /**
+     * Haal alle geaccordeerde proeven op
+     *
+     * @return mixed
+     */
 
-
+    public function getAccordedUploads()
+    {
+        return $this->model->getAccordedUploads();
+    }
 
     /**
      * Haal de laatste 6 items van de gebruiker op

@@ -88,6 +88,24 @@ class DbBlock extends Database
     }
 
     /**
+     * Haal alle geaccordeerde proeven op
+     *
+     * @return mixed
+     */
+
+    public function getAccordedUploads()
+    {
+        $sql = "SELECT * FROM `mail` WHERE `verified` =  '2'";
+
+        $result = $this->dbQuery($sql);
+        $row = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+        if($row) {
+            return $row;
+        }
+    }
+
+    /**
      * Haal de laatste 6 items van de gebruiker op
      *
      * @param $userID

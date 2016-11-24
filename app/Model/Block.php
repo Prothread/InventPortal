@@ -62,6 +62,17 @@ class Block
     }
 
     /**
+     * Haal alle geaccordeerde proeven op
+     *
+     * @return mixed
+     */
+
+    public function getAccordedUploads()
+    {
+        return $this->db->getAccordedUploads();
+    }
+
+    /**
      * Haal alle usermail info op met id
      *
      * @return mixed

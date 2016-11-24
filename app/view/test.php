@@ -14,6 +14,7 @@ $verified = '0, 1';
 $get_filled_info = $uploads->getOlderUploads($verified);
 ?>
 
+<div id="container">
 <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
 
@@ -141,4 +142,4 @@ $get_filled_info = $uploads->getOlderUploads($verified);
 
     });
 </script>
-
+</div>

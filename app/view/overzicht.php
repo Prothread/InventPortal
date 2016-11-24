@@ -8,9 +8,14 @@ if($user->getPermission($permgroup, 'CAN_SHOW_OVERZICHT') == 1){
 }
 
 $uploads = new BlockController();
+//unset($_SESSION['uploads']);
 
-$get_filled_info = $uploads->getUploads();
-
+if(isset($_SESSION['uploads'])) {
+    $get_filled_info = $_SESSION['uploads'];
+}
+else {
+    $get_filled_info = $uploads->getUploads();
+}
 ?>
 <div class="container">
     <div id="page-content-wrapper">
@@ -23,7 +28,15 @@ $get_filled_info = $uploads->getUploads();
 
                             <a href="?page=gebruikersoverzicht">
                                 <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
-                                    <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> Mijn overzicht</button>
+                                <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> Mijn overzicht</button>
+                            </a>
+                            <a id="filteropen" href="?page=gebruikersoverzicht">
+                                <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
+                                <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> Open proeven</button>
+                            </a>
+                            <a id="filtergoed" href="?page=gebruikersoverzicht">
+                                <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
+                                <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> Geakkordeerde proeven</button>
                             </a>
 
                         </th>
@@ -92,6 +105,7 @@ $get_filled_info = $uploads->getUploads();
         </div>
     </div>
 </div>
+<?php unset($_SESSION['uploads']); ?>
 
 <script>
     $(document).ready(function(){
@@ -99,5 +113,47 @@ $get_filled_info = $uploads->getUploads();
             "order": [[ 0, "desc" ]]
         });
 
+    });
+
+    var filter;
+
+    $('#filteropen').on('click', function(event) {
+
+        filter = 'openproeven';
+
+        var dataString = $('#filteropen').serialize() + '&filter=' + filter;
+
+        $.ajax({
+            type: "POST",
+            url: "?page=changefilter",
+            data: dataString,
+            cache: false,
+            success: function(result){
+                //$('#container').load("?page=overzicht " + '#container');
+                location.reload();
+            }
+        });
+
+        event.preventDefault();
+    });
+
+    $('#filtergoed').on('click', function(event) {
+
+        filter = 'goedeproeven';
+
+        var dataString = $('#filteropen').serialize() + '&filter=' + filter;
+
+        $.ajax({
+            type: "POST",
+            url: "?page=changefilter",
+            data: dataString,
+            cache: false,
+            success: function(result){
+                //$('#container').load("?page=overzicht " + '#container');
+                location.reload();
+            }
+        });
+
+        event.preventDefault();
     });
 </script>

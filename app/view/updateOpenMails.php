@@ -19,12 +19,15 @@ $uploads = new BlockController();
 
 $verified = '0, 1';
 $get_filled_info = $uploads->getOlderUploads($verified);
+
 foreach($get_filled_info as $get_info) {
 
     //Generate a random string.
     $token = openssl_random_pseudo_bytes(16);
     //Convert the binary data into hexadecimal representation.
     $token = bin2hex($token);
+
+    $imageId = $get_info['id'];
 
     $mailinfo = [
         'id' => $get_info['id'],
@@ -46,12 +49,12 @@ foreach($get_filled_info as $get_info) {
     $name = mysqli_real_escape_string($mysqli, $get_info['naam']);
     $email = mysqli_real_escape_string($mysqli, $get_info['email']);
 
-        $mymail = new MailController();
+    $mymail = new MailController();
 
-//Load PHPMailer dependencies
-        require_once DIR_MAILER . '/PHPMailerAutoload.php';
-        require_once DIR_MAILER . '/class.phpmailer.php';
-        require_once DIR_MAILER . '/class.smtp.php';
+    //Load PHPMailer dependencies
+        require_once DIR_MAILER . 'PHPMailerAutoload.php';
+        require_once DIR_MAILER . 'class.phpmailer.php';
+        require_once DIR_MAILER . 'class.smtp.php';
 
         /* CONFIGURATION */
         $crendentials = array(
@@ -69,8 +72,6 @@ foreach($get_filled_info as $get_info) {
             'secure' => 'tls' //SSL or TLS
 
         );
-
-        if (isset($_POST['submit'])) {
 
             /* TO, SUBJECT, CONTENT */
             $to = $email; //The 'To' field
@@ -100,7 +101,7 @@ foreach($get_filled_info as $get_info) {
 
             $mailer = new PHPMailer();
 
-//SMTP Configuration
+        //SMTP Configuration
             $mailer->isSMTP();
             $mailer->SMTPAuth = true; //We need to authenticate
             $mailer->Host = $smtp['host'];
@@ -109,20 +110,19 @@ foreach($get_filled_info as $get_info) {
             $mailer->Password = $smtp['password'];
             $mailer->SMTPSecure = $smtp['secure'];
 
-//Now, send mail :
-//From - To :
-            $mailer->AddReplyTo($_POST['frommail'], $sender);
+        //Now, send mail :
+        //From - To :
             $mailer->From = $crendentials['email'];
             $mailer->FromName = $sender; //Optional
             $mailer->addAddress($to);  // Add a recipient
 
-//Subject - Body :
+        //Subject - Body :
             $mailer->Subject = $subject;
             $mailer->Body = $content;
             $mailer->isHTML(true); //Mail body contains HTML tags
             $mailer->AltBody = $altcontent;
 
-//Saving mail information
+        //Saving mail information
 
             $mailer->SMTPOptions = array(
                 'ssl' => array(
@@ -131,7 +131,7 @@ foreach($get_filled_info as $get_info) {
                     'allow_self_signed' => true
                 )
             );
-//Check if mail is sent :
+        //Check if mail is sent :
             if (!$mailer->send()) {
                 header('Location: index.php?page=phpmail');
                 //echo 'Error sending mail : ' . $mailer->ErrorInfo;
@@ -139,7 +139,8 @@ foreach($get_filled_info as $get_info) {
             } else {
                 //If mail is send, create data and send it to the database
                 $mail->update($mailinfo);
+                $mailer->send();
             }
-        }
+
 
 }

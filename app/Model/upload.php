@@ -95,9 +95,9 @@ if($error == 0) {
     $token = bin2hex($token);
 
 //Load PHPMailer dependencies
-    require_once DIR_MAILER . '/PHPMailerAutoload.php';
-    require_once DIR_MAILER . '/class.phpmailer.php';
-    require_once DIR_MAILER . '/class.smtp.php';
+    require_once DIR_MAILER . 'PHPMailerAutoload.php';
+    require_once DIR_MAILER . 'class.phpmailer.php';
+    require_once DIR_MAILER . 'class.smtp.php';
 
     /* CONFIGURATION */
     $crendentials = array(
