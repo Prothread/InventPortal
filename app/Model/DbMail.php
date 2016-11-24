@@ -31,13 +31,12 @@ class DbMail extends Database
         if($this->dbQuery($sql)) {
 
             $imgarray = ( explode(", ", $mail->getImage()) );
-            $fakeimgarray = ( explode(", ", $mail->getFakeImage()) );
 
             $myid = $this->dbLastInsertedId();
 
             $i=0;
             foreach($imgarray as $img){
-                $sql2 = "INSERT INTO `image` (`mailid`, `fakename`, `images`, `verify`) VALUES ('{$myid}', '{$fakeimgarray[$i]}', '{$img}', '{$mail->getVerified()}')";
+                $sql2 = "INSERT INTO `image` (`mailid`, `images`, `verify`) VALUES ('{$myid}', '{$img}', '{$mail->getVerified()}')";
 
                 if($this->dbQuery($sql2)){
                     $i++;

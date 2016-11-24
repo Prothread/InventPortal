@@ -95,4 +95,18 @@ class ImageController
         return $this->model->setDownloadable($id, $vote);
     }
 
+    /**
+     * Verander de image naam naa een naam waar geen id in vor komt
+     *
+     * @return mixed
+     */
+
+    public function getFakeImageName($imagename)
+    {
+        $ImageName = pathinfo($imagename, PATHINFO_FILENAME);
+        $ImageFileType = pathinfo($imagename, PATHINFO_EXTENSION);
+        $NewImageName = substr($ImageName, 0, -3) . '.' . $ImageFileType;
+        return $NewImageName;
+    }
+
 }

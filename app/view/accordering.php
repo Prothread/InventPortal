@@ -26,11 +26,11 @@ else {
     return 'Er is iets misgegaan';
 }
 
-$UID = date('dmY-G.i.s') . '-192.08.1.124';
+$UID = date('d.m.Y-G.i.s') . '-192.08.1.124';
 
-//TODO Check ip goede adress
-//$UID = date('dmY-G.i.s') . '' . $_SERVER['REMOTE_ADDR'];
-
+//TODO Try if IP adres sends correctly
+$userip = $user->getUserIP();
+//$UID = date('d.m.Y-G.i.s') . '-' . $userip;
 ?>
 
 <!-- Page Content -->
@@ -299,10 +299,6 @@ $UID = date('dmY-G.i.s') . '-192.08.1.124';
                             <input type="submit" id="verstuuracc" name="submit" value="Verstuur" >
 
                             <br><br>
-                            <label>Uw IP-adres: <?PHP
-                                echo ''.$_SERVER['REMOTE_ADDR'];
-                                ?></label>
-
 
                             <div id="refer">
                                 <script>

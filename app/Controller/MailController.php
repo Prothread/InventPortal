@@ -69,7 +69,7 @@ class MailController
             if(isset($mailinfo['imgname'])) {
                 $this->model->setFakeImage($mailinfo['imgname']);
             }
-            if(isset($mailinfo['imgname'])) {
+            if(isset($mailinfo['images'])) {
                 $this->model->setImage($mailinfo['images']);
             }
             $this->model->setDatum($mailinfo['datum']);
