@@ -30,9 +30,9 @@ foreach($get_user_info as $user){
     array_push($namearray,$user['naam']);
 }
 arsort($percentarray);
-<<<<<<< HEAD
+
 array_values($percentarray);
-=======
+
 
 
 if(count($percentarray) <= 4) {
@@ -42,7 +42,7 @@ else {
     $count = 4;
 }
 
->>>>>>> origin/master
+
 $i=0;
 while($i < $count) {
     if (array_key_exists($namearray[$i], $percentarray) ) {
