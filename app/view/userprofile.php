@@ -18,6 +18,7 @@ if($myuser['permgroup'] == '1') {
     $getAllUserItems = $items->getUserMailByUserId($userid, 0, 0, $clientID);
 }
 else {
+    $getAllUserItems = $items->getUserMailByUserId($userid, 0, 0);
 }
 
 foreach($getAllUserItems as $UserItem) {
