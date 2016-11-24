@@ -1607,3 +1607,38 @@ tr:nth-child(2n) {
     float: right;
     text-align: center;
 }
+.abutton {
+    display: block;
+    width: 100px;
+    height: 34px;
+    background: rgb(187, 44, 76);
+    padding: 7px;
+    text-align: center;
+    border-radius: 5px;
+    color: white;
+    font-size: 15px;
+    text-decoration: none;
+    float:left;
+    margin-left:15px;
+}
+.abuttonmodal {
+    width: 100px;
+    height: 34px;
+    background: rgb(187, 44, 76);
+    padding: 7px;
+    text-align: center;
+    border-radius: 5px;
+    color: white;
+    font-size: 15px;
+    text-decoration: none;
+}
+
+.abutton:hover {
+    text-decoration: none;
+    color: #fff;
+}
+
+.abuttonmodal:hover {
+    text-decoration: none;
+    color: #fff;
+}

@@ -208,6 +208,12 @@ switch($page) {
     case 'updateopenmails':
         include '../app/view/updateOpenMails.php';
         break;
+    case 'updatestatusitem':
+        include '../app/view/updatestatusitem.php';
+        break;
+    case 'deletestatusitem':
+        include '../app/view/deletestatusitem.php';
+        break;
     default:
         include '../app/view/404.php';
         break;
