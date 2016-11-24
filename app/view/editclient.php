@@ -22,6 +22,15 @@ $client = new UserController();
 $id = $_GET['id'];
 
 $myclient = $client->getUserById($id);
+if($user->getPermission($permgroup, 'CAN_EDIT_CLIENT') == 1 && $userinfo['permgroup'] == 1){
+
+}
+else if($user->getPermission($permgroup, 'CAN_EDIT_USER') == 1 && $userinfo['permgroup'] !== 1) {
+
+}
+else {
+    return 'U heeft geen rechten om dit te doen';
+}
 
 if(isset($_POST['submit'])){
 

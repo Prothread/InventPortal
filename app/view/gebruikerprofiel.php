@@ -27,10 +27,12 @@ $userinfo = $user->getUserById($_GET['id']);
                             <th style="text-align: left;"><p class="NameText" style="font-weight: normal;">Profiel: <?= $userinfo['naam'] ?></p></th>
                             <th style="text-align: right;">
 
+                                <?php if($user->getPermission($permgroup, 'CAN_EDIT_CLIENT') == 1 && $userinfo['permgroup'] == 1){ ?>
                                 <a href="?page=editclient&id=<?= $_GET['id'] ?>">
                                     <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
-                                        <span class="btn-label"><i class="glyphicon glyphicon-pencil"></i></span>Wijzig gebruiker</button>
+                                    <span class="btn-label"><i class="glyphicon glyphicon-pencil"></i></span>Wijzig gebruiker</button>
                                 </a>
+                                <?php } ?>
 
                             </th>
                             </th>

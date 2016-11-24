@@ -9,9 +9,17 @@ if($user->getPermission($permgroup, 'CAN_SHOW_USEROVERZICHT') == 1){
 
 $uploads = new BlockController();
 $items = new MailController();
+$user = new UserController();
 
 $userid = $_SESSION['usr_id'];
-$getAllUserItems = $items->getUserMailByUserId($userid, 0, 0);
+$myuser = $user->getUserById($_SESSION['usr_id']);
+if($myuser['permgroup'] == '1') {
+    $clientID = $_SESSION['usr_id'];
+    $getAllUserItems = $items->getUserMailByUserId($userid, 0, 0, $clientID);
+}
+else {
+}
+
 foreach($getAllUserItems as $UserItem) {
     $mail = $items->getMailById($UserItem['mailid']);
     $getMails[] = $mail;

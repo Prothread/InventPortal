@@ -214,9 +214,9 @@ class Mail {
      * @return mixed
      */
 
-    public function getUserMailByUserId($id, $limit = null, $offset = null)
+    public function getUserMailByUserId($id, $limit = null, $offset = null, $clientid = null)
     {
-        return $this->db->getUserMailByUserId($id, $limit, $offset);
+        return $this->db->getUserMailByUserId($id, $limit, $offset, $clientid);
     }
 
     /**
@@ -405,6 +405,12 @@ class Mail {
     {
         return $this->MailUserId;
     }
+
+    /**
+     * Haal de klant id voor mail
+     *
+     * @return mixed
+     */
 
     public function getMailClientId()
     {

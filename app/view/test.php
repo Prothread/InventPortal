@@ -7,11 +7,11 @@ if($user->getPermission($permgroup, 'CAN_SHOW_OVERZICHT') == 1){
     header('Location: index.php?page=gebruikersoverzicht');
 }
 
+$mail = new MailController();
 $uploads = new BlockController();
 
 $verified = '0, 1';
 $get_filled_info = $uploads->getOlderUploads($verified);
-
 ?>
 
 <div class="modal fade" id="myModal" role="dialog">

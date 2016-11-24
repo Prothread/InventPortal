@@ -274,7 +274,7 @@ $UID = date('dmY-G.i.s') . '-192.08.1.124';
                             </ul>
                         </div>
 
-                        <input type="hidden" name="userid" value="<?php if(isset($_SESSION['usr_id'])){ echo $_SESSION['usr_id']; } else {echo $session->getUserId(); }?>">
+                        <input type="hidden" name="clientid" value="<?php if(isset($_SESSION['usr_id'])){ echo $_SESSION['usr_id']; } else {echo $session->getUserId(); }?>">
                         <input type="hidden" name="name" value="<?php if(isset($_SESSION['usr_id'])){ echo $_SESSION['usr_name']; } else {echo $myupload['naam']; }?>">
                         <input type="hidden" name="title" value="<?= $myupload['onderwerp']; ?>">
                         <input type="hidden" name="verstuurder" value="<?= $myupload['verstuurder']?>">

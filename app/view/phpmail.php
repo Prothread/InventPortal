@@ -175,7 +175,7 @@ else {
                                             </div>
                                             <div class="modal-body">
 
-                                                    <form action="?page=clientmail" method="post" enctype="multipart/form-data" class="form-horizontal">
+                                                    <form action="?page=clientmail" method="post" enctype="multipart/form-data" class="form-horizontal newclient">
                                                         <fieldset>
 
                                                             <p class="ClientFormText">Namen</p>
@@ -236,6 +236,32 @@ else {
                                                             </div>
                                                         </fieldset>
                                                     </form>
+                                                <script>
+                                                    $("form.newclient").on('submit', function (event) {
+
+                                                        var dataString = $('form.newclient').serialize() +
+                                                            '&name=' + <?= $_POST['name'] ?> +
+                                                            '&companyname=' + <?= $_POST['companyname'] ?> +
+                                                            '&email=' + <?= $_POST['email'] ?> +
+                                                            '&companyadress=' + <?= $_POST['companyadress'] ?> +
+                                                            '&postcode=' + <?= $_POST['postcode'] ?> +
+                                                            '&plaats=' + <?= $_POST['plaats'] ?>;
+                                                        alert(dataString);
+
+                                                        $.ajax({
+                                                            type: "POST",
+                                                            url: "?page=clientmail",
+                                                            data: dataString,
+                                                            cache: false,
+                                                            success: function (result) {
+                                                                alert('success');
+                                                            }
+                                                        });
+
+                                                        event.preventDefault();
+
+                                                    });
+                                                </script>
                                             </div>
                                             <div class="modal-footer">
 
