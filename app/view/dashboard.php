@@ -15,6 +15,7 @@ $get_filled_info = $uploads->getLastSixUploads();
 
 $users = new UserController();
 $get_user_info = $users->getAllUsersByPerm(2);
+
 $namearray=[];
 $percentarray = [];
 foreach($get_user_info as $user){
@@ -27,10 +28,9 @@ foreach($get_user_info as $user){
     }
     $percentarray[$user['naam']] = $percent;
     array_push($namearray,$user['naam']);
-
 }
 arsort($percentarray);
-
+array_values($percentarray);
 $i=0;
 while($i<4) {
     if (array_key_exists($namearray[$i], $percentarray)) {
@@ -44,6 +44,7 @@ if($get_filled_info == null) {
     echo '<div id="NoMail">Er zijn nog geen proeven of offertes geüpload</div>';
     return false;
 }
+
 
 $items = new MailController();
 $get_items_openstaand = $items->getUserMailByStatus(0);

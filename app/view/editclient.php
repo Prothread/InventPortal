@@ -23,6 +23,8 @@ $id = $_GET['id'];
 
 $myclient = $client->getUserById($id);
 
+
+
 if(isset($_POST['submit'])){
 
     $naam = mysqli_real_escape_string( $mysqli, $_POST['showname']);
@@ -38,17 +40,70 @@ if(isset($_POST['submit'])){
     //Convert the binary data into hexadecimal representation.
     $token = bin2hex($token);
 
-    $clientinfo = [
-        'id' => intval($_POST['id']),
-        'name' => strip_tags( $naam ),
-        'email' => strip_tags( $email ),
-        'password' => $token,
-        'bedrijfsnaam' => strip_tags( $bedrijfsnaam ),
-        'adres' => strip_tags( $adres ),
-        'postcode' => strip_tags( $postcode ),
-        'plaats' => strip_tags( $plaats ),
-        'permgroup' => $rechten
-    ];
+    if (isset($_FILES['fileToUpload'])) {
+        $error = 0;
+
+        $myFile = $_FILES['fileToUpload'];
+        $fileCount = count($myFile["name"]);
+
+        $test = $myFile['name'];
+        $test1 = $myFile['tmp_name'];
+
+        $target_dir = DIR_IMG;
+        $target_file = $target_dir . $test;
+        $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
+
+        if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "pdf") {
+            $error = 1;
+            echo '<div class="alert alert-danger" role="alert">Het meegestuurde bestand heeft niet de juiste extensie, upload een JPG, JPEG, PNG, PDF of een GIF</div>';
+            ?><br/><?php
+        }
+
+        if ($myFile["size"] > 10485760) {
+            $error = 1;
+            echo $test . '<div class="alert alert-danger" role="alert">Het meegestuurde bestand is te groot!</div>';
+            ?><br/><?php
+        }
+
+        if ($error == 0) {
+
+            $unique_name = preg_replace('/\s+/', '-', $test);
+            $uniqfile = $target_dir . $unique_name;
+
+            if (move_uploaded_file($test1, $uniqfile)) {
+
+            }
+
+            $clientinfo = [
+                'id' => intval($_POST['id']),
+                'profimg' => $unique_name,
+                'name' => strip_tags( $naam ),
+                'email' => strip_tags( $email ),
+                'password' => $token,
+                'bedrijfsnaam' => strip_tags( $bedrijfsnaam ),
+                'adres' => strip_tags( $adres ),
+                'postcode' => strip_tags( $postcode ),
+                'plaats' => strip_tags( $plaats ),
+                'permgroup' => $rechten
+            ];
+
+        }
+
+    }
+    else
+    {
+        $clientinfo = [
+            'id' => intval($_POST['id']),
+            'name' => strip_tags( $naam ),
+            'email' => strip_tags( $email ),
+            'password' => $token,
+            'bedrijfsnaam' => strip_tags( $bedrijfsnaam ),
+            'adres' => strip_tags( $adres ),
+            'postcode' => strip_tags( $postcode ),
+            'plaats' => strip_tags( $plaats ),
+            'permgroup' => $rechten
+        ];
+    }
 
     $client->update($clientinfo);
     header('Location: index.php?page=dashboard');
@@ -67,6 +122,25 @@ if(isset($_POST['submit'])){
                     <fieldset>
 
                         <input type="hidden" name="id" value="<?= $myclient['id']; ?>">
+
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label" for="textinput">Logo uploaden</label>
+                            <div class="col-md-4">
+                                <label for="file-upload" class="custom-file-upload">
+                                    <i class="fa fa-cloud-upload"></i> Uploaden
+                                </label>
+                                <input required type="file" name="fileToUpload" class="imgInp btn btn-primary btn-success" id="file-upload">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label" for="textinput">Geselecteerd bestand</label>
+                            <div class="col-md-4">
+                                <div id="fileList"></div>
+
+                                <output id="list"></output>
+                            </div>
+                        </div>
 
                         <p class="ClientFormText">Namen</p>
                         <hr size="1">
