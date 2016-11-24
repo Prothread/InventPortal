@@ -31,6 +31,7 @@ foreach($get_user_info as $user){
 }
 arsort($percentarray);
 
+
 if(count($percentarray) <= 4) {
     $count = count($percentarray);
 } 
