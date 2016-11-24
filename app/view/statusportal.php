@@ -270,7 +270,7 @@ $users = $user->getAllUsersByPerm(1);
                     <select class="form-control" name="name">
 
                       <?php foreach($users as $user) { ?>      
-                        <option required class="form-control input-md" value="<?= $user['id']?>"><?= $user['naam'] ?></option>
+                        <option class="form-control input-md" value="<?= $user['id']?>"><?= $user['naam'] ?></option>
                       <?php } ?>
 
                     </select>
@@ -283,7 +283,7 @@ $users = $user->getAllUsersByPerm(1);
               <div class="form-group">
                   <label class="col-md-4 control-label" for="textinput">Deadline</label>
                   <div class="col-md-4">
-                      <input class="form-control input-md" id="textinput" type="date" name="deadline" size="50" placeholder="Deadline opdracht">
+                      <input class="form-control input-md" type="text" id="datepicker" name="deadline" placeholder="Deadline dd/mm/yyyy">
                   </div>
               </div>
 

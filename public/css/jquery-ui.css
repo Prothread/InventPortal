@@ -347,6 +347,7 @@ button.ui-button::-moz-focus-inner {
 .ui-datepicker .ui-datepicker-prev span,
 .ui-datepicker .ui-datepicker-next span {
     display: block;
+    background-image: url(images/ui-icons_444444_256x240.png);
     position: absolute;
     left: 50%;
     margin-left: -8px;

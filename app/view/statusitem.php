@@ -71,14 +71,14 @@ $users = $user->getAllUsersByPerm(1);
               <div class="form-group">
                   <label class="col-md-4 control-label" for="textinput">Deadline</label>
                   <div class="col-md-4">
-                      <input class="form-control input-md" id="textinput" type="date" value="<?= date("d-m-Y", strtotime($fetchall['deadline'])); ?>" name="deadline" size="50" placeholder="Deadline opdracht">
+                      <input class="form-control input-md" type="text" id="datepicker" value="<?= $fetchall['deadline']; ?>" name="deadline" placeholder="Deadline opdracht dd/mm/yyyy">
                   </div>
               </div>
 
               <div class="form-group">
                   <label class="col-md-4 control-label" for="textinput">Opmerking</label>
                   <div class="col-md-4">
-                      <textarea class="form-control input-md" id="textinput" type="text" name="comment" value="<?= $fetchall['comment'] ?>" placeholder="Opmerking"><?= $fetchall['comment'] ?></textarea>
+                      <textarea class="form-control input-md" id="textinput" type="text" name="comment" placeholder="Opmerking"><?= $fetchall['comment'] ?></textarea>
                   </div>
               </div>
 
@@ -86,7 +86,7 @@ $users = $user->getAllUsersByPerm(1);
                   <label class="col-md-4 control-label" for="textinput">Categorie</label>
 
                   <div class="col-md-4">
-                    <select class="form-control" name="category" value="<?= $fetchall['category'] ?>" selected="selected">
+                    <select class="form-control" name="category">
                     <?php if($fetchall['category'] == 'Lead') {?>
                       <option selected="selected">Lead</option>
                     <?php } else { ?>
