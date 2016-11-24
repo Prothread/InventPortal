@@ -48,7 +48,7 @@ class UserController
         $this->model->setUserPermgroup($userinfo['permgroup']);
 
         if ($result = $this->model->create()) {
-            echo('Success, de user is succesvol aangemaakt.');
+            Session::flash('message', ' De gebruiker is succesvol aangemaakt.');
             return $result;
         }
 
@@ -321,6 +321,28 @@ class UserController
     public function resetPassword($mail, $token, $pass)
     {
         return $this->model->resetPassword($mail, $token, $pass);
+    }
+
+    public function getUserIP()
+    {
+        $client  = @$_SERVER['HTTP_CLIENT_IP'];
+        $forward = @$_SERVER['HTTP_X_FORWARDED_FOR'];
+        $remote  = $_SERVER['REMOTE_ADDR'];
+
+        if(filter_var($client, FILTER_VALIDATE_IP))
+        {
+            $ip = $client;
+        }
+        else if(filter_var($forward, FILTER_VALIDATE_IP))
+        {
+            $ip = $forward;
+        }
+        else
+        {
+            $ip = $remote;
+        }
+
+        return $ip;
     }
 
 }

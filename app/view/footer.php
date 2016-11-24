@@ -41,6 +41,17 @@
 </script>
 
 <script>
+    $( function() {
+        $( "#datepicker" ).datepicker( {
+            showOtherMonths: true,
+            selectOtherMonths: true,
+            minDate: 0,
+            dateFormat: "dd-mm-yy"
+        });
+    } );
+</script>
+
+<script>
     $(document).ready(function() {});
 
     if($('#myChart').length) {

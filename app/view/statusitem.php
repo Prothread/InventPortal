@@ -1,320 +1,154 @@
-<?php
+<?php 
 
+if($user->getPermission($permgroup, 'CAN_SHOW_OVERZICHT') == 1){
+
+}
+else {
+    header('Location: index.php');
+    Session::flash('error', 'U heeft hier geen rechten voor.');
+}
+
+$session = new Session();
 $status = new StatusController();
-$StatusItems = $status->getItems();
+$user = new UserController();
 
-$user = new UserController;
+if(isset($_GET['id'])) {
+  $id = $_GET['id'];
+  $id = $session->cleantonumber($id);
+}
+else {
+  return 'Er is geen item gevonden';
+}
 
+$fetchall = $status->getItemById($id);
+$users = $user->getAllUsersByPerm(1);
 ?>
-
-<div id="page-content-wrapper">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-12">
-            <table style="width:100%">
+<table style="width:100%">
+            <br/>
             <tr>
-              <th align="left" style="font-weight: normal;"><p class="NameText">Item</p></th>
-              <th style="text-align: right;"><div id="NewClientButton" style="background-color: #dd2c4c;" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Nieuw item</div></th>
+              <th align="left" style="font-weight: normal;"><p class="NameText">Item bewerken</p></th>
+              <th style="text-align: right;"><a href="?page=statusportal"><div id="NewClientButton" style="background-color: #dd2c4c;" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Terug</div></a>
+              </th>
             </tr>
             </table>
-
                 <hr size="1">
-               <div class="row equal">
-            <div width: "100%" class="col-lg-12 text-left">
-            <?php if($StatusItems !==  null) { ?>
-               
-               <div style="width: 30%; border: 1px #e0e0e0; background-color: #FFF;" class="panel">
-               <div style="background-color: #dd2c4c; height: 30px; -moz-border-radius: 0px; -webkit-border-radius: 3px 3px 0px 0px; border-radius: 3px 3px 0px 0px; " class="panel-header">
-                  <h3 id="TitleFont" style="line-height: 1.5; margin-left: 4px; color: #FFF; font-weight: normal; text-align: center;" class="panel-title"><span id="GlyphiconHead" class="glyphicon glyphicon-flag"></span> Leads</h3>
-               </div>
-                   <div class="inner" style="width: 95%; margin: 0px auto;">
-                       
-                        <div class="panel-body">
 
-                        <?php foreach($StatusItems as $StatusItem) { ?>
-                        <?php 
-                        if($StatusItem['category']=='Lead'){
-                          $thisuser = $user->getUserById(  $StatusItem['person']  ); 
-                          $today = date('Y-m-d');
-                          $nextday = date('Y-m-d', strtotime('+1 day'));
+    <form action="?page=updatestatusitem" method="post" enctype="multipart/form-data" class="form-horizontal">
+          <fieldset>
 
-                          $statusdate = $StatusItem['deadline'];
+              <br />
+              <br />
+              <input value="<?= $fetchall['id'] ?>" type="hidden" name="id">
 
-                          if($today < $statusdate) {
-                            $rightdate = 'OnTime';
-                          }
-                          if($nextday == $statusdate) {
-                            $rightdate = 'OneDayToDL';
-                          }
-                          if($today == $statusdate) {
-                            $rightdate = 'OneDayToDL';
-                          }
-                          if($today > $statusdate) {
-                            $rightdate = 'TooLate';
-                          }
-                        ?>
-                          <div>
-                            <div id="<?= $rightdate ?>" class="item">
-
-                                  <span class="lettertype" id="textright" style="text-align:right; margin-left: 4px;"><a href="?page=statusportal"><?= $StatusItem['subject']?></span></a>
-
-                                  <div id="smallaf" style="text-align: right; font-size: 13px; margin-right: 5px;"><?= $thisuser['naam'] ?></div>
+              <div class="form-group">
+                  <label class="col-md-4 control-label" for="textinput">Onderwerp</label>
+                  <div class="col-md-4">
+                      <input class="form-control input-md" maxlength="40" value="<?= $fetchall['subject'] ?>" id="textinput" type="text" name="onderwerp" placeholder="Onderwerp">
+                  </div>
+              </div>
 
 
-                              </div>
-                            </div>
-                            <div id="betweenwhite" style="height: 6px;"></div>
-                        <?php }} ?>
+              <div class="form-group">
+                  <label class="col-md-4 control-label" for="textinput">Persoon</label>
+                  <div class="col-md-4">
+                      <?php if($users !== null || !empty($users)) { ?>
+                    <select class="form-control" name="name">
 
-                        </div>
-                    </div>
-                </div>
+                      <?php foreach($users as $user) { ?> 
+                        <?php if( $fetchall['person'] == $user['id']) { ?>
+                          <option selected="selected" required class="form-control input-md" value="<?= $user['id']?>"><?= $user['naam'] ?></option> 
+                        <?php } else {?>                    
+                          <option required class="form-control input-md" value="<?= $user['id']?>"><?= $user['naam'] ?></option>
+                        <?php } ?>
+                      <?php } ?>
 
-
-
-               <div style="width: 20px; background-color: #FFF" id="middle"></div>
-
-               <div style="width: 30%; border: 1px #e0e0e0;" class="panel">
-                   <div style="background-color: #dd2c4c; height: 30px; -moz-border-radius: 0px; -webkit-border-radius: 3px 3px 0px 0px; border-radius: 3px 3px 0px 0px; text-align: center;" class="panel-header">
-                        <h3 id="TitleFont" style="line-height: 1.5; margin-left: 4px; color: #FFF; font-weight: normal;" class="panel-title"><span id="GlyphiconHead" class="glyphicon glyphicon-pencil"></span> Offertes</h3>
-                   </div>
-                    <div class="inner" style="width: 95%; margin: 0px auto;">
-                       <div class="panel-body">
-
-                        <?php foreach($StatusItems as $StatusItem) { ?>
-                        <?php 
-                        if($StatusItem['category']=='Offerte'){
-                          $thisuser = $user->getUserById(  $StatusItem['person']  ); 
-                          $today = date('Y-m-d');
-                          $nextday = date('Y-m-d', strtotime('+1 day'));
-
-                          $statusdate = $StatusItem['deadline'];
-
-                          if($today < $statusdate) {
-                            $rightdate = 'OnTime';
-                          }
-                          if($nextday == $statusdate) {
-                            $rightdate = 'OneDayToDL';
-                          }
-                          if($today == $statusdate) {
-                            $rightdate = 'OneDayToDL';
-                          }
-                          if($today > $statusdate) {
-                            $rightdate = 'TooLate';
-                          }
-                        ?>
-                          <div>
-                            <div id="<?= $rightdate ?>" class="item">
-                                  <span class="lettertype" id="textright" style="text-align:right; margin-left: 4px;"><?= $StatusItem['subject']?></span>
-
-                                  <div id="smallaf" style="text-align: right; font-size: 13px; margin-right: 5px;"><?= $thisuser['naam'] ?></div>
+                    </select>
+                    <?php } ?>
+                  </div>
+              </div>
 
 
-                              </div>
-                            </div>
-                            <div id="betweenwhite" style="height: 6px;"></div>
-                        <?php }} ?>
+              <div class="form-group">
+                  <label class="col-md-4 control-label" for="textinput">Deadline</label>
+                  <div class="col-md-4">
+                      <input class="form-control input-md" type="text" id="datepicker" value="<?= $fetchall['deadline']; ?>" name="deadline" placeholder="Deadline opdracht dd/mm/yyyy">
+                  </div>
+              </div>
 
-                        </div>
-                    </div>
-           </div>
+              <div class="form-group">
+                  <label class="col-md-4 control-label" for="textinput">Opmerking</label>
+                  <div class="col-md-4">
+                      <textarea class="form-control input-md" id="textinput" type="text" name="comment" placeholder="Opmerking"><?= $fetchall['comment'] ?></textarea>
+                  </div>
+              </div>
 
-                <div style="width: 20px; background-color: #FFF" id="middle"></div>
+              <div class="form-group">
+                  <label class="col-md-4 control-label" for="textinput">Categorie</label>
 
-               <div style="width: 30%; border: 1px #e0e0e0;" class="panel">
-                   <div style="background-color: #dd2c4c; height: 30px; -moz-border-radius: 0px; -webkit-border-radius: 3px 3px 0px 0px; border-radius: 3px 3px 0px 0px; text-align: center;" class="panel-header">
-                        <h3 id="TitleFont" style="line-height: 1.5; margin-left: 4px; color: #FFF; font-weight: normal;" class="panel-title"><span id="GlyphiconHead" class="glyphicon glyphicon-folder-open"></span>&nbsp; Projecten</h3>
-                   </div>
+                  <div class="col-md-4">
+                    <select class="form-control" name="category">
+                    <?php if($fetchall['category'] == 'Lead') {?>
+                      <option selected="selected">Lead</option>
+                    <?php } else { ?>
+                        <option>Lead</option>
+                    <?php } ?>
 
-                   
-                   <div class="inner" style="width: 95%; margin: 0px auto;">
-                       
-                        <div class="panel-body">
+                    <?php if($fetchall['category'] == 'Offerte') {?>
+                      <option selected="selected">Offerte</option>
+                    <?php } else { ?>
+                        <option>Offerte</option>
+                    <?php } ?>
 
-                        <?php foreach($StatusItems as $StatusItem) { ?>
-                        <?php 
-                        if($StatusItem['category']=='Project'){
-                          $thisuser = $user->getUserById(  $StatusItem['person']  ); 
-                          $today = date('Y-m-d');
-                          $nextday = date('Y-m-d', strtotime('+1 day'));
+                    <?php if($fetchall['category'] == 'Project') {?>
+                      <option selected="selected">Project</option>
+                    <?php } else { ?>
+                        <option>Project</option>
+                    <?php } ?>
 
-                          $statusdate = $StatusItem['deadline'];
+                    <?php if($fetchall['category'] == 'To-do') {?>
+                      <option selected="selected">To-do</option>
+                    <?php } else { ?>
+                        <option>To-do</option>
+                    <?php } ?>
+                    </select>
+                  </div>
+              </div>
 
-                          if($today < $statusdate) {
-                            $rightdate = 'OnTime';
-                          }
-                          if($nextday == $statusdate) {
-                            $rightdate = 'OneDayToDL';
-                          }
-                          if($today == $statusdate) {
-                            $rightdate = 'OneDayToDL';
-                          }
-                          if($today > $statusdate) {
-                            $rightdate = 'TooLate';
-                          }
-                        ?>
-                          <div>
-                            <div id="<?= $rightdate ?>" class="item">
-                                  <span class="lettertype" id="textright" style="text-align:right; margin-left: 4px;"><?= $StatusItem['subject']?></span>
-
-                                  <div id="smallaf" style="text-align: right; font-size: 13px; margin-right: 5px;"><?= $thisuser['naam'] ?></div>
-
-
-                              </div>
-                            </div>
-                            <div id="betweenwhite" style="height: 6px;"></div>
-                        <?php }} ?>
-
-                        </div>
-                    </div>
-
-               </div>
-                <div style="width: 20px; background-color: #FFF" id="middle"></div>
-
-               <div style="width: 30%; border: 1px #e0e0e0;" class="panel">
-                   <div style="background-color: #dd2c4c; height: 30px; -moz-border-radius: 0px; -webkit-border-radius: 3px 3px 0px 0px; border-radius: 3px 3px 0px 0px; text-align: center;" class="panel-header">
-                        <h3 id="TitleFont" style="line-height: 1.5; margin-left: 4px; color: #FFF; font-weight: normal;" class="panel-title"><span id="GlyphiconHead" class="glyphicon glyphicon-exclamation-sign"></span>  To-do</h3>
-                   </div>
-
-                                      <div class="inner" style="width: 95%; margin: 0px auto;">
-                       
-                        <div class="panel-body">
-
-                        <?php foreach($StatusItems as $StatusItem) { ?>
-                        <?php 
-                        if($StatusItem['category']=='To-do'){
-                          $thisuser = $user->getUserById(  $StatusItem['person']  ); 
-                          $today = date('Y-m-d');
-                          $nextday = date('Y-m-d', strtotime('+1 day'));
-
-                          $statusdate = $StatusItem['deadline'];
-
-                          if($today < $statusdate) {
-                            $rightdate = 'OnTime';
-                          }
-                          if($nextday == $statusdate) {
-                            $rightdate = 'OneDayToDL';
-                          }
-                          if($today == $statusdate) {
-                            $rightdate = 'OneDayToDL';
-                          }
-                          if($today > $statusdate) {
-                            $rightdate = 'TooLate';
-                          }
-                        ?>
-                          <div>
-                            <div id="<?= $rightdate ?>" class="item">
-                                  <span class="lettertype" id="textright" style="text-align:right; margin-left: 4px;"><?= $StatusItem['subject']?></span>
-
-                                  <div id="smallaf" style="text-align: right; font-size: 13px; margin-right: 5px;"><?= $thisuser['naam'] ?></div>
-
-
-                              </div>
-                            </div>
-                            <div id="betweenwhite" style="height: 6px;"></div>
-                        <?php }} ?>
-
-                        </div>
-                    </div>
-
-
-               </div>
-<?php } else {?><div class="alert alert-info" role="alert">Er zijn nog geen items aangemaakt</div><?php } ?>
+              <div class="form-group">
+                  <label class="col-md-4 control-label" for="textinput"></label>
+                  <div class="col-md-4">
+                      <input class="btn btn-primary btn-success" name="submit"  style="float:left; max-width: 100px; background-color: #bb2c4c; border: 1px solid #dd2c4c" type="submit" value="Opslaan">
+                  <a class="abutton centered" data-toggle="modal" data-target="#deleteModal" href="#">Verwijderen</a>                    
+                  </div>
 
               </div>
-             </div>
-            </div>
-        </div>
+          </fieldset>
+      </form>
+
+
+
+      <!-- Modal -->
+<div class="modal fade" id="deleteModal" role="dialog">
+<div class="modal-dialog">
+
+  <!-- Modal content-->
+  <div class="modal-content">
+    <div style="text-align: center;" class="modal-header">
+      <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <h4 class="modal-title">Item verwijderen</h4>
     </div>
+    <div style="text-align: center;" class="modal-body">
+      <br>
+      <p> U staat op het punt om een <?= $fetchall['category'] ?> met de naam <?= $fetchall['subject'] ?> te verwijderen. <br/><br/>
+      Weet u dit zeker?<br/><br/></p>
+      <a class="abuttonmodal" href="?page=deletestatusitem&id=<?= $fetchall['id'] ?>">Verwijder</a>
+<br/>
+<br/>
+    </div>
+    <div class="modal-footer">
+
+    </div>
+  </div>
+
 </div>
-
-<!-- Modal -->
-                                      <div class="modal fade" id="myModal" role="dialog">
-                                        <div class="modal-dialog">
-                                        
-                                          <!-- Modal content-->
-                                          <div class="modal-content">
-                                            <div class="modal-header">
-                                              <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                              <h4 class="modal-title">Nieuw item</h4>
-                                            </div>
-                                            <div class="modal-body">
-                                              <br>
-
-
-                                              <form action="?page=nieuwstatusitem" method="post" enctype="multipart/form-data" class="form-horizontal">
-                                                  <fieldset>
-
-
-                                                      <div class="form-group">
-                                                          <label class="col-md-4 control-label" for="textinput">Onderwerp</label>
-                                                          <div class="col-md-4">
-                                                              <input class="form-control input-md" maxlength="40" id="textinput" type="text" name="onderwerp" placeholder="Onderwerp">
-                                                          </div>
-                                                      </div>
-
-
-                                                      <div class="form-group">
-                                                          <label class="col-md-4 control-label" for="textinput">Persoon</label>
-                                                          <div class="col-md-4">
-                                                              <input required class="form-control input-md" id="textinput" type="text" name="name" size="50" placeholder="Naam persoon">
-                                                          </div>
-                                                      </div>
-
-
-                                                      <div class="form-group">
-                                                          <label class="col-md-4 control-label" for="textinput">Deadline</label>
-                                                          <div class="col-md-4">
-                                                              <input class="form-control input-md" id="textinput" type="date" name="deadline" size="50" placeholder="Deadline opdracht">
-                                                          </div>
-                                                      </div>
-
-                                                      <div class="form-group">
-                                                          <label class="col-md-4 control-label" for="textinput">Categorie</label>
-                                                          
-                                                          <div class="col-md-4">
-                                                            <select class="form-control" name="category">
-                                                              <option>Lead</option>
-                                                              <option>Offerte</option>
-                                                              <option>Project</option>
-                                                              <option>To-do</option>
-                                                            </select>
-                                                          </div>
-                                                      </div>
-
-
-                                                      <div class="form-group">
-                                                          <label class="col-md-4 control-label" for="textinput"></label>
-                                                          <div class="col-md-4">
-                                                              <input class="btn btn-primary btn-success" name="submit"  style="max-width: 100px; background-color: #bb2c4c; border: 1px solid #dd2c4c" type="submit" value="Aanmaken">
-                                                          </div>
-                                                      </div>
-                                                  </fieldset>
-                                              </form>
-                                            </div>
-                                            <div class="modal-footer">
-
-                                            </div>
-                                          </div>
-                                          
-                                        </div>
-                                      </div>
-
-                                      <!-- Modal -->
-                                      <div class="modal fade" id="Sure" role="dialog">
-                                        <div class="modal-dialog">
-                                        
-                                          <!-- Modal content-->
-                                          <div class="modal-content">
-                                            <div class="modal-header">
-                                              <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                              <h4 class="modal-title">Weet u zeker dat u dit item wilt verwijderen?</h4>
-                                            </div>
-                                            <div class="modal-body">
-                                              <br>
-                                             </div>
-                                            <div class="modal-footer">
-
-                                            </div>
-                                        </div>
-                                      </div>
+</div>

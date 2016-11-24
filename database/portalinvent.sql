@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 22 nov 2016 om 13:34
--- Serverversie: 10.1.13-MariaDB
--- PHP-versie: 7.0.6
+-- Gegenereerd op: 24 nov 2016 om 08:41
+-- Serverversie: 10.1.16-MariaDB
+-- PHP-versie: 5.6.24
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -301,7 +301,7 @@ INSERT INTO `image` (`id`, `mailid`, `fakename`, `images`, `verify`, `downloadab
 (235, 100, 'Logo_TV_2015.png', 'Logo_TV_2015_100.png', 1, 1),
 (236, 100, 'pdf-sample_49.pdf', 'pdf-sample_49_100.pdf', 3, 1),
 (237, 100, 'TmT5UPrT.jpg', 'TmT5UPrT_100.jpg', 1, 1),
-(238, 100, 'pdf-sample_49.pdf', 'pdf-sample_49_100.pdf', 1, 0),
+(238, 100, 'pdf-sample_49.pdf', 'pdf-sample_49_100.pdf', 1, 1),
 (239, 100, 'pdf-sample_49.pdf', 'pdf-sample_49_100.pdf', 1, 1);
 
 -- --------------------------------------------------------
@@ -485,6 +485,28 @@ INSERT INTO `settings` (`id`, `SMTP`, `Email`, `Logo`, `Header`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Tabelstructuur voor tabel `status_item`
+--
+
+CREATE TABLE `status_item` (
+  `id` int(11) NOT NULL,
+  `subject` varchar(40) NOT NULL,
+  `person` int(11) NOT NULL,
+  `deadline` date NOT NULL,
+  `category` varchar(40) NOT NULL,
+  `comment` varchar(300) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `status_item`
+--
+
+INSERT INTO `status_item` (`id`, `subject`, `person`, `deadline`, `category`, `comment`) VALUES
+(62, 'Niet vergeten dit', 44, '2016-11-26', 'Project', 'Ik denk dat ik maar een opmerking toevoeg om er zeker van te zijn dat ik geen kleine onderdelen vergeet.');
+
+-- --------------------------------------------------------
+
+--
 -- Tabelstructuur voor tabel `usermail`
 --
 
@@ -581,31 +603,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `profimg`, `naam`, `email`, `paswoord`, `permgroup`, `bedrijfsnaam`, `adres`, `postcode`, `plaats`, `paswoordvergeten`) VALUES
-(7, 'profile.png', '', '', 'd243da637503b04f6aeb432a774fb99b', 2, '', '', '', '', '82bb7483d61948038b12c761bede3360'),
-(10, 'profile.png', 'Jeffrey', 'valckxj@outlook.com', '6a27f10aef159701c7a5ff07f0fb0a78', 4, '', '', '', '', ''),
-(11, 'profile.png', 'He', 'hoi@hoi.nl', '60474c9c10d7142b7508ce7a50acf414', 2, '', '', '', '', ''),
-(12, 'profile.png', 'kevin', 'hey@hotmail.com', 'd243da637503b04f6aeb432a774fb99b', 2, '', '', '', '', ''),
-(13, 'profile.png', 'Kevin', 'hey@hoi.nl', '60474c9c10d7142b7508ce7a50acf414', 2, '', '', '', '', ''),
-(15, 'profile.png', 'Ed ONeil', 'hey@heyy.nl', 'a98ec5c5044800c88e862f007b98d89815fc40ca', 2, '', '', '', '', ''),
-(16, 'profile.png', 'Kevin', 'kef@hotmail.com', '60474c9c10d7142b7508ce7a50acf414', 2, '', '', '', '', ''),
-(17, 'profile.png', 'kef', 'keffer@test.nl', 'ecd71870d1963316a97e3ac3408c9835ad8cf0f3', 2, '', '', '', '', ''),
-(18, 'profile.png', 'keffer', 'keffie@hotmail.com', 'a98ec5c5044800c88e862f007b98d89815fc40ca155d6ce7909530d792e909ce', 2, '', '', '', '', ''),
-(20, 'profile.png', 'Kevin', 'kevin.herdershof@hotmail.com', 'a98ec5c5044800c88e862f007b98d89815fc40ca155d6ce7909530d792e909ce', 1, '', '', '', '', ''),
-(21, 'profile.png', 'Kevin', 'kerst@info.nl', 'a98ec5c5044800c88e862f007b98d89815fc40ca155d6ce7909530d792e909ce', 2, '', '', '', '', ''),
-(23, 'profile.png', 'Kevin Ernst', 'keffer.herdershof@hotmail.com', '0f838011dfa4d248e2bb23e492bcf500a744c878067a0ca7052f263e16a45f23', 2, 'Scalda', 'nieuwe karnemelkstraat 27', '4576BT', 'koewacht', ''),
-(26, 'profile.png', 'Kevin Ernst', 'kef.herdershof@hotmail.com', 'b3e5523d4f907aa0988ac57494741b9b1599ddfbc3b8d761783e5b0c0ee098ba', 2, 'Scalda', 'Nw Karnemelkstraat 27', '4576BA', 'koew8', ''),
-(27, 'profile.png', 'test', 'afe@hot.nl', 'a98ec5c5044800c88e862f007b98d89815fc40ca155d6ce7909530d792e909ce', 1, '', '', '', '', ''),
-(28, 'profile.png', 'Kevin', 'kaka@hotmail.com', 'a98ec5c5044800c88e862f007b98d89815fc40ca155d6ce7909530d792e909ce', 2, '', '', '', '', ''),
-(30, 'profile.png', '', 'keff@hotmail.com', 'a98ec5c5044800c88e862f007b98d89815fc40ca155d6ce7909530d792e909ce', 1, '', '', '', '', ''),
-(32, 'profile.png', 'kakker', 'kakkie@hotmail.com', 'a98ec5c5044800c88e862f007b98d89815fc40ca155d6ce7909530d792e909ce', 1, '', '', '', '', ''),
-(33, 'profile.png', 'meingod', 'kak@hotmail.com', 'a98ec5c5044800c88e862f007b98d89815fc40ca155d6ce7909530d792e909ce', 1, '', '', '', '', ''),
-(34, 'profile.png', 'Kevin Ernst', 'kaffer.herdershof@hotmail.com', '02c78b1026ff3f82087064c7d1ec5ead1ae19ea15dbbb94761b50a7795c04276', 1, 'Scalda', 'nieuwe karnemelkstraat 27', '4576BT', '1', ''),
-(36, 'profile.png', 'SOMUCHFUN', 'kafk@live.nl', 'a98ec5c5044800c88e862f007b98d89815fc40ca155d6ce7909530d792e909ce', 1, '', '', '', '', ''),
-(37, 'profile.png', 'hatethis', 'kak@live.nl', 'a98ec5c5044800c88e862f007b98d89815fc40ca155d6ce7909530d792e909ce', 1, '', '', '', '', ''),
-(38, 'profile.png', 'Kaak', 'kaak@live.nl', 'a98ec5c5044800c88e862f007b98d89815fc40ca155d6ce7909530d792e909ce', 4, 'Invent', 'kaaklaan 3', '42905', 'Terneuzen', ''),
-(39, 'profile.png', 'Ok dan', 'kaaak@live.nl', 'c31bc0c9e89e03b7730407573c7928887967e3b8b79abb0abd56b7ae87323fe5', 1, 'Invent', 'test', '4882', 'fds', ''),
-(40, 'profile.png', 'Ok dan', 'keak@live.nl', '4154e1be4db6d4ac549c4101a130a75b93fc27aa95a7eb1421769f90915a8f8a', 1, 'Invent', 'test', '4882', 'fds', ''),
-(43, 'profile.png', 'fsadjkl', 'kaal@live.nl', 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 2, 'asdf', 'asdf', 'sadf', 'asdf', '');
+(44, 'Aviary-Stock-Photo-3.png', 'Jeffrey', 'valckxj@outlook.com', 'f8e827b537158a9c0cd5d9f7f1e86bb69544c00b298dcf292270cbae4a7d135b', 4, 'Jeffrey''s Company', 'Bossestraat 50A', '4581BG', 'Vogelwaarde', ''),
+(46, 'profile.png', 'Testgebruiker', 'test@company.nl', 'd839036da0b4c2870cb4c7fe8a9a92d9a2ab6beed361daa70bb5c1776c1a0de1', 4, 'Testcompany', 'Hoi.nl', '4422jj', 'Aa', '');
 
 --
 -- Indexen voor geëxporteerde tabellen
@@ -635,6 +634,12 @@ ALTER TABLE `mail`
 -- Indexen voor tabel `settings`
 --
 ALTER TABLE `settings`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexen voor tabel `status_item`
+--
+ALTER TABLE `status_item`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -670,6 +675,11 @@ ALTER TABLE `image`
 ALTER TABLE `mail`
   MODIFY `id` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
 --
+-- AUTO_INCREMENT voor een tabel `status_item`
+--
+ALTER TABLE `status_item`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
+--
 -- AUTO_INCREMENT voor een tabel `usermail`
 --
 ALTER TABLE `usermail`
@@ -678,7 +688,7 @@ ALTER TABLE `usermail`
 -- AUTO_INCREMENT voor een tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

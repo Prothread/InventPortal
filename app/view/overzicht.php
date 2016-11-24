@@ -12,7 +12,6 @@ $uploads = new BlockController();
 $get_filled_info = $uploads->getUploads();
 
 ?>
-
 <div class="container">
     <div id="page-content-wrapper">
         <div class="container-fluid">

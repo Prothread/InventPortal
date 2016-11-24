@@ -100,7 +100,7 @@ $mymail = new MailController();
     $verified = mysqli_real_escape_string( $mysqli, $_SESSION['verified'] );
 
     $mailinfo = [
-        'userid' => intval($_POST['userid']),
+        'clientid' => intval($_POST['userid']),
         'id' => intval($myid),
         'answer' => strip_tags($answer),
         'key' => strip_tags($UID),

@@ -31,13 +31,12 @@ class DbMail extends Database
         if($this->dbQuery($sql)) {
 
             $imgarray = ( explode(", ", $mail->getImage()) );
-            $fakeimgarray = ( explode(", ", $mail->getFakeImage()) );
 
             $myid = $this->dbLastInsertedId();
 
             $i=0;
             foreach($imgarray as $img){
-                $sql2 = "INSERT INTO `image` (`mailid`, `fakename`, `images`, `verify`) VALUES ('{$myid}', '{$fakeimgarray[$i]}', '{$img}', '{$mail->getVerified()}')";
+                $sql2 = "INSERT INTO `image` (`mailid`, `images`, `verify`) VALUES ('{$myid}', '{$img}', '{$mail->getVerified()}')";
 
                 if($this->dbQuery($sql2)){
                     $i++;
@@ -85,7 +84,7 @@ class DbMail extends Database
 
             if($this->dbQuery($sql)){
 
-                $sql1 = "UPDATE `usermail` SET `userid` = '{$mail->getMailUserId()}', `mailid` = '{$mail->getMailId()}', `status` = '{$mail->getVerified()}' WHERE `mailid` = '{$mail->getMailId()}'";
+                $sql1 = "UPDATE `usermail` SET `clientid` = '{$mail->getMailClientId()}', `status` = '{$mail->getVerified()}' WHERE `mailid` = '{$mail->getMailId()}'";
 
                 if($this->dbQuery($sql1)) {
                     true;
@@ -113,16 +112,17 @@ class DbMail extends Database
                     }
                 }
 
-                $imgarray = ( explode(", ", $mail->getImage()) );
-                $fakeimgarray = ( explode(", ", $mail->getFakeImage()) );
+                if($mail->getImage()) {
+                    $imgarray = (explode(", ", $mail->getImage()));
 
-                $i=0;
-                foreach($imgarray as $img){
-                    $sql2 = "INSERT INTO `image` (`mailid`, `fakename`, `images`, `verify`) VALUES ('{$mail->getMailId()}', '{$fakeimgarray[$i]}', '{$img}', '{$mail->getVerified()}')";
+                    $i = 0;
+                    foreach ($imgarray as $img) {
+                        $sql2 = "INSERT INTO `image` (`mailid`, `images`, `verify`) VALUES ('{$mail->getMailId()}', '{$img}', '{$mail->getVerified()}')";
 
-                    if($this->dbQuery($sql2)){
-                        $i++;
-                        true;
+                        if ($this->dbQuery($sql2)) {
+                            $i++;
+                            true;
+                        }
                     }
                 }
 
@@ -195,9 +195,16 @@ class DbMail extends Database
      * @return mixed
      */
 
-    public function getUserMailByUserId($id, $limit = null, $offset = null)
+    public function getUserMailByUserId($id, $limit = null, $offset = null, $clientid = null)
     {
-        $sql = "SELECT * FROM `usermail` WHERE `userid` = '{$id}'";
+        $sql = "SELECT * FROM `usermail` ";
+
+        if($clientid) {
+            $sql .= "WHERE `clientid` = '{$clientid}'";
+        }
+        else {
+            $sql .= "WHERE `userid` = '{$id}'";
+        }
 
         if($limit) {
             $sql .= " LIMIT {$limit}";
@@ -212,19 +219,6 @@ class DbMail extends Database
         if($value) {
             return $value;
         }
-    }
-
-    public function testfunction()
-    {
-        $sql = "SELECT * FROM `usermail` INNER JOIN `mail` ON `usermail`.`mailid` = `mail`.`id` WHERE `usermail`.`userid` = '20'";
-
-        $result = $this->dbQuery($sql);
-        $return = mysqli_fetch_all($result, MYSQLI_ASSOC);
-
-        if($return) {
-            return $return;
-        }
-        return false;
     }
 
     /**

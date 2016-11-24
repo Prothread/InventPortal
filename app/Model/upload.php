@@ -183,7 +183,6 @@ if($error == 0) {
                 'name' => strip_tags($name),
                 'email' => strip_tags($email),
                 'token' => $token,
-                'imgname' => strip_tags($dbimages),
                 'images' => strip_tags($uniqdbimages),
                 'datum' => date('Y-m-d'),
                 'verified' => 0
@@ -197,7 +196,6 @@ if($error == 0) {
                 'name' => strip_tags($name),
                 'email' => strip_tags($email),
                 'token' => $token,
-                'imgname' => strip_tags($dbimages),
                 'images' => strip_tags($uniqdbimages),
                 'datum' => date('Y-m-d'),
                 'verified' => 0

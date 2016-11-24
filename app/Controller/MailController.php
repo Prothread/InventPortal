@@ -29,7 +29,9 @@ class MailController
         $this->model->setMailName($mailinfo['name']);
         $this->model->setMailEmail($mailinfo['email']);
         $this->model->setToken($mailinfo['token']);
-        $this->model->setFakeImage($mailinfo['imgname']);
+        if(isset($mailinfo['imgname'])) {
+            $this->model->setFakeImage($mailinfo['imgname']);
+        }
         $this->model->setImage($mailinfo['images']);
         $this->model->setDatum($mailinfo['datum']);
         $this->model->setVerified($mailinfo['verified']);
@@ -50,7 +52,7 @@ class MailController
     public function update(array $mailinfo)
     {
         if(isset($mailinfo['answer'])){
-            $this->model->setMailUserId($mailinfo['userid']);
+            $this->model->setMailClientId($mailinfo['clientid']);
             $this->model->setMailId($mailinfo['id']);
             $this->model->setAnswer($mailinfo['answer']);
             $this->model->setToken($mailinfo['key']);
@@ -64,8 +66,12 @@ class MailController
             $this->model->setMailName($mailinfo['name']);
             $this->model->setMailEmail($mailinfo['email']);
             $this->model->setToken($mailinfo['token']);
-            $this->model->setFakeImage($mailinfo['imgname']);
-            $this->model->setImage($mailinfo['images']);
+            if(isset($mailinfo['imgname'])) {
+                $this->model->setFakeImage($mailinfo['imgname']);
+            }
+            if(isset($mailinfo['images'])) {
+                $this->model->setImage($mailinfo['images']);
+            }
             $this->model->setDatum($mailinfo['datum']);
             $this->model->setVerified($mailinfo['verified']);
         }
@@ -125,9 +131,9 @@ class MailController
      * @return mixed
      */
 
-    public function getUserMailByUserId($id, $limit = null, $offset = null)
+    public function getUserMailByUserId($id, $limit = null, $offset = null, $clientid = null)
     {
-        return $this->model->getUserMailByUserId($id, $limit, $offset);
+        return $this->model->getUserMailByUserId($id, $limit, $offset, $clientid);
     }
 
     /**
