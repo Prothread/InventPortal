@@ -1,10 +1,18 @@
 <?php
 
+if($user->getPermission($permgroup, 'CAN_SHOW_OVERZICHT') == 1){
+
+}
+else {
+    header('Location: index.php');
+    Session::flash('error', 'U heeft hier geen rechten voor.');
+}
+
 $status = new StatusController();
 $StatusItems = $status->getItems();
 
-$user = new UserController;
-
+$user = new UserController();
+$users = $user->getAllUsersByPerm(1);
 ?>
 
 <div id="page-content-wrapper">
@@ -56,7 +64,7 @@ $user = new UserController;
                           <div>
                             <div id="<?= $rightdate ?>" class="item">
 
-                                  <a href="?page=statusitem"><span class="lettertype" id="textright" style="text-align:right; margin-left: 4px; text-decoration: none; color: #000;"><?= $StatusItem['subject']?></span></a>
+                                  <a href="?page=statusitem&id=<?= $StatusItem['id'] ?>"><span class="lettertype" id="textright" style="text-align:right; margin-left: 4px; text-decoration: none; color: #000;"><?= $StatusItem['subject']?></span></a>
 
                                   <div id="smallaf" style="text-align: right; font-size: 13px; margin-right: 5px;"><?= $thisuser['naam'] ?></div>
 
@@ -105,7 +113,7 @@ $user = new UserController;
                         ?>
                           <div>
                             <div id="<?= $rightdate ?>" class="item">
-                                  <span class="lettertype" id="textright" style="text-align:right; margin-left: 4px;"><?= $StatusItem['subject']?></span>
+                                  <a href="?page=statusitem&id=<?= $StatusItem['id'] ?>"><span class="lettertype" id="textright" style="text-align:right; margin-left: 4px; text-decoration: none; color: #000;"><?= $StatusItem['subject']?></span></a>
 
                                   <div id="smallaf" style="text-align: right; font-size: 13px; margin-right: 5px;"><?= $thisuser['naam'] ?></div>
 
@@ -155,7 +163,7 @@ $user = new UserController;
                         ?>
                           <div>
                             <div id="<?= $rightdate ?>" class="item">
-                                  <span class="lettertype" id="textright" style="text-align:right; margin-left: 4px;"><?= $StatusItem['subject']?></span>
+                                  <a href="?page=statusitem&id=<?= $StatusItem['id'] ?>"><span class="lettertype" id="textright" style="text-align:right; margin-left: 4px; text-decoration: none; color: #000;"><?= $StatusItem['subject']?></span></a>
 
                                   <div id="smallaf" style="text-align: right; font-size: 13px; margin-right: 5px;"><?= $thisuser['naam'] ?></div>
 
@@ -204,7 +212,7 @@ $user = new UserController;
                         ?>
                           <div>
                             <div id="<?= $rightdate ?>" class="item">
-                                  <span class="lettertype" id="textright" style="text-align:right; margin-left: 4px;"><?= $StatusItem['subject']?></span>
+                                  <a href="?page=statusitem&id=<?= $StatusItem['id'] ?>"><span class="lettertype" id="textright" style="text-align:right; margin-left: 4px; text-decoration: none; color: #000;"><?= $StatusItem['subject']?></span></a>
 
                                   <div id="smallaf" style="text-align: right; font-size: 13px; margin-right: 5px;"><?= $thisuser['naam'] ?></div>
 
@@ -257,7 +265,17 @@ $user = new UserController;
               <div class="form-group">
                   <label class="col-md-4 control-label" for="textinput">Persoon</label>
                   <div class="col-md-4">
-                      <input required class="form-control input-md" id="textinput" type="text" name="name" size="50" placeholder="Naam persoon">
+
+                    <?php if($users !== null || !empty($users)) { ?>
+                    <select class="form-control" name="name">
+
+                      <?php foreach($users as $user) { ?>      
+                        <option required class="form-control input-md" value="<?= $user['id']?>"><?= $user['naam'] ?></option>
+                      <?php } ?>
+
+                    </select>
+                    <?php } ?>
+
                   </div>
               </div>
 
@@ -266,6 +284,13 @@ $user = new UserController;
                   <label class="col-md-4 control-label" for="textinput">Deadline</label>
                   <div class="col-md-4">
                       <input class="form-control input-md" id="textinput" type="date" name="deadline" size="50" placeholder="Deadline opdracht">
+                  </div>
+              </div>
+
+              <div class="form-group">
+                  <label class="col-md-4 control-label" for="textinput">Opmerking</label>
+                  <div class="col-md-4">
+                      <textarea class="form-control input-md" id="textinput" type="text" name="comment" placeholder="Opmerking"></textarea>
                   </div>
               </div>
 
