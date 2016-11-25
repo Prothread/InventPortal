@@ -65,14 +65,14 @@ else {
                                     <div class="form-group">
                                         <label class="col-md-4 control-label" for="textinput">Onderwerp</label>
                                         <div class="col-md-4">
-                                            <input required class="form-control input-md" id="textinput" type="text" name="title" size="50" placeholder="<?php if( isset($mailinfo['title']) ){echo $mailinfo['title'];}?>">
+                                            <input required class="form-control input-md" maxlength="32" id="textinput" type="text" name="title" size="50" placeholder="<?php if( isset($mailinfo['title']) ){echo $mailinfo['title'];}?>">
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <label class="col-md-4 control-label" for="textinput">Verstuurder<span style="color:#bc2d4c">*</span></label>
                                         <div class="col-md-4">
-                                            <input required class="form-control input-md" id="textinput" type="text" name="verstuurder" size="50" value="Testadmin" disabled>
+                                            <input required class="form-control input-md" maxlength="32" id="textinput" type="text" name="verstuurder" size="50" value="Testadmin" disabled>
                                         </div>
                                     </div>
 
@@ -123,7 +123,7 @@ else {
                                     <div class="form-group">
                                         <label class="col-md-4 control-label" for="textinput">Beschrijving<span style="color:#bc2d4c">*</span></label>
                                         <div class="col-md-4">
-                                            <input required class="form-control input-md" id="textinput" type="text" name="additionalcontent" value="<?php if( isset($mailinfo['description']) ){echo $mailinfo['description'];}?>">
+                                            <input required class="form-control input-md" maxlength="250" id="textinput" type="text" name="additionalcontent" value="<?php if( isset($mailinfo['description']) ){echo $mailinfo['description'];}?>">
                                         </div>
                                     </div>
 

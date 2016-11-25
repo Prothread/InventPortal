@@ -24,14 +24,14 @@ else {
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">SMTP-adres</label>
                         <div class="col-md-4">
-                            <input class="form-control input-md" id="textinput" required type="text" name="smtp" size="50" value="<?= $admin['SMTP'] ?>">
+                            <input class="form-control input-md" id="textinput" maxlength="64" required type="text" name="smtp" size="50" value="<?= $admin['SMTP'] ?>">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">E-mailadres</label>
                         <div class="col-md-4">
-                            <input class="form-control input-md" id="textinput" required type="text" name="email" size="50" value="<?= $admin['Email'] ?>">
+                            <input class="form-control input-md" id="textinput" maxlength="64" required type="text" name="email" size="50" value="<?= $admin['Email'] ?>">
                         </div>
                     </div>
 
@@ -62,7 +62,7 @@ else {
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Achtergrondkleur header</label>
                         <div class="col-md-4">
-                            <input class="form-control input-md" id="textinput" required type="text" name="headerkleur" size="50" value="<?= $admin['Header'] ?>">
+                            <input class="form-control input-md" id="textinput" maxlength="64" required type="text" name="headerkleur" size="50" value="<?= $admin['Header'] ?>" placeholder="#dd2c4c/rgb(..,..,..)">
                         </div>
                     </div>
 

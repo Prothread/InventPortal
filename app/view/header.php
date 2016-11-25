@@ -126,6 +126,14 @@ else {
                 </li>
             <?php } ?>
 
+            <?php if ($user->getPermission($permgroup, 'CAN_EDIT_SETTINGS') == 1) { ?>
+                <li class="nav-button-settings">
+                    <a href="?page=settings">Instellingen</a>
+                </li>
+            <?php } ?>
+
+            <br />
+
             <?php if ($user->getPermission($permgroup, 'CAN_ACCORD') == 1 && isset($_SESSION['accord'])) { ?>
                 <li class="nav-button-accord">
                     <a href="?page=accordering">Accordering</a>

@@ -25,6 +25,7 @@ if($session->getMailId() !== null) {
 else {
     return 'Er is iets misgegaan';
 }
+$_SESSION['accordid'] = $myupload['id'];
 
 $UID = date('d.m.Y-G.i.s') . '-192.08.1.124';
 
@@ -245,7 +246,7 @@ $userip = $user->getUserIP();
                             <form id="form" action="?page=updatemail" method="post" enctype="multipart/form-data" class="form-horizontal">
                                 <br />
 
-                                <input type="hidden" name="id" value="<?= $myupload['id']; ?>">
+                                <input disabled="disabled" type="hidden" name="id" value="<?= $myupload['id']; ?>">
 
                                 <p> Omschrijving: <span style="color:#bc2d4c"><?= $myupload['beschrijving']?></span> </p>
                                 

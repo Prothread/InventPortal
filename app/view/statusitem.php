@@ -78,7 +78,7 @@ $users = $user->getAllUsersByPerm(1);
               <div class="form-group">
                   <label class="col-md-4 control-label" for="textinput">Opmerking</label>
                   <div class="col-md-4">
-                      <textarea class="form-control input-md" id="textinput" type="text" name="comment" placeholder="Opmerking"><?= $fetchall['comment'] ?></textarea>
+                      <textarea class="form-control input-md" id="textinput" maxlength="300" type="text" name="comment" placeholder="Opmerking"><?= $fetchall['comment'] ?></textarea>
                   </div>
               </div>
 

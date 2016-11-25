@@ -161,7 +161,7 @@ if(isset($_POST['submit'])){
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">Naam<span style="color:#dd2c4c">*</span></label>
                             <div class="col-md-4">
-                                <input class="form-control input-md" id="textinput" required type="text" name="showname" size="50" value="<?= $myclient['naam']; ?>">
+                                <input class="form-control input-md" id="textinput" maxlength="60" required type="text" name="showname" size="50" value="<?= $myclient['naam']; ?>">
                             </div>
                         </div>
 
@@ -169,7 +169,7 @@ if(isset($_POST['submit'])){
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">Bedrijfsnaam</label>
                             <div class="col-md-4">
-                                <input class="form-control input-md" id="textinput" type="text" name="companyname" size="50" value="<?= $myclient['bedrijfsnaam']; ?>">
+                                <input class="form-control input-md" id="textinput" maxlength="60" type="text" name="companyname" size="50" value="<?= $myclient['bedrijfsnaam']; ?>">
                             </div>
                         </div>
 
@@ -180,7 +180,7 @@ if(isset($_POST['submit'])){
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">E-mail<span style="color:#dd2c4c">*</span></label>
                             <div class="col-md-4">
-                                <input class="form-control input-md" id="textinput" required type="email" name="email" size="50" value="<?= $myclient['email']; ?>">
+                                <input class="form-control input-md" id="textinput" maxlength="60" required type="email" name="email" size="50" value="<?= $myclient['email']; ?>">
                             </div>
                         </div>
 
@@ -189,7 +189,7 @@ if(isset($_POST['submit'])){
                             <label class="col-md-4 control-label" for="textinput">Alt E-mail</label>
                             <div class="col-md-4">
                                 <span style="font-size:15px">Alternatief email voor contact met de klant</span>
-                                <input class="form-control input-md" id="textinput" type="email" name="altmail" placeholder="E-mailadres">
+                                <input class="form-control input-md" id="textinput" maxlength="60" type="email" name="altmail" placeholder="E-mailadres">
                             </div>
                         </div>
                         <br />
@@ -198,7 +198,7 @@ if(isset($_POST['submit'])){
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">Adres</label>
                             <div class="col-md-4">
-                                <input class="form-control input-md" id="textinput" type="text" name="companyadress" size="50" value="<?= $myclient['adres']; ?>">
+                                <input class="form-control input-md" id="textinput" maxlength="60" type="text" name="companyadress" size="50" value="<?= $myclient['adres']; ?>">
                             </div>
                         </div>
 
@@ -206,7 +206,7 @@ if(isset($_POST['submit'])){
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">Postcode</label>
                             <div class="col-md-4">
-                                <input class="form-control input-md" id="textinput" type="text" name="postcode" size="50" value="<?= $myclient['postcode']; ?>">
+                                <input class="form-control input-md" id="textinput" maxlength="8" type="text" name="postcode" size="50" value="<?= $myclient['postcode']; ?>">
                             </div>
                         </div>
 
@@ -214,7 +214,7 @@ if(isset($_POST['submit'])){
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">Plaats</label>
                             <div class="col-md-4">
-                                <input class="form-control input-md" id="textinput" type="text" name="plaats" size="50" value="<?= $myclient['plaats']; ?>">
+                                <input class="form-control input-md" id="textinput" maxlength="60" type="text" name="plaats" size="50" value="<?= $myclient['plaats']; ?>">
                             </div>
                         </div>
 

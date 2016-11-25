@@ -27,14 +27,14 @@ else {
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">Naam<span style="color:#dd2c4c">*</span></label>
                             <div class="col-md-4">
-                                <input required class="form-control input-md" id="textinput" type="text" name="name" size="50" placeholder="Naam">
+                                <input required class="form-control input-md" maxlength="60" id="textinput" type="text" name="name" size="50" placeholder="Naam">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">Bedrijfsnaam</label>
                             <div class="col-md-4">
-                                <input class="form-control input-md" id="textinput" type="text" name="companyname" size="50" placeholder="Bedrijfsnaam">
+                                <input class="form-control input-md" id="textinput" maxlength="64" type="text" name="companyname" size="50" placeholder="Bedrijfsnaam">
                             </div>
                         </div>
 
@@ -44,7 +44,7 @@ else {
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">E-mail<span style="color:#dd2c4c">*</span></label>
                             <div class="col-md-4">
-                                <input class="form-control input-md" id="textinput" required type="email" name="email" size="50" placeholder="E-mailadres">
+                                <input class="form-control input-md" id="textinput" maxlength="60" required type="email" name="email" size="50" placeholder="E-mailadres">
                             </div>
                         </div>
 
@@ -53,7 +53,7 @@ else {
                             <label class="col-md-4 control-label" for="textinput">Alt E-mail</label>
                             <div class="col-md-4">
                                 <span style="font-size:15px">Alternatief email voor contact met de klant</span>
-                                <input class="form-control input-md" id="textinput" type="email" name="altmail" placeholder="E-mailadres">
+                                <input class="form-control input-md" id="textinput" maxlength="60" type="email" name="altmail" placeholder="E-mailadres">
                             </div>
                         </div>
                         <br />
@@ -61,21 +61,21 @@ else {
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">Adres</label>
                             <div class="col-md-4">
-                                <input class="form-control input-md" id="textinput" type="text" name="companyadress" size="50" placeholder="Adres">
+                                <input class="form-control input-md" id="textinput" maxlength="64" type="text" name="companyadress" size="50" placeholder="Adres">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">Postcode</label>
                             <div class="col-md-4">
-                                <input class="form-control input-md" id="textinput" type="text" name="postcode" size="50" placeholder="Postcode">
+                                <input class="form-control input-md" id="textinput" maxlength="8" type="text" name="postcode" size="50" placeholder="Postcode">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">Plaats</label>
                             <div class="col-md-4">
-                                <input class="form-control input-md" id="textinput" type="text" name="plaats" size="50" placeholder="Plaats">
+                                <input class="form-control input-md" id="textinput" maxlength="64" type="text" name="plaats" size="50" placeholder="Plaats">
                             </div>
                         </div>
 

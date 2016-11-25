@@ -94,7 +94,12 @@ $mymail = new MailController();
 
 //Saving mail information
 
-    $myid = $_POST['id'];
+    if(isset($_SESSION['accordid'])) {
+        $myid = $_SESSION['accordid'];
+    }
+    else {
+        $myid = $_POST['id'];
+    }
     $answer = mysqli_real_escape_string( $mysqli, $_POST['answer']) ;
     $UID = mysqli_real_escape_string( $mysqli, $_POST['UID'] );
     $verified = mysqli_real_escape_string( $mysqli, $_SESSION['verified'] );
@@ -122,6 +127,7 @@ $mymail = new MailController();
         //If mail is send, create data and send it to the database
         $mymail->update($mailinfo);
         unset($_SESSION['accord']);
+        unset($_SESSION['accordid']);
         unset($_SESSION['verified']);
         unset($_SESSION['verifytext']);
 
