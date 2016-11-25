@@ -118,7 +118,7 @@ else {
             </li>
 
             <br />
-            <p id="MenuSeperator"><span style="color: #FFF;" class="glyphicon glyphicon-ok"></span> ACCORDERINGEN</p>
+
 
             <?php if ($user->getPermission($permgroup, 'CAN_UPLOAD') == 1) { ?>
                 <li class="nav-button-upload">
@@ -132,10 +132,6 @@ else {
                 </li>
             <?php } ?>
 
-            <?php if ($user->getPermission($permgroup, 'CAN_SHOW_KLANTPAGINA') == 1 || $user->getPermission($permgroup, 'CAN_SHOW_USERS') == 1) { ?>
-            <br />
-                <p id="MenuSeperator"><span style="color: #FFF;" class="glyphicon glyphicon-ok"></span> GEBRUIKERS</p>
-            <?php } ?>
 
             <?php if ($user->getPermission($permgroup, 'CAN_SHOW_KLANTPAGINA') == 1 ) { ?>
                 <li class="nav-button-users">
