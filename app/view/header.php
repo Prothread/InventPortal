@@ -119,7 +119,6 @@ else {
 
             <br />
 
-
             <?php if ($user->getPermission($permgroup, 'CAN_UPLOAD') == 1) { ?>
                 <li class="nav-button-upload">
                     <a href="?page=uploadoverzicht">Upload</a>
