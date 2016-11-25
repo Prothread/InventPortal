@@ -232,6 +232,16 @@ else {
                                 </div>
                             </div>
 
+                            <br />
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="textinput">Alt E-mail</label>
+                                <div class="col-md-4">
+                                    <span style="font-size:15px">Alternatief email voor contact met de klant</span>
+                                    <input class="form-control input-md" id="textinput" type="email" name="altmail" size="50" placeholder="E-mailadres">
+                                </div>
+                            </div>
+                            <br />
+
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Adres</label>
                                 <div class="col-md-4">
@@ -263,33 +273,6 @@ else {
                             </div>
                         </fieldset>
                     </form>
-                    <script>
-                        $("form#createclient").submit(function (event) {
-
-                            var dataString = $('form#createclient').serialize() +
-                                '&name=' + <?= $_POST['name'] ?> +
-                                '&companyname=' + <?= $_POST['companyname'] ?> +
-                                '&email=' + <?= $_POST['email'] ?> +
-                                '&companyadress=' + <?= $_POST['companyadress'] ?> +
-                                '&postcode=' + <?= $_POST['postcode'] ?> +
-                                '&plaats=' + <?= $_POST['plaats'] ?> +
-                                '&rechten=' + <?= $_POST['rechten'] ?>;
-                            alert(dataString);
-
-                            $.ajax({
-                                type: "POST",
-                                url: "?page=clientmail",
-                                data: dataString,
-                                cache: false,
-                                success: function (result) {
-                                    alert('success');
-                                }
-                            });
-
-                            event.preventDefault();
-
-                        });
-                    </script>
                 </div>
                 <div class="modal-footer">
 
@@ -299,3 +282,41 @@ else {
         </div>
     </div>
 
+    <script>
+        $("form#createclient").submit(function (event) {
+
+            event.preventDefault();
+
+            var dataString = $('form#createclient').serialize() +
+                '&name=' + <?= $_POST['name'] ?> +
+                    '&companyname=' + <?= $_POST['companyname'] ?> +
+                    '&email=' + <?= $_POST['email'] ?> +
+                    '&companyadress=' + <?= $_POST['companyadress'] ?> +
+                    '&postcode=' + <?= $_POST['postcode'] ?> +
+                    '&plaats=' + <?= $_POST['plaats'] ?> +
+                    '&rechten=' + <?= $_POST['rechten'] ?>;
+            alert(dataString);
+
+            var postForm = { //Fetch form data
+                'name'     : $('input[name=name]').val()                    //Store name fields value
+                'companyname'     : $('input[name=companyname]').val()      //Store companyname fields value
+                'email'     : $('input[name=email]').val()                  //Store email fields value
+                'altmail'     : $('input[name=altmail]').val()              //Store altmail fields value
+                'companyadress'     : $('input[name=companyadress]').val()  //Store companyadress fields value
+                'postcode'     : $('input[name=postcode]').val()            //Store postcode fields value
+                'plaats'     : $('input[name=plaats]').val()                //Store plaats fields value
+                'rechten'     : $('input[name=rechten]').val()              //Store rechten fields value
+            };
+
+            $.ajax({
+                type: "POST",
+                url: "?page=clientmail",
+                data: postForm,
+                cache: false,
+                success: function (result) {
+                    alert('success');
+                }
+            });
+
+        });
+    </script>

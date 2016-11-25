@@ -42,6 +42,14 @@ class User
     private $Email;
 
     /**
+     * Variabele voor alternatief email adres voor de user
+     *
+     * @var $AltMail
+     */
+
+    private $AltMail;
+
+    /**
      * Variabele voor het opslaan/ophalen van het wachtwoord van de user
      *
      * @var $Password
@@ -316,6 +324,17 @@ class User
     }
 
     /**
+     * Set alternatief email adres voor de klant in een variabele genaamd: $Email
+     *
+     * @param $Email
+     */
+
+    public function setAltmail($Email)
+    {
+        $this->AltMail = $Email;
+    }
+
+    /**
      * Geef de variabele $Password een waarde
      *
      * @param $Password
@@ -469,6 +488,17 @@ class User
     public function getEmail()
     {
         return $this->Email;
+    }
+
+    /**
+     * Haal alternatief email van de gebruikersinformatie op
+     *
+     * @return mixed
+     */
+
+    public function getAltMail()
+    {
+        return $this->AltMail;
     }
 
     /**

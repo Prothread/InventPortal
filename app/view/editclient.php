@@ -38,6 +38,7 @@ if(isset($_POST['submit'])){
 
     $naam = mysqli_real_escape_string( $mysqli, $_POST['showname']);
     $email = mysqli_real_escape_string( $mysqli, $_POST['email']);
+    $altmail = mysqli_real_escape_string( $mysqli, $_POST['altmail']);
     $bedrijfsnaam = mysqli_real_escape_string( $mysqli, $_POST['companyname']);
     $adres = mysqli_real_escape_string( $mysqli, $_POST['companyadress']);
     $postcode = mysqli_real_escape_string( $mysqli, $_POST['postcode']);
@@ -88,6 +89,7 @@ if(isset($_POST['submit'])){
                 'profimg' => $unique_name,
                 'name' => strip_tags( $naam ),
                 'email' => strip_tags( $email ),
+                'altmail' => strip_tags( $altmail ),
                 'password' => $token,
                 'bedrijfsnaam' => strip_tags( $bedrijfsnaam ),
                 'adres' => strip_tags( $adres ),
@@ -105,6 +107,7 @@ if(isset($_POST['submit'])){
             'id' => intval($_POST['id']),
             'name' => strip_tags( $naam ),
             'email' => strip_tags( $email ),
+            'altmail' => strip_tags( $altmail ),
             'password' => $token,
             'bedrijfsnaam' => strip_tags( $bedrijfsnaam ),
             'adres' => strip_tags( $adres ),
@@ -156,7 +159,7 @@ if(isset($_POST['submit'])){
 
                         <!-- Text input-->
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="textinput">Naam</label>
+                            <label class="col-md-4 control-label" for="textinput">Naam<span style="color:#dd2c4c">*</span></label>
                             <div class="col-md-4">
                                 <input class="form-control input-md" id="textinput" required type="text" name="showname" size="50" value="<?= $myclient['naam']; ?>">
                             </div>
@@ -166,7 +169,7 @@ if(isset($_POST['submit'])){
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">Bedrijfsnaam</label>
                             <div class="col-md-4">
-                                <input class="form-control input-md" id="textinput" required type="text" name="companyname" size="50" value="<?= $myclient['bedrijfsnaam']; ?>">
+                                <input class="form-control input-md" id="textinput" type="text" name="companyname" size="50" value="<?= $myclient['bedrijfsnaam']; ?>">
                             </div>
                         </div>
 
@@ -175,17 +178,27 @@ if(isset($_POST['submit'])){
 
                         <!-- Text input-->
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="textinput">E-mail</label>
+                            <label class="col-md-4 control-label" for="textinput">E-mail<span style="color:#dd2c4c">*</span></label>
                             <div class="col-md-4">
                                 <input class="form-control input-md" id="textinput" required type="email" name="email" size="50" value="<?= $myclient['email']; ?>">
                             </div>
                         </div>
 
+                        <br />
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="textinput">Alt E-mail</label>
+                            <div class="col-md-4">
+                                <span style="font-size:15px">Alternatief email voor contact met de klant</span>
+                                <input class="form-control input-md" id="textinput" type="email" name="altmail" placeholder="E-mailadres">
+                            </div>
+                        </div>
+                        <br />
+
                         <!-- Select Basic -->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">Adres</label>
                             <div class="col-md-4">
-                                <input class="form-control input-md" id="textinput" required type="text" name="companyadress" size="50" value="<?= $myclient['adres']; ?>">
+                                <input class="form-control input-md" id="textinput" type="text" name="companyadress" size="50" value="<?= $myclient['adres']; ?>">
                             </div>
                         </div>
 
@@ -193,7 +206,7 @@ if(isset($_POST['submit'])){
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">Postcode</label>
                             <div class="col-md-4">
-                                <input class="form-control input-md" id="textinput" required type="text" name="postcode" size="50" value="<?= $myclient['postcode']; ?>">
+                                <input class="form-control input-md" id="textinput" type="text" name="postcode" size="50" value="<?= $myclient['postcode']; ?>">
                             </div>
                         </div>
 
@@ -201,29 +214,42 @@ if(isset($_POST['submit'])){
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">Plaats</label>
                             <div class="col-md-4">
-                                <input class="form-control input-md" id="textinput" required type="text" name="plaats" size="50" value="<?= $myclient['plaats']; ?>">
+                                <input class="form-control input-md" id="textinput" type="text" name="plaats" size="50" value="<?= $myclient['plaats']; ?>">
                             </div>
                         </div>
 
-                        <?php if($user->getPermission($permgroup, 'CAN_EDIT_USER')) { ?>
+                        <?php if($user->getPermission($permgroup, 'CAN_EDIT_USER') == '1') { ?>
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Rechtgroepen</label>
+                                <label class="col-md-4 control-label">Rechten:<span style="color:#dd2c4c">*</span></label>
                                 <div class="col-md-4">
-                                    <label class="col-md-2 control-label" for="textinput">Klant: 1</label>
-                                    <label class="col-sm-3 control-label" for="textinput">Gebruiker: 2</label>
-                                    <label class="col-sm-3 control-label" for="textinput">Beheerder: 3</label>
-                                    <label class="col-sm-3 control-label" for="textinput">Admin: 4</label>
-                                </div>
-                            </div>
-                        <?php } ?>
+                                    <select class="form-control" name="rechten" required>
+                                        <?php if($userinfo['permgroup'] == '1') {?>
+                                            <option selected="selected">Klant</option>
+                                        <?php } else { ?>
+                                            <option>Klant</option>
+                                        <?php } ?>
 
-                        <?php if($user->getPermission($permgroup, 'CAN_EDIT_USER')) { ?>
-                            <div class="form-group">
-                                <label class="col-md-4 control-label">Rechten:</label>
-                                <div class="col-md-4">
-                                    <input class="form-control" value="<?= $userinfo['permgroup'] ?>" type="text" name="rechten">
+                                        <?php if($userinfo['permgroup'] == '2') {?>
+                                            <option selected="selected">Gebruiker</option>
+                                        <?php } else { ?>
+                                            <option>Gebruiker</option>
+                                        <?php } ?>
+
+                                        <?php if($userinfo['permgroup'] == '3') {?>
+                                            <option selected="selected">Beheerder</option>
+                                        <?php } else { ?>
+                                            <option>Beheerder</option>
+                                        <?php } ?>
+
+                                        <?php if($userinfo['permgroup'] == '4') {?>
+                                            <option selected="selected">Admin</option>
+                                        <?php } else { ?>
+                                            <option>Admin</option>
+                                        <?php } ?>
+                                    </select>
                                 </div>
                             </div>
+
                         <?php } else {?>
                             <input class="form-control" value="<?= $userinfo['permgroup'] ?>" type="hidden" name="rechten">
                         <?php } ?>

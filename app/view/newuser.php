@@ -71,27 +71,39 @@ else {
 
                         <br />
 
-                        <?php if($user->getPermission($permgroup, 'CAN_EDIT_USER')) { ?>
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Rechtgroepen</label>
-                                <div class="col-md-4">
-                                    <label class="col-md-2 control-label" for="textinput">Klant: 1</label>
-                                    <label class="col-sm-3 control-label" for="textinput">Gebruiker: 2</label>
-                                    <label class="col-sm-3 control-label" for="textinput">Beheerder: 3</label>
-                                    <label class="col-sm-3 control-label" for="textinput">Admin: 4</label>
-                                </div>
-                            </div>
-                        <?php } ?>
-
-                        <?php if($user->getPermission($permgroup, 'CAN_EDIT_USER')) { ?>
+                        <?php if($user->getPermission($permgroup, 'CAN_EDIT_USER') == '1') { ?>
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Rechten:</label>
                                 <div class="col-md-4">
-                                    <input class="form-control" value="<?= $userinfo['permgroup'] ?>" type="text" name="rechten">
+                                    <select class="form-control" name="rechten" required>
+                                        <?php if($userinfo['permgroup'] == '1') {?>
+                                            <option selected="selected">Klant</option>
+                                        <?php } else { ?>
+                                            <option>Klant</option>
+                                        <?php } ?>
+
+                                        <?php if($userinfo['permgroup'] == '2') {?>
+                                            <option selected="selected">Gebruiker</option>
+                                        <?php } else { ?>
+                                            <option>Gebruiker</option>
+                                        <?php } ?>
+
+                                        <?php if($userinfo['permgroup'] == '3') {?>
+                                            <option selected="selected">Beheerder</option>
+                                        <?php } else { ?>
+                                            <option>Beheerder</option>
+                                        <?php } ?>
+
+                                        <?php if($userinfo['permgroup'] == '4') {?>
+                                            <option selected="selected">Admin</option>
+                                        <?php } else { ?>
+                                            <option>Admin</option>
+                                        <?php } ?>
+                                    </select>
                                 </div>
                             </div>
                         <?php } else {?>
-                            <input class="form-control" value="<?= $userinfo['permgroup'] ?>" type="hidden" name="rechten">
+                            <input class="form-control" value="<?= $userinfo['permgroup'] ?>" type="hidden" readonly name="rechten">
                         <?php } ?>
 
                         <div class="form-group">

@@ -12,7 +12,7 @@ input[type="file"] {
 }
 
 .MyOverviewButton {
-    width: 150px;
+    width: auto;
     background-color: #bb2c4c;
     border: none;
 }

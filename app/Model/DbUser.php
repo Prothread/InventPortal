@@ -22,7 +22,7 @@ class DbUser extends Database
         $email = $user->getEmail();
         $password = hash('sha256', $user->getPassword());
 
-        $sql = "INSERT INTO `users` (`naam`, `email`, `paswoord`, `permgroup`, `bedrijfsnaam`, `adres`, `postcode`, `plaats`) VALUES('" . $name . "', '" . $email . "', '" . $password . "', '{$user->getPermGroup()}',
+        $sql = "INSERT INTO `users` (`naam`, `email`, `altmail`,  `paswoord`, `permgroup`, `bedrijfsnaam`, `adres`, `postcode`, `plaats`) VALUES('" . $name . "', '" . $email . "', '{$user->getAltMail()}', '" . $password . "', '{$user->getPermGroup()}',
         '{$user->getCompanyName()}', '{$user->getUserAdres()}', '{$user->getUserPostcode()}', '{$user->getUserPlace()}')";
 
         if($this->dbQuery($sql)){
@@ -35,7 +35,7 @@ class DbUser extends Database
 
     public function update(User $user)
     {
-        $sql = "UPDATE `users` SET `naam` = '{$user->getName()}', `email` = '{$user->getEmail()}', `bedrijfsnaam` = '{$user->getCompanyName()}', `permgroup` = '{$user->getPermGroup()}',
+        $sql = "UPDATE `users` SET `naam` = '{$user->getName()}', `email` = '{$user->getEmail()}', `altmail` = '{$user->getAltmail()}' `bedrijfsnaam` = '{$user->getCompanyName()}', `permgroup` = '{$user->getPermGroup()}',
         `adres` = '{$user->getUserAdres()}', `postcode` = '{$user->getUserPostcode()}', `plaats` = '{$user->getUserPlace()}' ";
 
         if($user->getPassword() !== null) {

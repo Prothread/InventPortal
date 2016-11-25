@@ -53,7 +53,7 @@ $get_filled_info = $user->getAllClients();
                                         <?= $upload['bedrijfsnaam'] ?>
                                     </td>
                                     <td>
-                                        <?= $upload['email'] ?>
+                                        <?php if($upload['altmail']) { echo $upload['altmail']; } else { echo $upload['email']; }?>
                                     </td>
                                     <td>
                                         <?= $upload['adres'] ?>

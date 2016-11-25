@@ -23,8 +23,17 @@ else {
             <div class="row">
                 <table style="width:100%">
                     <tr>
-                        <th style="text-align: left;"><p class="NameText" style="font-weight: normal;">Overzicht</p></th>
+                        <th style="text-align: left;">
+                            <p class="NameText" style="font-weight: normal;">Overzicht</p>
+                        </th>
                         <th style="text-align: right;">
+
+                            <?php if(isset($_SESSION['updateopenmails']) && $user->getPermission($permgroup, 'CAN_EDIT_ACCORD') == 1){ ?>
+                            <a href="?page=gebruikersoverzicht" id="updateopenmails">
+                                <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
+                                <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> Update alle Open proeven</button>
+                            </a>
+                            <?php  } ?>
 
                             <a href="?page=gebruikersoverzicht">
                                 <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
@@ -34,6 +43,7 @@ else {
                                 <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
                                 <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> Open proeven</button>
                             </a>
+
                             <a id="filtergoed" href="?page=gebruikersoverzicht">
                                 <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
                                 <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> Geakkordeerde proeven</button>
@@ -105,7 +115,11 @@ else {
         </div>
     </div>
 </div>
-<?php unset($_SESSION['uploads']); ?>
+<?php
+    //Unset sessions
+    unset($_SESSION['uploads']);
+    unset($_SESSION['updateopenmails']);
+?>
 
 <script>
     $(document).ready(function(){

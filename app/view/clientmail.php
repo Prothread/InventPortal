@@ -132,6 +132,21 @@ $userinfo = [
     'permgroup' => $rechten
 ];
 
+if($_POST['altmail']) {
+    $altmail = mysqli_real_escape_string($mysqli, $_POST['altmail']);
+    $userinfo = [
+        'name' => strip_tags( $naam ),
+        'email' => strip_tags( $email ),
+        'altmail' => strip_tags( $altmail ),
+        'password' => $token,
+        'bedrijfsnaam' => strip_tags( $bedrijfsnaam ),
+        'adres' => strip_tags( $adres ),
+        'postcode' => strip_tags( $postcode ),
+        'plaats' => strip_tags( $plaats ),
+        'permgroup' => $rechten
+    ];
+}
+
 $mailer->SMTPOptions = array(
     'ssl' => array(
         'verify_peer' => false,
