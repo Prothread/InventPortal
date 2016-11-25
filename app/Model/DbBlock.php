@@ -51,12 +51,19 @@ class DbBlock extends Database
      * @return array|null
      */
 
-    public function getOlderUploads($verified = null)
+    public function getOlderUploads($verified = null, $date2 = null)
     {
         $date = date('Y-m-d');
 
         $sql = "SELECT * FROM `mail` WHERE `datum` <";
-        $sql .= " '{$date}'";
+
+        if($date2) {
+            $date2 = date('Y-m-d', strtotime("-5 day"));
+            $sql .=" '{$date2}'";
+        }
+        else {
+            $sql .= " '{$date}'";
+        }
 
         if($verified) {
             $sql .= " AND `verified` IN({$verified})";

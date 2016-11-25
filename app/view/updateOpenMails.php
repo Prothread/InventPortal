@@ -18,7 +18,7 @@ $mail = new MailController();
 $uploads = new BlockController();
 
 $verified = '0, 1';
-$get_filled_info = $uploads->getOlderUploads($verified);
+$get_filled_info = $uploads->getOlderUploads($verified, true);
 
 foreach($get_filled_info as $get_info) {
 

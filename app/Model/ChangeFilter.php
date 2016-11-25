@@ -12,7 +12,7 @@ $uploads = new BlockController();
 
 if($_POST['filter'] == 'openproeven') {
     $verified = '0, 1';
-    $_SESSION['uploads'] = $uploads->getOlderUploads($verified);
+    $_SESSION['uploads'] = $uploads->getOlderUploads($verified, true);
     $_SESSION['updateopenmails'] = true;
 }
 

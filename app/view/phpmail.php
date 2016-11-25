@@ -307,6 +307,7 @@ else {
                 'plaats'     : $('input[name=plaats]').val()                //Store plaats fields value
                 'rechten'     : $('input[name=rechten]').val()              //Store rechten fields value
             };
+            alert(postForm);
 
             $.ajax({
                 type: "POST",

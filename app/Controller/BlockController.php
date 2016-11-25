@@ -66,9 +66,9 @@ class BlockController
      * @return array|null
      */
 
-    public function getOlderUploads($verified = null)
+    public function getOlderUploads($verified = null, $date2 = null)
     {
-        return $this->model->getOlderUploads($verified);
+        return $this->model->getOlderUploads($verified, $date2);
     }
 
     /**

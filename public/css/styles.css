@@ -1642,3 +1642,7 @@ tr:nth-child(2n) {
     text-decoration: none;
     color: #fff;
 }
+#days {
+    font-size: 12px;
+    color: darkturquoise;
+}

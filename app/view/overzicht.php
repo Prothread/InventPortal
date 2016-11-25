@@ -8,7 +8,6 @@ if($user->getPermission($permgroup, 'CAN_SHOW_OVERZICHT') == 1){
 }
 
 $uploads = new BlockController();
-//unset($_SESSION['uploads']);
 
 if(isset($_SESSION['uploads'])) {
     $get_filled_info = $_SESSION['uploads'];
@@ -31,7 +30,7 @@ else {
                             <?php if(isset($_SESSION['updateopenmails']) && $user->getPermission($permgroup, 'CAN_EDIT_ACCORD') == 1){ ?>
                             <a href="?page=gebruikersoverzicht" id="updateopenmails">
                                 <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
-                                <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> Update alle Open proeven</button>
+                                <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> Update alle Open proeven <span id="days">(5 < dagen)</span></button>
                             </a>
                             <?php  } ?>
 
@@ -41,7 +40,7 @@ else {
                             </a>
                             <a id="filteropen" href="?page=gebruikersoverzicht">
                                 <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
-                                <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> Open proeven</button>
+                                <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> Open proeven </button>
                             </a>
 
                             <a id="filtergoed" href="?page=gebruikersoverzicht">
@@ -66,7 +65,7 @@ else {
                         <th>Status</th>
                         <?php }
                         else {?>
-                            <th></th>
+                            <th>Proeven</th>
                         <?php } ?>
                     </tr>
                     </thead>

@@ -45,9 +45,9 @@ class Block
      * @return array|null
      */
 
-    public function getOlderUploads($verified = null)
+    public function getOlderUploads($verified = null, $date2 = null)
     {
-        return $this->db->getOlderUploads($verified);
+        return $this->db->getOlderUploads($verified, $date2);
     }
 
     /**

@@ -2,121 +2,120 @@
 
 ob_clean();
 //header('Content-type: image/png');
+if (!headers_sent()) {
+    if (isset($_GET['img'])) {
+        $image = $_GET['img'];
 
-if(isset($_GET['img'])) {
-    $image = $_GET['img'];
+        $stamp = imagecreatefrompng(DIR_PUBLIC . 'proef_groot.png');
+        //$im = imagecreatefromjpeg(DIR_IMAGE . $image);
 
-    $stamp = imagecreatefrompng(DIR_PUBLIC . 'proef_groot.png');
-    //$im = imagecreatefromjpeg(DIR_IMAGE . $image);
+        $fullPath = DIR_IMAGE . $image;
 
-    $fullPath = DIR_IMAGE . $image;
+        $path_parts = pathinfo($fullPath);
+        $ext = strtolower($path_parts["extension"]);
 
-    $path_parts = pathinfo($fullPath);
-    $ext = strtolower($path_parts["extension"]);
+        // Determine Content Type
+        switch ($ext) {
+            case "pdf":
+                $ctype = "application/pdf";
+                $filename = 'Custom file name for the.pdf'; /* Note: Always use .pdf at the end. */
 
-    // Determine Content Type
-    switch ($ext) {
-        case "pdf":
-            $ctype="application/pdf";
-            $filename = 'Custom file name for the.pdf'; /* Note: Always use .pdf at the end. */
+                header('Content-type: application/pdf');
+                header('Content-Disposition: inline; filename="' . $filename . '"');
+                header('Content-Transfer-Encoding: binary');
+                header('Content-Length: ' . filesize($fullPath));
+                header('Accept-Ranges: bytes');
 
-            header('Content-type: application/pdf');
-            header('Content-Disposition: inline; filename="' . $filename . '"');
-            header('Content-Transfer-Encoding: binary');
-            header('Content-Length: ' . filesize($fullPath));
-            header('Accept-Ranges: bytes');
-
-            readfile($fullPath);
-            return true;
-            break;
-        //case "zip": $ctype="application/zip"; break;
-        case "gif":
-            $ctype="image/gif";
-            break;
-        case "png":
-            $ctype="image/png";
-            $im = imagecreatefrompng($fullPath);
-            break;
-        case "jpeg":
-        case "jpg":
-            $ctype="image/jpg";
-            $im = imagecreatefromjpeg($fullPath);
-        break;
-        default:
-            $ctype="application/force-download";
-    }
+                readfile($fullPath);
+                return true;
+                break;
+            //case "zip": $ctype="application/zip"; break;
+            case "gif":
+                $ctype = "image/gif";
+                break;
+            case "png":
+                $ctype = "image/png";
+                $im = imagecreatefrompng($fullPath);
+                break;
+            case "jpeg":
+            case "jpg":
+                $ctype = "image/jpg";
+                $im = imagecreatefromjpeg($fullPath);
+                break;
+            default:
+                $ctype = "application/force-download";
+        }
 
 // Get dimensions
-    $imageWidth = imagesx($im);
-    $imageHeight = imagesy($im);
+        $imageWidth = imagesx($im);
+        $imageHeight = imagesy($im);
 
-    $logoWidth = imagesx($stamp);
-    $logoHeight = imagesy($stamp);
+        $logoWidth = imagesx($stamp);
+        $logoHeight = imagesy($stamp);
 
 //White background?!
-    $image = imagecreatetruecolor($imageWidth, $imageHeight);
-    $white = imagecolorallocate($image, 255, 255, 255);
-    imagefill($image, 0, 0, $white);
+        $image = imagecreatetruecolor($imageWidth, $imageHeight);
+        $white = imagecolorallocate($image, 255, 255, 255);
+        imagefill($image, 0, 0, $white);
 
-// Paste the logo
-    imagecopy(
-// destination
-        $image,
-        // source
-        $im,
-        // destination x and y
-        0, 0,
-        // source x and y
-        0, 0,
-        // width and height of the area of the source to copy
-        $imageWidth, $imageHeight
-    );
-
-//Get new dimensions
-    $imgWidth = imagesx($image);
-    $imgHeight = imagesy($image);
-
-    if($imgWidth < $logoWidth) {
-        imagecopyresampled(
-        // destination
-            $image,
-            // source
-            $stamp,
-            // destination x and y
-            0, 0,
-            // source x and y
-            0, 0,
-
-
-            //Width and height wannabe
-            $imgWidth, $imgHeight,
-
-
-            // width and height of the area of the source to copy
-            $logoWidth, $logoHeight
-        );
-    }
-
-    else {
 // Paste the logo
         imagecopy(
-        // destination
+// destination
             $image,
             // source
-            $stamp,
+            $im,
             // destination x and y
-            ($imageWidth - $logoWidth) / 2, ($imageHeight - $logoHeight) / 2,
+            0, 0,
             // source x and y
             0, 0,
-
             // width and height of the area of the source to copy
-            $logoWidth, $logoHeight
+            $imageWidth, $imageHeight
         );
-    }
+
+//Get new dimensions
+        $imgWidth = imagesx($image);
+        $imgHeight = imagesy($image);
+
+        if ($imgWidth < $logoWidth) {
+            imagecopyresampled(
+            // destination
+                $image,
+                // source
+                $stamp,
+                // destination x and y
+                0, 0,
+                // source x and y
+                0, 0,
+
+
+                //Width and height wannabe
+                $imgWidth, $imgHeight,
+
+
+                // width and height of the area of the source to copy
+                $logoWidth, $logoHeight
+            );
+        } else {
+// Paste the logo
+            imagecopy(
+            // destination
+                $image,
+                // source
+                $stamp,
+                // destination x and y
+                ($imageWidth - $logoWidth) / 2, ($imageHeight - $logoHeight) / 2,
+                // source x and y
+                0, 0,
+
+                // width and height of the area of the source to copy
+                $logoWidth, $logoHeight
+            );
+        }
 
 
 // Output and free memory
-    header("Content-Type: $ctype");
-    imagepng($image);
-    imagedestroy($image);
+        header("Content-Type: $ctype");
+        imagepng($image);
+        imagedestroy($image);
+    }
 }
