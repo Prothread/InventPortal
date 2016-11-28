@@ -168,15 +168,15 @@ if(isset($_POST['submit'])) {
     <title>Inloggen</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="public/css/bootstrap.css" rel="stylesheet">
+    <link href="css/bootstrap.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="public/css/ionicons.min.css" rel="stylesheet">
-    <link href="public/css/loginstyle.css" rel="stylesheet">
+    <link href="css/ionicons.min.css" rel="stylesheet">
+    <link href="css/loginstyle.css" rel="stylesheet">
 
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="public/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="js/ie10-viewport-bug-workaround.js"></script>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -196,7 +196,7 @@ if(isset($_POST['submit'])) {
           <div class="col-md-8 col-md-offset-2 centered loginbar">
                 <form role="form" method="post" name="loginform" action="?page=forgetpassword">
                 <fieldset>
-                    <img style="width: 254px; height: 256px;" src="public/img/madalco.png">
+                    <img style="width: 254px; height: 256px;" src="img/madalco.png">
                     <br>
                     <br>
                         <label>Als u uw wachtwoord bent vergeten, vul dan hieronder uw e-mailadres in.</label>
@@ -222,8 +222,8 @@ if(isset($_POST['submit'])) {
     </div>
 </div>
 
-<script src="../public/js/jquery-1.10.2.js"></script>
-<script src="../public/js/bootstrap.min.js"></script>
+<script src="js/jquery-1.10.2.js"></script>
+<script src="js/bootstrap.min.js"></script>
           </div>
         </div><!--/row-->
       </div><!--/container-->
@@ -240,8 +240,8 @@ if(isset($_POST['submit'])) {
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="../public/js/jquery.min.js"></script>
-    <script src="../public/js/bootstrap.min.js"></script>
-    <script src="../public/js/retina-1.1.0.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/retina-1.1.0.js"></script>
   </body>
 </html>

@@ -13,7 +13,7 @@ $uploads = new BlockController();
 $get_filled_info = $uploads->getLastSixUserUploads($_SESSION['usr_id']);
 
 if($get_filled_info == null) {
-    echo '<div id="NoMail">Er zijn nog geen proeven of offertes geüpload</div>';
+    echo '<div id="NoMail" class="alert alert-info">Er zijn nog geen proeven of offertes geüpload</div>';
     return false;
 }
 

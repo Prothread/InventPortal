@@ -2,7 +2,14 @@
 
 class DbStatus extends Database
 {
-	
+
+	/**
+	 * Zet de informatie die ingevuld is in de status class in de database
+	 *
+	 * @param Status $statusinfo
+	 * @return bool
+	 */
+
 	public function create(Status $statusinfo)
 	{
 		$date = $statusinfo->getDeadline();
@@ -15,6 +22,13 @@ class DbStatus extends Database
 		}
 		return false;
 	}
+
+	/**
+	 * Update de informatie in de database met de meegegeven informatie van de status class
+	 *
+	 * @param Status $statusinfo
+	 * @return bool
+	 */
 
 	public function update(Status $statusinfo)
 	{
@@ -30,6 +44,13 @@ class DbStatus extends Database
 		return false;
 	}
 
+	/**
+	 * Delete item uit de database met (meegegeven) id
+	 *
+	 * @param $id
+	 * @return bool
+	 */
+
 	public function deleteItemByID($id)
 	{
 		$sql = "DELETE FROM `status_item` WHERE `id` = '{$id}'";
@@ -39,8 +60,14 @@ class DbStatus extends Database
         if($result) {
             return true;
         }
-
+		return false;
 	}
+
+	/**
+	 * Haal alle items uit de database op
+	 *
+	 * @return array|bool|null
+	 */
 
 	public function getItems(){
 		$sql = "SELECT * FROM `status_item`";
@@ -51,7 +78,15 @@ class DbStatus extends Database
 		if($fetch_all) {
 			return $fetch_all;
 		}
+		return false;
 	}
+
+	/**
+	 * Haal alle items met een (meegegeven) id uit de database op
+	 *
+	 * @param $id
+	 * @return array|bool|null
+	 */
 
 	public function getItemById($id)
 	{
@@ -63,6 +98,7 @@ class DbStatus extends Database
         if($row) {
             return $row;
         }
+		return false;
 	}
 
 }

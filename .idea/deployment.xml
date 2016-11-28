@@ -2,10 +2,10 @@
 <project version="4">
   <component name="PublishConfigData" serverName="InventPortal">
     <serverData>
-      <paths name="InventPortal">
+      <paths name="Actemium">
         <serverdata>
           <mappings>
-            <mapping local="$PROJECT_DIR$" web="InventPortal" />
+            <mapping local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
       </paths>

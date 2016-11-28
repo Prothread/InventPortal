@@ -8,6 +8,9 @@ else {
     header('Location: index.php');
     Session::flash('error', 'U heeft hier geen rechten voor.');
 }
+
+$user = new UserController();
+$userinfo = $user->getUserById($_SESSION['usr_id']);
 ?>
 <div id="Mail">
     <!-- Page Content -->
@@ -72,7 +75,7 @@ else {
                                     <div class="form-group">
                                         <label class="col-md-4 control-label" for="textinput">Verstuurder<span style="color:#bc2d4c">*</span></label>
                                         <div class="col-md-4">
-                                            <input required class="form-control input-md" maxlength="32" id="textinput" type="text" name="verstuurder" size="50" value="Testadmin" disabled>
+                                            <input required class="form-control input-md" maxlength="32" id="textinput" type="text" name="verstuurder" size="50" value="<?= $userinfo['naam'] ?>" disabled>
                                         </div>
                                     </div>
 
@@ -202,7 +205,7 @@ else {
                 </div>
                 <div class="modal-body">
 
-                    <form action="?page=clientmail" method="post" enctype="multipart/form-data" class="form-horizontal newclient" id="createclient">
+                    <form action="#" method="post" enctype="multipart/form-data" class="form-horizontal newclient" id="createclient">
                         <fieldset>
 
                             <p class="ClientFormText">Namen</p>
@@ -284,30 +287,17 @@ else {
 
     <script>
         $("form#createclient").submit(function (event) {
-
-            event.preventDefault();
-
-            var dataString = $('form#createclient').serialize() +
-                '&name=' + <?= $_POST['name'] ?> +
-                    '&companyname=' + <?= $_POST['companyname'] ?> +
-                    '&email=' + <?= $_POST['email'] ?> +
-                    '&companyadress=' + <?= $_POST['companyadress'] ?> +
-                    '&postcode=' + <?= $_POST['postcode'] ?> +
-                    '&plaats=' + <?= $_POST['plaats'] ?> +
-                    '&rechten=' + <?= $_POST['rechten'] ?>;
-            alert(dataString);
-
-            var postForm = { //Fetch form data
-                'name'     : $('input[name=name]').val()                    //Store name fields value
-                'companyname'     : $('input[name=companyname]').val()      //Store companyname fields value
-                'email'     : $('input[name=email]').val()                  //Store email fields value
-                'altmail'     : $('input[name=altmail]').val()              //Store altmail fields value
-                'companyadress'     : $('input[name=companyadress]').val()  //Store companyadress fields value
-                'postcode'     : $('input[name=postcode]').val()            //Store postcode fields value
-                'plaats'     : $('input[name=plaats]').val()                //Store plaats fields value
-                'rechten'     : $('input[name=rechten]').val()              //Store rechten fields value
-            };
-            alert(postForm);
+            
+             var postForm = $('form#createclient').serialize() +              //Fetch form data
+                '&name=' + $('input[name=name]').val() +                      //Store name fields value
+                '&companyname=' + $('input[name=companyname]').val() +        //Store companyname fields value
+                '&email=' + $('input[name=email]').val() +                    //Store email fields value
+                '&altmail=' + $('input[name=altmail]').val() +                //Store altmail fields value
+                '&companyadress=' + $('input[name=companyadress]').val() +    //Store companyadress fields value
+                '&postcode=' +  $('input[name=postcode]').val() +             //Store postcode fields value
+                '&plaats=' + $('input[name=plaats]').val() +                  //Store plaats fields value
+                '&rechten=' + $('input[name=rechten]').val()                  //Store rechten fields value
+            ;
 
             $.ajax({
                 type: "POST",
@@ -318,6 +308,7 @@ else {
                     alert('success');
                 }
             });
+            event.preventDefault();
 
         });
     </script>
