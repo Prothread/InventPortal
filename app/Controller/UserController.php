@@ -30,7 +30,7 @@ class UserController
 
         $this->model->setName($userinfo['name']);
         $this->model->setEmail($userinfo['email']);
-        if($userinfo['altmail']) {
+        if(isset($userinfo['altmail'])) {
             $this->model->setAltmail($userinfo['altmail']);
         }
         $this->model->setPassword($userinfo['password']);
@@ -76,6 +76,10 @@ class UserController
 
         $this->model->setName($userinfo['name']);
         $this->model->setEmail($userinfo['email']);
+
+        if(isset($userinfo['altmail'])) {
+            $this->model->setAltmail($userinfo['altmail']);
+        }
 
         if(isset($userinfo['password'])) {
             $this->model->setPassword($userinfo['password']);
