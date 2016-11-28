@@ -181,8 +181,8 @@ switch($page) {
     case 'profile':
         include '../app/view/profile.php';
         break;
-    case 'gebruikerprofiel':
-        include '../app/view/gebruikerprofiel.php';
+    case 'showuserprofile':
+        include '../app/view/showuserprofile.php';
         break;
     case 'resetpassword':
         include '../app/view/resetpassword.php';
