@@ -114,14 +114,14 @@ else {
             <?php } ?>
 
             <li class="nav-button-all">
-                <a href="?page=overzicht">Overzicht</a>
+                <a href="?page=overview">Overzicht</a>
             </li>
 
             <br />
 
             <?php if ($user->getPermission($permgroup, 'CAN_UPLOAD') == 1) { ?>
                 <li class="nav-button-upload">
-                    <a href="?page=uploadoverzicht">Upload</a>
+                    <a href="?page=uploadoverview">Upload</a>
                 </li>
             <?php } ?>
 
@@ -135,7 +135,7 @@ else {
 
             <?php if ($user->getPermission($permgroup, 'CAN_ACCORD') == 1 && isset($_SESSION['accord'])) { ?>
                 <li class="nav-button-accord">
-                    <a href="?page=accordering">Accordering</a>
+                    <a href="?page=approve">Accordering</a>
                 </li>
             <?php } ?>
 
