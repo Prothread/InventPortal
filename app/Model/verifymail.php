@@ -121,8 +121,8 @@ if( isset( $_GET['id'] ) && isset( $mailkey ) ) {
      * Redirect to the next page
      */
 
-    //header('Location: index.php?page=accordering&id='.$getter['id']);
-    header('Location: index.php?page=accordering');
+    //header('Location: index.php?page=approve&id='.$getter['id']);
+    header('Location: index.php?page=approve');
 }
 else {
     echo '';

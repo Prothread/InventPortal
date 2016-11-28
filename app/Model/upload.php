@@ -223,7 +223,7 @@ if($error == 0) {
                 $mymail->create($mailinfo);
             }
 
-            header('Location: index.php?page=overzicht');
+            header('Location: index.php?page=overview');
             Session::flash('message', 'Uw bestanden zijn geüpload.');
         }
     }

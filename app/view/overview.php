@@ -4,7 +4,7 @@
 if($user->getPermission($permgroup, 'CAN_SHOW_OVERZICHT') == 1){
 
 } else {
-    header('Location: index.php?page=gebruikersoverzicht');
+    header('Location: index.php?page=userprofile');
 }
 
 $uploads = new BlockController();
@@ -28,22 +28,22 @@ else {
                         <th style="text-align: right;">
 
                             <?php if(isset($_SESSION['updateopenmails']) && $user->getPermission($permgroup, 'CAN_EDIT_ACCORD') == 1){ ?>
-                            <a href="?page=gebruikersoverzicht" id="updateopenmails">
+                            <a href="?page=userprofile" id="updateopenmails">
                                 <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
                                 <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> Update alle Open proeven <span id="days">(5 < dagen)</span></button>
                             </a>
                             <?php  } ?>
 
-                            <a href="?page=gebruikersoverzicht">
+                            <a href="?page=userprofile">
                                 <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
                                 <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> Mijn overzicht</button>
                             </a>
-                            <a id="filteropen" href="?page=gebruikersoverzicht">
+                            <a id="filteropen" href="?page=userprofile">
                                 <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
                                 <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> Open proeven </button>
                             </a>
 
-                            <a id="filtergoed" href="?page=gebruikersoverzicht">
+                            <a id="filtergoed" href="?page=userprofile">
                                 <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
                                 <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> Geakkordeerde proeven</button>
                             </a>
@@ -142,7 +142,7 @@ else {
             data: dataString,
             cache: false,
             success: function(result){
-                //$('#container').load("?page=overzicht " + '#container');
+                //$('#container').load("?page=overview " + '#container');
                 location.reload();
             }
         });
@@ -162,7 +162,7 @@ else {
             data: dataString,
             cache: false,
             success: function(result){
-                //$('#container').load("?page=overzicht " + '#container');
+                //$('#container').load("?page=overview " + '#container');
                 location.reload();
             }
         });

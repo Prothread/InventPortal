@@ -43,7 +43,7 @@ class MailController
 
     /**
      * Update mail information
-     * If: Als er een antwoord is (accordering.php), dan verstuur je userid, id, answer, token en verified
+     * If: Als er een antwoord is (approve.php), dan verstuur je userid, id, answer, token en verified
      * Else: Verstuur alle informatie voor het updaten van de mail
      *
      * @param array $mailinfo

@@ -4,7 +4,7 @@
 if($user->getPermission($permgroup, 'CAN_SHOW_OVERZICHT') == 1){
 
 } else {
-    header('Location: index.php?page=gebruikersoverzicht');
+    header('Location: index.php?page=userprofile');
 }
 
 $mail = new MailController();
@@ -62,7 +62,7 @@ $get_filled_info = $uploads->getOlderUploads($verified);
                         <th style="text-align: left;"><p class="NameText" style="font-weight: normal;">Overzicht</p></th>
                         <th style="text-align: right;">
 
-                            <a href="?page=gebruikersoverzicht">
+                            <a href="?page=userprofile">
                                 <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
                                     <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> Mijn overzicht</button>
                             </a>
