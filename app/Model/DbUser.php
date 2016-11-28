@@ -35,12 +35,16 @@ class DbUser extends Database
 
     public function update(User $user)
     {
-        $sql = "UPDATE `users` SET `naam` = '{$user->getName()}', `email` = '{$user->getEmail()}', `altmail` = '{$user->getAltmail()}' `bedrijfsnaam` = '{$user->getCompanyName()}', `permgroup` = '{$user->getPermGroup()}',
-        `adres` = '{$user->getUserAdres()}', `postcode` = '{$user->getUserPostcode()}', `plaats` = '{$user->getUserPlace()}' ";
+        $sql = "UPDATE `users` SET `naam` = '{$user->getName()}', `email` = '{$user->getEmail()}', `bedrijfsnaam` = '{$user->getCompanyName()}', `permgroup` = '{$user->getPermGroup()}',
+        `adres` = '{$user->getUserAdres()}', `postcode` = '{$user->getUserPostcode()}', `plaats` = '{$user->getUserPlace()}'";
 
         if($user->getPassword() !== null) {
             $password = hash('sha256', $user->getPassword());
             $sql .= ", `paswoord` = '{$password}' ";
+        }
+
+        if($user->getAltMail() !== null) {
+            $sql .= ", `altmail` = '{$user->getAltmail()}' ";
         }
 
         if( $user->getProfileImage() !== null) {
