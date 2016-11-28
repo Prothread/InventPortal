@@ -38,8 +38,6 @@ if(isset($_POST['submit'])) {
 
         if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "pdf") {
             $error = 1;
-            echo '<div class="alert alert-danger" role="alert">Het meegestuurde bestand heeft niet de juiste extensie, upload een JPG, JPEG, PNG, PDF of een GIF</div>';
-            ?><br/><?php
         }
 
         if ($myFile["size"] > 10485760) {
