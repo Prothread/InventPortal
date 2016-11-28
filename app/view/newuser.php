@@ -48,7 +48,7 @@ else {
                             </div>
                         </div>
 
-<div class="form-group">
+                        <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">Alt mail</label>
                             <div class="col-md-4">
                                 <input class="form-control input-md" id="textinput" maxlength="60" required type="email" name="altmail" size="50" placeholder="E-mailadres">

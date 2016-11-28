@@ -54,7 +54,7 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);
                                         <label for="file-upload" class="custom-file-upload">
                                             <i class="fa fa-cloud-upload"></i> Uploaden
                                         </label>
-                                        <input required type="file" name="fileToUpload" class="imgInp btn btn-primary btn-success" id="file-upload">
+                                        <input type="file" name="fileToUpload" class="imgInp btn btn-primary btn-success" id="file-upload">
                                     </div>
                                 </div>
                                 <div class="form-group">
