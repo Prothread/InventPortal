@@ -4,7 +4,11 @@ ob_clean();
 //header('Content-type: image/png');
 if (!headers_sent()) {
     if (isset($_GET['img'])) {
+
+        $session = new Session();
+
         $image = $_GET['img'];
+        $image = strip_tags($image);
 
         $stamp = imagecreatefrompng(DIR_PUBLIC . 'proef_groot.png');
         //$im = imagecreatefromjpeg(DIR_IMAGE . $image);

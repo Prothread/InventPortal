@@ -39,6 +39,15 @@ else {
     <!-- Bootstrap CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
+    <!-- styling + jquery for select box -->
+    <script src="js/jquery-2.1.1.min.js" type="text/javascript"></script>
+    <link href="css/select2.min.css" rel="stylesheet" />
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#allclients").select2();
+        });
+    </script>
+
     <!-- Eigen CSS -->
     <link href="css/styles.css" rel="stylesheet">
 
@@ -53,8 +62,8 @@ else {
     <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
     <script src="http://www.google.com/jsapi"></script>
 
-    <!--Sort table-->
-    <script src="js/sorttable.js" type="text/javascript"></script>
+    <!--Dropdown search menu-->
+    <script src="js/select2.min.js"></script>
 
     <!-- Eigen CSS -->
     <link href="css/styles.css" rel="stylesheet">

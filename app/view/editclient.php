@@ -17,9 +17,11 @@ else {
 }
 
 $mysqli = mysqli_connect();
+$session = new Session();
 
 $client = new UserController();
 $id = $_GET['id'];
+$id = $session->cleantonumber($id);
 
 $myclient = $client->getUserById($id);
 if($user->getPermission($permgroup, 'CAN_EDIT_CLIENT') == 1 && $userinfo['permgroup'] == 1){

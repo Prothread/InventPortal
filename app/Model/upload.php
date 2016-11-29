@@ -14,8 +14,17 @@ $mysqli = mysqli_connect();
 $title = mysqli_real_escape_string($mysqli, $_POST['title']);
 $sender = mysqli_real_escape_string($mysqli, $_POST['fromname']);
 $description = mysqli_real_escape_string($mysqli, $_POST['additionalcontent']);
-$name = mysqli_real_escape_string($mysqli, $_POST['mailname']);
-$email = mysqli_real_escape_string($mysqli, $_POST['mailto']);
+
+$clientid = mysqli_real_escape_string($mysqli, $_POST['client']);
+$client = $user->getUserById($clientid);
+
+$name = mysqli_real_escape_string($mysqli, $client['naam']);
+
+if($client['altmail'] == '') {
+    $email = $client['email'];
+}else{
+    $email = $client['altmail'];
+}
 
 $comment = mysqli_real_escape_string($mysqli, $_POST['interncomment']);
 $commentgroep = $_POST['commentgroep'];
@@ -60,7 +69,7 @@ if (isset($_FILES['myFile'])) {
 
         if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "pdf") {
             $error = 1;
-            echo "Sorry, only JPG, JPEG, PNG, PDF & GIF files are allowed.";
+            echo "Sorry, you have to upload JPG, JPEG, PNG or PDF.";
             ?><br/><?php
         }
 

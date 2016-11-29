@@ -10,9 +10,10 @@ else {
 
 $session = new Session();
 $status = new StatusController();
+$mysqli = mysqli_connect();
 
 if(isset($_GET['id'])) {
-  $id = $_GET['id'];
+  $id = mysqli_real_escape_string( $mysqli, $_GET['id'] );
   $id = $session->cleantonumber($id);
 }
 else {
