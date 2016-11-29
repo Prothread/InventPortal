@@ -89,7 +89,7 @@ else {
     <div id="NameSide">
         <div id="UserPhoto">
         </div>
-        <a style="text-decoration: none;" href="?page=profiel">
+        <a style="text-decoration: none;" href="?page=profile">
             <div id="UserBlock" style="text-decoration: none;">
                 <div id="UserBlockImage" style="background-image: url('<?= $imgsrc ?>');"></div>
                 <h3 id="LoggedInAs"><?= $myuser; ?></h3>
