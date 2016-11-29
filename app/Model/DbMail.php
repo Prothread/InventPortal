@@ -51,7 +51,13 @@ class DbMail extends Database
             $sql1 = "INSERT INTO `usermail` (`userid`, `mailid`, `status`) VALUES ('{$userid}', '{$myid}', '{$mail->getVerified()}')";
 
             if($this->dbQuery($sql1)) {
+                true;
+            }
 
+            $date = date('Y-m-d');
+            $sql3 = "INSERT INTO `comments`(`mailid`, `comment`, `commentgroep`, `datum`) VALUES ('{$myid}','{$mail->getComment()}', '{$mail->getCommentGroup()}', {$date})";
+            if($this->dbQuery($sql3)) {
+                true;
             }
 
             return $this->dbLastInsertedId();
@@ -123,6 +129,14 @@ class DbMail extends Database
                             $i++;
                             true;
                         }
+                    }
+                }
+
+                if(!empty( $mail->getComment()) || $mail->getComment() !== null) {
+                    $date = date('Y-m-d');
+                    $sql3 = "INSERT INTO `comments`(`mailid`, `comment`, `commentgroep`, `datum`) VALUES ('{$mail->getMailId()}','{$mail->getComment()}', '{$mail->getCommentGroup()}', '{$date}')";
+                    if ($this->dbQuery($sql3)) {
+                        true;
                     }
                 }
 

@@ -112,6 +112,27 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);
                                             </div>
                                         </div>
 
+                                        <?php if($user->getPermission($permgroup, 'CAN_ADD_INTERN_COMMENT') == 1){ ?>
+                                        <br />
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label" for="textinput">Interne opmerking:</label>
+                                            <div class="col-md-4">
+                                                <textarea class="form-control input-md" maxlength="300" id="textinput" type="text" name="interncomment"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label" for="textinput">Belangrijkheid:</label>
+                                            <div class="col-md-4">
+                                                <select name="commentgroep">
+                                                    <option value="1" style="color:#5a5454">Normale opmerking</option>
+                                                    <option value="2" style="color:#9a1734">Let op de volgende punten</option>
+                                                    <option value="3" style="color:#dd2c4c">Belangrijke opmerking</option>
+                                                    <option value="4" style="color:red">Eis van de klant</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <?php } ?>
+
                                         <br>
                                     </fieldset>
                                     <ul class="list-inline pull-right">
@@ -305,6 +326,7 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);
                 data: postForm,
                 cache: false,
                 success: function (result) {
+                    //TODO update klant zoekfunctie
                     alert('success');
                 }
             });

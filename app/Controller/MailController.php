@@ -29,12 +29,18 @@ class MailController
         $this->model->setMailName($mailinfo['name']);
         $this->model->setMailEmail($mailinfo['email']);
         $this->model->setToken($mailinfo['token']);
-        if(isset($mailinfo['imgname'])) {
+        if (isset($mailinfo['imgname'])) {
             $this->model->setFakeImage($mailinfo['imgname']);
         }
         $this->model->setImage($mailinfo['images']);
         $this->model->setDatum($mailinfo['datum']);
         $this->model->setVerified($mailinfo['verified']);
+
+        if ($mailinfo['comment']){
+            $this->model->setMailComment($mailinfo['comment']);
+            $this->model->setCommentGroup($mailinfo['commentgroep']);
+        }
+
         if ($result = $this->model->create()) {
             return $result;
         }

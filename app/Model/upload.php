@@ -17,7 +17,11 @@ $description = mysqli_real_escape_string($mysqli, $_POST['additionalcontent']);
 $name = mysqli_real_escape_string($mysqli, $_POST['mailname']);
 $email = mysqli_real_escape_string($mysqli, $_POST['mailto']);
 
+$comment = mysqli_real_escape_string($mysqli, $_POST['interncomment']);
+$commentgroep = $_POST['commentgroep'];
+
 $imageFileName = new ImageController();
+$block = new BlockController();
 
 if(isset($_POST['id'])) {
     $imageId = $_POST['id'];
@@ -185,7 +189,9 @@ if($error == 0) {
                 'token' => $token,
                 'images' => strip_tags($uniqdbimages),
                 'datum' => date('Y-m-d'),
-                'verified' => 0
+                'verified' => 0,
+                'comment' => $comment,
+                'commentgroep' => $commentgroep
             ];
         }
         else {
@@ -198,7 +204,9 @@ if($error == 0) {
                 'token' => $token,
                 'images' => strip_tags($uniqdbimages),
                 'datum' => date('Y-m-d'),
-                'verified' => 0
+                'verified' => 0,
+                'comment' => $comment,
+                'commentgroep' => $commentgroep
             ];
         }
         $mailer->SMTPOptions = array(

@@ -118,6 +118,22 @@ class Mail {
     private $MailVerified;
 
     /**
+     * Variabele om MailComment in op te slaan
+     *
+     * @var $MailComment
+     */
+
+    private $MailComment;
+
+    /**
+     * Sla de commentgroep op
+     *
+     * @var $Commentgroup
+     */
+
+    private $Commentgroup;
+
+    /**
      * Constructor om te verbinden met DbMail
      *
      * Mail constructor.
@@ -396,6 +412,22 @@ class Mail {
     }
 
     /**
+     * Sla informatie van interne opmerking in de variabele MailComment op
+     *
+     * @param $Comment
+     */
+
+    public function setMailComment($Comment)
+    {
+        $this->MailComment = $Comment;
+    }
+
+    public function setCommentGroup($Commentgroep)
+    {
+        $this->Commentgroup = $Commentgroep;
+    }
+
+    /**
      * Haal de informatie voor MailId op
      *
      * @param getMailId
@@ -547,6 +579,28 @@ class Mail {
     public function getVerified()
     {
         return $this->MailVerified;
+    }
+
+    /**
+     * Haal de informatie van voor getComment op
+     *
+     * @return mixed
+     */
+
+    public function getComment()
+    {
+        return $this->MailComment;
+    }
+
+    /**
+     * Haal de commentgroep op
+     *
+     * @return mixed
+     */
+
+    public function getCommentGroup()
+    {
+        return $this->Commentgroup;
     }
 
     /**
