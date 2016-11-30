@@ -4,7 +4,7 @@
 if($user->getPermission($permgroup, 'CAN_SHOW_OVERZICHT') == 1){
 
 } else {
-    header('Location: index.php?page=userprofile');
+    header('Location: index.php?page=showuserprofile');
 }
 
 $mail = new MailController();

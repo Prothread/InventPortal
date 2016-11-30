@@ -545,7 +545,7 @@
                 $("#suggestions").hide();
                 $("#suggestions").fadeIn('slow');
                 $(".searchterm").text($(".suggestionsinput").val());
-                $("#suggestions").load('?page=uploadoverzicht #myclients');
+                $("#suggestions").load('?page=uploadoverview #myclients');
 
             } else {
                 // Suggesties verbergen

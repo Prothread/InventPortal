@@ -92,7 +92,7 @@ else {
     <div id="NameSide">
         <div id="UserPhoto">
         </div>
-        <a style="text-decoration: none;" href="?page=profiel">
+        <a style="text-decoration: none;" href="?page=profile">
             <div id="UserBlock" style="text-decoration: none;">
                 <div id="UserBlockImage" style="background-image: url('<?= $imgsrc ?>');"></div>
                 <h3 id="LoggedInAs"><?= $myuser; ?></h3>
@@ -117,14 +117,14 @@ else {
             <?php } ?>
 
             <li class="nav-button-all">
-                <a href="?page=overzicht">Overzicht</a>
+                <a href="?page=overview">Overzicht</a>
             </li>
 
             <br />
 
             <?php if ($user->getPermission($permgroup, 'CAN_UPLOAD') == 1) { ?>
                 <li class="nav-button-upload">
-                    <a href="?page=uploadoverzicht">Upload</a>
+                    <a href="?page=uploadoverview">Upload</a>
                 </li>
             <?php } ?>
 

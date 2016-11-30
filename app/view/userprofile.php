@@ -4,7 +4,7 @@
 if($user->getPermission($permgroup, 'CAN_SHOW_USEROVERZICHT') == 1){
 
 } else {
-    header('Location: index.php?page=userprofile');
+    header('Location: index.php?page=showuserprofile');
 }
 
 $uploads = new BlockController();
@@ -35,7 +35,7 @@ foreach($getAllUserItems as $UserItem) {
                 <tr>
                     <th style="text-align: left;"><p class="NameText" style="font-weight: normal;">Uw profiel</p></th>
                     <th style="text-align: right;">
-                        <a href="?page=userprofile">
+                        <a href="?page=showuserprofile">
                             <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
                                 <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span>  Mijn overzicht</button>
                         </a>
