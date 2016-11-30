@@ -4,7 +4,6 @@
 </div>
 </body>
 
-
 <script type="text/javascript">
     jQuery(document).ready(function(){
         jQuery("#password").keyup(function() {
@@ -91,6 +90,12 @@
             },2000);
         });
     });
+</script>
+
+<script>
+    jQuery(document).ready(function() {
+        jQuery('.js-example-basic-multiple').select2();
+    }
 </script>
 
 <script>
@@ -506,7 +511,7 @@
                 $("#suggestions").hide();
                 $("#suggestions").fadeIn('slow');
                 $(".searchterm").text($(".suggestionsinput").val());
-                // $("#suggestions").load('http://URL.to.load');
+                $("#suggestions").load('?page=uploadoverzicht #myclients');
 
             } else {
                 // Suggesties verbergen

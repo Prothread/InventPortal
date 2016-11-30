@@ -8,6 +8,9 @@ else {
     header('Location: index.php');
     Session::flash('error', 'U heeft hier geen rechten voor.');
 }
+
+$klanten = new UserController();
+
 ?>
 <div id="Mail">
     <!-- Page Content -->
@@ -141,11 +144,11 @@ else {
                                     </div>
                                     </div>
 
-                                    <br>
 
-                                    
+
+
                                     <div class="form-group">
-                                    <label class="col-md-4 control-label" for="textinput">Klant zoeken</label>  
+                                    <label class="col-md-4 control-label" for="textinput">Klant zoeken</label>
                                     <div class="col-md-4">
                                     <input class="form-control input-md suggestionsinput" id="tags" type="text" name="suggestions" size="50" placeholder="Zoek een klant..."> 
                                     </div>
@@ -159,6 +162,20 @@ else {
                                     </div>
                                     </div>
                                     </div>
+
+                                    <div>
+                                        <div id="myclients" style="width:300px;">
+                                            <?php foreach($klanten->getAllClients() as $klant) { ?>
+                                                <?= $klant['naam']?>
+                                            <?php } ?>
+                                        </div>
+                                    </div>
+
+
+                                    <select class="js-example-basic-multiple" multiple="multiple">
+                                        <option value="AL">Alabama</option>
+                                        <option value="WY">Wyoming</option>
+                                    </select>
 
                                     <br>
                                     <br>
