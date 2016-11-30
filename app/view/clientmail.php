@@ -17,14 +17,14 @@ else {
 $mysqli = mysqli_connect();
 
 $user = new UserController();
-$myuser = $_SESSION['usr_name'];
+$myuser = mysqli_real_escape_string($mysqli,$_SESSION['usr_name']);
 
 if(isset($_SESSION['usr_name'])) {
     $myuser = $_SESSION['usr_name'];
 }
 else if( isset($user) ) {
     $thisuser = $user->getUserById($session->getUserId());
-    $myuser = $thisuser['naam'];
+    $myuser = mysqli_real_escape_string($mysqli,$thisuser['naam']);
 }
 else {
     echo 'Admin';
@@ -64,7 +64,7 @@ if($mailexist = null || empty($mailexist)){
 
     );
     /* TO, SUBJECT, CONTENT */
-    $to = $_POST['email']; //The 'To' field
+    $to = mysqli_real_escape_string($mysqli,$_POST['email']); //The 'To' field
     $subject = "Accountgegevens Madalco-portaal";
 
     $content = "<img alt='MadalcoHeader' src='https://picoolio.net/images/2016/11/04/headerbgcc759.png'>" . "  <br/><br/>" . "Geachte " . $_POST['companyname'] . "," .
