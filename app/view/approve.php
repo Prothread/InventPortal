@@ -26,6 +26,7 @@ else {
     return 'Er is iets misgegaan';
 }
 $_SESSION['accordid'] = $myupload['id'];
+$_SESSION['mailto'] = $myupload['email'];
 
 $UID = date('d.m.Y-G.i.s') . '-192.08.1.124';
 
@@ -288,7 +289,7 @@ $userip = $user->getUserIP();
                         <div id="verify" style="display: none" class="alert alert-info" role="alert"></div>
 
                         <input type="hidden" name="fromname" id="" value="Kevin Ernst">
-                        <input type="hidden" name="mailto" id="" value="kevin.herdershof@hotmail.com">
+                        <!--<input type="hidden" name="mailto" id="" value="kevin.herdershof@hotmail.com">-->
 
                         <div class="tab-pane" role="tabpanel" id="step4">
                             <div class="well" style="font-size: 15px; font-style: italic;">Zoek hieronder de klant waar de proef naar moet worden verstuurd of maak een nieuwe klant aan. </div>

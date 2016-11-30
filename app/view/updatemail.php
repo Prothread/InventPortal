@@ -55,7 +55,7 @@ $mymail = new MailController();
 
     );
     /* TO, SUBJECT, CONTENT */
-    $to = $_POST['mailto']; //The 'To' field
+    $to = $_SESSION['mailto']; //The 'To' field
     $subject = $_POST['title'];
     $myid = $_POST['id'];
 
@@ -130,6 +130,7 @@ $mymail = new MailController();
         unset($_SESSION['accordid']);
         unset($_SESSION['verified']);
         unset($_SESSION['verifytext']);
+        unset($_SESSION['mailto']);
 
         header('Location: index.php?page=approve');
         Session::flash('message', 'De accordering is verstuurd');
