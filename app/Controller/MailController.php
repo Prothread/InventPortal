@@ -29,12 +29,18 @@ class MailController
         $this->model->setMailName($mailinfo['name']);
         $this->model->setMailEmail($mailinfo['email']);
         $this->model->setToken($mailinfo['token']);
-        if(isset($mailinfo['imgname'])) {
+        if (isset($mailinfo['imgname'])) {
             $this->model->setFakeImage($mailinfo['imgname']);
         }
         $this->model->setImage($mailinfo['images']);
         $this->model->setDatum($mailinfo['datum']);
         $this->model->setVerified($mailinfo['verified']);
+
+        if ($mailinfo['comment']){
+            $this->model->setMailComment($mailinfo['comment']);
+            $this->model->setCommentGroup($mailinfo['commentgroep']);
+        }
+
         if ($result = $this->model->create()) {
             return $result;
         }
@@ -43,7 +49,7 @@ class MailController
 
     /**
      * Update mail information
-     * If: Als er een antwoord is (accordering.php), dan verstuur je userid, id, answer, token en verified
+     * If: Als er een antwoord is (approve.php), dan verstuur je userid, id, answer, token en verified
      * Else: Verstuur alle informatie voor het updaten van de mail
      *
      * @param array $mailinfo

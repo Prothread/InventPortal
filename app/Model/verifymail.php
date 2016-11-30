@@ -30,7 +30,8 @@ $mail = new MailController();
 /**
  * Haal de mail met het id op
  */
-
+$session = new Session();
+$_GET['id'] = $session->cleantonumber($_GET['id']);
 $mymail = $mail->getMailById($_GET['id']);
 
 /**
@@ -70,8 +71,6 @@ if(isset( $_GET['key'] ) ) {
  * Als de email en de key bestaan, ga dan door
  */
 if( isset( $_GET['id'] ) && isset( $mailkey ) ) {
-
-    $_GET['id'] = $session->clean($_GET['id']);
 
     $getter = $DbVerify->getVerifiedById($verifyemail, $mailkey);
     $DbVerify->setVerifiedById($getter['id']);
@@ -121,8 +120,8 @@ if( isset( $_GET['id'] ) && isset( $mailkey ) ) {
      * Redirect to the next page
      */
 
-    //header('Location: index.php?page=accordering&id='.$getter['id']);
-    header('Location: index.php?page=accordering');
+    //header('Location: index.php?page=approve&id='.$getter['id']);
+    header('Location: index.php?page=approve');
 }
 else {
     echo '';

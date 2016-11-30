@@ -46,7 +46,7 @@ if(isset($_GET['page'])) {
  * Anders: de gebruiker is ingelogd en gaat naar het dashboard
  */
 
-if(!$session->exists('usr_id') && $page !== 'forgetpassword' && $page !== 'resetpassword' && $page !== 'passreset' && $page !== 'wachtwoordherstellen' && $page !== 'image' && $page !== 'register' && $page !== 'accordering' && $page !== 'verify' && $page !== 'imagedecline' && $page !== 'imageverify' && $page !== 'updatemail' && $page !== 'imagecancel') {
+if(!$session->exists('usr_id') && $page !== 'forgetpassword' && $page !== 'resetpassword' && $page !== 'passreset' && $page !== 'wachtwoordherstellen' && $page !== 'image' && $page !== 'register' && $page !== 'accordering' && $page !== 'verify' && $page !== 'imageverify' && $page !== 'updatemail' && $page !== 'imagecancel') {
     $page = 'login';
 } else if($session->exists('usr_id') && $page=='login') {
     $page = 'dashboard';
@@ -79,20 +79,20 @@ switch($page) {
     case 'dashboard':
         include '../app/view/dashboard.php';
         break;
-    case 'overzicht':
-        include '../app/view/overzicht.php';
+    case 'overview':
+        include '../app/view/overview.php';
         break;
     case 'uploading':
         include '../app/Model/upload.php';
         break;
-    case 'uploadoverzicht':
+    case 'uploadoverview':
         include '../app/view/phpmail.php';
         break;
     case 'verify':
         include '../app/Model/verifymail.php';
         break;
-    case 'accordering':
-        include '../app/view/accordering.php';
+    case 'approve':
+        include '../app/view/approve.php';
         break;
     case 'item':
         include '../app/view/item.php';
@@ -112,13 +112,10 @@ switch($page) {
     case 'imageverify':
         include '../app/view/imageverify.php';
         break;
-    case 'imagedecline':
-        include '../app/view/imagedecline.php';
-        break;
     case 'imagecancel':
         include '../app/view/imagecancel.php';
         break;
-    case 'gebruikersoverzicht':
+    case 'useroverview':
         include '../app/view/userprofile.php';
         break;
     case 'userdashboard':
@@ -151,8 +148,8 @@ switch($page) {
     case 'newpassword':
         include '../app/view/newpassword.php';
         break;
-    case 'editprofiel':
-        include '../app/view/editprofiel.php';
+    case 'editprofile':
+        include '../app/view/editprofile.php';
         break;
     case 'updatemail':
         include '../app/view/updatemail.php';
@@ -178,11 +175,11 @@ switch($page) {
     case 'statusportal':
         include '../app/view/statusportal.php';
         break;
-    case 'profiel':
+    case 'profile':
         include '../app/view/profile.php';
         break;
-    case 'gebruikerprofiel':
-        include '../app/view/gebruikerprofiel.php';
+    case 'showuserprofile':
+        include '../app/view/showuserprofile.php';
         break;
     case 'resetpassword':
         include '../app/view/resetpassword.php';

@@ -188,15 +188,49 @@
                     data: dataString,
                     cache: false,
                     success: function(result){
-                        $(ref).load("?page=accordering " + ref);
-                        $('#refsh').load("?page=accordering #refsh");
-                        $('#refer1').load("?page=accordering #refer1");
-                        $('#refer').load("?page=accordering #refer");
+                        $(ref).load("?page=approve " + ref);
+                        $('#refsh').load("?page=approve #refsh");
+                        $('#refer1').load("?page=approve #refer1");
+                        $('#refer').load("?page=approve #refer");
                     }
                 });
 
             event.preventDefault();
         });
+</script>
+
+<script>
+    $("form#createclient").submit(function (event) {
+
+        var postForm = $('form#createclient').serialize() +              //Fetch form data
+                '&name=' + $('input[name=name]').val() +                      //Store name fields value
+                '&companyname=' + $('input[name=companyname]').val() +        //Store companyname fields value
+                '&email=' + $('input[name=email]').val() +                    //Store email fields value
+                '&altmail=' + $('input[name=altmail]').val() +                //Store altmail fields value
+                '&companyadress=' + $('input[name=companyadress]').val() +    //Store companyadress fields value
+                '&postcode=' +  $('input[name=postcode]').val() +             //Store postcode fields value
+                '&plaats=' + $('input[name=plaats]').val() +                  //Store plaats fields value
+                '&rechten=' + $('input[name=rechten]').val()                  //Store rechten fields value
+            ;
+
+        $.ajax({
+            type: "POST",
+            url: "?page=clientmail",
+            data: postForm,
+            cache: false,
+            success: function (result) {
+                //TODO update klant zoekfunctie
+                alert('Nieuwe klant aangemaakt');
+                alert(result);
+                //$('#demclients').load(location.href+" #demclients>*","");
+                //$('#refreshclients').load(location.href+" #refreshclients>*","");
+
+                $('#demclients').load('?page=uploadoverview' +  ' #demclients');
+            }
+        });
+        event.preventDefault();
+
+    });
 </script>
 
 <script>
@@ -260,7 +294,7 @@
                         data: dataString,
                         cache: false,
                         success: function (result) {
-                            //$(ref).load("?page=accordering " + ref);
+                            //$(ref).load("?page=approve " + ref);
                             $('.row').load("?page=manageusers .col-lg-12");
                             $('#filterrefresh').load("?page=manageusers #filterrefresh");
                             $('.pagination').load("?page=manageusers .pagination");
@@ -302,9 +336,9 @@
             data: dataString,
             cache: false,
             success: function(result){
-                $(ref).load("?page=accordering " + ref);
-                $('#refsh').load("?page=accordering #refsh");
-                $('#refsa').load("?page=accordering #refsa");
+                $(ref).load("?page=approve " + ref);
+                $('#refsh').load("?page=approve #refsh");
+                $('#refsa').load("?page=approve #refsa");
             }
         });
 

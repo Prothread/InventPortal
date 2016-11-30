@@ -7,8 +7,10 @@
  */
 
 $mysqli = mysqli_connect();
+$session = new Session();
 
 $id = mysqli_real_escape_string($mysqli, $_GET['id']);
+$id = $session->cleantonumber($id);
 
 $image_controller = new ImageController();
 $uploadedimages = $image_controller->getImagebyMailID($id);

@@ -167,7 +167,12 @@ if($mailexist = null || empty($mailexist)){
     } else {
         //If mail is send, create data and send it to the database
         $user->create($userinfo);
-        //header('Location: index.php?page=manageclients');
+        if($rechten >= 2) {
+            header('Location: index.php?page=manageusers');
+        }
+        else {
+            header('Location: index.php?page=manageclients');
+        }
     }
 
 }else{

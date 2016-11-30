@@ -13,7 +13,7 @@ $session = new Session();
 $uploads = new BlockController();
 
 $id = $_GET['id'];
-$id = $session->clean($id);
+$id = $session->cleantonumber($id);
 
 //Check verified images
 $verimages = array();
@@ -348,6 +348,27 @@ foreach ($uploadedimages as $img) {
                                                     </div>
                                                 </div>
 
+                                                <?php if($user->getPermission($permgroup, 'CAN_ADD_INTERN_COMMENT') == 1){ ?>
+                                                    <br /><br />
+                                                    <div class="form-group">
+                                                        <label class="col-md-4 control-label" for="textinput">Nieuwe interne opmerking:</label>
+                                                        <div class="col-md-4">
+                                                            <textarea class="form-control input-md" maxlength="300" id="textinput" type="text" name="interncomment"></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-md-4 control-label" for="textinput">Belangrijkheid opmerking:</label>
+                                                        <div class="col-md-4">
+                                                            <select name="commentgroep">
+                                                                <option value="1" style="color:#5a5454">Normale opmerking</option>
+                                                                <option value="2" style="color:#9a1734">Let op de volgende punten</option>
+                                                                <option value="3" style="color:#dd2c4c">Belangrijke opmerking</option>
+                                                                <option value="4" style="color:red">Eis van de klant</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                <?php } ?>
+
                                                 <br>
                                             </fieldset>
                                             <br><br>
@@ -525,7 +546,7 @@ foreach ($uploadedimages as $img) {
                                                                     <li>
                                                                         <form id="downloadbuttons" method="post">
                                                                             <span>Maak downloadbaar: </span>
-                                                                            <input type="submit" class="imgdownload id<?= $_GET['id'] ?>" id="img<?= $img['id'] ?>">
+                                                                            <input type="submit" class="imgdownload id<?= $id ?>" id="img<?= $img['id'] ?>">
                                                                         </form>
                                                                     </li>
                                                                 <?php } ?>
@@ -540,7 +561,7 @@ foreach ($uploadedimages as $img) {
                                             </tbody>
                                         </table>
                                     <?php if($user->getPermission($permgroup, 'CAN_EDIT_ACCORD') == 1){ ?>
-                                    <a href="?page=allimgdown&id=<?= $_GET['id']?>">Maak alle files downloadbaar</a>
+                                    <a href="?page=allimgdown&id=<?= $id ?>">Maak alle files downloadbaar</a>
                                     <?php } ?>
 
 

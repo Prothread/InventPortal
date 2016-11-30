@@ -29,7 +29,7 @@ $uploads = new BlockController();
 
 if(isset($_POST['rowid'])) {
     $id = $_POST['rowid'];
-    $id = $session->clean($id);
+    $id = $session->cleantonumber($id);
 }
 else {
     return 'Geen item gevonden';
@@ -447,7 +447,7 @@ foreach ($uploadedimages as $img) {
                                         <li>
                                             <form id="downloadbuttons" method="post">
                                                 <span>Maak downloadbaar: </span>
-                                                <input type="submit" class="imgdownload id<?= $_GET['id'] ?>" id="img<?= $img['id'] ?>">
+                                                <input type="submit" class="imgdownload id<?= $id ?>" id="img<?= $img['id'] ?>">
                                             </form>
                                         </li>
                                     <?php } ?>
@@ -462,7 +462,7 @@ foreach ($uploadedimages as $img) {
             </tbody>
         </table>
     <?php if($user->getPermission($permgroup, 'CAN_EDIT_ACCORD') == 1){ ?>
-        <a href="?page=allimgdown&id=<?= $_GET['id']?>">Maak alle files downloadbaar</a>
+        <a href="?page=allimgdown&id=<?= $id?>">Maak alle files downloadbaar</a>
     <?php } ?>
 
 

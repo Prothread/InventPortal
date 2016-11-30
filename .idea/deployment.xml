@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" serverName="InventPortal">
+  <component name="PublishConfigData">
     <serverData>
       <paths name="InventPortal">
         <serverdata>
           <mappings>
-            <mapping local="$PROJECT_DIR$" web="InventPortal" />
+            <mapping local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
       </paths>

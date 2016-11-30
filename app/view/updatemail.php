@@ -131,6 +131,6 @@ $mymail = new MailController();
         unset($_SESSION['verified']);
         unset($_SESSION['verifytext']);
 
-        header('Location: index.php?page=accordering');
+        header('Location: index.php?page=approve');
         Session::flash('message', 'De accordering is verstuurd');
     }

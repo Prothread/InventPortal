@@ -72,5 +72,5 @@ if(isset($_POST['submit'])) {
     }
 
     $user->update($userinfo1);
-    header('Location: index.php?page=profiel');
+    header('Location: index.php?page=profile');
 }
