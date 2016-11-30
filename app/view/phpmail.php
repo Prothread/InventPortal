@@ -194,7 +194,7 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);
                                     <input type="hidden" name="fromname" id="" value="Gijs van den Abeele">
                                     <input type="hidden" name="mailname" id="" value="Jeffrey">
                                     <br>
-                                   
+
                                 </div>
                                 <br>
                                 <br>

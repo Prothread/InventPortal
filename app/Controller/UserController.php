@@ -84,7 +84,6 @@ class UserController
         if(isset($userinfo['password'])) {
             $this->model->setPassword($userinfo['password']);
         }
-// hoi
         if(isset($userinfo['bedrijfsnaam'])) {
             $this->model->setCompanyName($userinfo['bedrijfsnaam']);
         }
