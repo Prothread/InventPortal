@@ -9,8 +9,8 @@ else {
     Session::flash('error', 'U heeft hier geen rechten voor.');
 }
 
-$klanten = new UserController();
-
+$user = new UserController();
+$userinfo = $user->getUserById($_SESSION['usr_id']);
 ?>
 <div id="Mail">
     <!-- Page Content -->
@@ -75,7 +75,7 @@ $klanten = new UserController();
                                     <div class="form-group">
                                         <label class="col-md-4 control-label" for="textinput">Verstuurder<span style="color:#bc2d4c">*</span></label>
                                         <div class="col-md-4">
-                                            <input required class="form-control input-md" maxlength="32" id="textinput" type="text" name="verstuurder" size="50" value="Testadmin" disabled>
+                                            <input required class="form-control input-md" maxlength="32" id="textinput" type="text" name="verstuurder" size="50" value="<?= $userinfo['naam'] ?>" disabled>
                                         </div>
                                     </div>
 
@@ -112,6 +112,27 @@ $klanten = new UserController();
                                             </div>
                                         </div>
 
+                                        <?php if($user->getPermission($permgroup, 'CAN_ADD_INTERN_COMMENT') == 1){ ?>
+                                        <br /><br />
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label" for="textinput">Interne opmerking:</label>
+                                            <div class="col-md-4">
+                                                <textarea class="form-control input-md" maxlength="300" id="textinput" type="text" name="interncomment"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label" for="textinput">Belangrijkheid opmerking:</label>
+                                            <div class="col-md-4">
+                                                <select name="commentgroep">
+                                                    <option value="1" style="color:#5a5454">Normale opmerking</option>
+                                                    <option value="2" style="color:#9a1734">Let op de volgende punten</option>
+                                                    <option value="3" style="color:#dd2c4c">Belangrijke opmerking</option>
+                                                    <option value="4" style="color:red">Eis van de klant</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <?php } ?>
+
                                         <br>
                                     </fieldset>
                                     <ul class="list-inline pull-right">
@@ -136,53 +157,31 @@ $klanten = new UserController();
                                 </div>
 
                                 <div class="tab-pane" role="tabpanel" id="step4">
-                                        <div class="form-group">
-                                    <label class="col-md-4 control-label" for="textinput">Nieuwe klant aanmaken</label>  
-                                    <div class="col-md-4">
-                                            <!-- <a href="#newclient"><div id="NewClientButton">Nieuwe klant</div></a> -->  
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" for="textinput">Nieuwe klant aanmaken</label>
+                                        <div class="col-md-4">
+                                            <!-- <a href="#newclient"><div id="NewClientButton">Nieuwe klant</div></a> -->
                                             <div id="NewClientButton" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Nieuwe Klant</div>
-                                    </div>
-                                    </div>
-
-
-
-
-                                    <div class="form-group">
-                                    <label class="col-md-4 control-label" for="textinput">Klant zoeken</label>
-                                    <div class="col-md-4">
-                                    <input class="form-control input-md suggestionsinput" id="tags" type="text" name="suggestions" size="50" placeholder="Zoek een klant..."> 
-                                    </div>
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                    <label class="col-md-4 control-label" for="textinput"></label>  
-                                    <div class="col-md-4">
-                                     <div id="suggestions">
-                                        Klantensuggesties voor <span class="searchterm"></span>...
-                                    </div>
-                                    </div>
-                                    </div>
-
-                                    <div>
-                                        <div id="myclients" style="width:300px;">
-                                            <?php foreach($klanten->getAllClients() as $klant) { ?>
-                                                <?= $klant['naam']?>
-                                            <?php } ?>
                                         </div>
                                     </div>
 
+                                    <br>
 
-                                    <select class="js-example-basic-multiple" multiple="multiple">
-                                        <option value="AL">Alabama</option>
-                                        <option value="WY">Wyoming</option>
-                                    </select>
+                                    <div class="demclients">
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label" for="textinput">Klant zoeken</label>
+                                            <div class="col-md-4">
+                                                <select id="allclients" style="width:300px;" name="client">
+                                                    <?php foreach($user->getAllClients() as $klant) { ?>
+                                                        <option value="<?= $klant['id']?>"><?= $klant['naam']?></option>
+                                                    <?php } ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
 
                                     <br>
                                     <br>
-
-
-
-
 
                                     <ul class="list-inline pull-right">
                                         <li><input class="btn btn-primary btn-success" name="submit" style="max-width: 100px; background-color: #bb2c4c; border: 1px solid #bb2c4c" type="submit" value="Versturen"></li>
@@ -195,7 +194,7 @@ $klanten = new UserController();
                                     <input type="hidden" name="fromname" id="" value="Gijs van den Abeele">
                                     <input type="hidden" name="mailname" id="" value="Jeffrey">
                                     <br>
-                                   
+
                                 </div>
                                 <br>
                                 <br>
@@ -219,7 +218,7 @@ $klanten = new UserController();
                 </div>
                 <div class="modal-body">
 
-                    <form action="?page=clientmail" method="post" enctype="multipart/form-data" class="form-horizontal newclient" id="createclient">
+                    <form action="#" method="post" enctype="multipart/form-data" class="form-horizontal newclient" id="createclient">
                         <fieldset>
 
                             <p class="ClientFormText">Namen</p>
@@ -299,42 +298,3 @@ $klanten = new UserController();
         </div>
     </div>
 
-    <script>
-        $("form#createclient").submit(function (event) {
-
-            event.preventDefault();
-
-            var dataString = $('form#createclient').serialize() +
-                '&name=' + <?= $_POST['name'] ?> +
-                    '&companyname=' + <?= $_POST['companyname'] ?> +
-                    '&email=' + <?= $_POST['email'] ?> +
-                    '&companyadress=' + <?= $_POST['companyadress'] ?> +
-                    '&postcode=' + <?= $_POST['postcode'] ?> +
-                    '&plaats=' + <?= $_POST['plaats'] ?> +
-                    '&rechten=' + <?= $_POST['rechten'] ?>;
-            alert(dataString);
-
-            var postForm = { //Fetch form data
-                'name'     : $('input[name=name]').val()                    //Store name fields value
-                'companyname'     : $('input[name=companyname]').val()      //Store companyname fields value
-                'email'     : $('input[name=email]').val()                  //Store email fields value
-                'altmail'     : $('input[name=altmail]').val()              //Store altmail fields value
-                'companyadress'     : $('input[name=companyadress]').val()  //Store companyadress fields value
-                'postcode'     : $('input[name=postcode]').val()            //Store postcode fields value
-                'plaats'     : $('input[name=plaats]').val()                //Store plaats fields value
-                'rechten'     : $('input[name=rechten]').val()              //Store rechten fields value
-            };
-            alert(postForm);
-
-            $.ajax({
-                type: "POST",
-                url: "?page=clientmail",
-                data: postForm,
-                cache: false,
-                success: function (result) {
-                    alert('success');
-                }
-            });
-
-        });
-    </script>

@@ -4,6 +4,7 @@
 </div>
 </body>
 
+
 <script type="text/javascript">
     jQuery(document).ready(function(){
         jQuery("#password").keyup(function() {
@@ -14,7 +15,7 @@
     function passwordStrength(password) {
 
     var desc = [{'width':'0px'}, {'width':'20%'}, {'width':'40%'}, {'width':'60%'}, {'width':'80%'}, {'width':'100%'}];
-    
+
     var descClass = ['', 'progress-bar-danger', 'progress-bar-danger', 'progress-bar-warning', 'progress-bar-success', 'progress-bar-success'];
 
     var score = 0;
@@ -22,7 +23,7 @@
     //if password bigger than 6 give 1 point
     if (password.length > 6) score++;
 
-    //if password has both lower and uppercase characters give 1 point  
+    //if password has both lower and uppercase characters give 1 point
     if ((password.match(/[a-z]/)) && (password.match(/[A-Z]/))) score++;
 
     //if password has at least one number give 1 point
@@ -33,7 +34,7 @@
 
     //if password bigger than 12 give another 1 point
     if (password.length > 10) score++;
-    
+
     // display indicator
     $("#jak_pstrength").removeClass(descClass[score-1]).addClass(descClass[score]).css(desc[score]);
 }
@@ -90,12 +91,6 @@
             },2000);
         });
     });
-</script>
-
-<script>
-    jQuery(document).ready(function() {
-        jQuery('.js-example-basic-multiple').select2();
-    }
 </script>
 
 <script>
@@ -546,6 +541,7 @@
                 $("#suggestions").fadeIn('slow');
                 $(".searchterm").text($(".suggestionsinput").val());
                 $("#suggestions").load('?page=uploadoverview #myclients');
+
 
             } else {
                 // Suggesties verbergen
