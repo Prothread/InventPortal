@@ -34,25 +34,19 @@ if(isset($_GET['page'])) {
 }
 
 /**
- * TODO EXTRA: Redirect
- * Kan gebruikt worden voor eventuele redirect als er nog niet in gelogd is
- */
-//$_SESSION['returnurl'] = ($_SERVER['REQUEST_URI']);
-
-/**
  * If: Als er niemand ingelogd is of de pagina is niet registreren/wachtwoord vergeten of wachtwoord herstellen
  * Dan: De pagina si login
  *
  * Anders: de gebruiker is ingelogd en gaat naar het dashboard
  */
 
-if(!$session->exists('usr_id') && $page !== 'forgetpassword' && $page !== 'resetpassword' && $page !== 'passreset' && $page !== 'wachtwoordherstellen' && $page !== 'image' && $page !== 'register' && $page !== 'accordering' && $page !== 'verify' && $page !== 'imageverify' && $page !== 'updatemail' && $page !== 'imagecancel') {
+if(!$session->exists('usr_id') && $page !== 'forgetpassword' && $page !== 'resetpassword' && $page !== 'passreset' && $page !== 'wachtwoordherstellen' && $page !== 'image' && $page !== 'register' && $page !== 'approve' && $page !== 'verify' && $page !== 'imageverify' && $page !== 'updatemail' && $page !== 'imagecancel') {
     $page = 'login';
 } else if($session->exists('usr_id') && $page=='login') {
     $page = 'dashboard';
 }
 
-if(!$session->exists('usr_id') && $page == 'accordering') {
+if(!$session->exists('usr_id') && $page == 'approve') {
     require_once '../app/view/header.php';
 }
 
@@ -65,7 +59,7 @@ if(!$session->exists('usr_id')) {
 }
 
 if($session->exists('usr_id')){
-    if($page !== 'submit' && $page !== 'item2') {
+    if($page !== 'submit') {
         include_once '../app/view/header.php';
 
     }

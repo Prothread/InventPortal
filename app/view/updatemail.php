@@ -54,12 +54,22 @@ $mymail = new MailController();
         'secure' => 'tls' //SSL or TLS
 
     );
+
+    /* Create phpmailer and add the image to the mail */
+    $mailer = new PHPMailer();
+    $mailer->addEmbeddedImage(DIR_PUBLIC . $admin['Logo'], "HeaderImage", "Logo.png");
+
     /* TO, SUBJECT, CONTENT */
     $to = $_SESSION['mailto']; //The 'To' field
     $subject = $_POST['title'];
     $myid = $_POST['id'];
 
-    $content = "<img alt='MadalcoHeader' src='https://picoolio.net/images/2016/11/04/headerbgcc759.png'>" . "  <br/><br/>" . "Geachte " . $_POST['verstuurder'] . "," .
+    $header = ' <div id="header" style="background: ' . $admin['Header'] . '">
+                    <div id="MenuSide">
+                        <img src="cid:HeaderImage" style="width:auto;height:75%;" />
+                    </div>
+                </div> ';
+    $content = $header . "  <br/><br/>" . "Geachte " . $_POST['verstuurder'] . "," .
         " <br/><br/>" . $_POST['name'] . " heeft uw proef <b>" . $_SESSION['verifytext'] . "</b>." . "<br /><br />" .
         "<b>Titel van uw proef: </b>" .
         $_POST['title'] .
@@ -68,8 +78,6 @@ $mymail = new MailController();
 
         "<br /> <br />Met vriendelijke groet, <br />" . $_POST['name'];
     $altcontent = "This is the content if the mailing system doesn't support a HMTL body";
-
-    $mailer = new PHPMailer();
 
 //SMTP Configuration
     $mailer->isSMTP();
@@ -100,12 +108,13 @@ $mymail = new MailController();
     else {
         $myid = $_POST['id'];
     }
+
     $answer = mysqli_real_escape_string( $mysqli, $_POST['answer']) ;
     $UID = mysqli_real_escape_string( $mysqli, $_POST['UID'] );
     $verified = mysqli_real_escape_string( $mysqli, $_SESSION['verified'] );
 
     $mailinfo = [
-        'clientid' => intval($_POST['userid']),
+        'clientid' => intval($_POST['clientid']),
         'id' => intval($myid),
         'answer' => strip_tags($answer),
         'key' => strip_tags($UID),

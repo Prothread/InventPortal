@@ -1,5 +1,13 @@
 <?php
 
+if(isset($_SESSION['usr_id']) || isset($_SESSION['accorduserid'])){
+
+}
+else {
+    header('Location: index.php');
+    Session::flash('error', 'U heeft hier geen rechten voor.');
+}
+
 ob_clean();
 //header('Content-type: image/png');
 if (!headers_sent()) {
@@ -123,3 +131,4 @@ if (!headers_sent()) {
         imagedestroy($image);
     }
 }
+// echo "<img src=\"data:image/jpeg;base64," . base64_encode(imagejpeg($image, true)) . "\" />";

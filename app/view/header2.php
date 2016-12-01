@@ -24,13 +24,10 @@
         <!-- Datatable css + jquery -->
         <link rel="stylesheet" href="css/jquery.dataTables.min.css">
         <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
-        <script src="http://www.google.com/jsapi"></script>
+        <script src="js/jsapi.js"></script>
 
         <!--Sort table-->
         <script src="js/sorttable.js" type="text/javascript"></script>
-
-        <!-- Eigen CSS -->
-        <link href="css/styles.css" rel="stylesheet">
 
         <!--[if lt IE 9]>
         <script src="js/html5shiv.js"></script>
@@ -46,6 +43,22 @@
         <link rel="icon"
               type="image/png"
               href="<?= DIR_PUBLIC . 'favicon.png'?>">
+
+        <!-- Bootstrap core CSS -->
+        <link href="css/bootstrap.css" rel="stylesheet">
+
+        <!-- Custom styles for this template -->
+        <link href="css/ionicons.min.css" rel="stylesheet">
+        <link href="css/loginstyle.css" rel="stylesheet">
+
+        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+        <script src="js/ie10-viewport-bug-workaround.js"></script>
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
     </head>
     <body>
     <div>

@@ -55,7 +55,7 @@ class DbMail extends Database
             }
 
             $date = date('Y-m-d');
-            $sql3 = "INSERT INTO `comments`(`mailid`, `comment`, `commentgroep`, `datum`) VALUES ('{$myid}','{$mail->getComment()}', '{$mail->getCommentGroup()}', {$date})";
+            $sql3 = "INSERT INTO `comments`(`mailid`, `comment`, `commentgroep`, `datum`) VALUES ('{$myid}','{$mail->getComment()}', '{$mail->getCommentGroup()}', '{$date}')";
             if($this->dbQuery($sql3)) {
                 true;
             }

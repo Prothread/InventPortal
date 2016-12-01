@@ -11,6 +11,7 @@ else {
 
 $upload = new BlockController();
 $session = new Session();
+
 $image_controller = new ImageController();
 
 if($session->getMailId() == null) {

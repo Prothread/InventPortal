@@ -73,10 +73,20 @@ foreach($get_filled_info as $get_info) {
 
         );
 
+        /* Create phpmailer and add the image to the mail */
+        $mailer = new PHPMailer();
+        $mailer->addEmbeddedImage(DIR_PUBLIC . $admin['Logo'], "HeaderImage", "Logo.png");
+
             /* TO, SUBJECT, CONTENT */
             $to = $email; //The 'To' field
             $subject = $title;
-            $content = "<img alt='MadalcoHeader' src='https://picoolio.net/images/2016/11/04/headerbgcc759.png'>" . "  <br/><br/>" . "Geachte " . $name . "," .
+
+            $header = ' <div id="header" style="background: ' . $admin['Header'] . '">
+                            <div id="MenuSide">
+                                <img src="cid:HeaderImage" style="width:auto;height:75%;" />
+                            </div>
+                        </div> ';
+            $content = $header . "  <br/><br/>" . "Geachte " . $name . "," .
                 " <br/><br/>" . "Uw proef staat te wachten op goedkeuring in het <b>Madalco Portaal!</b>" . "<br /><br />" .
                 "<b>Titel van uw proef:</b>" .
                 $title . "<br />" .
@@ -98,8 +108,6 @@ foreach($get_filled_info as $get_info) {
                 "<br /><br />" . "U kunt uw proef " . "hier: http://localhost/InventPortal/public/index.php?page=verify&id=$imageId&key=$token " . "goedkeuren." .
 
                 "<br /> <br />Met vriendelijke groet, <br />" . $sender . " </br>Madalco Media";;
-
-            $mailer = new PHPMailer();
 
         //SMTP Configuration
             $mailer->isSMTP();
