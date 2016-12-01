@@ -167,18 +167,6 @@ class Mail {
     }
 
     /**
-     * Functie om de op te halen
-     * TODO aanmaken (is voor mailinformatie op te halen voor klanten. (*niet bewerkbaar*, tenzij opegenzet) )
-     *
-     * @return mixed
-     */
-
-    public function read()
-    {
-        return $this->db->read($this);
-    }
-
-    /**
      * Haal een mail op met een meegestuurd id
      *
      * @param $id

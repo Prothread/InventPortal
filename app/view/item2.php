@@ -265,7 +265,7 @@ foreach ($uploadedimages as $img) {
                         <label for="file-upload" class="custom-file-upload">
                             <i class="fa fa-cloud-upload"></i> Uploaden
                         </label>
-                        <input required type="file" name="myFile[]" class="imgInp" id="file-upload" multiple>
+                        <input type="file" name="myFile[]" class="imgInp" id="file-upload" multiple>
                     </div>
                 </div>
                 <div class="form-group">
@@ -469,4 +469,4 @@ foreach ($uploadedimages as $img) {
     <?php } ?>
 
         <div style="clear:both"></div>
-    </div>
+

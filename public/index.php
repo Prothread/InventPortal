@@ -50,16 +50,12 @@ if(!$session->exists('usr_id') && $page == 'approve') {
     require_once '../app/view/header.php';
 }
 
-if($session->exists('usr_id') && $page == 'item2') {
-    require_once '../app/view/header2.php';
-}
-
 if(!$session->exists('usr_id')) {
     require_once '../app/view/header2.php';
 }
 
 if($session->exists('usr_id')){
-    if($page !== 'submit') {
+    if($page !== 'submit' && $page !== 'item2') {
         include_once '../app/view/header.php';
 
     }

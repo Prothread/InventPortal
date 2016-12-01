@@ -306,7 +306,6 @@ $userip = $user->getUserIP();
                             <div id="refer">
                                 <script>
                                     $( "#form" ).submit(function( event ) {
-                                        // TODO if verify = false goed neerzetten
                                         if ( $('#totalverify').val() == 1) {
                                             $( "#verify" ).text( "Alle afbeeldingen zijn beoordeeld!" ).show();
                                             return true;
