@@ -15,7 +15,12 @@ $title = mysqli_real_escape_string($mysqli, $_POST['title']);
 $sender = mysqli_real_escape_string($mysqli, $_POST['fromname']);
 $description = mysqli_real_escape_string($mysqli, $_POST['additionalcontent']);
 
-$clientid = $_POST['client'];
+if($_SESSION['clientid']) {
+    $clientid = $_SESSION['clientid'];
+}
+else {
+    $clientid = mysqli_real_escape_string($mysqli, $_POST['client']);
+}
 $client = $user->getUserById($clientid);
 
 $name = mysqli_real_escape_string($mysqli, $client['naam']);
@@ -69,8 +74,6 @@ if (isset($_FILES['myFile'])) {
 
         if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "pdf") {
             $error = 1;
-            echo "Sorry, you have to upload JPG, JPEG, PNG or PDF.";
-            ?><br/><?php
         }
 
         if ($myFile["size"][$i] > 10485760) {
@@ -195,7 +198,7 @@ if($error == 0) {
 
         if(isset($_POST['id'])) {
         $myid = $_POST['id'];
-            if($comment !== null || $comment !== '') {
+            if($comment !== null && $comment !== '') {
                 $mailinfo = [
                     'id' => intval($myid),
                     'title' => strip_tags($title),
@@ -227,7 +230,7 @@ if($error == 0) {
             }
         }
         else {
-            if($comment !== null || $comment !== '') {
+            if($comment !== null && $comment !== '') {
                 $mailinfo = [
                     'title' => strip_tags($title),
                     'sender' => strip_tags($sender),
@@ -256,6 +259,7 @@ if($error == 0) {
                 ];
             }
         }
+        var_dump($mailinfo);
         $mailer->SMTPOptions = array(
                 'ssl' => array(
                 'verify_peer' => false,

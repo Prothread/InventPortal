@@ -46,9 +46,9 @@ class DbMail extends Database
 
             $user = new UserController();
             $getbymail = $user->getUserByEmail($mail->getMailEmail());
-            $userid = $getbymail['id'];
+            $clientid = $getbymail['id'];
 
-            $sql1 = "INSERT INTO `usermail` (`userid`, `mailid`, `status`) VALUES ('{$userid}', '{$myid}', '{$mail->getVerified()}')";
+            $sql1 = "INSERT INTO `usermail` (`userid`, `clientid`, `mailid`, `status`) VALUES ('{$_SESSION['usr_id']}', '{$clientid}', '{$myid}', '{$mail->getVerified()}')";
 
             if($this->dbQuery($sql1)) {
                 true;
@@ -93,7 +93,7 @@ class DbMail extends Database
 
             if($this->dbQuery($sql)){
 
-                $sql1 = "UPDATE `usermail` SET `clientid` = '{$mail->getMailClientId()}', `status` = '{$mail->getVerified()}' WHERE `mailid` = '{$mail->getMailId()}'";
+                $sql1 = "UPDATE `usermail` SET `status` = '{$mail->getVerified()}' WHERE `mailid` = '{$mail->getMailId()}'";
 
                 if($this->dbQuery($sql1)) {
                     true;
@@ -135,7 +135,7 @@ class DbMail extends Database
                     }
                 }
 
-                if($mail->getComment() !== null || $mail->getComment() !== '') {
+                if($mail->getComment() !== null && $mail->getComment() !== '') {
                     $date = date('Y-m-d');
                     $sql3 = "INSERT INTO `comments`(`mailid`, `comment`, `commentgroep`, `datum`) VALUES ('{$mail->getMailId()}','{$mail->getComment()}', '{$mail->getCommentGroup()}', '{$date}')";
                     if ($this->dbQuery($sql3)) {
@@ -286,6 +286,7 @@ class DbMail extends Database
         if($value) {
             return $value;
         }
+        return false;
     }
 
     /**
@@ -362,6 +363,26 @@ class DbMail extends Database
 
         if($row !== null) {
             return $row;
+        }
+        return false;
+    }
+
+    /**
+     * Haal usermail op met de meegestuurde mailid variabele
+     *
+     * @param $MailID
+     * @return mixed
+     */
+
+    public function getUserMailbyMailID($MailID)
+    {
+        $sql = "SELECT * FROM `usermail` WHERE `mailid` = '{$MailID}'";
+
+        $result = $this->dbQuery($sql);
+        $value = mysqli_fetch_assoc($result);
+
+        if($value) {
+            return $value;
         }
         return false;
     }

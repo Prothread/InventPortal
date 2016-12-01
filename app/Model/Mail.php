@@ -614,4 +614,16 @@ class Mail {
         return $this->db->searchTable($term, $limit , $offset, $table, $filter, $ids, $status);
     }
 
+    /**
+     * Haal usermail op met de meegestuurde mailid variabele
+     *
+     * @param $MailID
+     * @return mixed
+     */
+
+    public function getUserMailbyMailID($MailID)
+    {
+        return $this->db->getUserMailbyMailID($MailID);
+    }
+
 }
