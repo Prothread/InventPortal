@@ -2,7 +2,7 @@
 #PAGE FOR CREATING CLIENTS
 
 if($user->getPermission($permgroup, 'CAN_CREATE_CLIENT') == 1){
-
+    
 }
 else {
     header('Location: index.php');
@@ -16,7 +16,6 @@ else {
             <div class="col-lg-12">
                 <p class="NameText">Nieuwe klant</p>
                 <br>
-
 
                 <form action="?page=clientmail" method="post" enctype="multipart/form-data" class="form-horizontal">
                     <fieldset>
