@@ -54,10 +54,13 @@ class DbMail extends Database
                 true;
             }
 
-            $date = date('Y-m-d');
-            $sql3 = "INSERT INTO `comments`(`mailid`, `comment`, `commentgroep`, `datum`) VALUES ('{$myid}','{$mail->getComment()}', '{$mail->getCommentGroup()}', '{$date}')";
-            if($this->dbQuery($sql3)) {
-                true;
+            if($mail->getComment() !== null || $mail->getComment() !== '') {
+                $date = date('Y-m-d');
+                $sql3 = "INSERT INTO `comments`(`mailid`, `comment`, `commentgroep`, `datum`) VALUES ('{$myid}','{$mail->getComment()}', '{$mail->getCommentGroup()}', '{$date}')";
+                if ($this->dbQuery($sql3)) {
+                    true;
+                }
+
             }
 
             return $this->dbLastInsertedId();
@@ -132,7 +135,7 @@ class DbMail extends Database
                     }
                 }
 
-                if(!empty( $mail->getComment()) || $mail->getComment() !== null) {
+                if($mail->getComment() !== null || $mail->getComment() !== '') {
                     $date = date('Y-m-d');
                     $sql3 = "INSERT INTO `comments`(`mailid`, `comment`, `commentgroep`, `datum`) VALUES ('{$mail->getMailId()}','{$mail->getComment()}', '{$mail->getCommentGroup()}', '{$date}')";
                     if ($this->dbQuery($sql3)) {

@@ -27,7 +27,7 @@ if($client['altmail'] == '') {
 }
 
 $comment = mysqli_real_escape_string($mysqli, $_POST['interncomment']);
-$commentgroep = $_POST['commentgroep'];
+$commentgroep = mysqli_real_escape_string($mysqli, $_POST['commentgroep']);
 
 $imageFileName = new ImageController();
 $block = new BlockController();
@@ -195,35 +195,66 @@ if($error == 0) {
 
         if(isset($_POST['id'])) {
         $myid = $_POST['id'];
-            $mailinfo = [
-                'id' => intval($myid),
-                'title' => strip_tags($title),
-                'sender' => strip_tags($sender),
-                'description' => strip_tags($description),
-                'name' => strip_tags($name),
-                'email' => strip_tags($email),
-                'token' => $token,
-                'images' => strip_tags($uniqdbimages),
-                'datum' => date('Y-m-d'),
-                'verified' => 0,
-                'comment' => $comment,
-                'commentgroep' => $commentgroep
-            ];
+            if($comment !== null || $comment !== '') {
+                $mailinfo = [
+                    'id' => intval($myid),
+                    'title' => strip_tags($title),
+                    'sender' => strip_tags($sender),
+                    'description' => strip_tags($description),
+                    'name' => strip_tags($name),
+                    'email' => strip_tags($email),
+                    'token' => $token,
+                    'images' => strip_tags($uniqdbimages),
+                    'datum' => date('Y-m-d'),
+                    'verified' => 0,
+                    'comment' => $comment,
+                    'commentgroep' => $commentgroep
+                ];
+            }
+            else {
+                $mailinfo = [
+                    'id' => intval($myid),
+                    'title' => strip_tags($title),
+                    'sender' => strip_tags($sender),
+                    'description' => strip_tags($description),
+                    'name' => strip_tags($name),
+                    'email' => strip_tags($email),
+                    'token' => $token,
+                    'images' => strip_tags($uniqdbimages),
+                    'datum' => date('Y-m-d'),
+                    'verified' => 0
+                ];
+            }
         }
         else {
-            $mailinfo = [
-                'title' => strip_tags($title),
-                'sender' => strip_tags($sender),
-                'description' => strip_tags($description),
-                'name' => strip_tags($name),
-                'email' => strip_tags($email),
-                'token' => $token,
-                'images' => strip_tags($uniqdbimages),
-                'datum' => date('Y-m-d'),
-                'verified' => 0,
-                'comment' => $comment,
-                'commentgroep' => $commentgroep
-            ];
+            if($comment !== null || $comment !== '') {
+                $mailinfo = [
+                    'title' => strip_tags($title),
+                    'sender' => strip_tags($sender),
+                    'description' => strip_tags($description),
+                    'name' => strip_tags($name),
+                    'email' => strip_tags($email),
+                    'token' => $token,
+                    'images' => strip_tags($uniqdbimages),
+                    'datum' => date('Y-m-d'),
+                    'verified' => 0,
+                    'comment' => $comment,
+                    'commentgroep' => $commentgroep
+                ];
+            }
+            else {
+                $mailinfo = [
+                    'title' => strip_tags($title),
+                    'sender' => strip_tags($sender),
+                    'description' => strip_tags($description),
+                    'name' => strip_tags($name),
+                    'email' => strip_tags($email),
+                    'token' => $token,
+                    'images' => strip_tags($uniqdbimages),
+                    'datum' => date('Y-m-d'),
+                    'verified' => 0
+                ];
+            }
         }
         $mailer->SMTPOptions = array(
                 'ssl' => array(

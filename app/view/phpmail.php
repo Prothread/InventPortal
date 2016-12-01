@@ -11,6 +11,7 @@ else {
 
 $user = new UserController();
 $userinfo = $user->getUserById($_SESSION['usr_id']);
+//TODO ZET KLANT ID IN USERMAIL
 ?>
 <div id="Mail">
     <!-- Page Content -->
