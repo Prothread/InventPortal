@@ -12,8 +12,13 @@ else {
 $user = new UserController();
 $session = new Session();
 
-$_GET['id'] = $session->cleantonumber($_GET['id']);
-$userinfo = $user->getUserById($_GET['id']);
+if(isset($_GET['id'])) {
+    $_GET['id'] = $session->cleantonumber($_GET['id']);
+    $userinfo = $user->getUserById($_GET['id']);
+}
+else {
+    return 'Profiel niet gevonden';
+}
 ?>
 
 <div id="page-content-wrapper">

@@ -43,6 +43,7 @@ class DbBlock extends Database
         if($row) {
             return $row;
         }
+        return false;
     }
 
     /**
@@ -75,6 +76,7 @@ class DbBlock extends Database
         if($row){
             return $row;
         }
+        return false;
     }
 
     /**
@@ -92,6 +94,7 @@ class DbBlock extends Database
         if($row) {
             return $row;
         }
+        return false;
     }
 
     /**
@@ -110,6 +113,7 @@ class DbBlock extends Database
         if($row) {
             return $row;
         }
+        return false;
     }
 
     /**
@@ -129,6 +133,7 @@ class DbBlock extends Database
         if($row) {
             return $row;
         }
+        return false;
     }
 
     /**
@@ -148,6 +153,7 @@ class DbBlock extends Database
         if($row) {
             return $row;
         }
+        return false;
     }
 
     /**
@@ -167,6 +173,7 @@ class DbBlock extends Database
         if($row) {
             return $row;
         }
+        return false;
     }
 
     /**
@@ -205,6 +212,7 @@ class DbBlock extends Database
         if($value) {
             return $value;
         }
+        return false;
     }
 
     /**
@@ -224,6 +232,7 @@ class DbBlock extends Database
         if($value) {
             return $value;
         }
+        return false;
     }
 
     /**

@@ -16,13 +16,13 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);
                         <tr>
                             <th style="text-align: left;"><p class="NameText" style="font-weight: normal;">Uw profiel</p></th>
                             <th style="text-align: right;">
-                                <a href="?page=userdashboard">
+                                <a href="?page=useroverview">
                                     <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
                                         <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span>  Mijn overzicht</button>
                                 </a>
 
                                 <a href="?page=editprofile">
-                                    <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
+                                    <button type="button" class="btn btn-labeled btn-success MyOverviewButton" style="background-color: darkred">
                                         <span class="btn-label"><i class="glyphicon glyphicon-pencil"></i></span>Wijzig profiel</button>
                                 </a>
 

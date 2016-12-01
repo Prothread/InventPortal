@@ -6,7 +6,6 @@ if($user->getPermission($permgroup, 'CAN_SHOW_HOME') == 1) {
 }
 else {
     header('Location: index.php?page=userdashboard');
-    Session::flash('error', 'U heeft hier geen rechten voor.');
 }
 
 $uploads = new BlockController();

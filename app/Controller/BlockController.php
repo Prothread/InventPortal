@@ -50,6 +50,18 @@ class BlockController
     }
 
     /**
+     * Haal alle usermail info op met id
+     *
+     * @return mixed
+     */
+
+
+    public function getAllUserUploads($id)
+    {
+        return $this->model->getAllUserUploads($id);
+    }
+
+    /**
      * Telt alle user uploads met verified 2
      *
      * @return array|null
