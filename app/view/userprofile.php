@@ -20,10 +20,11 @@ if($myuser['permgroup'] == '1') {
 else {
     $getAllUserItems = $items->getUserMailByUserId($userid, 0, 0);
 }
-
+if($getAllUserItems !== null){
 foreach($getAllUserItems as $UserItem) {
     $mail = $items->getMailById($UserItem['mailid']);
     $getMails[] = $mail;
+}
 }
 
 ?>
@@ -58,7 +59,7 @@ foreach($getAllUserItems as $UserItem) {
             <br />
             <div class="row">
 
-                <?php if($getMails !== null) {?>
+                <?php if(isset ($getMails) && $getMails !== null ) {?>
                 <table id="myTable" class="table table-striped" >
                     <thead>
                     <tr>
