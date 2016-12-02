@@ -52,6 +52,20 @@ if(isset($_POST['submit'])){
     //Convert the binary data into hexadecimal representation.
     $token = bin2hex($token);
 
+    $clientinfo = [
+        'id' => intval($_POST['id']),
+        'name' => strip_tags( $naam ),
+        'email' => strip_tags( $email ),
+        'altmail' => strip_tags( $altmail ),
+        'password' => $token,
+        'bedrijfsnaam' => strip_tags( $bedrijfsnaam ),
+        'adres' => strip_tags( $adres ),
+        'postcode' => strip_tags( $postcode ),
+        'plaats' => strip_tags( $plaats ),
+        'permgroup' => $rechten
+    ];
+
+
     if (isset($_FILES['fileToUpload'])) {
         $error = 0;
 
@@ -101,21 +115,7 @@ if(isset($_POST['submit'])){
         }
 
     }
-    else
-    {
-        $clientinfo = [
-            'id' => intval($_POST['id']),
-            'name' => strip_tags( $naam ),
-            'email' => strip_tags( $email ),
-            'altmail' => strip_tags( $altmail ),
-            'password' => $token,
-            'bedrijfsnaam' => strip_tags( $bedrijfsnaam ),
-            'adres' => strip_tags( $adres ),
-            'postcode' => strip_tags( $postcode ),
-            'plaats' => strip_tags( $plaats ),
-            'permgroup' => $rechten
-        ];
-    }
+
 
     $client->update($clientinfo);
     header('Location: index.php?page=dashboard');
