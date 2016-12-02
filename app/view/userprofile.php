@@ -118,7 +118,8 @@ foreach($getAllUserItems as $UserItem) {
 <script>
     $(document).ready(function(){
         $('#myTable').dataTable({
-            "order": [[ 0, "desc" ]]
+            "order": [[ 0, "desc" ]],
+            "deferRender": true
         });
 
     });

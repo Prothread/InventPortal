@@ -87,7 +87,8 @@ $get_filled_info = $user->getAllUsersByPerm(1);
 <script>
     $(document).ready(function(){
         $('#myTable').dataTable({
-            "order": [[ 0, "desc" ]]
+            "order": [[ 0, "desc" ]],
+            "deferRender": true
         });
 
     });

@@ -55,7 +55,7 @@
     $(document).ready(function() {});
 
     if($('#myChart').length) {
-        $.getScript('http://www.chartjs.org/assets/Chart.js', function () {
+        $.getScript('js/Chart.js', function () {
 
             var data = [{
                 label: "Geweigerd",
