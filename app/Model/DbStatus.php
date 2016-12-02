@@ -78,7 +78,7 @@ class DbStatus extends Database
 		if($fetch_all) {
 			return $fetch_all;
 		}
-		return false;
+		return null;
 	}
 
 	/**

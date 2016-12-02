@@ -109,7 +109,7 @@ foreach($getAllUserItems as $UserItem) {
                 </table>
                 <?php }
                 else { ?>
-                    <div id="weiger" class="alert alert-info" style="text-align: center;" role="alert"><span class="glyphicon glyphicon-remove-circle"></span> Er zijn nog geen gebruikers aangemaakt</div>
+                    <div id="weiger" class="alert alert-info" style="text-align: center;" role="alert"><span class="glyphicon glyphicon-remove-circle"></span> U heeft nog niks geüpload of geaccordeerd</div>
                 <?php } ?>
             </div>
         </div>

@@ -28,7 +28,7 @@ $users = $user->getAllUsersByPerm(1);
 
                 <hr size="1">
                <div class="row equal">
-            <div width: "100%" class="col-lg-12 text-left">
+            <div class="col-lg-12 text-left">
             <?php if($StatusItems !==  null) { ?>
                
                <div style="width: 30%; border: 1px #e0e0e0; background-color: #FFF;" class="panel">

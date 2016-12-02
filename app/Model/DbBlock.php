@@ -43,7 +43,7 @@ class DbBlock extends Database
         if($row) {
             return $row;
         }
-        return false;
+        return null;
     }
 
     /**
@@ -76,7 +76,7 @@ class DbBlock extends Database
         if($row){
             return $row;
         }
-        return false;
+        return null;
     }
 
     /**
@@ -113,7 +113,7 @@ class DbBlock extends Database
         if($row) {
             return $row;
         }
-        return false;
+        return null;
     }
 
     /**

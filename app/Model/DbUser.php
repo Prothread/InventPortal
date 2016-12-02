@@ -258,6 +258,7 @@ class DbUser extends Database
         if($value){
             return $value;
         }
+        return null;
     }
 
     /**

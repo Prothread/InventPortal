@@ -17,39 +17,40 @@ $get_user_info = $users->getAllUsersByPerm(2);
 
 $namearray=[];
 $percentarray = [];
-foreach($get_user_info as $user){
-    $useruploadcount = $uploads->getAllUserUploadsCount($user['id']);
-    $userverifiedcount = $uploads->getAllUserUploadsCountByVerified($user['id']);
-    if($useruploadcount["COUNT('id')"] > 0){
-        $percent=round(($userverifiedcount["COUNT('id')"]/$useruploadcount["COUNT('id')"])*100);
-    }else{
-        $percent='0';
+if($get_user_info !== null) {
+    foreach ($get_user_info as $user) {
+        $useruploadcount = $uploads->getAllUserUploadsCount($user['id']);
+        $userverifiedcount = $uploads->getAllUserUploadsCountByVerified($user['id']);
+        if ($useruploadcount["COUNT('id')"] > 0) {
+            $percent = round(($userverifiedcount["COUNT('id')"] / $useruploadcount["COUNT('id')"]) * 100);
+        } else {
+            $percent = '0';
+        }
+        $percentarray[$user['naam']] = $percent;
+        array_push($namearray, $user['naam']);
     }
-    $percentarray[$user['naam']] = $percent;
-    array_push($namearray,$user['naam']);
-}
-arsort($percentarray);
+    arsort($percentarray);
 
-array_values($percentarray);
+    array_values($percentarray);
 
-if(count($percentarray) <= 4) {
-    $count = count($percentarray);
-} 
-else {
-    $count = 4;
-}
-
-$i=0;
-while($i < $count) {
-    if (array_key_exists($namearray[$i], $percentarray) ) {
-        ${'p'.$i} = array_values($percentarray)[$i];
-        ${'u'.$i} = array_keys($percentarray)[$i];
+    if (count($percentarray) <= 4) {
+        $count = count($percentarray);
+    } else {
+        $count = 4;
     }
-    $i++;
+
+    $i = 0;
+    while ($i < $count) {
+        if (array_key_exists($namearray[$i], $percentarray)) {
+            ${'p' . $i} = array_values($percentarray)[$i];
+            ${'u' . $i} = array_keys($percentarray)[$i];
+        }
+        $i++;
+    }
 }
 
 if($get_filled_info == null) {
-    echo '<div id="NoMail">Er zijn nog geen proeven of offertes geüpload</div>';
+    echo '<div id="NoMail" class="alert alert-info">Er zijn nog geen proeven of offertes geüpload</div>';
     return false;
 }
 
