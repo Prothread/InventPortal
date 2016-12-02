@@ -54,7 +54,7 @@ class DbMail extends Database
                 true;
             }
 
-            if($mail->getComment() !== null || $mail->getComment() !== '') {
+            if($mail->getComment() !== null && $mail->getComment() !== '') {
                 $date = date('Y-m-d');
                 $sql3 = "INSERT INTO `comments`(`mailid`, `comment`, `commentgroep`, `datum`) VALUES ('{$myid}','{$mail->getComment()}', '{$mail->getCommentGroup()}', '{$date}')";
                 if ($this->dbQuery($sql3)) {

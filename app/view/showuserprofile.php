@@ -19,6 +19,21 @@ if(isset($_GET['id'])) {
 else {
     return 'Profiel niet gevonden';
 }
+if($userinfo['permgroup'] == '1') {
+    $userperm = 'Klant';
+}
+else if($userinfo['permgroup'] == '2') {
+    $userperm = 'Gebruiker';
+}
+else if($userinfo['permgroup'] == '3') {
+    $userperm = 'Beheerder';
+}
+else if($userinfo['permgroup'] == '4') {
+    $userperm = 'Admin';
+}
+else {
+    $userperm = 'Klant';
+}
 ?>
 
 <div id="page-content-wrapper">
@@ -96,7 +111,7 @@ else {
                                 <div class="form-group">
                                     <label class="col-lg-3 control-label">Rechten:</label>
                                     <div class="col-lg-8">
-                                        <input disabled class="form-control" value="<?= $permgroup ?>" type="text">
+                                        <input disabled class="form-control" value="<?= $userperm ?>" type="text">
                                     </div>
                                 </div>
                                 <!--<div class="form-group">
@@ -117,14 +132,4 @@ else {
     </div>
     <hr>
 
-
-
 </div>
-</div>
-</fieldset>
-</form>
-</div>
-</div>
-</div>
-</div>
-

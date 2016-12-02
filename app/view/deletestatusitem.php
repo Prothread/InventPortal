@@ -1,6 +1,6 @@
 <?php 
 
-if($user->getPermission($permgroup, 'CAN_SHOW_OVERZICHT') == 1){
+if($user->getPermission($permgroup, 'CAN_USE_STATUSPORTAL') == 1){
 
 }
 else {

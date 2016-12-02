@@ -1,7 +1,7 @@
 <?php
 #PAGE FOR CREATING CLIENTS
 
-if($user->getPermission($permgroup, 'CAN_CREATE_CLIENT') == 1){
+if($user->getPermission($permgroup, 'CAN_CREATE_USER') == 1){
 
 }
 else {

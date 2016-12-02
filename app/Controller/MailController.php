@@ -36,7 +36,7 @@ class MailController
         $this->model->setDatum($mailinfo['datum']);
         $this->model->setVerified($mailinfo['verified']);
 
-        if ($mailinfo['comment']){
+        if (isset($mailinfo['comment']) && $mailinfo['comment'] !== null){
             $this->model->setMailComment($mailinfo['comment']);
             $this->model->setCommentGroup($mailinfo['commentgroep']);
         }

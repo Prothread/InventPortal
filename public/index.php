@@ -55,7 +55,7 @@ if(!$session->exists('usr_id')) {
 }
 
 if($session->exists('usr_id')){
-    if($page !== 'submit' && $page !== 'item2') {
+    if($page !== 'submit' && $page !== 'item2' && $page !== 'image') {
         include_once '../app/view/header.php';
 
     }
