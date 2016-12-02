@@ -11,6 +11,7 @@ else {
 
 $user = new UserController();
 $userinfo = $user->getUserById($_SESSION['usr_id']);
+//TODO ZET KLANT ID IN USERMAIL
 ?>
 <div id="Mail">
     <!-- Page Content -->
@@ -75,7 +76,7 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);
                                     <div class="form-group">
                                         <label class="col-md-4 control-label" for="textinput">Verstuurder<span style="color:#bc2d4c">*</span></label>
                                         <div class="col-md-4">
-                                            <input required class="form-control input-md" maxlength="32" id="textinput" type="text" name="verstuurder" size="50" value="<?= $userinfo['naam'] ?>" disabled>
+                                            <input required class="form-control input-md" maxlength="32" id="textinput" type="text" name="fromname" value="<?= $userinfo['naam'] ?>" readonly>
                                         </div>
                                     </div>
 
@@ -188,11 +189,6 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);
                                     </ul>
 
                                     <input type="hidden" name="frommail" id="MailFrom" value="<?php if( isset($mailinfo['title']) ){ echo $mailinfo['email'];}?>">
-
-                                    <input type="hidden" name="mailto" id="" value="kevin.herdershof@hotmail.com">
-
-                                    <input type="hidden" name="fromname" id="" value="Gijs van den Abeele">
-                                    <input type="hidden" name="mailname" id="" value="Jeffrey">
                                     <br>
 
                                 </div>

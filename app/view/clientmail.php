@@ -63,11 +63,21 @@ if($mailexist = null || empty($mailexist)){
         'secure' => 'tls' //SSL or TLS
 
     );
+
+    /* Create phpmailer and add the image to the mail */
+    $mailer = new PHPMailer();
+    $mailer->addEmbeddedImage(DIR_PUBLIC . $admin['Logo'], "HeaderImage", "Logo.png");
+
     /* TO, SUBJECT, CONTENT */
     $to = mysqli_real_escape_string($mysqli,$_POST['email']); //The 'To' field
     $subject = "Accountgegevens Madalco-portaal";
 
-    $content = "<img alt='MadalcoHeader' src='https://picoolio.net/images/2016/11/04/headerbgcc759.png'>" . "  <br/><br/>" . "Geachte " . $_POST['companyname'] . "," .
+    $header = ' <div id="header" style="background: ' . $admin['Header'] . '">
+                    <div id="MenuSide">
+                        <img src="cid:HeaderImage" style="width:auto;height:75%;" />
+                    </div>
+                </div> ';
+    $content = $header . "  <br/><br/>" . "Geachte " . $_POST['companyname'] . "," .
 
         " <br/><br/>" . $myuser . " heeft voor u het account <b> " . $_POST['name'] . "</b> " . " aangemaakt, hieronder uw gegevens:<br /><br />" .
         "<b>E-mailadres: </b>" .
@@ -91,8 +101,6 @@ if($mailexist = null || empty($mailexist)){
         "<br /><br />" . "U kunt " . "http://localhost/InventPortal/public/index.php?page=login " . "inloggen." .
 
         "<br /> <br />Met vriendelijke groet, <br />" . $myuser;
-
-    $mailer = new PHPMailer();
 
 //SMTP Configuration
     $mailer->isSMTP();

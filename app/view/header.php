@@ -1,8 +1,10 @@
 <?php
 #HEADER
 
-$user = new UserController();
+header('Cache-Control: no-cache, no-store, must-revalidate'); //HTTP/1.1
+header('Pragma: no-cache'); //HTTP/1.0
 
+$user = new UserController();
 include DIR_MODEL . 'permissions.php';
 
 if(isset($_SESSION['usr_name'])) {
@@ -19,12 +21,18 @@ else {
 $settings = new UserController();
 $admin = $settings->getAdminSettings();
 
-$userinfo = $user->getUserById($_SESSION['usr_id']);
-if($userinfo['profimg'] !== null) {
-    $imgsrc = DIR_IMG . $userinfo['profimg'];
+if(isset($_SESSION['accorduserid'])) {
+    $userinfo = $user->getUserById($_SESSION['accorduserid']);
+    $imgsrc = '../icons/profile.png';
 }
 else {
-    $imgsrc = '../icons/profile.png';
+    $userinfo = $user->getUserById($_SESSION['usr_id']);
+
+    if ($userinfo['profimg'] !== null) {
+        $imgsrc = DIR_IMG . $userinfo['profimg'];
+    } else {
+        $imgsrc = '../icons/profile.png';
+    }
 }
 ?>
 <html lang="nl">
@@ -54,19 +62,16 @@ else {
     <!-- JQuery -->
     <script src="js/jquery-1.12.4.js"></script>
     <script src="js/jquery-ui.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="css/jquery-ui.css">
 
     <!-- Datatable css + jquery -->
     <link rel="stylesheet" href="css/jquery.dataTables.min.css">
     <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
-    <script src="http://www.google.com/jsapi"></script>
+    <script src="js/jsapi.js"></script>
 
     <!--Dropdown search menu-->
     <script src="js/select2.min.js"></script>
-
-    <!-- Eigen CSS -->
-    <link href="css/styles.css" rel="stylesheet">
 
     <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script>
@@ -81,7 +86,7 @@ else {
 
     <link rel="icon"
           type="image/png"
-          href="<?= DIR_PUBLIC . 'favicon.png'?>">
+          href="css/favicon.png">
 </head>
 
 <body>
@@ -91,7 +96,7 @@ else {
             <img src="<?= DIR_PUBLIC . $admin['Logo'] ?>" style="width:auto;height:75%;" /> <!-- ../public/css/madlogo.png -->
         </div>
         <div id="MenuButton">
-            <a href="#menu-toggle" class="btn btn-default" id="menu-toggle"><img src="https://cdn4.iconfinder.com/data/icons/wirecons-free-vector-icons/32/menu-alt-20.png"></a>
+            <a href="#menu-toggle" class="btn btn-default" id="menu-toggle"><img src="icons/menu-alt-20.png"></a>
         </div>
     </div>
 
@@ -148,7 +153,6 @@ else {
                 </li>
             <?php } ?>
 
-
             <?php if ($user->getPermission($permgroup, 'CAN_SHOW_KLANTPAGINA') == 1 ) { ?>
                 <li class="nav-button-users">
                     <a href="?page=manageclients">Klanten</a>
@@ -169,7 +173,8 @@ else {
         </ul>
 
     </div>
-<?php if($session->exists('flash')) {
+<?php
+if($session->exists('flash')) {
     foreach($session->get('flash') as $flash) {
         echo "<div class='alert alert_{$flash['type']}'>{$flash['message']}</div>";
     }

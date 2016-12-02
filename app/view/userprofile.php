@@ -35,8 +35,8 @@ foreach($getAllUserItems as $UserItem) {
                 <tr>
                     <th style="text-align: left;"><p class="NameText" style="font-weight: normal;">Uw profiel</p></th>
                     <th style="text-align: right;">
-                        <a href="?page=showuserprofile">
-                            <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
+                        <a href="?page=useroverview">
+                            <button type="button" class="btn btn-labeled btn-success MyOverviewButton" style="background-color: darkred">
                                 <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span>  Mijn overzicht</button>
                         </a>
 
@@ -118,7 +118,8 @@ foreach($getAllUserItems as $UserItem) {
 <script>
     $(document).ready(function(){
         $('#myTable').dataTable({
-            "order": [[ 0, "desc" ]]
+            "order": [[ 0, "desc" ]],
+            "deferRender": true
         });
 
     });

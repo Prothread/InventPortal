@@ -42,7 +42,7 @@ else {
                     <hr size="1">
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Bestand uploaden</label>
+                        <label class="col-md-4 control-label" for="textinput">Logo uploaden</label>
                         <div class="col-md-4">
                             <label for="file-upload" class="custom-file-upload">
                                 <i class="fa fa-cloud-upload"></i> Uploaden
@@ -51,7 +51,7 @@ else {
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Geselecteerd bestand:</label>
+                        <label class="col-md-4 control-label" for="textinput">Geselecteerd logo:</label>
                         <div class="col-md-4">
                             <div id="fileList"></div>
 

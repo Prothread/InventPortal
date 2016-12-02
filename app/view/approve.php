@@ -11,6 +11,7 @@ else {
 
 $upload = new BlockController();
 $session = new Session();
+
 $image_controller = new ImageController();
 
 if($session->getMailId() == null) {
@@ -305,7 +306,6 @@ $userip = $user->getUserIP();
                             <div id="refer">
                                 <script>
                                     $( "#form" ).submit(function( event ) {
-                                        // TODO if verify = false goed neerzetten
                                         if ( $('#totalverify').val() == 1) {
                                             $( "#verify" ).text( "Alle afbeeldingen zijn beoordeeld!" ).show();
                                             return true;

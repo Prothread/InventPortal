@@ -20,8 +20,8 @@ $settingsarray = [
     'Header' => $header
 ];
 
+$error = 0;
 if (isset($_FILES['fileToUpload'])) {
-    $error = 0;
 
     $myFile = $_FILES['fileToUpload'];
     $fileCount = count($myFile["name"]);
@@ -39,8 +39,8 @@ if (isset($_FILES['fileToUpload'])) {
 
     if ($myFile["size"] > 10485760) {
         $error = 1;
-        echo $test . '<div class="alert alert-danger" role="alert">Het meegestuurde bestand is te groot!</div>';
-        ?><br/><?php
+        header('Location: index.php?page=settings');
+        Session::flash('message', 'Het geüploade bestand is te groot');
     }
 
     if ($error == 0) {

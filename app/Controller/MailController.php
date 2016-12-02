@@ -80,6 +80,11 @@ class MailController
             }
             $this->model->setDatum($mailinfo['datum']);
             $this->model->setVerified($mailinfo['verified']);
+
+            if(isset($mailinfo['comment'])){
+                $this->model->setMailComment($mailinfo['comment']);
+                $this->model->setCommentGroup($mailinfo['commentgroep']);
+            }
         }
         if ($result = $this->model->update()) {
             return $result;
@@ -173,6 +178,18 @@ class MailController
     public function searchTable($term, $limit = null, $offset = null, $table = null, $filter = null, $ids = null, $status = null)
     {
         return $this->model->searchTable($term, $limit , $offset, $table, $filter, $ids, $status);
+    }
+
+    /**
+     * Haal usermail op met de meegestuurde mailid variabele
+     *
+     * @param $MailID
+     * @return mixed
+     */
+
+    public function getUserMailbyMailID($MailID)
+    {
+        return $this->model->getUserMailbyMailID($MailID);
     }
 
 }

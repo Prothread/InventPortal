@@ -11,6 +11,7 @@ else {
 
 $session = new Session();
 $uploads = new BlockController();
+$usermail = new MailController();
 
 $id = $_GET['id'];
 $id = $session->cleantonumber($id);
@@ -29,6 +30,9 @@ foreach ($uploadedimages as $img) {
     $isverified = $image_controller->getImageVerify($img['id']);
     array_push($checknewarray, $isverified['verify']);
 }
+// TODO GET CLIENT FROM MAIL (getusermailbymailid) voor mail te versturen --> zet in $_SESSION['clientid']
+$clientmail = $usermail->getUserMailbyMailID($id);
+$_SESSION['clientid'] = $clientmail['clientid'];
 ?>
 
 <div id="Mail">
@@ -189,14 +193,14 @@ foreach ($uploadedimages as $img) {
                                         <div class="form-group">
                                             <label class="col-md-4 control-label" for="textinput">Onderwerp<span style="color:#bc2d4c">*</span></label>
                                             <div class="col-md-4">
-                                                <input name="title" class="form-control input-md" id="textinput" required type="text" size="50" value="<?= $upload['onderwerp']?>">
+                                                <input class="form-control input-md" id="textinput" required type="text" name="title" readonly value="<?= $upload['onderwerp']?>">
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             <label class="col-md-4 control-label" for="textinput">Verstuurder<span style="color:#bc2d4c">*</span></label>
                                             <div class="col-md-4">
-                                                <input name="fromname" class="form-control input-md" id="textinput" required type="text" size="50" value="<?= $upload['verstuurder']?>">
+                                                <input name="fromname" class="form-control input-md" id="textinput" required type="text" readonly value="<?= $upload['verstuurder']?>">
                                             </div>
                                         </div>
 
@@ -234,14 +238,11 @@ foreach ($uploadedimages as $img) {
                                                             else if($importance == '4') {
                                                                 $importancecolor = 'red';
                                                             }
+                                                            else {
+                                                                $importancecolor = 'black';
+                                                            }
                                                             ?>
-                                                            <!-- <div class="form-group">
-                                                    <label class="col-md-4 control-label" for="textinput"><span style="color: <?= $importancecolor ?>">Opmerking <?= $i ?>: </span></label>
-                                                    <div class="col-md-4">
-                                                        <textarea disabled class="form-control input-md" id="textinput"><?= $comment['comment']?></textarea>
-                                                    </div>
-                                                </div> -->
-                                                            <a href="" class="question<?= $i ?>"><li style="color: <?= $importancecolor ?>"><div id="leftside"><?= $comment['comment']?></div><div id="rightdate"><?= $comment['datum'] ?></div></li></a>
+                                                            <a href="" class="question<?= $i ?>"><li style="color: <?= $importancecolor ?>"><div id="leftside"><?= $comment['comment']?></div><div id="rightdate"><?= date('d-m-Y', strtotime($comment['datum'])) ?></div></li></a>
                                                         <?php } ?>
                                                     </ul>
                                                 </div>
@@ -336,7 +337,7 @@ foreach ($uploadedimages as $img) {
                                                         <label for="file-upload" class="custom-file-upload">
                                                             <i class="fa fa-cloud-upload"></i> Uploaden
                                                         </label>
-                                                        <input required type="file" name="myFile[]" class="imgInp" id="file-upload" multiple>
+                                                        <input type="file" name="myFile[]" class="imgInp" id="file-upload" multiple>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">

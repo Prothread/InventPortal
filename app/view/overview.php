@@ -4,7 +4,7 @@
 if($user->getPermission($permgroup, 'CAN_SHOW_OVERZICHT') == 1){
 
 } else {
-    header('Location: index.php?page=showuserprofile');
+    header('Location: index.php?page=useroverview');
 }
 
 $uploads = new BlockController();
@@ -34,7 +34,7 @@ else {
                             </a>
                             <?php  } ?>
 
-                            <a href="?page=showuserprofile">
+                            <a href="?page=useroverview">
                                 <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
                                 <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> Mijn overzicht</button>
                             </a>
@@ -123,7 +123,8 @@ else {
 <script>
     $(document).ready(function(){
         $('#myTable').dataTable({
-            "order": [[ 0, "desc" ]]
+            "order": [[ 0, "desc" ]],
+            "deferRender": true
         });
 
     });

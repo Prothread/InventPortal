@@ -15,7 +15,12 @@ $title = mysqli_real_escape_string($mysqli, $_POST['title']);
 $sender = mysqli_real_escape_string($mysqli, $_POST['fromname']);
 $description = mysqli_real_escape_string($mysqli, $_POST['additionalcontent']);
 
-$clientid = mysqli_real_escape_string($mysqli, $_POST['client']);
+if($_SESSION['clientid']) {
+    $clientid = $_SESSION['clientid'];
+}
+else {
+    $clientid = mysqli_real_escape_string($mysqli, $_POST['client']);
+}
 $client = $user->getUserById($clientid);
 
 $name = mysqli_real_escape_string($mysqli, $client['naam']);
@@ -27,7 +32,7 @@ if($client['altmail'] == '') {
 }
 
 $comment = mysqli_real_escape_string($mysqli, $_POST['interncomment']);
-$commentgroep = $_POST['commentgroep'];
+$commentgroep = mysqli_real_escape_string($mysqli, $_POST['commentgroep']);
 
 $imageFileName = new ImageController();
 $block = new BlockController();
@@ -69,14 +74,12 @@ if (isset($_FILES['myFile'])) {
 
         if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "pdf") {
             $error = 1;
-            echo "Sorry, you have to upload JPG, JPEG, PNG or PDF.";
-            ?><br/><?php
         }
 
         if ($myFile["size"][$i] > 10485760) {
             $error = 1;
-            echo $test . " File too big!";
-            ?><br/><?php
+            header('Location: index.php?page=uploadoverview');
+            Session::flash('message', 'Het geüploade bestand is te groot');
         }
 
         if ($error == 0) {
@@ -131,10 +134,19 @@ if($error == 0) {
 
     if (isset($_POST['submit'])) {
 
+        /* Create phpmailer and add the image to the mail */
+        $mailer = new PHPMailer();
+        $mailer->addEmbeddedImage(DIR_PUBLIC . $admin['Logo'], "HeaderImage", "Logo.png");
+
         /* TO, SUBJECT, CONTENT */
         $to = $email; //The 'To' field
         $subject = $title;
-        $content = "<img alt='MadalcoHeader' src='https://picoolio.net/images/2016/11/04/headerbgcc759.png'>"."  <br/><br/>" . "Geachte " . $name . "," .
+        $header = ' <div id="header" style="background: ' . $admin['Header'] . '">
+                        <div id="MenuSide">
+                            <img src="cid:HeaderImage" style="width:auto;height:75%;" />
+                        </div>
+                    </div> ';
+        $content = $header . "  <br/><br/>" . "Geachte " . $name . "," .
             " <br/><br/>" . "Uw proef staat te wachten op goedkeuring in het <b>Madalco Portaal!</b>" . "<br /><br />" .
             "<b>Titel van uw proef:</b>".
             $title . "<br />" .
@@ -156,8 +168,6 @@ if($error == 0) {
             "<br /><br />" . "U kunt uw proef " . "hier: http://localhost/InventPortal/public/index.php?page=verify&id=$imageId&key=$token " . "goedkeuren." .
 
             "<br /> <br />Met vriendelijke groet, <br />" . $sender . " </br>Madalco Media";;
-
-        $mailer = new PHPMailer();
 
 //SMTP Configuration
         $mailer->isSMTP();
@@ -188,36 +198,68 @@ if($error == 0) {
 
         if(isset($_POST['id'])) {
         $myid = $_POST['id'];
-            $mailinfo = [
-                'id' => intval($myid),
-                'title' => strip_tags($title),
-                'sender' => strip_tags($sender),
-                'description' => strip_tags($description),
-                'name' => strip_tags($name),
-                'email' => strip_tags($email),
-                'token' => $token,
-                'images' => strip_tags($uniqdbimages),
-                'datum' => date('Y-m-d'),
-                'verified' => 0,
-                'comment' => $comment,
-                'commentgroep' => $commentgroep
-            ];
+            if($comment !== null && $comment !== '') {
+                $mailinfo = [
+                    'id' => intval($myid),
+                    'title' => strip_tags($title),
+                    'sender' => strip_tags($sender),
+                    'description' => strip_tags($description),
+                    'name' => strip_tags($name),
+                    'email' => strip_tags($email),
+                    'token' => $token,
+                    'images' => strip_tags($uniqdbimages),
+                    'datum' => date('Y-m-d'),
+                    'verified' => 0,
+                    'comment' => $comment,
+                    'commentgroep' => $commentgroep
+                ];
+            }
+            else {
+                $mailinfo = [
+                    'id' => intval($myid),
+                    'title' => strip_tags($title),
+                    'sender' => strip_tags($sender),
+                    'description' => strip_tags($description),
+                    'name' => strip_tags($name),
+                    'email' => strip_tags($email),
+                    'token' => $token,
+                    'images' => strip_tags($uniqdbimages),
+                    'datum' => date('Y-m-d'),
+                    'verified' => 0
+                ];
+            }
         }
         else {
-            $mailinfo = [
-                'title' => strip_tags($title),
-                'sender' => strip_tags($sender),
-                'description' => strip_tags($description),
-                'name' => strip_tags($name),
-                'email' => strip_tags($email),
-                'token' => $token,
-                'images' => strip_tags($uniqdbimages),
-                'datum' => date('Y-m-d'),
-                'verified' => 0,
-                'comment' => $comment,
-                'commentgroep' => $commentgroep
-            ];
+            if($comment !== null && $comment !== '') {
+                $mailinfo = [
+                    'title' => strip_tags($title),
+                    'sender' => strip_tags($sender),
+                    'description' => strip_tags($description),
+                    'name' => strip_tags($name),
+                    'email' => strip_tags($email),
+                    'token' => $token,
+                    'images' => strip_tags($uniqdbimages),
+                    'datum' => date('Y-m-d'),
+                    'verified' => 0,
+                    'comment' => $comment,
+                    'commentgroep' => $commentgroep
+                ];
+            }
+            else {
+                $mailinfo = [
+                    'title' => strip_tags($title),
+                    'sender' => strip_tags($sender),
+                    'description' => strip_tags($description),
+                    'name' => strip_tags($name),
+                    'email' => strip_tags($email),
+                    'token' => $token,
+                    'images' => strip_tags($uniqdbimages),
+                    'datum' => date('Y-m-d'),
+                    'verified' => 0
+                ];
+            }
         }
+        var_dump($mailinfo);
         $mailer->SMTPOptions = array(
                 'ssl' => array(
                 'verify_peer' => false,

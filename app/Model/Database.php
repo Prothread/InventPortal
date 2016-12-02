@@ -68,7 +68,6 @@ class Database
     {
         $result = $this->connection->query($query);
 
-        //TODO: add error check.
         if($data_array = $result->fetch_array(MYSQLI_ASSOC)) {
             if (!$this->connection->errno) {
                 $data_array = $this->dbOutArray($data_array);

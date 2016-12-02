@@ -167,18 +167,6 @@ class Mail {
     }
 
     /**
-     * Functie om de op te halen
-     * TODO aanmaken (is voor mailinformatie op te halen voor klanten. (*niet bewerkbaar*, tenzij opegenzet) )
-     *
-     * @return mixed
-     */
-
-    public function read()
-    {
-        return $this->db->read($this);
-    }
-
-    /**
      * Haal een mail op met een meegestuurd id
      *
      * @param $id
@@ -612,6 +600,18 @@ class Mail {
     public function searchTable($term, $limit = null, $offset = null, $table = null, $filter = null, $ids = null, $status = null)
     {
         return $this->db->searchTable($term, $limit , $offset, $table, $filter, $ids, $status);
+    }
+
+    /**
+     * Haal usermail op met de meegestuurde mailid variabele
+     *
+     * @param $MailID
+     * @return mixed
+     */
+
+    public function getUserMailbyMailID($MailID)
+    {
+        return $this->db->getUserMailbyMailID($MailID);
     }
 
 }
