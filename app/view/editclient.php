@@ -224,27 +224,27 @@ if(isset($_POST['submit'])){
                                 <div class="col-md-4">
                                     <select class="form-control" name="rechten" required>
                                         <?php if($userinfo['permgroup'] == '1') {?>
-                                            <option selected="selected">Klant</option>
+                                            <option value="1" selected="selected">Klant</option>
                                         <?php } else { ?>
-                                            <option>Klant</option>
+                                            <option value="1">Klant</option>
                                         <?php } ?>
 
                                         <?php if($userinfo['permgroup'] == '2') {?>
-                                            <option selected="selected">Gebruiker</option>
+                                            <option value="2" selected="selected">Gebruiker</option>
                                         <?php } else { ?>
-                                            <option>Gebruiker</option>
+                                            <option value="2">Gebruiker</option>
                                         <?php } ?>
 
                                         <?php if($userinfo['permgroup'] == '3') {?>
-                                            <option selected="selected">Beheerder</option>
+                                            <option value="3" selected="selected">Beheerder</option>
                                         <?php } else { ?>
-                                            <option>Beheerder</option>
+                                            <option value="3">Beheerder</option>
                                         <?php } ?>
 
                                         <?php if($userinfo['permgroup'] == '4') {?>
-                                            <option selected="selected">Admin</option>
+                                            <option value="4" selected="selected">Admin</option>
                                         <?php } else { ?>
-                                            <option>Admin</option>
+                                            <option value="4">Admin</option>
                                         <?php } ?>
                                     </select>
                                 </div>
