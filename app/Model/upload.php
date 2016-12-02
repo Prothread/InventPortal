@@ -15,7 +15,7 @@ $title = mysqli_real_escape_string($mysqli, $_POST['title']);
 $sender = mysqli_real_escape_string($mysqli, $_POST['fromname']);
 $description = mysqli_real_escape_string($mysqli, $_POST['additionalcontent']);
 
-if($_SESSION['clientid']) {
+if(isset($_SESSION['clientid'])) {
     $clientid = $_SESSION['clientid'];
 }
 else {
@@ -259,8 +259,7 @@ if($error == 0) {
                 ];
             }
         }
-        var_dump($mailinfo);
-        $mailer->SMTPOptions = array(
+           $mailer->SMTPOptions = array(
                 'ssl' => array(
                 'verify_peer' => false,
                 'verify_peer_name' => false,
