@@ -25,6 +25,9 @@ $comments = $uploads->getComments($id);
 $image_controller = new ImageController();
 $uploadedimages = $image_controller->getImagebyMailID($upload['id']);
 
+if($uploadedimages == null) {
+    return '<div class="alert alert-info">Item niet gevonden</div>';
+}
 $checknewarray = array();
 foreach ($uploadedimages as $img) {
     $isverified = $image_controller->getImageVerify($img['id']);

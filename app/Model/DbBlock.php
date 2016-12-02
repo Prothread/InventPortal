@@ -232,7 +232,7 @@ class DbBlock extends Database
         if($value) {
             return $value;
         }
-        return false;
+        return null;
     }
 
     /**

@@ -132,14 +132,4 @@ else {
     </div>
     <hr>
 
-
-
 </div>
-</div>
-</fieldset>
-</form>
-</div>
-</div>
-</div>
-</div>
-

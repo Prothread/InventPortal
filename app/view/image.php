@@ -10,53 +10,52 @@ else {
 
 ob_clean();
 //header('Content-type: image/png');
-if (!headers_sent()) {
-    if (isset($_GET['img'])) {
+if (isset($_GET['img'])) {
 
-        $session = new Session();
+    $session = new Session();
 
-        $image = $_GET['img'];
-        $image = strip_tags($image);
+    $image = $_GET['img'];
+    $image = strip_tags($image);
 
-        $stamp = imagecreatefrompng(DIR_PUBLIC . 'proef_groot.png');
-        //$im = imagecreatefromjpeg(DIR_IMAGE . $image);
+    $stamp = imagecreatefrompng(DIR_PUBLIC . 'proef_groot.png');
+    //$im = imagecreatefromjpeg(DIR_IMAGE . $image);
 
-        $fullPath = DIR_IMAGE . $image;
+    $fullPath = DIR_IMAGE . $image;
 
-        $path_parts = pathinfo($fullPath);
-        $ext = strtolower($path_parts["extension"]);
+    $path_parts = pathinfo($fullPath);
+    $ext = strtolower($path_parts["extension"]);
 
-        // Determine Content Type
-        switch ($ext) {
-            case "pdf":
-                $ctype = "application/pdf";
-                $filename = 'Custom file name for the.pdf'; /* Note: Always use .pdf at the end. */
+    // Determine Content Type
+    switch ($ext) {
+        case "pdf":
+            $ctype = "application/pdf";
+            $filename = 'Offerte.pdf'; /* Note: Always use .pdf at the end. */
 
-                header('Content-type: application/pdf');
-                header('Content-Disposition: inline; filename="' . $filename . '"');
-                header('Content-Transfer-Encoding: binary');
-                header('Content-Length: ' . filesize($fullPath));
-                header('Accept-Ranges: bytes');
+            header('Content-type: application/pdf');
+            header('Content-Disposition: inline; filename="' . $filename . '"');
+            header('Content-Transfer-Encoding: binary');
+            header('Content-Length: ' . filesize($fullPath));
+            header('Accept-Ranges: bytes');
 
-                readfile($fullPath);
-                return true;
-                break;
-            //case "zip": $ctype="application/zip"; break;
-            case "gif":
-                $ctype = "image/gif";
-                break;
-            case "png":
-                $ctype = "image/png";
-                $im = imagecreatefrompng($fullPath);
-                break;
-            case "jpeg":
-            case "jpg":
-                $ctype = "image/jpg";
-                $im = imagecreatefromjpeg($fullPath);
-                break;
-            default:
-                $ctype = "application/force-download";
-        }
+            readfile($fullPath);
+            return true;
+            break;
+        //case "zip": $ctype="application/zip"; break;
+        case "gif":
+            $ctype = "image/gif";
+            break;
+        case "png":
+            $ctype = "image/png";
+            $im = imagecreatefrompng($fullPath);
+            break;
+        case "jpeg":
+        case "jpg":
+            $ctype = "image/jpg";
+            $im = imagecreatefromjpeg($fullPath);
+            break;
+        default:
+            $ctype = "application/force-download";
+    }
 
 // Get dimensions
         $imageWidth = imagesx($im);
@@ -124,11 +123,27 @@ if (!headers_sent()) {
             );
         }
 
-
+    if (!headers_sent()) {
 // Output and free memory
         header("Content-Type: $ctype");
         imagepng($image);
         imagedestroy($image);
     }
+    else {
+        ob_start();
+            imagepng($image);
+            $contents = ob_get_contents();
+        ob_end_clean();
+
+        $dataUri = 'data:image/' . 'png' . ';base64,' . base64_encode($contents);
+        echo '<img src="'. $dataUri .'">';
+
+        //Display normal image:
+        /*
+            $type = pathinfo($fullPath, PATHINFO_EXTENSION);
+            $data = file_get_contents($fullPath);
+            $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
+            echo '<img src="'. $base64 .'">';
+        */
+    }
 }
-// echo "<img src=\"data:image/jpeg;base64," . base64_encode(imagejpeg($image, true)) . "\" />";
