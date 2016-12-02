@@ -121,7 +121,7 @@ else {
                 <a href="?page=dashboard">Home</a>
             </li>
 
-            <?php if ($user->getPermission($permgroup, 'CAN_SHOW_OVERZICHT') == 1) { ?>
+            <?php if ($user->getPermission($permgroup, 'CAN_USE_STATUSPORTAL') == 1) { ?>
             <li class="nav-button-status">
                 <a href="?page=statusportal">Statusportaal</a>
             </li>
