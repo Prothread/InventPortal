@@ -4,7 +4,7 @@
 if($user->getPermission($permgroup, 'CAN_SHOW_USEROVERZICHT') == 1){
 
 } else {
-    header('Location: index.php?page=showuserprofile');
+    $block->Redirect('index.php?page=showuserprofile');
 }
 
 $uploads = new BlockController();
@@ -34,25 +34,7 @@ foreach($getAllUserItems as $UserItem) {
         <div class="container-fluid">
             <table style="width:100%">
                 <tr>
-                    <th style="text-align: left;"><p class="NameText" style="font-weight: normal;">Uw profiel</p></th>
-                    <th style="text-align: right;">
-                        <a href="?page=useroverview">
-                            <button type="button" class="btn btn-labeled btn-success MyOverviewButton" style="background-color: darkred">
-                                <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span>  Mijn overzicht</button>
-                        </a>
-
-                        <a href="?page=editprofile">
-                            <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
-                                <span class="btn-label"><i class="glyphicon glyphicon-pencil"></i></span>Wijzig profiel</button>
-                        </a>
-
-                        <a href="?page=newpassword">
-                            <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
-                                <span class="btn-label"><i class="glyphicon glyphicon-lock"></i></span>Wijzig wachtwoord</button>
-                        </a>
-
-                    </th>
-                    </th>
+                    <th style="text-align: left;"><p class="NameText" style="font-weight: normal;">Uw proeven</p></th>
                 </tr>
             </table>
             <hr>

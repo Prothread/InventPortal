@@ -10,7 +10,7 @@ if($user->getPermission($permgroup, 'CAN_UPLOAD') == 1){
 
 }
 else {
-    header('Location: index.php');
+    $block->Redirect('index.php');
     Session::flash('error', 'U heeft hier geen rechten voor.');
 }
 
@@ -141,7 +141,7 @@ foreach($get_filled_info as $get_info) {
             );
         //Check if mail is sent :
             if (!$mailer->send()) {
-                header('Location: index.php?page=phpmail');
+                $block->Redirect('index.php?page=phpmail');
                 //echo 'Error sending mail : ' . $mailer->ErrorInfo;
                 Session::flash('error', $mailer->ErrorInfo);
             } else {
@@ -152,3 +152,4 @@ foreach($get_filled_info as $get_info) {
 
 
 }
+$block->Redirect('index.php');

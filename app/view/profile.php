@@ -15,7 +15,14 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);
         <tr>
             <th style="text-align: left;"><p class="NameText" style="font-weight: normal;">Uw profiel</p></th>
             <th style="text-align: right;">
-            
+
+                <?php if ($user->getPermission($permgroup, 'CAN_USE_STATUSPORTAL') == 1) { ?>
+                    <a href="?page=statusportal">
+                        <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
+                            <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span>Statusportaal</button>
+                    </a>
+                <?php } ?>
+
                 <a href="?page=useroverview">
                     <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
                     <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> Mijn overzicht</button>

@@ -12,7 +12,7 @@ if($user->getPermission($permgroup, 'CAN_EDIT_CLIENT') == 1){
 
 }
 else {
-    header('Location: index.php');
+    $block->Redirect('index.php');
     Session::flash('error', 'U heeft hier geen rechten voor.');
 }
 
@@ -87,6 +87,7 @@ if(isset($_POST['submit'])){
             $error = 1;
             echo $test . '<div class="alert alert-danger" role="alert">Het meegestuurde bestand is te groot!</div>';
             ?><br/><?php
+            return false;
         }
 
         if ($error == 0) {
@@ -118,7 +119,7 @@ if(isset($_POST['submit'])){
 
 
     $client->update($clientinfo);
-    header('Location: index.php?page=dashboard');
+    $block->Redirect('index.php?page=dashboard');
 
 }
 ?>

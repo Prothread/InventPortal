@@ -4,7 +4,7 @@ if($user->getPermission($permgroup, 'CAN_USE_STATUSPORTAL') == 1){
 
 }
 else {
-    header('Location: index.php');
+    $block->Redirect('index.php');
     Session::flash('error', 'U heeft hier geen rechten voor.');
 }
 
@@ -21,6 +21,5 @@ else {
 }
 
 $status->deleteItemByID($id);
-header('Location: ?page=statusportal');
+$block->Redirect('?page=statusportal');
 Session::flash('message', 'Item is verwijderd.');
-?>

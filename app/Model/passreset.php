@@ -42,7 +42,7 @@ if($getbyemail !== null) {
         unset($_SESSION['resetemail']);
         unset($_SESSION['token']);
 
-        header('Location: index.php');
+        $block->Redirect('index.php');
         Session::flash('message', 'Uw wachwoord is succesvol veranderd');
     }
 

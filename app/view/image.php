@@ -4,7 +4,7 @@ if(isset($_SESSION['usr_id']) || isset($_SESSION['accorduserid'])){
 
 }
 else {
-    header('Location: index.php');
+    $block->Redirect('index.php');
     Session::flash('error', 'U heeft hier geen rechten voor.');
 }
 

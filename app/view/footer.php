@@ -57,16 +57,28 @@
     if($('#myChart').length) {
         $.getScript('js/Chart.js', function () {
 
-            var data = [{
-                label: "Geweigerd",
-                value: <?=round($_SESSION['geweigerd_percent'])?>,
-                color: "#dd2c4c"
-            }, {
-                label: "Goedgekeurd",
-                value: <?=round($_SESSION['geaccepteerd_percent'])?>,
-                color: "#5c1863"
-            },
-            ]
+            if( <?=round($_SESSION['geweigerd_percent']) ?> !== 0.0 && <?= round($_SESSION['geaccepteerd_percent'])?> !== 0.0)
+            {
+                var data = [{
+                    label: "Geweigerd",
+                    value: <?= round($_SESSION['geweigerd_percent']) ?>,
+                    color: "#dd2c4c"
+                }, {
+                    label: "Goedgekeurd",
+                    value: <?= round($_SESSION['geaccepteerd_percent']) ?>,
+                    color: "#5c1863"
+                }
+                ];
+            }
+            else {
+                var data = [
+                {
+                    label: "Geen proeven",
+                    value: 1,
+                    color: "#696969"
+                }
+                ];
+            }
 
             var options = {
                 animateRotate: true
@@ -198,15 +210,15 @@
     $("form#createclient").submit(function (event) {
 
         var postForm = $('form#createclient').serialize() +              //Fetch form data
-                '&name=' + $('input[name=name]').val() +                      //Store name fields value
-                '&companyname=' + $('input[name=companyname]').val() +        //Store companyname fields value
-                '&email=' + $('input[name=email]').val() +                    //Store email fields value
-                '&altmail=' + $('input[name=altmail]').val() +                //Store altmail fields value
-                '&companyadress=' + $('input[name=companyadress]').val() +    //Store companyadress fields value
-                '&postcode=' +  $('input[name=postcode]').val() +             //Store postcode fields value
-                '&plaats=' + $('input[name=plaats]').val() +                  //Store plaats fields value
-                '&rechten=' + $('input[name=rechten]').val()                  //Store rechten fields value
-            ;
+            '&name=' + $('input[name=name]').val() +                      //Store name fields value
+            '&companyname=' + $('input[name=companyname]').val() +        //Store companyname fields value
+            '&email=' + $('input[name=email]').val() +                    //Store email fields value
+            '&altmail=' + $('input[name=altmail]').val() +                //Store altmail fields value
+            '&companyadress=' + $('input[name=companyadress]').val() +    //Store companyadress fields value
+            '&postcode=' +  $('input[name=postcode]').val() +             //Store postcode fields value
+            '&plaats=' + $('input[name=plaats]').val() +                  //Store plaats fields value
+            '&rechten=' + $('input[name=rechten]').val()                  //Store rechten fields value
+        ;
 
         $.ajax({
             type: "POST",

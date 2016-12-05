@@ -31,7 +31,7 @@ if (isset($_POST['login'])) {
             header("Refresh:0");
         }
         else {
-            header("Location: index.php?page=dashboard");
+            $block->Redirect('index.php?page=dashboard');
         }
     }
 

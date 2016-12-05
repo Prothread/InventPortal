@@ -6,7 +6,7 @@ if($user->getPermission($permgroup, 'CAN_SHOW_OVERZICHT') == 1){
 
 }
 else {
-    header('Location: index.php');
+	$block->Redirect('index.php');
     Session::flash('error', 'U heeft hier geen rechten voor.');
 }
 
@@ -29,5 +29,4 @@ $statusinfo = [
 ];
 
 $status->create($statusinfo);
-header('Location: index.php?page=statusportal');
-?>
+$block->Redirect('index.php?page=statusportal');

@@ -4,7 +4,8 @@ if($user->getPermission($permgroup, 'CAN_USE_STATUSPORTAL') == 1){
 
 }
 else {
-    header('Location: index.php');
+    //TODO Dit gebruiken?!
+    $block->Redirect('index.php');
     Session::flash('error', 'U heeft hier geen rechten voor.');
 }
 

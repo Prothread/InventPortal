@@ -5,7 +5,7 @@ if($user->getPermission($permgroup, 'CAN_EDIT_SETTINGS') == 1){
 
 }
 else {
-    header('Location: index.php');
+    $block->Redirect('index.php');
     Session::flash('error', 'U heeft hier geen rechten voor.');
 }
 
@@ -39,7 +39,7 @@ if (isset($_FILES['fileToUpload'])) {
 
     if ($myFile["size"] > 10485760) {
         $error = 1;
-        header('Location: index.php?page=settings');
+        $block->Redirect('index.php?page=settings');
         Session::flash('message', 'Het geüploade bestand is te groot');
     }
 
@@ -62,4 +62,3 @@ if (isset($_FILES['fileToUpload'])) {
     }
 }
 $settings->updateSettings($settingsarray);
-header('Location: index.php?page=settings');

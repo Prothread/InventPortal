@@ -5,6 +5,7 @@ header('Cache-Control: no-cache, no-store, must-revalidate'); //HTTP/1.1
 header('Pragma: no-cache'); //HTTP/1.0
 
 $user = new UserController();
+$block = new BlockController();
 include DIR_MODEL . 'permissions.php';
 
 if(isset($_SESSION['usr_name'])) {
@@ -46,6 +47,7 @@ else {
 
     <!-- Bootstrap CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- styling + jquery for select box -->
     <script src="js/jquery-2.1.1.min.js" type="text/javascript"></script>
@@ -121,12 +123,6 @@ else {
                 <a href="?page=dashboard">Home</a>
             </li>
 
-            <?php if ($user->getPermission($permgroup, 'CAN_USE_STATUSPORTAL') == 1) { ?>
-            <li class="nav-button-status">
-                <a href="?page=statusportal">Statusportaal</a>
-            </li>
-            <?php } ?>
-
             <li class="nav-button-all">
                 <a href="?page=overview">Overzicht</a>
             </li>
@@ -165,8 +161,8 @@ else {
                 </li>
             <?php } ?>
 
-            <br>
-            <br>
+            <br />
+            <br />
             <li class="nav-button-logout">
                 <a href="?page=logout">Uitloggen</a>
             </li>

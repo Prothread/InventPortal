@@ -5,7 +5,7 @@ if($user->getPermission($permgroup, 'CAN_UPLOAD') == 1){
 
 }
 else {
-    header('Location: index.php');
+    $block->Redirect('index.php');
     Session::flash('error', 'U heeft hier geen rechten voor.');
 }
 
@@ -268,7 +268,7 @@ if($error == 0) {
         );
 //Check if mail is sent :
         if (!$mailer->send()) {
-            header('Location: index.php?page=phpmail');
+            $block->Redirect('index.php?page=phpmail');
             //echo 'Error sending mail : ' . $mailer->ErrorInfo;
             Session::flash('error', $mailer->ErrorInfo);
         } else {
@@ -281,7 +281,7 @@ if($error == 0) {
                 $mymail->create($mailinfo);
             }
 
-            header('Location: index.php?page=overview');
+            $block->Redirect('index.php?page=overview');
             Session::flash('message', 'Uw bestanden zijn geüpload.');
         }
     }

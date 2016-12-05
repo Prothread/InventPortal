@@ -90,6 +90,7 @@ class DbImage extends Database
         if($result = $this->dbQuery($sql)){
             return mysqli_fetch_assoc( $result );
         }
+        return false;
     }
 
     /**
@@ -105,6 +106,23 @@ class DbImage extends Database
 
         if($result = $this->dbQuery($sql)){
             return true;
+        }
+        return false;
+    }
+
+    /**
+     * Haal image met de naam op
+     *
+     * @param $ImageName
+     * @return mixed
+     */
+
+    public function getImageByName($ImageName)
+    {
+        $sql = "SELECT * FROM `image` WHERE `images` = '{$ImageName}'";
+
+        if($result = $this->dbQuery($sql)){
+            return mysqli_fetch_assoc( $result );
         }
         return false;
     }

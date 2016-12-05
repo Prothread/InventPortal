@@ -151,4 +151,13 @@ class BlockController
     {
         return $this->model->countBlocks();
     }
+
+    public function Redirect($url) {
+        if (headers_sent()) {
+            echo('<script type="text/javascript">window.location=\''.$url.'\';</script> ');
+        }
+        else {
+            header('Location: ' . $url);
+        }
+    }
 }

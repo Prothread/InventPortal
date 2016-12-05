@@ -7,7 +7,7 @@ if($user->getPermission($permgroup, 'CAN_ACCORD') == 1){
 
 }
 else {
-    header('Location: index.php');
+    $block->Redirect('index.php');
     Session::flash('error', 'U heeft hier geen rechten voor.');
 }
 
@@ -130,7 +130,7 @@ $mymail = new MailController();
     );
 //Check if mail is sent :
     if (!$mailer->send()) {
-        header('Location: index.php');
+        $block->Redirect('index.php');
         echo 'Error sending mail : ' . $mailer->ErrorInfo;
     } else {
         //If mail is send, create data and send it to the database
@@ -141,6 +141,6 @@ $mymail = new MailController();
         unset($_SESSION['verifytext']);
         unset($_SESSION['mailto']);
 
-        header('Location: index.php?page=approve');
+        $block->Redirect('index.php?page=approve');
         Session::flash('message', 'De accordering is verstuurd');
     }

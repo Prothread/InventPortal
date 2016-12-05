@@ -16,7 +16,7 @@ else if($user->getPermission($permgroup, 'CAN_EDIT_ACCORD') == 1) {
 
 }
 else {
-    header('Location: index.php');
+    $block->Redirect('index.php');
     Session::flash('error', 'U heeft hier geen rechten voor.');
 }
 
@@ -32,6 +32,6 @@ if(isset($_GET['page'])) {
 
         //$imgcontrol->ImageDecline($_GET['img']);
         $session->ImageVerify($_GET['img'], 0);
-        header('Location: ' . $_SERVER['HTTP_REFERER']);
+        $block->Redirect($_SERVER['HTTP_REFERER']);
     }
 }

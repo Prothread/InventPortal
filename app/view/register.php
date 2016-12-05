@@ -3,7 +3,7 @@
 $mysqli = mysqli_connect();
 
 if(isset($_SESSION['usr_id'])) {
-    header("Location: index.php");
+    $block->Redirect('index.php');
 }
 
 $user = new UserController();

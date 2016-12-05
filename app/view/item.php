@@ -5,7 +5,7 @@ if($user->getPermission($permgroup, 'CAN_SHOW_ITEM') == 1){
 
 }
 else {
-    header('Location: index.php');
+    $block->Redirect('index.php');
     Session::flash('error', 'U heeft hier geen rechten voor.');
 }
 
@@ -33,7 +33,6 @@ foreach ($uploadedimages as $img) {
     $isverified = $image_controller->getImageVerify($img['id']);
     array_push($checknewarray, $isverified['verify']);
 }
-// TODO GET CLIENT FROM MAIL (getusermailbymailid) voor mail te versturen --> zet in $_SESSION['clientid']
 $clientmail = $usermail->getUserMailbyMailID($id);
 $_SESSION['clientid'] = $clientmail['clientid'];
 ?>

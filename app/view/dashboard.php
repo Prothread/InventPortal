@@ -5,7 +5,7 @@ if($user->getPermission($permgroup, 'CAN_SHOW_HOME') == 1) {
 
 }
 else {
-    header('Location: index.php?page=userdashboard');
+    $block->Redirect('index.php?page=userdashboard');
 }
 
 $uploads = new BlockController();

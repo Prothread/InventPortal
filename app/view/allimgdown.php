@@ -20,4 +20,4 @@ foreach($uploadedimages as $imgid) {
     $vote = 1;
     $image_controller->setDownloadable($id, $vote);
 }
-header('Location: ?page=item&id=' . $_GET['id']);
+$block->Redirect('?page=item&id=' . $_GET['id']);

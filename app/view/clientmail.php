@@ -10,7 +10,7 @@ if($user->getPermission($permgroup, 'CAN_CREATE_CLIENT') == 1){
 
 }
 else {
-    header('Location: index.php');
+    $block->Redirect('index.php');
     Session::flash('error', 'U heeft hier geen rechten voor.');
 }
 
@@ -170,20 +170,20 @@ if($mailexist = null || empty($mailexist)){
 
 //Check if mail is sent :
     if (!$mailer->send()) {
-        header('Location: index.php');
+        $block->Redirect('index.php');
         echo 'Error sending mail : ' . $mailer->ErrorInfo;
     } else {
         //If mail is send, create data and send it to the database
         $user->create($userinfo);
         if($rechten >= 2) {
-            header('Location: index.php?page=manageusers');
+            $block->Redirect('index.php?page=manageusers');
         }
         else {
-            header('Location: index.php?page=manageclients');
+            $block->Redirect('index.php?page=manageclients');
         }
     }
 
 }else{
-    header('Location: index.php?page=newclient');
+    $block->Redirect('index.php?page=newclient');
     Session::flash('error', 'Deze mail is al in gebruik');
 }

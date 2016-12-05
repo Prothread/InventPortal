@@ -111,7 +111,7 @@ if( isset( $_GET['id'] ) && isset( $mailkey ) ) {
 
     }
     else {
-        header('Location: index.php');
+        $block->Redirect('index.php');
         Session::flash('error', 'U heeft hier geen rechten voor.');
     }
     $_SESSION['accorduserid'] = $userid;
@@ -122,7 +122,7 @@ if( isset( $_GET['id'] ) && isset( $mailkey ) ) {
      */
 
     //header('Location: index.php?page=approve&id='.$getter['id']);
-    header('Location: index.php?page=approve');
+    $block->Redirect('index.php?page=approve');
 }
 else {
     echo '';

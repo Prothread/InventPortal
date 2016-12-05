@@ -95,4 +95,16 @@ class ImageModel
         return $this->db->setDownloadable($id, $vote);
     }
 
+    /**
+     * Haal image met de naam op
+     *
+     * @param $ImageName
+     * @return mixed
+     */
+
+    public function getImageByName($ImageName)
+    {
+        return $this->db->getImageByName($ImageName);
+    }
+
 }

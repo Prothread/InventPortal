@@ -5,7 +5,7 @@ if($user->getPermission($permgroup, 'CAN_ACCORD') == 1){
 
 }
 else {
-    header('Location: index.php');
+    $block->Redirect('index.php');
     Session::flash('error', 'U heeft hier geen rechten voor.');
 }
 
@@ -15,7 +15,7 @@ $session = new Session();
 $image_controller = new ImageController();
 
 if($session->getMailId() == null) {
-    header('Location: index.php');
+    $block->Redirect('index.php');
     Session::flash('message', 'Er is niks om te accorderen');
 }
 

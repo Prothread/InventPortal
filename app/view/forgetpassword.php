@@ -6,7 +6,7 @@ $user = new UserController();
 
 //check if form is submitted
 if (isset($_SESSION['usr_id'])) {
-    header('Location:index.php');
+    $block->Redirect('Location: index.php');
 }
 
 $user = new UserController();
@@ -120,12 +120,12 @@ if(isset($_POST['submit'])) {
             );
 //Check if mail is sent :
             if (!$mailer->send()) {
-                header('Location: index.php?page=phpmail');
+                $block->Redirect('index.php?page=phpmail');
                 //echo 'Error sending mail : ' . $mailer->ErrorInfo;
                 Session::flash('error', $mailer->ErrorInfo);
             } else {
                 //If mail is send, create data and send it to the database
-                //header('Location: index.php');
+                $block->Redirect('index.php');
                 Session::flash('message', 'Uw aanvraag is verstuurd.');
             }
         }

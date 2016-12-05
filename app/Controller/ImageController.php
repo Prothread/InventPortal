@@ -109,4 +109,16 @@ class ImageController
         return $NewImageName;
     }
 
+    /**
+     * Haal image met de naam op
+     *
+     * @param $ImageName
+     * @return mixed
+     */
+
+    public function getImageByName($ImageName)
+    {
+        return $this->model->getImageByName($ImageName);
+    }
+
 }
