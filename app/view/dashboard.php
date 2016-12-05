@@ -65,14 +65,6 @@ $total_accept_weiger = $get_items_geaccepteerd['COUNT(status)']+$get_items_gewei
 $total_items = $get_items_geaccepteerd['COUNT(status)']+$get_items_geweigerd['COUNT(status)']+$get_items_openstaand['COUNT(status)']+$get_items_bekeken['COUNT(status)'];
 $_SESSION['geaccepteerd_percent'] = $get_items_geaccepteerd['COUNT(status)'];
 $_SESSION['geweigerd_percent'] = $get_items_geweigerd['COUNT(status)'];
-
-$header = '
-            <div id="header" style="background: ' . $admin['Header'] . '">
-                <div id="MenuSide">
-                    <img src="' . DIR_PUBLIC . $admin['Logo'] . '" style="width:auto;height:75%;" />
-                </div>
-            </div>
-           ';
 ?>
 
 <div id="page-content-wrapper">

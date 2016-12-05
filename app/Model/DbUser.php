@@ -393,7 +393,7 @@ class DbUser extends Database
     public function passForget($mail, $token)
     {
         $date = date('Y-m-d h:i:s', strtotime('+15 minutes'));
-        $sql = "UPDATE `users` SET `paswoordvergeten` = '{$token}', `passresetdate` = {$date} WHERE `email` = '{$mail}'";
+        $sql = "UPDATE `users` SET `paswoordvergeten` = '{$token}', `passresetdate` = '{$date}' WHERE `email` = '{$mail}'";
 
         if($this->dbQuery($sql)) {
             return true;

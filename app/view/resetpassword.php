@@ -24,12 +24,13 @@ else {
 }
 
 $date = date('Y-m-d h:i:s');
+
 if($getbyemail['passresetdate'] > $date) {
 
 }
 else {
     echo '<div class="alert alert-info">Wachwoord vergeten is verlopen</div>';
-    echo '<br /><a href="index.php">Ga naar de startpagina</a>';
+    echo '<br /><a style="color:black" href="index.php">Ga naar de startpagina</a>';
     return false;
 }
 ?>

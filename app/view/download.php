@@ -23,11 +23,53 @@ $file = $_GET['file'];
 
 download_file($file);
 
-function download_file( $fullPath ){
+function download_file( $Path ){
 
     // Must be fresh start
-    if( headers_sent() )
-        die('Headers Sent');
+    if( headers_sent() ) {
+        $fullPath = DIR_IMAGE . $Path;
+
+        $path_parts = pathinfo($fullPath);
+        $ext = strtolower($path_parts["extension"]);
+
+        // Determine Content Type
+        switch ($ext) {
+            case "pdf":
+                echo '<a href="' . 'app/uploads/' . $Path . '">Download PDF</a>';
+                return true;
+                break;
+            //case "zip": $ctype="application/zip"; break;
+            case "gif":
+                $ctype = "image/gif";
+                break;
+            case "png":
+                $ctype = "image/png";
+                $im = imagecreatefrompng($fullPath);
+                break;
+            case "jpeg":
+            case "jpg":
+                $ctype = "image/jpg";
+                $im = imagecreatefromjpeg($fullPath);
+                break;
+            default:
+                $ctype = "application/force-download";
+    }
+// Get dimensions
+        $imageWidth = imagesx($im);
+        $imageHeight = imagesy($im);
+
+        ob_start();
+            imagepng($im);
+            $contents = ob_get_contents();
+        ob_end_clean();
+
+        $dataUri = 'data:image/' . 'png' . ';base64,' . base64_encode($contents);
+        echo '<img src="'. $dataUri .'">';
+        echo '<br />';
+        echo 'U can download the image by clicking with the right mouse button and then clicking "save image as"';
+        return true;
+    }
+    $fullPath = DIR_PUBLIC . $Path;
 
     // Required for some browsers
     if(ini_get('zlib.output_compression'))
