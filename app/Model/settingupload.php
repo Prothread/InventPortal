@@ -62,3 +62,4 @@ if (isset($_FILES['fileToUpload'])) {
     }
 }
 $settings->updateSettings($settingsarray);
+$block->Redirect('index.php?page=settings');

@@ -5,13 +5,12 @@ if($user->getPermission($permgroup, 'CAN_UPLOAD') == 1){
 
 }
 else {
-    header('Location: index.php');
+    $block->Redirect('index.php');
     Session::flash('error', 'U heeft hier geen rechten voor.');
 }
 
 $user = new UserController();
 $userinfo = $user->getUserById($_SESSION['usr_id']);
-//TODO ZET KLANT ID IN USERMAIL
 ?>
 <div id="Mail">
     <!-- Page Content -->
