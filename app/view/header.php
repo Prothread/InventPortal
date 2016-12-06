@@ -51,11 +51,6 @@ else {
     <!-- styling + jquery for select box -->
     <script src="js/jquery-2.1.1.min.js" type="text/javascript"></script>
     <link href="css/select2.min.css" rel="stylesheet" />
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $("#allclients").select2();
-        });
-    </script>
 
     <!-- Eigen CSS -->
     <link href="css/styles.css" rel="stylesheet">
