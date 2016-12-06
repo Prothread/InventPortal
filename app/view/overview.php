@@ -53,6 +53,18 @@ else {
                 </table>
                 <hr>
 
+                <div class="btn-group show-on-hover">
+                    <button style="width: 100px; background-color: #bb2c4c; color: white;" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                        Legenda <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><img alt="Gezien" style="width: 50px; height: 50px;" src="public/icons/gezien.png"> -> Gezien</li>
+                        <li><img alt="Uploaded" src="public/icons/uploaded.png"> -> Geüpload</li>
+                        <li><img alt="Geaccepteerd" src="public/icons/akkoord.png"> -> Akkoord</li>
+                        <li><img alt="Geweigerd" src="public/icons/geweigerd.png"> -> Geweigerd</li>
+                    </ul>
+                </div>
+
                 <table id="myTable" class="table table-striped" >
                     <thead>
                     <tr>
@@ -92,8 +104,7 @@ else {
                                 <td>
                                     <span style="display:none" id="status"><?= $upload['verified']; ?></span>
                                     <?php if ($upload['verified'] == 1) { ?>
-                                        <img alt="Gezien" style="width: 50px; height: 50px;"
-                                             src="public/icons/gezien.png">
+                                        <img alt="Gezien" src="public/icons/gezien.png">
                                     <?php } elseif ($upload['verified'] == 2) { ?>
                                         <img alt="Geaccepteerd" src="public/icons/akkoord.png">
                                     <?php } elseif ($upload['verified'] == 3) { ?>
