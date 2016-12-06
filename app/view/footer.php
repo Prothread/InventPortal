@@ -228,9 +228,12 @@
             success: function (result) {
                 //TODO update klant zoekfunctie
                 alert('Nieuwe klant aangemaakt');
-                $('.demclients').load('?page=uploadoverview' +  ' .demclients');
+                $('.demclients').load('?page=uploadoverview' +  ' .demclients', function(){
+                    //success load event
+                    $("#allclients").select2();
+                });
                 //$('.demclients1').load('?page=uploadoverview' +  ' .demclients1');
-                
+
             }
         });
         event.preventDefault();

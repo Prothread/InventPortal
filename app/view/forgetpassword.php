@@ -35,22 +35,7 @@ if(isset($_POST['submit'])) {
         require_once DIR_MAILER . 'class.phpmailer.php';
         require_once DIR_MAILER . 'class.smtp.php';
 
-        /* CONFIGURATION */
-        $crendentials = array(
-            'email' => 'nicle48@gmail.com',    //Your GMail adress
-            'password' => 'Moneyhack1'         //Your GMail password
-        );
-
-        /* SPECIFIC TO GMAIL SMTP */
-        $smtp = array(
-
-            'host' => 'smtp.gmail.com',
-            'port' => 587,
-            'username' => $crendentials['email'],
-            'password' => $crendentials['password'],
-            'secure' => 'tls' //SSL or TLS
-
-        );
+        require_once DIR_MODEL . 'MailSettings.php';
 
         if (isset($_POST['submit'])) {
 
@@ -66,11 +51,11 @@ if(isset($_POST['submit'])) {
             $to = $email; //The 'To' field
             $subject = "Aanvraag voor wachtwoord vergeten";
 
-            $header = ' <div id="header" style="background: ' . $admin['Header'] . '">
-                    <div id="MenuSide">
-                        <img src="cid:HeaderImage" style="width:auto;height:75%;" />
-                    </div>
-                </div> ';
+            $header = ' <div style="background: ' . $admin['Header'] . '; position:relative; width: 100%; height: 130px;">
+                            <div style="position: absolute; height: 130px; margin-right: 25px; left: 5px;">
+                                <img src="cid:HeaderImage" style="width:auto;height:75%;" />
+                            </div>
+                        </div> ';
             $content = $header ."  <br/><br/>" . "Geachte " . $getbyemail['naam'] . "," .
                 " <br/><br/>" . "Wachtwoord vergeten: " . "<br /><br />" .
                 "<b>Link om uw wachtwoord te veranderen: </b>".

@@ -115,22 +115,8 @@ if($error == 0) {
     require_once DIR_MAILER . 'class.phpmailer.php';
     require_once DIR_MAILER . 'class.smtp.php';
 
-    /* CONFIGURATION */
-    $crendentials = array(
-        'email' => 'nicle48@gmail.com',    //Your GMail adress
-        'password' => 'Moneyhack1'         //Your GMail password
-    );
-
-    /* SPECIFIC TO GMAIL SMTP */
-    $smtp = array(
-
-        'host' => 'smtp.gmail.com',
-        'port' => 587,
-        'username' => $crendentials['email'],
-        'password' => $crendentials['password'],
-        'secure' => 'tls' //SSL or TLS
-
-    );
+//Load Mail account settings
+    require_once DIR_MODEL . 'MailSettings.php';
 
     if (isset($_POST['submit'])) {
 
@@ -141,8 +127,8 @@ if($error == 0) {
         /* TO, SUBJECT, CONTENT */
         $to = $email; //The 'To' field
         $subject = $title;
-        $header = ' <div id="header" style="background: ' . $admin['Header'] . '">
-                        <div id="MenuSide">
+        $header = ' <div style="background: ' . $admin['Header'] . '; position:relative; width: 100%; height: 130px;">
+                        <div style="position: absolute; height: 130px; margin-right: 25px; left: 5px;">
                             <img src="cid:HeaderImage" style="width:auto;height:75%;" />
                         </div>
                     </div> ';

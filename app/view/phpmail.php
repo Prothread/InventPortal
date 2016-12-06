@@ -11,7 +11,7 @@ else {
 ?>
 <div id="demclients1"><?php
 $user = new UserController();
-$userinfo = $user->getUserById($_SESSION['usr_id']);?>
+$userinfo = $user->getUserById($_SESSION['usr_id']); ?>
 </div>
 <div id="Mail">
     <!-- Page Content -->
@@ -179,10 +179,6 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);?>
                                                 </select>
                                             </div>
                                         </div>
-                                        <script type="text/javascript">
-                                            $("#allclients").select2("destroy");
-                                            $("#allclients").select2();
-                                        </script>
                                     </div>
 
                                     <br>
