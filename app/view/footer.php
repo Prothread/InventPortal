@@ -227,12 +227,14 @@
             cache: false,
             success: function (result) {
                 //TODO update klant zoekfunctie
+
+                $('#demclients').load('?page=uploadoverview' +  ' #demclients');
+                $('#demclients1').load('?page=uploadoverview' +  ' #demclients1');
+
                 alert('Nieuwe klant aangemaakt');
                 alert(result);
                 //$('#demclients').load(location.href+" #demclients>*","");
                 //$('#refreshclients').load(location.href+" #refreshclients>*","");
-
-                $('#demclients').load('?page=uploadoverview' +  ' #demclients');
             }
         });
         event.preventDefault();
