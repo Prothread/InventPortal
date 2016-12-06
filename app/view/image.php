@@ -26,41 +26,35 @@ if (isset($_GET['img'])) {
     $ext = strtolower($path_parts["extension"]);
 
     // Determine Content Type
-    if(file_exists($fullPath)) {
-        switch ($ext) {
-            case "pdf":
-                $ctype = "application/pdf";
-                $filename = 'Offerte.pdf'; /* Note: Always use .pdf at the end. */
+    switch ($ext) {
+        case "pdf":
+            $ctype = "application/pdf";
+            $filename = 'Offerte.pdf'; /* Note: Always use .pdf at the end. */
 
-                header('Content-type: application/pdf');
-                header('Content-Disposition: inline; filename="' . $filename . '"');
-                header('Content-Transfer-Encoding: binary');
-                header('Content-Length: ' . filesize($fullPath));
-                header('Accept-Ranges: bytes');
+            header('Content-type: application/pdf');
+            header('Content-Disposition: inline; filename="' . $filename . '"');
+            header('Content-Transfer-Encoding: binary');
+            header('Content-Length: ' . filesize($fullPath));
+            header('Accept-Ranges: bytes');
 
-                readfile($fullPath);
-                return true;
-                break;
-            //case "zip": $ctype="application/zip"; break;
-            case "gif":
-                $ctype = "image/gif";
-                break;
-            case "png":
-                $ctype = "image/png";
-                $im = imagecreatefrompng($fullPath);
-                break;
-            case "jpeg":
-            case "jpg":
-                $ctype = "image/jpg";
-                $im = imagecreatefromjpeg($fullPath);
-                break;
-            default:
-                $ctype = "application/force-download";
-        }
-    }
-    else {
-        echo 'Dit bestand bestaat niet';
-        return false;
+            readfile($fullPath);
+            return true;
+            break;
+        //case "zip": $ctype="application/zip"; break;
+        case "gif":
+            $ctype = "image/gif";
+            break;
+        case "png":
+            $ctype = "image/png";
+            $im = imagecreatefrompng($fullPath);
+            break;
+        case "jpeg":
+        case "jpg":
+            $ctype = "image/jpg";
+            $im = imagecreatefromjpeg($fullPath);
+            break;
+        default:
+            $ctype = "application/force-download";
     }
 
 // Get dimensions
