@@ -176,11 +176,12 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);
                                                         <option value="<?= $klant['id']?>"><?= $klant['naam']?></option>
                                                     <?php } ?>
                                                 </select>
-                                                <script type="text/javascript">
-                                                    $("#allclients").select2();
-                                                </script>
                                             </div>
                                         </div>
+                                        <script type="text/javascript">
+                                            $("#allclients").select2("destroy");
+                                            $("#allclients").select2();
+                                        </script>
                                     </div>
 
                                     <br>
