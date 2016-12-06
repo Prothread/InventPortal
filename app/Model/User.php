@@ -106,12 +106,28 @@ class User
     private $SettingSMTP;
 
     /**
+     * Variabele voor de smtp poort setting
+     *
+     * @var $SettingSMTPPort
+     */
+
+    private $SettingSMTPPort;
+
+    /**
      * Variabele voor de email admin setting
      *
      * @var $SettingEmail
      */
 
     private $SettingEmail;
+
+    /**
+     * Variabele voor email wachtwoord
+     *
+     * @var $SettingEmailPass
+     */
+
+    private $SettingEmailPass;
 
     /**
      * Variabele voor het logo van de header
@@ -196,6 +212,17 @@ class User
     }
 
     /**
+     * Set de poort van de smtp setting
+     *
+     * @param $smtpport
+     */
+
+    public function setSettingsSMTPPort($smtpport)
+    {
+        $this->SettingSMTPPort = $smtpport;
+    }
+
+    /**
      * Set de email van de mailclient
      *
      * @param $mail
@@ -204,6 +231,17 @@ class User
     public function setSettingsEmail($mail)
     {
         $this->SettingEmail = $mail;
+    }
+
+    /**
+     * Set het email wachtwoord van de mailclient
+     *
+     * @param $mailpass
+     */
+
+    public function setSettingsEmailPass($mailpass)
+    {
+        $this->SettingEmailPass = $mailpass;
     }
 
     /**
@@ -240,6 +278,17 @@ class User
     }
 
     /**
+     * Haal de smtp poort op
+     *
+     * @return mixed
+     */
+
+    public function getSettingSMTPPort()
+    {
+        return $this->SettingSMTPPort;
+    }
+
+    /**
      * Haal de email setting op
      *
      * @return mixed
@@ -248,6 +297,17 @@ class User
     public function getSettingEmail()
     {
         return $this->SettingEmail;
+    }
+
+    /**
+     * Haal het wachtwoord van de email setting op
+     *
+     * @return mixed
+     */
+
+    public function getSettingEmailPass()
+    {
+        return $this->SettingEmailPass;
     }
 
     /**

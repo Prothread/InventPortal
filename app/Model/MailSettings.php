@@ -10,8 +10,8 @@ $crendentials = array(
 
 /* SPECIFIC TO GMAIL SMTP */
 $smtp = array(
-    'host' => 'smtp.gmail.com',
-    'port' => 587,
+    'host' => $admin['SMTP'],
+    'port' => $admin['SMTPport'],
     'username' => $crendentials['email'],
     'password' => $crendentials['password'],
     'secure' => 'tls' //SSL or TLS

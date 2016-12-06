@@ -139,7 +139,9 @@ class UserController
     public function updateSettings($settingsarray)
     {
         $this->model->setSettingsSMTP($settingsarray['SMTP']);
+        $this->model->setSettingsSMTPPort($settingsarray['SMTPport']);
         $this->model->setSettingsEmail($settingsarray['Email']);
+        $this->model->setSettingsEmailPass($settingsarray['Mailpass']);
         $this->model->setSettingsLogo($settingsarray['Logo']);
         $this->model->setSettingsHeader($settingsarray['Header']);
 

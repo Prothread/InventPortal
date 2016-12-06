@@ -95,7 +95,14 @@ class DbUser extends Database
 
     public function updateSettings(User $setting)
     {
-        $sql = "UPDATE `settings` SET `SMTP` = '{$setting->getSettingSMTP()}', `Email` = '{$setting->getSettingEmail()}', `Logo` = '{$setting->getSettingLogo()}', `Header` = '{$setting->getSettingHeader()}'";
+        $sql = "UPDATE `settings` SET `SMTP` = '{$setting->getSettingSMTP()}', `SMTPport` = '{$setting->getSettingSMTPPort()}', `Email` = '{$setting->getSettingEmail()}', `Mailpass` = '{$setting->getSettingEmailPass()}'";
+
+        $logo = $setting->getSettingLogo();
+        if(isset($logo) && $setting->getSettingLogo() !== '') {
+            $sql .= ", `Logo` = '{$setting->getSettingLogo()}'";
+        }
+
+        $sql .= ", `Header` = '{$setting->getSettingHeader()}'";
 
         if($this->dbQuery($sql)) {
             return true;

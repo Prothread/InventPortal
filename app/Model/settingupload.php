@@ -11,12 +11,16 @@ else {
 
 $mysqli = mysqli_connect();
 $smtp = mysqli_real_escape_string($mysqli, $_POST['smtp']);
+$smtpport = mysqli_real_escape_string($mysqli, $_POST['smtpport']);
 $email =  mysqli_real_escape_string($mysqli, $_POST['email']);
+$mailpass = mysqli_real_escape_string($mysqli, $_POST['emailpassword']);
 $header =  mysqli_real_escape_string($mysqli, $_POST['headerkleur']);
 
 $settingsarray = [
     'SMTP' => $smtp,
+    'SMTPport' => $smtpport,
     'Email' => $email,
+    'Mailpass' => $mailpass,
     'Header' => $header
 ];
 
@@ -54,7 +58,9 @@ if (isset($_FILES['fileToUpload'])) {
 
         $settingsarray = [
             'SMTP' => $smtp,
+            'SMTPport' => $smtpport,
             'Email' => $email,
+            'Mailpass' => $mailpass,
             'Logo' => mysqli_real_escape_string($mysqli, $unique_name),
             'Header' => $header
         ];

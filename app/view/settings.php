@@ -29,9 +29,23 @@ else {
                     </div>
 
                     <div class="form-group">
+                        <label class="col-md-4 control-label" for="textinput">SMTP-port</label>
+                        <div class="col-md-4">
+                            <input class="form-control input-md" id="textinput" maxlength="64" required type="text" name="smtpport" size="50" value="<?= $admin['SMTPport'] ?>">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">E-mailadres</label>
                         <div class="col-md-4">
                             <input class="form-control input-md" id="textinput" maxlength="64" required type="text" name="email" size="50" value="<?= $admin['Email'] ?>">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="textinput">E-mailadres wachtwoord</label>
+                        <div class="col-md-4">
+                            <input class="form-control input-md" id="textinput" maxlength="64" required type="password" name="emailpassword" size="50" value="<?= $admin['Mailpass'] ?>">
                         </div>
                     </div>
 
