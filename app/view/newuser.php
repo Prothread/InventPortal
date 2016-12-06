@@ -48,12 +48,15 @@ else {
                             </div>
                         </div>
 
+                        <br />
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="textinput">Alt mail</label>
+                            <label class="col-md-4 control-label" for="textinput">Alt E-mail</label>
                             <div class="col-md-4">
-                                <input class="form-control input-md" id="textinput" maxlength="60" required type="email" name="altmail" size="50" placeholder="E-mailadres">
+                                <span style="font-size:15px">Alternatief email voor contact met de klant</span>
+                                <input class="form-control input-md" id="textinput" maxlength="60" type="email" name="altmail" placeholder="E-mailadres">
                             </div>
                         </div>
+                        <br />
 
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">Adres</label>
