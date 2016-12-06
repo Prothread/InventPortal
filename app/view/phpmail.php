@@ -8,10 +8,11 @@ else {
     $block->Redirect('index.php');
     Session::flash('error', 'U heeft hier geen rechten voor.');
 }
-
-$user = new UserController();
-$userinfo = $user->getUserById($_SESSION['usr_id']);
 ?>
+<div id="demclients1"><?php
+$user = new UserController();
+$userinfo = $user->getUserById($_SESSION['usr_id']);?>
+</div>
 <div id="Mail">
     <!-- Page Content -->
     <div id="page-content-wrapper">
