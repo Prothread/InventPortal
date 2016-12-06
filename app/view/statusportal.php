@@ -15,7 +15,6 @@ $StatusItems = $status->getItems();
 $user = new UserController();
 $users = $user->getAllUsersByPerm(1);
 ?>
-
 <div id="page-content-wrapper">
     <div class="container-fluid">
         <div class="row">
@@ -242,106 +241,107 @@ $users = $user->getAllUsersByPerm(1);
     <div class="modal-dialog">
 
 
-  <!-- Modal content-->
-  <div class="modal-content">
-    <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal">&times;</button>
-      <h4 class="modal-title">Nieuw item</h4>
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Nieuw item</h4>
+            </div>
+            <div class="modal-body">
+              <br>
+
+
+              <form action="?page=nieuwstatusitem" method="post" enctype="multipart/form-data" class="form-horizontal">
+                  <fieldset>
+
+
+                      <div class="form-group">
+                          <label class="col-md-4 control-label" for="textinput">Onderwerp</label>
+                          <div class="col-md-4">
+                              <input class="form-control input-md" maxlength="40" id="textinput" type="text" name="onderwerp" placeholder="Onderwerp">
+                          </div>
+                      </div>
+
+
+                      <div class="form-group">
+                          <label class="col-md-4 control-label" for="textinput">Persoon</label>
+                          <div class="col-md-4">
+
+                            <?php if($users !== null || !empty($users)) { ?>
+                            <select class="form-control" name="name">
+
+                              <?php foreach($users as $user) { ?>
+                                <option class="form-control input-md" value="<?= $user['id']?>"><?= $user['naam'] ?></option>
+                              <?php } ?>
+
+                            </select>
+                            <?php } ?>
+
+                          </div>
+                      </div>
+
+
+                      <div class="form-group">
+                          <label class="col-md-4 control-label" for="textinput">Deadline</label>
+                          <div class="col-md-4">
+                              <input class="form-control input-md" type="text" id="datepicker" name="deadline" placeholder="Deadline dd/mm/yyyy">
+                          </div>
+                      </div>
+
+                      <div class="form-group">
+                          <label class="col-md-4 control-label" for="textinput">Opmerking</label>
+                          <div class="col-md-4">
+                              <textarea class="form-control input-md" id="textinput" maxlength="300" type="text" name="comment" placeholder="Opmerking"></textarea>
+                          </div>
+                      </div>
+
+                      <div class="form-group">
+                          <label class="col-md-4 control-label" for="textinput">Categorie</label>
+
+                          <div class="col-md-4">
+                            <select class="form-control" name="category">
+                              <option>Lead</option>
+                              <option>Offerte</option>
+                              <option>Project</option>
+                              <option>To-do</option>
+                            </select>
+                          </div>
+                      </div>
+
+
+                      <div class="form-group">
+                          <label class="col-md-4 control-label" for="textinput"></label>
+                          <div class="col-md-4">
+                              <input class="btn btn-primary btn-success" name="submit"  style="max-width: 100px; background-color: #bb2c4c; border: 1px solid #dd2c4c" type="submit" value="Aanmaken">
+                          </div>
+                      </div>
+                  </fieldset>
+              </form>
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+
     </div>
-    <div class="modal-body">
-      <br>
-
-
-      <form action="?page=nieuwstatusitem" method="post" enctype="multipart/form-data" class="form-horizontal">
-          <fieldset>
-
-
-              <div class="form-group">
-                  <label class="col-md-4 control-label" for="textinput">Onderwerp</label>
-                  <div class="col-md-4">
-                      <input class="form-control input-md" maxlength="40" id="textinput" type="text" name="onderwerp" placeholder="Onderwerp">
-                  </div>
-              </div>
-
-
-              <div class="form-group">
-                  <label class="col-md-4 control-label" for="textinput">Persoon</label>
-                  <div class="col-md-4">
-
-                    <?php if($users !== null || !empty($users)) { ?>
-                    <select class="form-control" name="name">
-
-                      <?php foreach($users as $user) { ?>      
-                        <option class="form-control input-md" value="<?= $user['id']?>"><?= $user['naam'] ?></option>
-                      <?php } ?>
-
-                    </select>
-                    <?php } ?>
-
-                  </div>
-              </div>
-
-
-              <div class="form-group">
-                  <label class="col-md-4 control-label" for="textinput">Deadline</label>
-                  <div class="col-md-4">
-                      <input class="form-control input-md" type="text" id="datepicker" name="deadline" placeholder="Deadline dd/mm/yyyy">
-                  </div>
-              </div>
-
-              <div class="form-group">
-                  <label class="col-md-4 control-label" for="textinput">Opmerking</label>
-                  <div class="col-md-4">
-                      <textarea class="form-control input-md" id="textinput" maxlength="300" type="text" name="comment" placeholder="Opmerking"></textarea>
-                  </div>
-              </div>
-
-              <div class="form-group">
-                  <label class="col-md-4 control-label" for="textinput">Categorie</label>
-
-                  <div class="col-md-4">
-                    <select class="form-control" name="category">
-                      <option>Lead</option>
-                      <option>Offerte</option>
-                      <option>Project</option>
-                      <option>To-do</option>
-                    </select>
-                  </div>
-              </div>
-
-
-              <div class="form-group">
-                  <label class="col-md-4 control-label" for="textinput"></label>
-                  <div class="col-md-4">
-                      <input class="btn btn-primary btn-success" name="submit"  style="max-width: 100px; background-color: #bb2c4c; border: 1px solid #dd2c4c" type="submit" value="Aanmaken">
-                  </div>
-              </div>
-          </fieldset>
-      </form>
-    </div>
-    <div class="modal-footer">
-
-    </div>
-  </div>
-
-</div>
 </div>
 
 <!-- Modal -->
 <div class="modal fade" id="Sure" role="dialog">
-<div class="modal-dialog">
+    <div class="modal-dialog">
 
-  <!-- Modal content-->
-  <div class="modal-content">
-    <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal">&times;</button>
-      <h4 class="modal-title">Weet u zeker dat u dit item wilt verwijderen?</h4>
-    </div>
-    <div class="modal-body">
-      <br>
-     </div>
-    <div class="modal-footer">
+      <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Weet u zeker dat u dit item wilt verwijderen?</h4>
+            </div>
+            <div class="modal-body">
+              <br>
+             </div>
+            <div class="modal-footer">
 
+            </div>
+        </div>
     </div>
-</div>
 </div>

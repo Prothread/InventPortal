@@ -47,7 +47,6 @@ else {
 
     <!-- Bootstrap CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- styling + jquery for select box -->
     <script src="js/jquery-2.1.1.min.js" type="text/javascript"></script>
