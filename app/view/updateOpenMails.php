@@ -139,4 +139,4 @@ foreach($get_filled_info as $get_info) {
 
 
 }
-$block->Redirect('index.php');
+$block->Redirect('index.php?page=overview');

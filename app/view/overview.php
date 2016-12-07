@@ -28,22 +28,26 @@ else {
                         <th style="text-align: right;">
 
                             <?php if(isset($_SESSION['updateopenmails']) && $user->getPermission($permgroup, 'CAN_EDIT_ACCORD') == 1){ ?>
-                                <a href="?page=showuserprofile" id="updateopenmails">
-                                    <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
-                                        <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> Update alle Open proeven <span id="days">(5 < dagen)</span></button>
-                                </a>
+
+                            <a data-toggle="modal" data-target="#updateOpenMails" href="#">
+                                <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
+                                <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> Update alle Open proeven <span id="days">(5 < dagen)</span></button>
+                            </a>
+
                             <?php  } ?>
 
                             <a href="?page=useroverview">
                                 <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
                                     <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> Mijn overzicht</button>
                             </a>
-                            <a id="filteropen" href="?page=showuserprofile">
+                            <a id="filteropen" href="#">
                                 <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
-                                    <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> Open proeven </button>
+
+                                <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> Open proeven <span id="days">(5 < dagen)</span></button>
+
                             </a>
 
-                            <a id="filtergoed" href="?page=showuserprofile">
+                            <a id="filtergoed" href="#">
                                 <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
                                     <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> Geakkordeerde proeven</button>
                             </a>
@@ -182,3 +186,31 @@ unset($_SESSION['updateopenmails']);
         event.preventDefault();
     });
 </script>
+
+<!-- Modal -->
+<div class="modal fade" id="updateOpenMails" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div style="text-align: center;" class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Update alle open mails</h4>
+            </div>
+            <div style="text-align: center;" class="modal-body">
+                <br>
+
+                <p> U staat op het punt om alle mails die langer dan <b>5 dagen</b> openstaan te versturen. <br/><br/>
+                Weet u dit zeker?<br/><br/></p>
+                <a class="abuttonmodal" href="?page=updateopenmails">Update open mails</a>
+
+                <br/>
+                <br/>
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+
+    </div>
+</div>

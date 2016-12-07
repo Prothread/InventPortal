@@ -44,10 +44,16 @@ require_once DIR_MODEL . 'MailSettings.php';
 $mailer = new PHPMailer();
 $mailer->addEmbeddedImage(DIR_PUBLIC . $admin['Logo'], "HeaderImage", "Logo.png");
 
-/* TO, SUBJECT, CONTENT */
-$to = $_SESSION['mailto']; //The 'To' field
-$subject = $_POST['title'];
-$myid = $_POST['id'];
+    /* TO, SUBJECT, CONTENT */
+    $to = $_SESSION['mailto']; //The 'To' field
+    $subject = $_POST['title'];
+
+    if(isset($_SESSION['accordid'])) {
+        $myid = $_SESSION['accordid'];
+    }
+    else {
+        $myid = $_POST['id'];
+    }
 
 $header = ' <div style="background: ' . $admin['Header'] . '; position:relative; width: 100%; height: 130px;">
                     <div style="position: absolute; height: 130px; margin-right: 25px; left: 5px;">
@@ -61,8 +67,20 @@ $content = $header . "  <br/><br/>" . "Geachte " . $_POST['verstuurder'] . "," .
 
     "<br /><br />" . "U kunt uw proef " . "<a href='http://localhost/InventPortal/public/index.php?page=item&id=$myid'>hier</a> " . "bekijken." .
 
+<<<<<<< HEAD
     "<br /> <br />Met vriendelijke groet, <br />" . $_POST['name'];
 $altcontent = "This is the content if the mailing system doesn't support a HMTL body";
+=======
+        "<br /> <br />Met vriendelijke groet, <br />" . $_POST['name'];
+    $altcontent = "Geachte " . $_POST['verstuurder'] . "," .
+        " <br/><br/>" . $_POST['name'] . " heeft uw proef " . $_SESSION['verifytext'] . "." . "<br /><br />" .
+        "<b>Titel van uw proef: </b>" .
+        $_POST['title'] .
+
+        "<br /><br />" . "U kunt uw proef " . "<a href='http://localhost/InventPortal/public/index.php?page=item&id=$myid'>hier</a> " . "bekijken." .
+
+        "<br /> <br />Met vriendelijke groet, <br />" . $_POST['name'];
+>>>>>>> origin/master
 
 //SMTP Configuration
 $mailer->isSMTP();
@@ -87,6 +105,7 @@ $mailer->AltBody = $altcontent;
 
 //Saving mail information
 
+<<<<<<< HEAD
 if(isset($_SESSION['accordid'])) {
     $myid = $_SESSION['accordid'];
 }
@@ -113,6 +132,27 @@ $mailer->SMTPOptions = array(
         'allow_self_signed' => true
     )
 );
+=======
+    $answer = mysqli_real_escape_string( $mysqli, $_POST['answer']) ;
+    $UID = mysqli_real_escape_string( $mysqli, $_POST['UID'] );
+    $verified = mysqli_real_escape_string( $mysqli, $_SESSION['verified'] );
+
+    $mailinfo = [
+        'clientid' => intval($_POST['clientid']),
+        'id' => intval($myid),
+        'answer' => strip_tags($answer),
+        'key' => strip_tags($UID),
+        'verified' => strip_tags($verified)
+    ];
+
+    $mailer->SMTPOptions = array(
+        'ssl' => array(
+            'verify_peer' => false,
+            'verify_peer_name' => false,
+            'allow_self_signed' => true
+        )
+    );
+>>>>>>> origin/master
 //Check if mail is sent :
 if (!$mailer->send()) {
     $block->Redirect('index.php');

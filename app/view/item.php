@@ -526,46 +526,46 @@ $_SESSION['clientid'] = $clientmail['clientid'];
 
 
                             </form>
-                            <table>
-                                <thead>
-                                <tr>
-                                    <td>Downloads:</td>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <?php foreach($uploadedimages as $img) { ?>
-                                        <td style="float:left;margin-right:10px;" class="imgdownloader img<?= $img['id']?>">
-                                            <div class="btn-group">
-                                                <button type="button" id="downloadimagedd" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    <div class="imagedownload" style="background: url('index.php?page=image&img=<?= $img['images']?>'); background-size: cover;"> <span class="caret"></span>
-                                                </button>
-                                                <ul class="dropdown-menu">
-                                                    <?php if($img['downloadable'] == 1 || substr( $img['images'], -3) == 'pdf') { ?>
-                                                        <li><a href="?page=download&file=<?= $img['images']; ?>">Download</a></li>
-                                                    <?php }
-                                                    else { ?>
-                                                        <?php if($user->getPermission($permgroup, 'CAN_EDIT_ACCORD') == 1){ ?>
-                                                            <li>
-                                                                <form id="downloadbuttons" method="post">
-                                                                    <span>Maak downloadbaar: </span>
-                                                                    <input type="submit" class="imgdownload id<?= $id ?>" id="img<?= $img['id'] ?>">
-                                                                </form>
-                                                            </li>
-                                                        <?php } ?>
-                                                        <br />
-                                                        <li>U kunt dit product nog niet downloaden</li>
-                                                    <?php } ?>
-                                                </ul>
-                                            </div>
-                                        </td>
-                                    <?php }?>
-                                </tr>
-                                </tbody>
-                            </table>
-                            <?php if($user->getPermission($permgroup, 'CAN_EDIT_ACCORD') == 1){ ?>
-                            <a href="?page=allimgdown&id=<?= $id ?>">Maak alle files downloadbaar</a>
-                            <?php } ?>
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <td>Downloads:</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <?php foreach($uploadedimages as $img) { ?>
+                                                    <td style="float:left;margin-right:10px;" class="imgdownloader img<?= $img['id']?>">
+                                                        <div class="btn-group">
+                                                            <button type="button" id="downloadimagedd" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                <div class="imagedownload" style="background: url('index.php?page=image&img=<?= $img['images']?>'); background-size: cover;"> <span class="caret"></span>
+                                                            </button>
+                                                            <ul class="dropdown-menu">
+                                                            <?php if($img['downloadable'] == 1 || substr( $img['images'], -3) == 'pdf') { ?>
+                                                                <li><a href="?page=download&file=<?= $img['images']; ?>">Download</a></li>
+                                                            <?php }
+                                                            else { ?>
+                                                                <?php if($user->getPermission($permgroup, 'CAN_EDIT_ACCORD') == 1){ ?>
+                                                                    <li>
+                                                                        <form id="downloadbuttons" method="post">
+                                                                            <span>Maak downloadbaar: </span>
+                                                                            <input type="submit" class="imgdownload id<?= $id ?>" id="img<?= $img['id'] ?>">
+                                                                        </form>
+                                                                    </li>
+                                                                <?php } ?>
+                                                                <br />
+                                                                <li>U kunt dit product nog niet downloaden</li>
+                                                            <?php } ?>
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                <?php }?>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    <?php if($user->getPermission($permgroup, 'CAN_EDIT_ACCORD') == 1){ ?>
+                                    <a data-toggle="modal" data-target="#ImageDownloader" href="#">Maak alle files downloadbaar</a>
+                                    <?php } ?>
 
 
                             <?php } ?>
@@ -577,4 +577,31 @@ $_SESSION['clientid'] = $clientmail['clientid'];
                 </div>
             </div>
         </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="ImageDownloader" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div style="text-align: center;" class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Update alle open mails</h4>
+                </div>
+                <div style="text-align: center;" class="modal-body">
+                    <br>
+
+                    <p> U staat op het punt om alle images downloadbaar te maken. <br/><br/>
+                        Weet u dit zeker?<br/><br/></p>
+                    <a class="abuttonmodal" href="?page=allimgdown&id=<?= $id ?>">Maak files downloadbaar</a>
+                    <br/>
+                    <br/>
+                </div>
+                <div class="modal-footer">
+
+                </div>
+            </div>
+
+        </div>
+
     </div>
