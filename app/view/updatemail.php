@@ -68,15 +68,15 @@ $content = $header . "  <br/><br/>" . "Geachte " . $_POST['verstuurder'] . "," .
     "<br /><br />" . "U kunt uw proef " . "<a href='http://localhost/InventPortal/public/index.php?page=item&id=$myid'>hier</a> " . "bekijken." .
 
 
-        "<br /> <br />Met vriendelijke groet, <br />" . $_POST['name'];
-    $altcontent = "Geachte " . $_POST['verstuurder'] . "," .
-        " <br/><br/>" . $_POST['name'] . " heeft uw proef " . $_SESSION['verifytext'] . "." . "<br /><br />" .
-        "<b>Titel van uw proef: </b>" .
-        $_POST['title'] .
+    "<br /> <br />Met vriendelijke groet, <br />" . $_POST['name'];
+$altcontent = "Geachte " . $_POST['verstuurder'] . "," .
+    " <br/><br/>" . $_POST['name'] . " heeft uw proef " . $_SESSION['verifytext'] . "." . "<br /><br />" .
+    "<b>Titel van uw proef: </b>" .
+    $_POST['title'] .
 
-        "<br /><br />" . "U kunt uw proef " . "<a href='http://localhost/InventPortal/public/index.php?page=item&id=$myid'>hier</a> " . "bekijken." .
+    "<br /><br />" . "U kunt uw proef " . "<a href='http://localhost/InventPortal/public/index.php?page=item&id=$myid'>hier</a> " . "bekijken." .
 
-        "<br /> <br />Met vriendelijke groet, <br />" . $_POST['name'];
+    "<br /> <br />Met vriendelijke groet, <br />" . $_POST['name'];
 
 //SMTP Configuration
 $mailer->isSMTP();
@@ -101,25 +101,25 @@ $mailer->AltBody = $altcontent;
 
 //Saving mail information
 
-    $answer = mysqli_real_escape_string( $mysqli, $_POST['answer']) ;
-    $UID = mysqli_real_escape_string( $mysqli, $_POST['UID'] );
-    $verified = mysqli_real_escape_string( $mysqli, $_SESSION['verified'] );
+$answer = mysqli_real_escape_string( $mysqli, $_POST['answer']) ;
+$UID = mysqli_real_escape_string( $mysqli, $_POST['UID'] );
+$verified = mysqli_real_escape_string( $mysqli, $_SESSION['verified'] );
 
-    $mailinfo = [
-        'clientid' => intval($_POST['clientid']),
-        'id' => intval($myid),
-        'answer' => strip_tags($answer),
-        'key' => strip_tags($UID),
-        'verified' => strip_tags($verified)
-    ];
+$mailinfo = [
+    'clientid' => intval($_POST['clientid']),
+    'id' => intval($myid),
+    'answer' => strip_tags($answer),
+    'key' => strip_tags($UID),
+    'verified' => strip_tags($verified)
+];
 
-    $mailer->SMTPOptions = array(
-        'ssl' => array(
-            'verify_peer' => false,
-            'verify_peer_name' => false,
-            'allow_self_signed' => true
-        )
-    );
+$mailer->SMTPOptions = array(
+    'ssl' => array(
+        'verify_peer' => false,
+        'verify_peer_name' => false,
+        'allow_self_signed' => true
+    )
+);
 
 //Check if mail is sent :
 if (!$mailer->send()) {

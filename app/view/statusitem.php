@@ -116,16 +116,16 @@ $users = $user->getAllUsersByPerm(1);
         </div>
 
 
-              <div class="form-group">
-                  <label class="col-md-4 control-label" for="textinput"></label>
-                  <div class="col-md-4">
-                    <input class="btn btn-primary btn-success" name="submit"  style="float:left; max-width: 100px; background-color: #bb2c4c; border: 1px solid #dd2c4c" type="submit" value="Opslaan">
-                    <a class="abutton centered" data-toggle="modal" data-target="#deleteModal" href="#">Verwijderen</a>
-                  </div>
-              </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="textinput"></label>
+            <div class="col-md-4">
+                <input class="btn btn-primary btn-success" name="submit"  style="float:left; max-width: 100px; background-color: #bb2c4c; border: 1px solid #dd2c4c" type="submit" value="Opslaan">
+                <a class="abutton centered" data-toggle="modal" data-target="#deleteModal" href="#">Verwijderen</a>
+            </div>
+        </div>
 
-          </fieldset>
-      </form>
+    </fieldset>
+</form>
 
 
 
@@ -133,26 +133,26 @@ $users = $user->getAllUsersByPerm(1);
 <div class="modal fade" id="deleteModal" role="dialog">
     <div class="modal-dialog">
 
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div style="text-align: center;" class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Item verwijderen</h4>
-        </div>
-        <div style="text-align: center;" class="modal-body">
-            <br>
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div style="text-align: center;" class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Item verwijderen</h4>
+            </div>
+            <div style="text-align: center;" class="modal-body">
+                <br>
 
-            <p> U staat op het punt om een <b><?= $fetchall['category'] ?></b> met de naam <b><?= $fetchall['subject'] ?></b> te verwijderen. <br/><br/>
-             Weet u dit zeker?<br/><br/></p>
-            <a class="abuttonmodal" href="?page=deletestatusitem&id=<?= $fetchall['id'] ?>">Verwijder</a>
+                <p> U staat op het punt om een <b><?= $fetchall['category'] ?></b> met de naam <b><?= $fetchall['subject'] ?></b> te verwijderen. <br/><br/>
+                    Weet u dit zeker?<br/><br/></p>
+                <a class="abuttonmodal" href="?page=deletestatusitem&id=<?= $fetchall['id'] ?>">Verwijder</a>
 
-            <br/>
-            <br/>
-        </div>
-        <div class="modal-footer">
+                <br/>
+                <br/>
+            </div>
+            <div class="modal-footer">
 
+            </div>
         </div>
-      </div>
 
     </div>
 </div>

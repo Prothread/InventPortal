@@ -29,10 +29,10 @@ else {
 
                             <?php if(isset($_SESSION['updateopenmails']) && $user->getPermission($permgroup, 'CAN_EDIT_ACCORD') == 1){ ?>
 
-                            <a data-toggle="modal" data-target="#updateOpenMails" href="#">
-                                <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
-                                <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> Update alle Open proeven <span id="days">(5 < dagen)</span></button>
-                            </a>
+                                <a data-toggle="modal" data-target="#updateOpenMails" href="#">
+                                    <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
+                                        <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> Update alle Open proeven <span id="days">(5 < dagen)</span></button>
+                                </a>
 
                             <?php  } ?>
 
@@ -43,7 +43,7 @@ else {
                             <a id="filteropen" href="#">
                                 <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
 
-                                <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> Open proeven <span id="days">(5 < dagen)</span></button>
+                                    <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> Open proeven <span id="days">(5 < dagen)</span></button>
 
                             </a>
 
@@ -201,7 +201,7 @@ unset($_SESSION['updateopenmails']);
                 <br>
 
                 <p> U staat op het punt om alle mails die langer dan <b>5 dagen</b> openstaan te versturen. <br/><br/>
-                Weet u dit zeker?<br/><br/></p>
+                    Weet u dit zeker?<br/><br/></p>
                 <a class="abuttonmodal" href="?page=updateopenmails">Update open mails</a>
 
                 <br/>
