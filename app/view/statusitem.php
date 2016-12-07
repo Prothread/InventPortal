@@ -140,7 +140,7 @@ $users = $user->getAllUsersByPerm(1);
     </div>
     <div style="text-align: center;" class="modal-body">
       <br>
-      <p> U staat op het punt om een <?= $fetchall['category'] ?> met de naam <?= $fetchall['subject'] ?> te verwijderen. <br/><br/>
+      <p> U staat op het punt om een <b><?= $fetchall['category'] ?></b> met de naam <b><?= $fetchall['subject'] ?></b> te verwijderen. <br/><br/>
       Weet u dit zeker?<br/><br/></p>
       <a class="abuttonmodal" href="?page=deletestatusitem&id=<?= $fetchall['id'] ?>">Verwijder</a>
 <br/>
