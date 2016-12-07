@@ -564,7 +564,7 @@ $_SESSION['clientid'] = $clientmail['clientid'];
                                             </tbody>
                                         </table>
                                     <?php if($user->getPermission($permgroup, 'CAN_EDIT_ACCORD') == 1){ ?>
-                                    <a href="?page=allimgdown&id=<?= $id ?>">Maak alle files downloadbaar</a>
+                                    <a data-toggle="modal" data-target="#ImageDownloader" href="#">Maak alle files downloadbaar</a>
                                     <?php } ?>
 
 
@@ -578,3 +578,30 @@ $_SESSION['clientid'] = $clientmail['clientid'];
                 </div>
             </div>
         </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="ImageDownloader" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div style="text-align: center;" class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Update alle open mails</h4>
+                </div>
+                <div style="text-align: center;" class="modal-body">
+                    <br>
+
+                    <p> U staat op het punt om alle images downloadbaar te maken. <br/><br/>
+                        Weet u dit zeker?<br/><br/></p>
+                    <a class="abuttonmodal" href="?page=allimgdown&id=<?= $id ?>">Maak files downloadbaar</a>
+                    <br/>
+                    <br/>
+                </div>
+                <div class="modal-footer">
+
+                </div>
+            </div>
+
+        </div>
+    </div>

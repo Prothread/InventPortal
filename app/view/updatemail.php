@@ -47,7 +47,13 @@ $mymail = new MailController();
     /* TO, SUBJECT, CONTENT */
     $to = $_SESSION['mailto']; //The 'To' field
     $subject = $_POST['title'];
-    $myid = $_POST['id'];
+
+    if(isset($_SESSION['accordid'])) {
+        $myid = $_SESSION['accordid'];
+    }
+    else {
+        $myid = $_POST['id'];
+    }
 
     $header = ' <div style="background: ' . $admin['Header'] . '; position:relative; width: 100%; height: 130px;">
                     <div style="position: absolute; height: 130px; margin-right: 25px; left: 5px;">
@@ -62,7 +68,14 @@ $mymail = new MailController();
         "<br /><br />" . "U kunt uw proef " . "<a href='http://localhost/InventPortal/public/index.php?page=item&id=$myid'>hier</a> " . "bekijken." .
 
         "<br /> <br />Met vriendelijke groet, <br />" . $_POST['name'];
-    $altcontent = "This is the content if the mailing system doesn't support a HMTL body";
+    $altcontent = "Geachte " . $_POST['verstuurder'] . "," .
+        " <br/><br/>" . $_POST['name'] . " heeft uw proef " . $_SESSION['verifytext'] . "." . "<br /><br />" .
+        "<b>Titel van uw proef: </b>" .
+        $_POST['title'] .
+
+        "<br /><br />" . "U kunt uw proef " . "<a href='http://localhost/InventPortal/public/index.php?page=item&id=$myid'>hier</a> " . "bekijken." .
+
+        "<br /> <br />Met vriendelijke groet, <br />" . $_POST['name'];
 
 //SMTP Configuration
     $mailer->isSMTP();
@@ -86,13 +99,6 @@ $mymail = new MailController();
     $mailer->AltBody = $altcontent;
 
 //Saving mail information
-
-    if(isset($_SESSION['accordid'])) {
-        $myid = $_SESSION['accordid'];
-    }
-    else {
-        $myid = $_POST['id'];
-    }
 
     $answer = mysqli_real_escape_string( $mysqli, $_POST['answer']) ;
     $UID = mysqli_real_escape_string( $mysqli, $_POST['UID'] );

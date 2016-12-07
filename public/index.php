@@ -50,7 +50,7 @@ if(!$session->exists('usr_id') && $page == 'approve') {
     require_once '../app/view/header.php';
 }
 
-if(!$session->exists('usr_id')) {
+if(!$session->exists('usr_id') && $page !== 'approve') {
     require_once '../app/view/header2.php';
 }
 
