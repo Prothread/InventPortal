@@ -123,18 +123,18 @@ if(isset($_POST['submit'])) {
 
 }
 ?>
-     <div id="h">
-      <div class="social hidden-xs">
+<div id="h">
+    <div class="social hidden-xs">
 
-      </div>
-      <div class="container">
+    </div>
+    <div class="container">
         <div class="row">
-          <div class="col-md-8 col-md-offset-2 centered loginbar">
+            <div class="col-md-8 col-md-offset-2 centered loginbar">
                 <form role="form" method="post" name="loginform" action="?page=forgetpassword">
-                <fieldset>
-                    <img style="width: 254px; height: 256px;" src="img/madalco.png">
-                    <br>
-                    <br>
+                    <fieldset>
+                        <img style="width: 254px; height: 256px;" src="img/madalco.png">
+                        <br>
+                        <br>
                         <label>Als u uw wachtwoord bent vergeten, vul dan hieronder uw e-mailadres in.</label>
                         <br />
                         <br />
@@ -146,34 +146,34 @@ if(isset($_POST['submit'])) {
                         <input type="submit" name="submit" value="Verstuur wachtwoord" class="btn btn-primary" />
                         <br />
                         <br />
-                </fieldset>
-            </form>
-            <span class="text-danger"><?php if (isset($errormsg)) { echo $errormsg; } ?></span>
+                    </fieldset>
+                </form>
+                <span class="text-danger"><?php if (isset($errormsg)) { echo $errormsg; } ?></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4 text-center">
+                <br />
+            </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-4 col-md-offset-4 text-center">    
-        <br />
-        </div>
-    </div>
+
+    <script src="js/jquery-1.10.2.js"></script>
+    <script src="js/bootstrap.min.js"></script>
 </div>
 
-<script src="js/jquery-1.10.2.js"></script>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3 centered">
+        </div><!--/row-->
+    </div><!--/container-->
+</div><!-- /H -->
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
-          </div>
-
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6 col-md-offset-3 centered">
-          </div><!--/row-->
-        </div><!--/container-->
-      </div><!-- /H -->
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/retina-1.1.0.js"></script>
-  </body>
+<script src="js/retina-1.1.0.js"></script>
+</body>
 </html>

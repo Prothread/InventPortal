@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 class DbStatus extends Database
 {
@@ -57,9 +57,9 @@ class DbStatus extends Database
 
 		$result = $this->dbQuery($sql);
 
-        if($result) {
-            return true;
-        }
+		if($result) {
+			return true;
+		}
 		return false;
 	}
 
@@ -93,11 +93,11 @@ class DbStatus extends Database
 		$sql = "SELECT * FROM `status_item` WHERE `id` = '{$id}'";
 
 		$result = $this->dbQuery($sql);
-        $row = mysqli_fetch_assoc($result);
+		$row = mysqli_fetch_assoc($result);
 
-        if($row) {
-            return $row;
-        }
+		if($row) {
+			return $row;
+		}
 		return false;
 	}
 

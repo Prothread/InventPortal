@@ -26,10 +26,10 @@ $get_filled_info = $user->getAllUsersByPerm(1);
                         <a href="index.php?page=newuser"><div id="NewClientButton">Nieuwe gebruiker</div></a>
                     <?php } ?>
 
-                <?php if($get_filled_info !== null) { ?>
+                    <?php if($get_filled_info !== null) { ?>
 
-                    <table id="myTable" class="table table-striped">
-                        <thead>
+                        <table id="myTable" class="table table-striped">
+                            <thead>
                             <tr>
                                 <th style="display:none">ID</th>
                                 <th>Naam</th>
@@ -40,46 +40,46 @@ $get_filled_info = $user->getAllUsersByPerm(1);
                                 <th>Plaats</th>
                                 <th>Edit</th>
                             </tr>
-                        </thead>
-                        <tbody>
-                        <?php
-                        foreach ($get_filled_info as $upload) { ?>
-                            <tr>
-                                <td style="display:none">
-                                    <?= $upload['id']; ?>
-                                </td>
-                                <td>
-                                    <a href="?page=showuserprofile&id=<?= $upload['id'] ?>"><?= $upload['naam'] ?></a>
-                                </td>
-                                <td>
-                                    <?= $upload['bedrijfsnaam'] ?>
-                                </td>
-                                <td>
-                                    <?= $upload['email'] ?>
-                                </td>
-                                <td>
-                                    <?= $upload['adres'] ?>
-                                </td>
-                                <td>
-                                    <?= $upload['postcode']; ?>
-                                </td>
-                                <td>
-                                    <?= $upload['plaats']; ?>
-                                </td>
-                                <td>
-                                    <?php $uploadid = $upload['id']; ?>
-                                    <a href="?page=editclient&id=<?= $uploadid ?>"><img
-                                            src="img/icons/settings-hover.png" style="width: 24px; height: 24px;">
-                                </td>
-                            </tr>
-                        <?php } ?>
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                            <?php
+                            foreach ($get_filled_info as $upload) { ?>
+                                <tr>
+                                    <td style="display:none">
+                                        <?= $upload['id']; ?>
+                                    </td>
+                                    <td>
+                                        <a href="?page=showuserprofile&id=<?= $upload['id'] ?>"><?= $upload['naam'] ?></a>
+                                    </td>
+                                    <td>
+                                        <?= $upload['bedrijfsnaam'] ?>
+                                    </td>
+                                    <td>
+                                        <?= $upload['email'] ?>
+                                    </td>
+                                    <td>
+                                        <?= $upload['adres'] ?>
+                                    </td>
+                                    <td>
+                                        <?= $upload['postcode']; ?>
+                                    </td>
+                                    <td>
+                                        <?= $upload['plaats']; ?>
+                                    </td>
+                                    <td>
+                                        <?php $uploadid = $upload['id']; ?>
+                                        <a href="?page=editclient&id=<?= $uploadid ?>"><img
+                                                src="img/icons/settings-hover.png" style="width: 24px; height: 24px;">
+                                    </td>
+                                </tr>
+                            <?php } ?>
+                            </tbody>
+                        </table>
 
-                <?php }
-                else { ?>
-                    <div id="weiger" class="alert alert-info" style="text-align: center;" role="alert"><span class="glyphicon glyphicon-remove-circle"></span> Er zijn nog geen gebruikers aangemaakt</div>
-                <?php } ?>
+                    <?php }
+                    else { ?>
+                        <div id="weiger" class="alert alert-info" style="text-align: center;" role="alert"><span class="glyphicon glyphicon-remove-circle"></span> Er zijn nog geen gebruikers aangemaakt</div>
+                    <?php } ?>
                 </div>
             </div>
         </div>

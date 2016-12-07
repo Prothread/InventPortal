@@ -87,15 +87,15 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);
                                 </div>
 
                                 <?php if($user->getPermission($permgroup, 'CAN_EDIT_USER')) { ?>
-                                <div class="form-group">
-                                    <label class="col-lg-3 control-label" for="textinput">Rechtgroepen</label>
-                                    <div class="col-lg-8">
-                                        <label class="col-md-2 control-label" for="textinput">Klant: 1</label>
-                                        <label class="col-sm-3 control-label" for="textinput">Gebruiker: 2</label>
-                                        <label class="col-sm-3 control-label" for="textinput">Beheerder: 3</label>
-                                        <label class="col-sm-3 control-label" for="textinput">Admin: 4</label>
+                                    <div class="form-group">
+                                        <label class="col-lg-3 control-label" for="textinput">Rechtgroepen</label>
+                                        <div class="col-lg-8">
+                                            <label class="col-md-2 control-label" for="textinput">Klant: 1</label>
+                                            <label class="col-sm-3 control-label" for="textinput">Gebruiker: 2</label>
+                                            <label class="col-sm-3 control-label" for="textinput">Beheerder: 3</label>
+                                            <label class="col-sm-3 control-label" for="textinput">Admin: 4</label>
+                                        </div>
                                     </div>
-                                </div>
                                 <?php } ?>
 
                                 <?php if($user->getPermission($permgroup, 'CAN_EDIT_USER')) { ?>

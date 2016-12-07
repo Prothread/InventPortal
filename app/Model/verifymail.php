@@ -56,12 +56,12 @@ if(isset( $_GET['key'] ) ) {
         $mailkey = ($mymail['key']);
     }
     else {?>
-    <br>
- <div class="alert alert-danger alert-dismissible" role="alert">
-  <strong>Let op!</strong> Het product is al geaccordeerd. Bekijk de status in het overzicht.
-</div>
-    
-   <?php }
+        <br>
+        <div class="alert alert-danger alert-dismissible" role="alert">
+            <strong>Let op!</strong> Het product is al geaccordeerd. Bekijk de status in het overzicht.
+        </div>
+
+    <?php }
 
 }
 

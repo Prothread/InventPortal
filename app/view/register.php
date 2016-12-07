@@ -58,7 +58,7 @@ if (isset($_POST['signup'])) {
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -92,88 +92,88 @@ if (isset($_POST['signup'])) {
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-  </head>
+</head>
 
-  <body>
+<body>
 
-    <div id="h">
-      <div class="social hidden-xs">
+<div id="h">
+    <div class="social hidden-xs">
 
-      </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 col-md-offset-2 centered">
-                    <form role="form" method="post" name="signupform">
-                        <fieldset>
-                            <legend>Nieuw account</legend>
-
-                            <div class="form-group">
-                                <label for="name">Naam</label>
-                                <input type="text" name="name" placeholder="Volledige naam" required value="<?php if($error) echo $name; ?>" class="form-control" />
-                                <span class="text-danger"><?php if (isset($name_error)) echo $name_error; ?></span>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="name">E-mail</label>
-                                <input type="text" name="email" placeholder="E-mail" required value="<?php if($error) echo $email; ?>" class="form-control" />
-                                <span class="text-danger"><?php if (isset($email_error)) echo $email_error; ?></span>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="name">Wachtwoord</label>
-                                <input type="password" name="password" placeholder="Wachtwoord" required class="form-control" />
-                                <span class="text-danger"><?php if (isset($password_error)) echo $password_error; ?></span>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="name">Herhaal wachtwoord</label>
-                                <input type="password" name="cpassword" placeholder="Herhaal wachtwoord" required class="form-control" />
-                                <span class="text-danger"><?php if (isset($cpassword_error)) echo $cpassword_error; ?></span>
-                            </div>
-
-                            <input type="hidden" name="permgroup" value="2">
-
-                            <div class="form-group">
-                                <input type="submit" name="signup" value="Aanmaken" class="btn btn-primary" />
-                            </div>
-                        </fieldset>
-                    </form>
-                    <span class="text-success"><?php if (isset($successmsg)) { echo $successmsg; } ?></span>
-                    <span class="text-danger"><?php if (isset($errormsg)) { echo $errormsg; } ?></span>
-                </div>
-            </div>
-        </div>
+    </div>
+    <div class="container">
         <div class="row">
-            <div class="col-md-4 col-md-offset-4 text-center">
-                <br />
-                Al een account? <a href="index.php">Inloggen</a>
+            <div class="col-md-8 col-md-offset-2 centered">
+                <form role="form" method="post" name="signupform">
+                    <fieldset>
+                        <legend>Nieuw account</legend>
+
+                        <div class="form-group">
+                            <label for="name">Naam</label>
+                            <input type="text" name="name" placeholder="Volledige naam" required value="<?php if($error) echo $name; ?>" class="form-control" />
+                            <span class="text-danger"><?php if (isset($name_error)) echo $name_error; ?></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="name">E-mail</label>
+                            <input type="text" name="email" placeholder="E-mail" required value="<?php if($error) echo $email; ?>" class="form-control" />
+                            <span class="text-danger"><?php if (isset($email_error)) echo $email_error; ?></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="name">Wachtwoord</label>
+                            <input type="password" name="password" placeholder="Wachtwoord" required class="form-control" />
+                            <span class="text-danger"><?php if (isset($password_error)) echo $password_error; ?></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="name">Herhaal wachtwoord</label>
+                            <input type="password" name="cpassword" placeholder="Herhaal wachtwoord" required class="form-control" />
+                            <span class="text-danger"><?php if (isset($cpassword_error)) echo $cpassword_error; ?></span>
+                        </div>
+
+                        <input type="hidden" name="permgroup" value="2">
+
+                        <div class="form-group">
+                            <input type="submit" name="signup" value="Aanmaken" class="btn btn-primary" />
+                        </div>
+                    </fieldset>
+                </form>
+                <span class="text-success"><?php if (isset($successmsg)) { echo $successmsg; } ?></span>
+                <span class="text-danger"><?php if (isset($errormsg)) { echo $errormsg; } ?></span>
             </div>
         </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4 text-center">
+            <br />
+            Al een account? <a href="index.php">Inloggen</a>
+        </div>
+    </div>
 </div>
 
 <script src="../public/js/jquery-1.10.2.js"></script>
 <script src="../public/js/bootstrap.min.js"></script>
-          </div>
-        </div><!--/row-->
-      </div><!--/container-->
-    </div><!-- /H -->
+</div>
+</div><!--/row-->
+</div><!--/container-->
+</div><!-- /H -->
 
 
 
 
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6 col-md-offset-3 centered">
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3 centered">
 
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="../public/js/jquery.min.js"></script>
-    <script src="../public/js/bootstrap.min.js"></script>
-    <script src="../public/js/retina-1.1.0.js"></script>
-  </body>
+            <!-- Bootstrap core JavaScript
+            ================================================== -->
+            <!-- Placed at the end of the document so the pages load faster -->
+            <script src="../public/js/jquery.min.js"></script>
+            <script src="../public/js/bootstrap.min.js"></script>
+            <script src="../public/js/retina-1.1.0.js"></script>
+</body>
 </html>

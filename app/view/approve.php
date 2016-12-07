@@ -126,28 +126,46 @@ $userip = $user->getUserIP();
                                 $imgcount++;
                                 ?>
                                 <div id="refresh<?= $imgcount ?>">
-                                <div id="imgakkoord" style="float:left;">
-                                    <div style="border:0; width: 250px; height: 320px;">
-                                        <a href="#img<?= $imgcount ?>">
-                                            <div id="thumbnail2" style="background: url('index.php?page=image&img=<?= $img['images']?>') no-repeat scroll 50% 50%;background-size:cover;"></div>
-                                        </a>
-                                    </div>
+                                    <div id="imgakkoord" style="float:left;">
+                                        <div style="border:0; width: 250px; height: 320px;">
+                                            <a href="#img<?= $imgcount ?>">
+                                                <div id="thumbnail2" style="background: url('index.php?page=image&img=<?= $img['images']?>') no-repeat scroll 50% 50%;background-size:cover;"></div>
+                                            </a>
+                                        </div>
 
-                                    <?php
+                                        <?php
 
-                                    $imago = $image_controller->getImageVerify($img['id']);
+                                        $imago = $image_controller->getImageVerify($img['id']);
 
-                                    if(isset($_SESSION['img'.$img['id']])) {
-                                        if($session->getImageVerify($img['id']) == 1) { ?>
+                                        if(isset($_SESSION['img'.$img['id']])) {
+                                            if($session->getImageVerify($img['id']) == 1) { ?>
+                                                <div id="akkoord" class="alert alert-success" style="text-align: center;" role="alert"><span class="glyphicon glyphicon-ok-circle"></span> Akkoord</div>
+                                                <a href="?page=imagecancel&img=<?= $img['id'] ?>"><div id="cancel" style="color:black; text-align: center;" role="alert"><span class="glyphicon glyphicon-chevron-left"></span> Stap terug</div></a>
+                                            <?php }
+
+                                            else if($session->getImageVerify($img['id']) == 2) {?>
+                                                <div id="weiger" class="alert alert-danger" style="text-align: center;" role="alert"><span class="glyphicon glyphicon-remove-circle"></span> Geweigerd</div>
+                                                <a href="?page=imagecancel&img=<?= $img['id'] ?>"><div id="cancel" style="color:black; text-align: center;" role="alert"><span class="glyphicon glyphicon-chevron-left"></span> Stap terug</div></a>
+                                            <?php }
+
+                                            else { ?>
+                                                <form id="mybuttons" method="post">
+                                                    <input type="hidden" id="refreshcount" value="<?= $imgcount ?>">
+                                                    <input type="hidden" id="ImageID" value="<?= $img['id'] ?>">
+                                                    <input type="submit" id="AccButton" value="Akkoord">
+                                                    <input type="submit" id="AccButton1" value="Weiger">
+                                                </form>
+                                            <?php }
+                                        }
+
+                                        else if($imago['verify'] == 1) { ?>
                                             <div id="akkoord" class="alert alert-success" style="text-align: center;" role="alert"><span class="glyphicon glyphicon-ok-circle"></span> Akkoord</div>
-                                            <a href="?page=imagecancel&img=<?= $img['id'] ?>"><div id="cancel" style="color:black; text-align: center;" role="alert"><span class="glyphicon glyphicon-chevron-left"></span> Stap terug</div></a>
                                         <?php }
 
-                                        else if($session->getImageVerify($img['id']) == 2) {?>
-                                            <div id="weiger" class="alert alert-danger" style="text-align: center;" role="alert"><span class="glyphicon glyphicon-remove-circle"></span> Geweigerd</div>
-                                            <a href="?page=imagecancel&img=<?= $img['id'] ?>"><div id="cancel" style="color:black; text-align: center;" role="alert"><span class="glyphicon glyphicon-chevron-left"></span> Stap terug</div></a>
-                                        <?php }
-
+                                        else if($imago['verify'] == 3) { ?>
+                                            <div id="weiger" class="alert alert-info" style="background-color:lightgrey; color:grey; text-align: center;" role="alert"><span class="glyphicon glyphicon-remove-circle"></span> Gewijzigd</div>
+                                            <?php
+                                        }
                                         else { ?>
                                             <form id="mybuttons" method="post">
                                                 <input type="hidden" id="refreshcount" value="<?= $imgcount ?>">
@@ -155,64 +173,46 @@ $userip = $user->getUserIP();
                                                 <input type="submit" id="AccButton" value="Akkoord">
                                                 <input type="submit" id="AccButton1" value="Weiger">
                                             </form>
-                                        <?php }
-                                    }
 
-                                    else if($imago['verify'] == 1) { ?>
-                                        <div id="akkoord" class="alert alert-success" style="text-align: center;" role="alert"><span class="glyphicon glyphicon-ok-circle"></span> Akkoord</div>
-                                    <?php }
-
-                                    else if($imago['verify'] == 3) { ?>
-                                        <div id="weiger" class="alert alert-info" style="background-color:lightgrey; color:grey; text-align: center;" role="alert"><span class="glyphicon glyphicon-remove-circle"></span> Gewijzigd</div>
-                                        <?php
-                                    }
-                                    else { ?>
-                                        <form id="mybuttons" method="post">
-                                            <input type="hidden" id="refreshcount" value="<?= $imgcount ?>">
-                                            <input type="hidden" id="ImageID" value="<?= $img['id'] ?>">
-                                            <input type="submit" id="AccButton" value="Akkoord">
-                                            <input type="submit" id="AccButton1" value="Weiger">
-                                        </form>
-
-                                        <?php
-                                    }?><div id="refsa"><?php
+                                            <?php
+                                        }?><div id="refsa"><?php
 
 
-                                    if(isset($imago)) {
+                                            if(isset($imago)) {
 
-                                        if ($imago['verify'] == 1) {
-                                            $imageverify = 1;
-                                        }
-                                        else if ($imago['verify'] == 3) {
-                                            $imageverify = 3;
-                                        }
+                                                if ($imago['verify'] == 1) {
+                                                    $imageverify = 1;
+                                                }
+                                                else if ($imago['verify'] == 3) {
+                                                    $imageverify = 3;
+                                                }
 
-                                        else if(isset($_SESSION['img' . $img['id']])) {
+                                                else if(isset($_SESSION['img' . $img['id']])) {
 
-                                            $imageverify = $session->getImageVerify($img['id']);
+                                                    $imageverify = $session->getImageVerify($img['id']);
 
-                                            if ($imageverify !== null) {
-                                                $imageverify = $session->getImageVerify($img['id']);
+                                                    if ($imageverify !== null) {
+                                                        $imageverify = $session->getImageVerify($img['id']);
+                                                    }
+                                                    else {
+                                                        $imageverify = 0;
+                                                    }
+                                                }
                                             }
                                             else {
                                                 $imageverify = 0;
                                             }
-                                        }
-                                    }
-                                    else {
-                                        $imageverify = 0;
-                                    }
 
-                                    if(isset($imageverify)) {
-                                        $session->ImageVerify($img['id'], $imageverify);
-                                        $sessionverify = $session->getImageVerify($img['id']);
+                                            if(isset($imageverify)) {
+                                                $session->ImageVerify($img['id'], $imageverify);
+                                                $sessionverify = $session->getImageVerify($img['id']);
 
-                                        $verifiedimages['img' . $img['id']] = $sessionverify;
-                                        //array_push($verifiedimages, $imageverify);
-                                    }
+                                                $verifiedimages['img' . $img['id']] = $sessionverify;
+                                                //array_push($verifiedimages, $imageverify);
+                                            }
 
-                                    ?>
-                                    </div>
+                                            ?>
+                                        </div>
                                     </div>
                                 </div>
                                 <a href="#_" class="lightbox" id="img<?=$imgcount ?>">
@@ -220,27 +220,27 @@ $userip = $user->getUserIP();
                                         <div id="thumbnail2" style="background: url('index.php?page=image&img=<?= $img['images']?>') no-repeat scroll 50% 50%;background-size:contain;"></div>
                                     </div>
                                 </a>
-                            <?php
-                                }?><div id="refsh"><?php
-                            if (in_array(2, $verifiedimages)) {
-                                $verified = 3;
-                                $verifytext = "afgekeurd";
-                            }
-                            else if(in_array(0, $verifiedimages) || in_array(null, $verifiedimages) || empty($verifiedimages)) {
-                                $verified = 1;
-                                $verifytext = '';
-                            }
-                            else {
-                                $verified = 2;
-                                $verifytext = 'goedgekeurd';
-                            }
+                                <?php
+                            }?><div id="refsh"><?php
+                                if (in_array(2, $verifiedimages)) {
+                                    $verified = 3;
+                                    $verifytext = "afgekeurd";
+                                }
+                                else if(in_array(0, $verifiedimages) || in_array(null, $verifiedimages) || empty($verifiedimages)) {
+                                    $verified = 1;
+                                    $verifytext = '';
+                                }
+                                else {
+                                    $verified = 2;
+                                    $verifytext = 'goedgekeurd';
+                                }
 
-                            if(in_array( 0, $verifiedimages) || in_array(null, $verifiedimages) || empty($verifiedimages)) {
-                                $verify = 0;
-                            }
-                            else {
-                                $verify = 1;
-                            }
+                                if(in_array( 0, $verifiedimages) || in_array(null, $verifiedimages) || empty($verifiedimages)) {
+                                    $verify = 0;
+                                }
+                                else {
+                                    $verify = 1;
+                                }
                                 $_SESSION['verified'] = $verified;
                                 $_SESSION['verifytext'] = $verifytext;
                                 ?>
@@ -253,7 +253,7 @@ $userip = $user->getUserIP();
                                 <input disabled="disabled" type="hidden" name="id" value="<?= $myupload['id']; ?>">
 
                                 <p> Omschrijving: <span style="color:#bc2d4c"><?= $myupload['beschrijving']?></span> </p>
-                                
+
                                 <br>
                                 <ul class="list-inline pull-right">
                                     <li><button type="button" class="btn btn-primary next-step">Volgende</button></li>
@@ -327,6 +327,6 @@ $userip = $user->getUserIP();
                 </div>
                 </form>
             </div>
-            </div>
         </div>
     </div>
+</div>

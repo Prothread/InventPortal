@@ -28,24 +28,24 @@ else {
                         <th style="text-align: right;">
 
                             <?php if(isset($_SESSION['updateopenmails']) && $user->getPermission($permgroup, 'CAN_EDIT_ACCORD') == 1){ ?>
-                            <a href="?page=showuserprofile" id="updateopenmails">
-                                <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
-                                <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> Update alle Open proeven <span id="days">(5 < dagen)</span></button>
-                            </a>
+                                <a href="?page=showuserprofile" id="updateopenmails">
+                                    <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
+                                        <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> Update alle Open proeven <span id="days">(5 < dagen)</span></button>
+                                </a>
                             <?php  } ?>
 
                             <a href="?page=useroverview">
                                 <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
-                                <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> Mijn overzicht</button>
+                                    <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> Mijn overzicht</button>
                             </a>
                             <a id="filteropen" href="?page=showuserprofile">
                                 <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
-                                <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> Open proeven </button>
+                                    <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> Open proeven </button>
                             </a>
 
                             <a id="filtergoed" href="?page=showuserprofile">
                                 <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
-                                <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> Geakkordeerde proeven</button>
+                                    <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> Geakkordeerde proeven</button>
                             </a>
 
                         </th>
@@ -69,12 +69,12 @@ else {
                     <thead>
                     <tr>
                         <?php if($get_filled_info !== null) {?>
-                        <th style="display:none">ID</th>
-                        <th>Onderwerp</th>
-                        <th>Verstuurder</th>
-                        <th>Naam</th>
-                        <th id="date">Datum</th>
-                        <th>Status</th>
+                            <th style="display:none">ID</th>
+                            <th>Onderwerp</th>
+                            <th>Verstuurder</th>
+                            <th>Naam</th>
+                            <th id="date">Datum</th>
+                            <th>Status</th>
                         <?php }
                         else {?>
                             <th>Proeven</th>
@@ -126,9 +126,9 @@ else {
     </div>
 </div>
 <?php
-    //Unset sessions
-    unset($_SESSION['uploads']);
-    unset($_SESSION['updateopenmails']);
+//Unset sessions
+unset($_SESSION['uploads']);
+unset($_SESSION['updateopenmails']);
 ?>
 
 <script>

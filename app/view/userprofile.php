@@ -21,10 +21,10 @@ else {
     $getAllUserItems = $items->getUserMailByUserId($userid, 0, 0);
 }
 if($getAllUserItems !== null){
-foreach($getAllUserItems as $UserItem) {
-    $mail = $items->getMailById($UserItem['mailid']);
-    $getMails[] = $mail;
-}
+    foreach($getAllUserItems as $UserItem) {
+        $mail = $items->getMailById($UserItem['mailid']);
+        $getMails[] = $mail;
+    }
 }
 
 ?>
@@ -42,19 +42,19 @@ foreach($getAllUserItems as $UserItem) {
             <div class="row">
 
                 <?php if(isset ($getMails) && $getMails !== null ) {?>
-                <table id="myTable" class="table table-striped" >
-                    <thead>
-                    <tr>
+                    <table id="myTable" class="table table-striped" >
+                        <thead>
+                        <tr>
                             <th style="display:none">ID</th>
                             <th>Onderwerp</th>
                             <th>Verstuurder</th>
                             <th>Naam</th>
                             <th>Datum</th>
                             <th>Status</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <?php
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php
                         foreach ($getMails as $upload) { ?>
                             <tr>
                                 <td style="display:none">
@@ -87,8 +87,8 @@ foreach($getAllUserItems as $UserItem) {
                                 </td>
                             </tr>
                         <?php } ?>
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
                 <?php }
                 else { ?>
                     <div id="weiger" class="alert alert-info" style="text-align: center;" role="alert"><span class="glyphicon glyphicon-remove-circle"></span> U heeft nog niks geüpload of geaccordeerd</div>

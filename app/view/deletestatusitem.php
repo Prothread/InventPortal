@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 if($user->getPermission($permgroup, 'CAN_USE_STATUSPORTAL') == 1){
 
@@ -13,11 +13,11 @@ $status = new StatusController();
 $mysqli = mysqli_connect();
 
 if(isset($_GET['id'])) {
-  $id = mysqli_real_escape_string( $mysqli, $_GET['id'] );
-  $id = $session->cleantonumber($id);
+    $id = mysqli_real_escape_string( $mysqli, $_GET['id'] );
+    $id = $session->cleantonumber($id);
 }
 else {
-  return 'Er is geen item gevonden';
+    return 'Er is geen item gevonden';
 }
 
 $status->deleteItemByID($id);

@@ -61,13 +61,13 @@ $items = new MailController();
             }
             else
             {
-                ?>
-                <div
-                    <div class="alert alert-danger" role="alert">Er is nog geen item om weer te geven. Voeg een item toe op de uploadpagina.</div>
-                </div>
-                <?php
-            }
             ?>
+            <div
+            <div class="alert alert-danger" role="alert">Er is nog geen item om weer te geven. Voeg een item toe op de uploadpagina.</div>
         </div>
+        <?php
+        }
+        ?>
     </div>
+</div>
 </div>

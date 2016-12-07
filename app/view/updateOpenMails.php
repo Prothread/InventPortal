@@ -52,90 +52,90 @@ foreach($get_filled_info as $get_info) {
     $mymail = new MailController();
 
     //Load PHPMailer dependencies
-        require_once DIR_MAILER . 'PHPMailerAutoload.php';
-        require_once DIR_MAILER . 'class.phpmailer.php';
-        require_once DIR_MAILER . 'class.smtp.php';
+    require_once DIR_MAILER . 'PHPMailerAutoload.php';
+    require_once DIR_MAILER . 'class.phpmailer.php';
+    require_once DIR_MAILER . 'class.smtp.php';
 
     //Load Mail account settings
-        require_once DIR_MODEL . 'MailSettings.php';
+    require_once DIR_MODEL . 'MailSettings.php';
 
 
-        /* Create phpmailer and add the image to the mail */
-        $mailer = new PHPMailer();
-        $mailer->addEmbeddedImage(DIR_PUBLIC . $admin['Logo'], "HeaderImage", "Logo.png");
+    /* Create phpmailer and add the image to the mail */
+    $mailer = new PHPMailer();
+    $mailer->addEmbeddedImage(DIR_PUBLIC . $admin['Logo'], "HeaderImage", "Logo.png");
 
-            /* TO, SUBJECT, CONTENT */
-            $to = $email; //The 'To' field
-            $subject = $title;
+    /* TO, SUBJECT, CONTENT */
+    $to = $email; //The 'To' field
+    $subject = $title;
 
-            $header = ' <div style="background: ' . $admin['Header'] . '; position:relative; width: 100%; height: 130px;">
+    $header = ' <div style="background: ' . $admin['Header'] . '; position:relative; width: 100%; height: 130px;">
                         <div style="position: absolute; height: 130px; margin-right: 25px; left: 5px;">
                             <img src="cid:HeaderImage" style="width:auto;height:75%;" />
                         </div>
                     </div> ';
-            $content = $header . "  <br/><br/>" . "Geachte " . $name . "," .
-                " <br/><br/>" . "Uw proef staat te wachten op goedkeuring in het <b>Madalco Portaal!</b>" . "<br /><br />" .
-                "<b>Titel van uw proef:</b>" .
-                $title . "<br />" .
+    $content = $header . "  <br/><br/>" . "Geachte " . $name . "," .
+        " <br/><br/>" . "Uw proef staat te wachten op goedkeuring in het <b>Madalco Portaal!</b>" . "<br /><br />" .
+        "<b>Titel van uw proef:</b>" .
+        $title . "<br />" .
 
-                "<b>Beschrijving van uw proef:</b> " .
-                $description .
+        "<b>Beschrijving van uw proef:</b> " .
+        $description .
 
-                "<br /><br />" . "U kunt uw proef " . "<a href='http://localhost/InventPortal/public/index.php?page=verify&id=$imageId&key=$token'>hier</a> " . "goedkeuren." .
+        "<br /><br />" . "U kunt uw proef " . "<a href='http://localhost/InventPortal/public/index.php?page=verify&id=$imageId&key=$token'>hier</a> " . "goedkeuren." .
 
-                "<br /> <br />Met vriendelijke groet, <br />" . $sender . " </br>Madalco Media";
-            $altcontent = "Geachte " . $name . "," .
-                " <br/><br/>" . "Uw proef staat te wachten op goedkeuring in het <b>Madalco Portaal!</b>" . "<br /><br />" .
-                "<b>Titel van uw proef:</b>" .
-                $title . "<br />" .
+        "<br /> <br />Met vriendelijke groet, <br />" . $sender . " </br>Madalco Media";
+    $altcontent = "Geachte " . $name . "," .
+        " <br/><br/>" . "Uw proef staat te wachten op goedkeuring in het <b>Madalco Portaal!</b>" . "<br /><br />" .
+        "<b>Titel van uw proef:</b>" .
+        $title . "<br />" .
 
-                "<b>Beschrijving van uw proef:</b> " .
-                $description .
+        "<b>Beschrijving van uw proef:</b> " .
+        $description .
 
-                "<br /><br />" . "U kunt uw proef " . "hier: http://localhost/InventPortal/public/index.php?page=verify&id=$imageId&key=$token " . "goedkeuren." .
+        "<br /><br />" . "U kunt uw proef " . "hier: http://localhost/InventPortal/public/index.php?page=verify&id=$imageId&key=$token " . "goedkeuren." .
 
-                "<br /> <br />Met vriendelijke groet, <br />" . $sender . " </br>Madalco Media";;
+        "<br /> <br />Met vriendelijke groet, <br />" . $sender . " </br>Madalco Media";;
 
-        //SMTP Configuration
-            $mailer->isSMTP();
-            $mailer->SMTPAuth = true; //We need to authenticate
-            $mailer->Host = $smtp['host'];
-            $mailer->Port = $smtp['port'];
-            $mailer->Username = $smtp['username'];
-            $mailer->Password = $smtp['password'];
-            $mailer->SMTPSecure = $smtp['secure'];
+    //SMTP Configuration
+    $mailer->isSMTP();
+    $mailer->SMTPAuth = true; //We need to authenticate
+    $mailer->Host = $smtp['host'];
+    $mailer->Port = $smtp['port'];
+    $mailer->Username = $smtp['username'];
+    $mailer->Password = $smtp['password'];
+    $mailer->SMTPSecure = $smtp['secure'];
 
-        //Now, send mail :
-        //From - To :
-            $mailer->From = $crendentials['email'];
-            $mailer->FromName = $sender; //Optional
-            $mailer->addAddress($to);  // Add a recipient
+    //Now, send mail :
+    //From - To :
+    $mailer->From = $crendentials['email'];
+    $mailer->FromName = $sender; //Optional
+    $mailer->addAddress($to);  // Add a recipient
 
-        //Subject - Body :
-            $mailer->Subject = $subject;
-            $mailer->Body = $content;
-            $mailer->isHTML(true); //Mail body contains HTML tags
-            $mailer->AltBody = $altcontent;
+    //Subject - Body :
+    $mailer->Subject = $subject;
+    $mailer->Body = $content;
+    $mailer->isHTML(true); //Mail body contains HTML tags
+    $mailer->AltBody = $altcontent;
 
-        //Saving mail information
+    //Saving mail information
 
-            $mailer->SMTPOptions = array(
-                'ssl' => array(
-                    'verify_peer' => false,
-                    'verify_peer_name' => false,
-                    'allow_self_signed' => true
-                )
-            );
-        //Check if mail is sent :
-            if (!$mailer->send()) {
-                $block->Redirect('index.php?page=phpmail');
-                //echo 'Error sending mail : ' . $mailer->ErrorInfo;
-                Session::flash('error', $mailer->ErrorInfo);
-            } else {
-                //If mail is send, create data and send it to the database
-                $mail->update($mailinfo);
-                $mailer->send();
-            }
+    $mailer->SMTPOptions = array(
+        'ssl' => array(
+            'verify_peer' => false,
+            'verify_peer_name' => false,
+            'allow_self_signed' => true
+        )
+    );
+    //Check if mail is sent :
+    if (!$mailer->send()) {
+        $block->Redirect('index.php?page=phpmail');
+        //echo 'Error sending mail : ' . $mailer->ErrorInfo;
+        Session::flash('error', $mailer->ErrorInfo);
+    } else {
+        //If mail is send, create data and send it to the database
+        $mail->update($mailinfo);
+        $mailer->send();
+    }
 
 
 }

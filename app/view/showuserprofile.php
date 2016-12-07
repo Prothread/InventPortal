@@ -47,10 +47,10 @@ else {
                             <th style="text-align: right;">
 
                                 <?php if($user->getPermission($permgroup, 'CAN_EDIT_CLIENT') == 1){ ?>
-                                <a href="?page=editclient&id=<?= $_GET['id'] ?>">
-                                    <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
-                                    <span class="btn-label"><i class="glyphicon glyphicon-pencil"></i></span>Wijzig gebruiker</button>
-                                </a>
+                                    <a href="?page=editclient&id=<?= $_GET['id'] ?>">
+                                        <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
+                                            <span class="btn-label"><i class="glyphicon glyphicon-pencil"></i></span>Wijzig gebruiker</button>
+                                    </a>
                                 <?php } ?>
 
                             </th>
