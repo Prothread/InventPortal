@@ -24,7 +24,7 @@ $admin = $settings->getAdminSettings();
 
 if(isset($_SESSION['accorduserid'])) {
     $userinfo = $user->getUserById($_SESSION['accorduserid']);
-    $imgsrc = '../icons/profile.png';
+    $imgsrc = 'icons/profile.png';
 }
 else {
     $userinfo = $user->getUserById($_SESSION['usr_id']);

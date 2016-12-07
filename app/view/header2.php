@@ -1,5 +1,7 @@
 <?php
 #HEADER
+
+$block = new BlockController();
 ?>
     <html lang="nl">
     <head>

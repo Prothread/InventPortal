@@ -6,6 +6,8 @@ if($user->getPermission($permgroup, 'CAN_ACCORD') == 1){
 }
 else {
     $block->Redirect('index.php');
+    unset($_SESSION['accorduserid']);
+    unset($_SESSION['accord']);
     Session::flash('error', 'U heeft hier geen rechten voor.');
 }
 
