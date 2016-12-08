@@ -6,7 +6,12 @@ if($user->getPermission($permgroup, 'CAN_SHOW_USEROVERZICHT') == 1){
 }
 else {
     $block->Redirect('index.php');
-    Session::flash('error', 'U heeft hier geen rechten voor.');
+    if(isset($_SESSION['usr_id'])) {
+        Session::flash('error', 'U heeft hier geen rechten voor.');
+    }
+    else {
+        Session::flash('message', 'U bent nog niet ingelogd');
+    }
 }
 
 $uploads = new BlockController();

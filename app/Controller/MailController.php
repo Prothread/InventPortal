@@ -137,14 +137,14 @@ class MailController
     }
 
     /**
-     * Haal alle mail van het meegegeven id van de gebruiker op
+     * Haal alle mail van de gebruiker op met een id en een filter
      *
      * @return mixed
      */
 
-    public function getUserMailByUserId($id, $limit = null, $offset = null, $clientid = null)
+    public function getUserMailByUserId($id, $date = null, $verified = null, $clientid = null)
     {
-        return $this->model->getUserMailByUserId($id, $limit, $offset, $clientid);
+        return $this->model->getUserMailByUserId($id, $date, $verified, $clientid);
     }
 
     /**

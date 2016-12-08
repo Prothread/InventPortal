@@ -106,7 +106,7 @@ switch($page) {
         include '../app/view/imagecancel.php';
         break;
     case 'useroverview':
-        include '../app/view/userprofile.php';
+        include '../app/view/useroverview.php';
         break;
     case 'userdashboard':
         include '../app/view/userdashboard.php';
@@ -203,6 +203,9 @@ switch($page) {
         break;
     case 'changefilter':
         include '../app/Model/ChangeFilter.php';
+        break;
+    case 'changefilter2':
+        include '../app/Model/ChangeFilter2.php';
         break;
     default:
         include '../app/view/404.php';

@@ -1655,3 +1655,25 @@ tr:nth-child(2n) {
     font-size: 12px;
     color: #9cfeff;
 }
+.alert1 {
+    padding: 15px;
+    padding-top:0px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+.alert-version {
+    font-size: 16px;
+    color: black;
+}
+.glyphicon1 {
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    font-family: 'Glyphicons Halflings';
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}

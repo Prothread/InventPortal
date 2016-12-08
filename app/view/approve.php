@@ -108,11 +108,16 @@ $userip = $user->getUserIP();
                         $numItems = count($uploadedimages);
                         $i = 0;
                         foreach($uploadedimages as $fakename){
+                            //Haal naam van image op
+                            $fname1 = $fakename['images'];
+                            //Maak een neppe naam aan voor de image (zonder _id)
+                            $fname2 = $image_controller->getFakeImageName($fname1);
+
                             if(++$i === $numItems) {
-                                echo $fakename['fakename'];
+                                echo $fname2;
                             }
                             else {
-                                echo $fakename['fakename'] . ', ';
+                                echo $fname2 . ', ';
                             }
                         }?>
                     </span>
@@ -129,7 +134,7 @@ $userip = $user->getUserIP();
                                 <div id="imgakkoord" style="float:left;">
                                     <div style="border:0; width: 250px; height: 320px;">
                                         <a href="#img<?= $imgcount ?>">
-                                            <div id="thumbnail2" style="background: url('index.php?page=image&img=<?= $img['images']?>') no-repeat scroll 50% 50%;background-size:cover;"></div>
+                                            <div id="thumbnail2" style="background: url('index.php?page=image&img=<?= $img['images']?>') no-repeat scroll 50% 50%;background-size:contain;"></div>
                                         </a>
                                     </div>
 
@@ -148,6 +153,10 @@ $userip = $user->getUserIP();
                                             <a href="?page=imagecancel&img=<?= $img['id'] ?>"><div id="cancel" style="color:black; text-align: center;" role="alert"><span class="glyphicon glyphicon-chevron-left"></span> Stap terug</div></a>
                                         <?php }
 
+                                        else if($session->getImageVerify($img['id']) == 3) {?>
+                                            <div id="weiger" class="alert1 alert-info" style="background-color:lightgrey; color:grey; text-align: center;" role="alert"><span class="alert-version">V<?= $isverified['version']?></span><br /><span class="glyphicon1glyphicon-remove-circle"></span> Gewijzigd</div>
+                                        <?php }
+
                                         else { ?>
                                             <form id="mybuttons" method="post">
                                                 <input type="hidden" id="refreshcount" value="<?= $imgcount ?>">
@@ -159,11 +168,11 @@ $userip = $user->getUserIP();
                                     }
 
                                     else if($imago['verify'] == 1) { ?>
-                                        <div id="akkoord" class="alert alert-success" style="text-align: center;" role="alert"><span class="glyphicon glyphicon-ok-circle"></span> Akkoord</div>
+                                        <div id="akkoord" class="alert1 alert-success" style="text-align: center;" role="alert"><span class="alert-version">V<?= $imago['version']?></span><br /><span class="glyphicon1 glyphicon-ok-circle"></span> Akkoord</div>
                                     <?php }
 
                                     else if($imago['verify'] == 3) { ?>
-                                        <div id="weiger" class="alert alert-info" style="background-color:lightgrey; color:grey; text-align: center;" role="alert"><span class="glyphicon glyphicon-remove-circle"></span> Gewijzigd</div>
+                                        <div id="weiger" class="alert1 alert-info" style="background-color:lightgrey; color:grey; text-align: center;" role="alert"><span class="alert-version">V<?= $imago['version']?></span><br /><span class="glyphicon1glyphicon-remove-circle"></span> Gewijzigd</div>
                                         <?php
                                     }
                                     else { ?>

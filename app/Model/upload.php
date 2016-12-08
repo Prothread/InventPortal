@@ -134,10 +134,8 @@ if($error == 0) {
                     </div> ';
         $content = $header . "  <br/><br/>" . "Geachte " . $name . "," .
             " <br/><br/>" . "Uw proef staat te wachten op goedkeuring in het <b>Madalco Portaal!</b>" . "<br /><br />" .
-            "<b>Titel van uw proef:</b>".
             $title . "<br />" .
 
-            "<b>Beschrijving van uw proef:</b> " .
             $description.
 
             "<br /><br />" . "U kunt uw proef " . "<a href='http://localhost/InventPortal/public/index.php?page=verify&id=$imageId&key=$token'>hier</a> " . "goedkeuren." .
@@ -145,10 +143,8 @@ if($error == 0) {
             "<br /> <br />Met vriendelijke groet, <br />" . $sender . " </br>Madalco Media";
         $altcontent = "Geachte " . $name . "," .
             " <br/><br/>" . "Uw proef staat te wachten op goedkeuring in het <b>Madalco Portaal!</b>" . "<br /><br />" .
-            "<b>Titel van uw proef:</b>".
             $title . "<br />" .
 
-            "<b>Beschrijving van uw proef:</b> " .
             $description.
 
             "<br /><br />" . "U kunt uw proef " . "hier: http://localhost/InventPortal/public/index.php?page=verify&id=$imageId&key=$token " . "goedkeuren." .
@@ -179,7 +175,6 @@ if($error == 0) {
 
 //Saving mail information
 
-        $dbimages = implode(", ", $images);
         $uniqdbimages = implode(", ", $unique_names);
 
         if(isset($_POST['id'])) {
@@ -261,7 +256,6 @@ if($error == 0) {
             //If mail is send, create data and send it to the database
             if(isset( $_POST['id'] )) {
                 $mymail->update($mailinfo);
-                $mailer->send();
             }
             else {
                 $mymail->create($mailinfo);

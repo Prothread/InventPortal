@@ -118,20 +118,29 @@ class DbMail extends Database
                         if ($this->dbQuery($sql)) {
                             true;
                         }
+
                     }
                 }
 
                 if($mail->getImage()) {
                     $imgarray = (explode(", ", $mail->getImage()));
 
-                    $i = 0;
+                    $vsql = "SELECT * from `image` WHERE `mailid` = '{$mail->getMailId()}' ORDER BY `version` DESC LIMIT 1";
+                    if($vresult = $this->dbQuery($vsql)) {
+                        $vreturn = mysqli_fetch_assoc($vresult);
+                        $version = intval($vreturn['version']) + 1;
+                    }
+                    else {
+                        $version = 1;
+                    }
+
                     foreach ($imgarray as $img) {
-                        $sql2 = "INSERT INTO `image` (`mailid`, `images`, `verify`) VALUES ('{$mail->getMailId()}', '{$img}', '{$mail->getVerified()}')";
+                        $sql2 = "INSERT INTO `image` (`mailid`, `images`, `version`, `verify`) VALUES ('{$mail->getMailId()}', '{$img}', '{$version}', '{$mail->getVerified()}')";
 
                         if ($this->dbQuery($sql2)) {
-                            $i++;
                             true;
                         }
+
                     }
                 }
 
@@ -207,28 +216,32 @@ class DbMail extends Database
     }
 
     /**
-     * Haal alle mail van de meegegeven gebruiker op
+     * Haal alle mail van de gebruiker op met een id en een filter
      *
      * @return mixed
      */
 
-    public function getUserMailByUserId($id, $limit = null, $offset = null, $clientid = null)
+    public function getUserMailByUserId($id, $date = null, $verified = null, $clientid = null)
     {
         $sql = "SELECT * FROM `usermail` ";
 
         if($clientid) {
-            $sql .= "WHERE `clientid` = '{$clientid}'";
+            $sql .= " JOIN `mail` ON `usermail`.`mailid` = `mail`.`id` WHERE `usermail`.`clientid` = '{$id}'";
+            //$sql .= "WHERE `clientid` = '{$clientid}'";
         }
         else {
-            $sql .= "WHERE `userid` = '{$id}'";
+            $sql .= " JOIN `mail` ON `usermail`.`mailid` = `mail`.`id` WHERE `usermail`.`userid` = '{$id}'";
+            //$sql .= "WHERE `userid` = '{$id}'";
         }
 
-        if($limit) {
-            $sql .= " LIMIT {$limit}";
+        if($date) {
+            $date2 = date('Y-m-d', strtotime("-5 day"));
+            $sql .= " AND `datum` < '{$date2}'";
         }
-        if($offset) {
-            $sql .= " OFFSET {$offset}";
+        if($verified) {
+            $sql .= " AND `verified` IN ({$verified})";
         }
+        $sql .= " ORDER BY `mail`.`id`";
 
         $result = $this->dbQuery($sql);
         $value = mysqli_fetch_all($result, MYSQLI_ASSOC);

@@ -30,7 +30,7 @@ else {
                             <?php if(isset($_SESSION['updateopenmails']) && $user->getPermission($permgroup, 'CAN_EDIT_ACCORD') == 1){ ?>
                             <a data-toggle="modal" data-target="#updateOpenMails" href="#">
                                 <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
-                                <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> Update alle Open proeven <span id="days">(5 < dagen)</span></button>
+                                <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> Update alle Open proeven <span id="days">( > 5 dagen )</span></button>
                             </a>
                             <?php  } ?>
 
@@ -40,7 +40,7 @@ else {
                             </a>
                             <a id="filteropen" href="#">
                                 <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
-                                <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> Open proeven <span id="days">(5 < dagen)</span></button>
+                                <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> Open proeven <span id="days">( > 5 dagen )</span></button>
                             </a>
 
                             <a id="filtergoed" href="#">

@@ -213,14 +213,14 @@ class Mail {
     }
 
     /**
-     * Haal alle mail van de meegegeven gebruiker op
+     * Haal alle mail van de gebruiker op met een id en een filter
      *
      * @return mixed
      */
 
-    public function getUserMailByUserId($id, $limit = null, $offset = null, $clientid = null)
+    public function getUserMailByUserId($id, $date = null, $verified = null, $clientid = null)
     {
-        return $this->db->getUserMailByUserId($id, $limit, $offset, $clientid);
+        return $this->db->getUserMailByUserId($id, $date, $verified, $clientid);
     }
 
     /**

@@ -62,7 +62,7 @@ $mymail = new MailController();
                 </div> ';
     $content = $header . "  <br/><br/>" . "Geachte " . $_POST['verstuurder'] . "," .
         " <br/><br/>" . $_POST['name'] . " heeft uw proef <b>" . $_SESSION['verifytext'] . "</b>." . "<br /><br />" .
-        "<b>Titel van uw proef: </b>" .
+        "<b>Onderwerp van uw proef: </b>" .
         $_POST['title'] .
 
         "<br /><br />" . "U kunt uw proef " . "<a href='http://localhost/InventPortal/public/index.php?page=item&id=$myid'>hier</a> " . "bekijken." .
@@ -70,7 +70,7 @@ $mymail = new MailController();
         "<br /> <br />Met vriendelijke groet, <br />" . $_POST['name'];
     $altcontent = "Geachte " . $_POST['verstuurder'] . "," .
         " <br/><br/>" . $_POST['name'] . " heeft uw proef " . $_SESSION['verifytext'] . "." . "<br /><br />" .
-        "<b>Titel van uw proef: </b>" .
+        "<b>Onderwerp van uw proef: </b>" .
         $_POST['title'] .
 
         "<br /><br />" . "U kunt uw proef " . "<a href='http://localhost/InventPortal/public/index.php?page=item&id=$myid'>hier</a> " . "bekijken." .
