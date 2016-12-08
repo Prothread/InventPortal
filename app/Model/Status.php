@@ -16,9 +16,9 @@ class Status
 	 */
 
 	public function __construct()
-    {
-        $this->db = new DbStatus();
-    }
+	{
+		$this->db = new DbStatus();
+	}
 
 	/**
 	 * Variabele om StatusID in op te slaan
@@ -26,7 +26,7 @@ class Status
 	 * @var $StatusID
 	 */
 
-    private $StatusID;
+	private $StatusID;
 
 	/**
 	 * Variabele om StatusName in op te slaan
@@ -217,7 +217,7 @@ class Status
 	 * @return bool
 	 */
 
-	public function update() 
+	public function update()
 	{
 		return $this->db->update($this);
 	}

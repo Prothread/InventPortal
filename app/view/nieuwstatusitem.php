@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 #Pagina voor het aanmaken van  een nieuw item voor het statusportaal
 
@@ -7,7 +7,7 @@ if($user->getPermission($permgroup, 'CAN_SHOW_OVERZICHT') == 1){
 }
 else {
 	$block->Redirect('index.php');
-    Session::flash('error', 'U heeft hier geen rechten voor.');
+	Session::flash('error', 'U heeft hier geen rechten voor.');
 }
 
 $status = new StatusController();

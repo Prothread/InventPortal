@@ -463,9 +463,9 @@ button {
     top: -32px;
     background-color: #fff;
     border: 3px solid #e3e3e3;
-    -webkit-box-shadow: -1px 62px 129px 0px rgba(0,0,0,0.58);
-    -moz-box-shadow: -1px 62px 129px 0px rgba(0,0,0,0.58);
-    box-shadow: -1px 62px 129px 0px rgba(0,0,0,0.58);
+    -webkit-box-shadow: -1px 62px 129px 0 rgba(0,0,0,0.58);
+    -moz-box-shadow: -1px 62px 129px 0 rgba(0,0,0,0.58);
+    box-shadow: -1px 62px 129px 0 rgba(0,0,0,0.58);
 
 }
 .img-md {
@@ -540,7 +540,7 @@ span.round-tab:hover {
     left: 46%;
     opacity: 0;
     margin: 0 auto;
-    bottom: 0px;
+    bottom: 0;
     border: 5px solid transparent;
     border-bottom-color: #e0e0e0;
     transition: 0.1s ease-in-out;
@@ -556,7 +556,7 @@ span.round-tab:hover {
     left: 46%;
     opacity: 1;
     margin: 0 auto;
-    bottom: 0px;
+    bottom: 0;
     border: 10px solid transparent;
     border-bottom-color: #bb2c4c;
 }
@@ -642,7 +642,7 @@ table {
     /* This really depends on the application, in my case it was: */
 
     /* Adding a light border */
-    box-shadow: inset 0px 0px 5px;
+    box-shadow: inset 0 0 5px;
     /* Taking the difference out of the padding */
 }
 
@@ -759,8 +759,8 @@ table {
 .js #loader { display: block; position: absolute; left: 100px; top: 0; }
 .se-pre-con {
     position: fixed;
-    left: 0px;
-    top: 0px;
+    left: 0;
+    top: 0;
     width: 100%;
     height: 100%;
     z-index: 9999;
@@ -1013,9 +1013,9 @@ tr:nth-child(even) {
 }
 
 .well-dash {
-    -webkit-box-shadow: 0px 10px 5px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 10px 5px 0px rgba(0,0,0,0.75);
-    box-shadow: 0px 10px 5px 0px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 0 10px 5px 0 rgba(0,0,0,0.75);
+    -moz-box-shadow: 0 10px 5px 0 rgba(0,0,0,0.75);
+    box-shadow: 0 10px 5px 0 rgba(0,0,0,0.75);
 }
 
 
@@ -1585,10 +1585,10 @@ tr:nth-child(2n) {
 #comments {
     width: 100%;
     height: 12em;
-    -webkit-margin-before: 0px;
+    -webkit-margin-before: 0;
     overflow: hidden;
     overflow-y: scroll;
-    -webkit-padding-start: 0px;
+    -webkit-padding-start: 0;
 }
 #comments li {
     width: 100%;

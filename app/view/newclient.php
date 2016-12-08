@@ -2,7 +2,7 @@
 #PAGE FOR CREATING CLIENTS
 
 if($user->getPermission($permgroup, 'CAN_CREATE_CLIENT') == 1){
-    
+
 }
 else {
     $block->Redirect('index.php');

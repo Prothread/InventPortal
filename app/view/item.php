@@ -207,13 +207,13 @@ $_SESSION['clientid'] = $clientmail['clientid'];
                                         </div>
 
                                         <?php if(isset($upload['answer']) && $upload['answer'] !== '') { ?>
-                                        <br />
-                                        <div class="form-group">
-                                            <label class="col-md-4 control-label" for="textinput">Beschijving van de klant</label>
-                                            <div class="col-md-4">
-                                                <textarea disabled class="form-control input-md" id="textinput1"><?= $upload['answer']?></textarea>
+                                            <br />
+                                            <div class="form-group">
+                                                <label class="col-md-4 control-label" for="textinput">Beschijving van de klant</label>
+                                                <div class="col-md-4">
+                                                    <textarea disabled class="form-control input-md" id="textinput1"><?= $upload['answer']?></textarea>
+                                                </div>
                                             </div>
-                                        </div>
                                         <?php } ?>
 
                                         <br />
@@ -251,12 +251,12 @@ $_SESSION['clientid'] = $clientmail['clientid'];
                                             </div>
                                             <div class="allanswers">
 
-                                            <div class="form-group new_member_box_display" id="answer">
-                                                <label class="col-md-4 control-label" for="textinput"><span>Opmerking </span></label>
-                                                <div class="col-md-4">
-                                                    <textarea disabled class="form-control input-md" id="textinput1">*selecteer een opmerking*</textarea>
+                                                <div class="form-group new_member_box_display" id="answer">
+                                                    <label class="col-md-4 control-label" for="textinput"><span>Opmerking </span></label>
+                                                    <div class="col-md-4">
+                                                        <textarea disabled class="form-control input-md" id="textinput1">*selecteer een opmerking*</textarea>
+                                                    </div>
                                                 </div>
-                                            </div>
 
                                                 <?php foreach($comments as $comment){ ?>
                                                     <?php $o++;
@@ -323,63 +323,63 @@ $_SESSION['clientid'] = $clientmail['clientid'];
 
 
                                     <?php if(in_array(2, $verimages) || in_array(0, $verimages)) { ?>
-                                        <div class="tab-pane" role="tabpanel" id="step3">
-                                            <div class="well" style="font-size: 15px; font-style: italic;">Upload indien nodig nieuwe bestanden. </div>
+                                    <div class="tab-pane" role="tabpanel" id="step3">
+                                        <div class="well" style="font-size: 15px; font-style: italic;">Upload indien nodig nieuwe bestanden. </div>
+                                        <br>
+                                        <fieldset style="clear:both">
+                                            <!--
+                                            <label class="fileContainer">Nieuwe Bestand(en) uploaden*
+                                                <input type="file" name="myFile[]" id="imgInp" multiple onchange="loadFile(event);">
+                                            </label>
+                                            -->
+
+                                            <div class="form-group">
+                                                <label class="col-md-4 control-label" for="textinput">Bestanden uploaden</label>
+                                                <div class="col-md-4">
+                                                    <label for="file-upload" class="custom-file-upload">
+                                                        <i class="fa fa-cloud-upload"></i> Uploaden
+                                                    </label>
+                                                    <input type="file" name="myFile[]" class="imgInp" id="file-upload" multiple>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-4 control-label" for="textinput">Geselecteerde bestanden:</label>
+                                                <div class="col-md-4">
+                                                    <div id="fileList"></div>
+
+                                                    <output id="list"></output>
+                                                </div>
+                                            </div>
+
+                                            <?php if($user->getPermission($permgroup, 'CAN_ADD_INTERN_COMMENT') == 1){ ?>
+                                                <br /><br />
+                                                <div class="form-group">
+                                                    <label class="col-md-4 control-label" for="textinput">Nieuwe interne opmerking:</label>
+                                                    <div class="col-md-4">
+                                                        <textarea class="form-control input-md" maxlength="300" id="textinput" type="text" name="interncomment"></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-md-4 control-label" for="textinput">Belangrijkheid opmerking:</label>
+                                                    <div class="col-md-4">
+                                                        <select name="commentgroep">
+                                                            <option value="1" style="color:#5a5454">Normale opmerking</option>
+                                                            <option value="2" style="color:#9a1734">Let op de volgende punten</option>
+                                                            <option value="3" style="color:#dd2c4c">Belangrijke opmerking</option>
+                                                            <option value="4" style="color:red">Eis van de klant</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            <?php } ?>
+
                                             <br>
-                                            <fieldset style="clear:both">
-                                                <!--
-                                                <label class="fileContainer">Nieuwe Bestand(en) uploaden*
-                                                    <input type="file" name="myFile[]" id="imgInp" multiple onchange="loadFile(event);">
-                                                </label>
-                                                -->
-
-                                                <div class="form-group">
-                                                    <label class="col-md-4 control-label" for="textinput">Bestanden uploaden</label>
-                                                    <div class="col-md-4">
-                                                        <label for="file-upload" class="custom-file-upload">
-                                                            <i class="fa fa-cloud-upload"></i> Uploaden
-                                                        </label>
-                                                        <input type="file" name="myFile[]" class="imgInp" id="file-upload" multiple>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="col-md-4 control-label" for="textinput">Geselecteerde bestanden:</label>
-                                                    <div class="col-md-4">
-                                                        <div id="fileList"></div>
-
-                                                        <output id="list"></output>
-                                                    </div>
-                                                </div>
-
-                                                <?php if($user->getPermission($permgroup, 'CAN_ADD_INTERN_COMMENT') == 1){ ?>
-                                                    <br /><br />
-                                                    <div class="form-group">
-                                                        <label class="col-md-4 control-label" for="textinput">Nieuwe interne opmerking:</label>
-                                                        <div class="col-md-4">
-                                                            <textarea class="form-control input-md" maxlength="300" id="textinput" type="text" name="interncomment"></textarea>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="col-md-4 control-label" for="textinput">Belangrijkheid opmerking:</label>
-                                                        <div class="col-md-4">
-                                                            <select name="commentgroep">
-                                                                <option value="1" style="color:#5a5454">Normale opmerking</option>
-                                                                <option value="2" style="color:#9a1734">Let op de volgende punten</option>
-                                                                <option value="3" style="color:#dd2c4c">Belangrijke opmerking</option>
-                                                                <option value="4" style="color:red">Eis van de klant</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                <?php } ?>
-
-                                                <br>
-                                            </fieldset>
-                                            <br><br>
-                                            <ul class="list-inline pull-right">
-                                                <li><button type="button" class="btn btn-primary next-step">Volgende</button></li>
-                                            </ul>
-                                        </div>
-                                        <div class="tab-pane" role="tabpanel" id="step4">
+                                        </fieldset>
+                                        <br><br>
+                                        <ul class="list-inline pull-right">
+                                            <li><button type="button" class="btn btn-primary next-step">Volgende</button></li>
+                                        </ul>
+                                    </div>
+                                    <div class="tab-pane" role="tabpanel" id="step4">
                                         <div class="well" style="font-size: 15px; font-style: italic;">Pas hieronder eventueel de beschrijving aan en verstuur de proef opnieuw. </div>
 
                                         <br>
@@ -400,11 +400,11 @@ $_SESSION['clientid'] = $clientmail['clientid'];
                                             <li>  <input class="btn btn-primary btn-success" name="submit" style="max-width: 100px; background-color: #bb2c4c; border: 1px solid #bb2c4c" type="submit" value="Opslaan"></li>
                                         </ul>
                                         <br>
-                                    <?php }
+                                        <?php }
 
-                                    // VOOR ALS HET AL GEACCORDEERD IS
+                                        // VOOR ALS HET AL GEACCORDEERD IS
 
-                                    else {
+                                        else {
                                         ?>
 
                                         <div class="form-group">
@@ -440,168 +440,168 @@ $_SESSION['clientid'] = $clientmail['clientid'];
                                             </div>
                                         </div>
 
-                                            <?php if($comments !== null) { ?>
-                                                <?php $i = 0; $o = 0;?>
-                                                <div class="form-group">
-                                                    <label class="col-md-4 control-label" for="textinput">Interne opmerkingen</label>
-                                                    <div class="col-md-4">
-                                                        <ul id="comments">
-                                                            <span>Gesorteed op !importance!</span>
-                                                            <?php foreach($comments as $comment) {?>
-                                                                <?php
-                                                                $i++;
-                                                                $importance = $comment['commentgroep'];
-                                                                if($importance == '1') {
-                                                                    $importancecolor = '#5a5454';
-                                                                }
-                                                                else if($importance == '2') {
-                                                                    $importancecolor = '#9a1734';
-                                                                }
-                                                                else if($importance == '3') {
-                                                                    $importancecolor = '#dd2c4c';
-                                                                }
-                                                                else if($importance == '4') {
-                                                                    $importancecolor = 'red';
-                                                                }
-                                                                ?>
-                                                                <!-- <div class="form-group">
+                                        <?php if($comments !== null) { ?>
+                                            <?php $i = 0; $o = 0;?>
+                                            <div class="form-group">
+                                                <label class="col-md-4 control-label" for="textinput">Interne opmerkingen</label>
+                                                <div class="col-md-4">
+                                                    <ul id="comments">
+                                                        <span>Gesorteed op !importance!</span>
+                                                        <?php foreach($comments as $comment) {?>
+                                                            <?php
+                                                            $i++;
+                                                            $importance = $comment['commentgroep'];
+                                                            if($importance == '1') {
+                                                                $importancecolor = '#5a5454';
+                                                            }
+                                                            else if($importance == '2') {
+                                                                $importancecolor = '#9a1734';
+                                                            }
+                                                            else if($importance == '3') {
+                                                                $importancecolor = '#dd2c4c';
+                                                            }
+                                                            else if($importance == '4') {
+                                                                $importancecolor = 'red';
+                                                            }
+                                                            ?>
+                                                            <!-- <div class="form-group">
                                                     <label class="col-md-4 control-label" for="textinput"><span style="color: <?= $importancecolor ?>">Opmerking <?= $i ?>: </span></label>
                                                     <div class="col-md-4">
                                                         <textarea disabled class="form-control input-md" id="textinput"><?= $comment['comment']?></textarea>
                                                     </div>
                                                 </div> -->
-                                                                <a href="" class="question<?= $i ?>"><li style="color: <?= $importancecolor ?>"><div id="leftside"><?= $comment['comment']?></div><div id="rightdate"><?= $comment['datum'] ?></div></li></a>
-                                                            <?php } ?>
-                                                        </ul>
+                                                            <a href="" class="question<?= $i ?>"><li style="color: <?= $importancecolor ?>"><div id="leftside"><?= $comment['comment']?></div><div id="rightdate"><?= $comment['datum'] ?></div></li></a>
+                                                        <?php } ?>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="allanswers">
+
+                                                <div class="form-group new_member_box_display" id="answer">
+                                                    <label class="col-md-4 control-label" for="textinput"><span>Opmerking </span></label>
+                                                    <div class="col-md-4">
+                                                        <textarea disabled class="form-control input-md" id="textinput1">*selecteer een opmerking*</textarea>
                                                     </div>
                                                 </div>
-                                                <div class="allanswers">
 
-                                                    <div class="form-group new_member_box_display" id="answer">
-                                                        <label class="col-md-4 control-label" for="textinput"><span>Opmerking </span></label>
+                                                <?php foreach($comments as $comment){ ?>
+                                                    <?php $o++;
+                                                    $importance = $comment['commentgroep'];
+                                                    if($importance == '1') {
+                                                        $importancecolor = '#5a5454';
+                                                    }
+                                                    else if($importance == '2') {
+                                                        $importancecolor = '#9a1734';
+                                                    }
+                                                    else if($importance == '3') {
+                                                        $importancecolor = '#dd2c4c';
+                                                    }
+                                                    else if($importance == '4') {
+                                                        $importancecolor = 'red';
+                                                    }?>
+                                                    <div class="form-group isanswer" id="answer<?= $o ?>">
+                                                        <label class="col-md-4 control-label" for="textinput"><span style="color:<?= $importancecolor ?>">Opmerking <?= $o ?> </span><br /><?= date("d-m-Y", strtotime($comment['datum'])); ?></label>
                                                         <div class="col-md-4">
-                                                            <textarea disabled class="form-control input-md" id="textinput1">*selecteer een opmerking*</textarea>
+                                                            <textarea disabled class="form-control input-md" id="textinput1"><?= $comment['comment']; ?></textarea>
                                                         </div>
                                                     </div>
-
-                                                    <?php foreach($comments as $comment){ ?>
-                                                        <?php $o++;
-                                                        $importance = $comment['commentgroep'];
-                                                        if($importance == '1') {
-                                                            $importancecolor = '#5a5454';
-                                                        }
-                                                        else if($importance == '2') {
-                                                            $importancecolor = '#9a1734';
-                                                        }
-                                                        else if($importance == '3') {
-                                                            $importancecolor = '#dd2c4c';
-                                                        }
-                                                        else if($importance == '4') {
-                                                            $importancecolor = 'red';
-                                                        }?>
-                                                        <div class="form-group isanswer" id="answer<?= $o ?>">
-                                                            <label class="col-md-4 control-label" for="textinput"><span style="color:<?= $importancecolor ?>">Opmerking <?= $o ?> </span><br /><?= date("d-m-Y", strtotime($comment['datum'])); ?></label>
-                                                            <div class="col-md-4">
-                                                                <textarea disabled class="form-control input-md" id="textinput1"><?= $comment['comment']; ?></textarea>
-                                                            </div>
-                                                        </div>
-                                                    <?php } ?>
-                                                </div>
+                                                <?php } ?>
+                                            </div>
 
 
 
-                                                <script>
-                                                    $('[class^="question"]').on('click', function(e){
-                                                        e.preventDefault();
-                                                        var numb = this.className.replace('question', '');
-                                                        $('[id^="answer"]').hide();
-                                                        $('#answer' + numb).show();
-                                                    });
-                                                </script>
+                                            <script>
+                                                $('[class^="question"]').on('click', function(e){
+                                                    e.preventDefault();
+                                                    var numb = this.className.replace('question', '');
+                                                    $('[id^="answer"]').hide();
+                                                    $('#answer' + numb).show();
+                                                });
+                                            </script>
 
-                                            <?php } ?>
+                                        <?php } ?>
 
-                                        </div>
-                                        <br><br>
+                                    </div>
+                                    <br><br>
 
 
                             </form>
-                                        <table>
-                                            <thead>
-                                                <tr>
-                                                    <td>Downloads:</td>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr>
-                                                <?php foreach($uploadedimages as $img) { ?>
-                                                    <td style="float:left;margin-right:10px;" class="imgdownloader img<?= $img['id']?>">
-                                                        <div class="btn-group">
-                                                            <button type="button" id="downloadimagedd" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                <div class="imagedownload" style="background: url('index.php?page=image&img=<?= $img['images']?>'); background-size: cover;"> <span class="caret"></span>
-                                                            </button>
-                                                            <ul class="dropdown-menu">
-                                                            <?php if($img['downloadable'] == 1 || substr( $img['images'], -3) == 'pdf') { ?>
-                                                                <li><a href="?page=download&file=<?= $img['images']; ?>">Download</a></li>
-                                                            <?php }
-                                                            else { ?>
-                                                                <?php if($user->getPermission($permgroup, 'CAN_EDIT_ACCORD') == 1){ ?>
-                                                                    <li>
-                                                                        <form id="downloadbuttons" method="post">
-                                                                            <span>Maak downloadbaar: </span>
-                                                                            <input type="submit" class="imgdownload id<?= $id ?>" id="img<?= $img['id'] ?>">
-                                                                        </form>
-                                                                    </li>
-                                                                <?php } ?>
-                                                                <br />
-                                                                <li>U kunt dit product nog niet downloaden</li>
-                                                            <?php } ?>
-                                                            </ul>
-                                                        </div>
-                                                    </td>
-                                                <?php }?>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    <?php if($user->getPermission($permgroup, 'CAN_EDIT_ACCORD') == 1){ ?>
-                                    <a data-toggle="modal" data-target="#ImageDownloader" href="#">Maak alle files downloadbaar</a>
-                                    <?php } ?>
+                            <table>
+                                <thead>
+                                <tr>
+                                    <td>Downloads:</td>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <?php foreach($uploadedimages as $img) { ?>
+                                        <td style="float:left;margin-right:10px;" class="imgdownloader img<?= $img['id']?>">
+                                            <div class="btn-group">
+                                                <button type="button" id="downloadimagedd" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <div class="imagedownload" style="background: url('index.php?page=image&img=<?= $img['images']?>'); background-size: cover;"> <span class="caret"></span>
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <?php if($img['downloadable'] == 1 || substr( $img['images'], -3) == 'pdf') { ?>
+                                                        <li><a href="?page=download&file=<?= $img['images']; ?>">Download</a></li>
+                                                    <?php }
+                                                    else { ?>
+                                                        <?php if($user->getPermission($permgroup, 'CAN_EDIT_ACCORD') == 1){ ?>
+                                                            <li>
+                                                                <form id="downloadbuttons" method="post">
+                                                                    <span>Maak downloadbaar: </span>
+                                                                    <input type="submit" class="imgdownload id<?= $id ?>" id="img<?= $img['id'] ?>">
+                                                                </form>
+                                                            </li>
+                                                        <?php } ?>
+                                                        <br />
+                                                        <li>U kunt dit product nog niet downloaden</li>
+                                                    <?php } ?>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    <?php }?>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <?php if($user->getPermission($permgroup, 'CAN_EDIT_ACCORD') == 1){ ?>
+                            <a data-toggle="modal" data-target="#ImageDownloader" href="#">Maak alle files downloadbaar</a>
+                            <?php } ?>
 
 
-                                    <?php } ?>
+                            <?php } ?>
 
-                                <div style="clear:both"></div>
-                            </div>
-
+                            <div style="clear:both"></div>
                         </div>
+
                     </div>
                 </div>
             </div>
         </div>
 
-    <!-- Modal -->
-    <div class="modal fade" id="ImageDownloader" role="dialog">
-        <div class="modal-dialog">
+        <!-- Modal -->
+        <div class="modal fade" id="ImageDownloader" role="dialog">
+            <div class="modal-dialog">
 
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div style="text-align: center;" class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Update alle open mails</h4>
-                </div>
-                <div style="text-align: center;" class="modal-body">
-                    <br>
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div style="text-align: center;" class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Update alle open mails</h4>
+                    </div>
+                    <div style="text-align: center;" class="modal-body">
+                        <br>
 
-                    <p> U staat op het punt om alle images downloadbaar te maken. <br/><br/>
-                        Weet u dit zeker?<br/><br/></p>
-                    <a class="abuttonmodal" href="?page=allimgdown&id=<?= $id ?>">Maak files downloadbaar</a>
-                    <br/>
-                    <br/>
-                </div>
-                <div class="modal-footer">
+                        <p> U staat op het punt om alle images downloadbaar te maken. <br/><br/>
+                            Weet u dit zeker?<br/><br/></p>
+                        <a class="abuttonmodal" href="?page=allimgdown&id=<?= $id ?>">Maak files downloadbaar</a>
+                        <br/>
+                        <br/>
+                    </div>
+                    <div class="modal-footer">
 
+                    </div>
                 </div>
+
             </div>
 
         </div>
-    </div>

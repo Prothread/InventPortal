@@ -112,12 +112,12 @@ $_SESSION['geweigerd_percent'] = $get_items_geweigerd['COUNT(status)'];
                                     <p style="text-align: center;">Procent akkoord per persoon</p>
 
                                     <?php if(isset($p0) && $p0 !== '0' ){?>
-                                    <div class="skillbar clearfix " data-percent="<?=$p0?>%">
-                                        <div class="skillbar-title" style="visibility: hidden;position: relative;"></div>
-                                        <div class="skillbar-text"><?=$u0?></div>
-                                        <div class="skillbar-bar" style="background: #a625b3;"></div>
-                                        <div class="skill-bar-percent"><?=$p0?>%</div>
-                                    </div> <!-- End Skill Bar -->
+                                        <div class="skillbar clearfix " data-percent="<?=$p0?>%">
+                                            <div class="skillbar-title" style="visibility: hidden;position: relative;"></div>
+                                            <div class="skillbar-text"><?=$u0?></div>
+                                            <div class="skillbar-bar" style="background: #a625b3;"></div>
+                                            <div class="skill-bar-percent"><?=$p0?>%</div>
+                                        </div> <!-- End Skill Bar -->
                                     <?php } else {?>
                                         <div class="skillbar clearfix " data-percent="0>%">
                                             <div class="skillbar-title" style="visibility: hidden;position: relative;"></div>
@@ -216,18 +216,18 @@ $_SESSION['geweigerd_percent'] = $get_items_geweigerd['COUNT(status)'];
                         </div>
                     </div>
                 <?php }
-                }
-                else
-                {
-                    ?>
-                    <tr>
-                        <div class="alert alert-danger" role="alert">Er is nog geen item om weer te geven. Voeg een item toe op de uploadpagina.</div>
-                    </tr>
-                    <?php
-                }
+            }
+            else
+            {
                 ?>
-                </tbody>
-                </table>
+                <tr>
+                    <div class="alert alert-danger" role="alert">Er is nog geen item om weer te geven. Voeg een item toe op de uploadpagina.</div>
+                </tr>
+                <?php
+            }
+            ?>
+            </tbody>
+            </table>
         </div>
     </div>
 </div>

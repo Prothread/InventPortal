@@ -134,7 +134,7 @@ switch($page) {
         break;
     case 'forgetpassword':
         include '../app/view/forgetpassword.php';
-        break;    
+        break;
     case 'newpassword':
         include '../app/view/newpassword.php';
         break;

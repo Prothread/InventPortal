@@ -8,36 +8,36 @@
 <script type="text/javascript">
     jQuery(document).ready(function(){
         jQuery("#password").keyup(function() {
-          passwordStrength(jQuery(this).val());
+            passwordStrength(jQuery(this).val());
         });
     });
 
     function passwordStrength(password) {
 
-    var desc = [{'width':'0px'}, {'width':'20%'}, {'width':'40%'}, {'width':'60%'}, {'width':'80%'}, {'width':'100%'}];
+        var desc = [{'width':'0px'}, {'width':'20%'}, {'width':'40%'}, {'width':'60%'}, {'width':'80%'}, {'width':'100%'}];
 
-    var descClass = ['', 'progress-bar-danger', 'progress-bar-danger', 'progress-bar-warning', 'progress-bar-success', 'progress-bar-success'];
+        var descClass = ['', 'progress-bar-danger', 'progress-bar-danger', 'progress-bar-warning', 'progress-bar-success', 'progress-bar-success'];
 
-    var score = 0;
+        var score = 0;
 
-    //if password bigger than 6 give 1 point
-    if (password.length > 6) score++;
+        //if password bigger than 6 give 1 point
+        if (password.length > 6) score++;
 
-    //if password has both lower and uppercase characters give 1 point
-    if ((password.match(/[a-z]/)) && (password.match(/[A-Z]/))) score++;
+        //if password has both lower and uppercase characters give 1 point
+        if ((password.match(/[a-z]/)) && (password.match(/[A-Z]/))) score++;
 
-    //if password has at least one number give 1 point
-    if (password.match(/\d+/)) score++;
+        //if password has at least one number give 1 point
+        if (password.match(/\d+/)) score++;
 
-    //if password has at least one special caracther give 1 point
-    if ( password.match(/.[!,@,#,$,%,^,&,*,?,_,~,-,(,)]/) ) score++;
+        //if password has at least one special caracther give 1 point
+        if ( password.match(/.[!,@,#,$,%,^,&,*,?,_,~,-,(,)]/) ) score++;
 
-    //if password bigger than 12 give another 1 point
-    if (password.length > 10) score++;
+        //if password bigger than 12 give another 1 point
+        if (password.length > 10) score++;
 
-    // display indicator
-    $("#jak_pstrength").removeClass(descClass[score-1]).addClass(descClass[score]).css(desc[score]);
-}
+        // display indicator
+        $("#jak_pstrength").removeClass(descClass[score-1]).addClass(descClass[score]).css(desc[score]);
+    }
 </script>
 
 <script>
@@ -72,11 +72,11 @@
             }
             else {
                 var data = [
-                {
-                    label: "Geen proeven",
-                    value: 1,
-                    color: "#696969"
-                }
+                    {
+                        label: "Geen proeven",
+                        value: 1,
+                        color: "#696969"
+                    }
                 ];
             }
 
@@ -176,49 +176,49 @@
 </script>
 
 <script>
-        var vote;
-        $("#AccButton, #AccButton1,#AccButton2").click(function(event) {
-            vote = $(this).val();
+    var vote;
+    $("#AccButton, #AccButton1,#AccButton2").click(function(event) {
+        vote = $(this).val();
+    });
+
+    $("form#mybuttons").submit(function(event) {
+        //$form = $(this);
+        var imgid = $(this).children('input#ImageID').val();
+        var refs = $(this).children('input#refreshcount').val();
+        var ref = '#' + 'refresh' + refs;
+
+        var dataString = $('form#mybuttons').serialize() + '&img=' + imgid + '&vote=' + vote;
+
+        $.ajax({
+            type: "POST",
+            url: "?page=imageverify",
+            data: dataString,
+            cache: false,
+            success: function(result){
+                $(ref).load("?page=approve " + ref);
+                $('#refsh').load("?page=approve #refsh");
+                $('#refer1').load("?page=approve #refer1");
+                $('#refer').load("?page=approve #refer");
+            }
         });
 
-        $("form#mybuttons").submit(function(event) {
-            //$form = $(this);
-            var imgid = $(this).children('input#ImageID').val();
-            var refs = $(this).children('input#refreshcount').val();
-            var ref = '#' + 'refresh' + refs;
-
-            var dataString = $('form#mybuttons').serialize() + '&img=' + imgid + '&vote=' + vote;
-
-                $.ajax({
-                    type: "POST",
-                    url: "?page=imageverify",
-                    data: dataString,
-                    cache: false,
-                    success: function(result){
-                        $(ref).load("?page=approve " + ref);
-                        $('#refsh').load("?page=approve #refsh");
-                        $('#refer1').load("?page=approve #refer1");
-                        $('#refer').load("?page=approve #refer");
-                    }
-                });
-
-            event.preventDefault();
-        });
+        event.preventDefault();
+    });
 </script>
 
 <script>
     $("form#createclient").submit(function (event) {
 
         var postForm = $('form#createclient').serialize() +              //Fetch form data
-            '&name=' + $('input[name=name]').val() +                      //Store name fields value
-            '&companyname=' + $('input[name=companyname]').val() +        //Store companyname fields value
-            '&email=' + $('input[name=email]').val() +                    //Store email fields value
-            '&altmail=' + $('input[name=altmail]').val() +                //Store altmail fields value
-            '&companyadress=' + $('input[name=companyadress]').val() +    //Store companyadress fields value
-            '&postcode=' +  $('input[name=postcode]').val() +             //Store postcode fields value
-            '&plaats=' + $('input[name=plaats]').val() +                  //Store plaats fields value
-            '&rechten=' + $('input[name=rechten]').val()                  //Store rechten fields value
-        ;
+                '&name=' + $('input[name=name]').val() +                      //Store name fields value
+                '&companyname=' + $('input[name=companyname]').val() +        //Store companyname fields value
+                '&email=' + $('input[name=email]').val() +                    //Store email fields value
+                '&altmail=' + $('input[name=altmail]').val() +                //Store altmail fields value
+                '&companyadress=' + $('input[name=companyadress]').val() +    //Store companyadress fields value
+                '&postcode=' +  $('input[name=postcode]').val() +             //Store postcode fields value
+                '&plaats=' + $('input[name=plaats]').val() +                  //Store plaats fields value
+                '&rechten=' + $('input[name=rechten]').val()                  //Store rechten fields value
+            ;
 
         $.ajax({
             type: "POST",
@@ -274,52 +274,52 @@
 <div id="selfer">
     <div id="self">
         <script>
-                var filter;
-                var filtername;
-                var filtersort;
+            var filter;
+            var filtername;
+            var filtersort;
 
 
-                $("#filterbutton, #filterbutton1").click(function (event) {
-                    filter = $(this).attr("name");
-                    alert(filter);
+            $("#filterbutton, #filterbutton1").click(function (event) {
+                filter = $(this).attr("name");
+                alert(filter);
 
-                    filter = (filter.split("-"));
-                    filtername = filter[0];
-                    filtersort = filter[1];
+                filter = (filter.split("-"));
+                filtername = filter[0];
+                filtersort = filter[1];
+            });
+
+
+
+            $("form#filtertable").submit(function (event) {
+                event.preventDefault();
+
+                var dataString = $('form#filtertable').serialize() + '&filter=' + filtersort + '&table=' + filtername;
+                alert(dataString);
+
+                $.ajax({
+                    type: "POST",
+                    url: "?page=filter",
+                    data: dataString,
+                    cache: false,
+                    success: function (result) {
+                        //$(ref).load("?page=approve " + ref);
+                        $('.row').load("?page=manageusers .col-lg-12");
+                        $('#filterrefresh').load("?page=manageusers #filterrefresh");
+                        $('.pagination').load("?page=manageusers .pagination");
+                        //$('#selfer').load("?page=footer #self");
+                    }
                 });
 
-
-
-                $("form#filtertable").submit(function (event) {
-                    event.preventDefault();
-
-                    var dataString = $('form#filtertable').serialize() + '&filter=' + filtersort + '&table=' + filtername;
-                    alert(dataString);
-
-                    $.ajax({
-                        type: "POST",
-                        url: "?page=filter",
-                        data: dataString,
-                        cache: false,
-                        success: function (result) {
-                            //$(ref).load("?page=approve " + ref);
-                            $('.row').load("?page=manageusers .col-lg-12");
-                            $('#filterrefresh').load("?page=manageusers #filterrefresh");
-                            $('.pagination').load("?page=manageusers .pagination");
-                            //$('#selfer').load("?page=footer #self");
-                        }
-                    });
-
-                });
+            });
 
 
 
 
 
-                /* Coole functie?
-                $( "#cart" ).on( "mouseenter mouseleave", function( event ) {
-                    $( this ).toggleClass( "active" );
-                }); */
+            /* Coole functie?
+             $( "#cart" ).on( "mouseenter mouseleave", function( event ) {
+             $( this ).toggleClass( "active" );
+             }); */
         </script>
     </div>
 </div>

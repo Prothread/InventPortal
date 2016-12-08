@@ -262,7 +262,7 @@ $userip = $user->getUserIP();
                                 <input disabled="disabled" type="hidden" name="id" value="<?= $myupload['id']; ?>">
 
                                 <p> Omschrijving: <span style="color:#bc2d4c"><?= $myupload['beschrijving']?></span> </p>
-                                
+
                                 <br>
                                 <ul class="list-inline pull-right">
                                     <li><button type="button" class="btn btn-primary next-step">Volgende</button></li>

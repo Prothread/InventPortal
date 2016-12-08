@@ -91,9 +91,9 @@ if (isset($_FILES['myFile'])) {
             array_push($unique_names, $unique_name);
             $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
 
-                if (move_uploaded_file($test1, $uniqfile)) {
-                    array_push($images, $test);
-                }
+            if (move_uploaded_file($test1, $uniqfile)) {
+                array_push($images, $test);
+            }
 
         }
         else {
@@ -182,7 +182,7 @@ if($error == 0) {
         $uniqdbimages = implode(", ", $unique_names);
 
         if(isset($_POST['id'])) {
-        $myid = $_POST['id'];
+            $myid = $_POST['id'];
             if($comment !== null && $comment !== '') {
                 $mailinfo = [
                     'id' => intval($myid),
@@ -244,8 +244,8 @@ if($error == 0) {
                 ];
             }
         }
-           $mailer->SMTPOptions = array(
-                'ssl' => array(
+        $mailer->SMTPOptions = array(
+            'ssl' => array(
                 'verify_peer' => false,
                 'verify_peer_name' => false,
                 'allow_self_signed' => true

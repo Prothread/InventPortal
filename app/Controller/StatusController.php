@@ -16,9 +16,9 @@ class StatusController
 	 */
 
 	public function __construct()
-    {
-        $this->model = new Status();
-    }
+	{
+		$this->model = new Status();
+	}
 
 	/**
 	 * Create functie voor statusportaal
@@ -35,9 +35,9 @@ class StatusController
 		$this->model->setComment($statusinfo['comment']);
 
 		if ($result = $this->model->create()) {
-            Session::flash('message', 'Het item is succesvol aangemaakt.');
-            return $result;
-        }
+			Session::flash('message', 'Het item is succesvol aangemaakt.');
+			return $result;
+		}
 		return false;
 	}
 
@@ -57,9 +57,9 @@ class StatusController
 		$this->model->setComment($statusinfo['comment']);
 
 		if ($result = $this->model->update()) {
-            Session::flash('message', 'Het item is succesvol bijgewerkt.');
-            return $result;
-        }
+			Session::flash('message', 'Het item is succesvol bijgewerkt.');
+			return $result;
+		}
 		return false;
 	}
 
