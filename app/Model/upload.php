@@ -134,8 +134,10 @@ if($error == 0) {
                     </div> ';
         $content = $header . "  <br/><br/>" . "Geachte " . $name . "," .
             " <br/><br/>" . "Uw proef staat te wachten op goedkeuring in het <b>Madalco Portaal!</b>" . "<br /><br />" .
+            "<b>Onderwerp van uw proef:</b> ".
             $title . "<br />" .
 
+            "<b>Beschrijving:</b> " .
             $description.
 
             "<br /><br />" . "U kunt uw proef " . "<a href='http://localhost/InventPortal/public/index.php?page=verify&id=$imageId&key=$token'>hier</a> " . "goedkeuren." .
@@ -143,8 +145,10 @@ if($error == 0) {
             "<br /> <br />Met vriendelijke groet, <br />" . $sender . " </br>Madalco Media";
         $altcontent = "Geachte " . $name . "," .
             " <br/><br/>" . "Uw proef staat te wachten op goedkeuring in het <b>Madalco Portaal!</b>" . "<br /><br />" .
+            "<b>Onderwerp van uw proef:</b> ".
             $title . "<br />" .
 
+            "<b>Beschrijving:</b> " .
             $description.
 
             "<br /><br />" . "U kunt uw proef " . "hier: http://localhost/InventPortal/public/index.php?page=verify&id=$imageId&key=$token " . "goedkeuren." .
