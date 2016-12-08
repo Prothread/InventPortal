@@ -32,7 +32,7 @@ download_file($file);
 
 function download_file( $Path )
 {
-
+    
     // Must be fresh start
     if (headers_sent()) {
         $fullPath = DIR_IMAGE . $Path;

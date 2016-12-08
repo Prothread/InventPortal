@@ -41,7 +41,7 @@ else {
         <div class="container-fluid">
             <table style="width:100%">
                 <tr>
-                    <th style="text-align: left;"><p class="NameText" style="font-weight: normal;">Uw proeven</p></th>
+                    <th style="text-align: left;"><p class="NameText" style="font-weight: normal;">Uw overzicht</p></th>
 
                     <th style="text-align: right;">
 
