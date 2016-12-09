@@ -109,7 +109,7 @@
     $(document).ready(function() {});
 
     if($('#ProcAcc').length) {
-        $.getScript('http://www.chartjs.org/assets/Chart.js', function () {
+        $.getScript('js/Chart.js', function () {
 
             var data = [{
                 label: "Davy",
