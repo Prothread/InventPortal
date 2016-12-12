@@ -32,7 +32,7 @@ else {
 $email = mysqli_real_escape_string( $mysqli, $_POST['email']);
 $mailexist = $user->getUserByEmail($email);
 
-if($mailexist = null || empty($mailexist)){
+if($mailexist == null || empty($mailexist)){
 
 
 //Generate a random string.
@@ -54,7 +54,7 @@ if($mailexist = null || empty($mailexist)){
     $mailer->addEmbeddedImage(DIR_PUBLIC . $admin['Logo'], "HeaderImage", "Logo.png");
 
     /* TO, SUBJECT, CONTENT */
-    $to = mysqli_real_escape_string($mysqli,$_POST['email']); //The 'To' field
+    $to = $email; //The 'To' field
     $subject = "Accountgegevens Madalco-portaal";
 
     $header = ' <div style="background: ' . $admin['Header'] . '; position:relative; width: 100%; height: 130px;">
