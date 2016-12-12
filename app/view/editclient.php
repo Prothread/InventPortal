@@ -217,25 +217,25 @@ if(isset($_POST['submit'])){
                                 <label class="col-md-4 control-label">Rechten:<span style="color:#dd2c4c">*</span></label>
                                 <div class="col-md-4">
                                     <select class="form-control" name="rechten" required>
-                                        <?php if($userinfo['permgroup'] == '1') {?>
+                                        <?php if($myclient['permgroup'] == '1') {?>
                                             <option value="1" selected="selected">Klant</option>
                                         <?php } else { ?>
                                             <option value="1">Klant</option>
                                         <?php } ?>
 
-                                        <?php if($userinfo['permgroup'] == '2') {?>
+                                        <?php if($myclient['permgroup'] == '2') {?>
                                             <option value="2" selected="selected">Gebruiker</option>
                                         <?php } else { ?>
                                             <option value="2">Gebruiker</option>
                                         <?php } ?>
 
-                                        <?php if($userinfo['permgroup'] == '3') {?>
+                                        <?php if($myclient['permgroup'] == '3') {?>
                                             <option value="3" selected="selected">Beheerder</option>
                                         <?php } else { ?>
                                             <option value="3">Beheerder</option>
                                         <?php } ?>
 
-                                        <?php if($userinfo['permgroup'] == '4') {?>
+                                        <?php if($myclient['permgroup'] == '4') {?>
                                             <option value="4" selected="selected">Admin</option>
                                         <?php } else { ?>
                                             <option value="4">Admin</option>

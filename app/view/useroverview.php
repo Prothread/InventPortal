@@ -30,7 +30,7 @@ else {
         $getAllUserItems = $items->getUserMailByUserId($userid, null, null, $clientID);
     }
     else {
-        $getAllUserItems = $items->getUserMailByUserId($userid, null, null);
+        $getAllUserItems = $items->getUserMailByUserId($userid);
     }
 
 }
