@@ -12,6 +12,8 @@ else {
 }
 
 $upload = new BlockController();
+$usermail = new MailController();
+$user =  new UserController();
 $session = new Session();
 
 $image_controller = new ImageController();
@@ -29,7 +31,16 @@ else {
     return 'Er is iets misgegaan';
 }
 $_SESSION['accordid'] = $myupload['id'];
-$_SESSION['mailto'] = $myupload['email'];
+
+$UserMailer = $usermail->getUserMailbyMailID($session->getMailId());
+$verstuurder = $user->getUserById($UserMailer['userid']);
+
+if(isset($verstuurder['altmail']) && $verstuurder['altmail'] !== '') {
+    $_SESSION['mailto'] = $verstuurder['altmail'];
+}
+else {
+    $_SESSION['mailto'] = $verstuurder['email'];
+}
 
 $UID = date('d.m.Y-G.i.s') . '-192.08.1.124';
 
@@ -128,13 +139,20 @@ $userip = $user->getUserIP();
                             $imgcount = 0;
                             $verifiedimages = array();
                             foreach ($uploadedimages as $img) {
+                                $demimages = $img['images'];
+                                $deimage = pathinfo($demimages);
                                 $imgcount++;
                                 ?>
                                 <div id="refresh<?= $imgcount ?>">
                                 <div id="imgakkoord" style="float:left;">
                                     <div style="border:0; width: 250px; height: 320px;">
                                         <a href="#img<?= $imgcount ?>">
-                                            <div id="thumbnail2" style="background: url('index.php?page=image&img=<?= $img['images']?>') no-repeat scroll 50% 50%;background-size:contain;"></div>
+                                            <?php if($deimage['extension'] == 'pdf') { ?>
+                                                <embed width="100%" height="93%" src="index.php?page=image&img=<?= $img["images"]?>"></embed>
+                                                <a href="#img<?= $imgcount ?>">PDF Lightbox</a>
+                                            <?php } else { ?>
+                                                <div id="thumbnail2" style="background: url('index.php?page=image&img=<?= $img['images']?>') no-repeat scroll 50% 50%;background-size:contain;"></div>
+                                            <?php } ?>
                                         </a>
                                     </div>
 
@@ -225,8 +243,12 @@ $userip = $user->getUserIP();
                                     </div>
                                 </div>
                                 <a href="#_" class="lightbox" id="img<?=$imgcount ?>">
-                                    <div id="lighter">
-                                        <div id="thumbnail2" style="background: url('index.php?page=image&img=<?= $img['images']?>') no-repeat scroll 50% 50%;background-size:contain;"></div>
+                                    <div id="lighter" class="w3-animate-opacity">
+                                        <?php if($deimage['extension'] == 'pdf') { ?>
+                                            <embed width="100%" height="100%" src="index.php?page=image&img=<?= $img["images"]?>"></embed>
+                                        <?php } else { ?>
+                                            <div id="thumbnail2" style="background: url('index.php?page=image&img=<?= $img['images']?>') no-repeat scroll 50% 50%;background-size:contain;"></div>
+                                        <?php } ?>
                                     </div>
                                 </a>
                             <?php
