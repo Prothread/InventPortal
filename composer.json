@@ -7,10 +7,10 @@
     }
   ],
   "autoload": {
-    "classmap": ["app/"], 
+    "classmap": ["app/"],
     "psr-4": {
-        "ProjectRoot\\" : "", 
-        "NamspaceInSourceDir\\" : "src/"         
+      "ProjectRoot\\" : "",
+      "NamspaceInSourceDir\\" : "src/"
     }
   },
   "require": {

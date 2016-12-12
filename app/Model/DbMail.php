@@ -243,12 +243,11 @@ class DbMail extends Database
         }
         $sql .= " ORDER BY `mail`.`id`";
 
-        $result = $this->dbQuery($sql);
-        $value = mysqli_fetch_all($result, MYSQLI_ASSOC);
-
-        if($value) {
+        if($result = $this->dbQuery($sql)) {
+            $value = mysqli_fetch_all($result, MYSQLI_ASSOC);
             return $value;
         }
+
     }
 
     /**
