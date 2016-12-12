@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Kevin
- * Date: 21-Nov-16
- * Time: 10:32
- */
+#PAGE FOR DOWNLOADING IMAGE PROCESS
 
 $mysqli = mysqli_connect();
 $id = mysqli_real_escape_string($mysqli, $_POST['id'] );

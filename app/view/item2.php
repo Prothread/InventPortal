@@ -1,5 +1,5 @@
 <?php
-#INDIVIDUAL ITEM PAGE
+#SECOND INDIVIDUAL ITEM PAGE
 
 $user = new UserController();
 

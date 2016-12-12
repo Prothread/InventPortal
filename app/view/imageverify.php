@@ -1,4 +1,5 @@
 <?php
+#THE VERIFY IMGAGE PROCESS PAGE
 
 require_once DIR_MODEL . 'permissions.php';
 

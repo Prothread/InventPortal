@@ -1,4 +1,5 @@
 <?php
+#STATUSPORTAL PAGE
 
 if($user->getPermission($permgroup, 'CAN_USE_STATUSPORTAL') == 1){
 

@@ -1,4 +1,5 @@
 <?php
+#NEWPASSWORD PROCESSING PAGE
 
 $mysqli = mysqli_connect();
 $user = new UserController();
