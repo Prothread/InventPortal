@@ -127,10 +127,8 @@ class DbBlock extends Database
     {
         $sql = "SELECT * FROM `usermail` JOIN `mail` ON `usermail`.`mailid` = `mail`.`id` WHERE `usermail`.`clientid` = '{$userID}' ORDER BY `mail`.`id` DESC LIMIT 6";
 
-        $result = $this->dbQuery($sql);
-        $row = mysqli_fetch_all($result, MYSQLI_ASSOC);
-
-        if($row) {
+        if($result = $this->dbQuery($sql)) {
+            $row = mysqli_fetch_all($result, MYSQLI_ASSOC);
             return $row;
         }
         return false;
