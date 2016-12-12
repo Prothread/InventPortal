@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Kevin
- * Date: 26-Oct-16
- * Time: 12:12
- */
+#404 ERROR PAGE
 
 unset($contenter);
 

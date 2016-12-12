@@ -31,6 +31,7 @@ if($get_user_info !== null) {
     }
     arsort($percentarray);
 
+
     array_values($percentarray);
 
     if (count($percentarray) <= 4) {
@@ -66,6 +67,8 @@ $total_items = $get_items_geaccepteerd['COUNT(status)']+$get_items_geweigerd['CO
 $_SESSION['geaccepteerd_percent'] = $get_items_geaccepteerd['COUNT(status)'];
 $_SESSION['geweigerd_percent'] = $get_items_geweigerd['COUNT(status)'];
 ?>
+
+
 
 <div id="page-content-wrapper">
     <div class="container-fluid">
@@ -112,7 +115,7 @@ $_SESSION['geweigerd_percent'] = $get_items_geweigerd['COUNT(status)'];
                                     <p style="text-align: center;">Procent akkoord per persoon</p>
 
                                     <?php if(isset($p0) && $p0 !== '0' ){?>
-                                        <div class="skillbar clearfix " data-percent="<?=$p0?>%">
+                                        <div class="skillbar clearfix" data-percent="<?=$p0?>%">
                                             <div class="skillbar-title" style="visibility: hidden;position: relative;"></div>
                                             <div class="skillbar-text"><?=$u0?></div>
                                             <div class="skillbar-bar" style="background: #a625b3;"></div>
@@ -128,14 +131,14 @@ $_SESSION['geweigerd_percent'] = $get_items_geweigerd['COUNT(status)'];
                                     <?php } ?>
 
                                     <?php if(isset($p1) && $p1 !== '0' ){?>
-                                        <div class="skillbar clearfix " data-percent="<?=$p1?>%">
+                                        <div class="skillbar clearfix" data-percent="<?=$p1?>%">
                                             <div class="skillbar-title" style="visibility: hidden;position: relative;"></div>
                                             <div class="skillbar-text"><?=$u1?></div>
                                             <div class="skillbar-bar" style="background: #a625b3;"></div>
                                             <div class="skill-bar-percent"><?=$p1?>%</div>
                                         </div> <!-- End Skill Bar -->
                                     <?php } else {?>
-                                        <div class="skillbar clearfix " data-percent="0%">
+                                        <div class="skillbar clearfix" data-percent="0%">
                                             <div class="skillbar-title" style="visibility: hidden;position: relative;"></div>
                                             <div style="position: absolute; color: black; left: 6%; top: 16%;"></div>
                                             <div class="skillbar-bar" style="background: #a625b3;"></div>
@@ -144,14 +147,14 @@ $_SESSION['geweigerd_percent'] = $get_items_geweigerd['COUNT(status)'];
                                     <?php } ?>
 
                                     <?php if(isset($p2) && $p2 !== '0' ){?>
-                                        <div class="skillbar clearfix " data-percent="<?=$p2?>%">
+                                        <div class="skillbar clearfix" data-percent="<?=$p2?>%">
                                             <div class="skillbar-title" style="visibility: hidden;position: relative;"></div>
                                             <div class="skillbar-text"><?=$u2?></div>
                                             <div class="skillbar-bar" style="background: #a625b3;"></div>
                                             <div class="skill-bar-percent"><?=$p2?>%</div>
                                         </div> <!-- End Skill Bar -->
                                     <?php } else {?>
-                                        <div class="skillbar clearfix " data-percent="0%">
+                                        <div class="skillbar clearfix" data-percent="0%">
                                             <div class="skillbar-title" style="visibility: hidden;position: relative;"></div>
                                             <div style="position: absolute; color: black; left: 6%; top: 16%;"></div>
                                             <div class="skillbar-bar" style="background: #a625b3;"></div>

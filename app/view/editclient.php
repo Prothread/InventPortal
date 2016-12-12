@@ -1,11 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Kevin
- * Date: 18-Oct-16
- * Time: 16:08
- */
-
 #PAGE FOR UPDATING CLIENTS
 
 if($user->getPermission($permgroup, 'CAN_EDIT_CLIENT') == 1){

@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Kevin
- * Date: 21-Nov-16
- * Time: 15:32
- */
+#PROCESSES ALL IMAGE DOWNLOAD FUNCTION
 
 $mysqli = mysqli_connect();
 $session = new Session();

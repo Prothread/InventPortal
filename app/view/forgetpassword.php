@@ -1,4 +1,5 @@
 <?php
+#PROCESSES NEW PASSWORD REQUEST
 
 $mysqli = mysqli_connect();
 

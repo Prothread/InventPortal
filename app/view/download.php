@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Kevin
- * Date: 21-Oct-16
- * Time: 15:21
- */
+#PROCESSES DOWNLOAD
 
 $session =  new Session();
 

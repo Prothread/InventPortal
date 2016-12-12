@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Kevin
- * Date: 19-Oct-16
- * Time: 09:01
- */
+#PROCESSES MAIL FUNCTION
 
 if($user->getPermission($permgroup, 'CAN_CREATE_CLIENT') == 1){
 
