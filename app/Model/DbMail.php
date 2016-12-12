@@ -249,6 +249,7 @@ class DbMail extends Database
         if($value) {
             return $value;
         }
+
     }
 
     /**
