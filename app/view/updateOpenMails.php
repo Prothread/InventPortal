@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Kevin
- * Date: 22-Nov-16
- * Time: 16:01
- */
+
 
 if($user->getPermission($permgroup, 'CAN_UPLOAD') == 1){
 

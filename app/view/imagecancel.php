@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Kevin
- * Date: 26-Oct-16
- * Time: 13:41
- */
+#CANCEL IMAGE PROCESS
 
 require_once DIR_MODEL . 'permissions.php';
 

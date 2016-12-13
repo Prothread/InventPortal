@@ -1,4 +1,5 @@
 <?php
+#IMAGE
 
 if(isset($_SESSION['usr_id']) || isset($_SESSION['accorduserid'])){
 

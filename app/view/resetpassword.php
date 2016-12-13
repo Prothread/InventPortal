@@ -1,5 +1,5 @@
 <?php
-#PAGE VOOR EEN NIEUW WACHTWOORD OP TE GEVEN
+#PAGE FOR MAKING A NEW PASSWORD
 
 $user = new UserController();
 $session = new Session();

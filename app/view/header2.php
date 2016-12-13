@@ -1,5 +1,5 @@
 <?php
-#HEADER
+#SECOND HEADER FOR APPROVE PAGE
 $block = new BlockController();
 
 require_once DIR_MODEL . 'permissions.php';

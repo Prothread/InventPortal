@@ -1,5 +1,5 @@
 <?php
-#OVERZICHT PAGE VAN ALLE ITEMS
+#TEST
 
 if($user->getPermission($permgroup, 'CAN_SHOW_OVERZICHT') == 1){
 

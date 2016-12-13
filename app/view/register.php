@@ -1,4 +1,5 @@
 <?php
+#REGISTER PAGE
 
 $mysqli = mysqli_connect();
 

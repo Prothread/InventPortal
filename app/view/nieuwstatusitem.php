@@ -1,6 +1,5 @@
 <?php
-
-#Pagina voor het aanmaken van  een nieuw item voor het statusportaal
+#PAGE FOR MAKING NEW STATUSPORTAL ITEM
 
 if($user->getPermission($permgroup, 'CAN_SHOW_OVERZICHT') == 1){
 
