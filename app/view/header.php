@@ -6,7 +6,7 @@ header('Pragma: no-cache'); //HTTP/1.0
 
 $user = new UserController();
 $block = new BlockController();
-include DIR_MODEL . 'permissions.php';
+require_once DIR_MODEL . 'permissions.php';
 
 if(isset($_SESSION['usr_name'])) {
     $myuser = $_SESSION['usr_name'];
@@ -34,6 +34,7 @@ else {
     } else {
         $imgsrc = '../icons/profile.png';
     }
+
 }
 ?>
     <html lang="nl">

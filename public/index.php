@@ -55,9 +55,11 @@ if(!$session->exists('usr_id') && $page !== 'approve') {
 }
 
 if($session->exists('usr_id')){
-    if($page !== 'submit' && $page !== 'item2' && $page !== 'image') {
+    if($page !== 'submit' && $page !== 'item2' && $page !== 'image' && $page !== 'download') {
         include_once '../app/view/header.php';
-
+    }
+    if($page == 'download') {
+        include_once '../app/view/header2.php';
     }
 }
 

@@ -47,12 +47,12 @@ else {
 
                         <a id="filteropen" href="#">
                             <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
-                                <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> Open proeven <span id="days">( > 5 dagen )</span></button>
+                                <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> Mijn open proeven <span id="days">( > 5 dagen )</span></button>
                         </a>
 
                         <a id="filtergoed" href="#">
                             <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
-                                <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> Geakkordeerde proeven</button>
+                                <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> Mijn geakkordeerde proeven</button>
                         </a>
 
                     </th>

@@ -33,24 +33,22 @@ if(isset($_SESSION['usr_id'])){
         $permgroup = 'Klant';
     }
 }
-else if($session->getUserId()) {
-    $id = $user->getPermissionGroup($session->getUserId());
-    $id = $id['permgroup'];
+else if(isset($_SESSION['userid'])) {
+    if ($session->getUserId()) {
+        $id = $user->getPermissionGroup($session->getUserId());
+        $id = $id['permgroup'];
 
-    if($id == 1) {
-        $permgroup = 'Klant';
-    }
-    else if($id == 2) {
-        $permgroup = 'Gebruiker';
-    }
-    else if($id == 3) {
-        $permgroup = 'Beheerder';
-    }
-    else if($id == 4) {
-        $permgroup = 'Admin';
-    }
-    else {
-        $permgroup = 'Klant';
+        if ($id == 1) {
+            $permgroup = 'Klant';
+        } else if ($id == 2) {
+            $permgroup = 'Gebruiker';
+        } else if ($id == 3) {
+            $permgroup = 'Beheerder';
+        } else if ($id == 4) {
+            $permgroup = 'Admin';
+        } else {
+            $permgroup = 'Klant';
+        }
     }
 }
 else {
