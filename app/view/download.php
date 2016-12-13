@@ -32,7 +32,6 @@ download_file($file);
 
 function download_file( $Path )
 {
-    
     // Must be fresh start
     if (headers_sent()) {
         $fullPath = DIR_IMAGE . $Path;
@@ -74,8 +73,8 @@ function download_file( $Path )
         $imageHeight = imagesy($im);
 
         ob_start();
-        imagepng($im);
-        $contents = ob_get_contents();
+          imagepng($im);
+          $contents = ob_get_contents();
         ob_end_clean();
 
         $dataUri = 'data:image/' . 'png' . ';base64,' . base64_encode($contents);

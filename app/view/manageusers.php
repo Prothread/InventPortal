@@ -23,7 +23,7 @@ $get_filled_info = $user->getAllUsersByPerm(1);
                     <hr size="1">
 
                     <?php if($user->getPermission($permgroup, 'CAN_CREATE_USER') == 1){ ?>
-                        <a href="index.php?page=newuser"><div id="NewClientButton">Nieuwe gebruiker</div></a>
+                        <a href="index.php?page=newuser"><button id="NewClientButton">Nieuwe gebruiker</button></a>
                     <?php } ?>
 
                     <?php if($get_filled_info !== null) { ?>

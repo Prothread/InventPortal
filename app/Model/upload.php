@@ -264,6 +264,7 @@ if($error == 0) {
             else {
                 $mymail->create($mailinfo);
             }
+            unset($_SESSION['clientid']);
 
             $block->Redirect('index.php?page=overview');
             Session::flash('message', 'Uw bestanden zijn geüpload.');
