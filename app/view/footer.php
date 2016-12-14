@@ -316,7 +316,7 @@
 
 
 
-            /* Coole functie?
+           /* Coole functie?
              $( "#cart" ).on( "mouseenter mouseleave", function( event ) {
              $( this ).toggleClass( "active" );
              }); */
