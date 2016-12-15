@@ -40,7 +40,7 @@ if(isset($_GET['page'])) {
  * Anders: de gebruiker is ingelogd en gaat naar het dashboard
  */
 
-if(!$session->exists('usr_id') && $page !== 'forgetpassword' && $page !== 'resetpassword' && $page !== 'passreset' && $page !== 'wachtwoordherstellen' && $page !== 'image' && $page !== 'register' && $page !== 'approve' && $page !== 'verify' && $page !== 'imageverify' && $page !== 'updatemail' && $page !== 'imagecancel') {
+if(!$session->exists('usr_id') && $page !== 'forgetpassword' && $page !== 'conditions' && $page !== 'resetpassword' && $page !== 'passreset' && $page !== 'wachtwoordherstellen' && $page !== 'image' && $page !== 'register' && $page !== 'approve' && $page !== 'verify' && $page !== 'imageverify' && $page !== 'updatemail' && $page !== 'imagecancel') {
     $page = 'login';
 } else if($session->exists('usr_id') && $page=='login') {
     $page = 'dashboard';
@@ -50,7 +50,11 @@ if(!$session->exists('usr_id') && $page == 'approve') {
     require_once '../app/view/header.php';
 }
 
-if(!$session->exists('usr_id') && $page !== 'approve') {
+if(!$session->exists('usr_id') && $page == 'conditions') {
+    require_once '../app/view/header.php';
+}
+
+if(!$session->exists('usr_id') && $page !== 'approve' && $page !== 'conditions') {
     require_once '../app/view/header2.php';
 }
 

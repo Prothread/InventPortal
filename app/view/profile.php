@@ -2,7 +2,6 @@
 #PAGE FOR SHOWING PROFILE
 
 $user = new UserController();
-
 $userinfo = $user->getUserById($_SESSION['usr_id']);
 ?>
 

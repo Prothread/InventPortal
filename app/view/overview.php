@@ -72,7 +72,7 @@ else {
                         <th style="display:none">ID</th>
                         <th>Onderwerp</th>
                         <th>Verstuurder</th>
-                        <th>Naam</th>
+                        <th>Klant</th>
                         <th id="date">Datum</th>
                         <th>Status</th>
                         <?php }

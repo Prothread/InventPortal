@@ -132,7 +132,9 @@ $mymail = new MailController();
         unset($_SESSION['verified']);
         unset($_SESSION['verifytext']);
         unset($_SESSION['mailto']);
+        unset($_SESSION['accorduserid']);
+        unset($_SESSION['userid']);
 
-        $block->Redirect('index.php?page=approve');
+        $block->Redirect('index.php');
         Session::flash('message', 'De accordering is verstuurd');
     }

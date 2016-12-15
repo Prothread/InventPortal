@@ -232,7 +232,7 @@
                     //success load event
                     $("#allclients").select2();
                 });
-                //$('.demclients1').load('?page=uploadoverview' +  ' .demclients1');
+                $('.demclients1').load('?page=uploadoverview' +  ' .demclients1');
 
             }
         });

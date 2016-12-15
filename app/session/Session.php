@@ -168,7 +168,7 @@ class Session
 
     public function setUserId($id)
     {
-        $_SESSION['userid'] = $id;
+        $_SESSION['accorduserid'] = $id;
     }
 
     /**
@@ -181,7 +181,7 @@ class Session
 
     public function getUserId()
     {
-        return $_SESSION['userid'];
+        return $_SESSION['accorduserid'];
     }
 
     /**

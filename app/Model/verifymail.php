@@ -104,8 +104,6 @@ if( isset( $_GET['id'] ) && isset( $mailkey ) ) {
         $userid = $useracc['id'];
     }
 
-    $session->setUserId( $userid );
-
     $user = new UserController();
     if($user->getPermission($permgroup, 'CAN_ACCORD') == 1){
 
@@ -114,7 +112,7 @@ if( isset( $_GET['id'] ) && isset( $mailkey ) ) {
         $block->Redirect('index.php');
         Session::flash('error', 'U heeft hier geen rechten voor.');
     }
-    $_SESSION['accorduserid'] = $userid;
+    $session->setUserId( $userid );
     $_SESSION['accord'] = '1';
 
     /**
@@ -125,5 +123,5 @@ if( isset( $_GET['id'] ) && isset( $mailkey ) ) {
     $block->Redirect('index.php?page=approve');
 }
 else {
-    echo '';
+    echo '<div class="alert alert-danger">Er is iets misgegaan</div>';
 }

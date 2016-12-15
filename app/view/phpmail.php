@@ -8,11 +8,9 @@ else {
     $block->Redirect('index.php');
     Session::flash('error', 'U heeft hier geen rechten voor.');
 }
+$user = new UserController();
+$userinfo = $user->getUserById($_SESSION['usr_id']);
 ?>
-<div id="demclients1"><?php
-    $user = new UserController();
-    $userinfo = $user->getUserById($_SESSION['usr_id']); ?>
-</div>
 <div id="Mail">
     <!-- Page Content -->
     <div id="page-content-wrapper">
@@ -215,6 +213,18 @@ else {
                 <div class="modal-body">
 
                     <form action="#" method="post" enctype="multipart/form-data" class="form-horizontal newclient" id="createclient">
+
+                        <div id="demclients1">
+                            <?php
+                                if($session->exists('flash')) {
+                                    foreach($session->get('flash') as $flash) {
+                                        echo "<div class='alert alert_{$flash['type']}'>{$flash['message']}</div>";
+                                    }
+                                    $session->remove('flash');
+                                }
+                            ?>
+                        </div>
+
                         <fieldset>
 
                             <p class="ClientFormText">Namen</p>

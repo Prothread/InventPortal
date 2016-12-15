@@ -42,6 +42,8 @@ else {
     $_SESSION['mailto'] = $verstuurder['email'];
 }
 
+
+
 $UID = date('d.m.Y-G.i.s') . '-192.08.1.124';
 
 //TODO Try if IP adres sends correctly
@@ -102,6 +104,8 @@ $userip = $user->getUserIP();
                             <p> Onderwerp: <span style="color:#bc2d4c"><?= $myupload['onderwerp']; ?></span></p>
 
                             <p> Verstuurder: <span style="color:#bc2d4c"><?= $myupload['verstuurder']?></span> </p>
+
+                            <p> Beschrijving: <span style="color:#bc2d4c"><?= $myupload['beschrijving']?></span> </p>
                             <br><br>
                             <ul class="list-inline pull-right">
                                 <li><button type="button" class="btn btn-primary next-step">Volgende</button></li>

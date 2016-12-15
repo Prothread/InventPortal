@@ -22,7 +22,7 @@ else {
 $settings = new UserController();
 $admin = $settings->getAdminSettings();
 
-if(isset($_SESSION['accorduserid'])) {
+if(isset($_SESSION['accorduserid']) && !isset($_SESSION['usr_id'])) {
     $userinfo = $user->getUserById($_SESSION['accorduserid']);
     $imgsrc = 'icons/profile.png';
 }
