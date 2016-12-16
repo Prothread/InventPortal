@@ -143,7 +143,7 @@ if($error == 0) {
             "<br /><br />" . "U kunt uw proef " . "<a href='http://localhost/InventPortal/public/index.php?page=verify&id=$imageId&key=$token'>hier</a> " . "goedkeuren." .
 
             "<br /> <br />Met vriendelijke groet, <br />" . $sender . " </br>Madalco Media" .
-            "<br /> <br /><b>Disclaimer: This is an automatically generated mail. Please do not reply to this email";
+            "<br /> <br /><b>Disclaimer:</b> This is an automatically generated mail. Please do not reply to this email";
 
         $altcontent = "Geachte " . $name . "," .
             " <br/><br/>" . "Uw proef staat te wachten op goedkeuring in het <b>Madalco Portaal!</b>" . "<br /><br />" .
@@ -156,7 +156,7 @@ if($error == 0) {
             "<br /><br />" . "U kunt uw proef " . "hier: http://localhost/InventPortal/public/index.php?page=verify&id=$imageId&key=$token " . "goedkeuren." .
 
             "<br /> <br />Met vriendelijke groet, <br />" . $sender . " </br>Madalco Media" .
-            "<br /> <br /><b>Disclaimer: This is an automatically generated mail. Please do not reply to this email";
+            "<br /> <br /><b>Disclaimer:</b> This is an automatically generated mail. Please do not reply to this email";
 
 //SMTP Configuration
         $mailer->isSMTP();

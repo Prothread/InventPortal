@@ -55,6 +55,7 @@ foreach ($uploadedimages as $img) {
     array_push($checknewarray, $isverified['verify']);
 }
 $clientmail = $usermail->getUserMailbyMailID($id);
+$_SESSION['clientid'] = $clientmail['clientid'];
 ?>
 
 <div id="Mail">
@@ -231,7 +232,15 @@ $clientmail = $usermail->getUserMailbyMailID($id);
                                         <div class="form-group">
                                             <label class="col-md-4 control-label" for="textinput">Beschrijving<span style="color:#bc2d4c">*</span></label>
                                             <div class="col-md-4">
-                                                <input name="fromname" class="form-control input-md" id="textinput" required type="text" readonly value="<?= $upload['beschrijving']?>">
+                                                <input class="form-control input-md" id="textinput" required type="text" readonly value="<?= $upload['beschrijving']?>">
+                                            </div>
+                                        </div>
+
+                                        <br />
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label" for="textinput">Naam klant<span style="color:#bc2d4c">*</span></label>
+                                            <div class="col-md-4">
+                                                <input disabled name="mailname" class="form-control input-md" id="textinput" type="text" size="50" value="<?= $upload['naam']?>">
                                             </div>
                                         </div>
 
@@ -439,7 +448,7 @@ $clientmail = $usermail->getUserMailbyMailID($id);
                                                 <input name="additionalcontent" class="form-control input-md" id="textinput" type="text" size="50" value="<?= $upload['beschrijving']?>">
                                             </div>
                                         </div>
-                                        <br><br>
+                                        <input type="hidden" name="mailto" size="50" value="<?= $upload['email']?>">
 
                                         <ul class="list-inline pull-right">
                                             <li>  <input class="btn btn-primary btn-success" name="submit" style="max-width: 100px; background-color: #bb2c4c; border: 1px solid #bb2c4c" type="submit" value="Opslaan"></li>

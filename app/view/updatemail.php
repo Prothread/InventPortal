@@ -69,7 +69,7 @@ $mymail = new MailController();
         "<br /><br />" . "U kunt uw proef " . "<a href='http://localhost/InventPortal/public/index.php?page=item&id=$myid'>hier</a> " . "bekijken." .
 
         "<br /> <br />Met vriendelijke groet, <br />" . $_POST['name'].
-        "<br /> <br /><b>Disclaimer: This is an automatically generated mail. Please do not reply to this email</b>";
+        "<br /> <br /><b>Disclaimer:</b> This is an automatically generated mail. Please do not reply to this email";
 
     $altcontent = "Geachte " . $_POST['verstuurder'] . "," .
         " <br/><br/>" . $_POST['name'] . " heeft uw proef " . $_SESSION['verifytext'] . "." . "<br /><br />" .
