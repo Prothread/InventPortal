@@ -362,7 +362,7 @@ $clientmail = $usermail->getUserMailbyMailID($id);
                                         <div class="form-group">
                                             <label class="col-md-4 control-label" for="textinput">Beschrijving<span style="color:#bc2d4c">*</span></label>
                                             <div class="col-md-4">
-                                                <input disabled name="fromname" class="form-control input-md" id="textinput" required type="text" value="<?= $upload['beschrijving']?>">
+                                                <input disabled name="additionalcontent" class="form-control input-md" id="textinput" required type="text" value="<?= $upload['beschrijving']?>">
                                             </div>
                                         </div>
 
@@ -434,16 +434,12 @@ $clientmail = $usermail->getUserMailbyMailID($id);
                                         <br>
 
                                         <div class="form-group">
-                                            <label class="col-md-4 control-label" for="textinput">Beschrijving<span style="color:#bc2d4c">*</span></label>
+                                            <label class="col-md-4 control-label" for="textinput">Nieuwe beschrijving</label>
                                             <div class="col-md-4">
                                                 <input name="additionalcontent" class="form-control input-md" id="textinput" type="text" size="50" value="<?= $upload['beschrijving']?>">
                                             </div>
                                         </div>
                                         <br><br>
-                                        <input type="hidden" name="frommail" id="MailFrom" value="<?= $upload['onderwerp']?>">
-                                        <br><br>
-                                        <input type="hidden" name="mailname" size="50" value="<?= $upload['naam']?>">&emsp;&emsp;
-                                        <input type="hidden" name="mailto" size="50" value="<?= $upload['email']?>">
 
                                         <ul class="list-inline pull-right">
                                             <li>  <input class="btn btn-primary btn-success" name="submit" style="max-width: 100px; background-color: #bb2c4c; border: 1px solid #bb2c4c" type="submit" value="Opslaan"></li>
@@ -455,13 +451,6 @@ $clientmail = $usermail->getUserMailbyMailID($id);
 
                                         else {
                                         ?>
-
-                                        <div class="form-group">
-                                            <label class="col-md-4 control-label" for="textinput">Beschrijving<span style="color:#bc2d4c">*</span></label>
-                                            <div class="col-md-4">
-                                                <input disabled name="additionalcontent" class="form-control input-md" id="textinput" type="text" size="50" value="<?= $upload['beschrijving']?>">
-                                            </div>
-                                        </div>
 
                                         <br /><br />
 
@@ -574,52 +563,56 @@ $clientmail = $usermail->getUserMailbyMailID($id);
 
                                     </div>
                                     <br><br>
+                                <?php } ?>
+
                             <?php } ?>
 
                             </form>
-                            <table>
-                                <thead>
-                                <tr>
-                                    <td>Downloads:</td>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <?php foreach($uploadedimages as $img) { ?>
-                                        <td style="float:left;margin-right:10px;" class="imgdownloader img<?= $img['id']?>">
-                                            <div class="btn-group">
-                                                <button type="button" id="downloadimagedd" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    <div class="imagedownload" style="background: url('index.php?page=image&img=<?= $img['images']?>'); background-size: cover;"> <span class="caret"></span>
-                                                </button>
-                                                <ul class="dropdown-menu">
-                                                    <?php if($img['downloadable'] == 1 || substr( $img['images'], -3) == 'pdf') { ?>
-                                                        <li><a href="?page=download&file=<?= $img['images']; ?>">Download</a></li>
-                                                    <?php }
-                                                    else { ?>
-                                                        <?php if($user->getPermission($permgroup, 'CAN_EDIT_ACCORD') == 1){ ?>
+                            <?php if($upload['verified'] == '1') { ?>
+                                <table>
+                                    <thead>
+                                    <tr>
+                                        <td>Downloads:</td>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <?php foreach ($uploadedimages as $img) { ?>
+                                            <td style="float:left;margin-right:10px;" class="imgdownloader img<?= $img['id'] ?>">
+                                                <div class="btn-group">
+                                                    <button type="button" id="downloadimagedd" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        <div class="imagedownload" style="background: url('index.php?page=image&img=<?= $img['images'] ?>'); background-size: cover;">
+                                                            <span class="caret"></span>
+                                                        </div>
+                                                    </button>
+                                                    <ul class="dropdown-menu">
+                                                        <?php if ($img['downloadable'] == 1 || substr($img['images'], -3) == 'pdf') { ?>
                                                             <li>
-                                                                <form id="downloadbuttons" method="post">
-                                                                    <span>Maak downloadbaar: </span>
-                                                                    <input type="submit" class="imgdownload id<?= $id ?>" id="img<?= $img['id'] ?>">
-                                                                </form>
+                                                                <a href="?page=download&file=<?= $img['images']; ?>">Download</a>
                                                             </li>
+                                                        <?php } else { ?>
+                                                            <?php if ($user->getPermission($permgroup, 'CAN_EDIT_ACCORD') == 1) { ?>
+                                                                <li>
+                                                                    <form id="downloadbuttons" method="post">
+                                                                        <span>Maak downloadbaar: </span>
+                                                                        <input type="submit" class="imgdownload id<?= $id ?>" id="img<?= $img['id'] ?>">
+                                                                    </form>
+                                                                </li>
+                                                            <?php } ?>
+                                                            <br/>
+                                                            <li>U kunt dit product nog niet downloaden</li>
                                                         <?php } ?>
-                                                        <br />
-                                                        <li>U kunt dit product nog niet downloaden</li>
-                                                    <?php } ?>
-                                                </ul>
-                                            </div>
-                                        </td>
-                                    <?php }?>
-                                </tr>
-                                </tbody>
-                            </table>
-                            <?php if($user->getPermission($permgroup, 'CAN_EDIT_ACCORD') == 1){ ?>
-                            <a data-toggle="modal" data-target="#ImageDownloader" href="#">Maak alle files downloadbaar</a>
-                            <?php } ?>
-
-
-                            <?php } ?>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                        <?php } ?>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <?php if ($user->getPermission($permgroup, 'CAN_EDIT_ACCORD') == 1) { ?>
+                                    <a data-toggle="modal" data-target="#ImageDownloader" href="#">Maak alle files downloadbaar</a>
+                                <?php }
+                            }?>
 
                             <div style="clear:both"></div>
                         </div>
