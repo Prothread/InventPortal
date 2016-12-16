@@ -230,7 +230,9 @@
                 alert('Nieuwe klant aangemaakt');
                 $('.demclients').load('?page=uploadoverview' +  ' .demclients', function(){
                     //success load event
-                    $("#allclients").select2();
+                    $("#allclients").select2({
+                        placeholder: 'Selecteer een klant'
+                    });
                 });
                 $('.demclients1').load('?page=uploadoverview' +  ' .demclients1');
 
