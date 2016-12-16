@@ -38,7 +38,6 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);
                                 </a>
 
                             </th>
-                            </th>
                         </tr>
                     </table>
                     <hr>
@@ -105,7 +104,6 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);
                                 <span></span>
                         </div>
                     </div>
-                    </form>
                 </div>
             </div>
         </div>
@@ -120,11 +118,3 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);
 
 
 </div>
-</div>
-</fieldset>
-</form>
-</div>
-</div>
-</div>
-</div>
-

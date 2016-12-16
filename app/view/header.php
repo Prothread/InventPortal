@@ -54,7 +54,9 @@ else {
         <link href="css/select2.min.css" rel="stylesheet" />
         <script type="text/javascript">
             $(document).ready(function() {
-                $("#allclients").select2();
+                $("#allclients").select2({
+                    placeholder: 'Selecteer een klant'
+                });
             });
         </script>
 

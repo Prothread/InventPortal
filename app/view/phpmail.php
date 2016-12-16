@@ -171,6 +171,7 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);
                                             <label class="col-md-4 control-label" for="textinput">Klant zoeken</label>
                                             <div class="col-md-4">
                                                 <select id="allclients" style="width:300px;" name="client" required>
+                                                    <option></option>
                                                     <?php foreach($user->getAllClients() as $klant) { ?>
                                                         <option value="<?= $klant['id']?>"><?= $klant['naam']?></option>
                                                     <?php } ?>

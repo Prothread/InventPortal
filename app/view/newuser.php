@@ -25,7 +25,7 @@ else {
                         <hr size="1">
 
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="textinput">Naam</label>
+                            <label class="col-md-4 control-label" for="textinput">Naam<span style="color:#dd2c4c">*</span></label>
                             <div class="col-md-4">
                                 <input required class="form-control input-md" id="textinput" maxlength="60" type="text" name="name" size="50" placeholder="Naam">
                             </div>
@@ -42,7 +42,7 @@ else {
                         <hr size="1">
 
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="textinput">E-mail</label>
+                            <label class="col-md-4 control-label" for="textinput">E-mail<span style="color:#dd2c4c">*</span></label>
                             <div class="col-md-4">
                                 <input class="form-control input-md" id="textinput" maxlength="60" required type="email" name="email" size="50" placeholder="E-mailadres">
                             </div>
@@ -81,34 +81,15 @@ else {
 
                         <br />
 
-                        <?php if($user->getPermission($permgroup, 'CAN_EDIT_USER') == '1') { ?>
+                        <?php if($user->getPermission($permgroup, 'CAN_CREATE_USER') == '1') { ?>
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Rechten:</label>
                                 <div class="col-md-4">
                                     <select class="form-control" name="rechten" required>
-                                        <?php if($userinfo['permgroup'] == '1') {?>
-                                            <option selected="selected">Klant</option>
-                                        <?php } else { ?>
-                                            <option>Klant</option>
-                                        <?php } ?>
-
-                                        <?php if($userinfo['permgroup'] == '2') {?>
-                                            <option selected="selected">Gebruiker</option>
-                                        <?php } else { ?>
-                                            <option>Gebruiker</option>
-                                        <?php } ?>
-
-                                        <?php if($userinfo['permgroup'] == '3') {?>
-                                            <option selected="selected">Beheerder</option>
-                                        <?php } else { ?>
-                                            <option>Beheerder</option>
-                                        <?php } ?>
-
-                                        <?php if($userinfo['permgroup'] == '4') {?>
-                                            <option selected="selected">Admin</option>
-                                        <?php } else { ?>
-                                            <option>Admin</option>
-                                        <?php } ?>
+                                        <option>Klant</option>
+                                        <option selected="selected">Gebruiker</option>
+                                        <option>Beheerder</option>
+                                        <option>Admin</option>
                                     </select>
                                 </div>
                             </div>

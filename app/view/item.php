@@ -63,7 +63,7 @@ $clientmail = $usermail->getUserMailbyMailID($id);
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
-                    <p class="NameText">Aanpassen</p>
+                    <p class="NameText">Uw opdracht</p>
 
                     <hr size="1">
 
