@@ -68,7 +68,8 @@ if($mailexist == null || empty($mailexist)){
 
         "<br /><br />" . "U kunt " . "<a href='http://localhost/InventPortal/public/index.php?page=login'>hier</a> " . "inloggen met de gegevens uit deze mail." .
 
-        "<br /><br />Met vriendelijke groet, <br />" . "Madalco Media";
+        "<br /><br />Met vriendelijke groet, <br />" . "Madalco Media" .
+        "<br /> <br /><b>Disclaimer: This is an automatically generated mail. Please do not reply to this email</b>";
 
     $altcontent = "Geachte leden van " . $_POST['companyname'] . "," .
         " <br/><br/>" . $myuser . " heeft voor U het account: <b>" . $_POST['name'] . "</b>" . "aangemaakt met de volgende informatie:<br /><br />" .
@@ -80,7 +81,8 @@ if($mailexist == null || empty($mailexist)){
 
         "<br /><br />" . "U kunt " . "http://localhost/InventPortal/public/index.php?page=login " . "inloggen." .
 
-        "<br /> <br />Met vriendelijke groet, <br />" . $myuser;
+        "<br /> <br />Met vriendelijke groet, <br />" . "Madalco Media" .
+        "<br /> <br />Disclaimer: This is an automatically generated mail. Please do not reply to this email";
 
 //SMTP Configuration
     $mailer->isSMTP();

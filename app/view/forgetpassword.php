@@ -63,7 +63,9 @@ if(isset($_POST['submit'])) {
 
                 "Als U dit niet heeft aangevraagd, kunt U dit negeren, uw wachtwoord veranderen of dit aangeven bij de administrators " .
 
-                "<br /> <br />Met vriendelijke groet, <br />" . " Madalco Media";
+                "<br /> <br />Met vriendelijke groet, <br />" . " Madalco Media" .
+                "<br /> <br /><b>Disclaimer: This is an automatically generated mail. Please do not reply to this email</b>";
+
             $altcontent = "Geachte " . $getbyemail['naam'] . "," .
                 " <br/><br/>" . "Wachtwoord vergeten: " . "<br /><br />" .
                 "<b>Link om uw wachtwoord te veranderen: </b>".
@@ -71,7 +73,8 @@ if(isset($_POST['submit'])) {
 
                 "Als U dit niet heeft aangevraagd, kunt U dit negeren, uw wachtwoord veranderen of dit aangeven bij de administrators " .
 
-                "<br /> <br />Met vriendelijke groet, <br />"  . " Madalco Media";;
+                "<br /> <br />Met vriendelijke groet, <br />"  . " Madalco Media" .
+                "<br /> <br />Disclaimer: This is an automatically generated mail. Please do not reply to this email";
 
 //SMTP Configuration
             $mailer->isSMTP();
