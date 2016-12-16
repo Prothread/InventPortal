@@ -24,16 +24,19 @@ if($getbyemail !== null) {
 
     if(strlen($password) < 6) {
         $error = true;
+        $block->Redirect($_SERVER['HTTP_REFERER']);
         echo "Het paswoord moet minimaal 6 tekens bevatten. \n";
     }
 
     if($cpassword !== $password){
         $error = true;
+        $block->Redirect($_SERVER['HTTP_REFERER']);
         echo "De ingevulde nieuwe wachtwoorden komen niet overeen \n";
     }
 
     if($passforget !== $dbpass) {
         $error = true;
+        $block->Redirect($_SERVER['HTTP_REFERER']);
         echo "Er is iets misgegaan \n";
     }
 

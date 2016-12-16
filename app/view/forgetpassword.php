@@ -23,7 +23,6 @@ if(isset($_POST['submit'])) {
 
     $getbyemail = $user->getUserByEmail($_POST['email']);
     $email = $_POST['email'];
-    var_dump($getbyemail);
 
     if($getbyemail !== null) {
         $user->passForget($_POST['email'], $token);

@@ -9,7 +9,7 @@ if($user->getPermission($permgroup, 'CAN_SHOW_OVERZICHT') == 1){
 
 $uploads = new BlockController();
 
-if(isset($_SESSION['uploads'])) {
+if(isset($_SESSION['uploads']) ) {
     $get_filled_info = $_SESSION['uploads'];
 }
 else {
@@ -65,25 +65,21 @@ else {
                     </ul>
                 </div>
 
+                <?php if(isset($get_filled_info) && $get_filled_info !== null) { ?>
                 <table id="myTable" class="table table-striped" >
                     <thead>
                     <tr>
-                        <?php if($get_filled_info !== null) {?>
+
                         <th style="display:none">ID</th>
                         <th>Onderwerp</th>
                         <th>Verstuurder</th>
                         <th>Klant</th>
                         <th id="date">Datum</th>
                         <th>Status</th>
-                        <?php }
-                        else {?>
-                            <th>Proeven</th>
-                        <?php } ?>
                     </tr>
                     </thead>
                     <tbody>
                     <?php
-                    if($get_filled_info !== null) {
                         foreach ($get_filled_info as $upload) { ?>
                             <tr>
                                 <td style="display:none">
@@ -114,13 +110,13 @@ else {
                                     <?php } ?>
                                 </td>
                             </tr>
-                        <?php }
-                    }
-                    else {?>
-                        <td>Er zijn nog geen proeven aangemaakt</td>
-                    <?php } ?>
+                        <?php } ?>
                     </tbody>
                 </table>
+                <?php }
+                else { ?>
+                    <div id="weiger" class="alert alert-info" style="text-align: center;" role="alert"><span class="glyphicon glyphicon-remove-circle"></span> U heeft nog niks geüpload of geaccordeerd</div>
+                <?php } ?>
             </div>
         </div>
     </div>

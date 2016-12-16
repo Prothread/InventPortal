@@ -70,13 +70,10 @@ class DbBlock extends Database
             $sql .= " AND `verified` IN({$verified})";
         }
 
-        $result = $this->dbQuery($sql);
-        $row = mysqli_fetch_all($result, MYSQLI_ASSOC);
-
-        if($row){
+        if($result = $this->dbQuery($sql)) {
+            $row = mysqli_fetch_all($result, MYSQLI_ASSOC);
             return $row;
         }
-        return null;
     }
 
     /**
@@ -107,13 +104,10 @@ class DbBlock extends Database
     {
         $sql = "SELECT * FROM `mail` WHERE `verified` =  '2'";
 
-        $result = $this->dbQuery($sql);
-        $row = mysqli_fetch_all($result, MYSQLI_ASSOC);
-
-        if($row) {
+        if($result = $this->dbQuery($sql)) {
+            $row = mysqli_fetch_all($result, MYSQLI_ASSOC);
             return $row;
         }
-        return null;
     }
 
     /**

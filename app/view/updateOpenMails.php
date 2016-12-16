@@ -15,123 +15,129 @@ $uploads = new BlockController();
 $verified = '0, 1';
 $get_filled_info = $uploads->getOlderUploads($verified, true);
 
-foreach($get_filled_info as $get_info) {
+if($get_filled_info !== null && !empty($get_filled_info)) {
+    foreach ($get_filled_info as $get_info) {
 
-    //Generate a random string.
-    $token = openssl_random_pseudo_bytes(16);
-    //Convert the binary data into hexadecimal representation.
-    $token = bin2hex($token);
+        //Generate a random string.
+        $token = openssl_random_pseudo_bytes(16);
+        //Convert the binary data into hexadecimal representation.
+        $token = bin2hex($token);
 
-    $imageId = $get_info['id'];
+        $imageId = $get_info['id'];
 
-    $mailinfo = [
-        'id' => $get_info['id'],
-        'title' => $get_info['onderwerp'],
-        'sender' => $get_info['verstuurder'],
-        'description' => $get_info['beschrijving'],
-        'name' => $get_info['naam'],
-        'email' => $get_info['email'],
-        'token' => $token,
-        'datum' => date('Y-m-d'),
-        'verified' => 0
-    ];
+        $mailinfo = [
+            'id' => $get_info['id'],
+            'title' => $get_info['onderwerp'],
+            'sender' => $get_info['verstuurder'],
+            'description' => $get_info['beschrijving'],
+            'name' => $get_info['naam'],
+            'email' => $get_info['email'],
+            'token' => $token,
+            'datum' => date('Y-m-d'),
+            'verified' => 0
+        ];
 
-    $mysqli = mysqli_connect();
+        $mysqli = mysqli_connect();
 
-    $title = mysqli_real_escape_string($mysqli, $get_info['onderwerp']);
-    $sender = mysqli_real_escape_string($mysqli, $get_info['verstuurder']);
-    $description = mysqli_real_escape_string($mysqli, $get_info['beschrijving']);
-    $name = mysqli_real_escape_string($mysqli, $get_info['naam']);
-    $email = mysqli_real_escape_string($mysqli, $get_info['email']);
+        $title = mysqli_real_escape_string($mysqli, $get_info['onderwerp']);
+        $sender = mysqli_real_escape_string($mysqli, $get_info['verstuurder']);
+        $description = mysqli_real_escape_string($mysqli, $get_info['beschrijving']);
+        $name = mysqli_real_escape_string($mysqli, $get_info['naam']);
+        $email = mysqli_real_escape_string($mysqli, $get_info['email']);
 
-    $mymail = new MailController();
+        $mymail = new MailController();
 
-    //Load PHPMailer dependencies
-    require_once DIR_MAILER . 'PHPMailerAutoload.php';
-    require_once DIR_MAILER . 'class.phpmailer.php';
-    require_once DIR_MAILER . 'class.smtp.php';
+        //Load PHPMailer dependencies
+        require_once DIR_MAILER . 'PHPMailerAutoload.php';
+        require_once DIR_MAILER . 'class.phpmailer.php';
+        require_once DIR_MAILER . 'class.smtp.php';
 
-    //Load Mail account settings
-    require_once DIR_MODEL . 'MailSettings.php';
+        //Load Mail account settings
+        require_once DIR_MODEL . 'MailSettings.php';
 
 
-    /* Create phpmailer and add the image to the mail */
-    $mailer = new PHPMailer();
-    $mailer->addEmbeddedImage(DIR_PUBLIC . $admin['Logo'], "HeaderImage", "Logo.png");
+        /* Create phpmailer and add the image to the mail */
+        $mailer = new PHPMailer();
+        $mailer->addEmbeddedImage(DIR_PUBLIC . $admin['Logo'], "HeaderImage", "Logo.png");
 
-    /* TO, SUBJECT, CONTENT */
-    $to = $email; //The 'To' field
-    $subject = $title;
+        /* TO, SUBJECT, CONTENT */
+        $to = $email; //The 'To' field
+        $subject = $title;
 
-    $header = ' <div style="background: ' . $admin['Header'] . '; position:relative; width: 100%; height: 130px;">
+        $header = ' <div style="background: ' . $admin['Header'] . '; position:relative; width: 100%; height: 130px;">
                         <div style="position: absolute; height: 130px; margin-right: 25px; left: 5px;">
                             <img src="cid:HeaderImage" style="width:auto;height:75%;" />
                         </div>
                     </div> ';
-    $content = $header . "  <br/><br/>" . "Geachte " . $name . "," .
-        " <br/><br/>" . "Uw proef staat te wachten op goedkeuring in het <b>Madalco Portaal!</b>" . "<br /><br />" .
-        "<b>Titel van uw proef:</b>" .
-        $title . "<br />" .
+        $content = $header . "  <br/><br/>" . "Geachte " . $name . "," .
+            " <br/><br/>" . "Uw proef staat te wachten op goedkeuring in het <b>Madalco Portaal!</b>" . "<br /><br />" .
+            "<b>Titel van uw proef:</b>" .
+            $title . "<br />" .
 
-        "<b>Beschrijving van uw proef:</b> " .
-        $description .
+            "<b>Beschrijving van uw proef:</b> " .
+            $description .
 
-        "<br /><br />" . "U kunt uw proef " . "<a href='http://localhost/InventPortal/public/index.php?page=verify&id=$imageId&key=$token'>hier</a> " . "goedkeuren." .
+            "<br /><br />" . "U kunt uw proef " . "<a href='http://localhost/InventPortal/public/index.php?page=verify&id=$imageId&key=$token'>hier</a> " . "goedkeuren." .
 
-        "<br /> <br />Met vriendelijke groet, <br />" . $sender . " </br>Madalco Media";
-    $altcontent = "Geachte " . $name . "," .
-        " <br/><br/>" . "Uw proef staat te wachten op goedkeuring in het <b>Madalco Portaal!</b>" . "<br /><br />" .
-        "<b>Titel van uw proef:</b>" .
-        $title . "<br />" .
+            "<br /> <br />Met vriendelijke groet, <br />" . $sender . " </br>Madalco Media";
+        $altcontent = "Geachte " . $name . "," .
+            " <br/><br/>" . "Uw proef staat te wachten op goedkeuring in het <b>Madalco Portaal!</b>" . "<br /><br />" .
+            "<b>Titel van uw proef:</b>" .
+            $title . "<br />" .
 
-        "<b>Beschrijving van uw proef:</b> " .
-        $description .
+            "<b>Beschrijving van uw proef:</b> " .
+            $description .
 
-        "<br /><br />" . "U kunt uw proef " . "hier: http://localhost/InventPortal/public/index.php?page=verify&id=$imageId&key=$token " . "goedkeuren." .
+            "<br /><br />" . "U kunt uw proef " . "hier: http://localhost/InventPortal/public/index.php?page=verify&id=$imageId&key=$token " . "goedkeuren." .
 
-        "<br /> <br />Met vriendelijke groet, <br />" . $sender . " </br>Madalco Media";;
+            "<br /> <br />Met vriendelijke groet, <br />" . $sender . " </br>Madalco Media";;
 
-    //SMTP Configuration
-    $mailer->isSMTP();
-    $mailer->SMTPAuth = true; //We need to authenticate
-    $mailer->Host = $smtp['host'];
-    $mailer->Port = $smtp['port'];
-    $mailer->Username = $smtp['username'];
-    $mailer->Password = $smtp['password'];
-    $mailer->SMTPSecure = $smtp['secure'];
+        //SMTP Configuration
+        $mailer->isSMTP();
+        $mailer->SMTPAuth = true; //We need to authenticate
+        $mailer->Host = $smtp['host'];
+        $mailer->Port = $smtp['port'];
+        $mailer->Username = $smtp['username'];
+        $mailer->Password = $smtp['password'];
+        $mailer->SMTPSecure = $smtp['secure'];
 
-    //Now, send mail :
-    //From - To :
-    $mailer->From = $crendentials['email'];
-    $mailer->FromName = $sender; //Optional
-    $mailer->addAddress($to);  // Add a recipient
+        //Now, send mail :
+        //From - To :
+        $mailer->From = $crendentials['email'];
+        $mailer->FromName = $sender; //Optional
+        $mailer->addAddress($to);  // Add a recipient
 
-    //Subject - Body :
-    $mailer->Subject = $subject;
-    $mailer->Body = $content;
-    $mailer->isHTML(true); //Mail body contains HTML tags
-    $mailer->AltBody = $altcontent;
+        //Subject - Body :
+        $mailer->Subject = $subject;
+        $mailer->Body = $content;
+        $mailer->isHTML(true); //Mail body contains HTML tags
+        $mailer->AltBody = $altcontent;
 
-    //Saving mail information
+        //Saving mail information
 
-    $mailer->SMTPOptions = array(
-        'ssl' => array(
-            'verify_peer' => false,
-            'verify_peer_name' => false,
-            'allow_self_signed' => true
-        )
-    );
-    //Check if mail is sent :
-    if (!$mailer->send()) {
-        $block->Redirect('index.php?page=phpmail');
-        //echo 'Error sending mail : ' . $mailer->ErrorInfo;
-        Session::flash('error', $mailer->ErrorInfo);
-    } else {
-        //If mail is send, create data and send it to the database
-        $mail->update($mailinfo);
-        $mailer->send();
+        $mailer->SMTPOptions = array(
+            'ssl' => array(
+                'verify_peer' => false,
+                'verify_peer_name' => false,
+                'allow_self_signed' => true
+            )
+        );
+        //Check if mail is sent :
+        if (!$mailer->send()) {
+            $block->Redirect('index.php?page=phpmail');
+            //echo 'Error sending mail : ' . $mailer->ErrorInfo;
+            Session::flash('error', $mailer->ErrorInfo);
+        } else {
+            //If mail is send, create data and send it to the database
+            $mail->update($mailinfo);
+            $mailer->send();
+        }
+
+
     }
-
-
+    $block->Redirect('index.php?page=overview');
 }
-$block->Redirect('index.php?page=overview');
+else {
+    $block->Redirect('index.php?page=overview');
+    Session::flash('error', 'Er zijn nog geen proeven die langer dan 5 dagen openstaan');
+}
