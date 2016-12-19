@@ -577,7 +577,7 @@ $_SESSION['clientid'] = $clientmail['clientid'];
                             <?php } ?>
 
                             </form>
-                            <?php if($upload['verified'] == '1') { ?>
+                            <?php if($upload['verified'] == '2') { ?>
                                 <table>
                                     <thead>
                                     <tr>
