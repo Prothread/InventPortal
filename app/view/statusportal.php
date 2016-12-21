@@ -1,6 +1,8 @@
 <?php
 #STATUSPORTAL PAGE
 
+$hoi = mysqli_connect("localhost", "root", "", "statusportaal") or die("There was a problem connecting to the database");
+
 if($user->getPermission($permgroup, 'CAN_USE_STATUSPORTAL') == 1){
 
 }
