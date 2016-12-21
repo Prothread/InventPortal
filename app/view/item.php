@@ -169,19 +169,19 @@ $_SESSION['clientid'] = $clientmail['clientid'];
                                                     $isverified = $image_controller->getImageVerify($img['id']);
 
                                                     if($isverified['verify'] == 1) { ?>
-                                                        <div id="akkoord" class="alert1 alert-success" style="text-align: center;" role="alert"><span class="alert-version">V<?= $isverified['version']?></span><br /><span class="glyphicon1 glyphicon-ok-circle"></span> Akkoord</div>
+                                                        <div id="akkoord" class="alert1 alert-success" style="text-align: center;" role="alert"><span class="alert-version">Versie <?= $isverified['version']?></span><br /><span class="glyphicon1 glyphicon-ok-circle"></span> Akkoord</div>
                                                     <?php }
 
                                                     if($isverified['verify'] == 2) {?>
-                                                        <div id="weiger" class="alert1 alert-danger" style="text-align: center;" role="alert"><span class="alert-version">V<?= $isverified['version']?></span><br /><span class="glyphicon1 glyphicon-remove-circle"></span> Geweigerd</div>
+                                                        <div id="weiger" class="alert1 alert-danger" style="text-align: center;" role="alert"><span class="alert-version">Versie <?= $isverified['version']?></span><br /><span class="glyphicon1 glyphicon-remove-circle"></span> Geweigerd</div>
                                                     <?php }
 
                                                     if($isverified['verify'] == 3) {?>
-                                                        <div id="weiger" class="alert1 alert-info" style="background-color:lightgrey; color:grey; text-align: center;" role="alert"><span class="alert-version">V<?= $isverified['version']?></span><br /><span class="glyphicon1glyphicon-remove-circle"></span> Gewijzigd</div>
+                                                        <div id="weiger" class="alert1 alert-info" style="background-color:lightgrey; color:grey; text-align: center;" role="alert"><span class="alert-version">Versie <?= $isverified['version']?></span><br /><span class="glyphicon1glyphicon-remove-circle"></span> Gewijzigd</div>
                                                     <?php }
 
                                                     if($isverified['verify'] == 0) {?>
-                                                        <div id="weiger" class="alert1 alert-info" style="text-align: center;" role="alert"><span class="alert-version">V<?= $isverified['version']?></span><br /><span class="glyphicon1 glyphicon-remove-circle"></span> Niet beoordeeld</div>
+                                                        <div id="weiger" class="alert1 alert-info" style="text-align: center;" role="alert"><span class="alert-version">Versie <?= $isverified['version']?></span><br /><span class="glyphicon1 glyphicon-remove-circle"></span> Niet beoordeeld</div>
                                                     <?php }
 
                                                     array_push($verimages, $isverified['verify']);
