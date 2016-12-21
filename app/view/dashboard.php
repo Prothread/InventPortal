@@ -113,7 +113,6 @@ $_SESSION['geweigerd_percent'] = $get_items_geweigerd['COUNT(status)'];
                                 <div class="widget-header bg-success"></div>
                                 <div class="widget-body text-center">
                                     <p style="text-align: center;">Procent akkoord per persoon</p>
-
                                     <?php if(isset($p0) && $p0 !== '0' ){?>
                                         <div class="skillbar clearfix" data-percent="<?=$p0?>%">
                                             <div class="skillbar-title" style="visibility: hidden;position: relative;"></div>
