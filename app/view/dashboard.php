@@ -63,8 +63,9 @@ $get_items_geweigerd = $items->getUserMailByStatus(3);
 $get_items_geaccepteerd = $items->getUserMailByStatus(2);
 
 $total_accept_weiger = $get_items_geaccepteerd['COUNT(status)']+$get_items_geweigerd['COUNT(status)'];
-//$total_items = $get_items_geaccepteerd['COUNT(status)']+$get_items_geweigerd['COUNT(status)']+$get_items_openstaand['COUNT(status)']+$get_items_bekeken['COUNT(status)'];
-$total_items = +$get_items_openstaand['COUNT(status)'];
+$total_items = $get_items_geaccepteerd['COUNT(status)']+$get_items_geweigerd['COUNT(status)']+$get_items_openstaand['COUNT(status)']+$get_items_bekeken['COUNT(status)'];
+$open_items = $get_items_openstaand['COUNT(status)'];
+
 $_SESSION['geaccepteerd_percent'] = $get_items_geaccepteerd['COUNT(status)'];
 $_SESSION['geweigerd_percent'] = $get_items_geweigerd['COUNT(status)'];
 ?>
@@ -100,7 +101,7 @@ $_SESSION['geweigerd_percent'] = $get_items_geweigerd['COUNT(status)'];
                                 <div class="widget-body text-center">
                                     <div>
                                         <p style="text-align: center;">Alle open opdrachten</p>
-                                        <div class="counter overzichtcount" data-count="<?= $total_items ?>">0</div>
+                                        <div class="counter overzichtcount" data-count="<?= $open_items ?>">0</div>
                                     </div>
                                 </div>
                             </div>
