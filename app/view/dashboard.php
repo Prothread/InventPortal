@@ -70,8 +70,6 @@ $_SESSION['geaccepteerd_percent'] = $get_items_geaccepteerd['COUNT(status)'];
 $_SESSION['geweigerd_percent'] = $get_items_geweigerd['COUNT(status)'];
 ?>
 
-
-
 <div id="page-content-wrapper">
     <div class="container-fluid">
         <div class="row">
