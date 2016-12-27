@@ -64,11 +64,11 @@ $get_items_geaccepteerd = $items->getUserMailByStatus(2);
 
 $total_accept_weiger = $get_items_geaccepteerd['COUNT(status)']+$get_items_geweigerd['COUNT(status)'];
 $total_items = $get_items_geaccepteerd['COUNT(status)']+$get_items_geweigerd['COUNT(status)']+$get_items_openstaand['COUNT(status)']+$get_items_bekeken['COUNT(status)'];
+$open_items = $get_items_openstaand['COUNT(status)'];
+
 $_SESSION['geaccepteerd_percent'] = $get_items_geaccepteerd['COUNT(status)'];
 $_SESSION['geweigerd_percent'] = $get_items_geweigerd['COUNT(status)'];
 ?>
-
-
 
 <div id="page-content-wrapper">
     <div class="container-fluid">
@@ -98,8 +98,8 @@ $_SESSION['geweigerd_percent'] = $get_items_geweigerd['COUNT(status)'];
                                 <div class="widget-header bg-success"></div>
                                 <div class="widget-body text-center">
                                     <div>
-                                        <p style="text-align: center;">Totaal aantal opdrachten</p>
-                                        <div class="counter overzichtcount" data-count="<?= $total_items ?>">0</div>
+                                        <p style="text-align: center;">Alle open opdrachten</p>
+                                        <div class="counter overzichtcount" data-count="<?= $open_items ?>">0</div>
                                     </div>
                                 </div>
                             </div>
