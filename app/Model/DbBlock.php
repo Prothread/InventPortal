@@ -111,6 +111,22 @@ class DbBlock extends Database
     }
 
     /**
+     * Haal alle geweigerde proeven op
+     *
+     * @return mixed
+     */
+
+    public function getDeclinedUploads()
+    {
+        $sql = "SELECT * FROM `mail` WHERE `verified` =  '3'";
+
+        if($result = $this->dbQuery($sql)) {
+            $row = mysqli_fetch_all($result, MYSQLI_ASSOC);
+            return $row;
+        }
+    }
+
+    /**
      * Haal de laatste 6 items van de gebruiker op
      *
      * @param $userID

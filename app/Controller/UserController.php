@@ -144,6 +144,7 @@ class UserController
         $this->model->setSettingsEmailPass($settingsarray['Mailpass']);
         $this->model->setSettingsLogo($settingsarray['Logo']);
         $this->model->setSettingsHeader($settingsarray['Header']);
+        $this->model->setSettingsHost($settingsarray['Host']);
 
         if($result = $this->model->updateSettings()) {
             return $result;

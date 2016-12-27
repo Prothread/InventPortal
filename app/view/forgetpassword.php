@@ -27,7 +27,6 @@ if(isset($_POST['submit'])) {
     if($getbyemail !== null) {
         $user->passForget($_POST['email'], $token);
 
-        $link = "http://localhost/InventPortal/index.php?page=resetpassword&email=$email&token=$token";
         $mymail = new MailController();
 
         //Load PHPMailer dependencies
@@ -50,6 +49,8 @@ if(isset($_POST['submit'])) {
             /* TO, SUBJECT, CONTENT */
             $to = $email; //The 'To' field
             $subject = "Aanvraag voor wachtwoord vergeten";
+
+            $link = $admin['Host'] . "/index.php?page=resetpassword&email=$email&token=$token";
 
             $header = ' <div style="background: ' . $admin['Header'] . '; position:relative; width: 100%; height: 130px;">
                             <div style="position: absolute; height: 130px; margin-right: 25px; left: 5px;">

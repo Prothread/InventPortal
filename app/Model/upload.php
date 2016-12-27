@@ -127,6 +127,9 @@ if($error == 0) {
         /* TO, SUBJECT, CONTENT */
         $to = $email; //The 'To' field
         $subject = $title;
+
+        $link = $admin['Host'] . "/index.php?page=verify&id=$imageId&key=$token";
+
         $header = ' <div style="background: ' . $admin['Header'] . '; position:relative; width: 100%; height: 130px;">
                         <div style="position: absolute; height: 130px; margin-right: 25px; left: 5px;">
                             <img src="cid:HeaderImage" style="width:auto;height:75%;" />
@@ -140,7 +143,7 @@ if($error == 0) {
             "<b>Beschrijving:</b> " .
             $description.
 
-            "<br /><br />" . "U kunt uw proef " . "<a href='http://localhost/InventPortal/public/index.php?page=verify&id=$imageId&key=$token'>hier</a> " . "goedkeuren." .
+            "<br /><br />" . "U kunt uw proef " . "<a href='$link'>hier</a> " . "goedkeuren." .
 
             "<br /> <br />Met vriendelijke groet, <br />" . $sender . " </br>Madalco Media" .
             "<br /> <br /><b>Disclaimer:</b> This is an automatically generated mail. Please do not reply to this email";
@@ -153,7 +156,7 @@ if($error == 0) {
             "<b>Beschrijving:</b> " .
             $description.
 
-            "<br /><br />" . "U kunt uw proef " . "hier: http://localhost/InventPortal/public/index.php?page=verify&id=$imageId&key=$token " . "goedkeuren." .
+            "<br /><br />" . "U kunt uw proef " . "hier: $link " . "goedkeuren." .
 
             "<br /> <br />Met vriendelijke groet, <br />" . $sender . " </br>Madalco Media" .
             "<br /> <br /><b>Disclaimer:</b> This is an automatically generated mail. Please do not reply to this email";

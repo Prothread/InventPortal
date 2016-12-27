@@ -106,6 +106,17 @@ class BlockController
     }
 
     /**
+     * Haal alle geweigerde proeven op
+     *
+     * @return mixed
+     */
+
+    public function getDeclinedUploads()
+    {
+        return $this->model->getDeclinedUploads();
+    }
+
+    /**
      * Haal de laatste 6 items van de gebruiker op
      *
      * @param $userID

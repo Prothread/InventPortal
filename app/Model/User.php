@@ -146,6 +146,14 @@ class User
     private $SettingHeader;
 
     /**
+     * Variabele voor de host van de website
+     *
+     * @var $SettingHost
+     */
+
+    private $SettingHost;
+
+    /**
      * Link naar de database user contructor
      *
      * User constructor.
@@ -267,6 +275,17 @@ class User
     }
 
     /**
+     * Set de host van de website (voor mailing)
+     *
+     * @param $host
+     */
+
+    public function setSettingsHost($host)
+    {
+        $this->SettingHost = $host;
+    }
+
+    /**
      * Haal de smtp setting op
      *
      * @return mixed
@@ -335,6 +354,17 @@ class User
     public function getSettingHeader()
     {
         return $this->SettingHeader;
+    }
+
+    /**
+     * Haal de host setting op
+     *
+     * @return mixed
+     */
+
+    public function getSettingHost()
+    {
+        return $this->SettingHost;
     }
 
     /**

@@ -81,6 +81,13 @@ else {
                     </div>
 
                     <div class="form-group">
+                        <label class="col-md-4 control-label" for="textinput">Host</label>
+                        <div class="col-md-4">
+                            <input class="form-control input-md" id="textinput" maxlength="64" required type="text" name="host" size="50" value="<?= $admin['Host'] ?>" placeholder="http://www.madalcomedia.com">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput"></label>
                         <div class="col-md-4">
                             <input class="btn btn-primary btn-success" name="submit" style="max-width: 100px; background-color: #bb2c4c; border: 1px solid #bb2c4c" type="submit" value="Opslaan">

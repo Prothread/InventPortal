@@ -52,6 +52,8 @@ if($mailexist == null || empty($mailexist)){
     $to = $email; //The 'To' field
     $subject = "Accountgegevens Madalco-portaal";
 
+    $link = $admin['Host'] . "/index.php?page=login";
+
     $header = ' <div style="background: ' . $admin['Header'] . '; position:relative; width: 100%; height: 130px;">
                         <div style="position: absolute; height: 130px; margin-right: 25px; left: 5px;">
                             <img src="cid:HeaderImage" style="width:auto;height:75%;" />
@@ -66,7 +68,7 @@ if($mailexist == null || empty($mailexist)){
         "<b>Wachtwoord: </b>" .
         $token .
 
-        "<br /><br />" . "U kunt " . "<a href='http://localhost/InventPortal/public/index.php?page=login'>hier</a> " . "inloggen met de gegevens uit deze mail." .
+        "<br /><br />" . "U kunt " . "<a href='$link'>hier</a> " . "inloggen met de gegevens uit deze mail." .
 
         "<br /><br />Met vriendelijke groet, <br />" . "Madalco Media" .
         "<br /> <br /><b>Disclaimer:</b> This is an automatically generated mail. Please do not reply to this email";
@@ -79,7 +81,7 @@ if($mailexist == null || empty($mailexist)){
         "<b>Wachtwoord: </b>" .
         $token .
 
-        "<br /><br />" . "U kunt " . "http://localhost/InventPortal/public/index.php?page=login " . "inloggen." .
+        "<br /><br />" . "U kunt " . "$link " . "inloggen." .
 
         "<br /> <br />Met vriendelijke groet, <br />" . "Madalco Media" .
         "<br /> <br />Disclaimer: This is an automatically generated mail. Please do not reply to this email";

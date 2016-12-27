@@ -56,6 +56,8 @@ $mymail = new MailController();
         $myid = $_POST['id'];
     }
 
+    $link = $admin['Host'] . "/index.php?page=item&id=$myid";
+
     $header = ' <div style="background: ' . $admin['Header'] . '; position:relative; width: 100%; height: 130px;">
                     <div style="position: absolute; height: 130px; margin-right: 25px; left: 5px;">
                         <img src="cid:HeaderImage" style="width:auto;height:75%;" />
@@ -66,7 +68,7 @@ $mymail = new MailController();
         "<b>Onderwerp van uw proef: </b>" .
         $_POST['title'] .
 
-        "<br /><br />" . "U kunt uw proef " . "<a href='http://localhost/InventPortal/public/index.php?page=item&id=$myid'>hier</a> " . "bekijken." .
+        "<br /><br />" . "U kunt uw proef " . "<a href='$link'>hier</a> " . "bekijken." .
 
         "<br /> <br />Met vriendelijke groet, <br />" . $_POST['name'].
         "<br /> <br /><b>Disclaimer:</b> This is an automatically generated mail. Please do not reply to this email";
@@ -76,7 +78,7 @@ $mymail = new MailController();
         "<b>Onderwerp van uw proef: </b>" .
         $_POST['title'] .
 
-        "<br /><br />" . "U kunt uw proef " . "<a href='http://localhost/InventPortal/public/index.php?page=item&id=$myid'>hier</a> " . "bekijken." .
+        "<br /><br />" . "U kunt uw proef " . "hier: $link " . "bekijken." .
 
         "<br /> <br />Met vriendelijke groet, <br />" . $_POST['name'].
         "<br /> <br />Disclaimer: This is an automatically generated mail. Please do not reply to this email";

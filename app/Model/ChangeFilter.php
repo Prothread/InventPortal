@@ -19,3 +19,6 @@ if($_POST['filter'] == 'openproeven') {
 if($_POST['filter'] == 'goedeproeven') {
     $_SESSION['uploads'] = $uploads->getAccordedUploads();
 }
+if($_POST['filter'] == 'afgekeurdeproeven') {
+    $_SESSION['uploads'] = $uploads->getDeclinedUploads();
+}

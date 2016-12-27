@@ -73,6 +73,17 @@ class Block
     }
 
     /**
+     * Haal alle geweigerde proeven op
+     *
+     * @return mixed
+     */
+
+    public function getDeclinedUploads()
+    {
+        return $this->db->getDeclinedUploads();
+    }
+
+    /**
      * Haal alle usermail info op met id
      *
      * @return mixed
