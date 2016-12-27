@@ -25,7 +25,7 @@ else {
                         <th style="text-align: left;">
                             <p class="NameText" style="font-weight: normal;">Overzicht</p>
                         </th>
-                        <th style="text-align: right;">
+                        <th id="filters" style="text-align: right;">
 
                             <?php if(isset($_SESSION['updateopenmails']) && $user->getPermission($permgroup, 'CAN_EDIT_ACCORD') == 1){ ?>
                             <a data-toggle="modal" data-target="#updateOpenMails" href="#">
@@ -46,6 +46,11 @@ else {
                             <a id="filtergoed" href="#">
                                 <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
                                 <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> Geakkordeerde proeven</button>
+                            </a>
+
+                            <a id="filterafgekeurd" href="#">
+                                <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
+                                    <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> Afgekeurde proeven</button>
                             </a>
 
                         </th>
@@ -163,6 +168,25 @@ else {
         filter = 'goedeproeven';
 
         var dataString = $('#filteropen').serialize() + '&filter=' + filter;
+
+        $.ajax({
+            type: "POST",
+            url: "?page=changefilter",
+            data: dataString,
+            cache: false,
+            success: function(result){
+                //$('#container').load("?page=overview " + '#container');
+                location.reload();
+            }
+        });
+
+        event.preventDefault();
+    });
+    $('#filterafgekeurd').on('click', function(event) {
+
+        filter = 'afgekeurdeproeven';
+
+        var dataString = $('#filterafgekeurd').serialize() + '&filter=' + filter;
 
         $.ajax({
             type: "POST",

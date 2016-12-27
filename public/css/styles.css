@@ -1370,14 +1370,14 @@ table.table { width: 100%; }
 }
 
 @media screen and (max-width: 800px) {
-    tr {
+    #myTable tr {
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
         margin: 0.5em 0;
     }
 
-    td, th {
+    #myTable td, th {
         flex: 1 1 150px;
     }
 
@@ -1678,4 +1678,10 @@ tr:nth-child(2n) {
     line-height: 1;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+#filters button {
+    margin-bottom: 5px;
+}
+#tableheader {
+    display:block;
 }

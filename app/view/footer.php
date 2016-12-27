@@ -226,7 +226,6 @@
             data: postForm,
             cache: false,
             success: function (result) {
-                //TODO update klant zoekfunctie
                 alert('Nieuwe klant aangemaakt');
                 $('.demclients').load('?page=uploadoverview' +  ' .demclients', function(){
                     //success load event
