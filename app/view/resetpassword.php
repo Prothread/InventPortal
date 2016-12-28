@@ -8,7 +8,8 @@ if(isset($_GET['token'])) {
     $token = $_GET['token'];
     $token = $session->clean($token);
 }
-else {
+else
+{
     echo 'Sessie wachtwoord vergeten is verlopen';
     return false;
 }

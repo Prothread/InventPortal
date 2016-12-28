@@ -126,7 +126,7 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);
                                                         <option value="1" style="color:#5a5454">Normale opmerking</option>
                                                         <option value="2" style="color:#9a1734">Let op de volgende punten</option>
                                                         <option value="3" style="color:#dd2c4c">Belangrijke opmerking</option>
-                                                        <option value="4" style="color:red">Eis van de klant</option>
+                                                        <option value="4" style="color:#ff0000">Eis van de klant</option>
                                                     </select>
                                                 </div>
                                             </div>
