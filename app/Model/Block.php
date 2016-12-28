@@ -29,7 +29,7 @@ class Block
     }
 
     /**
-     * Haal ale uploads op
+     * Haal ale uploads op die jonger zijn dan 1 jaar
      *
      * @return array|null
      */
@@ -37,6 +37,17 @@ class Block
     public function getUploads()
     {
         return $this->db->getUploads();
+    }
+
+    /**
+     * Haal alle uploads op die ouder zijn dan 1 jaar
+     *
+     * @return array|null
+     */
+
+    public function getArchiveUploads()
+    {
+        return $this->db->getArchiveUploads();
     }
 
     /**
@@ -67,9 +78,9 @@ class Block
      * @return mixed
      */
 
-    public function getAccordedUploads()
+    public function getAccordedUploads($date = null)
     {
-        return $this->db->getAccordedUploads();
+        return $this->db->getAccordedUploads($date);
     }
 
     /**
@@ -78,9 +89,9 @@ class Block
      * @return mixed
      */
 
-    public function getDeclinedUploads()
+    public function getDeclinedUploads($date = null)
     {
-        return $this->db->getDeclinedUploads();
+        return $this->db->getDeclinedUploads($date);
     }
 
     /**

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 06 dec 2016 om 13:39
+-- Gegenereerd op: 28 dec 2016 om 09:09
 -- Serverversie: 10.1.13-MariaDB
 -- PHP-versie: 7.0.6
 
@@ -33,15 +33,16 @@ CREATE TABLE `settings` (
   `Email` varchar(64) NOT NULL,
   `Mailpass` varchar(64) NOT NULL,
   `Logo` varchar(100) NOT NULL,
-  `Header` varchar(64) NOT NULL
+  `Header` varchar(64) NOT NULL,
+  `Host` varchar(64) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `settings`
 --
 
-INSERT INTO `settings` (`id`, `SMTP`, `SMTPport`, `Email`, `Mailpass`, `Logo`, `Header`) VALUES
-(0, 'smtp.gmail.com', '587', 'madalcomedia@gmail.com', 'Madalco&Invent', 'madlogo.png', '#dd2c4c');
+INSERT INTO `settings` (`id`, `SMTP`, `SMTPport`, `Email`, `Mailpass`, `Logo`, `Header`, `Host`) VALUES
+(0, 'smtp.gmail.com', '587', 'madalcomedia@gmail.com', 'Madalco&Invent', 'madlogo.png', '#dd2c4c', 'http://localhost/InventPortal');
 
 --
 -- Indexen voor geëxporteerde tabellen

@@ -78,6 +78,9 @@ switch($page) {
     case 'overview':
         include '../app/view/overview.php';
         break;
+    case 'archive':
+        include '../app/view/archive.php';
+        break;
     case 'uploading':
         include '../app/Model/upload.php';
         break;
@@ -212,6 +215,9 @@ switch($page) {
         break;
     case 'changefilter2':
         include '../app/Model/ChangeFilter2.php';
+        break;
+    case 'changearchivefilter':
+        include '../app/Model/ArchiveFilter.php';
         break;
     default:
         include '../app/view/404.php';

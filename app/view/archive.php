@@ -13,7 +13,7 @@ if(isset($_SESSION['uploads']) ) {
     $get_filled_info = $_SESSION['uploads'];
 }
 else {
-    $get_filled_info = $uploads->getUploads();
+    $get_filled_info = $uploads->getArchiveUploads();
 }
 ?>
 <div class="container">
@@ -37,11 +37,6 @@ else {
                             <a href="?page=useroverview">
                                 <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
                                 <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> Mijn overzicht</button>
-                            </a>
-
-                            <a id="filteropen" href="#">
-                                <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
-                                <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> Open proeven <span id="days">( > 5 dagen )</span></button>
                             </a>
 
                             <a id="filtergoed" href="#">
@@ -69,11 +64,6 @@ else {
                         <li><img alt="Geaccepteerd" src="public/icons/akkoord.png"> -> Akkoord</li>
                         <li><img alt="Geweigerd" src="public/icons/geweigerd.png"> -> Geweigerd</li>
                     </ul>
-                    <a href="?page=archive">
-                        <button style="width: 100px; background-color: #bb2c4c; color: white;" type="button" class="btn btn-default">
-                            <i class="glyphicon glyphicon-folder-close"></i> Archive
-                        </button>
-                    </a>
                 </div>
 
                 <?php if(isset($get_filled_info) && $get_filled_info !== null) { ?>
@@ -126,7 +116,7 @@ else {
                 </table>
                 <?php }
                 else { ?>
-                    <div id="weiger" class="alert alert-info" style="text-align: center;" role="alert"><span class="glyphicon glyphicon-remove-circle"></span> U heeft nog niks geüpload of geaccordeerd</div>
+                    <div id="weiger" class="alert alert-info" style="text-align: center;" role="alert"><span class="glyphicon glyphicon-remove-circle"></span> Er zijn nog geen proeven in de archive</div>
                 <?php } ?>
             </div>
         </div>
@@ -157,7 +147,7 @@ else {
 
         $.ajax({
             type: "POST",
-            url: "?page=changefilter",
+            url: "?page=changearchivefilter",
             data: dataString,
             cache: false,
             success: function(result){
@@ -177,7 +167,7 @@ else {
 
         $.ajax({
             type: "POST",
-            url: "?page=changefilter",
+            url: "?page=changearchivefilter",
             data: dataString,
             cache: false,
             success: function(result){
@@ -196,7 +186,7 @@ else {
 
         $.ajax({
             type: "POST",
-            url: "?page=changefilter",
+            url: "?page=changearchivefilter",
             data: dataString,
             cache: false,
             success: function(result){

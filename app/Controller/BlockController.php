@@ -28,7 +28,7 @@ class BlockController
     }
 
     /**
-     * Haal alle uploads op
+     * Haal alle uploads op die jonger zijn dan 1 jaar
      *
      * @return array|null
      */
@@ -36,6 +36,17 @@ class BlockController
     public function getUploads()
     {
         return $this->model->getUploads();
+    }
+
+    /**
+     * Haal alle uploads op die ouder zijn dan 1 jaar
+     *
+     * @return array|null
+     */
+
+    public function getArchiveUploads()
+    {
+        return $this->model->getArchiveUploads();
     }
 
     /**
@@ -100,9 +111,9 @@ class BlockController
      * @return mixed
      */
 
-    public function getAccordedUploads()
+    public function getAccordedUploads($date = null)
     {
-        return $this->model->getAccordedUploads();
+        return $this->model->getAccordedUploads($date);
     }
 
     /**
@@ -111,9 +122,9 @@ class BlockController
      * @return mixed
      */
 
-    public function getDeclinedUploads()
+    public function getDeclinedUploads($date = null)
     {
-        return $this->model->getDeclinedUploads();
+        return $this->model->getDeclinedUploads($date);
     }
 
     /**

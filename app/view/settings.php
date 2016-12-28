@@ -80,10 +80,14 @@ else {
                         </div>
                     </div>
 
+                    <p class="ClientFormText">Site</p>
+                    <hr size="1">
+
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Host</label>
                         <div class="col-md-4">
                             <input class="form-control input-md" id="textinput" maxlength="64" required type="text" name="host" size="50" value="<?= $admin['Host'] ?>" placeholder="http://www.madalcomedia.com">
+                            <span style="font-size:16px;">*Host kan ook map bevatten, bv: http://www.madalcomedia.com/Portal</span>
                         </div>
                     </div>
 

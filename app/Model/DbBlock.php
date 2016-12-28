@@ -10,15 +10,15 @@ class DbBlock extends Database
 {
 
     /**
-     * Haal ale uploads op
+     * Haal ale uploads op die jonger zijn dan 1 jaar
      *
      * @return array|null
      */
 
     public function getUploads(/*$table, $filter, $limit = null, $offset = null, $status*/){
+        /*
         $sql = "SELECT * FROM `mail`";
 
-        /*
         if($status) {
             $sql .= " WHERE verified = '{$status}'";
         }
@@ -36,6 +36,45 @@ class DbBlock extends Database
         }
         */
 
+        $sql = "SELECT * FROM `mail` WHERE `datum` > DATE_SUB(NOW(),INTERVAL 1 YEAR)";
+        $result = $this->dbQuery($sql);
+
+        $row = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+        if($row) {
+            return $row;
+        }
+        return null;
+    }
+
+    /**
+     * Haal alle uploads op die ouder zijn dan 1 jaar
+     *
+     * @return array|null
+     */
+
+    public function getArchiveUploads(/*$table, $filter, $limit = null, $offset = null, $status*/){
+        /*
+        $sql = "SELECT * FROM `mail`";
+
+        if($status) {
+            $sql .= " WHERE verified = '{$status}'";
+        }
+        if($table) {
+            $sql .= " ORDER BY $table";
+        }
+        if($filter) {
+            $sql .= " $filter";
+        }
+        if($limit) {
+            $sql .= " LIMIT {$limit}";
+        }
+        if($offset) {
+            $sql .= " OFFSET {$offset}";
+        }
+        */
+
+        $sql = "SELECT * FROM `mail` WHERE `datum` <= DATE_SUB(NOW(),INTERVAL 1 YEAR)";
         $result = $this->dbQuery($sql);
 
         $row = mysqli_fetch_all($result, MYSQLI_ASSOC);
@@ -100,9 +139,16 @@ class DbBlock extends Database
      * @return mixed
      */
 
-    public function getAccordedUploads()
+    public function getAccordedUploads($date = null)
     {
         $sql = "SELECT * FROM `mail` WHERE `verified` =  '2'";
+
+        if($date) {
+            $sql .= " AND `datum` > DATE_SUB(NOW(),INTERVAL 1 YEAR)";
+        }
+        else {
+            $sql .= " AND `datum` < DATE_SUB(NOW(),INTERVAL 1 YEAR)";
+        }
 
         if($result = $this->dbQuery($sql)) {
             $row = mysqli_fetch_all($result, MYSQLI_ASSOC);
@@ -116,9 +162,16 @@ class DbBlock extends Database
      * @return mixed
      */
 
-    public function getDeclinedUploads()
+    public function getDeclinedUploads($date = null)
     {
         $sql = "SELECT * FROM `mail` WHERE `verified` =  '3'";
+
+        if($date) {
+            $sql .= " AND `datum` > DATE_SUB(NOW(),INTERVAL 1 YEAR)";
+        }
+        else {
+            $sql .= " AND `datum` < DATE_SUB(NOW(),INTERVAL 1 YEAR)";
+        }
 
         if($result = $this->dbQuery($sql)) {
             $row = mysqli_fetch_all($result, MYSQLI_ASSOC);
