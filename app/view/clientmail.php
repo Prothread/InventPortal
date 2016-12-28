@@ -49,7 +49,13 @@ if($mailexist == null || empty($mailexist)){
     $mailer->addEmbeddedImage(DIR_PUBLIC . $admin['Logo'], "HeaderImage", "Logo.png");
 
     /* TO, SUBJECT, CONTENT */
-    $to = $email; //The 'To' field
+    if($_POST['altmail']) {
+        $altmail = mysqli_real_escape_string($mysqli, $_POST['altmail']);
+        $to = $altmail;
+    }
+    else {
+        $to = $email; //The 'To' field
+    }
     $subject = "Accountgegevens Madalco-portaal";
 
     $link = $admin['Host'] . "/index.php?page=login";

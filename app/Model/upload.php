@@ -25,10 +25,10 @@ $client = $user->getUserById($clientid);
 
 $name = mysqli_real_escape_string($mysqli, $client['naam']);
 
-if($client['altmail'] == '') {
-    $email = $client['email'];
-}else{
+if($client['altmail']) {
     $email = $client['altmail'];
+}else{
+    $email = $client['email'];
 }
 
 $comment = mysqli_real_escape_string($mysqli, $_POST['interncomment']);
