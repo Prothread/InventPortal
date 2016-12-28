@@ -214,7 +214,7 @@ if(isset($_POST['submit'])){
 
                         <?php if($user->getPermission($permgroup, 'CAN_EDIT_USER') == '1') { ?>
                             <div class="form-group">
-                                <label class="col-md-4 control-label">Rechten:<span style="color:#dd2c4c">*</span></label>
+                                <label class="col-md-4 control-label">Rechten<span style="color:#dd2c4c">*</span></label>
                                 <div class="col-md-4">
                                     <select class="form-control" name="rechten" required>
                                         <?php if($myclient['permgroup'] == '1') {?>

@@ -86,10 +86,10 @@ else {
                                 <label class="col-md-4 control-label">Rechten:</label>
                                 <div class="col-md-4">
                                     <select class="form-control" name="rechten" required>
-                                        <option>Klant</option>
-                                        <option selected="selected">Gebruiker</option>
-                                        <option>Beheerder</option>
-                                        <option>Admin</option>
+                                        <option value="1">Klant</option>
+                                        <option value="2" selected="selected">Gebruiker</option>
+                                        <option value="3">Beheerder</option>
+                                        <option value="4">Admin</option>
                                     </select>
                                 </div>
                             </div>
