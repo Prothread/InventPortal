@@ -80,7 +80,7 @@ else {
                         </div>
                     </div>
 
-                    <p class="ClientFormText">Site</p>
+                    <p class="ClientFormText">Mailing</p>
                     <hr size="1">
 
                     <div class="form-group">
