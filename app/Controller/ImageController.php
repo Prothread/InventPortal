@@ -1,11 +1,11 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: Kevin
  * Date: 05-Oct-16
  * Time: 09:20
  */
-
 class ImageController
 {
     /**
@@ -34,7 +34,8 @@ class ImageController
      * @return int
      */
 
-    public function getNewId(){
+    public function getNewId()
+    {
         return $this->model->getNewId();
     }
 
@@ -45,7 +46,8 @@ class ImageController
      * @return mixed
      */
 
-    public function getImageVerify($id) {
+    public function getImageVerify($id)
+    {
         return $this->model->getImageVerify($id);
     }
 
@@ -56,7 +58,8 @@ class ImageController
      * @return mixed
      */
 
-    public function getDeclinedImages($id) {
+    public function getDeclinedImages($id)
+    {
         return $this->model->getDeclinedImages($id);
     }
 
@@ -67,7 +70,8 @@ class ImageController
      * @return array|null
      */
 
-    public function getImagebyMailID($MailID) {
+    public function getImagebyMailID($MailID)
+    {
         return $this->model->getImagebyMailID($MailID);
     }
 
@@ -79,7 +83,8 @@ class ImageController
      * @return bool
      */
 
-    public function setImageVerify($id, $verify) {
+    public function setImageVerify($id, $verify)
+    {
         return $this->model->setImageVerify($id, $verify);
     }
 
@@ -91,7 +96,8 @@ class ImageController
      * @return bool
      */
 
-    public function setDownloadable($id, $vote) {
+    public function setDownloadable($id, $vote)
+    {
         return $this->model->setDownloadable($id, $vote);
     }
 

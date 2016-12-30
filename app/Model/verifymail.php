@@ -38,7 +38,7 @@ $mymail = $mail->getMailById($_GET['id']);
  * Check of er een id is meegestuurd
  */
 
-if(isset( $mymail ) ) {
+if (isset($mymail)) {
     $verifyemail = $mymail['email'];
 } else {
 
@@ -50,12 +50,11 @@ if(isset( $mymail ) ) {
  * Is er een key in de database die gelijk is aan die meegegeven in de link
  */
 
-if(isset( $_GET['key'] ) ) {
+if (isset($_GET['key'])) {
     $_GET['key'] = $session->clean($_GET['key']);
-    if($mymail['key'] == $_GET['key']) {
+    if ($mymail['key'] == $_GET['key']) {
         $mailkey = ($mymail['key']);
-    }
-    else {?>
+    } else { ?>
         <br>
         <div class="alert alert-danger alert-dismissible" role="alert">
             <strong>Let op!</strong> Het product is al geaccordeerd. Bekijk de status in het overzicht.
@@ -70,7 +69,7 @@ if(isset( $_GET['key'] ) ) {
  *
  * Als de email en de key bestaan, ga dan door
  */
-if( isset( $_GET['id'] ) && isset( $mailkey ) ) {
+if (isset($_GET['id']) && isset($mailkey)) {
 
     $getter = $DbVerify->getVerifiedById($verifyemail, $mailkey);
     $DbVerify->setVerifiedById($getter['id']);
@@ -86,7 +85,7 @@ if( isset( $_GET['id'] ) && isset( $mailkey ) ) {
 
     $useracc = $DbVerify->getUserForAccord($verifyemail);
 
-    $session->setMailId( $getter['id'] );
+    $session->setMailId($getter['id']);
 
     /**
      * SET User id
@@ -97,22 +96,20 @@ if( isset( $_GET['id'] ) && isset( $mailkey ) ) {
      *
      */
 
-    if(isset($_SESSION['usr_id'])) {
+    if (isset($_SESSION['usr_id'])) {
         $userid = $_SESSION['usr_id'];
-    }
-    else {
+    } else {
         $userid = $useracc['id'];
     }
 
     $user = new UserController();
-    if($user->getPermission($permgroup, 'CAN_ACCORD') == 1){
+    if ($user->getPermission($permgroup, 'CAN_ACCORD') == 1) {
 
-    }
-    else {
+    } else {
         $block->Redirect('index.php');
         Session::flash('error', 'U heeft hier geen rechten voor.');
     }
-    $session->setUserId( $userid );
+    $session->setUserId($userid);
     $_SESSION['accord'] = '1';
 
     /**
@@ -121,7 +118,6 @@ if( isset( $_GET['id'] ) && isset( $mailkey ) ) {
 
     //header('Location: index.php?page=approve&id='.$getter['id']);
     $block->Redirect('index.php?page=approve');
-}
-else {
+} else {
     echo '<div class="alert alert-danger">Er is iets misgegaan</div>';
 }

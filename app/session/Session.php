@@ -84,22 +84,22 @@ class Session
 
     function isValidEmail($address)
     {
-        if (filter_var($address,FILTER_VALIDATE_EMAIL)==FALSE) {
+        if (filter_var($address, FILTER_VALIDATE_EMAIL) == FALSE) {
             return false;
         }
         /* explode out local and domain */
-        list($local,$domain)=explode('@',$address);
+        list($local, $domain) = explode('@', $address);
 
-        $localLength=strlen($local);
-        $domainLength=strlen($domain);
+        $localLength = strlen($local);
+        $domainLength = strlen($domain);
 
         return (
             /* check for proper lengths */
-            ($localLength>0 && $localLength<65) &&
-            ($domainLength>3 && $domainLength<256) &&
+            ($localLength > 0 && $localLength < 65) &&
+            ($domainLength > 3 && $domainLength < 256) &&
             (
-                checkdnsrr($domain,'MX') ||
-                checkdnsrr($domain,'A')
+                checkdnsrr($domain, 'MX') ||
+                checkdnsrr($domain, 'A')
             )
         );
     }

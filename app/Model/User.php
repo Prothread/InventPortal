@@ -1,11 +1,11 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: Kevin
  * Date: 14-Oct-16
  * Time: 08:35
  */
-
 class User
 {
     private $db;
@@ -718,6 +718,7 @@ class User
     {
         return $this->db->getFourUsersByPerm($permgroup);
     }
+
     /**
      * Haal aantal resultaten van mails op
      *

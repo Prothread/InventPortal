@@ -1,10 +1,9 @@
 <?php
 #SETTINGS PAGE
 
-if($user->getPermission($permgroup, 'CAN_EDIT_SETTINGS') == 1){
+if ($user->getPermission($permgroup, 'CAN_EDIT_SETTINGS') == 1) {
 
-}
-else {
+} else {
     $block->Redirect('index.php');
     Session::flash('error', 'U heeft hier geen rechten voor.');
 }
@@ -12,10 +11,10 @@ else {
 $mysqli = mysqli_connect();
 $smtp = mysqli_real_escape_string($mysqli, $_POST['smtp']);
 $smtpport = mysqli_real_escape_string($mysqli, $_POST['smtpport']);
-$email =  mysqli_real_escape_string($mysqli, $_POST['email']);
+$email = mysqli_real_escape_string($mysqli, $_POST['email']);
 $mailpass = mysqli_real_escape_string($mysqli, $_POST['emailpassword']);
-$header =  mysqli_real_escape_string($mysqli, $_POST['headerkleur']);
-$host =  mysqli_real_escape_string($mysqli, $_POST['host']);
+$header = mysqli_real_escape_string($mysqli, $_POST['headerkleur']);
+$host = mysqli_real_escape_string($mysqli, $_POST['host']);
 
 $settingsarray = [
     'SMTP' => $smtp,

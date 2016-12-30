@@ -4,13 +4,11 @@
 require_once DIR_MODEL . 'permissions.php';
 
 $user = new UserController();
-if($user->getPermission($permgroup, 'CAN_ACCORD') == 1){
+if ($user->getPermission($permgroup, 'CAN_ACCORD') == 1) {
 
-}
-else if($user->getPermission($permgroup, 'CAN_EDIT_ACCORD') == 1) {
+} else if ($user->getPermission($permgroup, 'CAN_EDIT_ACCORD') == 1) {
 
-}
-else {
+} else {
     $block->Redirect('index.php');
     Session::flash('error', 'U heeft hier geen rechten voor.');
 }
@@ -35,10 +33,9 @@ if(isset($_GET['page'])) {
 */
 $imgid = $_POST['img'];
 
-if($_POST['vote'] == "Akkoord") {
+if ($_POST['vote'] == "Akkoord") {
     $verify = 1;
-}
-else if($_POST['vote'] == "Weiger") {
+} else if ($_POST['vote'] == "Weiger") {
     $verify = 2;
 }
 

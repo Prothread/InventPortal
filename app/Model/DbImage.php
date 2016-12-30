@@ -1,11 +1,11 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: Kevin
  * Date: 05-Oct-16
  * Time: 09:24
  */
-
 class DbImage extends Database
 {
 
@@ -15,13 +15,14 @@ class DbImage extends Database
      * @return int
      */
 
-    public function getNewId(){
+    public function getNewId()
+    {
         $sql = "SELECT `id` FROM `mail` ORDER BY `id` DESC LIMIT 1";
 
         $result = $this->dbQuery($sql);
         $value = mysqli_fetch_assoc($result);
 
-        if($value) {
+        if ($value) {
             return intval($value['id']);
         }
     }
@@ -33,13 +34,14 @@ class DbImage extends Database
      * @return array|null
      */
 
-    public function getImagebyMailID($MailID){
+    public function getImagebyMailID($MailID)
+    {
         $sql = "SELECT * FROM `image` WHERE `mailid` = '{$MailID}'";
 
         $result = $this->dbQuery($sql);
         $row = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
-        if($row) {
+        if ($row) {
             return $row;
         }
 
@@ -53,10 +55,11 @@ class DbImage extends Database
      * @return bool
      */
 
-    public function setImageVerify($id, $verify) {
+    public function setImageVerify($id, $verify)
+    {
         $sql = "UPDATE `image` SET `verify` = '{$verify}' WHERE `id` = '{$id}'";
 
-        if($this->dbQuery($sql)){
+        if ($this->dbQuery($sql)) {
             return true;
         }
     }
@@ -69,11 +72,12 @@ class DbImage extends Database
      */
 
 
-    public function getImageVerify($id) {
+    public function getImageVerify($id)
+    {
         $sql = "SELECT * FROM `image` WHERE `id` = '{$id}'";
 
-        if($result = $this->dbQuery($sql)){
-            return mysqli_fetch_assoc( $result );
+        if ($result = $this->dbQuery($sql)) {
+            return mysqli_fetch_assoc($result);
         }
     }
 
@@ -84,11 +88,12 @@ class DbImage extends Database
      * @return mixed
      */
 
-    public function getDeclinedImages($id) {
+    public function getDeclinedImages($id)
+    {
         $sql = "SELECT * FROM `image` WHERE `mailid` = '{$id}' && `verify` = '2'";
 
-        if($result = $this->dbQuery($sql)){
-            return mysqli_fetch_assoc( $result );
+        if ($result = $this->dbQuery($sql)) {
+            return mysqli_fetch_assoc($result);
         }
         return false;
     }
@@ -101,10 +106,11 @@ class DbImage extends Database
      * @return bool
      */
 
-    public function setDownloadable($id, $vote) {
+    public function setDownloadable($id, $vote)
+    {
         $sql = "UPDATE `image` SET `downloadable` = '{$vote}' WHERE `id` = '{$id}'";
 
-        if($result = $this->dbQuery($sql)){
+        if ($result = $this->dbQuery($sql)) {
             return true;
         }
         return false;
@@ -121,8 +127,8 @@ class DbImage extends Database
     {
         $sql = "SELECT * FROM `image` WHERE `images` = '{$ImageName}'";
 
-        if($result = $this->dbQuery($sql)){
-            return mysqli_fetch_assoc( $result );
+        if ($result = $this->dbQuery($sql)) {
+            return mysqli_fetch_assoc($result);
         }
         return false;
     }

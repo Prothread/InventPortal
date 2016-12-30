@@ -1,10 +1,9 @@
 <?php
 #OVERZICHT PAGE VAN ALLE GEBRUIKERS
 
-if($user->getPermission($permgroup, 'CAN_SHOW_USERS') == 1){
+if ($user->getPermission($permgroup, 'CAN_SHOW_USERS') == 1) {
 
-}
-else {
+} else {
     $block->Redirect('index.php');
     Session::flash('error', 'U heeft hier geen rechten voor.');
 }
@@ -22,11 +21,13 @@ $get_filled_info = $user->getAllUsersByPerm(1);
                     <p class="NameText">Overzicht</p>
                     <hr size="1">
 
-                    <?php if($user->getPermission($permgroup, 'CAN_CREATE_USER') == 1){ ?>
-                        <a href="index.php?page=newuser"><button id="NewClientButton">Nieuwe gebruiker</button></a>
+                    <?php if ($user->getPermission($permgroup, 'CAN_CREATE_USER') == 1) { ?>
+                        <a href="index.php?page=newuser">
+                            <button id="NewClientButton">Nieuwe gebruiker</button>
+                        </a>
                     <?php } ?>
 
-                    <?php if($get_filled_info !== null) { ?>
+                    <?php if ($get_filled_info !== null) { ?>
 
                         <table id="myTable" class="table table-striped">
                             <thead>
@@ -76,9 +77,10 @@ $get_filled_info = $user->getAllUsersByPerm(1);
                             </tbody>
                         </table>
 
-                    <?php }
-                    else { ?>
-                        <div id="weiger" class="alert alert-info" style="text-align: center;" role="alert"><span class="glyphicon glyphicon-remove-circle"></span> Er zijn nog geen gebruikers aangemaakt</div>
+                    <?php } else { ?>
+                        <div id="weiger" class="alert alert-info" style="text-align: center;" role="alert"><span
+                                class="glyphicon glyphicon-remove-circle"></span> Er zijn nog geen gebruikers aangemaakt
+                        </div>
                     <?php } ?>
                 </div>
             </div>
@@ -87,9 +89,9 @@ $get_filled_info = $user->getAllUsersByPerm(1);
 </div>
 
 <script>
-    $(document).ready(function(){
+    $(document).ready(function () {
         $('#myTable').dataTable({
-            "order": [[ 0, "desc" ]],
+            "order": [[0, "desc"]],
             "deferRender": true
         });
 

@@ -1,10 +1,9 @@
 <?php
 #PAGE FOR UPDATING CLIENTS
 
-if($user->getPermission($permgroup, 'CAN_EDIT_CLIENT') == 1){
+if ($user->getPermission($permgroup, 'CAN_EDIT_CLIENT') == 1) {
 
-}
-else {
+} else {
     $block->Redirect('index.php');
     Session::flash('error', 'U heeft hier geen rechten voor.');
 }
@@ -17,27 +16,24 @@ $id = $_GET['id'];
 $id = $session->cleantonumber($id);
 
 $myclient = $client->getUserById($id);
-if($user->getPermission($permgroup, 'CAN_EDIT_CLIENT') == 1 && $userinfo['permgroup'] == 1){
+if ($user->getPermission($permgroup, 'CAN_EDIT_CLIENT') == 1 && $userinfo['permgroup'] == 1) {
 
-}
-else if($user->getPermission($permgroup, 'CAN_EDIT_USER') == 1 && $userinfo['permgroup'] !== 1) {
+} else if ($user->getPermission($permgroup, 'CAN_EDIT_USER') == 1 && $userinfo['permgroup'] !== 1) {
 
-}
-else {
+} else {
     return 'U heeft geen rechten om dit te doen';
 }
 
 
+if (isset($_POST['submit'])) {
 
-if(isset($_POST['submit'])){
-
-    $naam = mysqli_real_escape_string( $mysqli, $_POST['showname']);
-    $email = mysqli_real_escape_string( $mysqli, $_POST['email']);
-    $altmail = mysqli_real_escape_string( $mysqli, $_POST['altmail']);
-    $bedrijfsnaam = mysqli_real_escape_string( $mysqli, $_POST['companyname']);
-    $adres = mysqli_real_escape_string( $mysqli, $_POST['companyadress']);
-    $postcode = mysqli_real_escape_string( $mysqli, $_POST['postcode']);
-    $plaats = mysqli_real_escape_string( $mysqli, $_POST['plaats']);
+    $naam = mysqli_real_escape_string($mysqli, $_POST['showname']);
+    $email = mysqli_real_escape_string($mysqli, $_POST['email']);
+    $altmail = mysqli_real_escape_string($mysqli, $_POST['altmail']);
+    $bedrijfsnaam = mysqli_real_escape_string($mysqli, $_POST['companyname']);
+    $adres = mysqli_real_escape_string($mysqli, $_POST['companyadress']);
+    $postcode = mysqli_real_escape_string($mysqli, $_POST['postcode']);
+    $plaats = mysqli_real_escape_string($mysqli, $_POST['plaats']);
     $rechten = mysqli_real_escape_string($mysqli, $_POST['rechten']);
 
     //Generate a random string.
@@ -47,14 +43,14 @@ if(isset($_POST['submit'])){
 
     $clientinfo = [
         'id' => intval($_POST['id']),
-        'name' => strip_tags( $naam ),
-        'email' => strip_tags( $email ),
-        'altmail' => strip_tags( $altmail ),
+        'name' => strip_tags($naam),
+        'email' => strip_tags($email),
+        'altmail' => strip_tags($altmail),
         'password' => $token,
-        'bedrijfsnaam' => strip_tags( $bedrijfsnaam ),
-        'adres' => strip_tags( $adres ),
-        'postcode' => strip_tags( $postcode ),
-        'plaats' => strip_tags( $plaats ),
+        'bedrijfsnaam' => strip_tags($bedrijfsnaam),
+        'adres' => strip_tags($adres),
+        'postcode' => strip_tags($postcode),
+        'plaats' => strip_tags($plaats),
         'permgroup' => $rechten
     ];
 
@@ -95,14 +91,14 @@ if(isset($_POST['submit'])){
             $clientinfo = [
                 'id' => intval($_POST['id']),
                 'profimg' => $unique_name,
-                'name' => strip_tags( $naam ),
-                'email' => strip_tags( $email ),
-                'altmail' => strip_tags( $altmail ),
+                'name' => strip_tags($naam),
+                'email' => strip_tags($email),
+                'altmail' => strip_tags($altmail),
                 'password' => $token,
-                'bedrijfsnaam' => strip_tags( $bedrijfsnaam ),
-                'adres' => strip_tags( $adres ),
-                'postcode' => strip_tags( $postcode ),
-                'plaats' => strip_tags( $plaats ),
+                'bedrijfsnaam' => strip_tags($bedrijfsnaam),
+                'adres' => strip_tags($adres),
+                'postcode' => strip_tags($postcode),
+                'plaats' => strip_tags($plaats),
                 'permgroup' => $rechten
             ];
 
@@ -135,7 +131,8 @@ if(isset($_POST['submit'])){
                                 <label for="file-upload" class="custom-file-upload">
                                     <i class="fa fa-cloud-upload"></i> Uploaden
                                 </label>
-                                <input type="file" name="fileToUpload" class="imgInp btn btn-primary btn-success" id="file-upload">
+                                <input type="file" name="fileToUpload" class="imgInp btn btn-primary btn-success"
+                                       id="file-upload">
                             </div>
                         </div>
 
@@ -153,9 +150,11 @@ if(isset($_POST['submit'])){
 
                         <!-- Text input-->
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="textinput">Naam<span style="color:#dd2c4c">*</span></label>
+                            <label class="col-md-4 control-label" for="textinput">Naam<span
+                                    style="color:#dd2c4c">*</span></label>
                             <div class="col-md-4">
-                                <input class="form-control input-md" id="textinput" maxlength="60" required type="text" name="showname" size="50" value="<?= $myclient['naam']; ?>">
+                                <input class="form-control input-md" id="textinput" maxlength="60" required type="text"
+                                       name="showname" size="50" value="<?= $myclient['naam']; ?>">
                             </div>
                         </div>
 
@@ -163,7 +162,8 @@ if(isset($_POST['submit'])){
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">Bedrijfsnaam</label>
                             <div class="col-md-4">
-                                <input class="form-control input-md" id="textinput" maxlength="60" type="text" name="companyname" size="50" value="<?= $myclient['bedrijfsnaam']; ?>">
+                                <input class="form-control input-md" id="textinput" maxlength="60" type="text"
+                                       name="companyname" size="50" value="<?= $myclient['bedrijfsnaam']; ?>">
                             </div>
                         </div>
 
@@ -172,27 +172,31 @@ if(isset($_POST['submit'])){
 
                         <!-- Text input-->
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="textinput">E-mail<span style="color:#dd2c4c">*</span></label>
+                            <label class="col-md-4 control-label" for="textinput">E-mail<span
+                                    style="color:#dd2c4c">*</span></label>
                             <div class="col-md-4">
-                                <input class="form-control input-md" id="textinput" maxlength="60" required type="email" name="email" size="50" value="<?= $myclient['email']; ?>">
+                                <input class="form-control input-md" id="textinput" maxlength="60" required type="email"
+                                       name="email" size="50" value="<?= $myclient['email']; ?>">
                             </div>
                         </div>
 
-                        <br />
+                        <br/>
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">Alt E-mail</label>
                             <div class="col-md-4">
                                 <span style="font-size:15px">Alternatief email voor contact met de klant</span>
-                                <input class="form-control input-md" id="textinput" maxlength="60" type="email" name="altmail" placeholder="E-mailadres">
+                                <input class="form-control input-md" id="textinput" maxlength="60" type="email"
+                                       name="altmail" placeholder="E-mailadres">
                             </div>
                         </div>
-                        <br />
+                        <br/>
 
                         <!-- Select Basic -->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">Adres</label>
                             <div class="col-md-4">
-                                <input class="form-control input-md" id="textinput" maxlength="60" type="text" name="companyadress" size="50" value="<?= $myclient['adres']; ?>">
+                                <input class="form-control input-md" id="textinput" maxlength="60" type="text"
+                                       name="companyadress" size="50" value="<?= $myclient['adres']; ?>">
                             </div>
                         </div>
 
@@ -200,7 +204,8 @@ if(isset($_POST['submit'])){
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">Postcode</label>
                             <div class="col-md-4">
-                                <input class="form-control input-md" id="textinput" maxlength="8" type="text" name="postcode" size="50" value="<?= $myclient['postcode']; ?>">
+                                <input class="form-control input-md" id="textinput" maxlength="8" type="text"
+                                       name="postcode" size="50" value="<?= $myclient['postcode']; ?>">
                             </div>
                         </div>
 
@@ -208,34 +213,36 @@ if(isset($_POST['submit'])){
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">Plaats</label>
                             <div class="col-md-4">
-                                <input class="form-control input-md" id="textinput" maxlength="60" type="text" name="plaats" size="50" value="<?= $myclient['plaats']; ?>">
+                                <input class="form-control input-md" id="textinput" maxlength="60" type="text"
+                                       name="plaats" size="50" value="<?= $myclient['plaats']; ?>">
                             </div>
                         </div>
 
-                        <?php if($user->getPermission($permgroup, 'CAN_EDIT_USER') == '1') { ?>
+                        <?php if ($user->getPermission($permgroup, 'CAN_EDIT_USER') == '1') { ?>
                             <div class="form-group">
-                                <label class="col-md-4 control-label">Rechten<span style="color:#dd2c4c">*</span></label>
+                                <label class="col-md-4 control-label">Rechten<span
+                                        style="color:#dd2c4c">*</span></label>
                                 <div class="col-md-4">
                                     <select class="form-control" name="rechten" required>
-                                        <?php if($myclient['permgroup'] == '1') {?>
+                                        <?php if ($myclient['permgroup'] == '1') { ?>
                                             <option value="1" selected="selected">Klant</option>
                                         <?php } else { ?>
                                             <option value="1">Klant</option>
                                         <?php } ?>
 
-                                        <?php if($myclient['permgroup'] == '2') {?>
+                                        <?php if ($myclient['permgroup'] == '2') { ?>
                                             <option value="2" selected="selected">Gebruiker</option>
                                         <?php } else { ?>
                                             <option value="2">Gebruiker</option>
                                         <?php } ?>
 
-                                        <?php if($myclient['permgroup'] == '3') {?>
+                                        <?php if ($myclient['permgroup'] == '3') { ?>
                                             <option value="3" selected="selected">Beheerder</option>
                                         <?php } else { ?>
                                             <option value="3">Beheerder</option>
                                         <?php } ?>
 
-                                        <?php if($myclient['permgroup'] == '4') {?>
+                                        <?php if ($myclient['permgroup'] == '4') { ?>
                                             <option value="4" selected="selected">Admin</option>
                                         <?php } else { ?>
                                             <option value="4">Admin</option>
@@ -244,14 +251,17 @@ if(isset($_POST['submit'])){
                                 </div>
                             </div>
 
-                        <?php } else {?>
-                            <input class="form-control" value="<?= $userinfo['permgroup'] ?>" type="hidden" name="rechten">
+                        <?php } else { ?>
+                            <input class="form-control" value="<?= $userinfo['permgroup'] ?>" type="hidden"
+                                   name="rechten">
                         <?php } ?>
 
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput"></label>
                             <div class="col-md-4">
-                                <input class="btn btn-primary btn-success" name="submit"  style="max-width: 100px; background-color: #bb2c4c; border: 1px solid #dd2c4c" type="submit" value="Opslaan">
+                                <input class="btn btn-primary btn-success" name="submit"
+                                       style="max-width: 100px; background-color: #bb2c4c; border: 1px solid #dd2c4c"
+                                       type="submit" value="Opslaan">
                             </div>
                         </div>
                     </fieldset>

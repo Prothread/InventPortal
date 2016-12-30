@@ -1,11 +1,11 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: Kevin
  * Date: 05-Oct-16
  * Time: 11:37
  */
-
 class Block
 {
 

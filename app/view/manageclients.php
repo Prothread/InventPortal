@@ -1,10 +1,9 @@
 <?php
 #OVERZICHT PAGE VAN ALLE KLANTEN
 
-if($user->getPermission($permgroup, 'CAN_SHOW_KLANTPAGINA') == 1){
+if ($user->getPermission($permgroup, 'CAN_SHOW_KLANTPAGINA') == 1) {
 
-}
-else {
+} else {
     $block->Redirect('index.php');
     Session::flash('error', 'U heeft hier geen rechten voor.');
 }
@@ -22,11 +21,13 @@ $get_filled_info = $user->getAllClients();
                     <p class="NameText">Overzicht</p>
                     <hr size="1">
 
-                    <?php if($user->getPermission($permgroup, 'CAN_CREATE_USER') == 1){ ?>
-                        <a href="index.php?page=newclient"><button id="NewClientButton">Nieuwe klant</button></a>
+                    <?php if ($user->getPermission($permgroup, 'CAN_CREATE_USER') == 1) { ?>
+                        <a href="index.php?page=newclient">
+                            <button id="NewClientButton">Nieuwe klant</button>
+                        </a>
                     <?php } ?>
 
-                    <?php if($get_filled_info !== null) { ?>
+                    <?php if ($get_filled_info !== null) { ?>
 
                         <table id="myTable" class="table table-striped">
                             <thead>
@@ -55,7 +56,11 @@ $get_filled_info = $user->getAllClients();
                                         <?= $upload['bedrijfsnaam'] ?>
                                     </td>
                                     <td>
-                                        <?php if($upload['altmail']) { echo $upload['altmail']; } else { echo $upload['email']; }?>
+                                        <?php if ($upload['altmail']) {
+                                            echo $upload['altmail'];
+                                        } else {
+                                            echo $upload['email'];
+                                        } ?>
                                     </td>
                                     <td>
                                         <?= $upload['adres'] ?>
@@ -76,10 +81,11 @@ $get_filled_info = $user->getAllClients();
                             </tbody>
                         </table>
 
-                    <?php }
-                    else { ?>
+                    <?php } else { ?>
                         <br/>
-                        <div id="weiger" class="alert alert-danger" style="text-align: center;" role="alert"><span class="glyphicon glyphicon-remove-circle"></span> Er zijn nog geen gebruikers aangemaakt</div>
+                        <div id="weiger" class="alert alert-danger" style="text-align: center;" role="alert"><span
+                                class="glyphicon glyphicon-remove-circle"></span> Er zijn nog geen gebruikers aangemaakt
+                        </div>
                     <?php } ?>
                 </div>
             </div>
@@ -88,9 +94,9 @@ $get_filled_info = $user->getAllClients();
 </div>
 
 <script>
-    $(document).ready(function(){
+    $(document).ready(function () {
         $('#myTable').dataTable({
-            "order": [[ 0, "desc" ]],
+            "order": [[0, "desc"]],
             "deferRender": true
         });
 

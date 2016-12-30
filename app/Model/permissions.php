@@ -13,27 +13,22 @@ $session = new Session();
  * Haal de rechten van de user/client op
  */
 
-if(isset($_SESSION['usr_id'])){
+if (isset($_SESSION['usr_id'])) {
     $id = $user->getPermissionGroup($_SESSION['usr_id']);
     $id = $id['permgroup'];
 
-    if($id == 1) {
+    if ($id == 1) {
         $permgroup = 'Klant';
-    }
-    else if($id == 2) {
+    } else if ($id == 2) {
         $permgroup = 'Gebruiker';
-    }
-    else if($id == 3) {
+    } else if ($id == 3) {
         $permgroup = 'Beheerder';
-    }
-    else if($id == 4) {
+    } else if ($id == 4) {
         $permgroup = 'Admin';
-    }
-    else {
+    } else {
         $permgroup = 'Klant';
     }
-}
-else if(isset($_SESSION['userid'])) {
+} else if (isset($_SESSION['userid'])) {
     if ($session->getUserId()) {
         $id = $user->getPermissionGroup($session->getUserId());
         $id = $id['permgroup'];
@@ -50,7 +45,6 @@ else if(isset($_SESSION['userid'])) {
             $permgroup = 'Klant';
         }
     }
-}
-else {
+} else {
     $permgroup = 'Klant';
 }

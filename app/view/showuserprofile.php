@@ -1,10 +1,9 @@
 <?php
 #PAGE FOR SHOWING PROFILE
 
-if($user->getPermission($permgroup, 'CAN_SHOW_USERS') == 1){
+if ($user->getPermission($permgroup, 'CAN_SHOW_USERS') == 1) {
 
-}
-else {
+} else {
     $block->Redirect('index.php');
     Session::flash('error', 'U heeft hier geen rechten voor.');
 }
@@ -12,26 +11,21 @@ else {
 $user = new UserController();
 $session = new Session();
 
-if(isset($_GET['id'])) {
+if (isset($_GET['id'])) {
     $_GET['id'] = $session->cleantonumber($_GET['id']);
     $userinfo = $user->getUserById($_GET['id']);
-}
-else {
+} else {
     return 'Profiel niet gevonden';
 }
-if($userinfo['permgroup'] == '1') {
+if ($userinfo['permgroup'] == '1') {
     $userperm = 'Klant';
-}
-else if($userinfo['permgroup'] == '2') {
+} else if ($userinfo['permgroup'] == '2') {
     $userperm = 'Gebruiker';
-}
-else if($userinfo['permgroup'] == '3') {
+} else if ($userinfo['permgroup'] == '3') {
     $userperm = 'Beheerder';
-}
-else if($userinfo['permgroup'] == '4') {
+} else if ($userinfo['permgroup'] == '4') {
     $userperm = 'Admin';
-}
-else {
+} else {
     $userperm = 'Klant';
 }
 ?>
@@ -43,13 +37,16 @@ else {
                 <div class="container">
                     <table style="width:100%">
                         <tr>
-                            <th style="text-align: left;"><p class="NameText" style="font-weight: normal;">Profiel: <?= $userinfo['naam'] ?></p></th>
+                            <th style="text-align: left;"><p class="NameText" style="font-weight: normal;">
+                                    Profiel: <?= $userinfo['naam'] ?></p></th>
                             <th style="text-align: right;">
 
-                                <?php if($user->getPermission($permgroup, 'CAN_EDIT_CLIENT') == 1){ ?>
+                                <?php if ($user->getPermission($permgroup, 'CAN_EDIT_CLIENT') == 1) { ?>
                                     <a href="?page=editclient&id=<?= $_GET['id'] ?>">
                                         <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
-                                            <span class="btn-label"><i class="glyphicon glyphicon-pencil"></i></span>Wijzig gebruiker</button>
+                                            <span class="btn-label"><i class="glyphicon glyphicon-pencil"></i></span>Wijzig
+                                            gebruiker
+                                        </button>
                                     </a>
                                 <?php } ?>
 
@@ -63,7 +60,8 @@ else {
                         <!-- left column -->
                         <div class="col-md-3">
                             <div class="text-center">
-                                <img src="<?= DIR_IMG . $userinfo['profimg'] ?>" width="150px" height="150px;" class="avatar img-circle" alt="avatar">
+                                <img src="<?= DIR_IMG . $userinfo['profimg'] ?>" width="150px" height="150px;"
+                                     class="avatar img-circle" alt="avatar">
 
                                 <input class="form-control" type="file">
                             </div>
@@ -75,37 +73,43 @@ else {
                                 <div class="form-group">
                                     <label class="col-lg-3 control-label">Naam</label>
                                     <div class="col-lg-8">
-                                        <input disabled class="form-control" value="<?= $userinfo['naam'] ?>" type="text">
+                                        <input disabled class="form-control" value="<?= $userinfo['naam'] ?>"
+                                               type="text">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-lg-3 control-label">Bedrijfsnaam:</label>
                                     <div class="col-lg-8">
-                                        <input disabled class="form-control" value="<?= $userinfo['bedrijfsnaam'] ?>" type="text">
+                                        <input disabled class="form-control" value="<?= $userinfo['bedrijfsnaam'] ?>"
+                                               type="text">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-lg-3 control-label">Email:</label>
                                     <div class="col-lg-8">
-                                        <input disabled class="form-control" value="<?= $userinfo['email'] ?>" type="text">
+                                        <input disabled class="form-control" value="<?= $userinfo['email'] ?>"
+                                               type="text">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-lg-3 control-label">Adres:</label>
                                     <div class="col-lg-8">
-                                        <input disabled class="form-control" value="<?= $userinfo['adres'] ?>" type="text">
+                                        <input disabled class="form-control" value="<?= $userinfo['adres'] ?>"
+                                               type="text">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-lg-3 control-label">Postcode:</label>
                                     <div class="col-lg-8">
-                                        <input disabled class="form-control" size="6" value="<?= $userinfo['postcode'] ?>" type="text">
+                                        <input disabled class="form-control" size="6"
+                                               value="<?= $userinfo['postcode'] ?>" type="text">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-lg-3 control-label">Plaats:</label>
                                     <div class="col-lg-8">
-                                        <input disabled class="form-control" value="<?= $userinfo['plaats'] ?>" type="text">
+                                        <input disabled class="form-control" value="<?= $userinfo['plaats'] ?>"
+                                               type="text">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -126,8 +130,8 @@ else {
             </div>
         </div>
 
-        <br />
-        <br />
+        <br/>
+        <br/>
 
     </div>
     <hr>
