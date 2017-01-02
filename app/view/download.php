@@ -1,31 +1,29 @@
 <?php
 #PROCESSES DOWNLOAD
 
-$session =  new Session();
+$session = new Session();
 
 $file = $_GET['file'];
 
 $image = new ImageController();
 $myimage = $image->getImageByName($file);
 
-if(substr( $file, -3) == 'pdf') {
+if (substr($file, -3) == 'pdf') {
     $block->Redirect('app/uploads/' . $file);
 }
 
-if($user->getPermission($permgroup, 'CAN_ACCORD') == 1 && $myimage['downloadable'] == '1'){
+if ($user->getPermission($permgroup, 'CAN_ACCORD') == 1 && $myimage['downloadable'] == '1') {
 
-}
-else if($user->getPermission($permgroup, 'CAN_EDIT_ACCORD') == 1 && $myimage['downloadable'] == '1') {
+} else if ($user->getPermission($permgroup, 'CAN_EDIT_ACCORD') == 1 && $myimage['downloadable'] == '1') {
 
-}
-else {
+} else {
     $block->Redirect('index.php');
     Session::flash('error', 'U heeft hier geen rechten voor.');
 }
 
 download_file($file);
 
-function download_file( $Path )
+function download_file($Path)
 {
     // Must be fresh start
     if (headers_sent()) {
@@ -34,7 +32,7 @@ function download_file( $Path )
         $path_parts = pathinfo($fullPath);
         $ext = strtolower($path_parts["extension"]);
 
-        if(file_exists($fullPath)) {
+        if (file_exists($fullPath)) {
             // Determine Content Type
             switch ($ext) {
                 case "pdf":
@@ -58,8 +56,7 @@ function download_file( $Path )
                 default:
                     $ctype = "application/force-download";
             }
-        }
-        else {
+        } else {
             echo 'Dit bestand bestaat niet';
             return false;
         }
@@ -68,8 +65,8 @@ function download_file( $Path )
         $imageHeight = imagesy($im);
 
         ob_start();
-          imagepng($im);
-          $contents = ob_get_contents();
+        imagepng($im);
+        $contents = ob_get_contents();
         ob_end_clean();
 
         $dataUri = 'data:image/' . 'png' . ';base64,' . base64_encode($contents);
@@ -124,8 +121,7 @@ function download_file( $Path )
         flush();
         readfile($fullPath);
 
-    }
-    else {
+    } else {
         die('<div class="alert alert-danger" role="alert">Het bestand dat u probeerde te downloaden kan niet worden gevonden.</div>');
     }
 }

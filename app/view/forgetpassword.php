@@ -12,7 +12,7 @@ if (isset($_SESSION['usr_id'])) {
 
 $user = new UserController();
 
-if(isset($_POST['submit'])) {
+if (isset($_POST['submit'])) {
     //Generate a random string.
     $token = openssl_random_pseudo_bytes(16);
 
@@ -24,7 +24,7 @@ if(isset($_POST['submit'])) {
     $getbyemail = $user->getUserByEmail($_POST['email']);
     $email = $_POST['email'];
 
-    if($getbyemail !== null) {
+    if ($getbyemail !== null) {
         $user->passForget($_POST['email'], $token);
 
         $mymail = new MailController();
@@ -57,9 +57,9 @@ if(isset($_POST['submit'])) {
                                 <img src="cid:HeaderImage" style="width:auto;height:75%;" />
                             </div>
                         </div> ';
-            $content = $header ."  <br/><br/>" . "Geachte " . $getbyemail['naam'] . "," .
+            $content = $header . "  <br/><br/>" . "Geachte " . $getbyemail['naam'] . "," .
                 " <br/><br/>" . "Wachtwoord vergeten: " . "<br /><br />" .
-                "<b>Link om uw wachtwoord te veranderen: </b>".
+                "<b>Link om uw wachtwoord te veranderen: </b>" .
                 "<a href='$link'>Link</a>" . "<br /><br />" .
 
                 "Als U dit niet heeft aangevraagd, kunt U dit negeren, uw wachtwoord veranderen of dit aangeven bij de administrators " .
@@ -69,12 +69,12 @@ if(isset($_POST['submit'])) {
 
             $altcontent = "Geachte " . $getbyemail['naam'] . "," .
                 " <br/><br/>" . "Wachtwoord vergeten: " . "<br /><br />" .
-                "<b>Link om uw wachtwoord te veranderen: </b>".
+                "<b>Link om uw wachtwoord te veranderen: </b>" .
                 $link . "<br />" .
 
                 "Als U dit niet heeft aangevraagd, kunt U dit negeren, uw wachtwoord veranderen of dit aangeven bij de administrators " .
 
-                "<br /> <br />Met vriendelijke groet, <br />"  . " Madalco Media" .
+                "<br /> <br />Met vriendelijke groet, <br />" . " Madalco Media" .
                 "<br /> <br />Disclaimer: This is an automatically generated mail. Please do not reply to this email";
 
 //SMTP Configuration
@@ -120,8 +120,7 @@ if(isset($_POST['submit'])) {
         }
 
 
-    }
-    else {
+    } else {
         echo '<div class="alert alert-info">Gebruiker bestaat niet</div>';
     }
 
@@ -140,24 +139,26 @@ if(isset($_POST['submit'])) {
                         <br>
                         <br>
                         <label>Als u uw wachtwoord bent vergeten, vul dan hieronder uw e-mailadres in.</label>
-                        <br />
-                        <br />
-                        <label for="name">E-mailadres</label>
-                        <br />
-                        <input type="text" name="email" placeholder="E-mailadres" required class="form-control" />
                         <br/>
-                        <br />
-                        <input type="submit" name="submit" value="Verstuur wachtwoord" class="btn btn-primary" />
-                        <br />
-                        <br />
+                        <br/>
+                        <label for="name">E-mailadres</label>
+                        <br/>
+                        <input type="text" name="email" placeholder="E-mailadres" required class="form-control"/>
+                        <br/>
+                        <br/>
+                        <input type="submit" name="submit" value="Verstuur wachtwoord" class="btn btn-primary"/>
+                        <br/>
+                        <br/>
                     </fieldset>
                 </form>
-                <span class="text-danger"><?php if (isset($errormsg)) { echo $errormsg; } ?></span>
+                <span class="text-danger"><?php if (isset($errormsg)) {
+                        echo $errormsg;
+                    } ?></span>
             </div>
         </div>
         <div class="row">
             <div class="col-md-4 col-md-offset-4 text-center">
-                <br />
+                <br/>
             </div>
         </div>
     </div>

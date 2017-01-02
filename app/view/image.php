@@ -1,10 +1,9 @@
 <?php
 #IMAGE
 
-if(isset($_SESSION['usr_id']) || isset($_SESSION['accorduserid'])){
+if (isset($_SESSION['usr_id']) || isset($_SESSION['accorduserid'])) {
 
-}
-else {
+} else {
     $block->Redirect('index.php');
     Session::flash('error', 'U heeft hier geen rechten voor.');
 }
@@ -27,7 +26,7 @@ if (isset($_GET['img'])) {
     $ext = strtolower($path_parts["extension"]);
 
     // Determine Content Type
-    if(file_exists($fullPath)) {
+    if (file_exists($fullPath)) {
         switch ($ext) {
             case "pdf":
                 $ctype = "application/pdf";
@@ -58,8 +57,7 @@ if (isset($_GET['img'])) {
             default:
                 $ctype = "application/force-download";
         }
-    }
-    else {
+    } else {
         echo 'Dit bestand bestaat niet';
         return false;
     }
@@ -135,15 +133,14 @@ if (isset($_GET['img'])) {
         header("Content-Type: $ctype");
         imagepng($image);
         imagedestroy($image);
-    }
-    else {
+    } else {
         ob_start();
         imagepng($image);
         $contents = ob_get_contents();
         ob_end_clean();
 
         $dataUri = 'data:image/' . 'png' . ';base64,' . base64_encode($contents);
-        echo '<img src="'. $dataUri .'">';
+        echo '<img src="' . $dataUri . '">';
 
         //Display normal image:
         /*

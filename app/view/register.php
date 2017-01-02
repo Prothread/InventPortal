@@ -3,7 +3,7 @@
 
 $mysqli = mysqli_connect();
 
-if(isset($_SESSION['usr_id'])) {
+if (isset($_SESSION['usr_id'])) {
     $block->Redirect('index.php');
 }
 
@@ -15,25 +15,25 @@ $error = false;
 //check if form is submitted
 if (isset($_POST['signup'])) {
 
-    $name =  mysqli_real_escape_string( $mysqli, $_POST['name'] );
-    $email =  mysqli_real_escape_string( $mysqli, $_POST['email'] );
-    $password = mysqli_real_escape_string( $mysqli, $_POST['password'] );
-    $cpassword = mysqli_real_escape_string( $mysqli, $_POST['cpassword'] );
+    $name = mysqli_real_escape_string($mysqli, $_POST['name']);
+    $email = mysqli_real_escape_string($mysqli, $_POST['email']);
+    $password = mysqli_real_escape_string($mysqli, $_POST['password']);
+    $cpassword = mysqli_real_escape_string($mysqli, $_POST['cpassword']);
 
     //name can contain only alpha characters and space
-    if (!preg_match("/^[a-zA-Z ]+$/",$name)) {
+    if (!preg_match("/^[a-zA-Z ]+$/", $name)) {
         $error = true;
         $name_error = "Name must contain only alphabets and space";
     }
-    if(!filter_var($email,FILTER_VALIDATE_EMAIL)) {
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $error = true;
         $email_error = "Voer een geldig e-mailadres in.";
     }
-    if(strlen($password) < 6) {
+    if (strlen($password) < 6) {
         $error = true;
         $password_error = "Het paswoord moet minimaal 6 tekens bevatten.";
     }
-    if($password != $cpassword) {
+    if ($password != $cpassword) {
         $error = true;
         $cpassword_error = "De ingevoerde wachtwoorden komen niet overeen.";
     }
@@ -46,10 +46,9 @@ if (isset($_POST['signup'])) {
             'permgroup' => $_POST['permgroup']
         ];
 
-        if($user->create($userinfo)) {
+        if ($user->create($userinfo)) {
             $successmsg = "Succesvol geregistreerd! <a href='index.php'>Klik hier om in te loggen.</a>";
-        }
-        else {
+        } else {
             $errormsg = "Er is een probleem opgetreden tijdens het registeren, probeer het later opnieuw.";
         }
 
@@ -66,17 +65,21 @@ if (isset($_POST['signup'])) {
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="assets/img/favicon.ico">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" >
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <link rel="stylesheet" type="text/css" href="css/styles.css">
-    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+          integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
     <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"
+          integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
 
     <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+            integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+            crossorigin="anonymous"></script>
 
     <title>Inloggen</title>
 
@@ -113,43 +116,52 @@ if (isset($_POST['signup'])) {
 
                         <div class="form-group">
                             <label for="name">Naam</label>
-                            <input type="text" name="name" placeholder="Volledige naam" required value="<?php if($error) echo $name; ?>" class="form-control" />
+                            <input type="text" name="name" placeholder="Volledige naam" required
+                                   value="<?php if ($error) echo $name; ?>" class="form-control"/>
                             <span class="text-danger"><?php if (isset($name_error)) echo $name_error; ?></span>
                         </div>
 
                         <div class="form-group">
                             <label for="name">E-mail</label>
-                            <input type="text" name="email" placeholder="E-mail" required value="<?php if($error) echo $email; ?>" class="form-control" />
+                            <input type="text" name="email" placeholder="E-mail" required
+                                   value="<?php if ($error) echo $email; ?>" class="form-control"/>
                             <span class="text-danger"><?php if (isset($email_error)) echo $email_error; ?></span>
                         </div>
 
                         <div class="form-group">
                             <label for="name">Wachtwoord</label>
-                            <input type="password" name="password" placeholder="Wachtwoord" required class="form-control" />
+                            <input type="password" name="password" placeholder="Wachtwoord" required
+                                   class="form-control"/>
                             <span class="text-danger"><?php if (isset($password_error)) echo $password_error; ?></span>
                         </div>
 
                         <div class="form-group">
                             <label for="name">Herhaal wachtwoord</label>
-                            <input type="password" name="cpassword" placeholder="Herhaal wachtwoord" required class="form-control" />
-                            <span class="text-danger"><?php if (isset($cpassword_error)) echo $cpassword_error; ?></span>
+                            <input type="password" name="cpassword" placeholder="Herhaal wachtwoord" required
+                                   class="form-control"/>
+                            <span
+                                class="text-danger"><?php if (isset($cpassword_error)) echo $cpassword_error; ?></span>
                         </div>
 
                         <input type="hidden" name="permgroup" value="2">
 
                         <div class="form-group">
-                            <input type="submit" name="signup" value="Aanmaken" class="btn btn-primary" />
+                            <input type="submit" name="signup" value="Aanmaken" class="btn btn-primary"/>
                         </div>
                     </fieldset>
                 </form>
-                <span class="text-success"><?php if (isset($successmsg)) { echo $successmsg; } ?></span>
-                <span class="text-danger"><?php if (isset($errormsg)) { echo $errormsg; } ?></span>
+                <span class="text-success"><?php if (isset($successmsg)) {
+                        echo $successmsg;
+                    } ?></span>
+                <span class="text-danger"><?php if (isset($errormsg)) {
+                        echo $errormsg;
+                    } ?></span>
             </div>
         </div>
     </div>
     <div class="row">
         <div class="col-md-4 col-md-offset-4 text-center">
-            <br />
+            <br/>
             Al een account? <a href="index.php">Inloggen</a>
         </div>
     </div>
@@ -161,8 +173,6 @@ if (isset($_POST['signup'])) {
 </div><!--/row-->
 </div><!--/container-->
 </div><!-- /H -->
-
-
 
 
 <div class="container">

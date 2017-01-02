@@ -8,14 +8,12 @@ $user = new UserController();
 $block = new BlockController();
 require_once DIR_MODEL . 'permissions.php';
 
-if(isset($_SESSION['usr_name'])) {
+if (isset($_SESSION['usr_name'])) {
     $myuser = $_SESSION['usr_name'];
-}
-else if( isset($user) ) {
+} else if (isset($user)) {
     $thisuser = $user->getUserById($session->getUserId());
     $myuser = $thisuser['naam'];
-}
-else {
+} else {
     echo 'User';
 }
 
@@ -24,11 +22,10 @@ if ($user->getPermission($permgroup, 'CAN_EDIT_SETTINGS') == 1 ) {
     $admin = $settings->getAdminSettings();
 }
 
-if(isset($_SESSION['accorduserid']) && !isset($_SESSION['usr_id'])) {
+if (isset($_SESSION['accorduserid']) && !isset($_SESSION['usr_id'])) {
     $userinfo = $user->getUserById($_SESSION['accorduserid']);
     $imgsrc = 'icons/profile.png';
-}
-else {
+} else {
     $userinfo = $user->getUserById($_SESSION['usr_id']);
 
     if ($userinfo['profimg'] !== null) {
@@ -53,9 +50,9 @@ else {
 
         <!-- styling + jquery for select box -->
         <script src="js/jquery-2.1.1.min.js" type="text/javascript"></script>
-        <link href="css/select2.min.css" rel="stylesheet" />
+        <link href="css/select2.min.css" rel="stylesheet"/>
         <script type="text/javascript">
-            $(document).ready(function() {
+            $(document).ready(function () {
                 $("#allclients").select2({
                     placeholder: 'Selecteer een klant'
                 });
@@ -97,9 +94,10 @@ else {
 
 <body>
     <div class="se-pre-con"></div>
-    <div id="header" style="background: <?= $admin['Header'];?>">
+    <div id="header" style="background: <?= $admin['Header']; ?>">
         <div id="MenuSide">
-            <img src="<?= DIR_PUBLIC . $admin['Logo'] ?>" style="width:auto;height:75%;" /> <!-- ../public/css/madlogo.png -->
+            <img src="<?= DIR_PUBLIC . $admin['Logo'] ?>" style="width:auto;height:75%;"/>
+            <!-- ../public/css/madlogo.png -->
         </div>
         <div id="MenuButton">
             <a href="#menu-toggle" class="btn btn-default" id="menu-toggle"><img src="icons/menu-alt-20.png"></a>
@@ -131,7 +129,7 @@ else {
                 <a href="?page=overview">Overzicht</a>
             </li>
 
-            <br />
+            <br/>
 
             <?php if ($user->getPermission($permgroup, 'CAN_UPLOAD') == 1) { ?>
                 <li class="nav-button-upload">
@@ -145,7 +143,7 @@ else {
                 </li>
             <?php } ?>
 
-            <br />
+            <br/>
 
             <?php if ($user->getPermission($permgroup, 'CAN_ACCORD') == 1 && isset($_SESSION['accord'])) { ?>
                 <li class="nav-button-accord">
@@ -153,7 +151,7 @@ else {
                 </li>
             <?php } ?>
 
-            <?php if ($user->getPermission($permgroup, 'CAN_SHOW_KLANTPAGINA') == 1 ) { ?>
+            <?php if ($user->getPermission($permgroup, 'CAN_SHOW_KLANTPAGINA') == 1) { ?>
                 <li class="nav-button-users">
                     <a href="?page=manageclients">Klanten</a>
                 </li>
@@ -165,8 +163,8 @@ else {
                 </li>
             <?php } ?>
 
-            <br />
-            <br />
+            <br/>
+            <br/>
             <li class="nav-button-logout">
                 <a href="?page=logout">Uitloggen</a>
             </li>
@@ -174,8 +172,8 @@ else {
 
     </div>
 <?php
-if($session->exists('flash')) {
-    foreach($session->get('flash') as $flash) {
+if ($session->exists('flash')) {
+    foreach ($session->get('flash') as $flash) {
         echo "<div class='alert alert_{$flash['type']}'>{$flash['message']}</div>";
     }
     $session->remove('flash');

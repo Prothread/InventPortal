@@ -1,11 +1,11 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: Kevin
  * Date: 03-Oct-16
  * Time: 15:58
  */
-
 class DbVerify extends Database
 {
 
@@ -18,7 +18,7 @@ class DbVerify extends Database
 
         $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 
-        if( $result ){
+        if ($result) {
             $this->result = $row;
             return $this->result;
         }
@@ -30,7 +30,7 @@ class DbVerify extends Database
         $sql = "UPDATE `mail` SET `verified` = '1' WHERE `mail`.`id` = '{$id}';";
         $result = $this->dbQuery($sql);
 
-        if( $result ){
+        if ($result) {
             return $this->result;
         }
 
@@ -43,7 +43,7 @@ class DbVerify extends Database
 
         $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 
-        if( $result ){
+        if ($result) {
             $this->result = $row;
             return $this->result;
         }
@@ -58,7 +58,7 @@ class DbVerify extends Database
 
         $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 
-        if( $result ){
+        if ($result) {
             $this->result = $row;
             return $this->result;
         }

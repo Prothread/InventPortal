@@ -1,11 +1,11 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: Kevin
  * Date: 05-Oct-16
  * Time: 10:47
  */
-
 class BlockController
 {
     /**
@@ -174,11 +174,11 @@ class BlockController
         return $this->model->countBlocks();
     }
 
-    public function Redirect($url) {
+    public function Redirect($url)
+    {
         if (headers_sent()) {
-            echo('<script type="text/javascript">window.location=\''.$url.'\';</script> ');
-        }
-        else {
+            echo('<script type="text/javascript">window.location=\'' . $url . '\';</script> ');
+        } else {
             header('Location: ' . $url);
         }
     }

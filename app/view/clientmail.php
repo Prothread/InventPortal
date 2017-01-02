@@ -1,10 +1,9 @@
 <?php
 #PROCESSES MAIL FUNCTION
 
-if($user->getPermission($permgroup, 'CAN_CREATE_CLIENT') == 1){
+if ($user->getPermission($permgroup, 'CAN_CREATE_CLIENT') == 1) {
 
-}
-else {
+} else {
     $block->Redirect('index.php');
     Session::flash('error', 'U heeft hier geen rechten voor.');
 }
@@ -12,22 +11,20 @@ else {
 $mysqli = mysqli_connect();
 
 $user = new UserController();
-$myuser = mysqli_real_escape_string($mysqli,$_SESSION['usr_name']);
+$myuser = mysqli_real_escape_string($mysqli, $_SESSION['usr_name']);
 
-if(isset($_SESSION['usr_name'])) {
+if (isset($_SESSION['usr_name'])) {
     $myuser = $_SESSION['usr_name'];
-}
-else if( isset($user) ) {
+} else if (isset($user)) {
     $thisuser = $user->getUserById($session->getUserId());
-    $myuser = mysqli_real_escape_string($mysqli,$thisuser['naam']);
-}
-else {
+    $myuser = mysqli_real_escape_string($mysqli, $thisuser['naam']);
+} else {
     echo 'Admin';
 }
-$email = mysqli_real_escape_string( $mysqli, $_POST['email']);
+$email = mysqli_real_escape_string($mysqli, $_POST['email']);
 $mailexist = $user->getUserByEmail($email);
 
-if($mailexist == null || empty($mailexist)){
+if ($mailexist == null || empty($mailexist)) {
 
 
 //Generate a random string.
@@ -49,11 +46,10 @@ if($mailexist == null || empty($mailexist)){
     $mailer->addEmbeddedImage(DIR_PUBLIC . $admin['Logo'], "HeaderImage", "Logo.png");
 
     /* TO, SUBJECT, CONTENT */
-    if($_POST['altmail']) {
+    if ($_POST['altmail']) {
         $altmail = mysqli_real_escape_string($mysqli, $_POST['altmail']);
         $to = $altmail;
-    }
-    else {
+    } else {
         $to = $email; //The 'To' field
     }
     $subject = "Accountgegevens Madalco-portaal";
@@ -115,37 +111,37 @@ if($mailexist == null || empty($mailexist)){
 
 //Saving mail information
 
-    $naam = mysqli_real_escape_string( $mysqli, $_POST['name']);
-    $email = mysqli_real_escape_string( $mysqli, $_POST['email']);
-    $bedrijfsnaam = mysqli_real_escape_string( $mysqli, $_POST['companyname']);
+    $naam = mysqli_real_escape_string($mysqli, $_POST['name']);
+    $email = mysqli_real_escape_string($mysqli, $_POST['email']);
+    $bedrijfsnaam = mysqli_real_escape_string($mysqli, $_POST['companyname']);
 
-    $adres = mysqli_real_escape_string( $mysqli, $_POST['companyadress']);
-    $postcode = mysqli_real_escape_string( $mysqli, $_POST['postcode']);
-    $plaats = mysqli_real_escape_string( $mysqli, $_POST['plaats']);
-    $rechten = mysqli_real_escape_string( $mysqli, $_POST['rechten']);
+    $adres = mysqli_real_escape_string($mysqli, $_POST['companyadress']);
+    $postcode = mysqli_real_escape_string($mysqli, $_POST['postcode']);
+    $plaats = mysqli_real_escape_string($mysqli, $_POST['plaats']);
+    $rechten = mysqli_real_escape_string($mysqli, $_POST['rechten']);
 
     $userinfo = [
-        'name' => strip_tags( $naam ),
-        'email' => strip_tags( $email ),
+        'name' => strip_tags($naam),
+        'email' => strip_tags($email),
         'password' => $token,
-        'bedrijfsnaam' => strip_tags( $bedrijfsnaam ),
-        'adres' => strip_tags( $adres ),
-        'postcode' => strip_tags( $postcode ),
-        'plaats' => strip_tags( $plaats ),
+        'bedrijfsnaam' => strip_tags($bedrijfsnaam),
+        'adres' => strip_tags($adres),
+        'postcode' => strip_tags($postcode),
+        'plaats' => strip_tags($plaats),
         'permgroup' => $rechten
     ];
 
-    if($_POST['altmail']) {
+    if ($_POST['altmail']) {
         $altmail = mysqli_real_escape_string($mysqli, $_POST['altmail']);
         $userinfo = [
-            'name' => strip_tags( $naam ),
-            'email' => strip_tags( $email ),
-            'altmail' => strip_tags( $altmail ),
+            'name' => strip_tags($naam),
+            'email' => strip_tags($email),
+            'altmail' => strip_tags($altmail),
             'password' => $token,
-            'bedrijfsnaam' => strip_tags( $bedrijfsnaam ),
-            'adres' => strip_tags( $adres ),
-            'postcode' => strip_tags( $postcode ),
-            'plaats' => strip_tags( $plaats ),
+            'bedrijfsnaam' => strip_tags($bedrijfsnaam),
+            'adres' => strip_tags($adres),
+            'postcode' => strip_tags($postcode),
+            'plaats' => strip_tags($plaats),
             'permgroup' => $rechten
         ];
     }
@@ -165,15 +161,14 @@ if($mailexist == null || empty($mailexist)){
     } else {
         //If mail is send, create data and send it to the database
         $user->create($userinfo);
-        if($rechten >= 2) {
+        if ($rechten >= 2) {
             $block->Redirect('index.php?page=manageusers');
-        }
-        else {
+        } else {
             $block->Redirect('index.php?page=manageclients');
         }
     }
 
-}else{
+} else {
     $block->Redirect('index.php?page=newclient');
     Session::flash('error', 'Deze mail is al in gebruik');
 }

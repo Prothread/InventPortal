@@ -1,11 +1,11 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: Kevin
  * Date: 30-Sep-16
  * Time: 12:34
  */
-
 class MailController
 {
     private $model;
@@ -36,7 +36,7 @@ class MailController
         $this->model->setDatum($mailinfo['datum']);
         $this->model->setVerified($mailinfo['verified']);
 
-        if (isset($mailinfo['comment']) && $mailinfo['comment'] !== null){
+        if (isset($mailinfo['comment']) && $mailinfo['comment'] !== null) {
             $this->model->setMailComment($mailinfo['comment']);
             $this->model->setCommentGroup($mailinfo['commentgroep']);
         }
@@ -57,14 +57,13 @@ class MailController
      */
     public function update(array $mailinfo)
     {
-        if(isset($mailinfo['answer'])){
+        if (isset($mailinfo['answer'])) {
             $this->model->setMailClientId($mailinfo['clientid']);
             $this->model->setMailId($mailinfo['id']);
             $this->model->setAnswer($mailinfo['answer']);
             $this->model->setToken($mailinfo['key']);
             $this->model->setVerified($mailinfo['verified']);
-        }
-        else {
+        } else {
             $this->model->setMailId($mailinfo['id']);
             $this->model->setMailSubject($mailinfo['title']);
             $this->model->setMailSender($mailinfo['sender']);
@@ -72,16 +71,16 @@ class MailController
             $this->model->setMailName($mailinfo['name']);
             $this->model->setMailEmail($mailinfo['email']);
             $this->model->setToken($mailinfo['token']);
-            if(isset($mailinfo['imgname'])) {
+            if (isset($mailinfo['imgname'])) {
                 $this->model->setFakeImage($mailinfo['imgname']);
             }
-            if(isset($mailinfo['images'])) {
+            if (isset($mailinfo['images'])) {
                 $this->model->setImage($mailinfo['images']);
             }
             $this->model->setDatum($mailinfo['datum']);
             $this->model->setVerified($mailinfo['verified']);
 
-            if(isset($mailinfo['comment'])){
+            if (isset($mailinfo['comment'])) {
                 $this->model->setMailComment($mailinfo['comment']);
                 $this->model->setCommentGroup($mailinfo['commentgroep']);
             }
@@ -128,7 +127,7 @@ class MailController
     /**
      * Tel het aantal mails van de gebruiker met de status en hun id
      *
-     * @param $id, $status
+     * @param $id , $status
      * @return mixed
      */
     public function CountUserMailbyIdStatus($id, $status)
@@ -177,7 +176,7 @@ class MailController
 
     public function searchTable($term, $limit = null, $offset = null, $table = null, $filter = null, $ids = null, $status = null)
     {
-        return $this->model->searchTable($term, $limit , $offset, $table, $filter, $ids, $status);
+        return $this->model->searchTable($term, $limit, $offset, $table, $filter, $ids, $status);
     }
 
     /**

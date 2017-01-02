@@ -1,11 +1,11 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: Kevin
  * Date: 30-Sep-16
  * Time: 14:35
  */
-
 class DbMail extends Database
 {
 
@@ -28,17 +28,17 @@ class DbMail extends Database
                 '{$mail->getMailDescription()}' , '{$mail->getMailName()}' , '{$mail->getMailEmail()}' , '{$mail->getToken()}', '{$mail->getDatum()}' ,
                 '{$mail->getVerified()}' )";
 
-        if($this->dbQuery($sql)) {
+        if ($this->dbQuery($sql)) {
 
-            $imgarray = ( explode(", ", $mail->getImage()) );
+            $imgarray = (explode(", ", $mail->getImage()));
 
             $myid = $this->dbLastInsertedId();
 
-            $i=0;
-            foreach($imgarray as $img){
+            $i = 0;
+            foreach ($imgarray as $img) {
                 $sql2 = "INSERT INTO `image` (`mailid`, `images`, `verify`) VALUES ('{$myid}', '{$img}', '{$mail->getVerified()}')";
 
-                if($this->dbQuery($sql2)){
+                if ($this->dbQuery($sql2)) {
                     $i++;
                     true;
                 }
@@ -50,11 +50,11 @@ class DbMail extends Database
 
             $sql1 = "INSERT INTO `usermail` (`userid`, `clientid`, `mailid`, `status`) VALUES ('{$_SESSION['usr_id']}', '{$clientid}', '{$myid}', '{$mail->getVerified()}')";
 
-            if($this->dbQuery($sql1)) {
+            if ($this->dbQuery($sql1)) {
                 true;
             }
 
-            if($mail->getComment() !== null && $mail->getComment() !== '') {
+            if ($mail->getComment() !== null && $mail->getComment() !== '') {
                 $date = date('Y-m-d');
                 $sql3 = "INSERT INTO `comments`(`mailid`, `comment`, `commentgroep`, `datum`) VALUES ('{$myid}','{$mail->getComment()}', '{$mail->getCommentGroup()}', '{$date}')";
                 if ($this->dbQuery($sql3)) {
@@ -88,14 +88,14 @@ class DbMail extends Database
                 `email` = '{$mail->getMailEmail()}', `key` = '{$mail->getToken()}', `datum` = '{$mail->getDatum()}',
                 `verified` = '{$mail->getVerified()}' WHERE `id`= '{$mail->getMailId()}'";
 
-        if($mail->getAnswer() !== null) {
+        if ($mail->getAnswer() !== null) {
             $sql = "UPDATE `mail` SET `answer` = '{$mail->getAnswer()}', `key` = '{$mail->getToken()}' , `verified` = '{$mail->getVerified()}' WHERE `id` = '{$mail->getMailId()}'";
 
-            if($this->dbQuery($sql)){
+            if ($this->dbQuery($sql)) {
 
                 $sql1 = "UPDATE `usermail` SET `status` = '{$mail->getVerified()}' WHERE `mailid` = '{$mail->getMailId()}'";
 
-                if($this->dbQuery($sql1)) {
+                if ($this->dbQuery($sql1)) {
                     true;
                 }
 
@@ -103,9 +103,7 @@ class DbMail extends Database
             }
 
             return false;
-        }
-
-        else {
+        } else {
             if ($this->dbQuery($sql)) {
 
                 $imagecontroller = new ImageController();
@@ -122,15 +120,14 @@ class DbMail extends Database
                     }
                 }
 
-                if($mail->getImage()) {
+                if ($mail->getImage()) {
                     $imgarray = (explode(", ", $mail->getImage()));
 
                     $vsql = "SELECT * from `image` WHERE `mailid` = '{$mail->getMailId()}' ORDER BY `version` DESC LIMIT 1";
-                    if($vresult = $this->dbQuery($vsql)) {
+                    if ($vresult = $this->dbQuery($vsql)) {
                         $vreturn = mysqli_fetch_assoc($vresult);
                         $version = intval($vreturn['version']) + 1;
-                    }
-                    else {
+                    } else {
                         $version = 1;
                     }
 
@@ -144,7 +141,7 @@ class DbMail extends Database
                     }
                 }
 
-                if($mail->getComment() !== null && $mail->getComment() !== '') {
+                if ($mail->getComment() !== null && $mail->getComment() !== '') {
                     $date = date('Y-m-d');
                     $sql3 = "INSERT INTO `comments`(`mailid`, `comment`, `commentgroep`, `datum`) VALUES ('{$mail->getMailId()}','{$mail->getComment()}', '{$mail->getCommentGroup()}', '{$date}')";
                     if ($this->dbQuery($sql3)) {
@@ -173,7 +170,7 @@ class DbMail extends Database
         $result = $this->dbQuery($sql);
         $value = mysqli_fetch_assoc($result);
 
-        if($value) {
+        if ($value) {
             return $value;
         }
     }
@@ -188,7 +185,7 @@ class DbMail extends Database
     {
         $sql = "SELECT * FROM `mail` WHERE `id` IN ($ids)";
 
-        if($result = $this->dbQuery($sql)) {
+        if ($result = $this->dbQuery($sql)) {
 
             $value = mysqli_fetch_all($result, MYSQLI_ASSOC);
             return $value;
@@ -210,7 +207,7 @@ class DbMail extends Database
         $result = $this->dbQuery($sql);
         $value = mysqli_fetch_assoc($result);
 
-        if($value) {
+        if ($value) {
             return $value;
         }
     }
@@ -225,25 +222,24 @@ class DbMail extends Database
     {
         $sql = "SELECT * FROM `usermail` ";
 
-        if($clientid) {
+        if ($clientid) {
             $sql .= " JOIN `mail` ON `usermail`.`mailid` = `mail`.`id` WHERE `usermail`.`clientid` = '{$id}'";
             //$sql .= "WHERE `clientid` = '{$clientid}'";
-        }
-        else {
+        } else {
             $sql .= " JOIN `mail` ON `usermail`.`mailid` = `mail`.`id` WHERE `usermail`.`userid` = '{$id}'";
             //$sql .= "WHERE `userid` = '{$id}'";
         }
 
-        if($date) {
+        if ($date) {
             $date2 = date('Y-m-d', strtotime("-5 day"));
             $sql .= " AND `datum` < '{$date2}'";
         }
-        if($verified) {
+        if ($verified) {
             $sql .= " AND `verified` IN ({$verified})";
         }
         $sql .= " ORDER BY `mail`.`id`";
 
-        if($result = $this->dbQuery($sql)) {
+        if ($result = $this->dbQuery($sql)) {
             $value = mysqli_fetch_all($result, MYSQLI_ASSOC);
             return $value;
         }
@@ -258,9 +254,9 @@ class DbMail extends Database
 
     public function countUserMailByUserId($id)
     {
-        $query ="SELECT COUNT(`id`) AS 'total_blocks' FROM `usermail` WHERE `userid` = '{$id}'";
+        $query = "SELECT COUNT(`id`) AS 'total_blocks' FROM `usermail` WHERE `userid` = '{$id}'";
 
-        if($result = $this->dbFetchArray($query)){
+        if ($result = $this->dbFetchArray($query)) {
             return $result['total_blocks'];
         }
         return false;
@@ -269,14 +265,14 @@ class DbMail extends Database
     /**
      * Tel het aantal mails van de gebruiker met de status en hun id
      *
-     * @param $id, $status
+     * @param $id , $status
      * @return mixed
      */
     public function CountUserMailbyIdStatus($id, $status)
     {
-        $query ="SELECT COUNT(status) FROM `usermail` WHERE `userid` = '{$id}' AND `status` = '{$status}'";
+        $query = "SELECT COUNT(status) FROM `usermail` WHERE `userid` = '{$id}' AND `status` = '{$status}'";
 
-        if($result = $this->dbFetchArray($query)){
+        if ($result = $this->dbFetchArray($query)) {
             return $result;
         }
         return false;
@@ -295,7 +291,7 @@ class DbMail extends Database
         $result = $this->dbQuery($sql);
         $value = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
-        if($value) {
+        if ($value) {
             return $value;
         }
         return false;
@@ -329,43 +325,40 @@ class DbMail extends Database
     {
         $sql = "SELECT * FROM mail ";
 
-        if($ids) {
-            if($status) {
-                $sql .= "WHERE `id` IN ($ids) AND onderwerp LIKE '%" . $term . "%' AND verified = '". $status ."'";
-                $sql .= " OR `id` IN ($ids) AND verstuurder LIKE '%" . $term . "%' AND verified = '". $status ."'";
-                $sql .= " OR `id` IN ($ids) AND naam LIKE '%" . $term . "%' AND verified = '". $status ."'";
-                $sql .= " OR `id` IN ($ids) AND datum LIKE '%" . $term . "%' AND verified = '". $status ."'";
-            }
-            else {
+        if ($ids) {
+            if ($status) {
+                $sql .= "WHERE `id` IN ($ids) AND onderwerp LIKE '%" . $term . "%' AND verified = '" . $status . "'";
+                $sql .= " OR `id` IN ($ids) AND verstuurder LIKE '%" . $term . "%' AND verified = '" . $status . "'";
+                $sql .= " OR `id` IN ($ids) AND naam LIKE '%" . $term . "%' AND verified = '" . $status . "'";
+                $sql .= " OR `id` IN ($ids) AND datum LIKE '%" . $term . "%' AND verified = '" . $status . "'";
+            } else {
                 $sql .= "WHERE `id` IN ($ids) AND onderwerp LIKE '%" . $term . "%' ";
                 $sql .= " OR `id` IN ($ids) AND verstuurder LIKE '%" . $term . "%'";
                 $sql .= " OR `id` IN ($ids) AND naam LIKE '%" . $term . "%'";
                 $sql .= " OR `id` IN ($ids) AND datum LIKE '%" . $term . "%'";
             }
-        }
-        else {
-            if($status) {
-                $sql .= " WHERE onderwerp LIKE '%".$term."%' AND verified = '". $status ."'";
-                $sql .= " OR verstuurder LIKE '%".$term."%' AND verified = '". $status ."'";
-                $sql .= " OR naam LIKE '%".$term."%' AND verified = '". $status ."'";
-                $sql .= " OR datum LIKE '%".$term."%' AND verified = '". $status ."'";
-            }
-            else {
+        } else {
+            if ($status) {
+                $sql .= " WHERE onderwerp LIKE '%" . $term . "%' AND verified = '" . $status . "'";
+                $sql .= " OR verstuurder LIKE '%" . $term . "%' AND verified = '" . $status . "'";
+                $sql .= " OR naam LIKE '%" . $term . "%' AND verified = '" . $status . "'";
+                $sql .= " OR datum LIKE '%" . $term . "%' AND verified = '" . $status . "'";
+            } else {
                 $sql .= " WHERE onderwerp LIKE '%" . $term . "%' OR verstuurder LIKE '%" . $term . "%' OR naam LIKE '%" . $term . "%' OR datum LIKE '%" . $term . "%'";
             }
         }
 
-        if($table) {
+        if ($table) {
             $sql .= " ORDER BY $table";
         }
-        if($filter) {
+        if ($filter) {
             $sql .= " $filter";
         }
 
-        if($limit) {
+        if ($limit) {
             $sql .= " LIMIT {$limit}";
         }
-        if($offset) {
+        if ($offset) {
             $sql .= " OFFSET {$offset}";
         }
 
@@ -373,7 +366,7 @@ class DbMail extends Database
 
         $row = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
-        if($row !== null) {
+        if ($row !== null) {
             return $row;
         }
         return false;
@@ -393,7 +386,7 @@ class DbMail extends Database
         $result = $this->dbQuery($sql);
         $value = mysqli_fetch_assoc($result);
 
-        if($value) {
+        if ($value) {
             return $value;
         }
         return false;

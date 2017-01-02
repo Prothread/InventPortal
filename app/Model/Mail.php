@@ -1,7 +1,9 @@
 <?php
+
 #SETUP FOR MAIL
 
-class Mail {
+class Mail
+{
 
     private $db;
 
@@ -204,7 +206,7 @@ class Mail {
     /**
      * Tel het aantal mails van de gebruiker met de status en hun id
      *
-     * @param $id, $status
+     * @param $id , $status
      * @return mixed
      */
     public function CountUserMailbyIdStatus($id, $status)
@@ -599,7 +601,7 @@ class Mail {
 
     public function searchTable($term, $limit = null, $offset = null, $table = null, $filter = null, $ids = null, $status = null)
     {
-        return $this->db->searchTable($term, $limit , $offset, $table, $filter, $ids, $status);
+        return $this->db->searchTable($term, $limit, $offset, $table, $filter, $ids, $status);
     }
 
     /**

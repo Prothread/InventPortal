@@ -1,7 +1,7 @@
 <?php
 #TEST
 
-if($user->getPermission($permgroup, 'CAN_SHOW_OVERZICHT') == 1){
+if ($user->getPermission($permgroup, 'CAN_SHOW_OVERZICHT') == 1) {
 
 } else {
     $block->Redirect('index.php?page=showuserprofile');
@@ -38,14 +38,14 @@ $get_filled_info = $uploads->getOlderUploads($verified);
         </div>
     </div>
     <script>
-        $(document).ready(function(){
+        $(document).ready(function () {
             $('#myModal').on('show.bs.modal', function (e) {
                 var rowid = $(e.relatedTarget).data('id');
                 $.ajax({
-                    type : 'post',
-                    url : '?page=item2', //Here you will fetch records
-                    data :  'rowid='+ rowid, //Pass $id
-                    success : function(data){
+                    type: 'post',
+                    url: '?page=item2', //Here you will fetch records
+                    data: 'rowid=' + rowid, //Pass $id
+                    success: function (data) {
                         $('.fetched-data').html(data);//Show fetched data from database
                     }
                 });
@@ -59,12 +59,15 @@ $get_filled_info = $uploads->getOlderUploads($verified);
                 <div class="row">
                     <table style="width:100%">
                         <tr>
-                            <th style="text-align: left;"><p class="NameText" style="font-weight: normal;">Overzicht</p></th>
+                            <th style="text-align: left;"><p class="NameText" style="font-weight: normal;">Overzicht</p>
+                            </th>
                             <th style="text-align: right;">
 
                                 <a href="?page=showuserprofile">
                                     <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
-                                        <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> Mijn overzicht</button>
+                                        <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> Mijn
+                                        overzicht
+                                    </button>
                                 </a>
 
                             </th>
@@ -72,32 +75,32 @@ $get_filled_info = $uploads->getOlderUploads($verified);
                     </table>
                     <hr>
 
-                    <table id="myTable" class="table table-striped" >
+                    <table id="myTable" class="table table-striped">
                         <thead>
                         <tr>
-                            <?php if($get_filled_info !== null) {?>
+                            <?php if ($get_filled_info !== null) { ?>
                                 <th style="display:none">ID</th>
                                 <th>Onderwerp</th>
                                 <th>Verstuurder</th>
                                 <th>Naam</th>
                                 <th id="date">Datum</th>
                                 <th>Status</th>
-                            <?php }
-                            else {?>
+                            <?php } else { ?>
                                 <th></th>
                             <?php } ?>
                         </tr>
                         </thead>
                         <tbody>
                         <?php
-                        if($get_filled_info !== null) {
+                        if ($get_filled_info !== null) {
                             foreach ($get_filled_info as $upload) { ?>
                                 <tr>
                                     <td style="display:none">
                                         <?= $upload['id']; ?>
                                     </td>
                                     <td>
-                                        <a href="#myModal" data-toggle="modal" data-id="<?= $upload['id']?>" href="#upl<?= $upload['id']?>"><?= $upload['onderwerp'] ?></a>
+                                        <a href="#myModal" data-toggle="modal" data-id="<?= $upload['id'] ?>"
+                                           href="#upl<?= $upload['id'] ?>"><?= $upload['onderwerp'] ?></a>
                                     </td>
                                     <td>
                                         <?= $upload['verstuurder'] ?>
@@ -123,8 +126,7 @@ $get_filled_info = $uploads->getOlderUploads($verified);
                                     </td>
                                 </tr>
                             <?php }
-                        }
-                        else {?>
+                        } else { ?>
                             <td>U heeft nog geen proeven geaccordeerd</td>
                         <?php } ?>
                         </tbody>
@@ -135,9 +137,9 @@ $get_filled_info = $uploads->getOlderUploads($verified);
     </div>
 
     <script>
-        $(document).ready(function(){
+        $(document).ready(function () {
             $('#myTable').dataTable({
-                "order": [[ 0, "desc" ]],
+                "order": [[0, "desc"]],
                 "deferRender": true
             });
 
@@ -157,7 +159,7 @@ $get_filled_info = $uploads->getOlderUploads($verified);
     img1 = new Image;
     img1.onload = draw;
 
-    img.src =  "<?= 'app/uploads/' . $_GET['img']?>";
+    img.src = "<?= 'app/uploads/' . $_GET['img']?>";
     img1.src = "css/watermerk.png";
 
     function draw() {
@@ -209,7 +211,7 @@ $get_filled_info = $uploads->getOlderUploads($verified);
         if (ch > ih) ch = ih;
 
         /// fill image in dest. rectangle
-        ctx.drawImage(img, cx, cy, cw, ch,  x, y, w, h);
+        ctx.drawImage(img, cx, cy, cw, ch, x, y, w, h);
     }
 
     var dataURL = canvas.toDataURL();
@@ -217,7 +219,7 @@ $get_filled_info = $uploads->getOlderUploads($verified);
     var wrapper = document.getElementById('wrapper');
 
     var img2 = new Image();
-    img2.onload=function(){
+    img2.onload = function () {
         document.body.appendChild(wrapper);
     };
 

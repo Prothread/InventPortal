@@ -6,15 +6,15 @@
 
 
 <script type="text/javascript">
-    jQuery(document).ready(function(){
-        jQuery("#password").keyup(function() {
+    jQuery(document).ready(function () {
+        jQuery("#password").keyup(function () {
             passwordStrength(jQuery(this).val());
         });
     });
 
     function passwordStrength(password) {
 
-        var desc = [{'width':'0px'}, {'width':'20%'}, {'width':'40%'}, {'width':'60%'}, {'width':'80%'}, {'width':'100%'}];
+        var desc = [{'width': '0px'}, {'width': '20%'}, {'width': '40%'}, {'width': '60%'}, {'width': '80%'}, {'width': '100%'}];
 
         var descClass = ['', 'progress-bar-danger', 'progress-bar-danger', 'progress-bar-warning', 'progress-bar-success', 'progress-bar-success'];
 
@@ -30,34 +30,37 @@
         if (password.match(/\d+/)) score++;
 
         //if password has at least one special caracther give 1 point
-        if ( password.match(/.[!,@,#,$,%,^,&,*,?,_,~,-,(,)]/) ) score++;
+        if (password.match(/.[!,@,#,$,%,^,&,*,?,_,~,-,(,)]/)) score++;
 
         //if password bigger than 12 give another 1 point
         if (password.length > 10) score++;
 
         // display indicator
-        $("#jak_pstrength").removeClass(descClass[score-1]).addClass(descClass[score]).css(desc[score]);
+        $("#jak_pstrength").removeClass(descClass[score - 1]).addClass(descClass[score]).css(desc[score]);
     }
 </script>
 
 <script>
-    $( function() {
-        $( "#datepicker" ).datepicker( {
+    $(function () {
+        $("#datepicker").datepicker({
             showOtherMonths: true,
             selectOtherMonths: true,
             minDate: 0,
             dateFormat: "dd-mm-yy"
         });
-    } );
+    });
 </script>
 
 <script>
-    $(document).ready(function() {});
+    $(document).ready(function () {
+    });
 
-    if($('#myChart').length) {
+    if ($('#myChart').length) {
         $.getScript('js/Chart.js', function () {
 
-            if( <?=round($_SESSION['geweigerd_percent']) ?> !== 0.0 && <?= round($_SESSION['geaccepteerd_percent'])?> !== 0.0)
+            if ( <?=round($_SESSION['geweigerd_percent']) ?> !==
+            0.0 && <?= round($_SESSION['geaccepteerd_percent'])?> !== 0.0
+            )
             {
                 var data = [{
                     label: "Geweigerd",
@@ -70,7 +73,8 @@
                 }
                 ];
             }
-            else {
+            else
+            {
                 var data = [
                     {
                         label: "Geen proeven",
@@ -96,19 +100,20 @@
 </script>
 
 <script>
-    jQuery(document).ready(function(){
-        jQuery('.skillbar').each(function(){
+    jQuery(document).ready(function () {
+        jQuery('.skillbar').each(function () {
             jQuery(this).find('.skillbar-bar').animate({
-                width:jQuery(this).attr('data-percent')
-            },2000);
+                width: jQuery(this).attr('data-percent')
+            }, 2000);
         });
     });
 </script>
 
 <script>
-    $(document).ready(function() {});
+    $(document).ready(function () {
+    });
 
-    if($('#ProcAcc').length) {
+    if ($('#ProcAcc').length) {
         $.getScript('js/Chart.js', function () {
 
             var data = [{
@@ -148,22 +153,22 @@
 </script>
 
 <script>
-    $('.counter').each(function() {
+    $('.counter').each(function () {
         var $this = $(this),
             countTo = $this.attr('data-count');
 
-        $({ countNum: $this.text()}).animate({
+        $({countNum: $this.text()}).animate({
                 countNum: countTo
             },
 
             {
 
                 duration: 2000,
-                easing:'linear',
-                step: function() {
+                easing: 'linear',
+                step: function () {
                     $this.text(Math.floor(this.countNum));
                 },
-                complete: function() {
+                complete: function () {
                     $this.text(this.countNum);
                     //alert('finished');
                 }
@@ -171,17 +176,16 @@
             });
 
 
-
     });
 </script>
 
 <script>
     var vote;
-    $("#AccButton, #AccButton1,#AccButton2").click(function(event) {
+    $("#AccButton, #AccButton1,#AccButton2").click(function (event) {
         vote = $(this).val();
     });
 
-    $("form#mybuttons").submit(function(event) {
+    $("form#mybuttons").submit(function (event) {
         //$form = $(this);
         var imgid = $(this).children('input#ImageID').val();
         var refs = $(this).children('input#refreshcount').val();
@@ -194,7 +198,7 @@
             url: "?page=imageverify",
             data: dataString,
             cache: false,
-            success: function(result){
+            success: function (result) {
                 $(ref).load("?page=approve " + ref);
                 $('#refsh').load("?page=approve #refsh");
                 $('#refer1').load("?page=approve #refer1");
@@ -215,7 +219,7 @@
                 '&email=' + $('input[name=email]').val() +                    //Store email fields value
                 '&altmail=' + $('input[name=altmail]').val() +                //Store altmail fields value
                 '&companyadress=' + $('input[name=companyadress]').val() +    //Store companyadress fields value
-                '&postcode=' +  $('input[name=postcode]').val() +             //Store postcode fields value
+                '&postcode=' + $('input[name=postcode]').val() +             //Store postcode fields value
                 '&plaats=' + $('input[name=plaats]').val() +                  //Store plaats fields value
                 '&rechten=' + $('input[name=rechten]').val()                  //Store rechten fields value
             ;
@@ -227,13 +231,13 @@
             cache: false,
             success: function (result) {
                 alert('Nieuwe klant aangemaakt');
-                $('.demclients').load('?page=uploadoverview' +  ' .demclients', function(){
+                $('.demclients').load('?page=uploadoverview' + ' .demclients', function () {
                     //success load event
                     $("#allclients").select2({
                         placeholder: 'Selecteer een klant'
                     });
                 });
-                $('.demclients1').load('?page=uploadoverview' +  ' .demclients1');
+                $('.demclients1').load('?page=uploadoverview' + ' .demclients1');
 
             }
         });
@@ -245,14 +249,14 @@
 <script>
     var id;
     var itemid;
-    $(".imgdownload").on('click', function(event) {
+    $(".imgdownload").on('click', function (event) {
         id = $(this).attr('id');
         itemid = $(this).attr('class');
         itemid = itemid.replace('imgdownload', '');
         itemid = itemid.replace(' id', '');
     });
 
-    $("form#downloadbuttons").on( 'submit', function(event) {
+    $("form#downloadbuttons").on('submit', function (event) {
 
         var linkid = ' .' + id;
 
@@ -263,7 +267,7 @@
             url: "?page=setimagedownload",
             data: dataString,
             cache: false,
-            success: function(result){
+            success: function (result) {
                 $(linkid).load("?page=item&id=" + itemid + linkid);
             }
         });
@@ -290,7 +294,6 @@
             });
 
 
-
             $("form#filtertable").submit(function (event) {
                 event.preventDefault();
 
@@ -314,10 +317,7 @@
             });
 
 
-
-
-
-           /* Coole functie?
+            /* Coole functie?
              $( "#cart" ).on( "mouseenter mouseleave", function( event ) {
              $( this ).toggleClass( "active" );
              }); */
@@ -327,11 +327,11 @@
 
 <script>
     var vote;
-    $("#filterbutton").click(function(event) {
+    $("#filterbutton").click(function (event) {
         vote = $(this).val();
     });
 
-    $("form#filterz").submit(function(event) {
+    $("form#filterz").submit(function (event) {
         //$form = $(this);
         var imgid = $(this).children('input#ImageID').val();
         var refs = $(this).children('input#refreshcount').val();
@@ -344,7 +344,7 @@
             url: "?page=imageverify",
             data: dataString,
             cache: false,
-            success: function(result){
+            success: function (result) {
                 $(ref).load("?page=approve " + ref);
                 $('#refsh').load("?page=approve #refsh");
                 $('#refsa').load("?page=approve #refsa");
@@ -356,7 +356,7 @@
 </script>
 
 <script>
-    if($('#file-upload').length) {
+    if ($('#file-upload').length) {
         function handleFileSelect(evt) {
             var files = evt.target.files; // FileList object
 
@@ -390,7 +390,7 @@
                     if (regex.test(file[0].name.toLowerCase())) {
                         var reader = new FileReader();
                         reader.onload = function (e) {
-                            if(file[0].name.indexOf('.pdf') == -1) {
+                            if (file[0].name.indexOf('.pdf') == -1) {
                                 var img = $("<img />");
                                 img.attr("style", "height:200px;width: auto");
                                 img.attr("src", e.target.result);
@@ -488,14 +488,15 @@
 </script>
 
 <script>
-    $(window).load(function() {
+    $(window).load(function () {
         // Animate loader off screen
-        $(".se-pre-con").fadeOut("slow");;
+        $(".se-pre-con").fadeOut("slow");
+        ;
     });
 </script>
 
 <script>
-    $(document).ready(function(){
+    $(document).ready(function () {
 
         /*! Fades in page on load */
         $('body').css('display', 'none');
@@ -504,7 +505,7 @@
     });
 </script>
 <script>
-    $(document).ready(function(){
+    $(document).ready(function () {
         $('[data-toggle="tooltip"]').tooltip();
     });
 </script>
@@ -535,20 +536,18 @@
     }
 </script>
 <script type="text/javascript">
-    $(document).ready(function(){
+    $(document).ready(function () {
 
         // Text van input halen
-        $(".suggestionsinput").click(function(){
-            if($(".suggestionsinput").val() == "Search")
-            {
+        $(".suggestionsinput").click(function () {
+            if ($(".suggestionsinput").val() == "Search") {
                 $(".suggestionsinput").val("");
             }
         })
 
         // Checken of de button ingedrukt is
-        $(".suggestionsinput").keyup(function(event){
-            if($(".suggestionsinput").val() != "")
-            {
+        $(".suggestionsinput").keyup(function (event) {
+            if ($(".suggestionsinput").val() != "") {
                 // make suggestions visible
                 $("#suggestions").css('visibility', 'visible');
                 $("#suggestions").hide();
@@ -559,7 +558,7 @@
 
             } else {
                 // Suggesties verbergen
-                $("#suggestions").fadeOut('slow', function(){
+                $("#suggestions").fadeOut('slow', function () {
                     $("#suggestions").css('visibility', 'hidden');
                 });
 
@@ -570,12 +569,12 @@
 
 <!-- Script voor preview uploaden -->
 <script>
-    var loadFile = function(event) {
+    var loadFile = function (event) {
         oldimg = $('.preview').attr('src');
         var preview = document.getElementById('preview');
         preview.src = URL.createObjectURL(event.target.files[0]);
         newimg = preview.src;
-        if(newimg.indexOf('/null') > -1) {
+        if (newimg.indexOf('/null') > -1) {
             preview.src = oldimg;
         }
     };
@@ -583,11 +582,9 @@
 </script>
 
 
-
-
 <!-- Menuscript -->
 <script>
-    $("#menu-toggle").click(function(e) {
+    $("#menu-toggle").click(function (e) {
         e.preventDefault();
         $("#wrapper").toggleClass("toggled");
     });

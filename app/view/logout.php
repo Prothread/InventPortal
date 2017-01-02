@@ -1,6 +1,6 @@
 <?php
 #LOGOUT PAGE
-if(isset($_SESSION['usr_id'])) {
+if (isset($_SESSION['usr_id'])) {
     session_destroy();
     $block->Redirect('index.php?page=login');
     unset($_SESSION['usr_id']);

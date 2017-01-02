@@ -14,5 +14,4 @@ define("DB_PASS", "");
 define("DB_NAME", "portalinvent");
 
 
-
 define("TXT_NO_DATA", "Geen gegevens gevonden.");
