@@ -19,8 +19,10 @@ else {
     echo 'User';
 }
 
-$settings = new UserController();
-$admin = $settings->getAdminSettings();
+if ($user->getPermission($permgroup, 'CAN_EDIT_SETTINGS') == 1 ) {
+    $settings = new UserController();
+    $admin = $settings->getAdminSettings();
+}
 
 if(isset($_SESSION['accorduserid']) && !isset($_SESSION['usr_id'])) {
     $userinfo = $user->getUserById($_SESSION['accorduserid']);

@@ -23,7 +23,7 @@ else {
                 <table style="width:100%">
                     <tr>
                         <th style="text-align: left;">
-                            <p class="NameText" style="font-weight: normal;">Overzicht</p>
+                            <p class="NameText" style="font-weight: normal;">Archief</p>
                         </th>
                         <th id="filters" style="text-align: right;">
 

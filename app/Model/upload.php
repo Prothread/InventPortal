@@ -259,9 +259,9 @@ if($error == 0) {
 //Check if mail is sent :
         if (!$mailer->send()) {
             $block->Redirect('index.php?page=phpmail');
-            //echo 'Error sending mail : ' . $mailer->ErrorInfo;
             Session::flash('error', $mailer->ErrorInfo);
-        } else {
+        }
+        else {
             //If mail is send, create data and send it to the database
             if(isset( $_POST['id'] )) {
                 $mymail->update($mailinfo);
