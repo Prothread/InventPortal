@@ -86,6 +86,12 @@ if (isset($_FILES['myFile'])) {
             $unique_name = preg_replace('/\s+/', '-', $unique_name);
             $uniqfile = $target_dir . $unique_name;
 
+            if(file_exists($uniqfile)) {
+                $uniq = pathinfo($uniqfile);
+                $unique_name = $uniq['filename'] . "-1" . '.' . $uniq['extension'];
+                $uniqfile = $target_dir . $unique_name;
+            }
+
             array_push($unique_names, $unique_name);
             $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
 
