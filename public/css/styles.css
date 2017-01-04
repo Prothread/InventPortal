@@ -1679,9 +1679,21 @@ tr:nth-child(2n) {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
+#filters {
+    text-align: right;
+}
 #filters button {
     margin-bottom: 5px;
 }
 #tableheader {
     display:block;
+}
+#filtermobiel {
+    display:none;
+}
+@media screen and (max-width: 520px) {
+    .filtermobiel {
+        float:left;
+        text-align:left !important;
+    }
 }

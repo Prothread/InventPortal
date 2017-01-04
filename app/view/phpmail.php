@@ -73,11 +73,7 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);
                                     <div class="form-group">
                                         <label class="col-md-4 control-label" for="textinput">Onderwerp</label>
                                         <div class="col-md-4">
-                                            <input required class="form-control input-md" maxlength="32" id="textinput"
-                                                   type="text" name="title" size="50"
-                                                   placeholder="<?php if (isset($mailinfo['title'])) {
-                                                       echo $mailinfo['title'];
-                                                   } ?>">
+                                            <input required class="form-control input-md" maxlength="32" id="textinput" type="text" name="title" size="50" placeholder="<?php if (isset($mailinfo['title'])) { echo $mailinfo['title']; } ?>">
                                         </div>
                                     </div>
 
@@ -282,7 +278,8 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);
                             <hr size="1">
 
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Naam</label>
+                                <label class="col-md-4 control-label" for="textinput">Naam<span
+                                        style="color:#dd2c4c">*</span></label>
                                 <div class="col-md-4">
                                     <input required class="form-control input-md" id="textinput" type="text" name="name"
                                            size="50" placeholder="Naam">
@@ -292,7 +289,7 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Bedrijfsnaam</label>
                                 <div class="col-md-4">
-                                    <input class="form-control input-md" id="textinput" required type="text"
+                                    <input class="form-control input-md" id="textinput" type="text"
                                            name="companyname" size="50" placeholder="Bedrijfsnaam">
                                 </div>
                             </div>
@@ -301,7 +298,8 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);
                             <hr size="1">
 
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">E-mail</label>
+                                <label class="col-md-4 control-label" for="textinput">E-mail<span
+                                        style="color:#dd2c4c">*</span></label>
                                 <div class="col-md-4">
                                     <input class="form-control input-md" id="textinput" required type="email"
                                            name="email" size="50" placeholder="E-mailadres">
@@ -322,7 +320,7 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Adres</label>
                                 <div class="col-md-4">
-                                    <input class="form-control input-md" id="textinput" required type="text"
+                                    <input class="form-control input-md" id="textinput" type="text"
                                            name="companyadress" size="50" placeholder="Adres">
                                 </div>
                             </div>
@@ -330,7 +328,7 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Postcode</label>
                                 <div class="col-md-4">
-                                    <input class="form-control input-md" id="textinput" required type="text"
+                                    <input class="form-control input-md" id="textinput" type="text"
                                            name="postcode" size="50" placeholder="Postcode">
                                 </div>
                             </div>
@@ -338,7 +336,7 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Plaats</label>
                                 <div class="col-md-4">
-                                    <input class="form-control input-md" id="textinput" required type="text"
+                                    <input class="form-control input-md" id="textinput" type="text"
                                            name="plaats" size="50" placeholder="Plaats">
                                 </div>
                             </div>

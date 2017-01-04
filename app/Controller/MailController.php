@@ -23,6 +23,7 @@ class MailController
      */
     public function create(array $mailinfo)
     {
+        $this->model->setClientID($mailinfo['clientid']);
         $this->model->setMailSubject($mailinfo['title']);
         $this->model->setMailSender($mailinfo['sender']);
         $this->model->setMailDescription($mailinfo['description']);

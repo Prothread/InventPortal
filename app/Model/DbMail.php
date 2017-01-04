@@ -44,11 +44,7 @@ class DbMail extends Database
                 }
             }
 
-            $user = new UserController();
-            $getbymail = $user->getUserByEmail($mail->getMailEmail());
-            $clientid = $getbymail['id'];
-
-            $sql1 = "INSERT INTO `usermail` (`userid`, `clientid`, `mailid`, `status`) VALUES ('{$_SESSION['usr_id']}', '{$clientid}', '{$myid}', '{$mail->getVerified()}')";
+            $sql1 = "INSERT INTO `usermail` (`userid`, `clientid`, `mailid`, `status`) VALUES ('{$_SESSION['usr_id']}', '{$mail->getClientID()}', '{$myid}', '{$mail->getVerified()}')";
 
             if ($this->dbQuery($sql1)) {
                 true;

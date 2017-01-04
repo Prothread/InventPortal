@@ -31,12 +31,14 @@ if(isset($_GET['page'])) {
 }
 
 */
-$imgid = $_POST['img'];
+if($_POST) {
+    $imgid = $_POST['img'];
 
-if ($_POST['vote'] == "Akkoord") {
-    $verify = 1;
-} else if ($_POST['vote'] == "Weiger") {
-    $verify = 2;
+    if ($_POST['vote'] == "Akkoord") {
+        $verify = 1;
+    } else if ($_POST['vote'] == "Weiger") {
+        $verify = 2;
+    }
+
+    $session->ImageVerify($imgid, $verify);
 }
-
-$session->ImageVerify($imgid, $verify);

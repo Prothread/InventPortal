@@ -32,6 +32,14 @@ class Mail
     private $MailId;
 
     /**
+     * Variabele om ht id van de klant in op te slaan
+     *
+     * @var $ClientID
+     */
+
+    private $ClientID;
+
+    /**
      * Variabele om MailSubject op te slaan
      *
      * @var $MailSubject
@@ -281,6 +289,17 @@ class Mail
     }
 
     /**
+     * ID van de geselecteerde klant
+     *
+     * @param $clientid
+     */
+
+    public function setClientID($clientid)
+    {
+        $this->ClientID = $clientid;
+    }
+
+    /**
      * Sla meegegeven informatie op in de setMailSubject variabele
      *
      * @param setMailSubject
@@ -448,6 +467,17 @@ class Mail
     public function getMailId()
     {
         return $this->MailId;
+    }
+
+    /**
+     * ID van de geselecteerde klant
+     *
+     * @param ClientID
+     */
+
+    public function getClientID()
+    {
+        return $this->ClientID;
     }
 
     /**

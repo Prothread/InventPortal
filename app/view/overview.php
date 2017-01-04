@@ -21,10 +21,11 @@ if (isset($_SESSION['uploads'])) {
             <div class="row">
                 <table style="width:100%">
                     <tr>
-                        <th style="text-align: left;">
+                        <th class="filtermobiel" style="text-align: left;">
                             <p class="NameText" style="font-weight: normal;">Overzicht</p>
                         </th>
-                        <th id="filters" style="text-align: right;">
+
+                        <th class="filtermobiel" id="filters">
 
                             <?php if (isset($_SESSION['updateopenmails']) && $user->getPermission($permgroup, 'CAN_EDIT_ACCORD') == 1) { ?>
                                 <a data-toggle="modal" data-target="#updateOpenMails" href="#">

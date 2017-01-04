@@ -217,6 +217,7 @@ if ($error == 0) {
         } else {
             if ($comment !== null && $comment !== '') {
                 $mailinfo = [
+                    'clientid' => intval($clientid),
                     'title' => strip_tags($title),
                     'sender' => strip_tags($sender),
                     'description' => strip_tags($description),
@@ -231,6 +232,7 @@ if ($error == 0) {
                 ];
             } else {
                 $mailinfo = [
+                    'clientid' => intval($clientid),
                     'title' => strip_tags($title),
                     'sender' => strip_tags($sender),
                     'description' => strip_tags($description),

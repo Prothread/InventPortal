@@ -45,6 +45,7 @@ $UID = date('d.m.Y-G.i.s') . '-192.08.1.124';
 //TODO Try if IP adres sends correctly
 $userip = $user->getUserIP();
 //$UID = date('d.m.Y-G.i.s') . '-' . $userip;
+
 ?>
 
 <!-- Page Content -->
@@ -252,6 +253,9 @@ $userip = $user->getUserIP();
                                                         $imageverify = 0;
                                                     }
                                                 }
+                                                else {
+                                                    $imageverify = 0;
+                                                }
                                             } else {
                                                 $imageverify = 0;
                                             }
@@ -373,7 +377,7 @@ $userip = $user->getUserIP();
                                 de proef naar moet worden verstuurd of maak een nieuwe klant aan.
                             </div>
                             <br>
-                            <label id="Voorwaarden">Ik heb de <a href="index.php?page=conditions"><span
+                            <label id="Voorwaarden">Ik heb de <a href="index.php?page=conditions" target="_blank"><span
                                         style="color:#bc2d4c">algemene voorwaarden</span></a> gelezen en ga hiermee
                                 akkoord</label>
                             <input type="checkbox" name="yeahright" required>

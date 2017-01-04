@@ -200,6 +200,7 @@
             cache: false,
             success: function (result) {
                 $(ref).load("?page=approve " + ref);
+                $('#refsa').load("?page=approve #refsa");
                 $('#refsh').load("?page=approve #refsh");
                 $('#refer1').load("?page=approve #refer1");
                 $('#refer').load("?page=approve #refer");
