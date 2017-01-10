@@ -169,6 +169,11 @@ if ($mailexist == null || empty($mailexist)) {
     }
 
 } else {
+    $response = array();
+    $response['status'] = 'error';
+    $response['message'] = 'Deze mail is al in gebruik';
+    echo json_encode($response);
+
     $block->Redirect('index.php?page=newclient');
     Session::flash('error', 'Deze mail is al in gebruik');
 }

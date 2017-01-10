@@ -211,9 +211,8 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);
                                             <div class="col-md-4">
                                                 <select id="allclients" style="width:300px;" name="client" required>
                                                     <option></option>
-                                                    <?php foreach ($user->getAllClients() as $klant) { ?>
-                                                        <option
-                                                            value="<?= $klant['id'] ?>"><?= $klant['naam'] ?></option>
+                                                    <?php foreach ($user->getAllLatestClients() as $klant) { ?>
+                                                        <option value="<?= $klant['id'] ?>"><?= $klant['naam'] ?></option>
                                                     <?php } ?>
                                                 </select>
                                             </div>
@@ -261,7 +260,7 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);
                     <form action="#" method="post" enctype="multipart/form-data" class="form-horizontal newclient"
                           id="createclient">
 
-                        <div id="demclients1">
+                        <div class="demclients1">
                             <?php
                             if ($session->exists('flash')) {
                                 foreach ($session->get('flash') as $flash) {

@@ -40,7 +40,7 @@ if (isset($_GET['page'])) {
  * Anders: de gebruiker is ingelogd en gaat naar het dashboard
  */
 
-if (!$session->exists('usr_id') && $page !== 'forgetpassword' && $page !== 'conditions' && $page !== 'resetpassword' && $page !== 'passreset' && $page !== 'wachtwoordherstellen' && $page !== 'image' && $page !== 'register' && $page !== 'approve' && $page !== 'verify' && $page !== 'imageverify' && $page !== 'updatemail' && $page !== 'imagecancel') {
+if (!$session->exists('usr_id') && $page !== 'forgetpassword' && $page !== 'conditions' && $page !== 'resetpassword' && $page !== 'passreset' && $page !== 'wachtwoordherstellen' && $page !== 'register' && $page !== 'approve' && $page !== 'verify' && $page !== 'imageverify' && $page !== 'updatemail' && $page !== 'imagecancel') {
     $page = 'login';
 } else if ($session->exists('usr_id') && $page == 'login') {
     $page = 'dashboard';
@@ -61,9 +61,6 @@ if (!$session->exists('usr_id') && $page !== 'approve' && $page !== 'conditions'
 if ($session->exists('usr_id')) {
     if ($page !== 'submit' && $page !== 'item2' && $page !== 'image' && $page !== 'download') {
         include_once '../app/view/header.php';
-    }
-    if ($page == 'download') {
-        include_once '../app/view/header2.php';
     }
 }
 

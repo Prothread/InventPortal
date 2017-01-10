@@ -16,12 +16,13 @@ $id = $_GET['id'];
 $id = $session->cleantonumber($id);
 
 $myclient = $client->getUserById($id);
-if ($user->getPermission($permgroup, 'CAN_EDIT_CLIENT') == 1 && $userinfo['permgroup'] == 1) {
+if ($user->getPermission($permgroup, 'CAN_EDIT_CLIENT') == 1 && $myclient['permgroup'] == 1) {
 
-} else if ($user->getPermission($permgroup, 'CAN_EDIT_USER') == 1 && $userinfo['permgroup'] !== 1) {
+} else if ($user->getPermission($permgroup, 'CAN_EDIT_USER') == 1 && $myclient['permgroup'] !== 1) {
 
 } else {
-    return 'U heeft geen rechten om dit te doen';
+    echo 'U heeft geen rechten om deze gebruiker te bewerken';
+    return false;
 }
 
 
@@ -216,7 +217,7 @@ if (isset($_POST['submit'])) {
                             </div>
                         </div>
 
-                        <?php if ($user->getPermission($permgroup, 'CAN_EDIT_USER') == '1') { ?>
+                        <?php if ($user->getPermission($permgroup, 'CAN_EDIT_USER') == '1' && $user->getPermission($permgroup, 'CAN_BE_EDITED') == '1') { ?>
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Rechten<span
                                         style="color:#dd2c4c">*</span></label>

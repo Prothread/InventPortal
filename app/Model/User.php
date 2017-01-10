@@ -687,6 +687,17 @@ class User
     }
 
     /**
+     * Haal alle klanten op met de laatste id's
+     *
+     * @return array|null
+     */
+
+    public function getAllLatestClients()
+    {
+        return $this->db->getAllLatestClients();
+    }
+
+    /**
      * Haal aantal klanten op
      *
      * @return mixed

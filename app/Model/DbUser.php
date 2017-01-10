@@ -122,8 +122,14 @@ class DbUser extends Database
         $result = $this->dbQuery($sql);
         $value = mysqli_fetch_assoc($result);
 
+        $sql1 = "SELECT * FROM `permgroup` WHERE `userperm` = '{$row}'";
+        $result1 = $this->dbQuery($sql1);
+        $value1 = mysqli_fetch_assoc($result1);
+
+        $groupname = $value1['name'];
+
         if ($value) {
-            return $value[$row];
+            return $value[$groupname];
         }
 
     }
@@ -265,6 +271,26 @@ class DbUser extends Database
             return $value;
         }
         return null;
+    }
+
+    /**
+     * Haal alle klanten op met de laatste id's
+     *
+     * @return array|null
+     */
+
+    public function getAllLatestClients()
+    {
+        $sql = "SELECT * FROM `users`";
+        $sql .= "WHERE permgroup = '1'";
+        $sql .= " ORDER BY `id` DESC";
+
+        $result = $this->dbQuery($sql);
+        $value = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+        if ($value) {
+            return $value;
+        }
     }
 
     /**

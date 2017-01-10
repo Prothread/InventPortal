@@ -15,7 +15,8 @@ if (isset($_GET['id'])) {
     $_GET['id'] = $session->cleantonumber($_GET['id']);
     $userinfo = $user->getUserById($_GET['id']);
 } else {
-    return 'Profiel niet gevonden';
+    echo '<div class="alert alert-info">Profiel niet gevonden</div>';
+    return false;
 }
 if ($userinfo['permgroup'] == '1') {
     $userperm = 'Klant';
@@ -41,7 +42,15 @@ if ($userinfo['permgroup'] == '1') {
                                     Profiel: <?= $userinfo['naam'] ?></p></th>
                             <th style="text-align: right;">
 
-                                <?php if ($user->getPermission($permgroup, 'CAN_EDIT_CLIENT') == 1) { ?>
+                                <?php if ($user->getPermission($permgroup, 'CAN_EDIT_CLIENT') == 1 && $userinfo['permgroup'] == 1) { ?>
+                                    <a href="?page=editclient&id=<?= $_GET['id'] ?>">
+                                        <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
+                                            <span class="btn-label"><i class="glyphicon glyphicon-pencil"></i></span>Wijzig
+                                            gebruiker
+                                        </button>
+                                    </a>
+                                <?php }
+                                else if ($user->getPermission($permgroup, 'CAN_EDIT_USER') == 1 && $userinfo['permgroup'] !== 1) { ?>
                                     <a href="?page=editclient&id=<?= $_GET['id'] ?>">
                                         <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
                                             <span class="btn-label"><i class="glyphicon glyphicon-pencil"></i></span>Wijzig

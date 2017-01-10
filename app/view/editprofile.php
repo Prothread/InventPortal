@@ -2,7 +2,6 @@
 #PAGE FOR CREATING CLIENTS
 
 $user = new UserController();
-$mysqli = mysqli_connect();
 
 $userinfo = $user->getUserById($_SESSION['usr_id']);
 ?>
@@ -72,6 +71,15 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);
                                     <div class="col-lg-8">
                                         <input class="form-control" value="<?= $userinfo['email'] ?>" type="text"
                                                name="email">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label">Alternatief email:</label>
+                                    <div class="col-lg-8">
+                                        <span style="font-size:15px">Mail voor contact</span>
+
+                                        <input class="form-control" value="<?= $userinfo['altmail'] ?>" type="text"
+                                               name="altmail">
                                     </div>
                                 </div>
                                 <div class="form-group">

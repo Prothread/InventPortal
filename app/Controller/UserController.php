@@ -263,6 +263,17 @@ class UserController
     }
 
     /**
+     * Haal alle klanten op met de laatste id's
+     *
+     * @return array|null
+     */
+
+    public function getAllLatestClients()
+    {
+        return $this->model->getAllLatestClients();
+    }
+
+    /**
      * Haal alle gebruikers op die geen klant zijn
      *
      * @return array|null

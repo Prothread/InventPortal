@@ -53,7 +53,7 @@ if (isset($_POST['login'])) {
 
                 <form role="form" method="post" name="loginform">
                     <fieldset>
-                        <img style="width: 254px; height: 256px;" src="public/img/madalco.png" class="fade-in one">
+                        <img style="width: 254px; height: 256px;" src="img/madalco.png" class="fade-in one">
                         <br>
                         <br>
                         <label for="name">E-mailadres</label>

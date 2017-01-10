@@ -45,7 +45,7 @@ $mailer->addEmbeddedImage(DIR_PUBLIC . $admin['Logo'], "HeaderImage", "Logo.png"
 
 /* TO, SUBJECT, CONTENT */
 $to = $_SESSION['mailto']; //The 'To' field
-$subject = $_POST['title'];
+$subject = $_SESSION['verifytext']. ': ' . $_POST['title'];
 
 if (isset($_SESSION['accordid'])) {
     $myid = $_SESSION['accordid'];
