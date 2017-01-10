@@ -15,17 +15,18 @@ $session = new Session();
 
 if (isset($_SESSION['usr_id'])) {
     $id = $user->getPermissionGroup($_SESSION['usr_id']);
-    $id = $id['permgroup'];
+    $perm = $user->getPermissionGroupName($id['permgroup']);
 
-    $permgroup = $id;
+    $mypermgroup = $perm['name'];
+    $permgroup = $id['permgroup'];
 }
 
 else if (isset($_SESSION['userid'])) {
     if ($session->getUserId()) {
         $id = $user->getPermissionGroup($session->getUserId());
-        $id = $id['permgroup'];
 
-        $permgroup = $id;
+        $mypermname = $user->getPermissionGroupName($id['permgroup']);
+        $permgroup = $id['permgroup'];
     }
 }
 

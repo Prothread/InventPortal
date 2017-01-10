@@ -151,6 +151,22 @@ class DbUser extends Database
     }
 
     /**
+     * Haal de naam van de groep rechten van de klant op
+     *
+     * @param $value
+     * @return mixed
+     */
+
+    public function getPermissionGroupName($value)
+    {
+        $sql = "SELECT `name` FROM `permgroup` WHERE `userperm` = '{$value}'";
+
+        if ($result = $this->dbQuery($sql)) {
+            return mysqli_fetch_assoc($result);
+        }
+    }
+
+    /**
      * Haal user op met het id van die gebruiker
      *
      * @param $id

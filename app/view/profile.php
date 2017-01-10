@@ -109,7 +109,7 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);
                                 <div class="form-group">
                                     <label class="col-lg-3 control-label">Rechten:</label>
                                     <div class="col-lg-8">
-                                        <input disabled class="form-control" value="<?= $permgroup ?>" type="text">
+                                        <input disabled class="form-control" value="<?= $mypermgroup ?>" type="text">
                                     </div>
                                 </div>
                                 <!--<div class="form-group">

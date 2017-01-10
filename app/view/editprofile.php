@@ -104,28 +104,42 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);
                                     </div>
                                 </div>
 
-                                <?php if ($user->getPermission($permgroup, 'CAN_EDIT_USER')) { ?>
-                                    <div class="form-group">
-                                        <label class="col-lg-3 control-label" for="textinput">Rechtgroepen</label>
-                                        <div class="col-lg-8">
-                                            <label class="col-md-2 control-label" for="textinput">Klant: 1</label>
-                                            <label class="col-sm-3 control-label" for="textinput">Gebruiker: 2</label>
-                                            <label class="col-sm-3 control-label" for="textinput">Beheerder: 3</label>
-                                            <label class="col-sm-3 control-label" for="textinput">Admin: 4</label>
-                                        </div>
-                                    </div>
-                                <?php } ?>
-
-                                <?php if ($user->getPermission($permgroup, 'CAN_EDIT_USER')) { ?>
+                                <?php if ($user->getPermission($permgroup, 'CAN_EDIT_USER') == '1' && $user->getPermission($permgroup, 'CAN_BE_EDITED') == '1') { ?>
                                     <div class="form-group">
                                         <label class="col-lg-3 control-label">Rechten:</label>
                                         <div class="col-lg-8">
-                                            <input class="form-control" value="<?= $userinfo['permgroup'] ?>"
-                                                   type="text" name="rechten">
+                                            <select class="form-control" name="rechten" required>
+
+                                                <?php foreach($user->getAllPermGroups() as $permission) { ?>}
+
+                                                <?php if ($userinfo['permgroup'] == '1') { ?>
+                                                    <option value="1" selected="selected">Klant</option>
+                                                <?php } else { ?>
+                                                    <option value="1">Klant</option>
+                                                <?php } ?>
+
+                                                <?php if ($userinfo['permgroup'] == '2') { ?>
+                                                    <option value="2" selected="selected">Gebruiker</option>
+                                                <?php } else { ?>
+                                                    <option value="2">Gebruiker</option>
+                                                <?php } ?>
+
+                                                <?php if ($userinfo['permgroup'] == '3') { ?>
+                                                    <option value="3" selected="selected">Beheerder</option>
+                                                <?php } else { ?>
+                                                    <option value="3">Beheerder</option>
+                                                <?php } ?>
+
+                                                <?php if ($userinfo['permgroup'] == '4') { ?>
+                                                    <option value="4" selected="selected">Admin</option>
+                                                <?php } else { ?>
+                                                    <option value="4">Admin</option>
+                                                <?php } ?>
+                                            </select>
                                         </div>
                                     </div>
                                 <?php } else { ?>
-                                    <input class="form-control" value="<?= $userinfo['permgroup'] ?>" type="hidden"
+                                    <input class="form-control" value="<?= $mypermgroup ?>" type="hidden"
                                            name="rechten">
                                 <?php } ?>
 

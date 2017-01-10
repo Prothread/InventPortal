@@ -392,6 +392,18 @@ class User
     }
 
     /**
+     * Haal de naam van de groep rechten van de klant op
+     *
+     * @param $value
+     * @return mixed
+     */
+
+    public function getPermissionGroupName($value)
+    {
+        return $this->db->getPermissionGroupName($value);
+    }
+
+    /**
      * Geef de variabele $Naam een waarde
      *
      * @param $Name

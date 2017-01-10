@@ -165,6 +165,29 @@ class UserController
     }
 
     /**
+     * Haal de naam van de groep rechten van de klant op
+     *
+     * @param $value
+     * @return mixed
+     */
+
+    public function getPermissionGroupName($value)
+    {
+        return $this->model->getPermissionGroupName($value);
+    }
+
+    /**
+     * Get all permission groups that can be assigned to a user
+     *
+     * @return mixed
+     */
+
+    public function getAllPermGroups()
+    {
+        return $this->model->getAllPermGroups();
+    }
+
+    /**
      * Haal user op
      *
      * @param array $userinfo
