@@ -73,12 +73,12 @@ if (isset($_SESSION['uploads'])) {
                         Legenda <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu">
-                        <li><img alt="Gezien" style="width: 50px; height: 50px;" src="public/icons/gezien.png"> ->
+                        <li><img alt="Gezien" style="width: 50px; height: 50px;" src="icons/gezien.png"> ->
                             Gezien
                         </li>
-                        <li><img alt="Uploaded" src="public/icons/uploaded.png"> -> Geüpload</li>
-                        <li><img alt="Geaccepteerd" src="public/icons/akkoord.png"> -> Akkoord</li>
-                        <li><img alt="Geweigerd" src="public/icons/geweigerd.png"> -> Geweigerd</li>
+                        <li><img alt="Uploaded" src="icons/uploaded.png"> -> Geüpload</li>
+                        <li><img alt="Geaccepteerd" src="icons/akkoord.png"> -> Akkoord</li>
+                        <li><img alt="Geweigerd" src="icons/geweigerd.png"> -> Geweigerd</li>
                     </ul>
                     <a href="?page=archive">
                         <button style="width: 100px; background-color: #bb2c4c; color: white;" type="button"
@@ -112,10 +112,12 @@ if (isset($_SESSION['uploads'])) {
                                     <a href="?page=item&id=<?= $upload['id'] ?>"><?= $upload['onderwerp'] ?></a>
                                 </td>
                                 <td>
-                                    <?= $upload['verstuurder'] ?>
+                                    <?php $usr = $user->getUserById($upload['verstuurder']); ?>
+                                    <a href="?page=showuserprofile&id=<?= $usr['id'] ?>"><?= $usr['naam'] ?></a>
                                 </td>
                                 <td>
-                                    <?= $upload['naam'] ?>
+                                    <?php $clnt = $user->getUserById($upload['naam']); ?>
+                                    <a href="?page=showuserprofile&id=<?= $clnt['id'] ?>"><?= $clnt['naam'] ?></a>
                                 </td>
                                 <td>
                                     <?= date("d-m-Y", strtotime($upload['datum'])); ?>
@@ -123,13 +125,13 @@ if (isset($_SESSION['uploads'])) {
                                 <td>
                                     <span style="display:none" id="status"><?= $upload['verified']; ?></span>
                                     <?php if ($upload['verified'] == 1) { ?>
-                                        <img alt="Gezien" src="public/icons/gezien.png">
+                                        <img alt="Gezien" src="icons/gezien.png">
                                     <?php } elseif ($upload['verified'] == 2) { ?>
-                                        <img alt="Geaccepteerd" src="public/icons/akkoord.png">
+                                        <img alt="Geaccepteerd" src="icons/akkoord.png">
                                     <?php } elseif ($upload['verified'] == 3) { ?>
-                                        <img alt="Geweigerd" src="public/icons/geweigerd.png">
+                                        <img alt="Geweigerd" src="icons/geweigerd.png">
                                     <?php } else { ?>
-                                        <img alt="Uploaded" src="public/icons/uploaded.png">
+                                        <img alt="Uploaded" src="icons/uploaded.png">
                                     <?php } ?>
                                 </td>
                             </tr>

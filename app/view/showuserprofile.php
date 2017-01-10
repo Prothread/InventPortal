@@ -18,6 +18,19 @@ if (isset($_GET['id'])) {
     echo '<div class="alert alert-info">Profiel niet gevonden</div>';
     return false;
 }
+
+$uploads = new BlockController();
+$items = new MailController();
+$user = new UserController();
+
+if ($userinfo['permgroup'] == '1') {
+    $clientID = $userinfo['id'];
+    $userid = $userinfo['id'];
+    $get_filled_info = $items->getUserMailByUserId($userid, null, null, $clientID);
+} else {
+    $userid = $userinfo['id'];
+    $get_filled_info = $items->getUserMailByUserId($userid);
+}
 ?>
 
 <div id="page-content-wrapper">
@@ -144,6 +157,75 @@ if (isset($_GET['id'])) {
                         </div>
                     </div>
                     </form>
+
+
+
+                    <?php if (isset($get_filled_info) && $get_filled_info !== null) { ?>
+                    <br />
+                    <br />
+                    <br />
+
+                    <table id="myTable" class="table table-striped">
+                        <thead>
+                        <tr>
+
+                            <th style="display:none">ID</th>
+                            <th>Onderwerp</th>
+                            <th>Verstuurder</th>
+                            <th>Klant</th>
+                            <th id="date">Datum</th>
+                            <th>Status</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php
+                        foreach ($get_filled_info as $upload) { ?>
+                            <tr>
+                                <td style="display:none">
+                                    <?= $upload['id']; ?>
+                                </td>
+                                <td>
+                                    <a href="?page=item&id=<?= $upload['id'] ?>"><?= $upload['onderwerp'] ?></a>
+                                </td>
+                                <td>
+                                    <?php $usr = $user->getUserById($upload['verstuurder']); ?>
+                                    <a href="?page=showuserprofile&id=<?= $usr['id'] ?>"><?= $usr['naam'] ?></a>
+                                </td>
+                                <td>
+                                    <?php $clnt = $user->getUserById($upload['naam']); ?>
+                                    <a href="?page=showuserprofile&id=<?= $clnt['id'] ?>"><?= $clnt['naam'] ?></a>
+                                </td>
+                                <td>
+                                    <?= date("d-m-Y", strtotime($upload['datum'])); ?>
+                                </td>
+                                <td>
+                                    <span style="display:none" id="status"><?= $upload['verified']; ?></span>
+                                    <?php if ($upload['verified'] == 1) { ?>
+                                        <img alt="Gezien" src="icons/gezien.png">
+                                    <?php } elseif ($upload['verified'] == 2) { ?>
+                                        <img alt="Geaccepteerd" src="icons/akkoord.png">
+                                    <?php } elseif ($upload['verified'] == 3) { ?>
+                                        <img alt="Geweigerd" src="icons/geweigerd.png">
+                                    <?php } else { ?>
+                                        <img alt="Uploaded" src="icons/uploaded.png">
+                                    <?php } ?>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                        </tbody>
+                    </table>
+                <?php } ?>
+
+                <script>
+                    $(document).ready(function () {
+                        $('#myTable').dataTable({
+                            "order": [[0, "desc"]],
+                            "deferRender": true
+                        });
+
+                    });
+                </script>
+
                 </div>
             </div>
         </div>

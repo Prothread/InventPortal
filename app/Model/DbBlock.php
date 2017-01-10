@@ -210,7 +210,7 @@ class DbBlock extends Database
 
         $result = $this->dbQuery($sql);
         $row = mysqli_fetch_all($result, MYSQLI_ASSOC);
-
+var_dump($sql);
         if ($row) {
             return $row;
         }

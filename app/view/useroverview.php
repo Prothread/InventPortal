@@ -84,10 +84,12 @@ if (isset($_SESSION['useruploads'])) {
                                     <a href="?page=item&id=<?= $upload['id'] ?>"><?= $upload['onderwerp'] ?></a>
                                 </td>
                                 <td>
-                                    <?= $upload['verstuurder'] ?>
+                                    <?php $usr = $user->getUserById($upload['verstuurder']); ?>
+                                    <a href="?page=showuserprofile&id=<?= $usr['id'] ?>"><?= $usr['naam'] ?></a>
                                 </td>
                                 <td>
-                                    <?= $upload['naam'] ?>
+                                    <?php $clnt = $user->getUserById($upload['naam']); ?>
+                                    <a href="?page=showuserprofile&id=<?= $clnt['id'] ?>"><?= $clnt['naam'] ?></a>
                                 </td>
                                 <td>
                                     <?= date("d-m-Y", strtotime($upload['datum'])); ?>
