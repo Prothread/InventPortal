@@ -104,7 +104,7 @@ if (isset($_POST['submit'])) {
         }
 
     }
-
+    var_dump($clientinfo);
 
     $client->update($clientinfo);
     $block->Redirect('index.php?page=dashboard');

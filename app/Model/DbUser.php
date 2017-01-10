@@ -34,22 +34,51 @@ class DbUser extends Database
 
     public function update(User $user)
     {
-        $sql = "UPDATE `users` SET `naam` = '{$user->getName()}', `email` = '{$user->getEmail()}', `bedrijfsnaam` = '{$user->getCompanyName()}', `permgroup` = '{$user->getPermGroup()}',
-        `adres` = '{$user->getUserAdres()}', `postcode` = '{$user->getUserPostcode()}', `plaats` = '{$user->getUserPlace()}'";
+        $sql = "UPDATE `users` SET ";
 
-        if ($user->getPassword() !== null) {
+        if($user->getName()) {
+            $sql .= "`naam` = '{$user->getName()}'";
+        }
+
+        if($user->getEmail()) {
+            $sql .= ", `email` = '{$user->getEmail()}'";
+        }
+
+        if($user->getCompanyName()) {
+            $sql .= ", `bedrijfsnaam` = '{$user->getCompanyName()}'";
+        }
+
+        if($user->getPermGroup()) {
+            $sql .= ", `permgroup` = '{$user->getPermGroup()}'";
+        }
+
+        if($user->getUserPostcode()) {
+            $sql .= ", `postcode` = '{$user->getUserPostcode()}'";
+        }
+
+        if($user->getUserPlace()) {
+            $sql .= ", `plaats` = '{$user->getUserPlace()}'";
+        }
+
+        if($user->getUserAdres()) {
+            $sql .= ", `adres` = '{$user->getUserAdres()}'";
+        }
+
+        if ($user->getPassword()) {
             $password = hash('sha256', $user->getPassword());
             $sql .= ", `paswoord` = '{$password}' ";
         }
 
-        if ($user->getAltMail() !== null) {
+        if ($user->getAltMail()) {
             $sql .= ", `altmail` = '{$user->getAltmail()}' ";
         }
 
-        if ($user->getProfileImage() !== null) {
+        if ($user->getProfileImage()) {
             $sql .= ", `profimg` = '{$user->getProfileImage()}' ";
         }
         $sql .= " WHERE `id` = '{$user->getUserId()}'";
+
+        var_dump($sql);
 
         if ($this->dbQuery($sql)) {
             return true;
@@ -163,6 +192,24 @@ class DbUser extends Database
 
         if ($result = $this->dbQuery($sql)) {
             return mysqli_fetch_assoc($result);
+        }
+    }
+
+    /**
+     * Get all permission groups that can be assigned to a user
+     *
+     * @return mixed
+     */
+
+    public function getAllPermGroups()
+    {
+        $sql = "SELECT * FROM `permgroup` WHERE `assignable` = '1'";
+
+        $result = $this->dbQuery($sql);
+        $value = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+        if ($value) {
+            return $value;
         }
     }
 

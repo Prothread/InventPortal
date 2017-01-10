@@ -18,17 +18,6 @@ if (isset($_GET['id'])) {
     echo '<div class="alert alert-info">Profiel niet gevonden</div>';
     return false;
 }
-if ($userinfo['permgroup'] == '1') {
-    $userperm = 'Klant';
-} else if ($userinfo['permgroup'] == '2') {
-    $userperm = 'Gebruiker';
-} else if ($userinfo['permgroup'] == '3') {
-    $userperm = 'Beheerder';
-} else if ($userinfo['permgroup'] == '4') {
-    $userperm = 'Admin';
-} else {
-    $userperm = 'Klant';
-}
 ?>
 
 <div id="page-content-wrapper">
@@ -41,6 +30,23 @@ if ($userinfo['permgroup'] == '1') {
                             <th style="text-align: left;"><p class="NameText" style="font-weight: normal;">
                                     Profiel: <?= $userinfo['naam'] ?></p></th>
                             <th style="text-align: right;">
+
+                                <?php if($user->getPermission($permgroup, 'CAN_RESET_CLIENT_PASSWORD') == '1' && $userinfo['permgroup'] == 1) { ?>
+                                    <a href="?page=newuserpassword&id=<?= $_GET['id'] ?>">
+                                        <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
+                                            <span class="btn-label"><i class="glyphicon glyphicon-lock"></i></span>Reset
+                                            wachtwoord
+                                        </button>
+                                    </a>
+                                <?php }
+                                else if($user->getPermission($permgroup, 'CAN_RESET_USER_PASSWORD') == '1' && $userinfo['permgroup'] !== 1) { ?>
+                                    <a href="?page=newuserpassword&id=<?= $_GET['id'] ?>">
+                                        <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
+                                            <span class="btn-label"><i class="glyphicon glyphicon-lock"></i></span>Reset
+                                            wachtwoord
+                                        </button>
+                                    </a>
+                                <?php } ?>
 
                                 <?php if ($user->getPermission($permgroup, 'CAN_EDIT_CLIENT') == 1 && $userinfo['permgroup'] == 1) { ?>
                                     <a href="?page=editclient&id=<?= $_GET['id'] ?>">
@@ -121,12 +127,15 @@ if ($userinfo['permgroup'] == '1') {
                                                type="text">
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="col-lg-3 control-label">Rechten:</label>
-                                    <div class="col-lg-8">
-                                        <input disabled class="form-control" value="<?= $userperm ?>" type="text">
+
+                                <?php if ($user->getPermission($permgroup, 'CAN_EDIT_USER') == '1'){ ?>
+                                    <div class="form-group">
+                                        <label class="col-lg-3 control-label">Rechten:</label>
+                                        <div class="col-lg-8">
+                                            <input disabled class="form-control" value="<?= $mypermgroup ?>" type="text">
+                                        </div>
                                     </div>
-                                </div>
+                                <?php } ?>
                                 <!--<div class="form-group">
                                   <label class="col-md-3 control-label"></label>
                                   <div class="col-md-8">

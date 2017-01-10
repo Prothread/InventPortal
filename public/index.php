@@ -183,6 +183,9 @@ switch ($page) {
     case 'passreset':
         include '../app/Model/passreset.php';
         break;
+    case 'newuserpassword':
+        include '../app/view/newuserpassword.php';
+        break;
     case 'editingprofile':
         include '../app/Model/editingprofile.php';
         break;

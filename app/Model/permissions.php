@@ -24,8 +24,9 @@ if (isset($_SESSION['usr_id'])) {
 else if (isset($_SESSION['userid'])) {
     if ($session->getUserId()) {
         $id = $user->getPermissionGroup($session->getUserId());
+        $perm = $user->getPermissionGroupName($id['permgroup']);
 
-        $mypermname = $user->getPermissionGroupName($id['permgroup']);
+        $mypermgroup = $perm['name'];
         $permgroup = $id['permgroup'];
     }
 }

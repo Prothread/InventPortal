@@ -110,31 +110,13 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);
                                         <div class="col-lg-8">
                                             <select class="form-control" name="rechten" required>
 
-                                                <?php foreach($user->getAllPermGroups() as $permission) { ?>}
-
-                                                <?php if ($userinfo['permgroup'] == '1') { ?>
-                                                    <option value="1" selected="selected">Klant</option>
-                                                <?php } else { ?>
-                                                    <option value="1">Klant</option>
+                                                <?php foreach($user->getAllPermGroups() as $permission) { ?>
+                                                    <option
+                                                        value="<?= $permission['userperm']; ?>"
+                                                        <?php if($userinfo['permgroup'] == $permission['userperm']) { echo 'selected'; } ?>><?= $permission['name'] ?></option>
                                                 <?php } ?>
 
-                                                <?php if ($userinfo['permgroup'] == '2') { ?>
-                                                    <option value="2" selected="selected">Gebruiker</option>
-                                                <?php } else { ?>
-                                                    <option value="2">Gebruiker</option>
-                                                <?php } ?>
 
-                                                <?php if ($userinfo['permgroup'] == '3') { ?>
-                                                    <option value="3" selected="selected">Beheerder</option>
-                                                <?php } else { ?>
-                                                    <option value="3">Beheerder</option>
-                                                <?php } ?>
-
-                                                <?php if ($userinfo['permgroup'] == '4') { ?>
-                                                    <option value="4" selected="selected">Admin</option>
-                                                <?php } else { ?>
-                                                    <option value="4">Admin</option>
-                                                <?php } ?>
                                             </select>
                                         </div>
                                     </div>

@@ -314,6 +314,15 @@ $_SESSION['clientid'] = $clientmail['clientid'];
                                             </div>
                                         <?php } ?>
 
+                                        <?php if ($user->getPermission($permgroup, 'CAN_SHOW_USERIP') == '1') { ?>
+                                            <div class="form-group">
+                                                <label class="col-md-4 control-label" for="textinput">Accordering IP</label>
+                                                <div class="col-md-4">
+                                                    <?= $upload['key'] ?>
+                                                </div>
+                                            </div>
+                                        <?php } ?>
+
                                         <br/>
                                         <?php if ($user->getPermission($permgroup, 'CAN_ADD_INTERN_COMMENT') == 1) { ?>
                                             <?php if ($comments !== null) { ?>

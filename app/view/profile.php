@@ -106,12 +106,15 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);
                                                type="text">
                                     </div>
                                 </div>
+
+                                <?php if ($user->getPermission($permgroup, 'CAN_EDIT_USER') == '1'){ ?>
                                 <div class="form-group">
                                     <label class="col-lg-3 control-label">Rechten:</label>
                                     <div class="col-lg-8">
                                         <input disabled class="form-control" value="<?= $mypermgroup ?>" type="text">
                                     </div>
                                 </div>
+                                <?php } ?>
                                 <!--<div class="form-group">
                                   <label class="col-md-3 control-label"></label>
                                   <div class="col-md-8">

@@ -404,6 +404,17 @@ class User
     }
 
     /**
+     * Get all permission groups that can be assigned to a user
+     *
+     * @return mixed
+     */
+
+    public function getAllPermGroups()
+    {
+        return $this->db->getAllPermGroups();
+    }
+
+    /**
      * Geef de variabele $Naam een waarde
      *
      * @param $Name

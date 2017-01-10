@@ -74,8 +74,13 @@ class UserController
             $this->model->setProfileImage($userinfo['profimg']);
         }
 
-        $this->model->setName($userinfo['name']);
-        $this->model->setEmail($userinfo['email']);
+        if (isset($userinfo['name'])) {
+            $this->model->setName($userinfo['name']);
+        }
+
+        if (isset($userinfo['email'])) {
+            $this->model->setEmail($userinfo['email']);
+        }
 
         if (isset($userinfo['altmail'])) {
             $this->model->setAltmail($userinfo['altmail']);
@@ -84,20 +89,26 @@ class UserController
         if (isset($userinfo['password'])) {
             $this->model->setPassword($userinfo['password']);
         }
+
         if (isset($userinfo['bedrijfsnaam'])) {
             $this->model->setCompanyName($userinfo['bedrijfsnaam']);
         }
+
         if (isset($userinfo['adres'])) {
             $this->model->setUserAdres($userinfo['adres']);
         }
+
         if (isset($userinfo['postcode'])) {
             $this->model->setUserPostcode($userinfo['postcode']);
         }
+
         if (isset($userinfo['plaats'])) {
             $this->model->setUserPlace($userinfo['plaats']);
         }
 
-        $this->model->setUserPermgroup($userinfo['permgroup']);
+        if (isset($userinfo['permgroup'])) {
+            $this->model->setUserPermgroup($userinfo['permgroup']);
+        }
 
 
         if ($result = $this->model->update()) {

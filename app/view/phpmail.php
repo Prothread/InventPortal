@@ -192,6 +192,7 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);
                                 </div>
 
                                 <div class="tab-pane" role="tabpanel" id="step4">
+                                    <?php if($user->getPermission($permgroup, 'CAN_CREATE_CLIENT') == '1') {?>
                                     <div class="form-group">
                                         <label class="col-md-4 control-label" for="textinput">Nieuwe klant
                                             aanmaken</label>
@@ -202,6 +203,7 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);
                                             </div>
                                         </div>
                                     </div>
+                                    <?php } ?>
 
                                     <br>
 
@@ -209,10 +211,10 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);
                                         <div class="form-group">
                                             <label class="col-md-4 control-label" for="textinput">Klant zoeken</label>
                                             <div class="col-md-4">
-                                                <select id="allclients" style="width:300px;" name="client" required>
+                                                <select id="allclients" style="width:100%" name="client" required>
                                                     <option></option>
                                                     <?php foreach ($user->getAllLatestClients() as $klant) { ?>
-                                                        <option value="<?= $klant['id'] ?>"><?= $klant['naam'] ?></option>
+                                                        <option value="<?= $klant['id'] ?>"><?php if($klant['bedrijfsnaam']){ echo $klant['bedrijfsnaam'] . '  -  '; } echo $klant['naam'] ?></option>
                                                     <?php } ?>
                                                 </select>
                                             </div>
