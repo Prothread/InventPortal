@@ -54,7 +54,7 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);
                         <!-- left column -->
                         <div class="col-md-3">
                             <div class="text-center">
-                                <img src="<?= DIR_IMG . $userinfo['profimg'] ?>" width="150px" height="150px;"
+                                <img src="<?= DIR_IMG . $userinfo['profimg'] ?>" width="200px" height="250px"
                                      class="avatar img-circle" alt="avatar">
 
                                 <input class="form-control" type="file">

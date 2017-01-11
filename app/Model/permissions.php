@@ -32,5 +32,5 @@ else if (isset($_SESSION['userid'])) {
 }
 
 else {
-    $permgroup = 0;
+    $permgroup = 1;
 }
