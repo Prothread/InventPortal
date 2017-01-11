@@ -262,9 +262,10 @@ $_SESSION['clientid'] = $clientmail['clientid'];
                                             <label class="col-md-4 control-label" for="textinput">Verstuurder<span
                                                     style="color:#bc2d4c">*</span></label>
                                             <div class="col-md-4">
+                                                <?php $usr = $user->getUserById($upload['verstuurder']); ?>
                                                 <input name="fromname" class="form-control input-md" id="textinput"
                                                        required type="text" readonly
-                                                       value="<?= $upload['verstuurder'] ?>">
+                                                       value="<?= $usr['naam'] ?>">
                                             </div>
                                         </div>
 
@@ -282,11 +283,21 @@ $_SESSION['clientid'] = $clientmail['clientid'];
                                             <label class="col-md-4 control-label" for="textinput">Naam klant<span
                                                     style="color:#bc2d4c">*</span></label>
                                             <div class="col-md-4">
+                                                <?php $clnt = $user->getUserById($upload['naam']); ?>
                                                 <input disabled name="mailname" class="form-control input-md"
                                                        id="textinput" type="text" size="50"
-                                                       value="<?= $upload['naam'] ?>">
+                                                       value="<?= $clnt['naam'] ?>">
                                             </div>
                                         </div>
+
+                                        <?php if ($user->getPermission($permgroup, 'CAN_EDIT_ACCORD') == 1) { ?>
+                                            <div class="form-group">
+                                                <label class="col-md-4 control-label" for="textinput">Link voor accorderen</label>
+                                                <div class="col-md-4">
+                                                    <span><?= $admin['Host'] . '/' ?>index.php?page=verify&id=<?= $upload['id'] ?>&key=<?= $upload['key'] ?></span>
+                                                </div>
+                                            </div>
+                                        <?php } ?>
 
                                         <?php if ($user->getPermission($permgroup, 'CAN_ACCORD') == 1 && in_array(0, $verimages)) { ?>
                                             <div class="form-group">
@@ -310,16 +321,6 @@ $_SESSION['clientid'] = $clientmail['clientid'];
                                                 <div class="col-md-4">
                                                     <textarea disabled class="form-control input-md"
                                                               id="textinput1"><?= $upload['answer'] ?></textarea>
-                                                </div>
-                                            </div>
-                                        <?php } ?>
-
-                                        <?php if ($user->getPermission($permgroup, 'CAN_SHOW_USERIP') == '1') { ?>
-                                            <div class="form-group">
-                                                <label class="col-md-4 control-label" for="textinput">Accordering IP</label>
-                                                <div class="col-md-4">
-                                                    <input disabled name="mailname" class="form-control input-md"
-                                                           id="textinput" type="text" value="<?= $upload['key'] ?>">
                                                 </div>
                                             </div>
                                         <?php } ?>
@@ -451,6 +452,16 @@ $_SESSION['clientid'] = $clientmail['clientid'];
                                             </div>
                                         </div>
 
+                                        <?php if ($user->getPermission($permgroup, 'CAN_SHOW_USERIP') == '1') { ?>
+                                            <div class="form-group">
+                                                <label class="col-md-4 control-label" for="textinput">Accordering IP</label>
+                                                <div class="col-md-4">
+                                                    <input disabled name="mailname" class="form-control input-md"
+                                                           id="textinput" type="text" value="<?= $upload['key'] ?>">
+                                                </div>
+                                            </div>
+                                        <?php } ?>
+
 
                                     <?php } ?>
 
@@ -570,9 +581,9 @@ $_SESSION['clientid'] = $clientmail['clientid'];
                                                 <label class="col-md-4 control-label" for="textinput">Naam klant<span
                                                         style="color:#bc2d4c">*</span></label>
                                                 <div class="col-md-4">
+                                                    <?php $clnt = $user->getUserById($upload['naam']); ?>
                                                     <input disabled name="mailname" class="form-control input-md"
-                                                           id="textinput" type="text" size="50"
-                                                           value="<?= $upload['naam'] ?>">
+                                                           id="textinput" type="text" value="<?= $clnt['naam'] ?>">
                                                 </div>
                                             </div>
 

@@ -233,8 +233,8 @@
             success: function (result) {
                 alert('Nieuwe klant aangemaakt');
 
-                alert(result.status);
-                alert(result.message);
+                //alert(result.status);
+                //alert(result.message);
 
                 $('.demclients').load('?page=uploadoverview' + ' .demclients', function () {
                     //success load event
@@ -242,13 +242,12 @@
                     $("#allclients").select2();
                 });
 
-                //$('.demclients1').load('?page=uploadoverview' + ' .demclients1');
-                if(result.status == 'error') {
+                /* if(result.status == 'error') {
                     $('.demclients1').innerText = result.message;
                 }
                 else {
                     $('.demclients1').innerText = "Gebruiker is aangemaakt";
-                }
+                } */
 
             }
         });

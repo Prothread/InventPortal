@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 10, 2017 at 01:20 PM
+-- Generation Time: Jan 11, 2017 at 11:09 AM
 -- Server version: 10.1.19-MariaDB
 -- PHP Version: 7.0.13
 
@@ -29,19 +29,20 @@ SET time_zone = "+00:00";
 CREATE TABLE `permgroup` (
   `id` int(11) NOT NULL,
   `userperm` int(11) NOT NULL,
-  `name` varchar(64) NOT NULL
+  `name` varchar(64) NOT NULL,
+  `assignable` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `permgroup`
 --
 
-INSERT INTO `permgroup` (`id`, `userperm`, `name`) VALUES
-(1, 1, 'Klant'),
-(2, 2, 'Gebruiker'),
-(3, 3, 'Beheerder'),
-(4, 4, 'Admin'),
-(5, 5, 'SuperAdmin');
+INSERT INTO `permgroup` (`id`, `userperm`, `name`, `assignable`) VALUES
+(1, 1, 'Klant', 1),
+(2, 2, 'Gebruiker', 1),
+(3, 3, 'Beheerder', 1),
+(4, 4, 'Admin', 1),
+(5, 5, 'SuperAdmin', 0);
 
 --
 -- Indexes for dumped tables

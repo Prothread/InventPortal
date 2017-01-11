@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 10, 2017 at 01:19 PM
+-- Generation Time: Jan 11, 2017 at 11:09 AM
 -- Server version: 10.1.19-MariaDB
 -- PHP Version: 7.0.13
 
@@ -57,7 +57,10 @@ INSERT INTO `permissions` (`id`, `permission`, `Klant`, `Gebruiker`, `Beheerder`
 (14, 'CAN_EDIT_USER', 0, 0, 0, 1, 1),
 (15, 'CAN_ADD_INTERN_COMMENT', 0, 0, 1, 1, 1),
 (16, 'CAN_USE_STATUSPORTAL', 0, 0, 1, 1, 1),
-(17, 'CAN_BE_EDITED', 1, 1, 1, 1, 0);
+(17, 'CAN_BE_EDITED', 1, 1, 1, 1, 0),
+(18, 'CAN_RESET_CLIENT_PASSWORD', 0, 1, 1, 1, 1),
+(19, 'CAN_RESET_USER_PASSWORD', 0, 0, 1, 1, 1),
+(20, 'CAN_SHOW_USERIP', 0, 1, 1, 1, 1);
 
 --
 -- Indexes for dumped tables
@@ -77,7 +80,7 @@ ALTER TABLE `permissions`
 -- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

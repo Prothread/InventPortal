@@ -23,12 +23,14 @@ if ($getbyemail !== null) {
 
 $date = date('Y-m-d h:i:s');
 
-if ($getbyemail['passresetdate'] > $date) {
+if(strtotime($getbyemail['passresetdate']) !== false) {
+    if ($getbyemail['passresetdate'] > $date) {
 
-} else {
-    echo '<div class="alert alert-info">Wachwoord vergeten is verlopen</div>';
-    echo '<br /><a style="color:black" href="index.php">Ga naar de startpagina</a>';
-    return false;
+    } else {
+        echo '<div class="alert alert-info">Wachwoord vergeten is verlopen</div>';
+        echo '<br /><a style="color:black" href="index.php">Ga naar de startpagina</a>';
+        return false;
+    }
 }
 ?>
 <div class="container">
@@ -36,7 +38,7 @@ if ($getbyemail['passresetdate'] > $date) {
         <div class="col-md-8 col-md-offset-2 centered">
             <form role="form" method="post" action="?page=passreset" id="form">
                 <fieldset>
-                    <legend>Wachtwoord vergeten</legend>
+                    <legend>Nieuw wachtwoord invullen</legend>
 
                     <div class="form-group">
                         <label for="name">Nieuw wachtwoord</label>

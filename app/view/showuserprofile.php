@@ -45,19 +45,17 @@ if ($userinfo['permgroup'] == '1') {
                             <th style="text-align: right;">
 
                                 <?php if($user->getPermission($permgroup, 'CAN_RESET_CLIENT_PASSWORD') == '1' && $userinfo['permgroup'] == 1) { ?>
-                                    <a href="?page=newuserpassword&id=<?= $_GET['id'] ?>">
+                                    <a data-toggle="modal" data-target="#NewUserPassword" href="#">
                                         <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
                                             <span class="btn-label"><i class="glyphicon glyphicon-lock"></i></span>Reset
-                                            wachtwoord
-                                        </button>
+                                            wachtwoord</button>
                                     </a>
                                 <?php }
                                 else if($user->getPermission($permgroup, 'CAN_RESET_USER_PASSWORD') == '1' && $userinfo['permgroup'] !== 1) { ?>
-                                    <a href="?page=newuserpassword&id=<?= $_GET['id'] ?>">
+                                    <a data-toggle="modal" data-target="#NewUserPassword" href="#">
                                         <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
                                             <span class="btn-label"><i class="glyphicon glyphicon-lock"></i></span>Reset
-                                            wachtwoord
-                                        </button>
+                                            wachtwoord</button>
                                     </a>
                                 <?php } ?>
 
@@ -88,8 +86,7 @@ if ($userinfo['permgroup'] == '1') {
                         <!-- left column -->
                         <div class="col-md-3">
                             <div class="text-center">
-                                <img src="<?= DIR_IMG . $userinfo['profimg'] ?>" width="150px" height="150px;"
-                                     class="avatar img-circle" alt="avatar">
+                                <div style="background: url(<?= DIR_IMG . $userinfo['profimg'] ?>); background-size: cover; width: 200px; height: 200px; background-position: 50%; margin: 0 auto" class="avatar img-circle"></div>
 
                                 <input class="form-control" type="file">
                             </div>
@@ -236,4 +233,37 @@ if ($userinfo['permgroup'] == '1') {
     </div>
     <hr>
 
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="NewUserPassword" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div style="text-align: center;" class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Reset wachtwoord</h4>
+            </div>
+            <div style="text-align: center;" class="modal-body">
+                <br>
+
+                <p> U staat op het punt om het wachtwoord van de gebruiker <b><?= $userinfo['naam'] ?></b> te resetten. <br/><br/>
+                    Weet u dit zeker?<br/><br/></p>
+                <a href="?page=newuserpassword&id=<?= $_GET['id'] ?>">
+                    <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
+                        <span class="btn-label"><i class="glyphicon glyphicon-lock"></i></span>Reset
+                        wachtwoord
+                    </button>
+                </a>
+
+                <br/>
+                <br/>
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+
+    </div>
 </div>

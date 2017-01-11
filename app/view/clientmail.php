@@ -27,10 +27,14 @@ $mailexist = $user->getUserByEmail($email);
 if ($mailexist == null || empty($mailexist)) {
 
 
-//Generate a random string.
-    $token = openssl_random_pseudo_bytes(8);
-//Convert the binary data into hexadecimal representation.
-    $token = bin2hex($token);
+    //Generate a random string.
+        $token = openssl_random_pseudo_bytes(8);
+    //Convert the binary data into hexadecimal representation.
+        $token = bin2hex($token);
+
+    //New token
+    $passtoken = openssl_random_pseudo_bytes(8);
+    $passtoken = bin2hex($token);
 
     $mymail = new MailController();
 
@@ -54,7 +58,7 @@ if ($mailexist == null || empty($mailexist)) {
     }
     $subject = "Accountgegevens Madalco-portaal";
 
-    $link = $admin['Host'] . "/index.php?page=login";
+    $link = $admin['Host'] . "/index.php?page=resetpassword&email=$email&token=$passtoken";
 
     $header = ' <div style="background: ' . $admin['Header'] . '; position:relative; width: 100%; height: 130px;">
                         <div style="position: absolute; height: 130px; margin-right: 25px; left: 5px;">
@@ -161,6 +165,9 @@ if ($mailexist == null || empty($mailexist)) {
     } else {
         //If mail is send, create data and send it to the database
         $user->create($userinfo);
+
+        $user->newPassword($email, $passtoken);
+
         if ($rechten >= 2) {
             $block->Redirect('index.php?page=manageusers');
         } else {

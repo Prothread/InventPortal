@@ -31,7 +31,7 @@ if (isset($_SESSION['uploads'])) {
                                 <a data-toggle="modal" data-target="#updateOpenMails" href="#">
                                     <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
                                         <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span>
-                                        Update alle Open proeven <span id="days">( > 5 dagen )</span></button>
+                                        Verstuur proeven opnieuw <span id="days">( > 5 dagen )</span></button>
                                 </a>
                             <?php } ?>
 

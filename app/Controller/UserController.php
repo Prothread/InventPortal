@@ -364,6 +364,18 @@ class UserController
     }
 
     /**
+     * Sla een token voor een nieuw wachtwoord aanmaken op
+     *
+     * @param $token
+     * @return mixed
+     */
+
+    public function newPassword($mail, $token)
+    {
+        return $this->model->newPassword($mail, $token);
+    }
+
+    /**
      * Functie voor het resetten van de gebruikers wachtwoord
      *
      * @param $mail

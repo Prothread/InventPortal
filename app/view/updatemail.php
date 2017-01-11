@@ -104,14 +104,17 @@ $mailer->AltBody = $altcontent;
 //Saving mail information
 
 $answer = mysqli_real_escape_string($mysqli, $_POST['answer']);
-$UID = mysqli_real_escape_string($mysqli, $_POST['UID']);
+
+$userip = $user->getUserIP();
+$UID = date('d.m.Y-G.i.s') . '-' . $userip;
+
 $verified = mysqli_real_escape_string($mysqli, $_SESSION['verified']);
 
 $mailinfo = [
     'clientid' => intval($_POST['clientid']),
     'id' => intval($myid),
     'answer' => strip_tags($answer),
-    'key' => strip_tags($UID),
+    'key' => $UID,
     'verified' => strip_tags($verified)
 ];
 

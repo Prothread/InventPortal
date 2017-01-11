@@ -494,6 +494,23 @@ class DbUser extends Database
         return false;
     }
 
+    /**
+     * Sla een token voor een nieuw wachtwoord aanmaken op
+     *
+     * @param $token
+     * @return mixed
+     */
+
+    public function newPassword($mail, $token)
+    {
+        $sql = "UPDATE `users` SET `paswoordvergeten` = '{$token}' WHERE `email` = '{$mail}'";
+
+        if ($this->dbQuery($sql)) {
+            return true;
+        }
+        return false;
+    }
+
     public function resetPassword($mail, $token, $pass)
     {
         $password = hash('sha256', $pass);

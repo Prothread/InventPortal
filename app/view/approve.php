@@ -39,12 +39,6 @@ if (isset($verstuurder['altmail']) && $verstuurder['altmail'] !== '') {
     $_SESSION['mailto'] = $verstuurder['email'];
 }
 
-
-$UID = date('d.m.Y-G.i.s') . '-192.08.1.124';
-
-$userip = $user->getUserIP();
-$UID = date('d.m.Y-G.i.s') . '-' . $userip;
-
 ?>
 
 <!-- Page Content -->
@@ -255,14 +249,6 @@ $UID = date('d.m.Y-G.i.s') . '-' . $userip;
                             </p>
 
                             <br>
-                            <br>
-
-                            <label class="control-label" for="textinput" style="float:left;">Opmerking<span
-                                    style="color:#bc2d4c">*</span></label>
-                            <div class="col-md-4">
-                                <input name="answer" class="form-control input-md" id="textinput" type="text"
-                                       size="50">
-                            </div><br /><br />
 
                         <input type="hidden" name="clientid" value="<?php if (isset($_SESSION['usr_id'])) {
                             echo $_SESSION['usr_id'];
@@ -276,9 +262,23 @@ $UID = date('d.m.Y-G.i.s') . '-' . $userip;
                         } ?>">
                         <input type="hidden" name="title" value="<?= $myupload['onderwerp']; ?>">
                         <input type="hidden" name="verstuurder" value="<?= $myupload['verstuurder'] ?>">
-                        <input type="hidden" name="UID" value="<?= $UID; ?>">
 
                         <div id="refer1">
+                            <?php if (in_array(2, $verifiedimages)){ ?>
+                            <label class="control-label" for="textinput" style="float:left;">Opmerking</label>
+                            <div class="col-md-4">
+                                <input name="answer" class="form-control input-md" id="textinput" type="text">
+                            </div><br /><br />
+                            <?php }
+                            else {?>
+                                <div style="display:none">
+                                    <label class="control-label" for="textinput" style="float:left;">Opmerking</label>
+                                    <div class="col-md-4">
+                                        <input name="answer" class="form-control input-md" id="textinput" type="text" value="">
+                                    </div><br />
+                                </div>
+                            <?php } ?>
+
                             <input type="hidden" id="totalverify" value="<?= $verify ?>">
                         </div>
 
