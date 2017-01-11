@@ -78,8 +78,6 @@ class DbUser extends Database
         }
         $sql .= " WHERE `id` = '{$user->getUserId()}'";
 
-        var_dump($sql);
-
         if ($this->dbQuery($sql)) {
             return true;
         }

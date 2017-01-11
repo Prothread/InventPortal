@@ -103,6 +103,7 @@ if (isset($_GET['id']) && isset($mailkey)) {
     }
 
     $user = new UserController();
+
     if ($user->getPermission($permgroup, 'CAN_ACCORD') == 1) {
 
     } else {

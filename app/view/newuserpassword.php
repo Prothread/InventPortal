@@ -111,8 +111,7 @@ if ($_GET['id']) {
     } else {
         //If mail is send, create data and send it to the database
         $user->update($newuserinfo);
-
-        //$block->Redirect('index.php');
+        $block->Redirect($_SERVER['HTTP_REFERER']);
     }
 
 }

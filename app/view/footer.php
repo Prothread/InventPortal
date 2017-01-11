@@ -59,7 +59,7 @@
         $.getScript('js/Chart.js', function () {
 
             if ( <?=round($_SESSION['geweigerd_percent']) ?> !==
-            0.0 && <?= round($_SESSION['geaccepteerd_percent'])?> !== 0.0
+            0.0 || <?= round($_SESSION['geaccepteerd_percent'])?> !== 0.0
             )
             {
                 var data = [{

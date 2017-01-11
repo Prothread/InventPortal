@@ -12,7 +12,7 @@ $get_all_items = $uploads->getUploads();
 $get_filled_info = $uploads->getLastSixUploads();
 
 $users = new UserController();
-$get_user_info = $users->getAllUsersByPerm(2);
+$get_user_info = $users->getAllUsersByPerm(1);
 
 $namearray = [];
 $percentarray = [];

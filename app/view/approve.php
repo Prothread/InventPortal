@@ -42,9 +42,8 @@ if (isset($verstuurder['altmail']) && $verstuurder['altmail'] !== '') {
 
 $UID = date('d.m.Y-G.i.s') . '-192.08.1.124';
 
-//TODO Try if IP adres sends correctly
 $userip = $user->getUserIP();
-//$UID = date('d.m.Y-G.i.s') . '-' . $userip;
+$UID = date('d.m.Y-G.i.s') . '-' . $userip;
 
 ?>
 
@@ -57,93 +56,32 @@ $userip = $user->getUserIP();
                 <p class="NameText">Productaccordering</p>
                 <hr size="1">
 
-                <div class="wizard">
-                    <div class="wizard-inner">
-                        <div class="connecting-line"></div>
-                        <ul class="nav nav-tabs" role="tablist">
+                <br/>
+                <p> Onderwerp: <span style="color:#bc2d4c"><?= $myupload['onderwerp']; ?></span></p>
+                <p> Verstuurder: <span style="color:#bc2d4c"><?= $myupload['verstuurder'] ?></span></p>
+                <p> Beschrijving: <span style="color:#bc2d4c"><?= $myupload['beschrijving'] ?></span></p>
+                <br><br>
 
-                            <li role="presentation" class="active">
-                                <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Informatie">
-                            <span class="round-tab">
-                                <i class="glyphicon glyphicon-folder-open"></i>
-                            </span>
-                                </a>
-                            </li>
+                <p> Bestand(en):
+                        <span style="color:#bc2d4c">
+                            <?php
+                            $numItems = count($uploadedimages);
+                            $i = 0;
+                            foreach ($uploadedimages as $fakename) {
+                                //Haal naam van image op
+                                $fname1 = $fakename['images'];
+                                //Maak een neppe naam aan voor de image (zonder _id)
+                                $fname2 = $image_controller->getFakeImageName($fname1);
 
-                            <li role="presentation" class="disabled">
-                                <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="Uploaden">
-                            <span class="round-tab">
-                                <i class="glyphicon glyphicon-picture"></i>
-                            </span>
-                                </a>
-                            </li>
-                            <li role="presentation" class="disabled">
-                                <a href="#step3" data-toggle="tab" aria-controls="step3" role="tab"
-                                   title="Beschrijving">
-                            <span class="round-tab">
-                                <i class="glyphicon glyphicon-pencil"></i>
-                            </span>
-                                </a>
-                            </li>
-
-                            <li role="presentation" class="disabled">
-                                <a href="#step4" data-toggle="tab" aria-controls="complete" role="tab"
-                                   title="Klant & Versturen">
-                            <span class="round-tab">
-                                <i class="glyphicon glyphicon-ok"></i>
-                            </span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <br/>
-                    <div class="tab-content">
-                        <div class="tab-pane active" role="tabpanel" id="step1">
-                            <div class="well" style="font-size: 15px; font-style: italic;">Hieronder ziet u het
-                                onderwerp van uw proef en degene die de proef naar u gestuurd heeft.
-                            </div>
-                            <p> Onderwerp: <span style="color:#bc2d4c"><?= $myupload['onderwerp']; ?></span></p>
-
-                            <p> Verstuurder: <span style="color:#bc2d4c"><?= $myupload['verstuurder'] ?></span></p>
-
-                            <p> Beschrijving: <span style="color:#bc2d4c"><?= $myupload['beschrijving'] ?></span></p>
-                            <br><br>
-                            <ul class="list-inline pull-right">
-                                <li>
-                                    <button type="button" class="btn btn-primary next-step">Volgende</button>
-                                </li>
-                            </ul>
-                        </div>
-
-
-                        <div class="tab-pane" role="tabpanel" id="step2">
-                            <div class="well" style="font-size: 15px; font-style: italic;">Hieronder ziet u de proef en
-                                de omschrijving. <br> Bent u het eens met uw proef? Dan drukt u op accepteren. Is de
-                                proef nog niet helemaal goed? Dan drukt u op weigeren. <br><br>In de volgende stap kunt
-                                u uw keuze nader verklaren door een opmerking achter te laten.
-                            </div>
-                            <br>
-                            <p> Bestand(en):
-                                <a href="#">
-                    <span style="color:#bc2d4c">
-                        <?php
-                        $numItems = count($uploadedimages);
-                        $i = 0;
-                        foreach ($uploadedimages as $fakename) {
-                            //Haal naam van image op
-                            $fname1 = $fakename['images'];
-                            //Maak een neppe naam aan voor de image (zonder _id)
-                            $fname2 = $image_controller->getFakeImageName($fname1);
-
-                            if (++$i === $numItems) {
-                                echo $fname2;
-                            } else {
-                                echo $fname2 . ', ';
-                            }
-                        } ?>
-                    </span>
-                                </a>
-                            </p>
+                                if (++$i === $numItems) {
+                                    echo $fname2;
+                                } else {
+                                    echo $fname2 . ', ';
+                                }
+                            } ?>
+                        </span>
+                    </a
+                </p>
 
                             <?php
                             $imgcount = 0;
@@ -308,46 +246,23 @@ $userip = $user->getUserIP();
                             </div>
 
                             <div style="clear: both;"></div>
-                            <form id="form" action="?page=updatemail" method="post" enctype="multipart/form-data"
-                                  class="form-horizontal">
-                                <br/>
+                            <form id="form" action="?page=updatemail" method="post" enctype="multipart/form-data" class="form-horizontal">
+                            <br/>
 
-                                <input disabled="disabled" type="hidden" name="id" value="<?= $myupload['id']; ?>">
+                            <input disabled="disabled" type="hidden" name="id" value="<?= $myupload['id']; ?>">
 
-                                <p> Omschrijving: <span style="color:#bc2d4c"><?= $myupload['beschrijving'] ?></span>
-                                </p>
+                            <p> Omschrijving: <span style="color:#bc2d4c"><?= $myupload['beschrijving'] ?></span>
+                            </p>
 
-                                <br>
-                                <ul class="list-inline pull-right">
-                                    <li>
-                                        <button type="button" class="btn btn-primary next-step">Volgende</button>
-                                    </li>
-                                </ul>
-                        </div>
-
-
-                        <div class="tab-pane" role="tabpanel" id="step3">
-                            <div class="well" style="font-size: 15px; font-style: italic;">De opmerking die u invult
-                                wordt teruggestuurd naar de verstuurder. Verklaar uw keuze nader of voer een andere
-                                opmerking of mening in.
-                            </div>
+                            <br>
                             <br>
 
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Opmerking<span
-                                        style="color:#bc2d4c">*</span></label>
-                                <div class="col-md-4">
-                                    <input name="answer" class="form-control input-md" id="textinput" type="text"
-                                           size="50">
-                                </div>
-                            </div>
-
-                            <ul class="list-inline pull-right">
-                                <li>
-                                    <button type="button" class="btn btn-primary next-step">Volgende</button>
-                                </li>
-                            </ul>
-                        </div>
+                            <label class="control-label" for="textinput" style="float:left;">Opmerking<span
+                                    style="color:#bc2d4c">*</span></label>
+                            <div class="col-md-4">
+                                <input name="answer" class="form-control input-md" id="textinput" type="text"
+                                       size="50">
+                            </div><br /><br />
 
                         <input type="hidden" name="clientid" value="<?php if (isset($_SESSION['usr_id'])) {
                             echo $_SESSION['usr_id'];
@@ -372,10 +287,7 @@ $userip = $user->getUserIP();
                         <input type="hidden" name="fromname" id="" value="Kevin Ernst">
                         <!--<input type="hidden" name="mailto" id="" value="kevin.herdershof@hotmail.com">-->
 
-                        <div class="tab-pane" role="tabpanel" id="step4">
-                            <div class="well" style="font-size: 15px; font-style: italic;">Zoek hieronder de klant waar
-                                de proef naar moet worden verstuurd of maak een nieuwe klant aan.
-                            </div>
+
                             <br>
                             <label id="Voorwaarden">Ik heb de <a href="index.php?page=conditions" target="_blank"><span
                                         style="color:#bc2d4c">algemene voorwaarden</span></a> gelezen en ga hiermee
@@ -401,12 +313,12 @@ $userip = $user->getUserIP();
                                 </script>
                             </div>
 
-                        </div>
+
 
                         <br>
                         <br>
                     </div>
-                </div>
+
                 </form>
             </div>
         </div>

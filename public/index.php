@@ -40,7 +40,7 @@ if (isset($_GET['page'])) {
  * Anders: de gebruiker is ingelogd en gaat naar het dashboard
  */
 
-if (!$session->exists('usr_id') && $page !== 'forgetpassword' && $page !== 'conditions' && $page !== 'resetpassword' && $page !== 'passreset' && $page !== 'wachtwoordherstellen' && $page !== 'register' && $page !== 'approve' && $page !== 'verify' && $page !== 'imageverify' && $page !== 'updatemail' && $page !== 'imagecancel') {
+if (!$session->exists('usr_id') && $page !== 'image' && $page !== 'forgetpassword' && $page !== 'conditions' && $page !== 'resetpassword' && $page !== 'passreset' && $page !== 'wachtwoordherstellen' && $page !== 'register' && $page !== 'approve' && $page !== 'verify' && $page !== 'imageverify' && $page !== 'updatemail' && $page !== 'imagecancel') {
     $page = 'login';
 } else if ($session->exists('usr_id') && $page == 'login') {
     $page = 'dashboard';
