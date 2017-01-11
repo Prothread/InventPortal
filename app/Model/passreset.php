@@ -1,11 +1,10 @@
 <?php
 #PAGINA VOOR PASSWORD RESET PHP CODE
 
-if(isset($_SESSION['resetemail']) && isset($_SESSION['token'])) {
+if (isset($_SESSION['resetemail']) && isset($_SESSION['token'])) {
     $mysqli = mysqli_connect();
     $user = new UserController();
-}
-else {
+} else {
     echo 'Er is iets misgegaan';
     return false;
 }
@@ -17,30 +16,30 @@ $passforget = $_SESSION['token'];
 $getbyemail = $user->getUserByEmail($_SESSION['resetemail']);
 $dbpass = $getbyemail['paswoordvergeten'];
 
-if($getbyemail !== null) {
+if ($getbyemail !== null) {
 
-    $password = mysqli_real_escape_string( $mysqli, $_POST['password'] );
-    $cpassword = mysqli_real_escape_string( $mysqli, $_POST['cpassword'] );
+    $password = mysqli_real_escape_string($mysqli, $_POST['password']);
+    $cpassword = mysqli_real_escape_string($mysqli, $_POST['cpassword']);
 
-    if(strlen($password) < 6) {
+    if (strlen($password) < 6) {
         $error = true;
         $block->Redirect($_SERVER['HTTP_REFERER']);
         echo "Het paswoord moet minimaal 6 tekens bevatten. \n";
     }
 
-    if($cpassword !== $password){
+    if ($cpassword !== $password) {
         $error = true;
         $block->Redirect($_SERVER['HTTP_REFERER']);
         echo "De ingevulde nieuwe wachtwoorden komen niet overeen \n";
     }
 
-    if($passforget !== $dbpass) {
+    if ($passforget !== $dbpass) {
         $error = true;
         $block->Redirect($_SERVER['HTTP_REFERER']);
         echo "Er is iets misgegaan \n";
     }
 
-    if(!$error) {
+    if (!$error) {
         $user->resetPassword($_SESSION['resetemail'], $_SESSION['token'], $cpassword);
         unset($_SESSION['resetemail']);
         unset($_SESSION['token']);

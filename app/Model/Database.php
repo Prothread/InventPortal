@@ -68,7 +68,7 @@ class Database
     {
         $result = $this->connection->query($query);
 
-        if($data_array = $result->fetch_array(MYSQLI_ASSOC)) {
+        if ($data_array = $result->fetch_array(MYSQLI_ASSOC)) {
             if (!$this->connection->errno) {
                 $data_array = $this->dbOutArray($data_array);
             }
@@ -99,8 +99,7 @@ class Database
         foreach ($data_array as $field => $value) {
             if (is_numeric($value)) {
                 continue;
-            }
-            else if (is_string($value)) {
+            } else if (is_string($value)) {
                 $data_array[$field] = $this->dbOutString($value);
             }
         }

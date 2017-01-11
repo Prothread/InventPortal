@@ -1,10 +1,9 @@
 <?php
 #VERWERKT UPLOAD PROCESS
 
-if($user->getPermission($permgroup, 'CAN_UPLOAD') == 1){
+if ($user->getPermission($permgroup, 'CAN_UPLOAD') == 1) {
 
-}
-else {
+} else {
     $block->Redirect('index.php');
     Session::flash('error', 'U heeft hier geen rechten voor.');
 }
@@ -15,19 +14,18 @@ $title = mysqli_real_escape_string($mysqli, $_POST['title']);
 $sender = mysqli_real_escape_string($mysqli, $_POST['fromname']);
 $description = mysqli_real_escape_string($mysqli, $_POST['additionalcontent']);
 
-if(isset($_SESSION['clientid'])) {
+if (isset($_SESSION['clientid'])) {
     $clientid = $_SESSION['clientid'];
-}
-else {
+} else {
     $clientid = mysqli_real_escape_string($mysqli, $_POST['client']);
 }
 $client = $user->getUserById($clientid);
 
 $name = mysqli_real_escape_string($mysqli, $client['naam']);
 
-if($client['altmail']) {
+if ($client['altmail']) {
     $email = $client['altmail'];
-}else{
+} else {
     $email = $client['email'];
 }
 
@@ -37,11 +35,11 @@ $commentgroep = mysqli_real_escape_string($mysqli, $_POST['commentgroep']);
 $imageFileName = new ImageController();
 $block = new BlockController();
 
-if(isset($_POST['id'])) {
+if (isset($_POST['id'])) {
     $imageId = $_POST['id'];
 } else {
     $imageId = $imageFileName->getNewId();
-    $imageId =  $imageId + 1;
+    $imageId = $imageId + 1;
 }
 
 $error = 0;
@@ -84,9 +82,15 @@ if (isset($_FILES['myFile'])) {
 
         if ($error == 0) {
 
-            $unique_name = pathinfo($test, PATHINFO_FILENAME)."_".( $imageId ).'.'.$imageFileType;
+            $unique_name = pathinfo($test, PATHINFO_FILENAME) . "_" . ($imageId) . '.' . $imageFileType;
             $unique_name = preg_replace('/\s+/', '-', $unique_name);
             $uniqfile = $target_dir . $unique_name;
+
+            if(file_exists($uniqfile)) {
+                $uniq = pathinfo($uniqfile);
+                $unique_name = $uniq['filename'] . "-1" . '.' . $uniq['extension'];
+                $uniqfile = $target_dir . $unique_name;
+            }
 
             array_push($unique_names, $unique_name);
             $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
@@ -95,14 +99,13 @@ if (isset($_FILES['myFile'])) {
                 array_push($images, $test);
             }
 
-        }
-        else {
+        } else {
 
         }
     }
 }
 
-if($error == 0) {
+if ($error == 0) {
     $mymail = new MailController();
 
 //Generate a random string.
@@ -137,11 +140,11 @@ if($error == 0) {
                     </div> ';
         $content = $header . "  <br/><br/>" . "Geachte " . $name . "," .
             " <br/><br/>" . "Uw proef staat te wachten op goedkeuring in het <b>Madalco Portaal!</b>" . "<br /><br />" .
-            "<b>Onderwerp van uw proef:</b> ".
+            "<b>Onderwerp van uw proef:</b> " .
             $title . "<br />" .
 
             "<b>Beschrijving:</b> " .
-            $description.
+            $description .
 
             "<br /><br />" . "U kunt uw proef " . "<a href='$link'>hier</a> " . "goedkeuren." .
 
@@ -150,11 +153,11 @@ if($error == 0) {
 
         $altcontent = "Geachte " . $name . "," .
             " <br/><br/>" . "Uw proef staat te wachten op goedkeuring in het <b>Madalco Portaal!</b>" . "<br /><br />" .
-            "<b>Onderwerp van uw proef:</b> ".
+            "<b>Onderwerp van uw proef:</b> " .
             $title . "<br />" .
 
             "<b>Beschrijving:</b> " .
-            $description.
+            $description .
 
             "<br /><br />" . "U kunt uw proef " . "hier: $link " . "goedkeuren." .
 
@@ -186,15 +189,15 @@ if($error == 0) {
 
         $uniqdbimages = implode(", ", $unique_names);
 
-        if(isset($_POST['id'])) {
+        if (isset($_POST['id'])) {
             $myid = $_POST['id'];
-            if($comment !== null && $comment !== '') {
+            if ($comment !== null && $comment !== '') {
                 $mailinfo = [
                     'id' => intval($myid),
                     'title' => strip_tags($title),
-                    'sender' => strip_tags($sender),
+                    'sender' => intval($_SESSION['usr_id']),
                     'description' => strip_tags($description),
-                    'name' => strip_tags($name),
+                    'name' => intval($clientid),
                     'email' => strip_tags($email),
                     'token' => $token,
                     'images' => strip_tags($uniqdbimages),
@@ -203,14 +206,13 @@ if($error == 0) {
                     'comment' => $comment,
                     'commentgroep' => $commentgroep
                 ];
-            }
-            else {
+            } else {
                 $mailinfo = [
                     'id' => intval($myid),
                     'title' => strip_tags($title),
-                    'sender' => strip_tags($sender),
+                    'sender' => intval($_SESSION['usr_id']),
                     'description' => strip_tags($description),
-                    'name' => strip_tags($name),
+                    'name' => intval($clientid),
                     'email' => strip_tags($email),
                     'token' => $token,
                     'images' => strip_tags($uniqdbimages),
@@ -218,14 +220,14 @@ if($error == 0) {
                     'verified' => 0
                 ];
             }
-        }
-        else {
-            if($comment !== null && $comment !== '') {
+        } else {
+            if ($comment !== null && $comment !== '') {
                 $mailinfo = [
+                    'clientid' => intval($clientid),
                     'title' => strip_tags($title),
-                    'sender' => strip_tags($sender),
+                    'sender' => intval($_SESSION['usr_id']),
                     'description' => strip_tags($description),
-                    'name' => strip_tags($name),
+                    'name' => intval($clientid),
                     'email' => strip_tags($email),
                     'token' => $token,
                     'images' => strip_tags($uniqdbimages),
@@ -234,13 +236,13 @@ if($error == 0) {
                     'comment' => $comment,
                     'commentgroep' => $commentgroep
                 ];
-            }
-            else {
+            } else {
                 $mailinfo = [
+                    'clientid' => intval($clientid),
                     'title' => strip_tags($title),
-                    'sender' => strip_tags($sender),
+                    'sender' => intval($_SESSION['usr_id']),
                     'description' => strip_tags($description),
-                    'name' => strip_tags($name),
+                    'name' => intval($clientid),
                     'email' => strip_tags($email),
                     'token' => $token,
                     'images' => strip_tags($uniqdbimages),
@@ -259,14 +261,13 @@ if($error == 0) {
 //Check if mail is sent :
         if (!$mailer->send()) {
             $block->Redirect('index.php?page=phpmail');
-            //echo 'Error sending mail : ' . $mailer->ErrorInfo;
             Session::flash('error', $mailer->ErrorInfo);
-        } else {
+        }
+        else {
             //If mail is send, create data and send it to the database
-            if(isset( $_POST['id'] )) {
+            if (isset($_POST['id'])) {
                 $mymail->update($mailinfo);
-            }
-            else {
+            } else {
                 $mymail->create($mailinfo);
             }
             unset($_SESSION['clientid']);

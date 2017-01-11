@@ -1,15 +1,13 @@
 <?php
 #OVERZICHT PAGE VAN ALLE ITEMS
 
-if($user->getPermission($permgroup, 'CAN_SHOW_USEROVERZICHT') == 1){
+if ($user->getPermission($permgroup, 'CAN_SHOW_USEROVERZICHT') == 1) {
 
-}
-else {
+} else {
     $block->Redirect('index.php');
-    if(isset($_SESSION['usr_id'])) {
+    if (isset($_SESSION['usr_id'])) {
         Session::flash('error', 'U heeft hier geen rechten voor.');
-    }
-    else {
+    } else {
         Session::flash('message', 'U bent nog niet ingelogd');
     }
 }
@@ -18,18 +16,16 @@ $uploads = new BlockController();
 $items = new MailController();
 $user = new UserController();
 
-if(isset($_SESSION['useruploads'])) {
+if (isset($_SESSION['useruploads'])) {
     $getAllUserItems = $_SESSION['useruploads'];
-}
-else {
+} else {
     $userid = $_SESSION['usr_id'];
     $myuser = $user->getUserById($_SESSION['usr_id']);
 
     if ($myuser['permgroup'] == '1') {
         $clientID = $_SESSION['usr_id'];
         $getAllUserItems = $items->getUserMailByUserId($userid, null, null, $clientID);
-    }
-    else {
+    } else {
         $getAllUserItems = $items->getUserMailByUserId($userid);
     }
 
@@ -47,35 +43,38 @@ else {
 
                         <a id="filteropen" href="#">
                             <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
-                                <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> Mijn open proeven <span id="days">( > 5 dagen )</span></button>
+                                <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> Mijn open
+                                proeven <span id="days">( > 5 dagen )</span></button>
                         </a>
 
                         <a id="filtergoed" href="#">
                             <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
-                                <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> Mijn geakkordeerde proeven</button>
+                                <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> Mijn
+                                geakkordeerde proeven
+                            </button>
                         </a>
 
                     </th>
                 </tr>
             </table>
             <hr>
-            <br />
+            <br/>
             <div class="row">
 
-                <?php if(isset ($getAllUserItems) && $getAllUserItems !== null ) {?>
-                <table id="myTable" class="table table-striped" >
-                    <thead>
-                    <tr>
+                <?php if (isset ($getAllUserItems) && $getAllUserItems !== null) { ?>
+                    <table id="myTable" class="table table-striped">
+                        <thead>
+                        <tr>
                             <th style="display:none">ID</th>
                             <th>Onderwerp</th>
                             <th>Verstuurder</th>
                             <th>Naam</th>
                             <th>Datum</th>
                             <th>Status</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <?php
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php
                         foreach ($getAllUserItems as $upload) { ?>
                             <tr>
                                 <td style="display:none">
@@ -85,10 +84,12 @@ else {
                                     <a href="?page=item&id=<?= $upload['id'] ?>"><?= $upload['onderwerp'] ?></a>
                                 </td>
                                 <td>
-                                    <?= $upload['verstuurder'] ?>
+                                    <?php $usr = $user->getUserById($upload['verstuurder']); ?>
+                                    <a href="?page=showuserprofile&id=<?= $usr['id'] ?>"><?= $usr['naam'] ?></a>
                                 </td>
                                 <td>
-                                    <?= $upload['naam'] ?>
+                                    <?php $clnt = $user->getUserById($upload['naam']); ?>
+                                    <a href="?page=showuserprofile&id=<?= $clnt['id'] ?>"><?= $clnt['naam'] ?></a>
                                 </td>
                                 <td>
                                     <?= date("d-m-Y", strtotime($upload['datum'])); ?>
@@ -108,11 +109,12 @@ else {
                                 </td>
                             </tr>
                         <?php } ?>
-                    </tbody>
-                </table>
-                <?php }
-                else { ?>
-                    <div id="weiger" class="alert alert-info" style="text-align: center;" role="alert"><span class="glyphicon glyphicon-remove-circle"></span> U heeft nog niks geüpload of geaccordeerd</div>
+                        </tbody>
+                    </table>
+                <?php } else { ?>
+                    <div id="weiger" class="alert alert-info" style="text-align: center;" role="alert"><span
+                            class="glyphicon glyphicon-remove-circle"></span> U heeft nog niks geüpload of geaccordeerd
+                    </div>
                 <?php } ?>
             </div>
         </div>
@@ -125,9 +127,9 @@ unset($_SESSION['useruploads']);
 ?>
 
 <script>
-    $(document).ready(function(){
+    $(document).ready(function () {
         $('#myTable').dataTable({
-            "order": [[ 0, "desc" ]],
+            "order": [[0, "desc"]],
             "deferRender": true
         });
 
@@ -135,7 +137,7 @@ unset($_SESSION['useruploads']);
 
     var filter;
 
-    $('#filteropen').on('click', function(event) {
+    $('#filteropen').on('click', function (event) {
 
         filter = 'openproeven';
 
@@ -146,7 +148,7 @@ unset($_SESSION['useruploads']);
             url: "?page=changefilter2",
             data: dataString,
             cache: false,
-            success: function(result){
+            success: function (result) {
                 //$('#container').load("?page=overview " + '#container');
                 location.reload();
             }
@@ -155,7 +157,7 @@ unset($_SESSION['useruploads']);
         event.preventDefault();
     });
 
-    $('#filtergoed').on('click', function(event) {
+    $('#filtergoed').on('click', function (event) {
 
         filter = 'goedeproeven';
 
@@ -166,7 +168,7 @@ unset($_SESSION['useruploads']);
             url: "?page=changefilter2",
             data: dataString,
             cache: false,
-            success: function(result){
+            success: function (result) {
                 //$('#container').load("?page=overview " + '#container');
                 location.reload();
             }

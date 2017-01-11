@@ -1,7 +1,9 @@
 <?php
+
 #SETUP FOR MAIL
 
-class Mail {
+class Mail
+{
 
     private $db;
 
@@ -28,6 +30,14 @@ class Mail {
      */
 
     private $MailId;
+
+    /**
+     * Variabele om ht id van de klant in op te slaan
+     *
+     * @var $ClientID
+     */
+
+    private $ClientID;
 
     /**
      * Variabele om MailSubject op te slaan
@@ -204,7 +214,7 @@ class Mail {
     /**
      * Tel het aantal mails van de gebruiker met de status en hun id
      *
-     * @param $id, $status
+     * @param $id , $status
      * @return mixed
      */
     public function CountUserMailbyIdStatus($id, $status)
@@ -276,6 +286,17 @@ class Mail {
     public function setMailId($MailId)
     {
         $this->MailId = $MailId;
+    }
+
+    /**
+     * ID van de geselecteerde klant
+     *
+     * @param $clientid
+     */
+
+    public function setClientID($clientid)
+    {
+        $this->ClientID = $clientid;
     }
 
     /**
@@ -449,6 +470,17 @@ class Mail {
     }
 
     /**
+     * ID van de geselecteerde klant
+     *
+     * @param ClientID
+     */
+
+    public function getClientID()
+    {
+        return $this->ClientID;
+    }
+
+    /**
      * Haal de informatie voor getMailSubject op
      *
      * @param getMailSubject
@@ -599,7 +631,7 @@ class Mail {
 
     public function searchTable($term, $limit = null, $offset = null, $table = null, $filter = null, $ids = null, $status = null)
     {
-        return $this->db->searchTable($term, $limit , $offset, $table, $filter, $ids, $status);
+        return $this->db->searchTable($term, $limit, $offset, $table, $filter, $ids, $status);
     }
 
     /**

@@ -26,7 +26,7 @@ isset($_GET['page']) ? $page = $_GET['page'] : $page = 'dashboard';
  * If: Haal page van url op
  * Anders: pagina is dashboard
  */
-if(isset($_GET['page'])) {
+if (isset($_GET['page'])) {
 
     $page = $_GET['page'];
 } else {
@@ -40,30 +40,27 @@ if(isset($_GET['page'])) {
  * Anders: de gebruiker is ingelogd en gaat naar het dashboard
  */
 
-if(!$session->exists('usr_id') && $page !== 'forgetpassword' && $page !== 'conditions' && $page !== 'resetpassword' && $page !== 'passreset' && $page !== 'wachtwoordherstellen' && $page !== 'image' && $page !== 'register' && $page !== 'approve' && $page !== 'verify' && $page !== 'imageverify' && $page !== 'updatemail' && $page !== 'imagecancel') {
+if (!$session->exists('usr_id') && $page !== 'forgetpassword' && $page !== 'conditions' && $page !== 'resetpassword' && $page !== 'passreset' && $page !== 'wachtwoordherstellen' && $page !== 'register' && $page !== 'approve' && $page !== 'verify' && $page !== 'imageverify' && $page !== 'updatemail' && $page !== 'imagecancel') {
     $page = 'login';
-} else if($session->exists('usr_id') && $page=='login') {
+} else if ($session->exists('usr_id') && $page == 'login') {
     $page = 'dashboard';
 }
 
-if(!$session->exists('usr_id') && $page == 'approve') {
+if (!$session->exists('usr_id') && $page == 'approve') {
     require_once '../app/view/header.php';
 }
 
-if(!$session->exists('usr_id') && $page == 'conditions') {
+if (!$session->exists('usr_id') && $page == 'conditions') {
     require_once '../app/view/header.php';
 }
 
-if(!$session->exists('usr_id') && $page !== 'approve' && $page !== 'conditions') {
+if (!$session->exists('usr_id') && $page !== 'approve' && $page !== 'conditions') {
     require_once '../app/view/header2.php';
 }
 
-if($session->exists('usr_id')){
-    if($page !== 'submit' && $page !== 'item2' && $page !== 'image' && $page !== 'download') {
+if ($session->exists('usr_id')) {
+    if ($page !== 'submit' && $page !== 'item2' && $page !== 'image' && $page !== 'download') {
         include_once '../app/view/header.php';
-    }
-    if($page == 'download') {
-        include_once '../app/view/header2.php';
     }
 }
 
@@ -71,7 +68,7 @@ if($session->exists('usr_id')){
  * Switch case voor de optie van ?page= in je url
  */
 
-switch($page) {
+switch ($page) {
     case 'dashboard':
         include '../app/view/dashboard.php';
         break;
@@ -185,6 +182,9 @@ switch($page) {
         break;
     case 'passreset':
         include '../app/Model/passreset.php';
+        break;
+    case 'newuserpassword':
+        include '../app/view/newuserpassword.php';
         break;
     case 'editingprofile':
         include '../app/Model/editingprofile.php';

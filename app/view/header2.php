@@ -45,7 +45,7 @@ require_once DIR_MODEL . 'permissions.php';
 
     <link rel="icon"
           type="image/png"
-          href="<?= DIR_PUBLIC . 'favicon.png'?>">
+          href="<?= DIR_PUBLIC . 'favicon.png' ?>">
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.css" rel="stylesheet">

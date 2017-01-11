@@ -1,11 +1,11 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: Kevin
  * Date: 14-Oct-16
  * Time: 08:33
  */
-
 class UserController
 {
     private $model;
@@ -24,27 +24,27 @@ class UserController
 
     public function create(array $userinfo)
     {
-        if(isset($userinfo['id'])) {
+        if (isset($userinfo['id'])) {
             $this->model->setUserId($userinfo['id']);
         }
 
         $this->model->setName($userinfo['name']);
         $this->model->setEmail($userinfo['email']);
-        if(isset($userinfo['altmail'])) {
+        if (isset($userinfo['altmail'])) {
             $this->model->setAltmail($userinfo['altmail']);
         }
         $this->model->setPassword($userinfo['password']);
 
-        if(isset($userinfo['bedrijfsnaam'])) {
+        if (isset($userinfo['bedrijfsnaam'])) {
             $this->model->setCompanyName($userinfo['bedrijfsnaam']);
         }
-        if(isset($userinfo['adres'])) {
+        if (isset($userinfo['adres'])) {
             $this->model->setUserAdres($userinfo['adres']);
         }
-        if(isset($userinfo['postcode'])) {
+        if (isset($userinfo['postcode'])) {
             $this->model->setUserPostcode($userinfo['postcode']);
         }
-        if(isset($userinfo['plaats'])) {
+        if (isset($userinfo['plaats'])) {
             $this->model->setUserPlace($userinfo['plaats']);
         }
 
@@ -66,38 +66,49 @@ class UserController
 
     public function update(array $userinfo)
     {
-        if(isset($userinfo['id'])) {
+        if (isset($userinfo['id'])) {
             $this->model->setUserId($userinfo['id']);
         }
 
-        if(isset($userinfo['profimg'])) {
+        if (isset($userinfo['profimg'])) {
             $this->model->setProfileImage($userinfo['profimg']);
         }
 
-        $this->model->setName($userinfo['name']);
-        $this->model->setEmail($userinfo['email']);
+        if (isset($userinfo['name'])) {
+            $this->model->setName($userinfo['name']);
+        }
 
-        if(isset($userinfo['altmail'])) {
+        if (isset($userinfo['email'])) {
+            $this->model->setEmail($userinfo['email']);
+        }
+
+        if (isset($userinfo['altmail'])) {
             $this->model->setAltmail($userinfo['altmail']);
         }
 
-        if(isset($userinfo['password'])) {
+        if (isset($userinfo['password'])) {
             $this->model->setPassword($userinfo['password']);
         }
-        if(isset($userinfo['bedrijfsnaam'])) {
+
+        if (isset($userinfo['bedrijfsnaam'])) {
             $this->model->setCompanyName($userinfo['bedrijfsnaam']);
         }
-        if(isset($userinfo['adres'])) {
+
+        if (isset($userinfo['adres'])) {
             $this->model->setUserAdres($userinfo['adres']);
         }
-        if(isset($userinfo['postcode'])) {
+
+        if (isset($userinfo['postcode'])) {
             $this->model->setUserPostcode($userinfo['postcode']);
         }
-        if(isset($userinfo['plaats'])) {
+
+        if (isset($userinfo['plaats'])) {
             $this->model->setUserPlace($userinfo['plaats']);
         }
 
-        $this->model->setUserPermgroup($userinfo['permgroup']);
+        if (isset($userinfo['permgroup'])) {
+            $this->model->setUserPermgroup($userinfo['permgroup']);
+        }
 
 
         if ($result = $this->model->update()) {
@@ -146,7 +157,7 @@ class UserController
         $this->model->setSettingsHeader($settingsarray['Header']);
         $this->model->setSettingsHost($settingsarray['Host']);
 
-        if($result = $this->model->updateSettings()) {
+        if ($result = $this->model->updateSettings()) {
             return $result;
         }
         return false;
@@ -162,6 +173,29 @@ class UserController
     public function getPermissionGroup($id)
     {
         return $this->model->getPermissionGroup($id);
+    }
+
+    /**
+     * Haal de naam van de groep rechten van de klant op
+     *
+     * @param $value
+     * @return mixed
+     */
+
+    public function getPermissionGroupName($value)
+    {
+        return $this->model->getPermissionGroupName($value);
+    }
+
+    /**
+     * Get all permission groups that can be assigned to a user
+     *
+     * @return mixed
+     */
+
+    public function getAllPermGroups()
+    {
+        return $this->model->getAllPermGroups();
     }
 
     /**
@@ -263,6 +297,17 @@ class UserController
     }
 
     /**
+     * Haal alle klanten op met de laatste id's
+     *
+     * @return array|null
+     */
+
+    public function getAllLatestClients()
+    {
+        return $this->model->getAllLatestClients();
+    }
+
+    /**
      * Haal alle gebruikers op die geen klant zijn
      *
      * @return array|null
@@ -303,7 +348,7 @@ class UserController
 
     public function searchTable($term, $limit = null, $offset = null, $table = null, $filter = null, $ids = null)
     {
-        return $this->model->searchTable($term, $limit , $offset, $table, $filter , $ids);
+        return $this->model->searchTable($term, $limit, $offset, $table, $filter, $ids);
     }
 
     /**
@@ -334,20 +379,15 @@ class UserController
 
     public function getUserIP()
     {
-        $client  = @$_SERVER['HTTP_CLIENT_IP'];
+        $client = @$_SERVER['HTTP_CLIENT_IP'];
         $forward = @$_SERVER['HTTP_X_FORWARDED_FOR'];
-        $remote  = $_SERVER['REMOTE_ADDR'];
+        $remote = $_SERVER['REMOTE_ADDR'];
 
-        if(filter_var($client, FILTER_VALIDATE_IP))
-        {
+        if (filter_var($client, FILTER_VALIDATE_IP)) {
             $ip = $client;
-        }
-        else if(filter_var($forward, FILTER_VALIDATE_IP))
-        {
+        } else if (filter_var($forward, FILTER_VALIDATE_IP)) {
             $ip = $forward;
-        }
-        else
-        {
+        } else {
             $ip = $remote;
         }
 

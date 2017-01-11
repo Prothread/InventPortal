@@ -1,11 +1,11 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: Kevin
  * Date: 14-Oct-16
  * Time: 08:37
  */
-
 class DbUser extends Database
 {
 
@@ -25,34 +25,62 @@ class DbUser extends Database
         $sql = "INSERT INTO `users` (`naam`, `email`, `altmail`,  `paswoord`, `permgroup`, `bedrijfsnaam`, `adres`, `postcode`, `plaats`) VALUES('" . $name . "', '" . $email . "', '{$user->getAltMail()}', '" . $password . "', '{$user->getPermGroup()}',
         '{$user->getCompanyName()}', '{$user->getUserAdres()}', '{$user->getUserPostcode()}', '{$user->getUserPlace()}')";
 
-        if($this->dbQuery($sql)){
+        if ($this->dbQuery($sql)) {
             return $this->dbLastInsertedId();
         }
 
     }
 
 
-
     public function update(User $user)
     {
-        $sql = "UPDATE `users` SET `naam` = '{$user->getName()}', `email` = '{$user->getEmail()}', `bedrijfsnaam` = '{$user->getCompanyName()}', `permgroup` = '{$user->getPermGroup()}',
-        `adres` = '{$user->getUserAdres()}', `postcode` = '{$user->getUserPostcode()}', `plaats` = '{$user->getUserPlace()}'";
+        $sql = "UPDATE `users` SET ";
 
-        if($user->getPassword() !== null) {
+        if($user->getName()) {
+            $sql .= "`naam` = '{$user->getName()}'";
+        }
+
+        if($user->getEmail()) {
+            $sql .= ", `email` = '{$user->getEmail()}'";
+        }
+
+        if($user->getCompanyName()) {
+            $sql .= ", `bedrijfsnaam` = '{$user->getCompanyName()}'";
+        }
+
+        if($user->getPermGroup()) {
+            $sql .= ", `permgroup` = '{$user->getPermGroup()}'";
+        }
+
+        if($user->getUserPostcode()) {
+            $sql .= ", `postcode` = '{$user->getUserPostcode()}'";
+        }
+
+        if($user->getUserPlace()) {
+            $sql .= ", `plaats` = '{$user->getUserPlace()}'";
+        }
+
+        if($user->getUserAdres()) {
+            $sql .= ", `adres` = '{$user->getUserAdres()}'";
+        }
+
+        if ($user->getPassword()) {
             $password = hash('sha256', $user->getPassword());
             $sql .= ", `paswoord` = '{$password}' ";
         }
 
-        if($user->getAltMail() !== null) {
+        if ($user->getAltMail()) {
             $sql .= ", `altmail` = '{$user->getAltmail()}' ";
         }
 
-        if( $user->getProfileImage() !== null) {
+        if ($user->getProfileImage()) {
             $sql .= ", `profimg` = '{$user->getProfileImage()}' ";
         }
         $sql .= " WHERE `id` = '{$user->getUserId()}'";
 
-        if($this->dbQuery($sql)){
+        var_dump($sql);
+
+        if ($this->dbQuery($sql)) {
             return true;
         }
         return false;
@@ -70,9 +98,9 @@ class DbUser extends Database
         $email = $user->getEmail();
         $password = hash('sha256', $user->getPassword());
 
-        $sql = "SELECT * FROM users WHERE email = '" . $email. "' and paswoord = '" .$password . "'";
+        $sql = "SELECT * FROM users WHERE email = '" . $email . "' and paswoord = '" . $password . "'";
 
-        if($result = $this->dbQuery($sql)){
+        if ($result = $this->dbQuery($sql)) {
             return $result;
         }
     }
@@ -87,8 +115,8 @@ class DbUser extends Database
     {
         $sql = "SELECT * FROM `settings` WHERE `id` = '0'";
 
-        if($result = $this->dbQuery($sql)) {
-            return mysqli_fetch_assoc( $result );
+        if ($result = $this->dbQuery($sql)) {
+            return mysqli_fetch_assoc($result);
         }
         return false;
     }
@@ -98,13 +126,13 @@ class DbUser extends Database
         $sql = "UPDATE `settings` SET `SMTP` = '{$setting->getSettingSMTP()}', `SMTPport` = '{$setting->getSettingSMTPPort()}', `Email` = '{$setting->getSettingEmail()}', `Mailpass` = '{$setting->getSettingEmailPass()}', `Host` = '{$setting->getSettingHost()}'";
 
         $logo = $setting->getSettingLogo();
-        if(isset($logo) && $setting->getSettingLogo() !== '') {
+        if (isset($logo) && $setting->getSettingLogo() !== '') {
             $sql .= ", `Logo` = '{$setting->getSettingLogo()}'";
         }
 
         $sql .= ", `Header` = '{$setting->getSettingHeader()}'";
 
-        if($this->dbQuery($sql)) {
+        if ($this->dbQuery($sql)) {
             return true;
         }
         return false;
@@ -123,8 +151,14 @@ class DbUser extends Database
         $result = $this->dbQuery($sql);
         $value = mysqli_fetch_assoc($result);
 
-        if($value){
-            return $value[$row];
+        $sql1 = "SELECT * FROM `permgroup` WHERE `userperm` = '{$row}'";
+        $result1 = $this->dbQuery($sql1);
+        $value1 = mysqli_fetch_assoc($result1);
+
+        $groupname = $value1['name'];
+
+        if ($value) {
+            return $value[$groupname];
         }
 
     }
@@ -140,8 +174,42 @@ class DbUser extends Database
     {
         $sql = "SELECT `permgroup` FROM `users` WHERE `id` = '{$id}'";
 
-        if($result = $this->dbQuery($sql)){
-            return mysqli_fetch_assoc( $result );
+        if ($result = $this->dbQuery($sql)) {
+            return mysqli_fetch_assoc($result);
+        }
+    }
+
+    /**
+     * Haal de naam van de groep rechten van de klant op
+     *
+     * @param $value
+     * @return mixed
+     */
+
+    public function getPermissionGroupName($value)
+    {
+        $sql = "SELECT `name` FROM `permgroup` WHERE `userperm` = '{$value}'";
+
+        if ($result = $this->dbQuery($sql)) {
+            return mysqli_fetch_assoc($result);
+        }
+    }
+
+    /**
+     * Get all permission groups that can be assigned to a user
+     *
+     * @return mixed
+     */
+
+    public function getAllPermGroups()
+    {
+        $sql = "SELECT * FROM `permgroup` WHERE `assignable` = '1'";
+
+        $result = $this->dbQuery($sql);
+        $value = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+        if ($value) {
+            return $value;
         }
     }
 
@@ -159,7 +227,7 @@ class DbUser extends Database
         $result = $this->dbQuery($sql);
         $value = mysqli_fetch_assoc($result);
 
-        if($value) {
+        if ($value) {
             return $value;
         }
     }
@@ -178,7 +246,7 @@ class DbUser extends Database
         $result = $this->dbQuery($sql);
         $value = mysqli_fetch_assoc($result);
 
-        if($value) {
+        if ($value) {
             return $value;
         }
     }
@@ -187,7 +255,7 @@ class DbUser extends Database
     {
         $sql = "UPDATE `users` SET `paswoord` = '{$npassword}' WHERE `id` = '{$id}'";
 
-        if($this->dbQuery($sql)){
+        if ($this->dbQuery($sql)) {
             return true;
         }
     }
@@ -214,17 +282,17 @@ class DbUser extends Database
     {
         $sql = "SELECT * FROM `users`";
 
-        if($limit) {
+        if ($limit) {
             $sql .= " LIMIT {$limit}";
         }
-        if($offset) {
+        if ($offset) {
             $sql .= " OFFSET {$offset}";
         }
 
         $result = $this->dbQuery($sql);
         $value = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
-        if($value){
+        if ($value) {
             return $value;
         }
     }
@@ -262,10 +330,30 @@ class DbUser extends Database
         $result = $this->dbQuery($sql);
         $value = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
-        if($value){
+        if ($value) {
             return $value;
         }
         return null;
+    }
+
+    /**
+     * Haal alle klanten op met de laatste id's
+     *
+     * @return array|null
+     */
+
+    public function getAllLatestClients()
+    {
+        $sql = "SELECT * FROM `users`";
+        $sql .= "WHERE permgroup = '1'";
+        $sql .= " ORDER BY `id` DESC";
+
+        $result = $this->dbQuery($sql);
+        $value = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+        if ($value) {
+            return $value;
+        }
     }
 
     /**
@@ -276,9 +364,9 @@ class DbUser extends Database
 
     public function countClients()
     {
-        $query ="SELECT COUNT(`id`) AS 'total_blocks' FROM `users` WHERE `permgroup` = '1'";
+        $query = "SELECT COUNT(`id`) AS 'total_blocks' FROM `users` WHERE `permgroup` = '1'";
 
-        if($result = $this->dbFetchArray($query)){
+        if ($result = $this->dbFetchArray($query)) {
             return $result['total_blocks'];
         }
         return false;
@@ -290,12 +378,13 @@ class DbUser extends Database
      * @return array|null
      */
 
-    public function getAllUsersByPerm(/*$table, $filter, $limit = null, $offset = null, */ $permgroup )
+    public function getAllUsersByPerm(/*$table, $filter, $limit = null, $offset = null, */
+        $permgroup)
     {
         $sql = "SELECT * FROM `users`";
 
 
-        if($permgroup) {
+        if ($permgroup) {
             $sql .= " WHERE permgroup != '{$permgroup}'";
         }
         /*
@@ -316,7 +405,7 @@ class DbUser extends Database
         $result = $this->dbQuery($sql);
         $value = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
-        if($value){
+        if ($value) {
             return $value;
         }
     }
@@ -329,9 +418,9 @@ class DbUser extends Database
 
     public function countBlocks()
     {
-        $query ="SELECT COUNT(`id`) AS 'total_blocks' FROM `users`";
+        $query = "SELECT COUNT(`id`) AS 'total_blocks' FROM `users`";
 
-        if($result = $this->dbFetchArray($query)){
+        if ($result = $this->dbFetchArray($query)) {
             return $result['total_blocks'];
         }
         return false;
@@ -348,15 +437,14 @@ class DbUser extends Database
     {
         $sql = "SELECT * FROM `users` ";
 
-        if($ids) {
+        if ($ids) {
             $sql .= "WHERE `permgroup` IN ($ids) AND naam LIKE '%" . $term . "%'";
             $sql .= " OR `permgroup` IN ($ids) AND email LIKE '%" . $term . "%'";
             $sql .= " OR `permgroup` IN ($ids) AND bedrijfsnaam LIKE '%" . $term . "%'";
             $sql .= " OR `permgroup` IN ($ids) AND adres LIKE '%" . $term . "%'";
             $sql .= " OR `permgroup` IN ($ids) AND postcode LIKE '%" . $term . "%'";
             $sql .= " OR `permgroup` IN ($ids) AND plaats LIKE '%" . $term . "%'";
-        }
-        else {
+        } else {
             $sql .= "WHERE naam LIKE '%" . $term . "%'";
             $sql .= " OR email LIKE '%" . $term . "%'";
             $sql .= " OR bedrijfsnaam LIKE '%" . $term . "%'";
@@ -365,17 +453,17 @@ class DbUser extends Database
             $sql .= " OR plaats LIKE '%" . $term . "%'";
         }
 
-        if($table) {
+        if ($table) {
             $sql .= " ORDER BY $table";
         }
-        if($filter) {
+        if ($filter) {
             $sql .= " $filter";
         }
 
-        if($limit) {
+        if ($limit) {
             $sql .= " LIMIT {$limit}";
         }
-        if($offset) {
+        if ($offset) {
             $sql .= " OFFSET {$offset}";
         }
 
@@ -383,7 +471,7 @@ class DbUser extends Database
 
         $row = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
-        if($row !== null) {
+        if ($row !== null) {
             return $row;
         }
         return false;
@@ -402,7 +490,7 @@ class DbUser extends Database
         $date = date('Y-m-d h:i:s', strtotime('+15 minutes'));
         $sql = "UPDATE `users` SET `paswoordvergeten` = '{$token}', `passresetdate` = '{$date}' WHERE `email` = '{$mail}'";
 
-        if($this->dbQuery($sql)) {
+        if ($this->dbQuery($sql)) {
             return true;
         }
         return false;
@@ -413,7 +501,7 @@ class DbUser extends Database
         $password = hash('sha256', $pass);
         $sql = "UPDATE `users` SET `paswoord` = '{$password}', `paswoordvergeten` = '' WHERE `email` = '{$mail}' AND `paswoordvergeten` = '{$token}'";
 
-        if($this->dbQuery($sql)) {
+        if ($this->dbQuery($sql)) {
             return true;
         }
         return false;

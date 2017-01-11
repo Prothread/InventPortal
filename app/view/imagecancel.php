@@ -4,13 +4,11 @@
 require_once DIR_MODEL . 'permissions.php';
 
 $user = new UserController();
-if($user->getPermission($permgroup, 'CAN_ACCORD') == 1){
+if ($user->getPermission($permgroup, 'CAN_ACCORD') == 1) {
 
-}
-else if($user->getPermission($permgroup, 'CAN_EDIT_ACCORD') == 1) {
+} else if ($user->getPermission($permgroup, 'CAN_EDIT_ACCORD') == 1) {
 
-}
-else {
+} else {
     $block->Redirect('index.php');
     Session::flash('error', 'U heeft hier geen rechten voor.');
 }
@@ -18,10 +16,10 @@ else {
 $imgcontrol = new ImageController();
 $session = new Session();
 
-if(isset($_GET['page'])) {
+if (isset($_GET['page'])) {
 
     $_GET['page'] = $session->clean($_GET['page']);
-    $_GET['img'] = $session->cleantonumber( $_GET['img'] );
+    $_GET['img'] = $session->cleantonumber($_GET['img']);
 
     if (isset($_GET['page']) == 'imagecancel') {
 

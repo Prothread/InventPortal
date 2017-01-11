@@ -2,12 +2,11 @@
 
 #Pagina voor het updaten van een item voor het statusportaal
 
-if($user->getPermission($permgroup, 'CAN_SHOW_OVERZICHT') == 1){
+if ($user->getPermission($permgroup, 'CAN_SHOW_OVERZICHT') == 1) {
 
-}
-else {
-	$block->Redirect('index.php');
-	Session::flash('error', 'U heeft hier geen rechten voor.');
+} else {
+    $block->Redirect('index.php');
+    Session::flash('error', 'U heeft hier geen rechten voor.');
 }
 
 $status = new StatusController();
@@ -22,12 +21,12 @@ $category = mysqli_real_escape_string($mysqli, $_POST['category']);
 $comment = mysqli_real_escape_string($mysqli, $_POST['comment']);
 
 $statusinfo = [
-	'id' => $id,
-	'naam' => $naam,
-	'onderwerp' => $onderwerp,
-	'deadline' => $deadline,
-	'category' => $category,
-	'comment' => $comment
+    'id' => $id,
+    'naam' => $naam,
+    'onderwerp' => $onderwerp,
+    'deadline' => $deadline,
+    'category' => $category,
+    'comment' => $comment
 ];
 
 $status->update($statusinfo);

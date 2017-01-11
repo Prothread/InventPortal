@@ -1,5 +1,5 @@
 <?php
-if(isset($_POST['submit'])) {
+if (isset($_POST['submit'])) {
 
     $mysqli = mysqli_connect();
 
@@ -7,6 +7,7 @@ if(isset($_POST['submit'])) {
     $naam = mysqli_real_escape_string($mysqli, $_POST['naam']);
     $bedrijfsnaam = mysqli_real_escape_string($mysqli, $_POST['bedrijfsnaam']);
     $email = mysqli_real_escape_string($mysqli, $_POST['email']);
+    $altmail = mysqli_real_escape_string($mysqli, $_POST['altmail']);
     $adres = mysqli_real_escape_string($mysqli, $_POST['adres']);
     $postcode = mysqli_real_escape_string($mysqli, $_POST['postcode']);
     $plaats = mysqli_real_escape_string($mysqli, $_POST['plaats']);
@@ -17,6 +18,7 @@ if(isset($_POST['submit'])) {
         'name' => $naam,
         'bedrijfsnaam' => $bedrijfsnaam,
         'email' => $email,
+        'altmail' => $altmail,
         'adres' => $adres,
         'postcode' => $postcode,
         'plaats' => $plaats,
@@ -60,6 +62,7 @@ if(isset($_POST['submit'])) {
                 'profimg' => $unique_name,
                 'name' => $naam,
                 'bedrijfsnaam' => $bedrijfsnaam,
+                'altmail' => $altmail,
                 'email' => $email,
                 'adres' => $adres,
                 'postcode' => $postcode,

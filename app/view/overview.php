@@ -1,7 +1,7 @@
 <?php
 #OVERZICHT PAGE VAN ALLE ITEMS
 
-if($user->getPermission($permgroup, 'CAN_SHOW_OVERZICHT') == 1){
+if ($user->getPermission($permgroup, 'CAN_SHOW_OVERZICHT') == 1) {
 
 } else {
     $block->Redirect('index.php?page=useroverview');
@@ -9,10 +9,9 @@ if($user->getPermission($permgroup, 'CAN_SHOW_OVERZICHT') == 1){
 
 $uploads = new BlockController();
 
-if(isset($_SESSION['uploads']) ) {
+if (isset($_SESSION['uploads'])) {
     $get_filled_info = $_SESSION['uploads'];
-}
-else {
+} else {
     $get_filled_info = $uploads->getUploads();
 }
 ?>
@@ -22,36 +21,45 @@ else {
             <div class="row">
                 <table style="width:100%">
                     <tr>
-                        <th style="text-align: left;">
+                        <th class="filtermobiel" style="text-align: left;">
                             <p class="NameText" style="font-weight: normal;">Overzicht</p>
                         </th>
-                        <th id="filters" style="text-align: right;">
 
-                            <?php if(isset($_SESSION['updateopenmails']) && $user->getPermission($permgroup, 'CAN_EDIT_ACCORD') == 1){ ?>
-                            <a data-toggle="modal" data-target="#updateOpenMails" href="#">
-                                <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
-                                <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> Update alle Open proeven <span id="days">( > 5 dagen )</span></button>
-                            </a>
-                            <?php  } ?>
+                        <th class="filtermobiel" id="filters">
+
+                            <?php if (isset($_SESSION['updateopenmails']) && $user->getPermission($permgroup, 'CAN_EDIT_ACCORD') == 1) { ?>
+                                <a data-toggle="modal" data-target="#updateOpenMails" href="#">
+                                    <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
+                                        <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span>
+                                        Update alle Open proeven <span id="days">( > 5 dagen )</span></button>
+                                </a>
+                            <?php } ?>
 
                             <a href="?page=useroverview">
                                 <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
-                                <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> Mijn overzicht</button>
+                                    <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> Mijn
+                                    overzicht
+                                </button>
                             </a>
 
                             <a id="filteropen" href="#">
                                 <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
-                                <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> Open proeven <span id="days">( > 5 dagen )</span></button>
+                                    <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> Open
+                                    proeven <span id="days">( > 5 dagen )</span></button>
                             </a>
 
                             <a id="filtergoed" href="#">
                                 <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
-                                <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> Geakkordeerde proeven</button>
+                                    <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span>
+                                    Geakkordeerde proeven
+                                </button>
                             </a>
 
                             <a id="filterafgekeurd" href="#">
                                 <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
-                                    <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> Afgekeurde proeven</button>
+                                    <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span>
+                                    Afgekeurde proeven
+                                </button>
                             </a>
 
                         </th>
@@ -60,37 +68,41 @@ else {
                 <hr>
 
                 <div class="btn-group show-on-hover">
-                    <button style="width: 100px; background-color: #bb2c4c; color: white;" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                    <button style="width: 100px; background-color: #bb2c4c; color: white;" type="button"
+                            class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                         Legenda <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu">
-                        <li><img alt="Gezien" style="width: 50px; height: 50px;" src="public/icons/gezien.png"> -> Gezien</li>
-                        <li><img alt="Uploaded" src="public/icons/uploaded.png"> -> Geüpload</li>
-                        <li><img alt="Geaccepteerd" src="public/icons/akkoord.png"> -> Akkoord</li>
-                        <li><img alt="Geweigerd" src="public/icons/geweigerd.png"> -> Geweigerd</li>
+                        <li><img alt="Gezien" style="width: 50px; height: 50px;" src="icons/gezien.png"> ->
+                            Gezien
+                        </li>
+                        <li><img alt="Uploaded" src="icons/uploaded.png"> -> Geüpload</li>
+                        <li><img alt="Geaccepteerd" src="icons/akkoord.png"> -> Akkoord</li>
+                        <li><img alt="Geweigerd" src="icons/geweigerd.png"> -> Geweigerd</li>
                     </ul>
                     <a href="?page=archive">
-                        <button style="width: 100px; background-color: #bb2c4c; color: white;" type="button" class="btn btn-default">
+                        <button style="width: 100px; background-color: #bb2c4c; color: white;" type="button"
+                                class="btn btn-default">
                             <i class="glyphicon glyphicon-folder-close"></i> Archive
                         </button>
                     </a>
                 </div>
 
-                <?php if(isset($get_filled_info) && $get_filled_info !== null) { ?>
-                <table id="myTable" class="table table-striped" >
-                    <thead>
-                    <tr>
+                <?php if (isset($get_filled_info) && $get_filled_info !== null) { ?>
+                    <table id="myTable" class="table table-striped">
+                        <thead>
+                        <tr>
 
-                        <th style="display:none">ID</th>
-                        <th>Onderwerp</th>
-                        <th>Verstuurder</th>
-                        <th>Klant</th>
-                        <th id="date">Datum</th>
-                        <th>Status</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <?php
+                            <th style="display:none">ID</th>
+                            <th>Onderwerp</th>
+                            <th>Verstuurder</th>
+                            <th>Klant</th>
+                            <th id="date">Datum</th>
+                            <th>Status</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php
                         foreach ($get_filled_info as $upload) { ?>
                             <tr>
                                 <td style="display:none">
@@ -100,10 +112,12 @@ else {
                                     <a href="?page=item&id=<?= $upload['id'] ?>"><?= $upload['onderwerp'] ?></a>
                                 </td>
                                 <td>
-                                    <?= $upload['verstuurder'] ?>
+                                    <?php $usr = $user->getUserById($upload['verstuurder']); ?>
+                                    <a href="?page=showuserprofile&id=<?= $usr['id'] ?>"><?= $usr['naam'] ?></a>
                                 </td>
                                 <td>
-                                    <?= $upload['naam'] ?>
+                                    <?php $clnt = $user->getUserById($upload['naam']); ?>
+                                    <a href="?page=showuserprofile&id=<?= $clnt['id'] ?>"><?= $clnt['naam'] ?></a>
                                 </td>
                                 <td>
                                     <?= date("d-m-Y", strtotime($upload['datum'])); ?>
@@ -111,37 +125,38 @@ else {
                                 <td>
                                     <span style="display:none" id="status"><?= $upload['verified']; ?></span>
                                     <?php if ($upload['verified'] == 1) { ?>
-                                        <img alt="Gezien" src="public/icons/gezien.png">
+                                        <img alt="Gezien" src="icons/gezien.png">
                                     <?php } elseif ($upload['verified'] == 2) { ?>
-                                        <img alt="Geaccepteerd" src="public/icons/akkoord.png">
+                                        <img alt="Geaccepteerd" src="icons/akkoord.png">
                                     <?php } elseif ($upload['verified'] == 3) { ?>
-                                        <img alt="Geweigerd" src="public/icons/geweigerd.png">
+                                        <img alt="Geweigerd" src="icons/geweigerd.png">
                                     <?php } else { ?>
-                                        <img alt="Uploaded" src="public/icons/uploaded.png">
+                                        <img alt="Uploaded" src="icons/uploaded.png">
                                     <?php } ?>
                                 </td>
                             </tr>
                         <?php } ?>
-                    </tbody>
-                </table>
-                <?php }
-                else { ?>
-                    <div id="weiger" class="alert alert-info" style="text-align: center;" role="alert"><span class="glyphicon glyphicon-remove-circle"></span> U heeft nog niks geüpload of geaccordeerd</div>
+                        </tbody>
+                    </table>
+                <?php } else { ?>
+                    <div id="weiger" class="alert alert-info" style="text-align: center;" role="alert"><span
+                            class="glyphicon glyphicon-remove-circle"></span> U heeft nog niks geüpload of geaccordeerd
+                    </div>
                 <?php } ?>
             </div>
         </div>
     </div>
 </div>
 <?php
-    //Unset sessions
-    unset($_SESSION['uploads']);
-    unset($_SESSION['updateopenmails']);
+//Unset sessions
+unset($_SESSION['uploads']);
+unset($_SESSION['updateopenmails']);
 ?>
 
 <script>
-    $(document).ready(function(){
+    $(document).ready(function () {
         $('#myTable').dataTable({
-            "order": [[ 0, "desc" ]],
+            "order": [[0, "desc"]],
             "deferRender": true
         });
 
@@ -149,7 +164,7 @@ else {
 
     var filter;
 
-    $('#filteropen').on('click', function(event) {
+    $('#filteropen').on('click', function (event) {
 
         filter = 'openproeven';
 
@@ -160,7 +175,7 @@ else {
             url: "?page=changefilter",
             data: dataString,
             cache: false,
-            success: function(result){
+            success: function (result) {
                 //$('#container').load("?page=overview " + '#container');
                 location.reload();
             }
@@ -169,7 +184,7 @@ else {
         event.preventDefault();
     });
 
-    $('#filtergoed').on('click', function(event) {
+    $('#filtergoed').on('click', function (event) {
 
         filter = 'goedeproeven';
 
@@ -180,7 +195,7 @@ else {
             url: "?page=changefilter",
             data: dataString,
             cache: false,
-            success: function(result){
+            success: function (result) {
                 //$('#container').load("?page=overview " + '#container');
                 location.reload();
             }
@@ -188,7 +203,7 @@ else {
 
         event.preventDefault();
     });
-    $('#filterafgekeurd').on('click', function(event) {
+    $('#filterafgekeurd').on('click', function (event) {
 
         filter = 'afgekeurdeproeven';
 
@@ -199,7 +214,7 @@ else {
             url: "?page=changefilter",
             data: dataString,
             cache: false,
-            success: function(result){
+            success: function (result) {
                 //$('#container').load("?page=overview " + '#container');
                 location.reload();
             }
@@ -223,7 +238,7 @@ else {
                 <br>
 
                 <p> U staat op het punt om alle mails die langer dan <b>5 dagen</b> openstaan te versturen. <br/><br/>
-                Weet u dit zeker?<br/><br/></p>
+                    Weet u dit zeker?<br/><br/></p>
                 <a class="abuttonmodal" href="?page=updateopenmails">Update open mails</a>
 
                 <br/>

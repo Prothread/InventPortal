@@ -1,10 +1,9 @@
 <?php
 #PAGE FOR CREATING CLIENTS
 
-if($user->getPermission($permgroup, 'CAN_CREATE_USER') == 1){
+if ($user->getPermission($permgroup, 'CAN_CREATE_USER') == 1) {
 
-}
-else {
+} else {
     $block->Redirect('index.php');
     Session::flash('error', 'U heeft hier geen rechten voor.');
 }
@@ -25,16 +24,19 @@ else {
                         <hr size="1">
 
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="textinput">Naam<span style="color:#dd2c4c">*</span></label>
+                            <label class="col-md-4 control-label" for="textinput">Naam<span
+                                    style="color:#dd2c4c">*</span></label>
                             <div class="col-md-4">
-                                <input required class="form-control input-md" id="textinput" maxlength="60" type="text" name="name" size="50" placeholder="Naam">
+                                <input required class="form-control input-md" id="textinput" maxlength="60" type="text"
+                                       name="name" size="50" placeholder="Naam">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">Bedrijfsnaam</label>
                             <div class="col-md-4">
-                                <input class="form-control input-md" id="textinput" maxlength="64" type="text" name="companyname" size="50" placeholder="Bedrijfsnaam">
+                                <input class="form-control input-md" id="textinput" maxlength="64" type="text"
+                                       name="companyname" size="50" placeholder="Bedrijfsnaam">
                             </div>
                         </div>
 
@@ -42,46 +44,52 @@ else {
                         <hr size="1">
 
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="textinput">E-mail<span style="color:#dd2c4c">*</span></label>
+                            <label class="col-md-4 control-label" for="textinput">E-mail<span
+                                    style="color:#dd2c4c">*</span></label>
                             <div class="col-md-4">
-                                <input class="form-control input-md" id="textinput" maxlength="60" required type="email" name="email" size="50" placeholder="E-mailadres">
+                                <input class="form-control input-md" id="textinput" maxlength="60" required type="email"
+                                       name="email" size="50" placeholder="E-mailadres">
                             </div>
                         </div>
 
-                        <br />
+                        <br/>
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">Alt E-mail</label>
                             <div class="col-md-4">
                                 <span style="font-size:15px">Alternatief email voor contact met de klant</span>
-                                <input class="form-control input-md" id="textinput" maxlength="60" type="email" name="altmail" placeholder="E-mailadres">
+                                <input class="form-control input-md" id="textinput" maxlength="60" type="email"
+                                       name="altmail" placeholder="E-mailadres">
                             </div>
                         </div>
-                        <br />
+                        <br/>
 
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">Adres</label>
                             <div class="col-md-4">
-                                <input class="form-control input-md" id="textinput" maxlength="64" type="text" name="companyadress" size="50" placeholder="Adres">
+                                <input class="form-control input-md" id="textinput" maxlength="64" type="text"
+                                       name="companyadress" size="50" placeholder="Adres">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">Postcode</label>
                             <div class="col-md-4">
-                                <input class="form-control input-md" id="textinput" maxlength="8" type="text" name="postcode" size="50" placeholder="Postcode">
+                                <input class="form-control input-md" id="textinput" maxlength="8" type="text"
+                                       name="postcode" size="50" placeholder="Postcode">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">Plaats</label>
                             <div class="col-md-4">
-                                <input class="form-control input-md" id="textinput" maxlength="64" type="text" name="plaats" size="50" placeholder="Plaats">
+                                <input class="form-control input-md" id="textinput" maxlength="64" type="text"
+                                       name="plaats" size="50" placeholder="Plaats">
                             </div>
                         </div>
 
-                        <br />
+                        <br/>
 
-                        <?php if($user->getPermission($permgroup, 'CAN_CREATE_USER') == '1') { ?>
+                        <?php if ($user->getPermission($permgroup, 'CAN_CREATE_USER') == '1') { ?>
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Rechten:</label>
                                 <div class="col-md-4">
@@ -93,14 +101,17 @@ else {
                                     </select>
                                 </div>
                             </div>
-                        <?php } else {?>
-                            <input class="form-control" value="<?= $userinfo['permgroup'] ?>" type="hidden" readonly name="rechten">
+                        <?php } else { ?>
+                            <input class="form-control" value="<?= $userinfo['permgroup'] ?>" type="hidden" readonly
+                                   name="rechten">
                         <?php } ?>
 
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput"></label>
                             <div class="col-md-4">
-                                <input class="btn btn-primary btn-success" name="submit"  style="max-width: 100px; background-color: #bb2c4c; border: 1px solid #dd2c4c" type="submit" value="Aanmaken">
+                                <input class="btn btn-primary btn-success" name="submit"
+                                       style="max-width: 100px; background-color: #bb2c4c; border: 1px solid #dd2c4c"
+                                       type="submit" value="Aanmaken">
                             </div>
                         </div>
                     </fieldset>

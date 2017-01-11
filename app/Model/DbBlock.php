@@ -1,11 +1,11 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: Kevin
  * Date: 05-Oct-16
  * Time: 11:39
  */
-
 class DbBlock extends Database
 {
 
@@ -15,7 +15,8 @@ class DbBlock extends Database
      * @return array|null
      */
 
-    public function getUploads(/*$table, $filter, $limit = null, $offset = null, $status*/){
+    public function getUploads(/*$table, $filter, $limit = null, $offset = null, $status*/)
+    {
         /*
         $sql = "SELECT * FROM `mail`";
 
@@ -41,7 +42,7 @@ class DbBlock extends Database
 
         $row = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
-        if($row) {
+        if ($row) {
             return $row;
         }
         return null;
@@ -53,7 +54,8 @@ class DbBlock extends Database
      * @return array|null
      */
 
-    public function getArchiveUploads(/*$table, $filter, $limit = null, $offset = null, $status*/){
+    public function getArchiveUploads(/*$table, $filter, $limit = null, $offset = null, $status*/)
+    {
         /*
         $sql = "SELECT * FROM `mail`";
 
@@ -79,7 +81,7 @@ class DbBlock extends Database
 
         $row = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
-        if($row) {
+        if ($row) {
             return $row;
         }
         return null;
@@ -97,19 +99,18 @@ class DbBlock extends Database
 
         $sql = "SELECT * FROM `mail` WHERE `datum` <";
 
-        if($date2) {
+        if ($date2) {
             $date2 = date('Y-m-d', strtotime("-5 day"));
-            $sql .=" '{$date2}'";
-        }
-        else {
+            $sql .= " '{$date2}'";
+        } else {
             $sql .= " '{$date}'";
         }
 
-        if($verified) {
+        if ($verified) {
             $sql .= " AND `verified` IN({$verified})";
         }
 
-        if($result = $this->dbQuery($sql)) {
+        if ($result = $this->dbQuery($sql)) {
             $row = mysqli_fetch_all($result, MYSQLI_ASSOC);
             return $row;
         }
@@ -121,13 +122,14 @@ class DbBlock extends Database
      * @return array|null
      */
 
-    public function getLastSixUploads() {
+    public function getLastSixUploads()
+    {
         $sql = "SELECT * FROM `mail` ORDER BY `id` DESC LIMIT 6";
 
         $result = $this->dbQuery($sql);
         $row = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
-        if($row) {
+        if ($row) {
             return $row;
         }
         return false;
@@ -143,14 +145,13 @@ class DbBlock extends Database
     {
         $sql = "SELECT * FROM `mail` WHERE `verified` =  '2'";
 
-        if($date) {
+        if ($date) {
             $sql .= " AND `datum` > DATE_SUB(NOW(),INTERVAL 1 YEAR)";
-        }
-        else {
+        } else {
             $sql .= " AND `datum` < DATE_SUB(NOW(),INTERVAL 1 YEAR)";
         }
 
-        if($result = $this->dbQuery($sql)) {
+        if ($result = $this->dbQuery($sql)) {
             $row = mysqli_fetch_all($result, MYSQLI_ASSOC);
             return $row;
         }
@@ -166,14 +167,13 @@ class DbBlock extends Database
     {
         $sql = "SELECT * FROM `mail` WHERE `verified` =  '3'";
 
-        if($date) {
+        if ($date) {
             $sql .= " AND `datum` > DATE_SUB(NOW(),INTERVAL 1 YEAR)";
-        }
-        else {
+        } else {
             $sql .= " AND `datum` < DATE_SUB(NOW(),INTERVAL 1 YEAR)";
         }
 
-        if($result = $this->dbQuery($sql)) {
+        if ($result = $this->dbQuery($sql)) {
             $row = mysqli_fetch_all($result, MYSQLI_ASSOC);
             return $row;
         }
@@ -190,7 +190,7 @@ class DbBlock extends Database
     {
         $sql = "SELECT * FROM `usermail` JOIN `mail` ON `usermail`.`mailid` = `mail`.`id` WHERE `usermail`.`clientid` = '{$userID}' ORDER BY `mail`.`id` DESC LIMIT 6";
 
-        if($result = $this->dbQuery($sql)) {
+        if ($result = $this->dbQuery($sql)) {
             $row = mysqli_fetch_all($result, MYSQLI_ASSOC);
             return $row;
         }
@@ -210,8 +210,8 @@ class DbBlock extends Database
 
         $result = $this->dbQuery($sql);
         $row = mysqli_fetch_all($result, MYSQLI_ASSOC);
-
-        if($row) {
+var_dump($sql);
+        if ($row) {
             return $row;
         }
         return false;
@@ -231,7 +231,7 @@ class DbBlock extends Database
         $result = $this->dbQuery($sql);
         $row = mysqli_fetch_assoc($result);
 
-        if($row) {
+        if ($row) {
             return $row;
         }
         return false;
@@ -251,7 +251,7 @@ class DbBlock extends Database
         $result = $this->dbQuery($sql);
         $row = mysqli_fetch_assoc($result);
 
-        if($row) {
+        if ($row) {
             return $row;
         }
     }
@@ -264,13 +264,14 @@ class DbBlock extends Database
      * @return array|null
      */
 
-    public function getUploadById($id){
+    public function getUploadById($id)
+    {
         $sql = "SELECT * FROM `mail` WHERE `id` = '{$id}'";
 
         $result = $this->dbQuery($sql);
         $value = mysqli_fetch_assoc($result);
 
-        if($value) {
+        if ($value) {
             return $value;
         }
         return false;
@@ -290,7 +291,7 @@ class DbBlock extends Database
         $result = $this->dbQuery($sql);
         $value = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
-        if($value) {
+        if ($value) {
             return $value;
         }
         return null;
@@ -304,9 +305,9 @@ class DbBlock extends Database
 
     public function countBlocks()
     {
-        $query ="SELECT COUNT(`id`) AS 'total_blocks' FROM `mail`";
+        $query = "SELECT COUNT(`id`) AS 'total_blocks' FROM `mail`";
 
-        if($result = $this->dbFetchArray($query)){
+        if ($result = $this->dbFetchArray($query)) {
             return $result['total_blocks'];
         }
         return false;

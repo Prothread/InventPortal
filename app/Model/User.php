@@ -1,11 +1,11 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: Kevin
  * Date: 14-Oct-16
  * Time: 08:35
  */
-
 class User
 {
     private $db;
@@ -392,6 +392,29 @@ class User
     }
 
     /**
+     * Haal de naam van de groep rechten van de klant op
+     *
+     * @param $value
+     * @return mixed
+     */
+
+    public function getPermissionGroupName($value)
+    {
+        return $this->db->getPermissionGroupName($value);
+    }
+
+    /**
+     * Get all permission groups that can be assigned to a user
+     *
+     * @return mixed
+     */
+
+    public function getAllPermGroups()
+    {
+        return $this->db->getAllPermGroups();
+    }
+
+    /**
      * Geef de variabele $Naam een waarde
      *
      * @param $Name
@@ -687,6 +710,17 @@ class User
     }
 
     /**
+     * Haal alle klanten op met de laatste id's
+     *
+     * @return array|null
+     */
+
+    public function getAllLatestClients()
+    {
+        return $this->db->getAllLatestClients();
+    }
+
+    /**
      * Haal aantal klanten op
      *
      * @return mixed
@@ -718,6 +752,7 @@ class User
     {
         return $this->db->getFourUsersByPerm($permgroup);
     }
+
     /**
      * Haal aantal resultaten van mails op
      *

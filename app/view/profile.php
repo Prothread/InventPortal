@@ -12,29 +12,37 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);
                 <div class="container">
                     <table style="width:100%">
                         <tr>
-                            <th style="text-align: left;"><p class="NameText" style="font-weight: normal;">Uw profiel</p></th>
+                            <th style="text-align: left;"><p class="NameText" style="font-weight: normal;">Uw
+                                    profiel</p></th>
                             <th style="text-align: right;">
 
                                 <?php if ($user->getPermission($permgroup, 'CAN_USE_STATUSPORTAL') == 1) { ?>
                                     <a href="?page=statusportal">
                                         <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
-                                            <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span>Statusportaal</button>
+                                            <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span>Statusportaal
+                                        </button>
                                     </a>
                                 <?php } ?>
 
                                 <a href="?page=useroverview">
                                     <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
-                                        <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> Mijn overzicht</button>
+                                        <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> Mijn
+                                        overzicht
+                                    </button>
                                 </a>
 
                                 <a href="?page=editprofile">
                                     <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
-                                        <span class="btn-label"><i class="glyphicon glyphicon-pencil"></i></span>Wijzig profiel</button>
+                                        <span class="btn-label"><i class="glyphicon glyphicon-pencil"></i></span>Wijzig
+                                        profiel
+                                    </button>
                                 </a>
 
                                 <a href="?page=newpassword">
                                     <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
-                                        <span class="btn-label"><i class="glyphicon glyphicon-lock"></i></span>Wijzig wachtwoord</button>
+                                        <span class="btn-label"><i class="glyphicon glyphicon-lock"></i></span>Wijzig
+                                        wachtwoord
+                                    </button>
                                 </a>
 
                             </th>
@@ -46,7 +54,8 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);
                         <!-- left column -->
                         <div class="col-md-3">
                             <div class="text-center">
-                                <img src="<?= DIR_IMG . $userinfo['profimg'] ?>" width="150px" height="150px;" class="avatar img-circle" alt="avatar">
+                                <img src="<?= DIR_IMG . $userinfo['profimg'] ?>" width="150px" height="150px;"
+                                     class="avatar img-circle" alt="avatar">
 
                                 <input class="form-control" type="file">
                             </div>
@@ -58,45 +67,54 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);
                                 <div class="form-group">
                                     <label class="col-lg-3 control-label">Naam</label>
                                     <div class="col-lg-8">
-                                        <input disabled class="form-control" value="<?= $userinfo['naam'] ?>" type="text">
+                                        <input disabled class="form-control" value="<?= $userinfo['naam'] ?>"
+                                               type="text">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-lg-3 control-label">Bedrijfsnaam:</label>
                                     <div class="col-lg-8">
-                                        <input disabled class="form-control" value="<?= $userinfo['bedrijfsnaam'] ?>" type="text">
+                                        <input disabled class="form-control" value="<?= $userinfo['bedrijfsnaam'] ?>"
+                                               type="text">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-lg-3 control-label">Email:</label>
                                     <div class="col-lg-8">
-                                        <input disabled class="form-control" value="<?= $userinfo['email'] ?>" type="text">
+                                        <input disabled class="form-control" value="<?= $userinfo['email'] ?>"
+                                               type="text">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-lg-3 control-label">Adres:</label>
                                     <div class="col-lg-8">
-                                        <input disabled class="form-control" value="<?= $userinfo['adres'] ?>" type="text">
+                                        <input disabled class="form-control" value="<?= $userinfo['adres'] ?>"
+                                               type="text">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-lg-3 control-label">Postcode:</label>
                                     <div class="col-lg-8">
-                                        <input disabled class="form-control" size="6" value="<?= $userinfo['postcode'] ?>" type="text">
+                                        <input disabled class="form-control" size="6"
+                                               value="<?= $userinfo['postcode'] ?>" type="text">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-lg-3 control-label">Plaats:</label>
                                     <div class="col-lg-8">
-                                        <input disabled class="form-control" value="<?= $userinfo['plaats'] ?>" type="text">
+                                        <input disabled class="form-control" value="<?= $userinfo['plaats'] ?>"
+                                               type="text">
                                     </div>
                                 </div>
+
+                                <?php if ($user->getPermission($permgroup, 'CAN_EDIT_USER') == '1'){ ?>
                                 <div class="form-group">
                                     <label class="col-lg-3 control-label">Rechten:</label>
                                     <div class="col-lg-8">
-                                        <input disabled class="form-control" value="<?= $permgroup ?>" type="text">
+                                        <input disabled class="form-control" value="<?= $mypermgroup ?>" type="text">
                                     </div>
                                 </div>
+                                <?php } ?>
                                 <!--<div class="form-group">
                                   <label class="col-md-3 control-label"></label>
                                   <div class="col-md-8">
@@ -108,13 +126,12 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);
             </div>
         </div>
 
-        <br />
-        <br />
+        <br/>
+        <br/>
 
 
     </div>
     <hr>
-
 
 
 </div>

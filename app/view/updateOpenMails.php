@@ -1,10 +1,9 @@
 <?php
 
 
-if($user->getPermission($permgroup, 'CAN_UPLOAD') == 1){
+if ($user->getPermission($permgroup, 'CAN_UPLOAD') == 1) {
 
-}
-else {
+} else {
     $block->Redirect('index.php');
     Session::flash('error', 'U heeft hier geen rechten voor.');
 }
@@ -15,7 +14,7 @@ $uploads = new BlockController();
 $verified = '0, 1';
 $get_filled_info = $uploads->getOlderUploads($verified, true);
 
-if($get_filled_info !== null && !empty($get_filled_info)) {
+if ($get_filled_info !== null && !empty($get_filled_info)) {
     foreach ($get_filled_info as $get_info) {
 
         //Generate a random string.
@@ -141,8 +140,7 @@ if($get_filled_info !== null && !empty($get_filled_info)) {
 
     }
     $block->Redirect('index.php?page=overview');
-}
-else {
+} else {
     $block->Redirect('index.php?page=overview');
     Session::flash('error', 'Er zijn nog geen proeven die langer dan 5 dagen openstaan');
 }

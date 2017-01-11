@@ -1,7 +1,7 @@
 <?php
 #OVERZICHT PAGE VAN ALLE ITEMS
 
-if($user->getPermission($permgroup, 'CAN_SHOW_OVERZICHT') == 1){
+if ($user->getPermission($permgroup, 'CAN_SHOW_OVERZICHT') == 1) {
 
 } else {
     $block->Redirect('index.php?page=useroverview');
@@ -9,10 +9,9 @@ if($user->getPermission($permgroup, 'CAN_SHOW_OVERZICHT') == 1){
 
 $uploads = new BlockController();
 
-if(isset($_SESSION['uploads']) ) {
+if (isset($_SESSION['uploads'])) {
     $get_filled_info = $_SESSION['uploads'];
-}
-else {
+} else {
     $get_filled_info = $uploads->getArchiveUploads();
 }
 ?>
@@ -23,30 +22,37 @@ else {
                 <table style="width:100%">
                     <tr>
                         <th style="text-align: left;">
-                            <p class="NameText" style="font-weight: normal;">Overzicht</p>
+                            <p class="NameText" style="font-weight: normal;">Archief</p>
                         </th>
                         <th id="filters" style="text-align: right;">
 
-                            <?php if(isset($_SESSION['updateopenmails']) && $user->getPermission($permgroup, 'CAN_EDIT_ACCORD') == 1){ ?>
-                            <a data-toggle="modal" data-target="#updateOpenMails" href="#">
-                                <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
-                                <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> Update alle Open proeven <span id="days">( > 5 dagen )</span></button>
-                            </a>
-                            <?php  } ?>
+                            <?php if (isset($_SESSION['updateopenmails']) && $user->getPermission($permgroup, 'CAN_EDIT_ACCORD') == 1) { ?>
+                                <a data-toggle="modal" data-target="#updateOpenMails" href="#">
+                                    <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
+                                        <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span>
+                                        Update alle Open proeven <span id="days">( > 5 dagen )</span></button>
+                                </a>
+                            <?php } ?>
 
                             <a href="?page=useroverview">
                                 <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
-                                <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> Mijn overzicht</button>
+                                    <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> Mijn
+                                    overzicht
+                                </button>
                             </a>
 
                             <a id="filtergoed" href="#">
                                 <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
-                                <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> Geakkordeerde proeven</button>
+                                    <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span>
+                                    Geakkordeerde proeven
+                                </button>
                             </a>
 
                             <a id="filterafgekeurd" href="#">
                                 <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
-                                    <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> Afgekeurde proeven</button>
+                                    <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span>
+                                    Afgekeurde proeven
+                                </button>
                             </a>
 
                         </th>
@@ -55,32 +61,35 @@ else {
                 <hr>
 
                 <div class="btn-group show-on-hover">
-                    <button style="width: 100px; background-color: #bb2c4c; color: white;" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                    <button style="width: 100px; background-color: #bb2c4c; color: white;" type="button"
+                            class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                         Legenda <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu">
-                        <li><img alt="Gezien" style="width: 50px; height: 50px;" src="public/icons/gezien.png"> -> Gezien</li>
+                        <li><img alt="Gezien" style="width: 50px; height: 50px;" src="public/icons/gezien.png"> ->
+                            Gezien
+                        </li>
                         <li><img alt="Uploaded" src="public/icons/uploaded.png"> -> Geüpload</li>
                         <li><img alt="Geaccepteerd" src="public/icons/akkoord.png"> -> Akkoord</li>
                         <li><img alt="Geweigerd" src="public/icons/geweigerd.png"> -> Geweigerd</li>
                     </ul>
                 </div>
 
-                <?php if(isset($get_filled_info) && $get_filled_info !== null) { ?>
-                <table id="myTable" class="table table-striped" >
-                    <thead>
-                    <tr>
+                <?php if (isset($get_filled_info) && $get_filled_info !== null) { ?>
+                    <table id="myTable" class="table table-striped">
+                        <thead>
+                        <tr>
 
-                        <th style="display:none">ID</th>
-                        <th>Onderwerp</th>
-                        <th>Verstuurder</th>
-                        <th>Klant</th>
-                        <th id="date">Datum</th>
-                        <th>Status</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <?php
+                            <th style="display:none">ID</th>
+                            <th>Onderwerp</th>
+                            <th>Verstuurder</th>
+                            <th>Klant</th>
+                            <th id="date">Datum</th>
+                            <th>Status</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php
                         foreach ($get_filled_info as $upload) { ?>
                             <tr>
                                 <td style="display:none">
@@ -112,26 +121,27 @@ else {
                                 </td>
                             </tr>
                         <?php } ?>
-                    </tbody>
-                </table>
-                <?php }
-                else { ?>
-                    <div id="weiger" class="alert alert-info" style="text-align: center;" role="alert"><span class="glyphicon glyphicon-remove-circle"></span> Er zijn nog geen proeven in de archive</div>
+                        </tbody>
+                    </table>
+                <?php } else { ?>
+                    <div id="weiger" class="alert alert-info" style="text-align: center;" role="alert"><span
+                            class="glyphicon glyphicon-remove-circle"></span> Er zijn nog geen proeven in de archive
+                    </div>
                 <?php } ?>
             </div>
         </div>
     </div>
 </div>
 <?php
-    //Unset sessions
-    unset($_SESSION['uploads']);
-    unset($_SESSION['updateopenmails']);
+//Unset sessions
+unset($_SESSION['uploads']);
+unset($_SESSION['updateopenmails']);
 ?>
 
 <script>
-    $(document).ready(function(){
+    $(document).ready(function () {
         $('#myTable').dataTable({
-            "order": [[ 0, "desc" ]],
+            "order": [[0, "desc"]],
             "deferRender": true
         });
 
@@ -139,7 +149,7 @@ else {
 
     var filter;
 
-    $('#filteropen').on('click', function(event) {
+    $('#filteropen').on('click', function (event) {
 
         filter = 'openproeven';
 
@@ -150,7 +160,7 @@ else {
             url: "?page=changearchivefilter",
             data: dataString,
             cache: false,
-            success: function(result){
+            success: function (result) {
                 //$('#container').load("?page=overview " + '#container');
                 location.reload();
             }
@@ -159,7 +169,7 @@ else {
         event.preventDefault();
     });
 
-    $('#filtergoed').on('click', function(event) {
+    $('#filtergoed').on('click', function (event) {
 
         filter = 'goedeproeven';
 
@@ -170,7 +180,7 @@ else {
             url: "?page=changearchivefilter",
             data: dataString,
             cache: false,
-            success: function(result){
+            success: function (result) {
                 //$('#container').load("?page=overview " + '#container');
                 location.reload();
             }
@@ -178,7 +188,7 @@ else {
 
         event.preventDefault();
     });
-    $('#filterafgekeurd').on('click', function(event) {
+    $('#filterafgekeurd').on('click', function (event) {
 
         filter = 'afgekeurdeproeven';
 
@@ -189,7 +199,7 @@ else {
             url: "?page=changearchivefilter",
             data: dataString,
             cache: false,
-            success: function(result){
+            success: function (result) {
                 //$('#container').load("?page=overview " + '#container');
                 location.reload();
             }
@@ -213,7 +223,7 @@ else {
                 <br>
 
                 <p> U staat op het punt om alle mails die langer dan <b>5 dagen</b> openstaan te versturen. <br/><br/>
-                Weet u dit zeker?<br/><br/></p>
+                    Weet u dit zeker?<br/><br/></p>
                 <a class="abuttonmodal" href="?page=updateopenmails">Update open mails</a>
 
                 <br/>
