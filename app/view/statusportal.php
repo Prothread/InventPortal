@@ -113,7 +113,7 @@ $users = $user->getAllUsersByPerm(1);
                                                 ?>
                                                 <div>
                                                     <div id="<?= $rightdate ?>" class="item">
-                                                        <a href="?page=statusitem&id=<?= $StatusItem['id'] ?>"><span class="lettertype" id="textright" style="text-align:right; margin-left: 4px; text-decoration: none; color: #000;"><?= $StatusItem['subject']?></span></a>
+                                                        <a href="?page=statusitem&id=<?= $StatusItem['id'] ?>"><span class="lettertype" id="textright" style="    text-align:right; margin-left: 4px; text-decoration: none; color: #000;"><?= $StatusItem['subject']?></span></a>
                                                         <div id="smallaf" style="text-align: right; font-size: 13px; margin-right: 5px;"><?= $thisuser['naam'] ?></div>
                                                     </div>
                                                 </div>
