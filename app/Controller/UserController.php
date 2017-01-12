@@ -118,6 +118,18 @@ class UserController
     }
 
     /**
+     * Delete gebruiker van de database
+     *
+     * @param $id
+     * @return mixed
+     */
+
+    public function delete($id)
+    {
+        return $this->model->delete($id);
+    }
+
+    /**
      * Haal de rechten van de gebruiker voor de pagina op
      *
      * @param $perm
@@ -173,6 +185,18 @@ class UserController
     public function getPermissionGroup($id)
     {
         return $this->model->getPermissionGroup($id);
+    }
+
+    /**
+     * Check de groep van de gebruiker
+     *
+     * @param $value
+     * @return mixed
+     */
+
+    public function checkUserPerms($value)
+    {
+        return $this->model->checkUserPerms($value);
     }
 
     /**

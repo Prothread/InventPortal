@@ -159,6 +159,9 @@ switch ($page) {
     case 'editclient':
         include '../app/view/editclient.php';
         break;
+    case 'deleteuser':
+        include '../app/view/deleteuser.php';
+        break;
     case 'image':
         include '../app/view/image.php';
         break;

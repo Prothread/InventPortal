@@ -14,20 +14,20 @@ $session = new Session();
  */
 
 if (isset($_SESSION['usr_id'])) {
-    $id = $user->getPermissionGroup($_SESSION['usr_id']);
-    $perm = $user->getPermissionGroupName($id['permgroup']);
+    $leid = $user->getPermissionGroup($_SESSION['usr_id']);
+    $perm = $user->getPermissionGroupName($leid['permgroup']);
 
     $mypermgroup = $perm['name'];
-    $permgroup = $id['permgroup'];
+    $permgroup = $leid['permgroup'];
 }
 
 else if (isset($_SESSION['userid'])) {
     if ($session->getUserId()) {
-        $id = $user->getPermissionGroup($session->getUserId());
-        $perm = $user->getPermissionGroupName($id['permgroup']);
+        $leid = $user->getPermissionGroup($session->getUserId());
+        $perm = $user->getPermissionGroupName($leid['permgroup']);
 
         $mypermgroup = $perm['name'];
-        $permgroup = $id['permgroup'];
+        $permgroup = $leid['permgroup'];
     }
 }
 

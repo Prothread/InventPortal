@@ -1,13 +1,6 @@
 <?php
 #PAGE FOR UPDATING CLIENTS
 
-if ($user->getPermission($permgroup, 'CAN_EDIT_CLIENT') == 1) {
-
-} else {
-    $block->Redirect('index.php');
-    Session::flash('error', 'U heeft hier geen rechten voor.');
-}
-
 $mysqli = mysqli_connect();
 $session = new Session();
 

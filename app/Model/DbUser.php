@@ -85,6 +85,23 @@ class DbUser extends Database
     }
 
     /**
+     * Delete gebruiker van de database
+     *
+     * @param $id
+     * @return mixed
+     */
+
+    public function delete($id)
+    {
+        $sql = "DELETE FROM `users` WHERE `id` = '{$id}'";
+
+        if ($result = $this->dbQuery($sql)) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
      * Haal je gebruiker op
      *
      * @param User $user
@@ -175,6 +192,26 @@ class DbUser extends Database
         if ($result = $this->dbQuery($sql)) {
             return mysqli_fetch_assoc($result);
         }
+    }
+
+    /**
+     * Check de groep van de gebruiker
+     *
+     * @param $value
+     * @return array|bool|null
+     */
+
+    public function checkUserPerms($value)
+    {
+        $sql = "SELECT * FROM `permgroup` WHERE `userperm` = '{$value}'";
+
+        $result = $this->dbQuery($sql);
+        $value = mysqli_fetch_assoc($result);
+
+        if($value){
+            return $value;
+        }
+        return false;
     }
 
     /**

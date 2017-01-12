@@ -44,14 +44,14 @@ if ($userinfo['permgroup'] == '1') {
                                     Profiel: <?= $userinfo['naam'] ?></p></th>
                             <th style="text-align: right;">
 
-                                <?php if($user->getPermission($permgroup, 'CAN_RESET_CLIENT_PASSWORD') == '1' && $userinfo['permgroup'] == 1) { ?>
+                                <?php if($user->getPermission($permgroup, 'CAN_RESET_CLIENT_PASSWORD') == '1' && $userinfo['permgroup'] == '1') { ?>
                                     <a data-toggle="modal" data-target="#NewUserPassword" href="#">
                                         <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
                                             <span class="btn-label"><i class="glyphicon glyphicon-lock"></i></span>Reset
                                             wachtwoord</button>
                                     </a>
                                 <?php }
-                                else if($user->getPermission($permgroup, 'CAN_RESET_USER_PASSWORD') == '1' && $userinfo['permgroup'] !== 1) { ?>
+                                else if($user->getPermission($permgroup, 'CAN_RESET_USER_PASSWORD') == '1' && $userinfo['permgroup'] !== '1') { ?>
                                     <a data-toggle="modal" data-target="#NewUserPassword" href="#">
                                         <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
                                             <span class="btn-label"><i class="glyphicon glyphicon-lock"></i></span>Reset
@@ -59,7 +59,7 @@ if ($userinfo['permgroup'] == '1') {
                                     </a>
                                 <?php } ?>
 
-                                <?php if ($user->getPermission($permgroup, 'CAN_EDIT_CLIENT') == 1 && $userinfo['permgroup'] == 1) { ?>
+                                <?php if ($user->getPermission($permgroup, 'CAN_EDIT_CLIENT') == 1 && $userinfo['permgroup'] == '1') { ?>
                                     <a href="?page=editclient&id=<?= $_GET['id'] ?>">
                                         <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
                                             <span class="btn-label"><i class="glyphicon glyphicon-pencil"></i></span>Wijzig
@@ -67,7 +67,7 @@ if ($userinfo['permgroup'] == '1') {
                                         </button>
                                     </a>
                                 <?php }
-                                else if ($user->getPermission($permgroup, 'CAN_EDIT_USER') == 1 && $userinfo['permgroup'] !== 1) { ?>
+                                else if ($user->getPermission($permgroup, 'CAN_EDIT_USER') == 1 && $userinfo['permgroup'] !== '1') { ?>
                                     <a href="?page=editclient&id=<?= $_GET['id'] ?>">
                                         <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
                                             <span class="btn-label"><i class="glyphicon glyphicon-pencil"></i></span>Wijzig
@@ -76,6 +76,21 @@ if ($userinfo['permgroup'] == '1') {
                                     </a>
                                 <?php } ?>
 
+                                <?php if ($user->getPermission($permgroup, 'CAN_DELETE_CLIENT') == 1 && $userinfo['permgroup'] == '1') { ?>
+                                    <a data-toggle="modal" data-target="#DeleteUser" href="#">
+                                        <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
+                                            <span class="btn-label"><i class="glyphicon glyphicon-remove"></i></span>Verwijder
+                                            gebruiker</button>
+                                    </a>
+                                <?php } ?>
+
+                                <?php if ($user->getPermission($permgroup, 'CAN_DELETE_USER') == 1 && $userinfo['permgroup'] !== '1') { ?>
+                                    <a data-toggle="modal" data-target="#DeleteUser" href="#">
+                                        <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
+                                            <span class="btn-label"><i class="glyphicon glyphicon-remove"></i></span>Verwijder
+                                            gebruiker</button>
+                                    </a>
+                                <?php } ?>
                             </th>
                             </th>
                         </tr>
@@ -254,6 +269,39 @@ if ($userinfo['permgroup'] == '1') {
                     <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
                         <span class="btn-label"><i class="glyphicon glyphicon-lock"></i></span>Reset
                         wachtwoord
+                    </button>
+                </a>
+
+                <br/>
+                <br/>
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="DeleteUser" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div style="text-align: center;" class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Reset wachtwoord</h4>
+            </div>
+            <div style="text-align: center;" class="modal-body">
+                <br>
+
+                <p> U staat op het punt om de gebruiker <b><?= $userinfo['naam'] ?></b> te verwijderen. <br/><br/>
+                    Weet u dit zeker?<br/><br/></p>
+                <a href="?page=deleteuser&id=<?= $_GET['id'] ?>">
+                    <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
+                        <span class="btn-label"><i class="glyphicon glyphicon-remove"></i></span>Verwijder
+                        gebruiker
                     </button>
                 </a>
 

@@ -187,6 +187,18 @@ class User
     }
 
     /**
+     * Delete gebruiker van de database
+     *
+     * @param $id
+     * @return mixed
+     */
+
+    public function delete($id)
+    {
+        return $this->db->delete($id);
+    }
+
+    /**
      * Functie om gebruiker informatie op te halen
      *
      * @return array|bool|mysqli_result
@@ -389,6 +401,18 @@ class User
     public function getPermissionGroup($id)
     {
         return $this->db->getPermissionGroup($id);
+    }
+
+    /**
+     * Check de groep van de gebruiker
+     *
+     * @param $value
+     * @return mixed
+     */
+
+    public function checkUserPerms($value)
+    {
+        return $this->db->checkUserPerms($value);
     }
 
     /**
