@@ -23,7 +23,7 @@ if ($getbyemail !== null) {
 
 $date = date('Y-m-d h:i:s');
 
-if(strtotime($getbyemail['passresetdate']) !== false) {
+if(strtotime($getbyemail['passresetdate']) > 0) {
     if ($getbyemail['passresetdate'] > $date) {
 
     } else {

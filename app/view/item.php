@@ -50,7 +50,6 @@ foreach ($uploadedimages as $img) {
     array_push($checknewarray, $isverified['verify']);
 }
 $clientmail = $usermail->getUserMailbyMailID($id);
-$_SESSION['clientid'] = $clientmail['clientid'];
 ?>
 
 <div id="Mail">
@@ -139,6 +138,7 @@ $_SESSION['clientid'] = $clientmail['clientid'];
                             ?>
                             <form class="form-horizontal" action="?page=uploading" method="post"
                                   enctype="multipart/form-data">
+                                <input type="hidden" name="client" value="<?= $clientmail['clientid'] ?>">
                                 <input type="hidden" name="id" value="<?= $upload['id'] ?>">&emsp;&emsp;
                                 <div class="tab-content">
                                     <div class="tab-pane active" role="tabpanel" id="step1">
@@ -292,9 +292,9 @@ $_SESSION['clientid'] = $clientmail['clientid'];
 
                                         <?php if ($user->getPermission($permgroup, 'CAN_EDIT_ACCORD') == 1) { ?>
                                             <div class="form-group">
-                                                <label class="col-md-4 control-label" for="textinput">Link voor accorderen</label>
+                                                <label class="col-md-4 control-label" for="textinput">Link accordering</label>
                                                 <div class="col-md-4">
-                                                    <span><?= $admin['Host'] . '/' ?>index.php?page=verify&id=<?= $upload['id'] ?>&key=<?= $upload['key'] ?></span>
+                                                    <textarea class="form-control input-md" readonly><?= $admin['Host'] . '/' ?>index.php?page=verify&id=<?= $upload['id'] ?>&key=<?= $upload['key'] ?></textarea>
                                                 </div>
                                             </div>
                                         <?php } ?>

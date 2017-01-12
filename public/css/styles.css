@@ -8,7 +8,7 @@
 }
 
 input[type="file"] {
-    /*display: none;*/
+    display: none;
 }
 
 .MyOverviewButton {
@@ -1696,4 +1696,10 @@ tr:nth-child(2n) {
         float:left;
         text-align:left !important;
     }
+}
+#Globalmail {
+    display: block;
+    width: auto;
+    margin: 4px 0px;
+    overflow: hidden;
 }

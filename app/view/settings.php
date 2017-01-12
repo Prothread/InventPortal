@@ -52,6 +52,46 @@ if ($user->getPermission($permgroup, 'CAN_EDIT_SETTINGS') == 1) {
                         </div>
                     </div>
 
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="textinput">Host</label>
+                        <div class="col-md-4">
+                            <input class="form-control input-md" id="textinput" maxlength="64" required type="text"
+                                   name="host" size="50" value="<?= $admin['Host'] ?>"
+                                   placeholder="http://www.madalcomedia.com">
+                            <span style="font-size:16px;">*Host kan ook map bevatten, bv: http://www.madalcomedia.com/Portal</span>
+                        </div>
+                    </div>
+
+                    <br />
+                    <br />
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="textinput">Globale mail</label>
+                        <div class="col-md-4">
+                            <input type="checkbox" name="checker" style="width: 31px; height: 33px; float: left;" id="isGlobalMail" onclick="checkStatus()">
+                            <div id="Globalmail">
+                                <input class="form-control input-md" id="textinput" maxlength="64" required type="text" name="globalmail" value="<?= $admin['Host'] ?>" placeholder="http://www.madalcomedia.com">
+                            </div>
+                        </div>
+                    </div>
+
+                    <script>
+                        $(document).ready(function () {
+                            if (document.getElementById('isGlobalMail').checked) {
+                                $("#Globalmail").show();
+                            } else {
+                                $("#Globalmail").hide();
+                            }
+                        });
+                        function checkStatus() {
+                            if (document.getElementById('isGlobalMail').checked) {
+                                $("#Globalmail").show();
+                            } else {
+                                $("#Globalmail").hide();
+                            }
+                        }
+                    </script>
+
                     <br>
 
 
@@ -83,19 +123,6 @@ if ($user->getPermission($permgroup, 'CAN_EDIT_SETTINGS') == 1) {
                             <input class="form-control input-md" id="textinput" maxlength="64" required type="text"
                                    name="headerkleur" size="50" value="<?= $admin['Header'] ?>"
                                    placeholder="#dd2c4c/rgb(..,..,..)">
-                        </div>
-                    </div>
-
-                    <p class="ClientFormText">Mailing</p>
-                    <hr size="1">
-
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Host</label>
-                        <div class="col-md-4">
-                            <input class="form-control input-md" id="textinput" maxlength="64" required type="text"
-                                   name="host" size="50" value="<?= $admin['Host'] ?>"
-                                   placeholder="http://www.madalcomedia.com">
-                            <span style="font-size:16px;">*Host kan ook map bevatten, bv: http://www.madalcomedia.com/Portal</span>
                         </div>
                     </div>
 

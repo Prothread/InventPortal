@@ -74,7 +74,7 @@ if ($mailexist == null || empty($mailexist)) {
         "<b>Wachtwoord: </b>" .
         $token .
 
-        "<br /><br />" . "U kunt " . "<a href='$link'>hier</a> " . "inloggen met de gegevens uit deze mail." .
+        "<br /><br />" . "U kunt " . "<a href='$link'>hier</a> " . "uw wachtwoord veranderen." .
 
         "<br /><br />Met vriendelijke groet, <br />" . "Madalco Media" .
         "<br /> <br /><b>Disclaimer:</b> This is an automatically generated mail. Please do not reply to this email";
@@ -87,7 +87,7 @@ if ($mailexist == null || empty($mailexist)) {
         "<b>Wachtwoord: </b>" .
         $token .
 
-        "<br /><br />" . "U kunt " . "$link " . "inloggen." .
+        "<br /><br />" . "U kunt hier: " . "$link " . "uw wachtwoord veranderen." .
 
         "<br /> <br />Met vriendelijke groet, <br />" . "Madalco Media" .
         "<br /> <br />Disclaimer: This is an automatically generated mail. Please do not reply to this email";

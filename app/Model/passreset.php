@@ -24,19 +24,19 @@ if ($getbyemail !== null) {
     if (strlen($password) < 6) {
         $error = true;
         $block->Redirect($_SERVER['HTTP_REFERER']);
-        echo "Het paswoord moet minimaal 6 tekens bevatten. \n";
+        Session::flash('error', "Het wachtwoord moet minimaal 6 tekens bevatten.");
     }
 
     if ($cpassword !== $password) {
         $error = true;
         $block->Redirect($_SERVER['HTTP_REFERER']);
-        echo "De ingevulde nieuwe wachtwoorden komen niet overeen \n";
+        Session::flash('error', "De ingevulde nieuwe wachtwoorden komen niet overeen");
     }
 
     if ($passforget !== $dbpass) {
         $error = true;
         $block->Redirect($_SERVER['HTTP_REFERER']);
-        echo "Er is iets misgegaan \n";
+        Session::flash('error', "Er is iets misgegaan");
     }
 
     if (!$error) {

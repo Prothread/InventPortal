@@ -65,3 +65,10 @@ require_once DIR_MODEL . 'permissions.php';
 </head>
 <body>
 <div>
+<?php
+if ($session->exists('flash')) {
+    foreach ($session->get('flash') as $flash) {
+        echo "<div class='alert alert_{$flash['type']}'>{$flash['message']}</div>";
+    }
+    $session->remove('flash');
+}
