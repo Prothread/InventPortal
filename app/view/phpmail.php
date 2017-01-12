@@ -26,15 +26,6 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);
 
                                 <li role="presentation" class="active">
                                     <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab"
-                                       title="Informatie">
-                            <span class="round-tab">
-                                <i class="glyphicon glyphicon-folder-open"></i>
-                            </span>
-                                    </a>
-                                </li>
-
-                                <li role="presentation" class="disabled">
-                                    <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab"
                                        title="Uploaden">
                             <span class="round-tab">
                                 <i class="glyphicon glyphicon-picture"></i>
@@ -42,7 +33,7 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);
                                     </a>
                                 </li>
                                 <li role="presentation" class="disabled">
-                                    <a href="#step3" data-toggle="tab" aria-controls="step3" role="tab"
+                                    <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab"
                                        title="Beschrijving">
                             <span class="round-tab">
                                 <i class="glyphicon glyphicon-pencil"></i>
@@ -51,7 +42,7 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);
                                 </li>
 
                                 <li role="presentation" class="disabled">
-                                    <a href="#step4" data-toggle="tab" aria-controls="complete" role="tab"
+                                    <a href="#step3" data-toggle="tab" aria-controls="complete" role="tab"
                                        title="Klant & Versturen">
                             <span class="round-tab">
                                 <i class="glyphicon glyphicon-ok"></i>
@@ -65,9 +56,10 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);
                         <form action="?page=uploading" method="post" enctype="multipart/form-data"
                               class="form-horizontal">
                             <div class="tab-content">
+
                                 <div class="tab-pane active" role="tabpanel" id="step1">
-                                    <div class="well" style="font-size: 15px; font-style: italic;">Vul hieronder het
-                                        onderwerp van de proef in en controleer of uw naam juist is.
+                                    <div class="well" style="font-size: 15px; font-style: italic;">Upload hieronder de
+                                        bestanden die met de proef meegestuurd moeten worden.
                                     </div>
 
                                     <div class="form-group">
@@ -85,18 +77,6 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);
                                                    type="text" name="fromname" value="<?= $userinfo['naam'] ?>"
                                                    readonly>
                                         </div>
-                                    </div>
-
-                                    <br><br>
-                                    <ul class="list-inline pull-right">
-                                        <li>
-                                            <button type="button" class="btn btn-primary next-step">Volgende</button>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="tab-pane" role="tabpanel" id="step2">
-                                    <div class="well" style="font-size: 15px; font-style: italic;">Upload hieronder de
-                                        bestanden die met de proef meegestuurd moeten worden.
                                     </div>
                                     <br>
                                     <fieldset style="clear:both">
@@ -166,7 +146,7 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);
                                     </ul>
                                 </div>
 
-                                <div class="tab-pane" role="tabpanel" id="step3">
+                                <div class="tab-pane" role="tabpanel" id="step2">
                                     <div class="well" style="font-size: 15px; font-style: italic;">Vul hieronder een
                                         beschrijving of eventuele extra informatie in.
                                     </div>
@@ -191,7 +171,7 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);
                                     </ul>
                                 </div>
 
-                                <div class="tab-pane" role="tabpanel" id="step4">
+                                <div class="tab-pane" role="tabpanel" id="step3">
                                     <?php if($user->getPermission($permgroup, 'CAN_CREATE_CLIENT') == '1') {?>
                                     <div class="form-group">
                                         <label class="col-md-4 control-label" for="textinput">Nieuwe klant
