@@ -646,4 +646,16 @@ class Mail
         return $this->db->getUserMailbyMailID($MailID);
     }
 
+    /**
+     * Delete item met een (meegegeven) id
+     *
+     * @param $id
+     * @return bool
+     */
+
+    public function deleteItemByID($id)
+    {
+        return $this->db->deleteItemByID($id);
+    }
+
 }

@@ -192,4 +192,16 @@ class MailController
         return $this->model->getUserMailbyMailID($MailID);
     }
 
+    /**
+     * Delete item met een (meegegeven) id
+     *
+     * @param $id
+     * @return bool
+     */
+
+    public function deleteItemByID($id)
+    {
+        return $this->model->deleteItemByID($id);
+    }
+
 }

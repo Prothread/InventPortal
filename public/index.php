@@ -225,6 +225,9 @@ switch ($page) {
     case 'changearchivefilter':
         include '../app/Model/ArchiveFilter.php';
         break;
+    case 'deleteitem':
+        include '../app/view/deleteitem.php';
+        break;
     default:
         include '../app/view/404.php';
         break;

@@ -55,10 +55,25 @@ $clientmail = $usermail->getUserMailbyMailID($id);
 <div id="Mail">
     <!-- Page Content -->
     <div id="page-content-wrapper">
+        <table style="width:100%">
+            <tr>
+                <th style="text-align: left;"><p class="NameText" style="font-weight: normal;">Uw opdracht</p></th>
+                <th style="text-align: right;">
+
+                    <?php if ($user->getPermission($permgroup, 'CAN_USE_STATUSPORTAL') == 1) { ?>
+                        <a href="?page=deleteitem&id=<?= $_GET['id'] ?>">
+                            <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
+                                <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span>Verwijder item
+                            </button>
+                        </a>
+                    <?php } ?>
+
+                </th>
+            </tr>
+        </table>
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
-                    <p class="NameText">Uw opdracht</p>
 
                     <hr size="1">
 

@@ -388,5 +388,23 @@ class DbMail extends Database
         return false;
     }
 
+    /**
+     * Delete item uit de database met (meegegeven) id
+     *
+     * @param $id
+     * @return bool
+     */
+
+    public function deleteItemByID($id)
+    {
+        $sql = "DELETE mail, usermail FROM mail INNER JOIN usermail WHERE mail.id = usermail.mailid and mail.id = '{$id}'";
+
+        $result = $this->dbQuery($sql);
+
+        if ($result) {
+            return true;
+        }
+        return false;
+    }
 
 }
