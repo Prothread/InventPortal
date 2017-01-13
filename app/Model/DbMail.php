@@ -32,6 +32,15 @@ class DbMail extends Database
 
             $imgarray = (explode(", ", $mail->getImage()));
 
+            $imageController = new ImageController();
+            $imageID = $imageController->getNewId();
+            $imageID = $imageID + 1;
+
+            $resetsql = "ALTER TABLE `mail` AUTO_INCREMENT = '{$imageID}'";
+            if($this->dbQuery($resetsql)) {
+                true;
+            }
+
             $myid = $this->dbLastInsertedId();
 
             $i = 0;
@@ -302,6 +311,24 @@ class DbMail extends Database
     public function dbLastInsertedId()
     {
         return $this->connection->insert_id;
+    }
+
+    /**
+     * Geef aan dat het de laatste rij is die geimporteerd wordt in de database
+     *
+     * @return mixed
+     */
+
+    public function getLastID()
+    {
+        $sql = "SELECT id FROM `mail` ORDER BY id DESC LIMIT 1";
+
+        $result = $this->dbQuery($sql);
+        $value = mysqli_fetch_assoc($result);
+
+        if($value) {
+            return $value['id'];
+        }
     }
 
     /**

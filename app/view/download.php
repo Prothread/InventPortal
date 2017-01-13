@@ -17,7 +17,6 @@ $session = new Session();
     } else {
         $block->Redirect('index.php');
         Session::flash('error', 'De afbeelding kan nog niet gedownload worden.');
-        return false;
     }
     if ($user->getPermission($permgroup, 'CAN_ACCORD') == 1 && $myimage['downloadable'] == '1') {
 

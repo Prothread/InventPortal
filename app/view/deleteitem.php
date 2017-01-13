@@ -1,6 +1,6 @@
 <?php
 #DELETES ITEM
-if ($user->getPermission($permgroup, 'CAN_USE_ITEM_DELETE') == 1) {
+if ($user->getPermission($permgroup, 'CAN_USE_ITEM_DELETE') == '1') {
 
 } else {
     $block->Redirect('index.php');

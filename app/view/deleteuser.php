@@ -22,7 +22,6 @@ else {
     Session::flash('error', 'U heeft geen rechten om deze gebruiker te bewerken');
     return false;
 }
-return false;
 $user->delete($id);
 
 if($myclient['permgroup'] == '1') {
