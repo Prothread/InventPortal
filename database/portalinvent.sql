@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 10, 2017 at 01:42 PM
+-- Generation Time: Jan 13, 2017 at 01:10 PM
 -- Server version: 10.1.19-MariaDB
 -- PHP Version: 7.0.13
 
@@ -130,7 +130,13 @@ INSERT INTO `permissions` (`id`, `permission`, `Klant`, `Gebruiker`, `Beheerder`
 (14, 'CAN_EDIT_USER', 0, 0, 0, 1, 1),
 (15, 'CAN_ADD_INTERN_COMMENT', 0, 0, 1, 1, 1),
 (16, 'CAN_USE_STATUSPORTAL', 0, 0, 1, 1, 1),
-(17, 'CAN_BE_EDITED', 1, 1, 1, 1, 0);
+(17, 'CAN_BE_EDITED', 1, 1, 1, 1, 0),
+(18, 'CAN_RESET_CLIENT_PASSWORD', 0, 1, 1, 1, 1),
+(19, 'CAN_RESET_USER_PASSWORD	', 0, 0, 1, 1, 1),
+(20, 'CAN_SHOW_USERIP', 0, 1, 1, 1, 1),
+(21, 'CAN_DELETE_CLIENT', 0, 1, 1, 1, 1),
+(22, 'CAN_DELETE_USER', 0, 0, 0, 1, 1),
+(23, 'CAN_USE_ITEM_DELETE', 0, 1, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -212,18 +218,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `profimg`, `naam`, `email`, `altmail`, `paswoord`, `permgroup`, `bedrijfsnaam`, `adres`, `postcode`, `plaats`, `paswoordvergeten`, `passresetdate`) VALUES
-(1, 'profile.png', 'Admin', 'madalcomedia@gmail.com', '', 'da1bf1780c5d00bcb03553ebd4b5ae3adb73aa09678b5d58759fba9216a0544d', 4, '', '', '', '', '', '0000-00-00 00:00:00'),
-(2, 'profile.png', 'Beheerder', 'kevin.herdershof@hotmail.com', '', 'f6ed7a7e5c17493408200f770c915d88441daeb5bb39a28fefdd9e4a2f6a117f', 5, '', 'Nieuwe Karnemelkstraat 27', '4576BT', 'Koewacht', '', '0000-00-00 00:00:00'),
-(3, 'profile.png', 'fasd', 'ffsad@hofdas.nl', '', 'ddba4b93d111c8993f64f23f373b90c417cebaa98492305fc2a5f35495ff0a2f', 1, '', '', '', '', '', '0000-00-00 00:00:00'),
-(4, 'profile.png', 'fasd', 'fsda@Jfldas.nl', '', 'a38d0a5b36636968ceadcdda4fbd04a499e4c189a8c661a06a2ba35aef60ac28', 1, '', '', '', '', '', '0000-00-00 00:00:00'),
-(5, 'profile.png', 'captain jack', 'captainjackers@jackkkk.nl', '', '6d5a8ebcccf09ae1276bd219ef6a6cbfc48010e12f33cf793cd49bcf3a501618', 1, '', '', '', '', '', '0000-00-00 00:00:00'),
-(6, 'profile.png', 'newone', 'newone@asdf.nl', '', '4df2671984e3fd26524c66efacacc119432c2b3aa370493a5066288ee9c868bb', 1, '', '', '', '', '', '0000-00-00 00:00:00'),
-(7, 'profile.png', 'fsda', 'fasd@fdsa.nl', '', 'c3167bb0aa72117b954060bf9668746027189a357d9b86108dd727c785a30d9f', 1, '', '', '', '', '', '0000-00-00 00:00:00'),
-(8, 'profile.png', 'fdsa', 'fafdsasd@fdsa.nl', '', '853963c3a1d911fbce779d55692f056dbba9a4a914e8f460fbb395c9585e6a8c', 1, '', '', '', '', '', '0000-00-00 00:00:00'),
-(9, 'profile.png', 'fsda', 'ripjer@fd.nl', '', '36dc84507928fb57cfc85a579690376d1d602e1caee72c1fecff9d73e3fc2fd9', 1, '', '', '', '', '', '0000-00-00 00:00:00'),
-(10, 'profile.png', 'need more', 'clients@lel.nl', '', 'fbda1b79ef9153e8ef324f6542f791d543608f5ee056a55ff7587467dcfbf2e0', 1, '', '', '', '', '', '0000-00-00 00:00:00'),
-(11, 'profile.png', 'k boi', 'maareh@ja.nl', '', '6da09a9a7a9fa101f0cd33bd298fa8c426058ba8c11aa09e862f861ac5592570', 1, '', '', '', '', '', '0000-00-00 00:00:00'),
-(12, 'profile.png', 'k beyy', 'datester@yeaboy.nl', '', '1fb722df47deb9ed623a7bdb052fe9a7059dc4346741d8b700aa98e305bb17c4', 1, '', '', '', '', '', '0000-00-00 00:00:00');
+(1, 'profile.png', 'SuperAdmin', 'madalcomedia@gmail.com', '', 'da1bf1780c5d00bcb03553ebd4b5ae3adb73aa09678b5d58759fba9216a0544d', 5, '', '', '', '', '', '0000-00-00 00:00:00');
 
 --
 -- Indexes for dumped tables
@@ -314,7 +309,7 @@ ALTER TABLE `permgroup`
 -- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 --
 -- AUTO_INCREMENT for table `status_item`
 --
@@ -329,7 +324,7 @@ ALTER TABLE `usermail`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

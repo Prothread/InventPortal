@@ -1,9 +1,3 @@
-<form method="post" action="?page=lala" class="dropzone" id="mydropzone" enctype='multipart/form-data'>
-
-    <div id="dropzonePreview"></div>
-    <input type="button" id="sbmtbtn" value="submit"/>
-
-</form>
 <?php
 #UPLOAD PAGE
 

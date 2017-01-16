@@ -39,6 +39,11 @@ class Database
         $this->connection = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME) or die("There was a problem connecting to the database");
     }
 
+    public function getConnection()
+    {
+        return $this->connection;
+    }
+
     /**
      * Korte beschrijving van de method dbQuery
      *

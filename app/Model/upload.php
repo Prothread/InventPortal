@@ -11,7 +11,6 @@ if ($user->getPermission($permgroup, 'CAN_UPLOAD') == 1) {
 $mysqli = mysqli_connect();
 
 $title = mysqli_real_escape_string($mysqli, $_POST['title']);
-$sender = mysqli_real_escape_string($mysqli, $_POST['fromname']);
 $description = mysqli_real_escape_string($mysqli, $_POST['additionalcontent']);
 
 if (isset($_SESSION['clientid'])) {
@@ -20,6 +19,7 @@ if (isset($_SESSION['clientid'])) {
     $clientid = mysqli_real_escape_string($mysqli, $_POST['client']);
 }
 $client = $user->getUserById($clientid);
+$sender = $client['naam'];
 
 $name = mysqli_real_escape_string($mysqli, $client['naam']);
 
@@ -38,8 +38,15 @@ $block = new BlockController();
 if (isset($_POST['id'])) {
     $imageId = $_POST['id'];
 } else {
-    $imageId = $imageFileName->getNewId();
-    $imageId = $imageId + 1;
+    $dbmail = new DbMail();
+
+    if($dbmail->getIncrement()) {
+        $imageId = $dbmail->getIncrement();
+    }
+    else {
+        $imageId = $imageFileName->getNewId();
+        $imageId = $imageId + 1;
+    }
 }
 
 $error = 0;
@@ -99,10 +106,23 @@ if (isset($_FILES['myFile'])) {
                 array_push($images, $test);
             }
 
-        } else {
+        }
 
+    }
+
+    foreach($images as $image) {
+        $target_dir = "../app/uploads/";
+        $fullPath = $target_dir . $image;
+        
+        if(file_exists($fullPath)) {
+            true;
+        }
+        else {
+            echo '<div class="alert alert_error">De bestanden konden niet geüpload worden</div>';
+            return false;
         }
     }
+
 }
 
 if ($error == 0) {

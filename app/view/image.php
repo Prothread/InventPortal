@@ -18,7 +18,7 @@ if (isset($_GET['img'])) {
     $image = $_GET['img'];
     $image = strip_tags($image);
 
-    $stamp = imagecreatefrompng(DIR_PUBLIC . 'proef_groot.png');
+    $stamp = imagecreatefrompng(DIR_PUBLIC . 'proefer.png');
     //$im = imagecreatefromjpeg(DIR_IMAGE . $image);
 
     $fullPath = DIR_IMAGE . $image;

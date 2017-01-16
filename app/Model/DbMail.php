@@ -32,15 +32,6 @@ class DbMail extends Database
 
             $imgarray = (explode(", ", $mail->getImage()));
 
-            $imageController = new ImageController();
-            $imageID = $imageController->getNewId();
-            $imageID = $imageID + 1;
-
-            $resetsql = "ALTER TABLE `mail` AUTO_INCREMENT = '{$imageID}'";
-            if($this->dbQuery($resetsql)) {
-                true;
-            }
-
             $myid = $this->dbLastInsertedId();
 
             $i = 0;
@@ -93,7 +84,7 @@ class DbMail extends Database
                 `email` = '{$mail->getMailEmail()}', `key` = '{$mail->getToken()}', `datum` = '{$mail->getDatum()}',
                 `verified` = '{$mail->getVerified()}' WHERE `id`= '{$mail->getMailId()}'";
 
-        if ($mail->getAnswer() !== null) {
+        if ($mail->getAnswer()) {
             $sql = "UPDATE `mail` SET `answer` = '{$mail->getAnswer()}', `key` = '{$mail->getToken()}' , `verified` = '{$mail->getVerified()}' WHERE `id` = '{$mail->getMailId()}'";
 
             if ($this->dbQuery($sql)) {
@@ -432,6 +423,20 @@ class DbMail extends Database
             return true;
         }
         return false;
+    }
+
+    public function getIncrement()
+    {
+        $sql = "SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'portalinvent' AND TABLE_NAME = 'mail'";
+        //Als je maar aan 1 database gelinkt ben:
+        // $sql = "SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'mail'";
+
+        $result = $this->dbQuery($sql);
+        $value = mysqli_fetch_assoc($result);
+
+        if($value) {
+            return $value['AUTO_INCREMENT'];
+        }
     }
 
 }

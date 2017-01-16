@@ -1,62 +1,52 @@
 <?php
-/*
-if (isset($_FILES['myFile'])) {
-    $error = 0;
+#VERWERKT UPLOAD PROCESS
 
-    $myFile = $_FILES['myFile'];
-    $fileCount = count($myFile["name"]);
+if ($user->getPermission($permgroup, 'CAN_UPLOAD') == 1) {
 
-    $images = array();
-    $unique_names = array();
+} else {
+    $block->Redirect('index.php');
+    Session::flash('error', 'U heeft hier geen rechten voor.');
+}
 
-    for ($i = 0; $i < $fileCount; $i++) {
+$mysqli = mysqli_connect();
 
-        $test = $myFile['name'][$i];
-        $test1 = $myFile['tmp_name'][$i];
+$title = mysqli_real_escape_string($mysqli, $_POST['title']);
+$description = mysqli_real_escape_string($mysqli, $_POST['additionalcontent']);
 
-        $target_dir = "../app/uploads/";
-        $target_file = $target_dir . $test;
-        $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
+if (isset($_SESSION['clientid'])) {
+    $clientid = $_SESSION['clientid'];
+} else {
+    $clientid = mysqli_real_escape_string($mysqli, $_POST['client']);
+}
+$client = $user->getUserById($clientid);
+$sender = $client['naam'];
 
-        if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "pdf") {
-            $error = 1;
-        }
+$name = mysqli_real_escape_string($mysqli, $client['naam']);
 
-        if ($myFile["size"][$i] > 10485760) {
-            $error = 1;
-            header('Location: index.php?page=uploadoverview');
-            Session::flash('message', 'Het geüploade bestand is te groot');
-        }
+if ($client['altmail']) {
+    $email = $client['altmail'];
+} else {
+    $email = $client['email'];
+}
 
-        if ($error == 0) {
-            $unique_name = pathinfo($test, PATHINFO_FILENAME) . "_" . ($imageId) . '.' . $imageFileType;
-            $unique_name = preg_replace('/\s+/', '-', $unique_name);
-            $uniqfile = $target_dir . $unique_name;
+$comment = mysqli_real_escape_string($mysqli, $_POST['interncomment']);
+$commentgroep = mysqli_real_escape_string($mysqli, $_POST['commentgroep']);
 
-            if(file_exists($uniqfile)) {
-                $uniq = pathinfo($uniqfile);
-                $unique_name = $uniq['filename'] . "-1" . '.' . $uniq['extension'];
-                $uniqfile = $target_dir . $unique_name;
-            }
+$imageFileName = new ImageController();
+$block = new BlockController();
 
-            array_push($unique_names, $unique_name);
-            $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
+if (isset($_POST['id'])) {
+    $imageId = $_POST['id'];
+} else {
+    $imageId = $imageFileName->getNewId();
+    $imageId = $imageId + 1;
+}
 
-            if (move_uploaded_file($test1, $uniqfile)) {
-                array_push($images, $test);
-            }
-
-        } else {
-
-        }
-    }
-}*/
+$error = 0;
 
 $images = array();
 $imageId = 1;
 if(!empty($_FILES)){
-
-    $error = 0;
 
     $targetDir = "../app/uploads/";
     $myFile = $_FILES['file'];
@@ -94,4 +84,177 @@ if(!empty($_FILES)){
         array_push($images, $test);
     }
 
+}
+
+if ($error == 0) {
+    $mymail = new MailController();
+
+//Generate a random string.
+    $token = openssl_random_pseudo_bytes(16);
+//Convert the binary data into hexadecimal representation.
+    $token = bin2hex($token);
+
+//Load PHPMailer dependencies
+    require_once DIR_MAILER . 'PHPMailerAutoload.php';
+    require_once DIR_MAILER . 'class.phpmailer.php';
+    require_once DIR_MAILER . 'class.smtp.php';
+
+//Load Mail account settings
+    require_once DIR_MODEL . 'MailSettings.php';
+
+    if (isset($_POST['submit'])) {
+
+        /* Create phpmailer and add the image to the mail */
+        $mailer = new PHPMailer();
+        $mailer->addEmbeddedImage(DIR_PUBLIC . $admin['Logo'], "HeaderImage", "Logo.png");
+
+        /* TO, SUBJECT, CONTENT */
+        $to = $email; //The 'To' field
+        $subject = $title;
+
+        $link = $admin['Host'] . "/index.php?page=verify&id=$imageId&key=$token";
+
+        $header = ' <div style="background: ' . $admin['Header'] . '; position:relative; width: 100%; height: 130px;">
+                        <div style="position: absolute; height: 130px; margin-right: 25px; left: 5px;">
+                            <img src="cid:HeaderImage" style="width:auto;height:75%;" />
+                        </div>
+                    </div> ';
+        $content = $header . "  <br/><br/>" . "Geachte " . $name . "," .
+            " <br/><br/>" . "Uw proef staat te wachten op goedkeuring in het <b>Madalco Portaal!</b>" . "<br /><br />" .
+            "<b>Onderwerp van uw proef:</b> " .
+            $title . "<br />" .
+
+            "<b>Beschrijving:</b> " .
+            $description .
+
+            "<br /><br />" . "U kunt uw proef " . "<a href='$link'>hier</a> " . "goedkeuren." .
+
+            "<br /> <br />Met vriendelijke groet, <br />" . $sender . " </br>Madalco Media" .
+            "<br /> <br /><b>Disclaimer:</b> This is an automatically generated mail. Please do not reply to this email";
+
+        $altcontent = "Geachte " . $name . "," .
+            " <br/><br/>" . "Uw proef staat te wachten op goedkeuring in het <b>Madalco Portaal!</b>" . "<br /><br />" .
+            "<b>Onderwerp van uw proef:</b> " .
+            $title . "<br />" .
+
+            "<b>Beschrijving:</b> " .
+            $description .
+
+            "<br /><br />" . "U kunt uw proef " . "hier: $link " . "goedkeuren." .
+
+            "<br /> <br />Met vriendelijke groet, <br />" . $sender . " </br>Madalco Media" .
+            "<br /> <br /><b>Disclaimer:</b> This is an automatically generated mail. Please do not reply to this email";
+
+//SMTP Configuration
+        $mailer->isSMTP();
+        $mailer->SMTPAuth = true; //We need to authenticate
+        $mailer->Host = $smtp['host'];
+        $mailer->Port = $smtp['port'];
+        $mailer->Username = $smtp['username'];
+        $mailer->Password = $smtp['password'];
+        $mailer->SMTPSecure = $smtp['secure'];
+
+//Now, send mail :
+//From - To :
+        $mailer->From = $crendentials['email'];
+        $mailer->FromName = $sender; //Optional
+        $mailer->addAddress($to);  // Add a recipient
+
+//Subject - Body :
+        $mailer->Subject = $subject;
+        $mailer->Body = $content;
+        $mailer->isHTML(true); //Mail body contains HTML tags
+        $mailer->AltBody = $altcontent;
+
+//Saving mail information
+
+        $uniqdbimages = implode(", ", $unique_names);
+
+        if (isset($_POST['id'])) {
+            $myid = $_POST['id'];
+            if ($comment !== null && $comment !== '') {
+                $mailinfo = [
+                    'id' => intval($myid),
+                    'title' => strip_tags($title),
+                    'sender' => intval($_SESSION['usr_id']),
+                    'description' => strip_tags($description),
+                    'name' => intval($clientid),
+                    'email' => strip_tags($to),
+                    'token' => $token,
+                    'images' => strip_tags($uniqdbimages),
+                    'datum' => date('Y-m-d'),
+                    'verified' => 0,
+                    'comment' => $comment,
+                    'commentgroep' => $commentgroep
+                ];
+            } else {
+                $mailinfo = [
+                    'id' => intval($myid),
+                    'title' => strip_tags($title),
+                    'sender' => intval($_SESSION['usr_id']),
+                    'description' => strip_tags($description),
+                    'name' => intval($clientid),
+                    'email' => strip_tags($to),
+                    'token' => $token,
+                    'images' => strip_tags($uniqdbimages),
+                    'datum' => date('Y-m-d'),
+                    'verified' => 0
+                ];
+            }
+        } else {
+            if ($comment !== null && $comment !== '') {
+                $mailinfo = [
+                    'clientid' => intval($clientid),
+                    'title' => strip_tags($title),
+                    'sender' => intval($_SESSION['usr_id']),
+                    'description' => strip_tags($description),
+                    'name' => intval($clientid),
+                    'email' => strip_tags($to),
+                    'token' => $token,
+                    'images' => strip_tags($uniqdbimages),
+                    'datum' => date('Y-m-d'),
+                    'verified' => 0,
+                    'comment' => $comment,
+                    'commentgroep' => $commentgroep
+                ];
+            } else {
+                $mailinfo = [
+                    'clientid' => intval($clientid),
+                    'title' => strip_tags($title),
+                    'sender' => intval($_SESSION['usr_id']),
+                    'description' => strip_tags($description),
+                    'name' => intval($clientid),
+                    'email' => strip_tags($to),
+                    'token' => $token,
+                    'images' => strip_tags($uniqdbimages),
+                    'datum' => date('Y-m-d'),
+                    'verified' => 0
+                ];
+            }
+        }
+        $mailer->SMTPOptions = array(
+            'ssl' => array(
+                'verify_peer' => false,
+                'verify_peer_name' => false,
+                'allow_self_signed' => true
+            )
+        );
+//Check if mail is sent :
+        if (!$mailer->send()) {
+            $block->Redirect('index.php?page=phpmail');
+            Session::flash('error', $mailer->ErrorInfo);
+        }
+        else {
+            //If mail is send, create data and send it to the database
+            if (isset($_POST['id'])) {
+                $mymail->update($mailinfo);
+            } else {
+                $mymail->create($mailinfo);
+            }
+            unset($_SESSION['clientid']);
+
+            $block->Redirect('index.php?page=overview');
+            Session::flash('message', 'Uw bestanden zijn geüpload.');
+        }
+    }
 }
