@@ -25,6 +25,32 @@ $settingsarray = [
     'Host' => $host
 ];
 
+if(isset($_POST['checker'])) {
+    $contactemail = mysqli_real_escape_string($mysqli, $_POST['globalmail']);
+
+    $settingsarray = [
+        'SMTP' => $smtp,
+        'SMTPport' => $smtpport,
+        'Email' => $email,
+        'Mailpass' => $mailpass,
+        'Header' => $header,
+        'Host' => $host,
+        'globalmail' => 1,
+        'contactmail' => $contactemail
+    ];
+}
+else {
+    $settingsarray = [
+        'SMTP' => $smtp,
+        'SMTPport' => $smtpport,
+        'Email' => $email,
+        'Mailpass' => $mailpass,
+        'Header' => $header,
+        'Host' => $host,
+        'globalmail' => 0,
+    ];
+}
+
 $error = 0;
 if (isset($_FILES['fileToUpload'])) {
 

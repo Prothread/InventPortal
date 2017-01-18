@@ -61,6 +61,14 @@ $clientmail = $usermail->getUserMailbyMailID($id);
                 <th style="text-align: right;">
 
                     <?php if ($user->getPermission($permgroup, 'CAN_USE_ITEM_DELETE') == 1) { ?>
+                        <a data-toggle="modal" data-target="#Weigeritem" href="#">
+                            <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
+                                <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span>Weiger opdracht
+                            </button>
+                        </a>
+                    <?php } ?>
+
+                    <?php if ($user->getPermission($permgroup, 'CAN_USE_ITEM_DELETE') == 1) { ?>
                         <a data-toggle="modal" data-target="#Deleteitem" href="#">
                             <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
                                 <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span>Verwijder item
@@ -830,6 +838,41 @@ $clientmail = $usermail->getUserMailbyMailID($id);
                             <a href="?page=deleteitem&id=<?= $_GET['id'] ?>">
                                 <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
                                     <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span>Verwijder item
+                                </button>
+                            </a>
+                        <?php } ?>
+
+                        <br/>
+                        <br/>
+                    </div>
+                    <div class="modal-footer">
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="Weigeritem" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div style="text-align: center;" class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Opdracht verwijderen</h4>
+                    </div>
+                    <div style="text-align: center;" class="modal-body">
+                        <br>
+
+                        <p> U staat op het punt om het item <b><?= $upload['onderwerp'] ?></b> te weigeren. <br/><br/>
+                            Weet u dit zeker?<br/><br/></p>
+
+                        <?php if ($user->getPermission($permgroup, 'CAN_USE_ITEM_DELETE') == 1) { ?>
+                            <a href="?page=weigeritem&id=<?= $_GET['id'] ?>">
+                                <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
+                                    <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span>Weiger opdrachten
                                 </button>
                             </a>
                         <?php } ?>

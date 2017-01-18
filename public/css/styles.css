@@ -1704,3 +1704,30 @@ tr:nth-child(2n) {
     margin: 4px 0px;
     overflow: hidden;
 }
+.dropzone {
+    border: 0 !important;
+}
+.dz-progress {
+    display:none !important;
+}
+.dropzone .dz-message {
+    text-align: left !important;
+    margin: 0 !important;
+    width:80px;
+}
+.popup {
+    position: fixed;
+    top: 40%;
+    width: 330px;
+    height: 160px;
+    left: 50%;
+    color: black;
+    z-index: 4;
+    text-align: center;
+    line-height: 130px;
+    font-size: 24px;
+    background-color: rgba(255, 255, 255, 0.56);
+    box-shadow: 0 0 4px 1px #5c215d;
+    text-shadow: 0 0 1px black;
+    display:none;
+}

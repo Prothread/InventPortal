@@ -33,12 +33,16 @@ $_SESSION['accordid'] = $myupload['id'];
 $UserMailer = $usermail->getUserMailbyMailID($session->getMailId());
 $verstuurder = $user->getUserById($UserMailer['userid']);
 
-if (isset($verstuurder['altmail']) && $verstuurder['altmail'] !== '') {
-    $_SESSION['mailto'] = $verstuurder['altmail'];
-} else {
-    $_SESSION['mailto'] = $verstuurder['email'];
+if($admin['globalmail']) {
+    $_SESSION['mailto'] = $admin['contactmail'];
 }
-
+else {
+    if (isset($verstuurder['altmail']) && $verstuurder['altmail'] !== '') {
+        $_SESSION['mailto'] = $verstuurder['altmail'];
+    } else {
+        $_SESSION['mailto'] = $verstuurder['email'];
+    }
+}
 ?>
 
 <!-- Page Content -->

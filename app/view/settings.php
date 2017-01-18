@@ -68,9 +68,9 @@ if ($user->getPermission($permgroup, 'CAN_EDIT_SETTINGS') == 1) {
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Globale mail</label>
                         <div class="col-md-4">
-                            <input type="checkbox" name="checker" style="width: 31px; height: 33px; float: left;" id="isGlobalMail" onclick="checkStatus()">
+                            <input type="checkbox" name="checker" style="width: 31px; height: 33px; float: left;" id="isGlobalMail" onclick="checkStatus()" <?php if($admin['globalmail']){ echo 'checked'; } ?>>
                             <div id="Globalmail">
-                                <input class="form-control input-md" id="textinput" maxlength="64" required type="text" name="globalmail" value="<?= $admin['Host'] ?>" placeholder="http://www.madalcomedia.com">
+                                <input class="form-control input-md" id="textinput" maxlength="64" required type="email" name="globalmail" value="<?= $admin['contactmail'] ?>" placeholder="http://www.madalcomedia.com">
                             </div>
                         </div>
                     </div>

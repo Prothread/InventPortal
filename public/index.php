@@ -228,6 +228,9 @@ switch ($page) {
     case 'deleteitem':
         include '../app/view/deleteitem.php';
         break;
+    case 'weigeritem':
+        include '../app/view/weigeritem.php';
+        break;
     default:
         include '../app/view/404.php';
         break;

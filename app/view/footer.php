@@ -4,6 +4,19 @@
 </div>
 </body>
 
+<div id="footer">
+
+<script>
+    $(function() {
+        var span = $('#LoggedInAs');
+        var fontSize = parseInt(span.css('font-size'));
+
+        do {
+            fontSize--;
+            span.css('font-size', fontSize.toString() + 'px');
+        } while (span.width() >= 400);
+    });
+</script>
 
 <script type="text/javascript">
     jQuery(document).ready(function () {
@@ -231,15 +244,19 @@
             data: postForm,
             cache: false,
             success: function (result) {
-                alert('Nieuwe klant aangemaakt');
+                $('.popup').show().fadeOut(3200);
 
-                //alert(result.status);
-                //alert(result.message);
+                alert(result.status);
+                alert(result.message);
 
                 $('.demclients').load('?page=uploadoverview' + ' .demclients', function () {
                     //success load event
                     $("#allclients option:not([value])").remove();
                     $("#allclients").select2();
+                });
+
+                $(function () {
+                    $('#myModal').modal('toggle');
                 });
 
                 /* if(result.status == 'error') {
@@ -249,6 +266,10 @@
                     $('.demclients1').innerText = "Gebruiker is aangemaakt";
                 } */
 
+            },
+            error: function (result) {
+                alert(result['status']);
+                alert(result.status);
             }
         });
         event.preventDefault();
@@ -599,6 +620,6 @@
         $("#wrapper").toggleClass("toggled");
     });
 </script>
-
+</div>
 </html>
 

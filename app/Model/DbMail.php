@@ -84,17 +84,18 @@ class DbMail extends Database
                 `email` = '{$mail->getMailEmail()}', `key` = '{$mail->getToken()}', `datum` = '{$mail->getDatum()}',
                 `verified` = '{$mail->getVerified()}' WHERE `id`= '{$mail->getMailId()}'";
 
+        if($mail->getVerified()) {
+            $sql1 = "UPDATE `usermail` SET `status` = '{$mail->getVerified()}' WHERE `mailid` = '{$mail->getMailId()}'";
+
+            if ($this->dbQuery($sql1)) {
+                true;
+            }
+        }
+
         if ($mail->getAnswer()) {
             $sql = "UPDATE `mail` SET `answer` = '{$mail->getAnswer()}', `key` = '{$mail->getToken()}' , `verified` = '{$mail->getVerified()}' WHERE `id` = '{$mail->getMailId()}'";
 
             if ($this->dbQuery($sql)) {
-
-                $sql1 = "UPDATE `usermail` SET `status` = '{$mail->getVerified()}' WHERE `mailid` = '{$mail->getMailId()}'";
-
-                if ($this->dbQuery($sql1)) {
-                    true;
-                }
-
                 return true;
             }
 
@@ -424,6 +425,50 @@ class DbMail extends Database
         }
         return false;
     }
+
+    /**
+     * Weiger het item (bv als de klant het heeft goedgekeuren, maar het is nog niet helemaal goed)
+     *
+     * @param $id
+     * @return mixed
+     */
+
+    public function weigerItemByID($id)
+    {
+        $sql = "UPDATE `mail` SET `verified`= '3' WHERE `id` = '{$id}'";
+
+        if ($this->dbQuery($sql)) {
+            $sql1 = "UPDATE `usermail` SET `status`= '3' WHERE `id` = '{$id}'";
+
+            if($this->dbQuery($sql1)) {
+                true;
+            }
+            $sql2 = "SELECT * FROM `image` WHERE `mailid` = '20' AND `version` = (SELECT MAX(`version`) FROM `image`) ORDER BY `version` DESC";
+
+            if($result = $this->dbQuery($sql2)) {
+                $images = mysqli_fetch_all($result, MYSQLI_ASSOC);
+                var_dump($images);
+
+                foreach($images as $image) {
+                    $imageid = $image['id'];
+
+                    $sql3 = "UPDATE `image` SET `verify`= '0' WHERE `id` = '{$imageid}'";
+                    if ($this->dbQuery($sql3)) {
+                        true;
+                    }
+                }
+
+            }
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Haal het cijfer op die als volgende in de tabel van `mail` komt te staan
+     *
+     * @return mixed
+     */
 
     public function getIncrement()
     {
