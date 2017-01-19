@@ -81,7 +81,7 @@ if (isset($_FILES['myFile'])) {
             $error = 1;
         }
 
-        if ($myFile["size"][$i] > 10485760) {
+        if ($myFile["size"][$i] > 15728640) {
             $error = 1;
             header('Location: index.php?page=uploadoverview');
             Session::flash('message', 'Het geüploade bestand is te groot');
