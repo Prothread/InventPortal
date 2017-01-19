@@ -43,6 +43,15 @@ else {
         $_SESSION['mailto'] = $verstuurder['email'];
     }
 }
+
+if(isset($_SESSION['accorduserid'])) {
+    $leclient = $user->getUserById($_SESSION['accorduserid']);
+    $clientname = $leclient['naam'];
+}
+else {
+    $leclient = $user->getUserById($_SESSION['usr_id']);
+    $clientname = $leclient['naam'];
+}
 ?>
 
 <!-- Page Content -->
@@ -283,7 +292,7 @@ else {
 
                         <div id="verify" style="display: none" class="alert alert-info" role="alert"></div>
 
-                        <input type="hidden" name="fromname" id="" value="Kevin Ernst">
+                        <input type="hidden" name="fromname" id="" value="<?= $clientname ?>">
                         <!--<input type="hidden" name="mailto" id="" value="kevin.herdershof@hotmail.com">-->
 
 

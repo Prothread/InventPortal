@@ -19,5 +19,5 @@ if (isset($_GET['id'])) {
 }
 
 $item->weigerItemByID($id);
-$block->Redirect($_SERVER['HTTP_REFERER']);
-Session::flash('message', 'Item is gewijzigd.');
+$block->Redirect('index.php?page=item&id=' . $id);
+Session::flash('info', 'Item is gewijzigd.');

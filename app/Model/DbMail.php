@@ -452,7 +452,7 @@ class DbMail extends Database
                 foreach($images as $image) {
                     $imageid = $image['id'];
 
-                    $sql3 = "UPDATE `image` SET `verify`= '0' WHERE `id` = '{$imageid}'";
+                    $sql3 = "UPDATE `image` SET `verify`= '2' WHERE `id` = '{$imageid}'";
                     if ($this->dbQuery($sql3)) {
                         true;
                     }

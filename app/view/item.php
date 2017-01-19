@@ -753,7 +753,7 @@ $clientmail = $usermail->getUserMailbyMailID($id);
                                                     <ul class="dropdown-menu">
                                                         <?php if ($img['downloadable'] == 1 || substr($img['images'], -3) == 'pdf') { ?>
                                                             <li>
-                                                                <a href="?page=download&file=<?= $img['images']; ?>">Download</a>
+                                                                <a href="?page=download&file='<?= $img['images']; ?>'">Download</a>
                                                             </li>
                                                         <?php } else { ?>
                                                             <?php if ($user->getPermission($permgroup, 'CAN_EDIT_ACCORD') == 1) { ?>

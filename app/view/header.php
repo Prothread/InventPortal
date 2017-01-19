@@ -8,8 +8,9 @@ $user = new UserController();
 $block = new BlockController();
 require_once DIR_MODEL . 'permissions.php';
 
-if (isset($_SESSION['usr_name'])) {
-    $myuser = $_SESSION['usr_name'];
+if (isset($_SESSION['usr_id'])) {
+    $myuser = $user->getUserById($_SESSION['usr_id']);
+    $myuser = $myuser['naam'];
 } else if (isset($user)) {
     $thisuser = $user->getUserById($session->getUserId());
     $myuser = $thisuser['naam'];

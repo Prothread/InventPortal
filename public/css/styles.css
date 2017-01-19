@@ -684,6 +684,11 @@ table {
     background-color: #ce8f97;
     border-color: #ce8f97;
 }
+.alert_info {
+    color: #2c3884;
+    background-color: #c5edff;
+    border-color: #c5edff;
+}
 
 #thumbnail2 {
     background-size: 100px, 100%;

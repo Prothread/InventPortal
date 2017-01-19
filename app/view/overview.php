@@ -14,6 +14,14 @@ if (isset($_SESSION['uploads'])) {
 } else {
     $get_filled_info = $uploads->getUploads();
 }
+if(isset($_SESSION['accorduserid'])) {
+    $leclient = $user->getUserById($_SESSION['accorduserid']);
+    $clientname = $leclient['naam'];
+}
+else {
+    $leclient = $user->getUserById($_SESSION['usr_id']);
+    $clientname = $leclient['naam'];
+}
 ?>
 <div class="container">
     <div id="page-content-wrapper">
