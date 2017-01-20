@@ -658,4 +658,16 @@ class Mail
         return $this->db->deleteItemByID($id);
     }
 
+    /**
+     * Delete image met een (meegegeven) id
+     *
+     * @param $id
+     * @return bool
+     */
+
+    public function deleteItemImageByID($id)
+    {
+        return $this->db->deleteItemImageByID($id);
+    }
+
 }

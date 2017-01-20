@@ -425,6 +425,18 @@ class DbMail extends Database
         return false;
     }
 
+    public function deleteItemImageByID($id)
+    {
+        $sql = "DELETE FROM image WHERE mailid = '{$id}'";
+
+        $result = $this->dbQuery($sql);
+
+        if ($result) {
+            return true;
+        }
+        return false;
+    }
+
     public function getIncrement()
     {
         $sql = "SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'portalinvent' AND TABLE_NAME = 'mail'";

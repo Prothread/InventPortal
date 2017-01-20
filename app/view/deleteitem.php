@@ -19,5 +19,6 @@ if (isset($_GET['id'])) {
 }
 
 $item->deleteItemByID($id);
+$item->deleteItemImageByID($id);
 $block->Redirect('?page=overview');
 Session::flash('message', 'Item is verwijderd.');

@@ -204,4 +204,17 @@ class MailController
         return $this->model->deleteItemByID($id);
     }
 
+    /**
+     * Delete image met een (meegegeven) id
+     *
+     * @param $id
+     * @return bool
+     */
+
+    public function deleteItemImageByID($id)
+    {
+        return $this->model->deleteItemImageByID($id);
+    }
+
+
 }
