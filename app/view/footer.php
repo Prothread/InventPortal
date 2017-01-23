@@ -240,14 +240,17 @@
 
         $.ajax({
             type: "POST",
+            dataType: 'json',
             url: "?page=clientmail",
             data: postForm,
             cache: false,
             success: function (result) {
-                $('.popup').show().fadeOut(3200);
+                //$('.popup').show().fadeOut(3200);
 
-                alert(result.status);
-                alert(result.message);
+                //alert(result);
+                //alert(result.message);
+
+                $('.demclients1').load('?page=uploadoverview .demclients1');
 
                 $('.demclients').load('?page=uploadoverview' + ' .demclients', function () {
                     //success load event
@@ -259,17 +262,11 @@
                     $('#myModal').modal('toggle');
                 });
 
-                /* if(result.status == 'error') {
-                    $('.demclients1').innerText = result.message;
-                }
-                else {
-                    $('.demclients1').innerText = "Gebruiker is aangemaakt";
-                } */
-
             },
             error: function (result) {
-                alert(result['status']);
-                alert(result.status);
+                alert('something went wrong');
+                //alert(result['status']);
+                //alert(result.status);
             }
         });
         event.preventDefault();

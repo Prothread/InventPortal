@@ -421,6 +421,12 @@ class DbMail extends Database
         $result = $this->dbQuery($sql);
 
         if ($result) {
+            $sql1 = "DELETE FROM `image` WHERE `mailid` = '{$id}'";
+
+            if($this->dbQuery($sql1)) {
+                true;
+            }
+
             return true;
         }
         return false;
@@ -443,11 +449,10 @@ class DbMail extends Database
             if($this->dbQuery($sql1)) {
                 true;
             }
-            $sql2 = "SELECT * FROM `image` WHERE `mailid` = '20' AND `version` = (SELECT MAX(`version`) FROM `image`) ORDER BY `version` DESC";
+            $sql2 = "SELECT * FROM `image` WHERE `mailid` = '{$id}' AND `version` = (SELECT MAX(`version`) FROM `image`) ORDER BY `version` DESC";
 
             if($result = $this->dbQuery($sql2)) {
                 $images = mysqli_fetch_all($result, MYSQLI_ASSOC);
-                var_dump($images);
 
                 foreach($images as $image) {
                     $imageid = $image['id'];
