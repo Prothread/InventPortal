@@ -67,6 +67,7 @@ $open_items = $get_items_openstaand['COUNT(status)'];
 
 $_SESSION['geaccepteerd_percent'] = $get_items_geaccepteerd['COUNT(status)'];
 $_SESSION['geweigerd_percent'] = $get_items_geweigerd['COUNT(status)'];
+var_dump($_SESSION['unique_names']);
 ?>
 
 <div id="page-content-wrapper">

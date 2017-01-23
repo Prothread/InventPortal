@@ -100,7 +100,6 @@ if (isset($_FILES['myFile'])) {
             }
 
             array_push($unique_names, $unique_name);
-            $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
 
             if (move_uploaded_file($test1, $uniqfile)) {
                 array_push($images, $test);

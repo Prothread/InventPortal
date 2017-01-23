@@ -10,7 +10,6 @@ if ($user->getPermission($permgroup, 'CAN_CREATE_CLIENT') == 1) {
 
 $mysqli = mysqli_connect();
 
-$user = new UserController();
 $myuser = mysqli_real_escape_string($mysqli, $_SESSION['usr_name']);
 
 if (isset($_SESSION['usr_name'])) {
@@ -173,6 +172,11 @@ if ($mailexist == null || empty($mailexist)) {
         } else {
             $block->Redirect('index.php?page=manageclients');
         }
+
+        $response = array();
+        $response['status'] = 'success';
+        $response['message'] = 'Nieuwe klant is aangemaakt';
+        echo json_encode($response);
     }
 
 } else {
