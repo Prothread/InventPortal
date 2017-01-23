@@ -75,6 +75,9 @@ switch ($page) {
     case 'lala':
         include '../app/view/lala.php';
         break;
+    case 'lala1':
+        include '../app/view/lala1.php';
+        break;
     case 'overview':
         include '../app/view/overview.php';
         break;

@@ -80,11 +80,13 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);
                                             <label class="col-md-4 control-label" for="textinput">Bestanden
                                                 uploaden</label>
                                             <div class="col-md-4">
-                                                <label for="file-upload" class="custom-file-upload">
-                                                    <i class="fa fa-cloud-upload"></i> Uploaden
-                                                </label>
-                                                <input required type="file" name="myFile[]" class="imgInp"
-                                                       id="file-upload" multiple>
+                                                <div class="dz-default dz-message">
+                                                    <span>
+                                                        <label class="custom-file-upload">
+                                                            <i class="fa fa-cloud-upload"></i> Uploaden
+                                                        </label>
+                                                    </span>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -97,6 +99,7 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);
 
                                         <br>
                                     </fieldset>
+
                                     <ul class="list-inline pull-right">
                                         <li>
                                             <button type="button" class="btn btn-primary next-step">Volgende</button>
@@ -194,7 +197,7 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);
 
                                     <ul class="list-inline pull-right">
                                         <li>
-                                            <input type="button" id="sbmtbtn" value="submit"/>
+                                            <button type="submit" id="sbmtbtn">Versturen</button>
                                         </li>
                                     </ul>
 
@@ -332,12 +335,17 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);
     </div>
 
     <script>
+
+        var postForm = [];
+
         Dropzone.options.mydropzone = {
             addRemoveLinks: true,
             autoProcessQueue: false, // this is important as you dont want form to be submitted unless you have clicked the submit button
             autoDiscover: false,
             paramName: 'file', // this is optional Like this one will get accessed in php by writing $_FILE['pic'] // if you dont specify it then bydefault it taked 'file' as paramName eg: $_FILE['file']
             previewsContainer: '#dropzonePreview', // we specify on which div id we must show the files
+            maxFilesize: 10, // MB
+            acceptedFiles: "image/png, image/jpeg, image/gif, application/pdf",
             accept: function(file, done) {
                 console.log("uploaded");
                 done();
@@ -349,10 +357,16 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);
 
                 this.on("queuecomplete", function () {
                     this.options.autoProcessQueue = false;
+                    //window.location = 'index.php?page=lala1';
                 });
 
                 this.on("processing", function () {
                     this.options.autoProcessQueue = true;
+                });
+
+                this.on("error", function(file, message) {
+                    alert(message);
+                    this.removeFile(file);
                 });
 
                 var myDropzone = this;
@@ -360,11 +374,13 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);
                 $("#sbmtbtn").on('click',function(e) {
                     e.preventDefault();
                     myDropzone.processQueue(); // this will submit your form to the specified action path
-                    // after this, your whole form will get submitted with all the inputs + your files and the php code will remain as usual
-                    //REMEMBER you DON'T have to call ajax or anything by yourself, dropzone will take care of that
                 });
 
-            } // init end
+            }, // init end
+
+            success: function( file, response ){
+                console.log(response);
+            }
 
         };
 
