@@ -6,18 +6,6 @@
 
 <div id="footer">
 
-<script>
-    $(function() {
-        var span = $('#LoggedInAs');
-        var fontSize = parseInt(span.css('font-size'));
-
-        do {
-            fontSize--;
-            span.css('font-size', fontSize.toString() + 'px');
-        } while (span.width() >= 400);
-    });
-</script>
-
 <script type="text/javascript">
     jQuery(document).ready(function () {
         jQuery("#password").keyup(function () {
@@ -65,9 +53,6 @@
 </script>
 
 <script>
-    $(document).ready(function () {
-    });
-
     if ($('#myChart').length) {
         $.getScript('js/Chart.js', function () {
 
@@ -264,9 +249,10 @@
 
             },
             error: function (result) {
-                alert('something went wrong');
+                alert('Klant kon niet aangemaakt worden');
                 //alert(result['status']);
-                //alert(result.status);
+                alert(result);
+                alert(result.type);
             }
         });
         event.preventDefault();
@@ -403,6 +389,25 @@
         document.getElementById('file-upload').addEventListener('change', handleFileSelect, false);
     }
 
+    if ($('#file-upload1').length) {
+        function handleFileSelect1(evt) {
+            var files = evt.target.files; // FileList object
+
+            // files is a FileList of File objects. List some properties.
+            var output = [];
+            for (var i = 0, f; f = files[i]; i++) {
+
+                output.push('<li><strong>', escape(f.name), '</strong> (', f.type || 'n/a', ') - ',
+                    f.size, ' bytes, last modified: ',
+                    f.lastModifiedDate ? f.lastModifiedDate.toLocaleDateString() : 'n/a',
+                    '</li>');
+            }
+            document.getElementById('list1').innerHTML = '<ul>' + output.join('') + '</ul>';
+        }
+
+        document.getElementById('file-upload1').addEventListener('change', handleFileSelect1, false);
+    }
+
 </script>
 
 <script>
@@ -411,6 +416,42 @@
         $(".imgInp").change(function () {
             if (typeof (FileReader) != "undefined") {
                 var dvPreview = $("#fileList");
+                dvPreview.html("");
+                var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.jpg|.jpeg|.gif|.png|.pdf)$/;
+                $($(this)[0].files).each(function () {
+                    var file = $(this);
+                    if (regex.test(file[0].name.toLowerCase())) {
+                        var reader = new FileReader();
+                        reader.onload = function (e) {
+                            if (file[0].name.indexOf('.pdf') == -1) {
+                                var img = $("<img />");
+                                img.attr("style", "height:200px;width: auto");
+                                img.attr("src", e.target.result);
+                            }
+                            else {
+                                var img = $("<embed />");
+                                img.attr("style", "height:200px;width: auto");
+                                img.attr("src", e.target.result);
+                            }
+                            dvPreview.append(img);
+                        }
+                        reader.readAsDataURL(file[0]);
+                    } else {
+                        alert(file[0].name + " is not a valid image file.");
+                        dvPreview.html("");
+                        return false;
+                    }
+                });
+            } else {
+                alert("This browser does not support HTML5 FileReader.");
+            }
+        });
+    });
+
+    $(function () {
+        $(".imgInp1").change(function () {
+            if (typeof (FileReader) != "undefined") {
+                var dvPreview = $("#fileList1");
                 dvPreview.html("");
                 var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.jpg|.jpeg|.gif|.png|.pdf)$/;
                 $($(this)[0].files).each(function () {

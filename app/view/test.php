@@ -385,3 +385,4 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);
         };
 
     </script>
+

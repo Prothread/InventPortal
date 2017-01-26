@@ -60,17 +60,17 @@ else {
         <div class="row">
             <div class="col-lg-12">
 
-                <p class="NameText">Productaccordering</p>
+                <p class="NameText"><?= TEXT_PRODUCT_ACCORD ?></p>
                 <hr size="1">
 
                 <br/>
-                <p> Onderwerp: <span style="color:#bc2d4c"><?= $myupload['onderwerp']; ?></span></p>
+                <p> <?= TABLE_TITLE ?>: <span style="color:#bc2d4c"><?= $myupload['onderwerp']; ?></span></p>
                 <?php $usr = $user->getUserById($myupload['verstuurder']); ?>
-                <p> Verstuurder: <span style="color:#bc2d4c"><?= $usr['naam'] ?></span></p>
-                <p> Beschrijving: <span style="color:#bc2d4c"><?= $myupload['beschrijving'] ?></span></p>
+                <p> <?= TEXT_SENDER ?>: <span style="color:#bc2d4c"><?= $usr['naam'] ?></span></p>
+                <p> <?= TEXT_DESCRIPTION ?>: <span style="color:#bc2d4c"><?= $myupload['beschrijving'] ?></span></p>
                 <br><br>
 
-                <p> Bestand(en):
+                <p> <?= TEXT_FILES ?>
                         <span style="color:#bc2d4c">
                             <?php
                             $numItems = count($uploadedimages);
@@ -123,24 +123,24 @@ else {
                                                 <div id="akkoord" class="alert1 alert-success"
                                                      style="text-align: center;" role="alert"><span
                                                         class="alert-version"></span><br/><span
-                                                        class="glyphicon glyphicon-ok-circle"></span> Akkoord
+                                                        class="glyphicon glyphicon-ok-circle"></span> <?= BUTTON_ACCORD ?>
                                                 </div>
                                                 <a href="?page=imagecancel&img=<?= $img['id'] ?>">
                                                     <div id="cancel" style="color:black; text-align: center;"
                                                          role="alert"><span
-                                                            class="glyphicon glyphicon-chevron-left"></span> Stap terug
+                                                            class="glyphicon glyphicon-chevron-left"></span> <?= BUTTON_STEP_BACK ?>
                                                     </div>
                                                 </a>
                                             <?php } else if ($session->getImageVerify($img['id']) == 2) { ?>
                                                 <div id="weiger" class="alert1 alert-danger" style="text-align: center;"
                                                      role="alert"><span
                                                         class="alert-version"></span><br/><span
-                                                        class="glyphicon glyphicon-remove-circle"></span> Geweigerd
+                                                        class="glyphicon glyphicon-remove-circle"></span> <?= BUTTON_DECLINE ?>
                                                 </div>
                                                 <a href="?page=imagecancel&img=<?= $img['id'] ?>">
                                                     <div id="cancel" style="color:black; text-align: center;"
                                                          role="alert"><span
-                                                            class="glyphicon glyphicon-chevron-left"></span> Stap terug
+                                                            class="glyphicon glyphicon-chevron-left"></span> <?= BUTTON_STEP_BACK ?>
                                                     </div>
                                                 </a>
                                             <?php } else if ($session->getImageVerify($img['id']) == 3) { ?>
@@ -148,36 +148,36 @@ else {
                                                      style="background-color:lightgrey; color:grey; text-align: center;"
                                                      role="alert"><span
                                                         class="alert-version">Versie <?= $imago['version'] ?></span><br/><span
-                                                        class="glyphicon glyphicon-remove-circle"></span> Gewijzigd
+                                                        class="glyphicon glyphicon-remove-circle"></span> <?= TEXT_EDITED ?>
                                                 </div>
                                             <?php } else { ?>
                                                 <form id="mybuttons" method="post">
                                                     <input type="hidden" id="refreshcount" value="<?= $imgcount ?>">
                                                     <input type="hidden" id="ImageID" value="<?= $img['id'] ?>">
-                                                    <input type="submit" id="AccButton" value="Akkoord">
-                                                    <input type="submit" id="AccButton1" value="Weiger">
+                                                    <input type="submit" id="AccButton" value="<?= BUTTON_ACCORD ?>">
+                                                    <input type="submit" id="AccButton1" value="<?= BUTTON_DECLINE ?>">
                                                 </form>
                                             <?php }
                                         } else if ($imago['verify'] == 1) { ?>
                                             <div id="akkoord" class="alert1 alert-success" style="text-align: center;"
                                                  role="alert"><span
                                                     class="alert-version">Versie <?= $imago['version'] ?></span><br/><span
-                                                    class="glyphicon1 glyphicon-ok-circle"></span> Akkoord
+                                                    class="glyphicon1 glyphicon-ok-circle"></span> <?= BUTTON_ACCORD ?>
                                             </div>
                                         <?php } else if ($imago['verify'] == 3) { ?>
                                             <div id="weiger" class="alert1 alert-info"
                                                  style="background-color:lightgrey; color:grey; text-align: center;"
                                                  role="alert"><span
                                                     class="alert-version">Versie <?= $imago['version'] ?></span><br/><span
-                                                    class="glyphicon glyphicon-remove-circle"></span> Gewijzigd
+                                                    class="glyphicon glyphicon-remove-circle"></span> <?= BUTTON_DECLINE ?>
                                             </div>
                                             <?php
                                         } else { ?>
                                             <form id="mybuttons" method="post">
                                                 <input type="hidden" id="refreshcount" value="<?= $imgcount ?>">
                                                 <input type="hidden" id="ImageID" value="<?= $img['id'] ?>">
-                                                <input type="submit" id="AccButton" value="Akkoord">
-                                                <input type="submit" id="AccButton1" value="Weiger">
+                                                <input type="submit" id="AccButton" value="<?= BUTTON_ACCORD ?>">
+                                                <input type="submit" id="AccButton1" value="<?= BUTTON_DECLINE ?>">
                                             </form>
 
                                             <?php
@@ -261,7 +261,7 @@ else {
 
                             <input disabled="disabled" type="hidden" name="id" value="<?= $myupload['id']; ?>">
 
-                            <p> Omschrijving: <span style="color:#bc2d4c"><?= $myupload['beschrijving'] ?></span>
+                            <p> <?= TEXT_DESCRIPTION ?>: <span style="color:#bc2d4c"><?= $myupload['beschrijving'] ?></span>
                             </p>
 
                             <br>
@@ -282,7 +282,7 @@ else {
 
                         <div id="refer1">
                             <?php if (in_array(2, $verifiedimages)){  } ?>
-                            <label class="control-label" for="textinput" style="float:left;">Opmerking</label>
+                            <label class="control-label" for="textinput" style="float:left;"><?= TEXT_NEW_COMMENT ?></label>
                             <div class="col-md-4">
                                 <input name="answer" class="form-control input-md" id="textinput" type="text">
                             </div><br /><br />
@@ -297,13 +297,12 @@ else {
 
 
                             <br>
-                            <label id="Voorwaarden">Ik heb de <a href="index.php?page=conditions" target="_blank"><span
-                                        style="color:#bc2d4c">algemene voorwaarden</span></a> gelezen en ga hiermee
-                                akkoord</label>
+                            <label id="Voorwaarden"><?= TEXT_BEFORE_TERMS_AND_CONDITIONS ?> <a href="index.php?page=conditions" target="_blank"><span
+                                        style="color:#bc2d4c"><?= TEXT_TERMS_AND_CONDITIONS ?></span></a> <?= TEXT_AFTER_TERMS_AND_CONDITIONS ?></label>
                             <input type="checkbox" name="yeahright" required>
                             <br><br>
 
-                            <input type="submit" id="verstuuracc" name="submit" value="Verstuur">
+                            <input type="submit" id="verstuuracc" name="submit" value="<?= BUTTON_SEND ?>">
 
                             <br><br>
 

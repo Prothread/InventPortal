@@ -67,14 +67,14 @@ $open_items = $get_items_openstaand['COUNT(status)'];
 
 $_SESSION['geaccepteerd_percent'] = $get_items_geaccepteerd['COUNT(status)'];
 $_SESSION['geweigerd_percent'] = $get_items_geweigerd['COUNT(status)'];
-var_dump($_SESSION['unique_names']);
+//var_dump($_SESSION['unique_names']);
 ?>
 
 <div id="page-content-wrapper">
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
-                <p class="NameText">Home</p>
+                <p class="NameText"><?= TEXT_HOME ?></p>
                 <hr size="1">
                 <div class="col-sm-6 col-md-4">
                     <div class="thumbnail">
@@ -83,7 +83,7 @@ var_dump($_SESSION['unique_names']);
                                 <div class="widget-header bg-success"></div>
                                 <div class="widget-body text-center">
                                     <div>
-                                        <p style="text-align: center;">Verschil akkoord & geweigerd</p>
+                                        <p style="text-align: center;"><?= TEXT_DIAGRAM ?></p>
                                         <canvas id="myChart" width="200" height="200"></canvas>
                                     </div>
                                 </div>
@@ -98,7 +98,7 @@ var_dump($_SESSION['unique_names']);
                                 <div class="widget-header bg-success"></div>
                                 <div class="widget-body text-center">
                                     <div>
-                                        <p style="text-align: center;">Alle open opdrachten</p>
+                                        <p style="text-align: center;"><?= TEXT_ASSIGNMENTS ?></p>
                                         <div class="counter overzichtcount" data-count="<?= $open_items ?>">0</div>
                                     </div>
                                 </div>
@@ -112,7 +112,7 @@ var_dump($_SESSION['unique_names']);
                             <div class="caption">
                                 <div class="widget-header bg-success"></div>
                                 <div class="widget-body text-center">
-                                    <p style="text-align: center;">Procent akkoord per persoon</p>
+                                    <p style="text-align: center;"><?= TEXT_DIAGRAM_PERCENTAGE ?></p>
                                     <?php if (isset($p0) && $p0 !== '0') { ?>
                                         <div class="skillbar clearfix" data-percent="<?= $p0 ?>%">
                                             <div class="skillbar-title"
@@ -210,27 +210,27 @@ var_dump($_SESSION['unique_names']);
                                              src="css/madalco.png">
                                         <h3><a href="?page=item&id=<?= $upload['id'] ?>"><?= $upload['onderwerp'] ?></a>
                                         </h3>
-                                        <p>Door:
+                                        <p><?= TEXT_SENDER ?>:
                                             <?php
                                             $usr = $users->getUserById($upload['verstuurder']);
                                             echo $usr['naam'];
                                             ?>
                                         </p>
-                                        <p>Klant:
+                                        <p><?= TEXT_ASSIGNFOR ?>:
                                             <?php
                                             $usr = $users->getUserById($upload['naam']);
                                             echo $usr['naam'];
                                             ?>
                                         </p>
-                                        <p>Datum: <?= date("d-m-Y", strtotime($upload['datum'])); ?></p>
-                                        <p>Status: <?php if ($upload['verified'] == 1) { ?></p>
-                                        <p><span style="Color: #bb2c4c">Gezien</span></p>
+                                        <p><?= TEXT_DATE ?>: <?= date("d-m-Y", strtotime($upload['datum'])); ?></p>
+                                        <p><?= TEXT_PROGRESS ?>: <?php if ($upload['verified'] == 1) { ?></p>
+                                        <p><span style="Color: #bb2c4c"><?= TEXT_SEEN ?></span></p>
                                         <?php } else if ($upload['verified'] == 2) { ?>
-                                            <p><span style="Color: #bb2c4c">Geaccepteerd</span></p>
+                                            <p><span style="Color: #bb2c4c"><?= TEXT_ACCORDED ?></span></p>
                                         <?php } else if ($upload['verified'] == 3) { ?>
-                                            <p><span style="Color: #bb2c4c">Geweigerd</span></p>
+                                            <p><span style="Color: #bb2c4c"><?= TEXT_DECLINED ?></span></p>
                                         <?php } else { ?>
-                                            <p><span style="Color: #bb2c4c">Geüpload</span></p>
+                                            <p><span style="Color: #bb2c4c"><?= TEXT_UPLOADED ?></span></p>
                                         <?php } ?>
                                     </div>
                                 </div>

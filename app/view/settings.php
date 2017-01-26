@@ -13,15 +13,15 @@ if ($user->getPermission($permgroup, 'CAN_EDIT_SETTINGS') == 1) {
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
-                <p class="NameText">Instellingen</p>
+                <p class="NameText"><?= TEXT_SETTINGS ?></p>
                 <br>
                 <br>
-                <p class="ClientFormText">E-mailverkeer</p>
+                <p class="ClientFormText"><?= TEXT_EMAIL_TRAFFIC ?></p>
                 <hr size="1">
                 <form method="post" enctype="multipart/form-data" class="form-horizontal" action="?page=settingsupload">
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">SMTP-adres</label>
+                        <label class="col-md-4 control-label" for="textinput"><?= SMTP_ADRES ?></label>
                         <div class="col-md-4">
                             <input class="form-control input-md" id="textinput" maxlength="64" required type="text"
                                    name="smtp" size="50" value="<?= $admin['SMTP'] ?>">
@@ -29,7 +29,7 @@ if ($user->getPermission($permgroup, 'CAN_EDIT_SETTINGS') == 1) {
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">SMTP-port</label>
+                        <label class="col-md-4 control-label" for="textinput"><?= SMTP_PORT ?></label>
                         <div class="col-md-4">
                             <input class="form-control input-md" id="textinput" maxlength="64" required type="text"
                                    name="smtpport" size="50" value="<?= $admin['SMTPport'] ?>">
@@ -37,7 +37,7 @@ if ($user->getPermission($permgroup, 'CAN_EDIT_SETTINGS') == 1) {
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">E-mailadres</label>
+                        <label class="col-md-4 control-label" for="textinput"><?= TEXT_EMAIL ?></label>
                         <div class="col-md-4">
                             <input class="form-control input-md" id="textinput" maxlength="64" required type="text"
                                    name="email" size="50" value="<?= $admin['Email'] ?>">
@@ -45,7 +45,7 @@ if ($user->getPermission($permgroup, 'CAN_EDIT_SETTINGS') == 1) {
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">E-mailadres wachtwoord</label>
+                        <label class="col-md-4 control-label" for="textinput"><?= TEXT_EMAIL_PASS ?></label>
                         <div class="col-md-4">
                             <input class="form-control input-md" id="textinput" maxlength="64" required type="password"
                                    name="emailpassword" size="50" value="<?= $admin['Mailpass'] ?>">
@@ -53,12 +53,12 @@ if ($user->getPermission($permgroup, 'CAN_EDIT_SETTINGS') == 1) {
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Host</label>
+                        <label class="col-md-4 control-label" for="textinput"><?= WEBSITE_HOST ?></label>
                         <div class="col-md-4">
                             <input class="form-control input-md" id="textinput" maxlength="64" required type="text"
                                    name="host" size="50" value="<?= $admin['Host'] ?>"
                                    placeholder="http://www.madalcomedia.com">
-                            <span style="font-size:16px;">*Host kan ook map bevatten, bv: http://www.madalcomedia.com/Portal</span>
+                            <span style="font-size:16px;">*<?= TEXT_WEBSITE_URL ?></span>
                         </div>
                     </div>
 
@@ -66,7 +66,7 @@ if ($user->getPermission($permgroup, 'CAN_EDIT_SETTINGS') == 1) {
                     <br />
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Globale mail</label>
+                        <label class="col-md-4 control-label" for="textinput"><?= TEXT_GLOBAL_MAIL ?></label>
                         <div class="col-md-4">
                             <input type="checkbox" name="checker" style="width: 31px; height: 33px; float: left;" id="isGlobalMail" onclick="checkStatus()" <?php if($admin['globalmail']){ echo 'checked'; } ?>>
                             <div id="Globalmail">
@@ -95,43 +95,66 @@ if ($user->getPermission($permgroup, 'CAN_EDIT_SETTINGS') == 1) {
                     <br>
 
 
-                    <p class="ClientFormText">Stijlinstellingen</p>
+                    <p class="ClientFormText"><?= TEXT_STYLE_SETTINGS ?></p>
                     <hr size="1">
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Logo uploaden</label>
+                        <label class="col-md-4 control-label" for="textinput"><?= TEXT_HEADER_LOGO ?></label>
                         <div class="col-md-4">
                             <label for="file-upload" class="custom-file-upload">
-                                <i class="fa fa-cloud-upload"></i> Uploaden
+                                <i class="fa fa-cloud-upload"></i> <?= BUTTON_UPLOAD ?>
                             </label>
                             <input type="file" name="fileToUpload" class="imgInp btn btn-primary btn-success"
                                    id="file-upload">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Geselecteerd logo:</label>
+                        <label class="col-md-4 control-label" for="textinput"><?= TEXT_SELECTED_LOGO ?></label>
                         <div class="col-md-4">
                             <div id="fileList"></div>
 
                             <output id="list"></output>
                         </div>
                     </div>
+                    <br />
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Achtergrondkleur header</label>
+                        <label class="col-md-4 control-label" for="textinput"><?= TEXT_BACKGROUND_COLOR_HEADER ?></label>
                         <div class="col-md-4">
                             <input class="form-control input-md" id="textinput" maxlength="64" required type="text"
                                    name="headerkleur" size="50" value="<?= $admin['Header'] ?>"
                                    placeholder="#dd2c4c/rgb(..,..,..)">
                         </div>
                     </div>
+                    <br />
 
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="textinput"><?= TEXT_LOGIN_BACKGROUND ?></label>
+                        <div class="col-md-4">
+                            <label for="file-upload1" class="custom-file-upload">
+                                <i class="fa fa-cloud-upload"></i> <?= BUTTON_UPLOAD ?>
+                            </label>
+                            <input type="file" name="fileToUpload1" class="imgInp1 btn btn-primary btn-success"
+                                   id="file-upload1">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="textinput"><?= TEXT_SELECTED_LOGO ?></label>
+                        <div class="col-md-4">
+                            <div id="fileList1"></div>
+
+                            <output id="list1"></output>
+                        </div>
+                    </div>
+
+                    <br />
+                    <br />
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput"></label>
                         <div class="col-md-4">
                             <input class="btn btn-primary btn-success" name="submit"
                                    style="max-width: 100px; background-color: #bb2c4c; border: 1px solid #bb2c4c"
-                                   type="submit" value="Opslaan">
+                                   type="submit" value="<?= BUTTON_SAVE ?>">
                         </div>
                     </div>
 

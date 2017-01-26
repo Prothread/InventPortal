@@ -18,12 +18,12 @@ $get_filled_info = $user->getAllClients();
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
-                    <p class="NameText">Overzicht</p>
+                    <p class="NameText"><?= TEXT_CLIENT_OVERVIEW ?></p>
                     <hr size="1">
 
                     <?php if ($user->getPermission($permgroup, 'CAN_CREATE_USER') == 1) { ?>
                         <a href="index.php?page=newclient">
-                            <button id="NewClientButton">Nieuwe klant</button>
+                            <button id="NewClientButton"><?= BUTTON_NEWCLIENT ?></button>
                         </a>
                     <?php } ?>
 
@@ -33,12 +33,12 @@ $get_filled_info = $user->getAllClients();
                             <thead>
                             <tr>
                                 <th style="display:none">ID</th>
-                                <th>Naam</th>
-                                <th>Bedrijfsnaam</th>
-                                <th>E-mail</th>
-                                <th>Adres</th>
-                                <th>Postode</th>
-                                <th>Plaats</th>
+                                <th><?= TEXT_NAME ?></th>
+                                <th><?= TEXT_COMPANY_NAME ?></th>
+                                <th><?= TEXT_EMAIL ?></th>
+                                <th><?= TEXT_ADRESS ?></th>
+                                <th><?= TEXT_POSTALCODE ?></th>
+                                <th><?= TEXT_CITY ?></th>
                                 <th>Edit</th>
                             </tr>
                             </thead>

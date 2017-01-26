@@ -154,6 +154,10 @@ class DbUser extends Database
             }
         }
 
+        if($setting->getSettingsBackground()) {
+            $sql .= ", `background` = '{$setting->getSettingsBackground()}'";
+        }
+
         if ($this->dbQuery($sql)) {
             return true;
         }

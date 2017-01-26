@@ -1304,11 +1304,9 @@ ul.sidebar-nav {
     font-size: 12px;
 }
 
-#LoggedInAs{
+#LoggedInAs {
     color: #dd2c4c;
-    padding-top: 1px;
     line-height: 7px;
-    padding-right: 10px;
 }
 
 #LogOut{

@@ -138,6 +138,9 @@ switch ($page) {
     case 'test':
         include '../app/view/test.php';
         break;
+    case 'test1':
+        include '../app/view/test1.php';
+        break;
     case 'logout':
         include '../app/view/logout.php';
         break;
