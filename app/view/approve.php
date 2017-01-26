@@ -33,12 +33,25 @@ $_SESSION['accordid'] = $myupload['id'];
 $UserMailer = $usermail->getUserMailbyMailID($session->getMailId());
 $verstuurder = $user->getUserById($UserMailer['userid']);
 
-if (isset($verstuurder['altmail']) && $verstuurder['altmail'] !== '') {
-    $_SESSION['mailto'] = $verstuurder['altmail'];
-} else {
-    $_SESSION['mailto'] = $verstuurder['email'];
+if($admin['globalmail']) {
+    $_SESSION['mailto'] = $admin['contactmail'];
+}
+else {
+    if (isset($verstuurder['altmail']) && $verstuurder['altmail'] !== '') {
+        $_SESSION['mailto'] = $verstuurder['altmail'];
+    } else {
+        $_SESSION['mailto'] = $verstuurder['email'];
+    }
 }
 
+if(isset($_SESSION['accorduserid'])) {
+    $leclient = $user->getUserById($_SESSION['accorduserid']);
+    $clientname = $leclient['naam'];
+}
+else {
+    $leclient = $user->getUserById($_SESSION['usr_id']);
+    $clientname = $leclient['naam'];
+}
 ?>
 
 <!-- Page Content -->
@@ -279,7 +292,7 @@ if (isset($verstuurder['altmail']) && $verstuurder['altmail'] !== '') {
 
                         <div id="verify" style="display: none" class="alert alert-info" role="alert"></div>
 
-                        <input type="hidden" name="fromname" id="" value="Kevin Ernst">
+                        <input type="hidden" name="fromname" id="" value="<?= $clientname ?>">
                         <!--<input type="hidden" name="mailto" id="" value="kevin.herdershof@hotmail.com">-->
 
 

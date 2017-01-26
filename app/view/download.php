@@ -1,9 +1,11 @@
 <?php
 #PROCESSES DOWNLOAD
 
+//$block = new BlockController();
 $session = new Session();
 
     $file = $_GET['file'];
+    $file = str_replace('"', '' ,$file);
 
     $image = new ImageController();
     $myimage = $image->getImageByName($file);

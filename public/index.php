@@ -75,6 +75,9 @@ switch ($page) {
     case 'lala':
         include '../app/view/lala.php';
         break;
+    case 'lala1':
+        include '../app/view/lala1.php';
+        break;
     case 'overview':
         include '../app/view/overview.php';
         break;
@@ -227,6 +230,9 @@ switch ($page) {
         break;
     case 'deleteitem':
         include '../app/view/deleteitem.php';
+        break;
+    case 'weigeritem':
+        include '../app/view/weigeritem.php';
         break;
     default:
         include '../app/view/404.php';

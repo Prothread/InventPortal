@@ -154,6 +154,22 @@ class User
     private $SettingHost;
 
     /**
+     * Variabele voor checkbox globale email
+     *
+     * @var $SettingGlobalmail
+     */
+
+    private $SettingGlobalmail;
+
+    /**
+     * Variabele om het globale email in op te slaan
+     *
+     * @var $SettingContactmail
+     */
+
+    private $SettingContactmail;
+
+    /**
      * Link naar de database user contructor
      *
      * User constructor.
@@ -298,6 +314,28 @@ class User
     }
 
     /**
+     * Check of er aangegeven wordt dat er een globale email is
+     *
+     * @param $mail
+     */
+
+    public function setSettingsGlobalmail($mail)
+    {
+        $this->SettingGlobalmail = $mail;
+    }
+
+    /**
+     * Haal de globale email op
+     *
+     * @return mixed
+     */
+
+    public function setSettingsContactmail($mail)
+    {
+        $this->SettingContactmail = $mail;
+    }
+
+    /**
      * Haal de smtp setting op
      *
      * @return mixed
@@ -377,6 +415,28 @@ class User
     public function getSettingHost()
     {
         return $this->SettingHost;
+    }
+
+    /**
+     * Check of er aangegeven wordt dat er een globale email is
+     *
+     * @return mixed
+     */
+
+    public function getSettingsGlobalmail()
+    {
+        return $this->SettingGlobalmail;
+    }
+
+    /**
+     * Haal de globale email op
+     *
+     * @return mixed
+     */
+
+    public function getSettingsContactmail()
+    {
+        return $this->SettingContactmail;
     }
 
     /**

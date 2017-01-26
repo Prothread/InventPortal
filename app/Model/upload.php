@@ -100,25 +100,73 @@ if (isset($_FILES['myFile'])) {
             }
 
             array_push($unique_names, $unique_name);
-            $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
 
             if (move_uploaded_file($test1, $uniqfile)) {
                 array_push($images, $test);
+            }
+
+            $updir = $target_dir;
+            $img = $unique_name;
+
+            if(file_exists($updir . $img)) {
+
+                $thumbnail_width = 100;
+                $thumbnail_height = 100;
+                $thumb_beforeword = "thumb_";
+                $arr_image_details = getimagesize("$updir" . "$img"); // pass id to thumb name
+                $original_width = $arr_image_details[0];
+                $original_height = $arr_image_details[1];
+
+                if ($original_width > $original_height) {
+                    $new_width = $thumbnail_width;
+                    $new_height = intval($original_height * $new_width / $original_width);
+                } else {
+                    $new_height = $thumbnail_height;
+                    $new_width = intval($original_width * $new_height / $original_height);
+                }
+
+                $dest_x = intval(($thumbnail_width - $new_width) / 2);
+                $dest_y = intval(($thumbnail_height - $new_height) / 2);
+
+                if ($arr_image_details[2] == IMAGETYPE_GIF) {
+                    $imgt = "ImageGIF";
+                    $imgcreatefrom = "ImageCreateFromGIF";
+                }
+
+                if ($arr_image_details[2] == IMAGETYPE_JPEG) {
+                    $imgt = "ImageJPEG";
+                    $imgcreatefrom = "ImageCreateFromJPEG";
+                }
+
+                if ($arr_image_details[2] == IMAGETYPE_PNG) {
+                    $imgt = "ImagePNG";
+                    $imgcreatefrom = "ImageCreateFromPNG";
+                }
+
+                if ($imgt) {
+                    $old_image = $imgcreatefrom("$updir" . "$img");
+                    $new_image = imagecreatetruecolor($thumbnail_width, $thumbnail_height);
+                    $white = imagecolorallocate($new_image, 255, 255, 255);
+                    imagefill($new_image, 0, 0, $white);
+                    imagecopyresized($new_image, $old_image, $dest_x, $dest_y, 0, 0, $new_width, $new_height, $original_width, $original_height);
+                    $imgt($new_image, "$updir" . "$thumb_beforeword" . "$img");
+                }
+
             }
 
         }
 
     }
 
-    foreach($images as $image) {
-        $target_dir = "../app/uploads/";
-        $fullPath = $target_dir . $image;
-        
+    foreach($unique_names as $image) {
+        $Directory = "../app/uploads/";
+        $fullPath = $Directory . $image;
+
         if(file_exists($fullPath)) {
             true;
         }
         else {
-            echo '<div class="alert alert_error">De bestanden konden niet geüpload worden</div>';
+            echo '<div class="alert alert_error">De bestand(en) konden niet geüpload worden</div>';
             return false;
         }
     }
@@ -153,20 +201,34 @@ if ($error == 0) {
 
         $link = $admin['Host'] . "/index.php?page=verify&id=$imageId&key=$token";
 
+        function printImages($uploadedimage, $link, $hosturl)  {
+            $html = '';
+            $i = 0;
+            foreach($uploadedimage as $image) {
+                $html .= "<a href='$link'><img src='$hosturl/index.php?page=image&img=thumb_$image' style='width: auto;height: 70px;'></a>";
+                $i++;
+            }
+            return $html;
+        }
+
         $header = ' <div style="background: ' . $admin['Header'] . '; position:relative; width: 100%; height: 130px;">
                         <div style="position: absolute; height: 130px; margin-right: 25px; left: 5px;">
                             <img src="cid:HeaderImage" style="width:auto;height:75%;" />
                         </div>
                     </div> ';
+
         $content = $header . "  <br/><br/>" . "Geachte " . $name . "," .
-            " <br/><br/>" . "Uw proef staat te wachten op goedkeuring in het <b>Madalco Portaal!</b>" . "<br /><br />" .
-            "<b>Onderwerp van uw proef:</b> " .
+            " <br/><br/>" . "Wij hebben voor U een digitale proefdruk gemaakt. <br /> Dit is te zien in het <b>Klantenportaal</b>." . "<br /><br />" .
+            "<b>Onderwerp:</b> " .
             $title . "<br />" .
 
             "<b>Beschrijving:</b> " .
             $description .
 
-            "<br /><br />" . "U kunt uw proef " . "<a href='$link'>hier</a> " . "goedkeuren." .
+            "<br /><br />" . "U kunt uw proef met de onderstaand link bekijken, accorderen of wijzigen" . "<br />" .
+            "<a href='$link'>$title</a> " . "<br /><br />" .
+
+            printImages($unique_names, $link, $admin['Host']) . "<br />" .
 
             "<br /> <br />Met vriendelijke groet, <br />" . $sender . " </br>Madalco Media" .
             "<br /> <br /><b>Disclaimer:</b> This is an automatically generated mail. Please do not reply to this email";

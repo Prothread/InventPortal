@@ -165,9 +165,21 @@ class UserController
         $this->model->setSettingsSMTPPort($settingsarray['SMTPport']);
         $this->model->setSettingsEmail($settingsarray['Email']);
         $this->model->setSettingsEmailPass($settingsarray['Mailpass']);
-        $this->model->setSettingsLogo($settingsarray['Logo']);
+
+        if(isset($settingsarray['Logo'])) {
+            $this->model->setSettingsLogo($settingsarray['Logo']);
+        }
+
         $this->model->setSettingsHeader($settingsarray['Header']);
         $this->model->setSettingsHost($settingsarray['Host']);
+
+        if(isset($settingsarray['globalmail'])) {
+            $this->model->setSettingsGlobalmail($settingsarray['globalmail']);
+        }
+
+        if(isset($settingsarray['contactmail'])) {
+            $this->model->setSettingsContactmail($settingsarray['contactmail']);
+        }
 
         if ($result = $this->model->updateSettings()) {
             return $result;

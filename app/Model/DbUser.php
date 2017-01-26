@@ -140,12 +140,19 @@ class DbUser extends Database
     {
         $sql = "UPDATE `settings` SET `SMTP` = '{$setting->getSettingSMTP()}', `SMTPport` = '{$setting->getSettingSMTPPort()}', `Email` = '{$setting->getSettingEmail()}', `Mailpass` = '{$setting->getSettingEmailPass()}', `Host` = '{$setting->getSettingHost()}'";
 
-        $logo = $setting->getSettingLogo();
-        if (isset($logo) && $setting->getSettingLogo() !== '') {
+        if ($setting->getSettingLogo() !== null && $setting->getSettingLogo() !== '') {
             $sql .= ", `Logo` = '{$setting->getSettingLogo()}'";
         }
 
         $sql .= ", `Header` = '{$setting->getSettingHeader()}'";
+
+        if($setting->getSettingsGlobalmail() !== null) {
+            $sql .= ", `globalmail` = '{$setting->getSettingsGlobalmail()}'";
+
+            if($setting->getSettingsContactmail()) {
+                $sql .= ", `contactmail` = '{$setting->getSettingsContactmail()}'";
+            }
+        }
 
         if ($this->dbQuery($sql)) {
             return true;

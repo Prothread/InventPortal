@@ -4,6 +4,19 @@
 </div>
 </body>
 
+<div id="footer">
+
+<script>
+    $(function() {
+        var span = $('#LoggedInAs');
+        var fontSize = parseInt(span.css('font-size'));
+
+        do {
+            fontSize--;
+            span.css('font-size', fontSize.toString() + 'px');
+        } while (span.width() >= 400);
+    });
+</script>
 
 <script type="text/javascript">
     jQuery(document).ready(function () {
@@ -227,14 +240,17 @@
 
         $.ajax({
             type: "POST",
+            dataType: 'json',
             url: "?page=clientmail",
             data: postForm,
             cache: false,
             success: function (result) {
-                alert('Nieuwe klant aangemaakt');
+                //$('.popup').show().fadeOut(3200);
 
-                //alert(result.status);
+                //alert(result);
                 //alert(result.message);
+
+                $('.demclients1').load('?page=uploadoverview .demclients1');
 
                 $('.demclients').load('?page=uploadoverview' + ' .demclients', function () {
                     //success load event
@@ -242,13 +258,15 @@
                     $("#allclients").select2();
                 });
 
-                /* if(result.status == 'error') {
-                    $('.demclients1').innerText = result.message;
-                }
-                else {
-                    $('.demclients1').innerText = "Gebruiker is aangemaakt";
-                } */
+                $(function () {
+                    $('#myModal').modal('toggle');
+                });
 
+            },
+            error: function (result) {
+                alert('something went wrong');
+                //alert(result['status']);
+                //alert(result.status);
             }
         });
         event.preventDefault();
@@ -599,6 +617,6 @@
         $("#wrapper").toggleClass("toggled");
     });
 </script>
-
+</div>
 </html>
 

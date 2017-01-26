@@ -13,6 +13,7 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);
 <div id="Mail">
     <!-- Page Content -->
     <div id="page-content-wrapper">
+        <div class="popup">Nieuwe klant is aangemaakt</div>
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
