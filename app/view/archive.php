@@ -22,36 +22,27 @@ if (isset($_SESSION['uploads'])) {
                 <table style="width:100%">
                     <tr>
                         <th style="text-align: left;">
-                            <p class="NameText" style="font-weight: normal;">Archief</p>
+                            <p class="NameText" style="font-weight: normal;"><?= TEXT_ARCHIVE ?></p>
                         </th>
                         <th id="filters" style="text-align: right;">
 
-                            <?php if (isset($_SESSION['updateopenmails']) && $user->getPermission($permgroup, 'CAN_EDIT_ACCORD') == 1) { ?>
-                                <a data-toggle="modal" data-target="#updateOpenMails" href="#">
-                                    <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
-                                        <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span>
-                                        Update alle Open proeven <span id="days">( > 5 dagen )</span></button>
-                                </a>
-                            <?php } ?>
-
                             <a href="?page=useroverview">
                                 <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
-                                    <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> Mijn
-                                    overzicht
+                                    <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> <?= BUTTON_MYOVERVIEW ?>
                                 </button>
                             </a>
 
                             <a id="filtergoed" href="#">
                                 <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
                                     <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span>
-                                    Geakkordeerde proeven
+                                    <?= BUTTON_ACCORDED ?>
                                 </button>
                             </a>
 
                             <a id="filterafgekeurd" href="#">
                                 <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
                                     <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span>
-                                    Afgekeurde proeven
+                                    <?= BUTTON_DECLINED ?>
                                 </button>
                             </a>
 
@@ -63,15 +54,15 @@ if (isset($_SESSION['uploads'])) {
                 <div class="btn-group show-on-hover">
                     <button style="width: 100px; background-color: #bb2c4c; color: white;" type="button"
                             class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                        Legenda <span class="caret"></span>
+                        <?= LEGEND ?> <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu">
-                        <li><img alt="Gezien" style="width: 50px; height: 50px;" src="public/icons/gezien.png"> ->
-                            Gezien
+                        <li><img alt="Gezien" style="width: 50px; height: 50px;" src="icons/gezien.png"> ->
+                            <?= TEXT_SEEN ?>
                         </li>
-                        <li><img alt="Uploaded" src="public/icons/uploaded.png"> -> Geüpload</li>
-                        <li><img alt="Geaccepteerd" src="public/icons/akkoord.png"> -> Akkoord</li>
-                        <li><img alt="Geweigerd" src="public/icons/geweigerd.png"> -> Geweigerd</li>
+                        <li><img alt="Uploaded" src="icons/uploaded.png"> -> <?= TEXT_UPLOADED ?></li>
+                        <li><img alt="Geaccepteerd" src="icons/akkoord.png"> -> <?= TEXT_ACCORDED ?></li>
+                        <li><img alt="Geweigerd" src="icons/geweigerd.png"> -> <?= TEXT_DECLINED ?></li>
                     </ul>
                 </div>
 
@@ -81,11 +72,11 @@ if (isset($_SESSION['uploads'])) {
                         <tr>
 
                             <th style="display:none">ID</th>
-                            <th>Onderwerp</th>
-                            <th>Verstuurder</th>
-                            <th>Klant</th>
-                            <th id="date">Datum</th>
-                            <th>Status</th>
+                            <th><?= TABLE_TITLE ?></th>
+                            <th><?= TEXT_SENDER ?></th>
+                            <th><?= TEXT_CLIENT ?></th>
+                            <th id="date"><?= TEXT_DATE ?></th>
+                            <th><?= TEXT_PROGRESS ?></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -110,13 +101,13 @@ if (isset($_SESSION['uploads'])) {
                                 <td>
                                     <span style="display:none" id="status"><?= $upload['verified']; ?></span>
                                     <?php if ($upload['verified'] == 1) { ?>
-                                        <img alt="Gezien" src="public/icons/gezien.png">
+                                        <img alt="Gezien" src="icons/gezien.png">
                                     <?php } elseif ($upload['verified'] == 2) { ?>
-                                        <img alt="Geaccepteerd" src="public/icons/akkoord.png">
+                                        <img alt="Geaccepteerd" src="icons/akkoord.png">
                                     <?php } elseif ($upload['verified'] == 3) { ?>
-                                        <img alt="Geweigerd" src="public/icons/geweigerd.png">
+                                        <img alt="Geweigerd" src="icons/geweigerd.png">
                                     <?php } else { ?>
-                                        <img alt="Uploaded" src="public/icons/uploaded.png">
+                                        <img alt="Uploaded" src="icons/uploaded.png">
                                     <?php } ?>
                                 </td>
                             </tr>
@@ -208,31 +199,3 @@ unset($_SESSION['updateopenmails']);
         event.preventDefault();
     });
 </script>
-
-<!-- Modal -->
-<div class="modal fade" id="updateOpenMails" role="dialog">
-    <div class="modal-dialog">
-
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div style="text-align: center;" class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Update alle open mails</h4>
-            </div>
-            <div style="text-align: center;" class="modal-body">
-                <br>
-
-                <p> U staat op het punt om alle mails die langer dan <b>5 dagen</b> openstaan te versturen. <br/><br/>
-                    Weet u dit zeker?<br/><br/></p>
-                <a class="abuttonmodal" href="?page=updateopenmails">Update open mails</a>
-
-                <br/>
-                <br/>
-            </div>
-            <div class="modal-footer">
-
-            </div>
-        </div>
-
-    </div>
-</div>

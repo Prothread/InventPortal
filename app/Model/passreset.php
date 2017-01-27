@@ -24,19 +24,19 @@ if ($getbyemail !== null) {
     if (strlen($password) < 6) {
         $error = true;
         $block->Redirect($_SERVER['HTTP_REFERER']);
-        Session::flash('error', "Het wachtwoord moet minimaal 6 tekens bevatten.");
+        Session::flash('error', TEXT_MINIMAL_LENGTH_6);
     }
 
     if ($cpassword !== $password) {
         $error = true;
         $block->Redirect($_SERVER['HTTP_REFERER']);
-        Session::flash('error', "De ingevulde nieuwe wachtwoorden komen niet overeen");
+        Session::flash('error', TEXT_PASSWORDS_DONT_MATCH);
     }
 
     if ($passforget !== $dbpass) {
         $error = true;
         $block->Redirect($_SERVER['HTTP_REFERER']);
-        Session::flash('error', "Er is iets misgegaan");
+        Session::flash('error', TEXT_ERROR_OCCURED);
     }
 
     if (!$error) {
@@ -45,7 +45,7 @@ if ($getbyemail !== null) {
         unset($_SESSION['token']);
 
         $block->Redirect('index.php');
-        Session::flash('message', 'Uw wachwoord is succesvol veranderd');
+        Session::flash('message', TEXT_PASSWORD_CHANGED);
     }
 
 }

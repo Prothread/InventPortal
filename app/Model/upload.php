@@ -5,7 +5,7 @@ if ($user->getPermission($permgroup, 'CAN_UPLOAD') == 1) {
 
 } else {
     $block->Redirect('index.php');
-    Session::flash('error', 'U heeft hier geen rechten voor.');
+    Session::flash('error', TEXT_NO_PERMISSION);
 }
 
 $mysqli = mysqli_connect();
@@ -84,7 +84,7 @@ if (isset($_FILES['myFile'])) {
         if ($myFile["size"][$i] > 15728640) {
             $error = 1;
             header('Location: index.php?page=uploadoverview');
-            Session::flash('message', 'Het geüploade bestand is te groot');
+            Session::flash('message', TEXT_UPLOADED_FILE_TOO_BIG);
         }
 
         if ($error == 0) {
@@ -355,7 +355,7 @@ if ($error == 0) {
             unset($_SESSION['clientid']);
 
             $block->Redirect('index.php?page=overview');
-            Session::flash('message', 'Uw bestanden zijn geüpload.');
+            Session::flash('message', TEXT_FILE_UPLOADED);
         }
     }
 }

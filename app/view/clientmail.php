@@ -5,7 +5,7 @@ if ($user->getPermission($permgroup, 'CAN_CREATE_CLIENT') == 1) {
 
 } else {
     $block->Redirect('index.php');
-    Session::flash('error', 'U heeft hier geen rechten voor.');
+    Session::flash('error', TEXT_NO_PERMISSION);
 }
 
 $mysqli = mysqli_connect();
@@ -185,7 +185,7 @@ if ($mailexist == null || empty($mailexist)) {
     $response['message'] = 'Deze mail is al in gebruik';
 
     $block->Redirect('index.php?page=newclient');
-    Session::flash('error', 'Deze mail is al in gebruik');
+    Session::flash('error', TEXT_MAIL_USED);
 
     echo json_encode($response);
 }

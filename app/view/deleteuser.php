@@ -19,7 +19,7 @@ else if ($user->getPermission($permgroup, 'CAN_DELETE_USER') == 1 && $myclient['
 }
 else {
     $block->Redirect($_SERVER['HTTP_REFERER']);
-    Session::flash('error', 'U heeft geen rechten om deze gebruiker te bewerken');
+    Session::flash('error', TEXT_DELETE_USER);
     return false;
 }
 $user->delete($id);

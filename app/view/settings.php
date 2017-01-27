@@ -5,7 +5,7 @@ if ($user->getPermission($permgroup, 'CAN_EDIT_SETTINGS') == 1) {
 
 } else {
     $block->Redirect('index.php');
-    Session::flash('error', 'U heeft hier geen rechten voor.');
+    Session::flash('error', TEXT_NO_PERMISSION);
 }
 ?>
 
@@ -139,7 +139,7 @@ if ($user->getPermission($permgroup, 'CAN_EDIT_SETTINGS') == 1) {
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput"><?= TEXT_SELECTED_LOGO ?></label>
+                        <label class="col-md-4 control-label" for="textinput"><?= TEXT_SELECTED_FILE ?></label>
                         <div class="col-md-4">
                             <div id="fileList1"></div>
 

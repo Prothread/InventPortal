@@ -8,7 +8,7 @@ if (isset($_GET['token'])) {
     $token = $_GET['token'];
     $token = $session->clean($token);
 } else {
-    echo 'Sessie wachtwoord vergeten is verlopen';
+    echo TEXT_PASSWORD_FORGET_ERROR;
     return false;
 }
 
@@ -27,8 +27,8 @@ if(strtotime($getbyemail['passresetdate']) > 0) {
     if ($getbyemail['passresetdate'] > $date) {
 
     } else {
-        echo '<div class="alert alert-info">Wachwoord vergeten is verlopen</div>';
-        echo '<br /><a style="color:black" href="index.php">Ga naar de startpagina</a>';
+        echo '<div class="alert alert-info">' . TEXT_PASSWORD_FORGET_EXPIRES . '</div>';
+        echo '<br /><a style="color: black" href="index.php">' . TEXT_GO_TO_STARTPAGEE . '</a>';
         return false;
     }
 }
@@ -38,17 +38,17 @@ if(strtotime($getbyemail['passresetdate']) > 0) {
         <div class="col-md-8 col-md-offset-2 centered">
             <form role="form" method="post" action="?page=passreset" id="form">
                 <fieldset>
-                    <legend>Nieuw wachtwoord invullen</legend>
+                    <legend><?= TEXT_NEW_PASSWORD ?></legend>
 
                     <div class="form-group">
-                        <label for="name">Nieuw wachtwoord</label>
-                        <input type="password" name="password" placeholder="Wachtwoord" required class="form-control"/>
+                        <label for="name"><?= TEXT_NEW_PASSWORD ?></label>
+                        <input type="password" name="password" placeholder="<?= TEXT_NEW_PASSWORD ?>" required class="form-control"/>
                         <span class="text-danger"><?php if (isset($password_error)) echo $password_error; ?></span>
                     </div>
 
                     <div class="form-group">
-                        <label for="name">Herhalen nieuw wachtwoord</label>
-                        <input type="password" name="cpassword" placeholder="Nieuw wachtwoord" required
+                        <label for="name"><?= TEXT_NEW_PASSWORD_REPEAT ?></label>
+                        <input type="password" name="cpassword" placeholder="<?= TEXT_NEW_PASSWORD ?>" required
                                class="form-control"/>
                         <span class="text-danger"><?php if (isset($cpassword_error)) echo $cpassword_error; ?></span>
                     </div>

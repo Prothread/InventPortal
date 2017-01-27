@@ -13,8 +13,7 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);
                 <div class="container">
                     <table style="width:100%">
                         <tr>
-                            <th style="text-align: left;"><p class="NameText" style="font-weight: normal;">Uw profiel
-                                    bijwerken</p></th>
+                            <th style="text-align: left;"><p class="NameText" style="font-weight: normal;"><?= TEXT_EDIT_PROFILE ?></p></th>
                         </tr>
                     </table>
                     <hr>
@@ -33,17 +32,17 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);
                                   enctype="multipart/form-data" method="post">
 
                                 <div class="form-group">
-                                    <label class="col-lg-3 control-label" for="textinput">Logo uploaden</label>
+                                    <label class="col-lg-3 control-label" for="textinput"><?= TEXT_UPLOAD_LOGO ?></label>
                                     <div class="col-md-4">
                                         <label for="file-upload" class="custom-file-upload">
-                                            <i class="fa fa-cloud-upload"></i> Uploaden
+                                            <i class="fa fa-cloud-upload"></i> <?= BUTTON_UPLOAD ?>
                                         </label>
                                         <input type="file" name="fileToUpload"
                                                class="imgInp btn btn-primary btn-success" id="file-upload">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-lg-3 control-label" for="textinput">Geselecteerd bestand</label>
+                                    <label class="col-lg-3 control-label" for="textinput"><?= TEXT_SELECTED_LOGO ?></label>
                                     <div class="col-md-4">
                                         <div id="fileList"></div>
 
@@ -52,28 +51,28 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-lg-3 control-label">Naam</label>
+                                    <label class="col-lg-3 control-label"><?= TEXT_NAME ?></label>
                                     <div class="col-lg-8">
                                         <input class="form-control" value="<?= $userinfo['naam'] ?>" type="text"
                                                name="naam">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-lg-3 control-label">Bedrijfsnaam:</label>
+                                    <label class="col-lg-3 control-label"><?= TEXT_COMPANY_NAME?></label>
                                     <div class="col-lg-8">
                                         <input class="form-control" value="<?= $userinfo['bedrijfsnaam'] ?>" type="text"
                                                name="bedrijfsnaam">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-lg-3 control-label">Email:</label>
+                                    <label class="col-lg-3 control-label"><?= TEXT_EMAIL ?></label>
                                     <div class="col-lg-8">
                                         <input class="form-control" value="<?= $userinfo['email'] ?>" type="text"
                                                name="email">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-lg-3 control-label">Alternatief email:</label>
+                                    <label class="col-lg-3 control-label"><?= TEXT_ALTERNATIVE_EMAIL ?></label>
                                     <div class="col-lg-8">
                                         <span style="font-size:15px">Mail voor contact</span>
 
@@ -82,21 +81,21 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-lg-3 control-label">Adres:</label>
+                                    <label class="col-lg-3 control-label"><?= TEXT_ADRESS ?></label>
                                     <div class="col-lg-8">
                                         <input class="form-control" value="<?= $userinfo['adres'] ?>" type="text"
                                                name="adres">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-lg-3 control-label">Postcode:</label>
+                                    <label class="col-lg-3 control-label"><?= TEXT_POSTALCODE ?></label>
                                     <div class="col-lg-8">
                                         <input class="form-control" size="6" value="<?= $userinfo['postcode'] ?>"
                                                type="text" name="postcode">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-lg-3 control-label">Plaats:</label>
+                                    <label class="col-lg-3 control-label"><?= TEXT_CITY ?></label>
                                     <div class="col-lg-8">
                                         <input class="form-control" value="<?= $userinfo['plaats'] ?>" type="text"
                                                name="plaats">
@@ -105,7 +104,7 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);
 
                                 <?php if ($user->getPermission($permgroup, 'CAN_EDIT_USER') == '1' && $user->getPermission($permgroup, 'CAN_BE_EDITED') == '1') { ?>
                                     <div class="form-group">
-                                        <label class="col-lg-3 control-label">Rechten:</label>
+                                        <label class="col-lg-3 control-label"><?= TEXT_PERMISSION ?></label>
                                         <div class="col-lg-8">
                                             <select class="form-control" name="rechten" required>
 
@@ -129,7 +128,7 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);
                                     <div class="col-md-4">
                                         <input class="btn btn-primary btn-success" name="submit"
                                                style="max-width: 100px; background-color: #bb2c4c; border: 1px solid #dd2c4c"
-                                               type="submit" value="Opslaan">
+                                               type="submit" value="<?= BUTTON_SAVE ?>">
                                     </div>
                                 </div>
 

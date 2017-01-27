@@ -6,7 +6,7 @@ if ($user->getPermission($permgroup, 'CAN_SHOW_OVERZICHT') == 1) {
 
 } else {
     $block->Redirect('index.php');
-    Session::flash('error', 'U heeft hier geen rechten voor.');
+    Session::flash('error', TEXT_NO_PERMISSION);
 }
 
 $status = new StatusController();

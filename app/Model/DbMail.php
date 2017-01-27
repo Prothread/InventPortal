@@ -439,9 +439,10 @@ class DbMail extends Database
 
     public function getIncrement()
     {
-        $sql = "SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'portalinvent' AND TABLE_NAME = 'mail'";
+        //Als er meerdere databases zijn:
+        //$sql = "SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'portalinvent' AND TABLE_NAME = 'mail'";
         //Als je maar aan 1 database gelinkt ben:
-        // $sql = "SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'mail'";
+        $sql = "SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'mail'";
 
         $result = $this->dbQuery($sql);
         $value = mysqli_fetch_assoc($result);

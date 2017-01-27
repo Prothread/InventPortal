@@ -51,7 +51,7 @@ class UserController
         $this->model->setUserPermgroup($userinfo['permgroup']);
 
         if ($result = $this->model->create()) {
-            Session::flash('message', ' De gebruiker is succesvol aangemaakt.');
+            Session::flash('message', TEXT_USER_CREATED);
             return $result;
         }
 
@@ -106,13 +106,17 @@ class UserController
             $this->model->setUserPlace($userinfo['plaats']);
         }
 
+        if (isset($userinfo['lang'])) {
+            $this->model->setUserLanguage($userinfo['lang']);
+        }
+
         if (isset($userinfo['permgroup'])) {
             $this->model->setUserPermgroup($userinfo['permgroup']);
         }
 
 
         if ($result = $this->model->update()) {
-            Session::flash('message', 'De gebruiker is succesvol bijgewerkt');
+            Session::flash('message', TEXT_USER_EDITED);
             return $result;
         }
     }

@@ -169,7 +169,7 @@ if (isset($_SESSION['accorduserid']) && !isset($_SESSION['usr_id'])) {
             <br/>
             <br/>
             <li class="nav-button-logout">
-                <a href="?page=logout">Uitloggen</a>
+                <a href="?page=logout"><?= TEXT_LOGOUT ?></a>
             </li>
         </ul>
 

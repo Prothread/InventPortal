@@ -4,7 +4,7 @@ if ($user->getPermission($permgroup, 'CAN_USE_ITEM_DELETE') == '1') {
 
 } else {
     $block->Redirect('index.php');
-    Session::flash('error', 'U heeft hier geen rechten voor.');
+    Session::flash('error', TEXT_NO_PERMISSION);
 }
 
 $session = new Session();
@@ -21,4 +21,4 @@ if (isset($_GET['id'])) {
 $item->deleteItemByID($id);
 $item->deleteItemImageByID($id);
 $block->Redirect('?page=overview');
-Session::flash('message', 'Item is verwijderd.');
+Session::flash('message', TEXT_ITEM_DELETD);

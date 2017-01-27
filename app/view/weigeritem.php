@@ -4,7 +4,7 @@ if ($user->getPermission($permgroup, 'CAN_USE_ITEM_DELETE') == '1') {
 
 } else {
     $block->Redirect('index.php');
-    Session::flash('error', 'U heeft hier geen rechten voor.');
+    Session::flash('error', TEXT_NO_PERMISSION);
 }
 
 $session = new Session();
@@ -20,4 +20,4 @@ if (isset($_GET['id'])) {
 
 $item->weigerItemByID($id);
 $block->Redirect('index.php?page=item&id=' . $id);
-Session::flash('info', 'Item is gewijzigd.');
+Session::flash('info', TEXT_ITEM_EDITED);

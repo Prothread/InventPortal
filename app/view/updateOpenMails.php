@@ -5,7 +5,7 @@ if ($user->getPermission($permgroup, 'CAN_UPLOAD') == 1) {
 
 } else {
     $block->Redirect('index.php');
-    Session::flash('error', 'U heeft hier geen rechten voor.');
+    Session::flash('error', TEXT_NO_PERMISSION);
 }
 
 $mail = new MailController();
@@ -142,5 +142,5 @@ if ($get_filled_info !== null && !empty($get_filled_info)) {
     $block->Redirect('index.php?page=overview');
 } else {
     $block->Redirect('index.php?page=overview');
-    Session::flash('error', 'Er zijn nog geen proeven die langer dan 5 dagen openstaan');
+    Session::flash('error', TEXT_NO_ASSIGNMENTS_5DAYS);
 }

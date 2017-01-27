@@ -7,7 +7,7 @@ if ($user->getPermission($permgroup, 'CAN_ACCORD') == 1) {
     $block->Redirect('index.php');
     unset($_SESSION['accorduserid']);
     unset($_SESSION['accord']);
-    Session::flash('error', 'U heeft hier geen rechten voor.');
+    Session::flash('error', TEXT_NO_PERMISSION);
 }
 
 $upload = new BlockController();
@@ -19,7 +19,7 @@ $image_controller = new ImageController();
 
 if ($session->getMailId() == null) {
     $block->Redirect('index.php');
-    Session::flash('message', 'Er is niks om te accorderen');
+    Session::flash('message', TEXT_ACCORD_ERROR);
 }
 
 if ($session->getMailId() !== null) {

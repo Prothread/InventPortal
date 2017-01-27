@@ -90,6 +90,14 @@ class User
     private $UserPlace;
 
     /**
+     * Variabele om taal van de gebruiker in op te slaan
+     *
+     * @var $UserLanguage
+     */
+
+    private $UserLanguage;
+
+    /**
      * Variabele om rechtgroep van de gebruiker in op te slaan
      *
      * @var $UserPermGroup
@@ -639,6 +647,17 @@ class User
     }
 
     /**
+     * Setter voor de taal van de gebruiker
+     *
+     * @param $language
+     */
+
+    public function setUserLanguage($language)
+    {
+        $this->UserLanguage = $language;
+    }
+
+    /**
      * Set rechtgroep voor de gebruiker
      *
      * @param $userperm
@@ -782,6 +801,23 @@ class User
     {
         return $this->UserPlace;
     }
+
+    /**
+     * Getter voor de taal van de gebruiker
+     *
+     * @return mixed
+     */
+
+    public function getUserLanguage()
+    {
+        return $this->UserLanguage;
+    }
+
+    /**
+     * Haal de rechtgroep van de gebruiker op
+     *
+     * @return mixed
+     */
 
     public function getPermGroup()
     {

@@ -5,7 +5,7 @@ if ($user->getPermission($permgroup, 'CAN_USE_STATUSPORTAL') == 1) {
 
 } else {
     $block->Redirect('index.php');
-    Session::flash('error', 'U heeft hier geen rechten voor.');
+    Session::flash('error', TEXT_NO_PERMISSION);
 }
 
 $session = new Session();
@@ -21,4 +21,4 @@ if (isset($_GET['id'])) {
 
 $status->deleteItemByID($id);
 $block->Redirect('?page=statusportal');
-Session::flash('message', 'Item is verwijderd.');
+Session::flash('message', TEXT_ITEM_DELETD);

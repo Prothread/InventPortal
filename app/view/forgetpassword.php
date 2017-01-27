@@ -115,7 +115,7 @@ if (isset($_POST['submit'])) {
             } else {
                 //If mail is send, create data and send it to the database
                 $block->Redirect('index.php');
-                Session::flash('message', 'Uw aanvraag is verstuurd.');
+                Session::flash('message', TEXT_FORGET_PASSWORD);
             }
         }
 

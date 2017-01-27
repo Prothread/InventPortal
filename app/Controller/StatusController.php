@@ -36,7 +36,7 @@ class StatusController
         $this->model->setComment($statusinfo['comment']);
 
         if ($result = $this->model->create()) {
-            Session::flash('message', 'Het item is succesvol aangemaakt.');
+            Session::flash('message', TEXT_ITEM_CREATED);
             return $result;
         }
         return false;
@@ -59,7 +59,7 @@ class StatusController
         $this->model->setComment($statusinfo['comment']);
 
         if ($result = $this->model->update()) {
-            Session::flash('message', 'Het item is succesvol bijgewerkt.');
+            Session::flash('message', TEXT_ITEM_EDITED);
             return $result;
         }
         return false;

@@ -10,7 +10,7 @@ if ($user->getPermission($permgroup, 'CAN_ACCORD') == 1) {
 
 } else {
     $block->Redirect('index.php');
-    Session::flash('error', 'U heeft hier geen rechten voor.');
+    Session::flash('error', TEXT_NO_PERMISSION);
 }
 
 $upload = new BlockController();
@@ -147,5 +147,5 @@ if (!$mailer->send()) {
     unset($_SESSION['userid']);
 
     $block->Redirect('index.php');
-    Session::flash('message', 'De accordering is verstuurd');
+    Session::flash('message', TEXT_ACCORD_SEND);
 }

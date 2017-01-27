@@ -64,6 +64,10 @@ class DbUser extends Database
             $sql .= ", `adres` = '{$user->getUserAdres()}'";
         }
 
+        if($user->getUserLanguage()) {
+            $sql .= ", `lang` = '{$user->getUserLanguage()}'";
+        }
+
         if ($user->getPassword()) {
             $password = hash('sha256', $user->getPassword());
             $sql .= ", `paswoord` = '{$password}' ";

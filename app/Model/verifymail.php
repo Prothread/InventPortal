@@ -108,7 +108,7 @@ if (isset($_GET['id']) && isset($mailkey)) {
 
     } else {
         $block->Redirect('index.php');
-        Session::flash('error', 'U heeft hier geen rechten voor.');
+        Session::flash('error', TEXT_NO_PERMISSION);
     }
     $session->setUserId($userid);
     $_SESSION['accord'] = '1';

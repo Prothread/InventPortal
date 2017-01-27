@@ -18,7 +18,7 @@ $session = new Session();
         true;
     } else {
         $block->Redirect('index.php');
-        Session::flash('error', 'De afbeelding kan nog niet gedownload worden.');
+        Session::flash('error', TEXT_DOWNLOAD_IMAGE);
     }
     if ($user->getPermission($permgroup, 'CAN_ACCORD') == 1 && $myimage['downloadable'] == '1') {
 
@@ -26,7 +26,7 @@ $session = new Session();
 
     } else {
         $block->Redirect('index.php');
-        Session::flash('error', 'U heeft hier geen rechten voor.');
+        Session::flash('error', TEXT_NO_PERMISSION);
     }
 
     download_file($file);
