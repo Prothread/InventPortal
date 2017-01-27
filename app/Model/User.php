@@ -170,6 +170,14 @@ class User
     private $SettingContactmail;
 
     /**
+     * Variabele voor de achtergrond op het loginscherm
+     *
+     * @var $SettingBackground
+     */
+
+    private $SettingBackground;
+
+    /**
      * Link naar de database user contructor
      *
      * User constructor.
@@ -336,6 +344,17 @@ class User
     }
 
     /**
+     * Setter voor de achtergrond op het loginscherm
+     *
+     * @param $background
+     */
+
+    public function setSettingsBackground($background)
+    {
+        $this->SettingBackground = $background;
+    }
+
+    /**
      * Haal de smtp setting op
      *
      * @return mixed
@@ -437,6 +456,17 @@ class User
     public function getSettingsContactmail()
     {
         return $this->SettingContactmail;
+    }
+
+    /**
+     * Haal achtergrond van
+     *
+     * @return mixed
+     */
+
+    public function getSettingsBackground()
+    {
+        return $this->SettingBackground;
     }
 
     /**

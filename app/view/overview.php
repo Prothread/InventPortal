@@ -30,7 +30,7 @@ else {
                 <table style="width:100%">
                     <tr>
                         <th class="filtermobiel" style="text-align: left;">
-                            <p class="NameText" style="font-weight: normal;">Overzicht</p>
+                            <p class="NameText" style="font-weight: normal;"><?= TEXT_OVERVIEW ?></p>
                         </th>
 
                         <th class="filtermobiel" id="filters">
@@ -39,34 +39,32 @@ else {
                                 <a data-toggle="modal" data-target="#updateOpenMails" href="#">
                                     <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
                                         <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span>
-                                        Verstuur proeven opnieuw <span id="days">( > 5 dagen )</span></button>
+                                        <?= BUTTON_SENDAGAIN ?> <span id="days"><?= BUTTON_5DAYS ?></span></button>
                                 </a>
                             <?php } ?>
 
                             <a href="?page=useroverview">
                                 <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
-                                    <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> Mijn
-                                    overzicht
+                                    <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> <?= BUTTON_MYOVERVIEW ?>
                                 </button>
                             </a>
 
                             <a id="filteropen" href="#">
                                 <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
-                                    <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> Open
-                                    proeven <span id="days">( > 5 dagen )</span></button>
+                                    <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> <?= BUTTON_DAYSOPEN ?> <span id="days"><?= BUTTON_5DAYS ?></span></button>
                             </a>
 
                             <a id="filtergoed" href="#">
                                 <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
                                     <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span>
-                                    Geakkordeerde proeven
+                                    <?= BUTTON_ACCORDED ?>
                                 </button>
                             </a>
 
                             <a id="filterafgekeurd" href="#">
                                 <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
                                     <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span>
-                                    Afgekeurde proeven
+                                    <?= BUTTON_DECLINED ?>
                                 </button>
                             </a>
 
@@ -78,15 +76,15 @@ else {
                 <div class="btn-group show-on-hover">
                     <button style="width: 100px; background-color: #bb2c4c; color: white;" type="button"
                             class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                        Legenda <span class="caret"></span>
+                        <?= LEGEND ?><span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu">
                         <li><img alt="Gezien" style="width: 50px; height: 50px;" src="icons/gezien.png"> ->
-                            Gezien
+                            <?= TEXT_SEEN ?>
                         </li>
-                        <li><img alt="Uploaded" src="icons/uploaded.png"> -> Geüpload</li>
-                        <li><img alt="Geaccepteerd" src="icons/akkoord.png"> -> Akkoord</li>
-                        <li><img alt="Geweigerd" src="icons/geweigerd.png"> -> Geweigerd</li>
+                        <li><img alt="Uploaded" src="icons/uploaded.png"> -> <?= TEXT_UPLOADED ?></li>
+                        <li><img alt="Geaccepteerd" src="icons/akkoord.png"> -> <?= TEXT_ACCORDED ?></li>
+                        <li><img alt="Geweigerd" src="icons/geweigerd.png"> -> <?= TEXT_DECLINED ?></li>
                     </ul>
                     <a href="?page=archive">
                         <button style="width: 100px; background-color: #bb2c4c; color: white;" type="button"
@@ -102,11 +100,11 @@ else {
                         <tr>
 
                             <th style="display:none">ID</th>
-                            <th>Onderwerp</th>
-                            <th>Verstuurder</th>
-                            <th>Klant</th>
-                            <th id="date">Datum</th>
-                            <th>Status</th>
+                            <th><?= TABLE_TITLE ?></th>
+                            <th><?= TEXT_SENDER ?></th>
+                            <th><?= TEXT_ASSIGNFOR ?></th>
+                            <th id="date"><?= TEXT_DATE ?></th>
+                            <th><?= TEXT_PROGRESS ?></th>
                         </tr>
                         </thead>
                         <tbody>

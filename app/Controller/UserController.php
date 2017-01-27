@@ -181,6 +181,10 @@ class UserController
             $this->model->setSettingsContactmail($settingsarray['contactmail']);
         }
 
+        if(isset($settingsarray['background'])) {
+            $this->model->setSettingsBackground($settingsarray['background']);
+        }
+
         if ($result = $this->model->updateSettings()) {
             return $result;
         }

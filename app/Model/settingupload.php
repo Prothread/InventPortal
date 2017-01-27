@@ -83,16 +83,47 @@ if (isset($_FILES['fileToUpload'])) {
 
         }
 
-        $settingsarray = [
-            'SMTP' => $smtp,
-            'SMTPport' => $smtpport,
-            'Email' => $email,
-            'Mailpass' => $mailpass,
-            'Logo' => mysqli_real_escape_string($mysqli, $unique_name),
-            'Header' => $header
-        ];
+        $settingsarray['Logo'] = mysqli_real_escape_string($mysqli, $unique_name);
 
     }
 }
+
+$error2 = 0;
+if (isset($_FILES['fileToUpload1'])) {
+
+    $myFile = $_FILES['fileToUpload1'];
+    $fileCount = count($myFile["name"]);
+
+    $test = $myFile['name'];
+    $test1 = $myFile['tmp_name'];
+
+    $target_dir = DIR_PUBLIC . 'background/';
+    $target_file = $target_dir . $test;
+    $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
+
+    if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "pdf") {
+        $error2 = 1;
+    }
+
+    if ($myFile["size"] > 10485760) {
+        $error2 = 1;
+        $block->Redirect('index.php?page=settings');
+        Session::flash('message', 'Het geüploade bestand is te groot');
+    }
+
+    if ($error2 == 0) {
+
+        $unique_name = preg_replace('/\s+/', '-', $test);
+        $uniqfile = $target_dir . $unique_name;
+
+        if (move_uploaded_file($test1, $uniqfile)) {
+
+        }
+
+        $settingsarray['background'] = mysqli_real_escape_string($mysqli, $unique_name);
+
+    }
+}
+
 $settings->updateSettings($settingsarray);
 $block->Redirect('index.php?page=settings');

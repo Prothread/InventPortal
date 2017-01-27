@@ -35,7 +35,7 @@ if (isset($_SESSION['accorduserid']) && !isset($_SESSION['usr_id'])) {
 
 }
 ?>
-    <html lang="nl">
+    <html lang="<?= $language ?>">
     <head>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
@@ -53,7 +53,7 @@ if (isset($_SESSION['accorduserid']) && !isset($_SESSION['usr_id'])) {
         <script type="text/javascript">
             $(document).ready(function () {
                 $("#allclients").select2({
-                    placeholder: 'Selecteer een klant'
+                    placeholder: '<?= INPUT_SELECT_CLIENT ?>'
                 });
             });
         </script>
@@ -113,7 +113,7 @@ if (isset($_SESSION['accorduserid']) && !isset($_SESSION['usr_id'])) {
         <a style="text-decoration: none;" href="?page=profile">
             <div id="UserBlock" style="text-decoration: none;">
                 <div id="UserBlockImage" style="background-image: url('<?= $imgsrc ?>');"></div>
-                <h3 id="LoggedInAs"><?= $myuser; ?></h3>
+                <h3 id="LoggedInAs"><?= $myuser ?></h3>
             </div>
         </a>
     </div>
@@ -125,24 +125,24 @@ if (isset($_SESSION['accorduserid']) && !isset($_SESSION['usr_id'])) {
         <ul class="sidebar-nav">
 
             <li class="nav-button-home">
-                <a href="?page=dashboard">Home</a>
+                <a href="?page=dashboard"><?= TEXT_HOME ?></a>
             </li>
 
             <li class="nav-button-all">
-                <a href="?page=overview">Overzicht</a>
+                <a href="?page=overview"><?= TEXT_OVERVIEW ?></a>
             </li>
 
             <br/>
 
             <?php if ($user->getPermission($permgroup, 'CAN_UPLOAD') == 1) { ?>
                 <li class="nav-button-upload">
-                    <a href="?page=uploadoverview">Upload</a>
+                    <a href="?page=uploadoverview"><?= TEXT_UPLOAD ?></a>
                 </li>
             <?php } ?>
 
             <?php if ($user->getPermission($permgroup, 'CAN_EDIT_SETTINGS') == 1) { ?>
                 <li class="nav-button-settings">
-                    <a href="?page=settings">Instellingen</a>
+                    <a href="?page=settings"><?= TEXT_SETTINGS ?></a>
                 </li>
             <?php } ?>
 
@@ -150,19 +150,19 @@ if (isset($_SESSION['accorduserid']) && !isset($_SESSION['usr_id'])) {
 
             <?php if ($user->getPermission($permgroup, 'CAN_ACCORD') == 1 && isset($_SESSION['accord'])) { ?>
                 <li class="nav-button-accord">
-                    <a href="?page=approve">Accordering</a>
+                    <a href="?page=approve"><?= TEXT_ACCORD ?></a>
                 </li>
             <?php } ?>
 
             <?php if ($user->getPermission($permgroup, 'CAN_SHOW_KLANTPAGINA') == 1) { ?>
                 <li class="nav-button-users">
-                    <a href="?page=manageclients">Klanten</a>
+                    <a href="?page=manageclients"><?= TEXT_CLIENT ?></a>
                 </li>
             <?php } ?>
 
             <?php if ($user->getPermission($permgroup, 'CAN_SHOW_USERS') == 1) { ?>
                 <li class="nav-button-users">
-                    <a href="?page=manageusers">Gebruikers</a>
+                    <a href="?page=manageusers"><?= TEXT_USER ?></a>
                 </li>
             <?php } ?>
 

@@ -26,3 +26,32 @@ define("WWW_ROOT",                          "");
  define("DIR_IMAGE",                        WWW_ROOT."../app/uploads/");
  define("DIR_PUBLIC",                       WWW_ROOT."css/");
  define("DIR_IMG",                          WWW_ROOT."img/profile/");
+
+$user = new UserController();
+$language = 'nl';
+
+if(isset($_SESSION['usr_id'])) {
+ $usr = $user->getUserById($_SESSION['usr_id']);
+}
+else if(isset($_SESSION['accorduserid'])) {
+ $usr = $user->getUserById($_SESSION['accorduserid']);
+}
+else {
+ return false;
+}
+
+if($usr['lang']) {
+ switch($usr['lang']) {
+  case 'en':
+   $language = 'en';
+   include_once 'language/en.php';
+   break;
+  default:
+   $language = 'nl';
+   include_once 'language/nl.php';
+   break;
+ }
+}
+else {
+ include_once 'language/nl.php';
+}
