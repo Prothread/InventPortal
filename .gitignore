@@ -1,2 +1,5 @@
 ResponciveTableBootstrap.html
 public/css/bg.jpg
+app/Controller/MailController.php
+app/Model/DbMail.php
+app/Model/Mail.php

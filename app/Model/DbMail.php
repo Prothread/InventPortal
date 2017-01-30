@@ -84,17 +84,18 @@ class DbMail extends Database
                 `email` = '{$mail->getMailEmail()}', `key` = '{$mail->getToken()}', `datum` = '{$mail->getDatum()}',
                 `verified` = '{$mail->getVerified()}' WHERE `id`= '{$mail->getMailId()}'";
 
+        if($mail->getVerified()) {
+            $sql1 = "UPDATE `usermail` SET `status` = '{$mail->getVerified()}' WHERE `mailid` = '{$mail->getMailId()}'";
+
+            if ($this->dbQuery($sql1)) {
+                true;
+            }
+        }
+
         if ($mail->getAnswer()) {
             $sql = "UPDATE `mail` SET `answer` = '{$mail->getAnswer()}', `key` = '{$mail->getToken()}' , `verified` = '{$mail->getVerified()}' WHERE `id` = '{$mail->getMailId()}'";
 
             if ($this->dbQuery($sql)) {
-
-                $sql1 = "UPDATE `usermail` SET `status` = '{$mail->getVerified()}' WHERE `mailid` = '{$mail->getMailId()}'";
-
-                if ($this->dbQuery($sql1)) {
-                    true;
-                }
-
                 return true;
             }
 
@@ -420,11 +421,55 @@ class DbMail extends Database
         $result = $this->dbQuery($sql);
 
         if ($result) {
+            $sql1 = "DELETE FROM `image` WHERE `mailid` = '{$id}'";
+
+            if($this->dbQuery($sql1)) {
+                true;
+            }
+
             return true;
         }
         return false;
     }
 
+    /**
+     * Weiger het item (bv als de klant het heeft goedgekeuren, maar het is nog niet helemaal goed)
+     *
+     * @param $id
+     * @return mixed
+     */
+
+    public function weigerItemByID($id)
+    {
+        $sql = "UPDATE `mail` SET `verified`= '3' WHERE `id` = '{$id}'";
+
+        if ($this->dbQuery($sql)) {
+            $sql1 = "UPDATE `usermail` SET `status`= '3' WHERE `id` = '{$id}'";
+
+            if($this->dbQuery($sql1)) {
+                true;
+            }
+            $sql2 = "SELECT * FROM `image` WHERE `mailid` = '{$id}' AND `version` = (SELECT MAX(`version`) FROM `image`) ORDER BY `version` DESC";
+
+            if($result = $this->dbQuery($sql2)) {
+                $images = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+                foreach($images as $image) {
+                    $imageid = $image['id'];
+
+                    $sql3 = "UPDATE `image` SET `verify`= '2' WHERE `id` = '{$imageid}'";
+                    if ($this->dbQuery($sql3)) {
+                        true;
+                    }
+                }
+
+            }
+            return true;
+        }
+        return false;
+    }
+
+<<<<<<< HEAD
     public function deleteItemImageByID($id)
     {
         $sql = "DELETE FROM image WHERE mailid = '{$id}'";
@@ -436,6 +481,13 @@ class DbMail extends Database
         }
         return false;
     }
+=======
+    /**
+     * Haal het cijfer op die als volgende in de tabel van `mail` komt te staan
+     *
+     * @return mixed
+     */
+>>>>>>> origin/master
 
     /**
      * Haal de rij op die als volgende toegevoegd wordt
