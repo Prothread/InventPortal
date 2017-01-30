@@ -437,6 +437,12 @@ class DbMail extends Database
         return false;
     }
 
+    /**
+     * Haal de rij op die als volgende toegevoegd wordt
+     *
+     * @return mixed
+     */
+
     public function getIncrement()
     {
         //Als er meerdere databases zijn:

@@ -1,24 +1,42 @@
-How to install (in case of moving to a new server)
+How to install:
+
 
 1. Copy and paste all files to the new directory.
 
+
+
 1.5 *Optional: Delete every image in app/uploads. 
+
+
 
 !!!!DONT DELETE .htaccess!!!!
 
+
+
 2. Go to: Open config/db_constants.php and change the login information to the new mysqli (database) connection.
+
+
 
 3. Go to Phpmyadmin (place where you store your mysqli database) and upload/import the portalinvent.sql.
 
+
+
 4. Go to the web url and login with the following information:
 
+
+
 Account: madalcomedia@gmail.com
+
 Password: MadalcoAdminPass1
+
+
 
 5. Create Users/Admins and such
 
+
+
 6. Change settings for the mail host (and other information if needed)
 
-6.5 *Optional -> Delete madalcomedia@gmail.com from phpmyadmin/mysqli database
+
 
 7. PROFIT!!

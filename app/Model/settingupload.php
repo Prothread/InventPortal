@@ -74,6 +74,12 @@ if (isset($_FILES['fileToUpload'])) {
         Session::flash('message', TEXT_UPLOADED_FILE_TOO_BIG);
     }
 
+    if(strlen($test) > 64) {
+        $error2 =1;
+        $block->Redirect('index.php?page=settings');
+        Session::flash('error', TEXT_UPLOADED_FILE_NAME_TOO_LARGE);
+    }
+
     if ($error == 0) {
 
         $unique_name = preg_replace('/\s+/', '-', $test);
@@ -111,6 +117,12 @@ if (isset($_FILES['fileToUpload1'])) {
         Session::flash('message', TEXT_UPLOADED_FILE_TOO_BIG);
     }
 
+    if(strlen($test) > 64) {
+        $error2 =1;
+        $block->Redirect('index.php?page=settings');
+        Session::flash('error', TEXT_UPLOADED_FILE_NAME_TOO_LARGE);
+    }
+
     if ($error2 == 0) {
 
         $unique_name = preg_replace('/\s+/', '-', $test);
@@ -127,3 +139,4 @@ if (isset($_FILES['fileToUpload1'])) {
 
 $settings->updateSettings($settingsarray);
 $block->Redirect('index.php?page=settings');
+Session::flash('message', TEXT_SETTINGS_EDITED);

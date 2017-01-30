@@ -32,20 +32,18 @@ if (isset($_SESSION['useruploads'])) {
         <div class="container-fluid">
             <table style="width:100%">
                 <tr>
-                    <th style="text-align: left;"><p class="NameText" style="font-weight: normal;">Uw overzicht</p></th>
+                    <th style="text-align: left;"><p class="NameText" style="font-weight: normal;"><?= MY_TEXT_OVERVIEW ?></p></th>
 
                     <th style="text-align: right;">
 
                         <a id="filteropen" href="#">
                             <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
-                                <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> Mijn open
-                                proeven <span id="days">( > 5 dagen )</span></button>
+                                <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> <?= BUTTON_DAYSOPEN ?> <span id="days"><?= BUTTON_5DAYS ?></span></button>
                         </a>
 
                         <a id="filtergoed" href="#">
                             <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
-                                <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> Mijn
-                                geakkordeerde proeven
+                                <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> <?= BUTTON_ACCORDED ?>
                             </button>
                         </a>
 
@@ -61,11 +59,11 @@ if (isset($_SESSION['useruploads'])) {
                         <thead>
                         <tr>
                             <th style="display:none">ID</th>
-                            <th>Onderwerp</th>
-                            <th>Verstuurder</th>
-                            <th>Naam</th>
-                            <th>Datum</th>
-                            <th>Status</th>
+                            <th><?= TABLE_TITLE ?></th>
+                            <th><?= TEXT_SENDER ?></th>
+                            <th><?= TEXT_ASSIGNFOR ?></th>
+                            <th id="date"><?= TEXT_DATE ?></th>
+                            <th><?= TEXT_PROGRESS ?></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -93,13 +91,13 @@ if (isset($_SESSION['useruploads'])) {
                                     <span style="display:none" id="status"><?= $upload['verified']; ?></span>
                                     <?php if ($upload['verified'] == 1) { ?>
                                         <img alt="Gezien" style="width: 50px; height: 50px;"
-                                             src="public/icons/gezien.png">
+                                             src="icons/gezien.png">
                                     <?php } elseif ($upload['verified'] == 2) { ?>
-                                        <img alt="Geaccepteerd" src="public/icons/akkoord.png">
+                                        <img alt="Geaccepteerd" src="icons/akkoord.png">
                                     <?php } elseif ($upload['verified'] == 3) { ?>
-                                        <img alt="Geweigerd" src="public/icons/geweigerd.png">
+                                        <img alt="Geweigerd" src="icons/geweigerd.png">
                                     <?php } else { ?>
-                                        <img alt="Uploaded" src="public/icons/uploaded.png">
+                                        <img alt="Uploaded" src="icons/uploaded.png">
                                     <?php } ?>
                                 </td>
                             </tr>

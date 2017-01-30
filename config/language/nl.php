@@ -8,6 +8,7 @@
 
 define("TEXT_HOME", "Home");
 define("TEXT_OVERVIEW", "Overzicht");
+define("MY_TEXT_OVERVIEW", "Mijn overzicht");
 define("TEXT_UPLOAD", "Upload");
 define("TEXT_SETTINGS", "Instellingen");
 define("TEXT_CLIENT", "Klanten");
@@ -89,6 +90,9 @@ define("TEXT_BACKGROUND_COLOR_HEADER", "Achtergrondkleur header");
 define("TEXT_LOGIN_BACKGROUND", "Login achtergrond");
 define("TEXT_SELECTED_FILE", "Geselecteerd bestand");
 define("BUTTON_SAVE", "Opslaan");
+/* */
+define("TEXT_SETTINGS_EDITED", "Instellingen zijn bijgewerkt");
+define("TEXT_UPLOADED_FILE_NAME_TOO_LARGE", "Naam bestand is te groot");
 
 
 /* MANAGE CLIENTS */

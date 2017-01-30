@@ -8,6 +8,7 @@
 
 define("TEXT_HOME", "Dashboard");
 define("TEXT_OVERVIEW", "Overview");
+define("MY_TEXT_OVERVIEW", "My overview");
 define("TEXT_UPLOAD", "Upload");
 define("TEXT_SETTINGS", "Settings");
 define("TEXT_CLIENT", "Clients");
@@ -89,6 +90,9 @@ define("TEXT_BACKGROUND_COLOR_HEADER", "Backgroundcolor header");
 define("TEXT_LOGIN_BACKGROUND", "Login background");
 define("TEXT_SELECTED_FILE", "Selected file");
 define("BUTTON_SAVE", "Save");
+/* */
+define("TEXT_SETTINGS_EDITED", "Settings have been edited");
+define("TEXT_UPLOADED_FILE_NAME_TOO_LARGE", "File name is too big");
 
 
 /* MANAGE CLIENTS */

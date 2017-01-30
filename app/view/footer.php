@@ -225,7 +225,6 @@
 
         $.ajax({
             type: "POST",
-            dataType: 'json',
             url: "?page=clientmail",
             data: postForm,
             cache: false,
@@ -250,9 +249,8 @@
             },
             error: function (result) {
                 alert('Klant kon niet aangemaakt worden');
-                //alert(result['status']);
-                alert(result);
-                alert(result.type);
+                //alert(result);
+                //alert(result.type);
             }
         });
         event.preventDefault();

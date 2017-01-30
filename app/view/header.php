@@ -18,6 +18,12 @@ if (isset($_SESSION['usr_id'])) {
     echo 'User';
 }
 
+//Connect to database
+//Option 1: use this (works online)
+//Option 2: use $mysqli = mysqli_connect(); (works offline)
+$db = new Database();
+$mysqli = $db->getConnection();
+
 $settings = new UserController();
 $admin = $settings->getAdminSettings();
 

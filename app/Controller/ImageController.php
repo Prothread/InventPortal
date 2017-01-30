@@ -111,7 +111,9 @@ class ImageController
     {
         $ImageName = pathinfo($imagename, PATHINFO_FILENAME);
         $ImageFileType = pathinfo($imagename, PATHINFO_EXTENSION);
-        $NewImageName = substr($ImageName, 0, -3) . '.' . $ImageFileType;
+
+        $splitter =  explode('_', $ImageName);
+        $NewImageName = $splitter[0] . '.' . $ImageFileType;
         return $NewImageName;
     }
 
