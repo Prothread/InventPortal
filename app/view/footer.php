@@ -246,32 +246,40 @@
 
         $.ajax({
             type: "POST",
+            dataType: 'json',
             url: "?page=clientmail",
             data: postForm,
             cache: false,
             success: function (result) {
                 //$('.popup').show().fadeOut(3200);
 
-                //alert(result);
-                //alert(result.message);
+                if(result.status == 'error') {
+                    alert(result.message);
+                    return false;
+                }
+                else {
+                    var url = window.location.href;
+                    if(url.indexOf('uploadoverview') >= 0) {
+                        $('.demclients1').load('?page=uploadoverview .demclients1');
 
-                $('.demclients1').load('?page=uploadoverview .demclients1');
+                        $('.demclients').load('?page=uploadoverview' + ' .demclients', function () {
+                            //success load event
+                            $("#allclients option:not([value])").remove();
+                            $("#allclients").select2();
+                        });
 
-                $('.demclients').load('?page=uploadoverview' + ' .demclients', function () {
-                    //success load event
-                    $("#allclients option:not([value])").remove();
-                    $("#allclients").select2();
-                });
+                        $(function () {
+                            $('#myModal').modal('toggle');
+                        });
+                    }
+                    else if(url.indexOf('newclient') >= 0) {
+                        window.location = 'index.php?page=manageclients';
+                    }
+                    else {
+                        window.location = 'index.php?page=manageusers';
+                    }
+                }
 
-                $(function () {
-                    $('#myModal').modal('toggle');
-                });
-
-            },
-            error: function (result) {
-                alert('Klant kon niet aangemaakt worden');
-                //alert(result);
-                //alert(result.type);
             }
         });
         event.preventDefault();

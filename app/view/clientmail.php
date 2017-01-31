@@ -1,5 +1,8 @@
 <?php
 #PROCESSES MAIL FUNCTION
+$user = new UserController();
+$block = new BlockController();
+include_once '../app/Model/permissions.php';
 
 if ($user->getPermission($permgroup, 'CAN_CREATE_CLIENT') == 1) {
 
@@ -167,11 +170,11 @@ if ($mailexist == null || empty($mailexist)) {
 
         $user->newPassword($email, $passtoken);
 
-        if ($rechten >= 2) {
+        /*if ($rechten >= 2) {
             $block->Redirect('index.php?page=manageusers');
         } else {
             $block->Redirect('index.php?page=manageclients');
-        }
+        }*/
 
         $response = array();
         $response['status'] = 'success';
@@ -184,8 +187,8 @@ if ($mailexist == null || empty($mailexist)) {
     $response['status'] = 'error';
     $response['message'] = 'Deze mail is al in gebruik';
 
-    $block->Redirect('index.php?page=newclient');
-    Session::flash('error', TEXT_MAIL_USED);
+    //$block->Redirect('index.php?page=newclient');
+    //Session::flash('error', TEXT_MAIL_USED);
 
     echo json_encode($response);
 }

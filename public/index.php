@@ -59,7 +59,7 @@ if (!$session->exists('usr_id') && $page !== 'approve' && $page !== 'conditions'
 }
 
 if ($session->exists('usr_id')) {
-    if ($page !== 'submit' && $page !== 'item2' && $page !== 'image' && $page !== 'download') {
+    if ($page !== 'submit' && $page !== 'item2' && $page !== 'image' && $page !== 'download' && $page !== 'clientmail') {
         include_once '../app/view/header.php';
     }
 }
@@ -241,5 +241,6 @@ switch ($page) {
         include '../app/view/404.php';
         break;
 }
-
-require_once '../app/view/footer.php';
+if($page !== 'clientmail') {
+    require_once '../app/view/footer.php';
+}

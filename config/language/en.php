@@ -15,6 +15,7 @@ define("TEXT_CLIENT", "Clients");
 define("TEXT_USER", "Users");
 define("TEXT_ACCORD", "Accord");
 define("TEXT_LOGOUT", "Log out");
+define("TEXT_USERPROFILE", "Profile: ");
 
 
 /* LOGIN */
@@ -190,7 +191,7 @@ define("TEXT_MAIL_USED", "This mail is already in use");
 /*delete item*/
 define("TEXT_ITEM_DELETD", "Item has been deleted");
 /*delete user*/
-define("TEXT_DELETE_USER", "You don't have the permission to delete this user");
+define("TEXT_CANT_DELETE_USER", "You don't have the permission to delete this user");
 /*download*/
 define("TEXT_DOWNLOAD_IMAGE", "Image can't be downloaded yet");
 /*forgetpassword*/
@@ -199,3 +200,14 @@ define("TEXT_FORGET_PASSWORD", "Order has been requested");
 define("TEXT_ACCORD_SEND", "Accord has been send");
 /*Update open mails*/
 define("TEXT_NO_ASSIGNMENTS_5DAYS", "There are no assignments that are open for longer than 5 days");
+
+
+/* Modals */
+define("TEXT_DELETE_USER", "Delete user");
+define("TEXT_RESET_PASSWORD", "Reset password");
+define("TEXT_MESSAGE_DELETING_PASSWORD", "You are about to reset the password of the user ");
+define("TEXT_MESSAGE_DELETING_PASSWORD1", " ");
+define("TEXT_MESSAGE_DELETING_USER", "You are about to delete the user");
+define("TEXT_MESSAGE_DELETING_USER1", " ");
+/* */
+define("TEXT_ARE_YOU_SURE", "Are you sure?");

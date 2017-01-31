@@ -15,6 +15,7 @@ define("TEXT_CLIENT", "Klanten");
 define("TEXT_USER", "Gebruikers");
 define("TEXT_ACCORD", "Accordering");
 define("TEXT_LOGOUT", "Uitloggen");
+define("TEXT_USERPROFILE", "Profiel: ");
 
 
 /* LOGIN */
@@ -190,7 +191,7 @@ define("TEXT_MAIL_USED", "Deze mail is al in gebruik");
 /*delete item*/
 define("TEXT_ITEM_DELETD", "Item is verwijderd");
 /*delete user*/
-define("TEXT_DELETE_USER", "U heeft geen rechten om deze gebruiker te verwijderen");
+define("TEXT_CANT_DELETE_USER", "U heeft geen rechten om deze gebruiker te verwijderen");
 /*download*/
 define("TEXT_DOWNLOAD_IMAGE", "De afbeelding kan nog neit gedownload worden");
 /*forgetpassword*/
@@ -199,3 +200,14 @@ define("TEXT_FORGET_PASSWORD", "Aanvraag is verstuurd");
 define("TEXT_ACCORD_SEND", "De accordering is verstuurd");
 /*Update open mails*/
 define("TEXT_NO_ASSIGNMENTS_5DAYS", "Er zijn geen proeven die langer dan 5 dagen openstaan");
+
+
+/* Modals */
+define("TEXT_DELETE_USER", "Gebruiker verwijderen");
+define("TEXT_RESET_PASSWORD", "Reset wachtwoord");
+define("TEXT_MESSAGE_DELETING_PASSWORD", "U staat op het punt om het wachtwoord van de gebruiker");
+define("TEXT_MESSAGE_DELETING_PASSWORD1", "te resetten");
+define("TEXT_MESSAGE_DELETING_USER", "U staat op het punt om de gebruiker");
+define("TEXT_MESSAGE_DELETING_USER1", "te verwijderen");
+/* */
+define("TEXT_ARE_YOU_SURE", "Weet je het zeker?");

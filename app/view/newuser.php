@@ -13,58 +13,58 @@ if ($user->getPermission($permgroup, 'CAN_CREATE_USER') == 1) {
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
-                <p class="NameText">Nieuwe gebruiker</p>
+                <p class="NameText"><?= BUTTON_NEWUSER ?></p>
                 <br>
 
 
-                <form action="?page=clientmail" method="post" enctype="multipart/form-data" class="form-horizontal">
+                <form action="#" method="post" enctype="multipart/form-data" class="form-horizontal" id="createclient">
                     <fieldset>
 
-                        <p class="ClientFormText">Namen</p>
+                        <p class="ClientFormText"><?= TEXT_NAMES ?></p>
                         <hr size="1">
 
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="textinput">Naam<span
+                            <label class="col-md-4 control-label" for="textinput"><?= TEXT_NAME ?><span
                                     style="color:#dd2c4c">*</span></label>
                             <div class="col-md-4">
                                 <input required class="form-control input-md" id="textinput" maxlength="60" type="text"
-                                       name="name" size="50" placeholder="Naam">
+                                       name="name" size="50" placeholder="<?= TEXT_NAME ?>">
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="textinput">Bedrijfsnaam</label>
+                            <label class="col-md-4 control-label" for="textinput"><?= TEXT_COMPANY_NAME ?></label>
                             <div class="col-md-4">
                                 <input class="form-control input-md" id="textinput" maxlength="64" type="text"
-                                       name="companyname" size="50" placeholder="Bedrijfsnaam">
+                                       name="companyname" size="50" placeholder="<?= TEXT_COMPANY_NAME ?>">
                             </div>
                         </div>
 
-                        <p class="ClientFormText">Contactgegevens</p>
+                        <p class="ClientFormText"><?= TEXT_CONTACT_DETAILS ?></p>
                         <hr size="1">
 
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="textinput">E-mail<span
+                            <label class="col-md-4 control-label" for="textinput"><?= TEXT_EMAIL ?><span
                                     style="color:#dd2c4c">*</span></label>
                             <div class="col-md-4">
                                 <input class="form-control input-md" id="textinput" maxlength="60" required type="email"
-                                       name="email" size="50" placeholder="E-mailadres">
+                                       name="email" size="50" placeholder="<?= TEXT_EMAIL ?>">
                             </div>
                         </div>
 
                         <br/>
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="textinput">Alt E-mail</label>
+                            <label class="col-md-4 control-label" for="textinput"><?= TEXT_ALTERNATIVE_EMAIL ?></label>
                             <div class="col-md-4">
-                                <span style="font-size:15px">Alternatief email voor contact met de klant</span>
+                                <span style="font-size:15px"><?= TEXT_ALTERNATIVE_EMAIL_INFO ?></span>
                                 <input class="form-control input-md" id="textinput" maxlength="60" type="email"
-                                       name="altmail" placeholder="E-mailadres">
+                                       name="altmail" placeholder="<?= TEXT_EMAIL ?>">
                             </div>
                         </div>
                         <br/>
 
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="textinput">Adres</label>
+                            <label class="col-md-4 control-label" for="textinput"><?= TEXT_ADRESS ?></label>
                             <div class="col-md-4">
                                 <input class="form-control input-md" id="textinput" maxlength="64" type="text"
                                        name="companyadress" size="50" placeholder="Adres">
@@ -72,7 +72,7 @@ if ($user->getPermission($permgroup, 'CAN_CREATE_USER') == 1) {
                         </div>
 
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="textinput">Postcode</label>
+                            <label class="col-md-4 control-label" for="textinput"><?= TEXT_POSTALCODE ?></label>
                             <div class="col-md-4">
                                 <input class="form-control input-md" id="textinput" maxlength="8" type="text"
                                        name="postcode" size="50" placeholder="Postcode">
@@ -80,10 +80,10 @@ if ($user->getPermission($permgroup, 'CAN_CREATE_USER') == 1) {
                         </div>
 
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="textinput">Plaats</label>
+                            <label class="col-md-4 control-label" for="textinput"><?= TEXT_CITY ?></label>
                             <div class="col-md-4">
                                 <input class="form-control input-md" id="textinput" maxlength="64" type="text"
-                                       name="plaats" size="50" placeholder="Plaats">
+                                       name="plaats" size="50" placeholder="<?= TEXT_CITY ?>">
                             </div>
                         </div>
 
@@ -91,13 +91,13 @@ if ($user->getPermission($permgroup, 'CAN_CREATE_USER') == 1) {
 
                         <?php if ($user->getPermission($permgroup, 'CAN_CREATE_USER') == '1') { ?>
                             <div class="form-group">
-                                <label class="col-md-4 control-label">Rechten:</label>
+                                <label class="col-md-4 control-label"><?= TEXT_PERMISSION ?></label>
                                 <div class="col-md-4">
                                     <select class="form-control" name="rechten" required>
-                                        <option value="1">Klant</option>
-                                        <option value="2" selected="selected">Gebruiker</option>
-                                        <option value="3">Beheerder</option>
-                                        <option value="4">Admin</option>
+                                        <option value="1"><?= TEXT_IS_CLIENT ?></option>
+                                        <option value="2" selected><?= TEXT_IS_USER ?></option>
+                                        <option value="3"><?= TEXT_IS_ACCOUNTANT ?></option>
+                                        <option value="4"><?= TEXT_IS_ADMIN ?></option>
                                     </select>
                                 </div>
                             </div>
