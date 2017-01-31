@@ -205,7 +205,6 @@ class MailController
     }
 
     /**
-<<<<<<< HEAD
      * Delete image met een (meegegeven) id
      *
      * @param $id
@@ -217,8 +216,7 @@ class MailController
         return $this->model->deleteItemImageByID($id);
     }
 
-
-=======
+    /**
      * Weiger het item (bv als de klant het heeft goedgekeuren, maar het is nog niet helemaal goed)
      *
      * @param $id
@@ -230,5 +228,4 @@ class MailController
         return $this->model->weigerItemByID($id);
     }
 
->>>>>>> origin/master
 }

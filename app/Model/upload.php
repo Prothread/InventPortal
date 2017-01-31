@@ -166,7 +166,7 @@ if (isset($_FILES['myFile'])) {
             true;
         }
         else {
-            echo '<div class="alert alert_error">De bestand(en) konden niet geüpload worden</div>';
+            echo '<div class="alert alert_error">' . TEXT_FILES_UPLOAD_ERROR . '</div>';
             return false;
         }
     }

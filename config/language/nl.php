@@ -17,6 +17,12 @@ define("TEXT_ACCORD", "Accordering");
 define("TEXT_LOGOUT", "Uitloggen");
 
 
+/* LOGIN */
+define("TEXT_PASSWORD", "Wachtwoord");
+define("BUTTON_LOGIN", "Inloggen");
+define("TEXT_PASSWORD_FORGET", "Wachtwoord vergeten");
+
+
 /* DASHBOARD */
 define("TEXT_DIAGRAM", "Verschil akkoord & geweigerd");
 define("TEXT_ASSIGNMENTS", "Alle open opdrachten");
@@ -174,6 +180,7 @@ define("TEXT_ERROR_OCCURED", "Er is iets misgegaan");
 define("TEXT_PASSWORD_CHANGED", "Wachtwoord is succesvol bijgewerkt");
 /*settingupload*/
 define("TEXT_UPLOADED_FILE_TOO_BIG", "Het geuploade bestand is te groot");
+define("TEXT_FILES_UPLOAD_ERROR", "Bestanden konden niet geupload worden");
 /*upload*/
 define("TEXT_FILE_UPLOADED", "Uw bestanden zijn succesvol geuload");
 /*approve*/

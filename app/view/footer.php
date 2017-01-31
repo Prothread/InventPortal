@@ -7,6 +7,27 @@
 <div id="footer">
 
 <script type="text/javascript">
+
+    //alert(window.navigator.language);
+    $(document).ready(function() {
+
+        var urllang = window.location.href;
+        if(urllang.indexOf('login') >= 0) {
+            if (urllang.indexOf('lang') >= 0) {
+                // Found world
+            }
+            else {
+                var url = window.location.href,
+                    separator = (url.indexOf("?") === -1) ? "?" : "&",
+                    newParam = separator + "lang=" + window.navigator.language;
+
+                newUrl = url.replace(newParam, "");
+                newUrl += newParam;
+                window.location.href = newUrl;
+            }
+        }
+    });
+
     jQuery(document).ready(function () {
         jQuery("#password").keyup(function () {
             passwordStrength(jQuery(this).val());

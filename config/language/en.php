@@ -17,6 +17,12 @@ define("TEXT_ACCORD", "Accord");
 define("TEXT_LOGOUT", "Log out");
 
 
+/* LOGIN */
+define("TEXT_PASSWORD", "Password");
+define("BUTTON_LOGIN", "Login");
+define("TEXT_PASSWORD_FORGET", "Forgot password");
+
+
 /* DASHBOARD */
 define("TEXT_DIAGRAM", "Difference accord & declined");
 define("TEXT_ASSIGNMENTS", "Open assignments");
@@ -174,6 +180,7 @@ define("TEXT_ERROR_OCCURED", "Something went wrong");
 define("TEXT_PASSWORD_CHANGED", "Password has been changed");
 /*settingupload*/
 define("TEXT_UPLOADED_FILE_TOO_BIG", "Uploaed file is too big");
+define("TEXT_FILES_UPLOAD_ERROR", "Files couldn't be uploaded");
 /*upload*/
 define("TEXT_FILE_UPLOADED", "Your files have succesfully been uploaded");
 /*approve*/

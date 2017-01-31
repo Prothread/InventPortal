@@ -659,7 +659,6 @@ class Mail
     }
 
     /**
-<<<<<<< HEAD
      * Delete image met een (meegegeven) id
      *
      * @param $id
@@ -669,7 +668,9 @@ class Mail
     public function deleteItemImageByID($id)
     {
         return $this->db->deleteItemImageByID($id);
-=======
+    }
+
+    /**
      * Weiger het item (bv als de klant het heeft goedgekeuren, maar het is nog niet helemaal goed)
      *
      * @param $id
@@ -679,7 +680,6 @@ class Mail
     public function weigerItemByID($id)
     {
         return $this->db->weigerItemByID($id);
->>>>>>> origin/master
     }
 
 }

@@ -449,7 +449,7 @@ class DbMail extends Database
             if($this->dbQuery($sql1)) {
                 true;
             }
-            $sql2 = "SELECT * FROM `image` WHERE `mailid` = '{$id}' AND `version` = (SELECT MAX(`version`) FROM `image`) ORDER BY `version` DESC";
+            $sql2 = "SELECT * FROM `image` WHERE `mailid` = '{$id}' AND `version` = (SELECT MAX(`version`) FROM `image` WHERE `mailid` = '{$id}') ORDER BY `version` DESC";
 
             if($result = $this->dbQuery($sql2)) {
                 $images = mysqli_fetch_all($result, MYSQLI_ASSOC);
@@ -469,7 +469,13 @@ class DbMail extends Database
         return false;
     }
 
-<<<<<<< HEAD
+    /**
+     * Verwijder een image met het meegegeven mailid
+     *
+     * @param $id
+     * @return bool
+     */
+
     public function deleteItemImageByID($id)
     {
         $sql = "DELETE FROM image WHERE mailid = '{$id}'";
@@ -481,13 +487,6 @@ class DbMail extends Database
         }
         return false;
     }
-=======
-    /**
-     * Haal het cijfer op die als volgende in de tabel van `mail` komt te staan
-     *
-     * @return mixed
-     */
->>>>>>> origin/master
 
     /**
      * Haal de rij op die als volgende toegevoegd wordt
