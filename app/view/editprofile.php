@@ -118,9 +118,6 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);
                                             </select>
                                         </div>
                                     </div>
-                                <?php } else { ?>
-                                    <input class="form-control" value="<?= $mypermgroup ?>" type="hidden"
-                                           name="rechten">
                                 <?php } ?>
 
                                 <div class="form-group">
