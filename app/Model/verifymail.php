@@ -38,10 +38,11 @@ $mymail = $mail->getMailById($_GET['id']);
  * Check of er een id is meegestuurd
  */
 
-if (isset($mymail)) {
+if ($mymail) {
     $verifyemail = $mymail['email'];
 } else {
-
+    echo TEXT_ERROR_OCCURED;
+    return false;
 }
 
 /**
@@ -120,5 +121,5 @@ if (isset($_GET['id']) && isset($mailkey)) {
     //header('Location: index.php?page=approve&id='.$getter['id']);
     $block->Redirect('index.php?page=approve');
 } else {
-    echo '<div class="alert alert-danger">Er is iets misgegaan</div>';
+    echo '<div class="alert alert-danger">' . TEXT_ERROR_OCCURED . '</div>';
 }
