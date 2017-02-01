@@ -233,16 +233,7 @@
 <script>
     $("form#createclient").submit(function (event) {
 
-        var postForm = $('form#createclient').serialize() +              //Fetch form data
-                '&name=' + $('input[name=name]').val() +                      //Store name fields value
-                '&companyname=' + $('input[name=companyname]').val() +        //Store companyname fields value
-                '&email=' + $('input[name=email]').val() +                    //Store email fields value
-                '&altmail=' + $('input[name=altmail]').val() +                //Store altmail fields value
-                '&companyadress=' + $('input[name=companyadress]').val() +    //Store companyadress fields value
-                '&postcode=' + $('input[name=postcode]').val() +             //Store postcode fields value
-                '&plaats=' + $('input[name=plaats]').val() +                  //Store plaats fields value
-                '&rechten=' + $('input[name=rechten]').val()                  //Store rechten fields value
-            ;
+        var postForm = $('form#createclient').serialize(); //Fetch form information
 
         $.ajax({
             type: "POST",

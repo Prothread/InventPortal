@@ -14,6 +14,9 @@ if (isset($_POST['submit'])) {
     if(isset($_POST['rechten']) && $_POST['rechten']) {
         $rechten = mysqli_real_escape_string($mysqli, $_POST['rechten']);
     }
+    if(isset($_POST['taal']) && $_POST['taal']) {
+        $taal = mysqli_real_escape_string($mysqli, $_POST['taal']);
+    }
 
     $userinfo1 = [
         'id' => $id,
@@ -25,6 +28,9 @@ if (isset($_POST['submit'])) {
         'postcode' => $postcode,
         'plaats' => $plaats
     ];
+    if(isset($taal) && $taal) {
+        $userinfo1['lang'] = $taal;
+    }
     if(isset($rechten) && $rechten) {
         $userinfo1['permgroup'] = $rechten;
     }

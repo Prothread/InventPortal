@@ -121,6 +121,16 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);
                                 <?php } ?>
 
                                 <div class="form-group">
+                                    <label class="col-lg-3 control-label"><?= TEXT_LANGUAGE ?></label>
+                                    <div class="col-lg-8">
+                                        <select class="form-control" type="text" name="taal">
+                                            <option value="nl" <?php if($userinfo['lang'] == 'nl') { echo 'selected'; } ?>>Nederlands</option>
+                                            <option value="en" <?php if($userinfo['lang'] == 'en') { echo 'selected'; } ?>>English</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
                                     <label class="col-lg-3 control-label"></label>
                                     <div class="col-md-4">
                                         <input class="btn btn-primary btn-success" name="submit"

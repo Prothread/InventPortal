@@ -14,7 +14,7 @@ if ($user->getPermission($permgroup, 'CAN_EDIT_CLIENT') == 1 && $myclient['permg
 } else if ($user->getPermission($permgroup, 'CAN_EDIT_USER') == 1 && $myclient['permgroup'] !== 1) {
 
 } else {
-    echo 'U heeft geen rechten om deze gebruiker te bewerken';
+    echo TEXT_CANT_EDIT_USER;
     return false;
 }
 

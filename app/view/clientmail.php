@@ -125,6 +125,9 @@ if ($mailexist == null || empty($mailexist)) {
     $postcode = mysqli_real_escape_string($mysqli, $_POST['postcode']);
     $plaats = mysqli_real_escape_string($mysqli, $_POST['plaats']);
     $rechten = mysqli_real_escape_string($mysqli, $_POST['rechten']);
+    if(isset($_POST['taal']) && $_POST['taal']) {
+        $taal = mysqli_real_escape_string($mysqli, $_POST['taal']);
+    }
 
     $userinfo = [
         'name' => strip_tags($naam),
@@ -136,20 +139,13 @@ if ($mailexist == null || empty($mailexist)) {
         'plaats' => strip_tags($plaats),
         'permgroup' => $rechten
     ];
+    if(isset($taal) && $taal) {
+        $userinfo1['lang'] = $taal;
+    }
 
     if ($_POST['altmail']) {
         $altmail = mysqli_real_escape_string($mysqli, $_POST['altmail']);
-        $userinfo = [
-            'name' => strip_tags($naam),
-            'email' => strip_tags($email),
-            'altmail' => strip_tags($altmail),
-            'password' => $token,
-            'bedrijfsnaam' => strip_tags($bedrijfsnaam),
-            'adres' => strip_tags($adres),
-            'postcode' => strip_tags($postcode),
-            'plaats' => strip_tags($plaats),
-            'permgroup' => $rechten
-        ];
+        $userinfo['altmail'] = strip_tags($altmail);
     }
 
     $mailer->SMTPOptions = array(

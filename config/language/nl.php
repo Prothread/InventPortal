@@ -22,6 +22,8 @@ define("TEXT_USERPROFILE", "Profiel: ");
 define("TEXT_PASSWORD", "Wachtwoord");
 define("BUTTON_LOGIN", "Inloggen");
 define("TEXT_PASSWORD_FORGET", "Wachtwoord vergeten");
+define("TEXT_WRONG_LOGIN_COMBINATION", "Verkeerde combinatie, probeer het opnieuw");
+define("TEXT_USER_NOT_ACTIVE", "Gebruiker is niet actief");
 
 
 /* DASHBOARD */
@@ -190,7 +192,8 @@ define("TEXT_ACCORD_ERROR", "Er is niks om te accorderen");
 define("TEXT_MAIL_USED", "Deze mail is al in gebruik");
 /*delete item*/
 define("TEXT_ITEM_DELETD", "Item is verwijderd");
-/*delete user*/
+/*edit/delete user*/
+define("TEXT_CANT_EDIT_USER", "U heeft geen rechten om deze gebruiker bij te werken");
 define("TEXT_CANT_DELETE_USER", "U heeft geen rechten om deze gebruiker te verwijderen");
 /*download*/
 define("TEXT_DOWNLOAD_IMAGE", "De afbeelding kan nog neit gedownload worden");

@@ -20,14 +20,19 @@ if (isset($_POST['login'])) {
     ];
 
     if ($row = mysqli_fetch_array($user->getUser($userinfo))) {
-        $_SESSION['usr_id'] = $row['id'];
-        $_SESSION['usr_name'] = $row['naam'];
+        if($row['active']) {
+            $_SESSION['usr_id'] = $row['id'];
+            $_SESSION['usr_name'] = $row['naam'];
+        }
+        else {
+            $errormsg = TEXT_USER_NOT_ACTIVE;
+        }
     } else {
-        $errormsg = "Verkeerde combinatie, probeer het opnieuw.";
+        $errormsg = TEXT_WRONG_LOGIN_COMBINATION;
     }
 
     if (isset($_SESSION['usr_id']) != "") {
-        if ($_GET['page']) {
+        if ($_GET['page'] && $_GET['page'] !== 'login') {
             header("Refresh:0");
         } else {
             $block->Redirect('index.php?page=dashboard');

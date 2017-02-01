@@ -22,6 +22,8 @@ define("TEXT_USERPROFILE", "Profile: ");
 define("TEXT_PASSWORD", "Password");
 define("BUTTON_LOGIN", "Login");
 define("TEXT_PASSWORD_FORGET", "Forgot password");
+define("TEXT_WRONG_LOGIN_COMBINATION", "Wrong combination, try again");
+define("TEXT_USER_NOT_ACTIVE", "User is not active");
 
 
 /* DASHBOARD */
@@ -190,7 +192,8 @@ define("TEXT_ACCORD_ERROR", "There is nothing to accord");
 define("TEXT_MAIL_USED", "This mail is already in use");
 /*delete item*/
 define("TEXT_ITEM_DELETD", "Item has been deleted");
-/*delete user*/
+/*edit/delete user*/
+define("TEXT_CANT_EDIT_USER", "You don't have the permission to edit this user");
 define("TEXT_CANT_DELETE_USER", "You don't have the permission to delete this user");
 /*download*/
 define("TEXT_DOWNLOAD_IMAGE", "Image can't be downloaded yet");
