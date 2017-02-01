@@ -1,5 +1,8 @@
 <?php
 #PROCESSES MAIL FUNCTION
+$user = new UserController();
+$block = new BlockController();
+include_once '../app/Model/permissions.php';
 
 if ($user->getPermission($permgroup, 'CAN_CREATE_CLIENT') == 1) {
 
@@ -122,6 +125,9 @@ if ($mailexist == null || empty($mailexist)) {
     $postcode = mysqli_real_escape_string($mysqli, $_POST['postcode']);
     $plaats = mysqli_real_escape_string($mysqli, $_POST['plaats']);
     $rechten = mysqli_real_escape_string($mysqli, $_POST['rechten']);
+    if(isset($_POST['taal']) && $_POST['taal']) {
+        $taal = mysqli_real_escape_string($mysqli, $_POST['taal']);
+    }
 
     $userinfo = [
         'name' => strip_tags($naam),
@@ -133,20 +139,13 @@ if ($mailexist == null || empty($mailexist)) {
         'plaats' => strip_tags($plaats),
         'permgroup' => $rechten
     ];
+    if(isset($taal) && $taal) {
+        $userinfo1['lang'] = $taal;
+    }
 
     if ($_POST['altmail']) {
         $altmail = mysqli_real_escape_string($mysqli, $_POST['altmail']);
-        $userinfo = [
-            'name' => strip_tags($naam),
-            'email' => strip_tags($email),
-            'altmail' => strip_tags($altmail),
-            'password' => $token,
-            'bedrijfsnaam' => strip_tags($bedrijfsnaam),
-            'adres' => strip_tags($adres),
-            'postcode' => strip_tags($postcode),
-            'plaats' => strip_tags($plaats),
-            'permgroup' => $rechten
-        ];
+        $userinfo['altmail'] = strip_tags($altmail);
     }
 
     $mailer->SMTPOptions = array(
@@ -167,11 +166,11 @@ if ($mailexist == null || empty($mailexist)) {
 
         $user->newPassword($email, $passtoken);
 
-        if ($rechten >= 2) {
+        /*if ($rechten >= 2) {
             $block->Redirect('index.php?page=manageusers');
         } else {
             $block->Redirect('index.php?page=manageclients');
-        }
+        }*/
 
         $response = array();
         $response['status'] = 'success';
@@ -184,8 +183,8 @@ if ($mailexist == null || empty($mailexist)) {
     $response['status'] = 'error';
     $response['message'] = 'Deze mail is al in gebruik';
 
-    $block->Redirect('index.php?page=newclient');
-    Session::flash('error', TEXT_MAIL_USED);
+    //$block->Redirect('index.php?page=newclient');
+    //Session::flash('error', TEXT_MAIL_USED);
 
     echo json_encode($response);
 }

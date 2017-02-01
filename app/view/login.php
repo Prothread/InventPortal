@@ -20,14 +20,19 @@ if (isset($_POST['login'])) {
     ];
 
     if ($row = mysqli_fetch_array($user->getUser($userinfo))) {
-        $_SESSION['usr_id'] = $row['id'];
-        $_SESSION['usr_name'] = $row['naam'];
+        if($row['active']) {
+            $_SESSION['usr_id'] = $row['id'];
+            $_SESSION['usr_name'] = $row['naam'];
+        }
+        else {
+            $errormsg = TEXT_USER_NOT_ACTIVE;
+        }
     } else {
-        $errormsg = "Verkeerde combinatie, probeer het opnieuw.";
+        $errormsg = TEXT_WRONG_LOGIN_COMBINATION;
     }
 
     if (isset($_SESSION['usr_id']) != "") {
-        if ($_GET['page']) {
+        if ($_GET['page'] && $_GET['page'] !== 'login') {
             header("Refresh:0");
         } else {
             $block->Redirect('index.php?page=dashboard');
@@ -56,19 +61,23 @@ if ($session->exists('flash')) {
 
                     <form role="form" method="post" name="loginform">
                         <fieldset>
-                            <img style="width: 254px; height: 256px;" src="img/madalco.png" class="fade-in one">
+                            <div id="loginheader">
+                                <div id="logincenter">
+                                    <img src="<?= DIR_PUBLIC . $admin['Logo'] ?>" class="fade-in one">
+                                </div>
+                            </div>
                             <br>
                             <br>
-                            <label for="name">E-mailadres</label>
-                            <input type="text" name="email" placeholder="E-mailadres" required class="form-control"/>
+                            <label for="name"><?= TEXT_EMAIL ?></label>
+                            <input type="text" name="email" placeholder="<?= TEXT_EMAIL ?>" required class="form-control"/>
                             <br/>
-                            <label for="name">Wachtwoord</label>
-                            <input type="password" name="password" placeholder="Wachtwoord" required class="form-control"/>
+                            <label for="name"><?= TEXT_PASSWORD ?></label>
+                            <input type="password" name="password" placeholder="<?= TEXT_PASSWORD ?>" required class="form-control"/>
                             <br/>
                             <input type="submit" name="login" value="Inloggen" class="btn btn-primary"/>
                             <br/>
                             <br/>
-                            <a style="color: #fff;" href="index.php?page=forgetpassword">Wachtwoord vergeten?</a>
+                            <a style="color: #fff;" href="index.php?page=forgetpassword"><?= TEXT_PASSWORD_FORGET ?>?</a>
                             <br/>
                             <br/>
                         </fieldset>

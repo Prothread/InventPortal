@@ -7,6 +7,27 @@
 <div id="footer">
 
 <script type="text/javascript">
+
+    //alert(window.navigator.language);
+    $(document).ready(function() {
+
+        var urllang = window.location.href;
+        if(urllang.indexOf('login') >= 0) {
+            if (urllang.indexOf('lang') >= 0) {
+                // Found world
+            }
+            else {
+                var url = window.location.href,
+                    separator = (url.indexOf("?") === -1) ? "?" : "&",
+                    newParam = separator + "lang=" + window.navigator.language;
+
+                newUrl = url.replace(newParam, "");
+                newUrl += newParam;
+                window.location.href = newUrl;
+            }
+        }
+    });
+
     jQuery(document).ready(function () {
         jQuery("#password").keyup(function () {
             passwordStrength(jQuery(this).val());
@@ -212,45 +233,44 @@
 <script>
     $("form#createclient").submit(function (event) {
 
-        var postForm = $('form#createclient').serialize() +              //Fetch form data
-                '&name=' + $('input[name=name]').val() +                      //Store name fields value
-                '&companyname=' + $('input[name=companyname]').val() +        //Store companyname fields value
-                '&email=' + $('input[name=email]').val() +                    //Store email fields value
-                '&altmail=' + $('input[name=altmail]').val() +                //Store altmail fields value
-                '&companyadress=' + $('input[name=companyadress]').val() +    //Store companyadress fields value
-                '&postcode=' + $('input[name=postcode]').val() +             //Store postcode fields value
-                '&plaats=' + $('input[name=plaats]').val() +                  //Store plaats fields value
-                '&rechten=' + $('input[name=rechten]').val()                  //Store rechten fields value
-            ;
+        var postForm = $('form#createclient').serialize(); //Fetch form information
 
         $.ajax({
             type: "POST",
+            dataType: 'json',
             url: "?page=clientmail",
             data: postForm,
             cache: false,
             success: function (result) {
                 //$('.popup').show().fadeOut(3200);
 
-                //alert(result);
-                //alert(result.message);
+                if(result.status == 'error') {
+                    alert(result.message);
+                    return false;
+                }
+                else {
+                    var url = window.location.href;
+                    if(url.indexOf('uploadoverview') >= 0) {
+                        $('.demclients1').load('?page=uploadoverview .demclients1');
 
-                $('.demclients1').load('?page=uploadoverview .demclients1');
+                        $('.demclients').load('?page=uploadoverview' + ' .demclients', function () {
+                            //success load event
+                            $("#allclients option:not([value])").remove();
+                            $("#allclients").select2();
+                        });
 
-                $('.demclients').load('?page=uploadoverview' + ' .demclients', function () {
-                    //success load event
-                    $("#allclients option:not([value])").remove();
-                    $("#allclients").select2();
-                });
+                        $(function () {
+                            $('#myModal').modal('toggle');
+                        });
+                    }
+                    else if(url.indexOf('newclient') >= 0) {
+                        window.location = 'index.php?page=manageclients';
+                    }
+                    else {
+                        window.location = 'index.php?page=manageusers';
+                    }
+                }
 
-                $(function () {
-                    $('#myModal').modal('toggle');
-                });
-
-            },
-            error: function (result) {
-                alert('Klant kon niet aangemaakt worden');
-                //alert(result);
-                //alert(result.type);
             }
         });
         event.preventDefault();

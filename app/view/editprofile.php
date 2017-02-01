@@ -118,10 +118,17 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);
                                             </select>
                                         </div>
                                     </div>
-                                <?php } else { ?>
-                                    <input class="form-control" value="<?= $mypermgroup ?>" type="hidden"
-                                           name="rechten">
                                 <?php } ?>
+
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label"><?= TEXT_LANGUAGE ?></label>
+                                    <div class="col-lg-8">
+                                        <select class="form-control" type="text" name="taal">
+                                            <option value="nl" <?php if($userinfo['lang'] == 'nl') { echo 'selected'; } ?>>Nederlands</option>
+                                            <option value="en" <?php if($userinfo['lang'] == 'en') { echo 'selected'; } ?>>English</option>
+                                        </select>
+                                    </div>
+                                </div>
 
                                 <div class="form-group">
                                     <label class="col-lg-3 control-label"></label>

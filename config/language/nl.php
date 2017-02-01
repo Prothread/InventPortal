@@ -15,6 +15,15 @@ define("TEXT_CLIENT", "Klanten");
 define("TEXT_USER", "Gebruikers");
 define("TEXT_ACCORD", "Accordering");
 define("TEXT_LOGOUT", "Uitloggen");
+define("TEXT_USERPROFILE", "Profiel: ");
+
+
+/* LOGIN */
+define("TEXT_PASSWORD", "Wachtwoord");
+define("BUTTON_LOGIN", "Inloggen");
+define("TEXT_PASSWORD_FORGET", "Wachtwoord vergeten");
+define("TEXT_WRONG_LOGIN_COMBINATION", "Verkeerde combinatie, probeer het opnieuw");
+define("TEXT_USER_NOT_ACTIVE", "Gebruiker is niet actief");
 
 
 /* DASHBOARD */
@@ -174,6 +183,7 @@ define("TEXT_ERROR_OCCURED", "Er is iets misgegaan");
 define("TEXT_PASSWORD_CHANGED", "Wachtwoord is succesvol bijgewerkt");
 /*settingupload*/
 define("TEXT_UPLOADED_FILE_TOO_BIG", "Het geuploade bestand is te groot");
+define("TEXT_FILES_UPLOAD_ERROR", "Bestanden konden niet geupload worden");
 /*upload*/
 define("TEXT_FILE_UPLOADED", "Uw bestanden zijn succesvol geuload");
 /*approve*/
@@ -182,8 +192,9 @@ define("TEXT_ACCORD_ERROR", "Er is niks om te accorderen");
 define("TEXT_MAIL_USED", "Deze mail is al in gebruik");
 /*delete item*/
 define("TEXT_ITEM_DELETD", "Item is verwijderd");
-/*delete user*/
-define("TEXT_DELETE_USER", "U heeft geen rechten om deze gebruiker te verwijderen");
+/*edit/delete user*/
+define("TEXT_CANT_EDIT_USER", "U heeft geen rechten om deze gebruiker bij te werken");
+define("TEXT_CANT_DELETE_USER", "U heeft geen rechten om deze gebruiker te verwijderen");
 /*download*/
 define("TEXT_DOWNLOAD_IMAGE", "De afbeelding kan nog neit gedownload worden");
 /*forgetpassword*/
@@ -192,3 +203,14 @@ define("TEXT_FORGET_PASSWORD", "Aanvraag is verstuurd");
 define("TEXT_ACCORD_SEND", "De accordering is verstuurd");
 /*Update open mails*/
 define("TEXT_NO_ASSIGNMENTS_5DAYS", "Er zijn geen proeven die langer dan 5 dagen openstaan");
+
+
+/* Modals */
+define("TEXT_DELETE_USER", "Gebruiker verwijderen");
+define("TEXT_RESET_PASSWORD", "Reset wachtwoord");
+define("TEXT_MESSAGE_DELETING_PASSWORD", "U staat op het punt om het wachtwoord van de gebruiker");
+define("TEXT_MESSAGE_DELETING_PASSWORD1", "te resetten");
+define("TEXT_MESSAGE_DELETING_USER", "U staat op het punt om de gebruiker");
+define("TEXT_MESSAGE_DELETING_USER1", "te verwijderen");
+/* */
+define("TEXT_ARE_YOU_SURE", "Weet je het zeker?");

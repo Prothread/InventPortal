@@ -15,6 +15,15 @@ define("TEXT_CLIENT", "Clients");
 define("TEXT_USER", "Users");
 define("TEXT_ACCORD", "Accord");
 define("TEXT_LOGOUT", "Log out");
+define("TEXT_USERPROFILE", "Profile: ");
+
+
+/* LOGIN */
+define("TEXT_PASSWORD", "Password");
+define("BUTTON_LOGIN", "Login");
+define("TEXT_PASSWORD_FORGET", "Forgot password");
+define("TEXT_WRONG_LOGIN_COMBINATION", "Wrong combination, try again");
+define("TEXT_USER_NOT_ACTIVE", "User is not active");
 
 
 /* DASHBOARD */
@@ -174,6 +183,7 @@ define("TEXT_ERROR_OCCURED", "Something went wrong");
 define("TEXT_PASSWORD_CHANGED", "Password has been changed");
 /*settingupload*/
 define("TEXT_UPLOADED_FILE_TOO_BIG", "Uploaed file is too big");
+define("TEXT_FILES_UPLOAD_ERROR", "Files couldn't be uploaded");
 /*upload*/
 define("TEXT_FILE_UPLOADED", "Your files have succesfully been uploaded");
 /*approve*/
@@ -182,8 +192,9 @@ define("TEXT_ACCORD_ERROR", "There is nothing to accord");
 define("TEXT_MAIL_USED", "This mail is already in use");
 /*delete item*/
 define("TEXT_ITEM_DELETD", "Item has been deleted");
-/*delete user*/
-define("TEXT_DELETE_USER", "You don't have the permission to delete this user");
+/*edit/delete user*/
+define("TEXT_CANT_EDIT_USER", "You don't have the permission to edit this user");
+define("TEXT_CANT_DELETE_USER", "You don't have the permission to delete this user");
 /*download*/
 define("TEXT_DOWNLOAD_IMAGE", "Image can't be downloaded yet");
 /*forgetpassword*/
@@ -192,3 +203,14 @@ define("TEXT_FORGET_PASSWORD", "Order has been requested");
 define("TEXT_ACCORD_SEND", "Accord has been send");
 /*Update open mails*/
 define("TEXT_NO_ASSIGNMENTS_5DAYS", "There are no assignments that are open for longer than 5 days");
+
+
+/* Modals */
+define("TEXT_DELETE_USER", "Delete user");
+define("TEXT_RESET_PASSWORD", "Reset password");
+define("TEXT_MESSAGE_DELETING_PASSWORD", "You are about to reset the password of the user ");
+define("TEXT_MESSAGE_DELETING_PASSWORD1", " ");
+define("TEXT_MESSAGE_DELETING_USER", "You are about to delete the user");
+define("TEXT_MESSAGE_DELETING_USER1", " ");
+/* */
+define("TEXT_ARE_YOU_SURE", "Are you sure?");

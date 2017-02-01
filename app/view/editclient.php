@@ -14,7 +14,7 @@ if ($user->getPermission($permgroup, 'CAN_EDIT_CLIENT') == 1 && $myclient['permg
 } else if ($user->getPermission($permgroup, 'CAN_EDIT_USER') == 1 && $myclient['permgroup'] !== 1) {
 
 } else {
-    echo 'U heeft geen rechten om deze gebruiker te bewerken';
+    echo TEXT_CANT_EDIT_USER;
     return false;
 }
 
@@ -29,7 +29,9 @@ if (isset($_POST['submit'])) {
     $postcode = mysqli_real_escape_string($mysqli, $_POST['postcode']);
     $plaats = mysqli_real_escape_string($mysqli, $_POST['plaats']);
     $lang = mysqli_real_escape_string($mysqli, $_POST['lang']);
-    $rechten = mysqli_real_escape_string($mysqli, $_POST['rechten']);
+    if(isset($_POST['rechten']) && $_POST['rechten']) {
+        $rechten = mysqli_real_escape_string($mysqli, $_POST['rechten']);
+    }
 
     //Generate a random string.
     $token = openssl_random_pseudo_bytes(8);
@@ -46,8 +48,10 @@ if (isset($_POST['submit'])) {
         'postcode' => strip_tags($postcode),
         'plaats' => strip_tags($plaats),
         'lang' => strip_tags($lang),
-        'permgroup' => $rechten
     ];
+    if(isset($rechten) && $rechten) {
+        $clientinfo['permgroup'] = $rechten;
+    }
 
 
     if (isset($_FILES['fileToUpload'])) {
@@ -69,8 +73,7 @@ if (isset($_POST['submit'])) {
 
         if ($myFile["size"] > 10485760) {
             $error = 1;
-            echo $test . '<div class="alert alert-danger" role="alert">Het meegestuurde bestand is te groot!</div>';
-            ?><br/><?php
+            echo $test . '<div class="alert alert-danger" role="alert">' . TEXT_UPLOADED_FILE_TOO_BIG . '!</div>';
             return false;
         }
 
@@ -80,22 +83,8 @@ if (isset($_POST['submit'])) {
             $uniqfile = $target_dir . $unique_name;
 
             if (move_uploaded_file($test1, $uniqfile)) {
-
+                $clientinfo['profimg'] = $unique_name;
             }
-
-            $clientinfo = [
-                'id' => intval($_POST['id']),
-                'profimg' => $unique_name,
-                'name' => strip_tags($naam),
-                'email' => strip_tags($email),
-                'altmail' => strip_tags($altmail),
-                'bedrijfsnaam' => strip_tags($bedrijfsnaam),
-                'adres' => strip_tags($adres),
-                'postcode' => strip_tags($postcode),
-                'plaats' => strip_tags($plaats),
-                'lang' => strip_tags($lang),
-                'permgroup' => $rechten
-            ];
 
         }
 
@@ -262,9 +251,6 @@ if (isset($_POST['submit'])) {
                                 </div>
                             </div>
 
-                        <?php } else { ?>
-                            <input class="form-control" value="<?= $userinfo['permgroup'] ?>" type="hidden"
-                                   name="rechten">
                         <?php } ?>
 
                         <div class="form-group">

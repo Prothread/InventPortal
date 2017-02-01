@@ -5,7 +5,7 @@ if (isset($_SESSION['resetemail']) && isset($_SESSION['token'])) {
     $mysqli = mysqli_connect();
     $user = new UserController();
 } else {
-    echo 'Er is iets misgegaan';
+    echo TEXT_ERROR_OCCURED;
     return false;
 }
 

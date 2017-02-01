@@ -238,10 +238,13 @@ class DbUser extends Database
 
     public function getPermissionGroupName($value)
     {
-        $sql = "SELECT `name` FROM `permgroup` WHERE `userperm` = '{$value}'";
+        $sql = "SELECT * FROM `permgroup` WHERE `userperm` = '{$value}'";
 
-        if ($result = $this->dbQuery($sql)) {
-            return mysqli_fetch_assoc($result);
+        $result = $this->dbQuery($sql);
+        $value = mysqli_fetch_assoc($result);
+
+        if ($value) {
+            return $value;
         }
     }
 

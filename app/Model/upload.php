@@ -19,9 +19,10 @@ if (isset($_SESSION['clientid'])) {
     $clientid = mysqli_real_escape_string($mysqli, $_POST['client']);
 }
 $client = $user->getUserById($clientid);
-$sender = $client['naam'];
+$name = $client['naam'];
 
-$name = mysqli_real_escape_string($mysqli, $client['naam']);
+$usr = $user->getUserById($_SESSION['usr_id']);
+$sender = $usr['naam'];
 
 if ($client['altmail']) {
     $email = $client['altmail'];
@@ -166,7 +167,7 @@ if (isset($_FILES['myFile'])) {
             true;
         }
         else {
-            echo '<div class="alert alert_error">De bestand(en) konden niet geüpload worden</div>';
+            echo '<div class="alert alert_error">' . TEXT_FILES_UPLOAD_ERROR . '</div>';
             return false;
         }
     }

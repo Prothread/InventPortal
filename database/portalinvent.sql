@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 13, 2017 at 01:10 PM
--- Server version: 10.1.19-MariaDB
--- PHP Version: 7.0.13
+-- Gegenereerd op: 31 jan 2017 om 14:28
+-- Serverversie: 10.1.19-MariaDB
+-- PHP-versie: 7.0.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -23,7 +23,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `comments`
+-- Tabelstructuur voor tabel `comments`
 --
 
 CREATE TABLE `comments` (
@@ -37,7 +37,7 @@ CREATE TABLE `comments` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `image`
+-- Tabelstructuur voor tabel `image`
 --
 
 CREATE TABLE `image` (
@@ -53,7 +53,7 @@ CREATE TABLE `image` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mail`
+-- Tabelstructuur voor tabel `mail`
 --
 
 CREATE TABLE `mail` (
@@ -72,7 +72,7 @@ CREATE TABLE `mail` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `permgroup`
+-- Tabelstructuur voor tabel `permgroup`
 --
 
 CREATE TABLE `permgroup` (
@@ -83,7 +83,7 @@ CREATE TABLE `permgroup` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `permgroup`
+-- Gegevens worden geëxporteerd voor tabel `permgroup`
 --
 
 INSERT INTO `permgroup` (`id`, `userperm`, `name`, `assignable`) VALUES
@@ -96,7 +96,7 @@ INSERT INTO `permgroup` (`id`, `userperm`, `name`, `assignable`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `permissions`
+-- Tabelstructuur voor tabel `permissions`
 --
 
 CREATE TABLE `permissions` (
@@ -110,7 +110,7 @@ CREATE TABLE `permissions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `permissions`
+-- Gegevens worden geëxporteerd voor tabel `permissions`
 --
 
 INSERT INTO `permissions` (`id`, `permission`, `Klant`, `Gebruiker`, `Beheerder`, `Admin`, `SuperAdmin`) VALUES
@@ -136,12 +136,13 @@ INSERT INTO `permissions` (`id`, `permission`, `Klant`, `Gebruiker`, `Beheerder`
 (20, 'CAN_SHOW_USERIP', 0, 1, 1, 1, 1),
 (21, 'CAN_DELETE_CLIENT', 0, 1, 1, 1, 1),
 (22, 'CAN_DELETE_USER', 0, 0, 0, 1, 1),
-(23, 'CAN_USE_ITEM_DELETE', 0, 1, 1, 1, 1);
+(23, 'CAN_USE_ITEM_DELETE', 0, 1, 1, 1, 1),
+(24, 'CAN_CHANGE_USER_LANGUAGE', 0, 1, 1, 1, 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `settings`
+-- Tabelstructuur voor tabel `settings`
 --
 
 CREATE TABLE `settings` (
@@ -152,20 +153,23 @@ CREATE TABLE `settings` (
   `Mailpass` varchar(64) NOT NULL,
   `Logo` varchar(100) NOT NULL,
   `Header` varchar(64) NOT NULL,
-  `Host` varchar(64) NOT NULL
+  `Host` varchar(64) NOT NULL,
+  `globalmail` tinyint(1) NOT NULL,
+  `contactmail` varchar(64) NOT NULL,
+  `background` varchar(64) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `settings`
+-- Gegevens worden geëxporteerd voor tabel `settings`
 --
 
-INSERT INTO `settings` (`id`, `SMTP`, `SMTPport`, `Email`, `Mailpass`, `Logo`, `Header`, `Host`) VALUES
-(0, 'smtp.gmail.com', '587', 'madalcomedia@gmail.com', 'Madalco&Invent', 'madlogo.png', '#dd2c4c', 'http://localhost/InventPortal');
+INSERT INTO `settings` (`id`, `SMTP`, `SMTPport`, `Email`, `Mailpass`, `Logo`, `Header`, `Host`, `globalmail`, `contactmail`, `background`) VALUES
+(0, 'smtp.gmail.com', '587', 'madalcomedia@gmail.com', 'Madalco&Invent', 'madlogo.png', '#dd2c4c', 'http://localhost/InventPortal', 0, 'mmedia@gmail.com', 'invent.jpg');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `status_item`
+-- Tabelstructuur voor tabel `status_item`
 --
 
 CREATE TABLE `status_item` (
@@ -180,7 +184,7 @@ CREATE TABLE `status_item` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `usermail`
+-- Tabelstructuur voor tabel `usermail`
 --
 
 CREATE TABLE `usermail` (
@@ -194,7 +198,7 @@ CREATE TABLE `usermail` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Tabelstructuur voor tabel `users`
 --
 
 CREATE TABLE `users` (
@@ -209,35 +213,37 @@ CREATE TABLE `users` (
   `adres` varchar(64) NOT NULL,
   `postcode` varchar(8) NOT NULL,
   `plaats` varchar(64) NOT NULL,
+  `lang` varchar(4) NOT NULL DEFAULT 'nl',
+  `active` tinyint(1) NOT NULL DEFAULT '1',
   `paswoordvergeten` varchar(256) NOT NULL,
   `passresetdate` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `users`
+-- Gegevens worden geëxporteerd voor tabel `users`
 --
 
-INSERT INTO `users` (`id`, `profimg`, `naam`, `email`, `altmail`, `paswoord`, `permgroup`, `bedrijfsnaam`, `adres`, `postcode`, `plaats`, `paswoordvergeten`, `passresetdate`) VALUES
-(1, 'profile.png', 'SuperAdmin', 'madalcomedia@gmail.com', '', 'da1bf1780c5d00bcb03553ebd4b5ae3adb73aa09678b5d58759fba9216a0544d', 5, '', '', '', '', '', '0000-00-00 00:00:00');
+INSERT INTO `users` (`id`, `profimg`, `naam`, `email`, `altmail`, `paswoord`, `permgroup`, `bedrijfsnaam`, `adres`, `postcode`, `plaats`, `lang`, `active`, `paswoordvergeten`, `passresetdate`) VALUES
+(1, 'profile.png', 'SuperAdmin', 'madalcomedia@gmail.com', '', 'da1bf1780c5d00bcb03553ebd4b5ae3adb73aa09678b5d58759fba9216a0544d', 5, '', '', '', '', 'nl', 1, '', '0000-00-00 00:00:00');
 
 --
--- Indexes for dumped tables
+-- Indexen voor geëxporteerde tabellen
 --
 
 --
--- Indexes for table `comments`
+-- Indexen voor tabel `comments`
 --
 ALTER TABLE `comments`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `image`
+-- Indexen voor tabel `image`
 --
 ALTER TABLE `image`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `mail`
+-- Indexen voor tabel `mail`
 --
 ALTER TABLE `mail`
   ADD PRIMARY KEY (`id`),
@@ -245,83 +251,83 @@ ALTER TABLE `mail`
   ADD UNIQUE KEY `key` (`key`);
 
 --
--- Indexes for table `permgroup`
+-- Indexen voor tabel `permgroup`
 --
 ALTER TABLE `permgroup`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `permissions`
+-- Indexen voor tabel `permissions`
 --
 ALTER TABLE `permissions`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `settings`
+-- Indexen voor tabel `settings`
 --
 ALTER TABLE `settings`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `status_item`
+-- Indexen voor tabel `status_item`
 --
 ALTER TABLE `status_item`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `usermail`
+-- Indexen voor tabel `usermail`
 --
 ALTER TABLE `usermail`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `users`
+-- Indexen voor tabel `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `email` (`email`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT voor geëxporteerde tabellen
 --
 
 --
--- AUTO_INCREMENT for table `comments`
+-- AUTO_INCREMENT voor een tabel `comments`
 --
 ALTER TABLE `comments`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `image`
+-- AUTO_INCREMENT voor een tabel `image`
 --
 ALTER TABLE `image`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `mail`
+-- AUTO_INCREMENT voor een tabel `mail`
 --
 ALTER TABLE `mail`
   MODIFY `id` int(32) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `permgroup`
+-- AUTO_INCREMENT voor een tabel `permgroup`
 --
 ALTER TABLE `permgroup`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
--- AUTO_INCREMENT for table `permissions`
+-- AUTO_INCREMENT voor een tabel `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 --
--- AUTO_INCREMENT for table `status_item`
+-- AUTO_INCREMENT voor een tabel `status_item`
 --
 ALTER TABLE `status_item`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `usermail`
+-- AUTO_INCREMENT voor een tabel `usermail`
 --
 ALTER TABLE `usermail`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT voor een tabel `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;

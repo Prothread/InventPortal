@@ -37,6 +37,18 @@ else if(isset($_SESSION['accorduserid'])) {
  $usr = $user->getUserById($_SESSION['accorduserid']);
 }
 else {
+ if(isset($_GET['lang'])) {
+  $language = $_GET['lang'];
+  if($language == 'nl') {
+   include_once 'language/nl.php';
+  }
+  else {
+   include_once 'language/en.php';
+  }
+ }
+ else {
+  include_once 'language/en.php';
+ }
  return false;
 }
 

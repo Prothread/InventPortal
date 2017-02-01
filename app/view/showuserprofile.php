@@ -41,37 +41,35 @@ if ($userinfo['permgroup'] == '1') {
                     <table style="width:100%">
                         <tr>
                             <th style="text-align: left;"><p class="NameText" style="font-weight: normal;">
-                                    Profiel: <?= $userinfo['naam'] ?></p></th>
+                                    <?= TEXT_USERPROFILE ?><?= $userinfo['naam'] ?></p></th>
                             <th style="text-align: right;">
 
                                 <?php if($user->getPermission($permgroup, 'CAN_RESET_CLIENT_PASSWORD') == '1' && $userinfo['permgroup'] == '1') { ?>
                                     <a data-toggle="modal" data-target="#NewUserPassword" href="#">
                                         <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
-                                            <span class="btn-label"><i class="glyphicon glyphicon-lock"></i></span>Reset
-                                            wachtwoord</button>
+                                            <span class="btn-label"><i class="glyphicon glyphicon-lock"></i></span><?= TEXT_RESET_PASSWORD ?>
+                                        </button>
                                     </a>
                                 <?php }
                                 else if($user->getPermission($permgroup, 'CAN_RESET_USER_PASSWORD') == '1' && $userinfo['permgroup'] !== '1') { ?>
                                     <a data-toggle="modal" data-target="#NewUserPassword" href="#">
                                         <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
-                                            <span class="btn-label"><i class="glyphicon glyphicon-lock"></i></span>Reset
-                                            wachtwoord</button>
+                                            <span class="btn-label"><i class="glyphicon glyphicon-lock"></i></span><?= TEXT_RESET_PASSWORD ?>
+                                            </button>
                                     </a>
                                 <?php } ?>
 
                                 <?php if ($user->getPermission($permgroup, 'CAN_EDIT_CLIENT') == 1 && $userinfo['permgroup'] == '1') { ?>
                                     <a href="?page=editclient&id=<?= $_GET['id'] ?>">
                                         <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
-                                            <span class="btn-label"><i class="glyphicon glyphicon-pencil"></i></span>Wijzig
-                                            gebruiker
+                                            <span class="btn-label"><i class="glyphicon glyphicon-pencil"></i></span><?= TEXT_EDIT_USER ?>
                                         </button>
                                     </a>
                                 <?php }
                                 else if ($user->getPermission($permgroup, 'CAN_EDIT_USER') == 1 && $userinfo['permgroup'] !== '1') { ?>
                                     <a href="?page=editclient&id=<?= $_GET['id'] ?>">
                                         <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
-                                            <span class="btn-label"><i class="glyphicon glyphicon-pencil"></i></span>Wijzig
-                                            gebruiker
+                                            <span class="btn-label"><i class="glyphicon glyphicon-pencil"></i></span><?= TEXT_EDIT_USER ?>
                                         </button>
                                     </a>
                                 <?php } ?>
@@ -79,16 +77,16 @@ if ($userinfo['permgroup'] == '1') {
                                 <?php if ($user->getPermission($permgroup, 'CAN_DELETE_CLIENT') == 1 && $userinfo['permgroup'] == '1') { ?>
                                     <a data-toggle="modal" data-target="#DeleteUser" href="#">
                                         <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
-                                            <span class="btn-label"><i class="glyphicon glyphicon-remove"></i></span>Verwijder
-                                            gebruiker</button>
+                                            <span class="btn-label"><i class="glyphicon glyphicon-remove"></i></span><?= TEXT_DELETE_USER ?>
+                                        </button>
                                     </a>
                                 <?php } ?>
 
                                 <?php if ($user->getPermission($permgroup, 'CAN_DELETE_USER') == 1 && $userinfo['permgroup'] !== '1') { ?>
                                     <a data-toggle="modal" data-target="#DeleteUser" href="#">
                                         <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
-                                            <span class="btn-label"><i class="glyphicon glyphicon-remove"></i></span>Verwijder
-                                            gebruiker</button>
+                                            <span class="btn-label"><i class="glyphicon glyphicon-remove"></i></span><?= TEXT_DELETE_USER ?>
+                                        </button>
                                     </a>
                                 <?php } ?>
                             </th>
@@ -111,42 +109,42 @@ if ($userinfo['permgroup'] == '1') {
                         <div class="col-md-9 personal-info">
                             <form class="form-horizontal" role="form">
                                 <div class="form-group">
-                                    <label class="col-lg-3 control-label">Naam</label>
+                                    <label class="col-lg-3 control-label"><?= TEXT_NAME ?></label>
                                     <div class="col-lg-8">
                                         <input disabled class="form-control" value="<?= $userinfo['naam'] ?>"
                                                type="text">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-lg-3 control-label">Bedrijfsnaam:</label>
+                                    <label class="col-lg-3 control-label"><?= TEXT_COMPANY_NAME ?></label>
                                     <div class="col-lg-8">
                                         <input disabled class="form-control" value="<?= $userinfo['bedrijfsnaam'] ?>"
                                                type="text">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-lg-3 control-label">Email:</label>
+                                    <label class="col-lg-3 control-label"><?= TEXT_EMAIL ?></label>
                                     <div class="col-lg-8">
                                         <input disabled class="form-control" value="<?= $userinfo['email'] ?>"
                                                type="text">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-lg-3 control-label">Adres:</label>
+                                    <label class="col-lg-3 control-label"><?= TEXT_ADRESS ?></label>
                                     <div class="col-lg-8">
                                         <input disabled class="form-control" value="<?= $userinfo['adres'] ?>"
                                                type="text">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-lg-3 control-label">Postcode:</label>
+                                    <label class="col-lg-3 control-label"><?= TEXT_POSTALCODE ?></label>
                                     <div class="col-lg-8">
                                         <input disabled class="form-control" size="6"
                                                value="<?= $userinfo['postcode'] ?>" type="text">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-lg-3 control-label">Plaats:</label>
+                                    <label class="col-lg-3 control-label"><?= TEXT_CITY ?></label>
                                     <div class="col-lg-8">
                                         <input disabled class="form-control" value="<?= $userinfo['plaats'] ?>"
                                                type="text">
@@ -154,10 +152,11 @@ if ($userinfo['permgroup'] == '1') {
                                 </div>
 
                                 <?php if ($user->getPermission($permgroup, 'CAN_EDIT_USER') == '1'){ ?>
+                                    <?php $usrperm = $user->getPermissionGroupName($userinfo['permgroup']); ?>
                                     <div class="form-group">
-                                        <label class="col-lg-3 control-label">Rechten:</label>
+                                        <label class="col-lg-3 control-label"><?= TEXT_PERMISSION ?></label>
                                         <div class="col-lg-8">
-                                            <input disabled class="form-control" value="<?= $mypermgroup ?>" type="text">
+                                            <input disabled class="form-control" value="<?= $usrperm['name'] ?>" type="text">
                                         </div>
                                     </div>
                                 <?php } ?>
@@ -182,11 +181,11 @@ if ($userinfo['permgroup'] == '1') {
                         <tr>
 
                             <th style="display:none">ID</th>
-                            <th>Onderwerp</th>
-                            <th>Verstuurder</th>
-                            <th>Klant</th>
-                            <th id="date">Datum</th>
-                            <th>Status</th>
+                            <th><?= TABLE_TITLE ?></th>
+                            <th><?= TEXT_SENDER ?></th>
+                            <th><?= TEXT_CLIENT ?></th>
+                            <th id="date"><?= TEXT_DATE ?></th>
+                            <th><?= TEXT_PROGRESS ?></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -258,17 +257,16 @@ if ($userinfo['permgroup'] == '1') {
         <div class="modal-content">
             <div style="text-align: center;" class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Reset wachtwoord</h4>
+                <h4 class="modal-title"><?= TEXT_RESET_PASSWORD ?></h4>
             </div>
             <div style="text-align: center;" class="modal-body">
                 <br>
 
-                <p> U staat op het punt om het wachtwoord van de gebruiker <b><?= $userinfo['naam'] ?></b> te resetten. <br/><br/>
-                    Weet u dit zeker?<br/><br/></p>
+                <p> <?= TEXT_MESSAGE_DELETING_PASSWORD ?> <b><?= $userinfo['naam'] ?></b> <?= TEXT_MESSAGE_DELETING_PASSWORD1 ?> <br/><br/>
+                    <?= TEXT_ARE_YOU_SURE ?><br/><br/></p>
                 <a href="?page=newuserpassword&id=<?= $_GET['id'] ?>">
                     <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
-                        <span class="btn-label"><i class="glyphicon glyphicon-lock"></i></span>Reset
-                        wachtwoord
+                        <span class="btn-label"><i class="glyphicon glyphicon-lock"></i></span><?= TEXT_RESET_PASSWORD ?>
                     </button>
                 </a>
 
@@ -291,17 +289,16 @@ if ($userinfo['permgroup'] == '1') {
         <div class="modal-content">
             <div style="text-align: center;" class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Reset wachtwoord</h4>
+                <h4 class="modal-title"><?= TEXT_DELETE_USER ?></h4>
             </div>
             <div style="text-align: center;" class="modal-body">
                 <br>
 
-                <p> U staat op het punt om de gebruiker <b><?= $userinfo['naam'] ?></b> te verwijderen. <br/><br/>
-                    Weet u dit zeker?<br/><br/></p>
+                <p> <?= TEXT_MESSAGE_DELETING_USER ?> <b><?= $userinfo['naam'] ?></b> <?= TEXT_MESSAGE_DELETING_USER1 ?> <br/><br/>
+                    <?= TEXT_ARE_YOU_SURE ?><br/><br/></p>
                 <a href="?page=deleteuser&id=<?= $_GET['id'] ?>">
                     <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
-                        <span class="btn-label"><i class="glyphicon glyphicon-remove"></i></span>Verwijder
-                        gebruiker
+                        <span class="btn-label"><i class="glyphicon glyphicon-remove"></i></span><?= TEXT_DELETE_USER ?>
                     </button>
                 </a>
 
