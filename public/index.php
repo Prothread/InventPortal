@@ -59,7 +59,7 @@ if (!$session->exists('usr_id') && $page !== 'approve' && $page !== 'conditions'
 }
 
 if ($session->exists('usr_id')) {
-    if ($page !== 'submit' && $page !== 'item2' && $page !== 'image' && $page !== 'download' && $page !== 'clientmail') {
+    if ($page !== 'submit' && $page !== 'item2' && $page !== 'image' && $page !== 'download' && $page !== 'clientmail' && $page !== 'lala') {
         include_once '../app/view/header.php';
     }
 }

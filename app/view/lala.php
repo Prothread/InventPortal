@@ -45,9 +45,8 @@ if (isset($_POST['id'])) {
 $error = 0;
 
 $unique_names = array();
-//$_SESSION['unique_names'] = array();
+$_SESSION['unique_names'] = array();
 
-$imageId = 2;
 if(!empty($_FILES)){
 
     $targetDir = "../app/uploads/";
@@ -74,12 +73,12 @@ if(!empty($_FILES)){
         var_dump($uniqfile);
 
         if (move_uploaded_file($test1, $uniqfile)) {
-            array_push($_SESSION['unique_names'], $unique_name);
+            array_push($unique_names, $unique_name);
         }
 
 
 }
-var_dump($unique_names);
+//var_dump($unique_names);
 die();
 if ($error == 0) {
     $mymail = new MailController();

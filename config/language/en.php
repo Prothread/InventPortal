@@ -214,3 +214,9 @@ define("TEXT_MESSAGE_DELETING_USER", "You are about to delete the user");
 define("TEXT_MESSAGE_DELETING_USER1", " ");
 /* */
 define("TEXT_ARE_YOU_SURE", "Are you sure?");
+
+
+/* 404 Page */
+define("TEXT_MESSAGE_ERROR_404_TITLE", "The page you were looking for couldn't be found.");
+define("TEXT_MESSAGE_ERROR_404", "Sorry, the page cannot be shown. The page may not exist. <br />
+We advice you to use the buttons in the sidebar to get to the right page or to go back to the homepage.");

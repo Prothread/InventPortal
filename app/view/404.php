@@ -11,17 +11,15 @@ unset($contenter);
         <h1 class="elegantshadow">Error 404</h1>
         <br>
         <hr class="style17">
-        <h3 style="color: #dd2c4c; font-family: 'Abhaya Libre', serif; font-size: 40px;" class="font-bold">De pagina die
-            u zocht, werd niet gevonden...</h3>
+        <h3 style="color: #dd2c4c; font-family: 'Abhaya Libre', serif; font-size: 40px;" class="font-bold"><?= TEXT_MESSAGE_ERROR_404_TITLE ?>...</h3>
         <div style="color: #000; font-family: 'Open Sans', sans-serif; font-size: 20px;" class="error-desc">
-            Sorry, de door u opgevraagde pagina kon niet worden getoond. Mogelijk bestaat de pagina niet. <br/>
-            Wij raden u aan de juiste pagina te zoeken in het menu, of terug te gaan naar de homepagina.
+            <?= TEXT_MESSAGE_ERROR_404 ?>
             <div>
                 <br>
                 <a class=" login-detail-panel-button btn" href="#">
                     <a href="?page=dashboard"
                        style="font-family: 'Abhaya Libre', serif; font-size: 25px; color: #dd2c4c"
-                       class="btn btn-lg btn-default">Homepagina</a>
+                       class="btn btn-lg btn-default">Homepage</a>
                 </a>
             </div>
         </div>

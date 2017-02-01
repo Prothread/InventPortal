@@ -533,7 +533,7 @@ span.round-tab:hover {
 }
 
 .wizard .nav-tabs > li {
-    width: 33%;
+    width: 25%;
 }
 
 .wizard li:after {
@@ -1306,7 +1306,19 @@ ul.sidebar-nav {
 
 #LoggedInAs {
     color: #dd2c4c;
-    line-height: 7px;
+    width:100%;
+    height:100%;
+    white-space: normal;
+    display: -webkit-flexbox;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    justify-content: flex-end;
+    font-size:20px;
 }
 
 #LogOut{
@@ -1748,4 +1760,7 @@ tr:nth-child(2n) {
     margin: 0 auto;
     min-width: 75%;
     max-width: 100%;
+}
+#resize {
+    display:table;
 }

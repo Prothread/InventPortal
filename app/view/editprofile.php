@@ -120,6 +120,7 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);
                                     </div>
                                 <?php } ?>
 
+                                <?php if($user->getPermission($permgroup, 'CAN_CHANGE_LANGUAGE')) { ?>
                                 <div class="form-group">
                                     <label class="col-lg-3 control-label"><?= TEXT_LANGUAGE ?></label>
                                     <div class="col-lg-8">
@@ -129,6 +130,7 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);
                                         </select>
                                     </div>
                                 </div>
+                                <?php } ?>
 
                                 <div class="form-group">
                                     <label class="col-lg-3 control-label"></label>

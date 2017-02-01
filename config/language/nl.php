@@ -214,3 +214,9 @@ define("TEXT_MESSAGE_DELETING_USER", "U staat op het punt om de gebruiker");
 define("TEXT_MESSAGE_DELETING_USER1", "te verwijderen");
 /* */
 define("TEXT_ARE_YOU_SURE", "Weet je het zeker?");
+
+
+/* 404 Page */
+define("TEXT_MESSAGE_ERROR_404_TITLE", "De pagina die U zocht, werdt niet gevonden");
+define("TEXT_MESSAGE_ERROR_404", "Sorry, de door u opgevraagde pagina kon niet worden getoond. Mogelijk bestaat de pagina niet. <br />
+Wij raden u aan de juiste pagina te zoeken in het menu, of terug te gaan naar de homepagina.");

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 31 jan 2017 om 14:28
+-- Gegenereerd op: 01 feb 2017 om 09:15
 -- Serverversie: 10.1.19-MariaDB
 -- PHP-versie: 7.0.13
 
@@ -122,7 +122,7 @@ INSERT INTO `permissions` (`id`, `permission`, `Klant`, `Gebruiker`, `Beheerder`
 (6, 'CAN_SHOW_KLANTPAGINA', 0, 1, 1, 1, 1),
 (7, 'CAN_CREATE_CLIENT', 0, 1, 1, 1, 1),
 (8, 'CAN_EDIT_CLIENT', 0, 0, 1, 1, 1),
-(9, 'CAN_ACCORD', 1, 0, 0, 0, 1),
+(9, 'CAN_ACCORD', 1, 0, 1, 1, 1),
 (10, 'CAN_EDIT_ACCORD', 0, 0, 1, 1, 1),
 (11, 'CAN_SHOW_ITEM', 1, 1, 1, 1, 1),
 (12, 'CAN_SHOW_USERS', 0, 1, 1, 1, 1),
@@ -137,7 +137,8 @@ INSERT INTO `permissions` (`id`, `permission`, `Klant`, `Gebruiker`, `Beheerder`
 (21, 'CAN_DELETE_CLIENT', 0, 1, 1, 1, 1),
 (22, 'CAN_DELETE_USER', 0, 0, 0, 1, 1),
 (23, 'CAN_USE_ITEM_DELETE', 0, 1, 1, 1, 1),
-(24, 'CAN_CHANGE_USER_LANGUAGE', 0, 1, 1, 1, 1);
+(24, 'CAN_CHANGE_LANGUAGE', 1, 1, 1, 1, 1),
+(25, 'CAN_CHANGE_USER_LANGUAGE', 0, 0, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -224,7 +225,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `profimg`, `naam`, `email`, `altmail`, `paswoord`, `permgroup`, `bedrijfsnaam`, `adres`, `postcode`, `plaats`, `lang`, `active`, `paswoordvergeten`, `passresetdate`) VALUES
-(1, 'profile.png', 'SuperAdmin', 'madalcomedia@gmail.com', '', 'da1bf1780c5d00bcb03553ebd4b5ae3adb73aa09678b5d58759fba9216a0544d', 5, '', '', '', '', 'nl', 1, '', '0000-00-00 00:00:00');
+(1, 'profile.png', 'SuperAdmin', 'madalcomedia@gmail.com', '', 'da1bf1780c5d00bcb03553ebd4b5ae3adb73aa09678b5d58759fba9216a0544d', 5, '', '', '', '', 'en', 1, '', '0000-00-00 00:00:00');
 
 --
 -- Indexen voor geëxporteerde tabellen
@@ -315,7 +316,7 @@ ALTER TABLE `permgroup`
 -- AUTO_INCREMENT voor een tabel `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 --
 -- AUTO_INCREMENT voor een tabel `status_item`
 --

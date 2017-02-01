@@ -119,7 +119,7 @@ if (isset($_SESSION['accorduserid']) && !isset($_SESSION['usr_id'])) {
         <a style="text-decoration: none;" href="?page=profile">
             <div id="UserBlock" style="text-decoration: none;">
                 <div id="UserBlockImage" style="background-image: url('<?= $imgsrc ?>');"></div>
-                <h3 id="LoggedInAs"><?= $myuser ?></h3>
+                <div id="LoggedInAs"><?= $myuser ?></div>
             </div>
         </a>
     </div>

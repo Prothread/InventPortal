@@ -337,6 +337,7 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);
     <script>
 
         var postForm = [];
+        var Files = '';
 
         Dropzone.options.mydropzone = {
             addRemoveLinks: true,
@@ -355,9 +356,31 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);
             },
             init: function() {
 
+                this.on("sending", function(file, xhr, formData) {
+                    // Will send the filesize along with the file as POST data.
+                    //Files.push(file.name);
+                    file.myCustomName = <?= $dbmail->getIncrement() ?> + '_' + file.name;
+                });
+
                 this.on("queuecomplete", function () {
                     this.options.autoProcessQueue = false;
+
+                    /* Files = <?php echo implode(",", $_SESSION['unique_names']) ?>; */
+
                     //window.location = 'index.php?page=lala1';
+                    postForm += Files;
+                    alert(postForm);
+
+                    $.ajax({
+                        type: "POST",
+                        url: "?page=lala1",
+                        data: postForm,
+                        cache: false,
+                        success: function (result) {
+                            window.location.href = 'index.php?page=overview';
+                        }
+                    });
+                    event.preventDefault();
                 });
 
                 this.on("processing", function () {
@@ -374,6 +397,7 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);
                 $("#sbmtbtn").on('click',function(e) {
                     e.preventDefault();
                     myDropzone.processQueue(); // this will submit your form to the specified action path
+                    postForm = $('form#mydropzone').serialize() + '&files=';
                 });
 
             }, // init end
