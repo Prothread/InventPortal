@@ -469,7 +469,7 @@ class DbMail extends Database
         return false;
     }
 
-<<<<<<< HEAD
+
     public function deleteItemImageByID($id)
     {
         $sql = "DELETE FROM image WHERE mailid = '{$id}'";
@@ -481,13 +481,7 @@ class DbMail extends Database
         }
         return false;
     }
-=======
-    /**
-     * Haal het cijfer op die als volgende in de tabel van `mail` komt te staan
-     *
-     * @return mixed
-     */
->>>>>>> origin/master
+
 
     /**
      * Haal de rij op die als volgende toegevoegd wordt
