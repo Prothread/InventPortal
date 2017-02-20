@@ -92,7 +92,8 @@ class DbMail extends Database
             }
         }
 
-        if ($mail->getAnswer()) {
+        $answer = $mail->getAnswer();
+        if (isset($answer)) {
             $sql = "UPDATE `mail` SET `answer` = '{$mail->getAnswer()}', `key` = '{$mail->getToken()}' , `verified` = '{$mail->getVerified()}' WHERE `id` = '{$mail->getMailId()}'";
 
             if ($this->dbQuery($sql)) {
@@ -106,9 +107,9 @@ class DbMail extends Database
                 $imagecontroller = new ImageController();
                 $images = $imagecontroller->getDeclinedImages($mail->getMailId());
 
-                if (isset($images)) {
+                if ($images) {
                     foreach ($images as $image) {
-                        $sql = "UPDATE `image` SET `verify` = '3' WHERE `id` = '{$image}'";
+                        $sql = "UPDATE `image` SET `verify` = '3' WHERE `id` = '{$image['id']}'";
 
                         if ($this->dbQuery($sql)) {
                             true;
@@ -116,6 +117,7 @@ class DbMail extends Database
 
                     }
                 }
+
 
                 if ($mail->getImage()) {
                     $imgarray = (explode(", ", $mail->getImage()));
@@ -127,6 +129,7 @@ class DbMail extends Database
                     } else {
                         $version = 1;
                     }
+
 
                     foreach ($imgarray as $img) {
                         $sql2 = "INSERT INTO `image` (`mailid`, `images`, `version`, `verify`) VALUES ('{$mail->getMailId()}', '{$img}', '{$version}', '{$mail->getVerified()}')";

@@ -261,9 +261,6 @@ else {
 
                             <input disabled="disabled" type="hidden" name="id" value="<?= $myupload['id']; ?>">
 
-                            <p> <?= TEXT_DESCRIPTION ?>: <span style="color:#bc2d4c"><?= $myupload['beschrijving'] ?></span>
-                            </p>
-
                             <br>
                             <br>
 
@@ -281,13 +278,17 @@ else {
                         <input type="hidden" name="verstuurder" value="<?= $myupload['verstuurder'] ?>">
 
                         <div id="refer1">
-                            <?php if (in_array(2, $verifiedimages)){  } ?>
-                            <label class="control-label" for="textinput" style="float:left;"><?= TEXT_NEW_COMMENT ?></label>
-                            <div class="col-md-4">
-                                <input name="answer" class="form-control input-md" id="textinput" type="text">
-                            </div><br /><br />
+                            <?php if (in_array(2, $verifiedimages)){ ?>
+                                <label class="control-label" for="textinput" style="float:left;"><?= TEXT_NEW_COMMENT ?></label>
+                                <div class="col-md-4">
+                                    <input name="answer" class="form-control input-md" id="textinput" type="text">
+                                </div><br /><br />
 
-                            <input type="hidden" id="totalverify" value="<?= $verify ?>">
+                                <input type="hidden" id="totalverify" value="<?= $verify ?>">
+                            <?php } else  {?>
+                                <input type="hidden" id="totalverify" value="<?= $verify ?>">
+                                <input type="hidden" name="answer" class="form-control input-md" id="textinput" value="">
+                            <?php } ?>
                         </div>
 
                         <div id="verify" style="display: none" class="alert alert-info" role="alert"></div>

@@ -34,9 +34,9 @@ if(isset($_GET['page'])) {
 if($_POST) {
     $imgid = $_POST['img'];
 
-    if ($_POST['vote'] == "Akkoord") {
+    if ($_POST['vote'] == BUTTON_ACCORD) {
         $verify = 1;
-    } else if ($_POST['vote'] == "Weiger") {
+    } else if ($_POST['vote'] == BUTTON_DECLINE) {
         $verify = 2;
     }
 

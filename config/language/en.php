@@ -44,11 +44,11 @@ define("TEXT_DECLINED", "Declined");
 
 /* OVERVIEW */
 define("BUTTON_MYOVERVIEW", "My overview");
-define("BUTTON_SENDAGAIN", "Resend assigments");
+define("BUTTON_SENDAGAIN", "Resend assigment(s)");
 define("BUTTON_DAYSOPEN", "Open assignments");
 define("BUTTON_5DAYS", "( > 5 days)");
-define("BUTTON_ACCORDED", "Accorded assignments");
-define("BUTTON_DECLINED", "Declined assignments");
+define("BUTTON_ACCORDED", "Accorded assignment(s)");
+define("BUTTON_DECLINED", "Declined assignment(s)");
 define("LEGEND", "Legend");
 /* */
 define("TABLE_TITLE", "Title");
@@ -129,6 +129,7 @@ define("TEXT_IS_CLIENT", "Client");
 define("TEXT_IS_USER", "User");
 define("TEXT_IS_ACCOUNTANT", "Accountant");
 define("TEXT_IS_ADMIN", "Admin");
+define("TEXT_ACTIVE", "Active");
 
 
 /* NEW PASSWORD */
@@ -220,3 +221,31 @@ define("TEXT_ARE_YOU_SURE", "Are you sure?");
 define("TEXT_MESSAGE_ERROR_404_TITLE", "The page you were looking for couldn't be found.");
 define("TEXT_MESSAGE_ERROR_404", "Sorry, the page cannot be shown. The page may not exist. <br />
 We advice you to use the buttons in the sidebar to get to the right page or to go back to the homepage.");
+
+
+/* ITEM */
+define("TEXT_YOUR_ASSIGNMENT", "Your assignment");
+define("TEXT_CLIENT_DESCRIPTION", "Client comment");
+define("TEXT_ACCORD_IP", "Accord IP-adress");
+define("TEXT_ASSIGNMENT_INFO", "Assignment info");
+define("TEXT_STEP5", "Upload new files that you want to send with this assignment below (if needed).");
+define("TEXT_NEW_INTERNCOMMENT", "New intern comment");
+define("TEXT_STEP6", "Change description (optional) and send the assignment.");
+define("TEXT_NEW_DESCRIPTION", "New description");
+define("TEXT_EMAIL_CLIENT", "Email client");
+define("TEXT_NO_EDITS", "Not reviewed");
+/* */
+define("BUTTON_DECLINE_ASSIGNMENT", "Decline assignment");
+define("BUTTON_DELETE_ASSIGNMENT", "Delete assignment");
+/* */
+define("TEXT_COMMENT", "Comment");
+define("TEXT_SELECT_COMMENT", "Select a comment");
+define("TEXT_VERSION", "Version");
+define("TEXT_DOWNLOADS", "Downloads");
+define("TEXT_DOWNLOAD", "Download");
+define("TEXT_MAKE_DOWNLOADABLE", "Make downloadble");
+define("TEXT_CANT_DOWNLOAD_YET", "You can't download this product yet");
+define("TEXT_MAKE_ALL_DOWNLOADABLE", "Make all files downloadable");
+/* */
+define("TEXT_MAKE_ALL_DOWNLOADABLE_MESSAGE", "You are about to make all the images in this assignment downloadble");
+define("TEXT_DELETE_ASSIGNMENT", "Delete assignment");

@@ -114,6 +114,10 @@ class UserController
             $this->model->setUserPermgroup($userinfo['permgroup']);
         }
 
+        if (isset($userinfo['active'])) {
+            $this->model->setUserActive($userinfo['active']);
+        }
+
 
         if ($result = $this->model->update()) {
             Session::flash('message', TEXT_USER_EDITED);

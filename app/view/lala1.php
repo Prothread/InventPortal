@@ -7,6 +7,8 @@ if ($user->getPermission($permgroup, 'CAN_UPLOAD') == 1) {
     Session::flash('error', TEXT_NO_PERMISSION);
 }
 
+$user = new UserController();
+
 $mysqli = mysqli_connect();
 
 $title = mysqli_real_escape_string($mysqli, $_POST['title']);
@@ -49,6 +51,8 @@ if (isset($_POST['id'])) {
     }
 }
 
+$unique_names = explode(", ", $_POST['files']);
+
 $error = 0;
 if ($error == 0) {
     $mymail = new MailController();
@@ -78,36 +82,50 @@ if ($error == 0) {
 
     $link = $admin['Host'] . "/index.php?page=verify&id=$imageId&key=$token";
 
+    function printImages($uploadedimage, $link, $hosturl)  {
+        $html = '';
+        $i = 0;
+        foreach($uploadedimage as $image) {
+            $html .= "<a href='$link'><img src='$hosturl/index.php?page=image&img=thumb_$image' style='width: auto;height: 70px;'></a>";
+            $i++;
+        }
+        return $html;
+    }
+
     $header = ' <div style="background: ' . $admin['Header'] . '; position:relative; width: 100%; height: 130px;">
-        <div style="position: absolute; height: 130px; margin-right: 25px; left: 5px;">
-            <img src="cid:HeaderImage" style="width:auto;height:75%;" />
-        </div>
-    </div> ';
+                        <div style="position: absolute; height: 130px; margin-right: 25px; left: 5px;">
+                            <img src="cid:HeaderImage" style="width:auto;height:75%;" />
+                        </div>
+                    </div> ';
+
     $content = $header . "  <br/><br/>" . "Geachte " . $name . "," .
-    " <br/><br/>" . "Uw proef staat te wachten op goedkeuring in het <b>Madalco Portaal!</b>" . "<br /><br />" .
-    "<b>Onderwerp van uw proef:</b> " .
-    $title . "<br />" .
+        " <br/><br/>" . "Wij hebben voor U een digitale proefdruk gemaakt. <br /> Dit is te zien in het <b>Klantenportaal</b>." . "<br /><br />" .
+        "<b>Onderwerp:</b> " .
+        $title . "<br />" .
 
-    "<b>Beschrijving:</b> " .
-    $description .
+        "<b>Beschrijving:</b> " .
+        $description .
 
-    "<br /><br />" . "U kunt uw proef " . "<a href='$link'>hier</a> " . "goedkeuren." .
+        "<br /><br />" . "U kunt uw proef met de onderstaand link bekijken, accorderen of wijzigen" . "<br />" .
+        "<a href='$link'>$title</a> " . "<br /><br />" .
 
-    "<br /> <br />Met vriendelijke groet, <br />" . $sender . " </br>Madalco Media" .
-    "<br /> <br /><b>Disclaimer:</b> This is an automatically generated mail. Please do not reply to this email";
+        printImages($unique_names, $link, $admin['Host']) . "<br />" .
+
+        "<br /> <br />Met vriendelijke groet, <br />" . $sender . " </br>Madalco Media" .
+        "<br /> <br /><b>Disclaimer:</b> This is an automatically generated mail. Please do not reply to this email";
 
     $altcontent = "Geachte " . $name . "," .
-    " <br/><br/>" . "Uw proef staat te wachten op goedkeuring in het <b>Madalco Portaal!</b>" . "<br /><br />" .
-    "<b>Onderwerp van uw proef:</b> " .
-    $title . "<br />" .
+        " <br/><br/>" . "Uw proef staat te wachten op goedkeuring in het <b>Madalco Portaal!</b>" . "<br /><br />" .
+        "<b>Onderwerp van uw proef:</b> " .
+        $title . "<br />" .
 
-    "<b>Beschrijving:</b> " .
-    $description .
+        "<b>Beschrijving:</b> " .
+        $description .
 
-    "<br /><br />" . "U kunt uw proef " . "hier: $link " . "goedkeuren." .
+        "<br /><br />" . "U kunt uw proef " . "hier: $link " . "goedkeuren." .
 
-    "<br /> <br />Met vriendelijke groet, <br />" . $sender . " </br>Madalco Media" .
-    "<br /> <br /><b>Disclaimer:</b> This is an automatically generated mail. Please do not reply to this email";
+        "<br /> <br />Met vriendelijke groet, <br />" . $sender . " </br>Madalco Media" .
+        "<br /> <br /><b>Disclaimer:</b> This is an automatically generated mail. Please do not reply to this email";
 
     //SMTP Configuration
     $mailer->isSMTP();
@@ -146,13 +164,12 @@ if ($error == 0) {
         'verified' => 0
     ];
 
-    if(isset($_POST['clientid']) && $_POST['clientid']) {
-        $mailinfo['clientid'] = intval($clientid);
-    }
-
-    if (isset($_POST['id']) && $_POST['id']) {
+    if (isset($_POST['id'])) {
         $myid = mysqli_real_escape_string($mysqli, $_POST['id']);
         $mailinfo['id'] = intval($myid);
+    }
+    else {
+        $mailinfo['clientid'] = intval($clientid);
     }
 
     if ($comment && $comment !== '') {
@@ -160,7 +177,6 @@ if ($error == 0) {
         $mailinfo['commentgroep'] = $commentgroep;
     }
 
-    var_dump($mailinfo);
     $mailer->SMTPOptions = array(
         'ssl' => array(
             'verify_peer' => false,

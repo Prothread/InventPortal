@@ -129,6 +129,7 @@ define("TEXT_IS_CLIENT", "Klant");
 define("TEXT_IS_USER", "Gebruiker");
 define("TEXT_IS_ACCOUNTANT", "Beheerder");
 define("TEXT_IS_ADMIN", "Admin");
+define("TEXT_ACTIVE", "Actief");
 
 
 /* NEW PASSWORD */
@@ -220,3 +221,31 @@ define("TEXT_ARE_YOU_SURE", "Weet je het zeker?");
 define("TEXT_MESSAGE_ERROR_404_TITLE", "De pagina die U zocht, werdt niet gevonden");
 define("TEXT_MESSAGE_ERROR_404", "Sorry, de door u opgevraagde pagina kon niet worden getoond. Mogelijk bestaat de pagina niet. <br />
 Wij raden u aan de juiste pagina te zoeken in het menu, of terug te gaan naar de homepagina.");
+
+
+/* ITEM */
+define("TEXT_YOUR_ASSIGNMENT", "Uw opdracht");
+define("TEXT_CLIENT_DESCRIPTION", "Opmerking klant");
+define("TEXT_ACCORD_IP", "Accordering IP-adres");
+define("TEXT_ASSIGNMENT_INFO", "Bekijk de proef informatie");
+define("TEXT_STEP5", "Upload hieronder indien nodig de nieuwe bestanden die met de proef meegestuurd moeten worden.");
+define("TEXT_NEW_INTERNCOMMENT", "Nieuwe interne opmerking");
+define("TEXT_STEP6", "Pas hieronder eventueel de beschrijving aan en verstuur de proef opnieuw.");
+define("TEXT_NEW_DESCRIPTION", "Nieuwe beschrijving");
+define("TEXT_EMAIL_CLIENT", "Email klant");
+define("TEXT_NO_EDITS", "Niet beoordeeld");
+/* */
+define("BUTTON_DECLINE_ASSIGNMENT", "Weiger opdracht");
+define("BUTTON_DELETE_ASSIGNMENT", "Verwijder opdracht");
+/* */
+define("TEXT_COMMENT", "Opmerking");
+define("TEXT_SELECT_COMMENT", "Selecteer een opmerking");
+define("TEXT_VERSION", "Versie");
+define("TEXT_DOWNLOADS", "Downloads");
+define("TEXT_DOWNLOAD", "Downloaden");
+define("TEXT_MAKE_DOWNLOADABLE", "Downloadbaar maken");
+define("TEXT_CANT_DOWNLOAD_YET", "U kunt dit product nog niet downloaden");
+define("TEXT_MAKE_ALL_DOWNLOADABLE", "Maak alle files downloadbaar");
+/* */
+define("TEXT_MAKE_ALL_DOWNLOADABLE_MESSAGE", "U staat op het punt om alle afbeeldingen in deze proef downloadbaar te maken");
+define("TEXT_DELETE_ASSIGNMENT", "Opdracht verwijderen");

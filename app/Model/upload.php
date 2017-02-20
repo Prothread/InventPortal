@@ -100,10 +100,9 @@ if (isset($_FILES['myFile'])) {
                 $uniqfile = $target_dir . $unique_name;
             }
 
-            array_push($unique_names, $unique_name);
 
             if (move_uploaded_file($test1, $uniqfile)) {
-                array_push($images, $test);
+                array_push($unique_names, $unique_name);
             }
 
             $updir = $target_dir;

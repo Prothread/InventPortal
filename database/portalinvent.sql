@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 01 feb 2017 om 09:15
+-- Gegenereerd op: 06 feb 2017 om 11:37
 -- Serverversie: 10.1.19-MariaDB
 -- PHP-versie: 7.0.13
 
@@ -43,7 +43,6 @@ CREATE TABLE `comments` (
 CREATE TABLE `image` (
   `id` int(11) NOT NULL,
   `mailid` int(11) NOT NULL,
-  `fakename` varchar(64) NOT NULL,
   `images` varchar(64) NOT NULL,
   `version` int(11) NOT NULL DEFAULT '1',
   `verify` int(1) NOT NULL,
@@ -225,7 +224,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `profimg`, `naam`, `email`, `altmail`, `paswoord`, `permgroup`, `bedrijfsnaam`, `adres`, `postcode`, `plaats`, `lang`, `active`, `paswoordvergeten`, `passresetdate`) VALUES
-(1, 'profile.png', 'SuperAdmin', 'madalcomedia@gmail.com', '', 'da1bf1780c5d00bcb03553ebd4b5ae3adb73aa09678b5d58759fba9216a0544d', 5, '', '', '', '', 'en', 1, '', '0000-00-00 00:00:00');
+(1, 'profile.png', 'Admin', 'madalcomedia@gmail.com', '', 'da1bf1780c5d00bcb03553ebd4b5ae3adb73aa09678b5d58759fba9216a0544d', 5, '', '', '', '', 'nl', 1, '', '0000-00-00 00:00:00');
 
 --
 -- Indexen voor geëxporteerde tabellen

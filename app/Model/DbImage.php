@@ -93,7 +93,7 @@ class DbImage extends Database
         $sql = "SELECT * FROM `image` WHERE `mailid` = '{$id}' && `verify` = '2'";
 
         if ($result = $this->dbQuery($sql)) {
-            return mysqli_fetch_assoc($result);
+            return mysqli_fetch_all($result, MYSQLI_ASSOC);
         }
         return false;
     }

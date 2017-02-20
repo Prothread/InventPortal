@@ -32,6 +32,7 @@ if (isset($_POST['submit'])) {
     if(isset($_POST['rechten']) && $_POST['rechten']) {
         $rechten = mysqli_real_escape_string($mysqli, $_POST['rechten']);
     }
+    $active = mysqli_real_escape_string($mysqli, $_POST['active']);
 
     //Generate a random string.
     $token = openssl_random_pseudo_bytes(8);
@@ -48,11 +49,11 @@ if (isset($_POST['submit'])) {
         'postcode' => strip_tags($postcode),
         'plaats' => strip_tags($plaats),
         'lang' => strip_tags($lang),
+        'active' => $active
     ];
     if(isset($rechten) && $rechten) {
         $clientinfo['permgroup'] = $rechten;
     }
-
 
     if (isset($_FILES['fileToUpload'])) {
         $error = 0;
@@ -252,6 +253,16 @@ if (isset($_POST['submit'])) {
                             </div>
 
                         <?php } ?>
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="textinput"><?= TEXT_ACTIVE ?></label>
+                            <div class="col-md-4">
+                                <select class="form-control" name="active">
+                                    <option value="1" <?php if($myclient['active'] == '1') { echo 'selected'; } ?>>Actief</option>
+                                    <option value="0" <?php if($myclient['active'] == '0') { echo 'selected'; } ?>>Inactief</option>
+                                </select>
+                            </div>
+                        </div>
 
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput"></label>

@@ -9,6 +9,9 @@ if ($user->getPermission($permgroup, 'CAN_UPLOAD') == 1) {
 }
 $user = new UserController();
 $userinfo = $user->getUserById($_SESSION['usr_id']);
+
+$dbmail = new DbMail();
+$imageId = $dbmail->getIncrement();
 ?>
 <div id="Mail">
     <!-- Page Content -->
@@ -16,7 +19,7 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
-                    <p class="NameText">Uploaden</p>
+                    <p class="NameText"><?= TEXT_UPLOAD ?></p>
                     <hr size="1">
 
                     <div class="wizard">
@@ -57,12 +60,11 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);
                             <div class="tab-content">
 
                                 <div class="tab-pane active" role="tabpanel" id="step1">
-                                    <div class="well" style="font-size: 15px; font-style: italic;">Upload hieronder de
-                                        bestanden die met de proef meegestuurd moeten worden.
+                                    <div class="well" style="font-size: 15px; font-style: italic;"><?= TEXT_STEP1 ?>
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="col-md-4 control-label" for="textinput">Onderwerp</label>
+                                        <label class="col-md-4 control-label" for="textinput"><?= TABLE_TITLE ?></label>
                                         <div class="col-md-4">
                                             <input required class="form-control input-md" maxlength="32" id="textinput" type="text" name="title" size="50" placeholder="<?php if (isset($mailinfo['title'])) { echo $mailinfo['title']; } ?>">
                                         </div>
@@ -77,21 +79,19 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);
                                         -->
 
                                         <div class="form-group">
-                                            <label class="col-md-4 control-label" for="textinput">Bestanden
-                                                uploaden</label>
+                                            <label class="col-md-4 control-label" for="textinput"><?= TEXT_UPLOAD_FILES ?></label>
                                             <div class="col-md-4">
                                                 <div class="dz-default dz-message">
                                                     <span>
                                                         <label class="custom-file-upload">
-                                                            <i class="fa fa-cloud-upload"></i> Uploaden
+                                                            <i class="fa fa-cloud-upload"></i> <?= BUTTON_UPLOAD ?>
                                                         </label>
                                                     </span>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-md-4 control-label" for="textinput">Geselecteerde
-                                                bestanden:</label>
+                                            <label class="col-md-4 control-label" for="textinput"><?= TEXT_SELECTED_FILES ?></label>
                                             <div class="col-md-4">
                                                 <div id="dropzonePreview"></div>
                                             </div>
@@ -102,19 +102,18 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);
 
                                     <ul class="list-inline pull-right">
                                         <li>
-                                            <button type="button" class="btn btn-primary next-step">Volgende</button>
+                                            <button type="button" class="btn btn-primary next-step"><?= BUTTON_NEXT ?></button>
                                         </li>
                                     </ul>
                                 </div>
 
                                 <div class="tab-pane" role="tabpanel" id="step2">
-                                    <div class="well" style="font-size: 15px; font-style: italic;">Vul hieronder een
-                                        beschrijving of eventuele extra informatie in.
+                                    <div class="well" style="font-size: 15px; font-style: italic;"><?= TEXT_STEP2 ?>
                                     </div>
                                     <br>
 
                                     <div class="form-group">
-                                        <label class="col-md-4 control-label" for="textinput">Beschrijving<span
+                                        <label class="col-md-4 control-label" for="textinput"><?= TEXT_DESCRIPTION ?><span
                                                 style="color:#bc2d4c">*</span></label>
                                         <div class="col-md-4">
                                             <input required class="form-control input-md" maxlength="250" id="textinput"
@@ -128,8 +127,7 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);
                                     <?php if ($user->getPermission($permgroup, 'CAN_ADD_INTERN_COMMENT') == 1) { ?>
                                         <br/><br/>
                                         <div class="form-group">
-                                            <label class="col-md-4 control-label" for="textinput">Interne
-                                                opmerking:</label>
+                                            <label class="col-md-4 control-label" for="textinput"><?= TEXT_INTERNCOMMENT ?></label>
                                             <div class="col-md-4">
                                                     <textarea class="form-control input-md" maxlength="300"
                                                               id="textinput" type="text"
@@ -137,18 +135,20 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-md-4 control-label" for="textinput">Belangrijkheid
-                                                opmerking:</label>
+                                            <label class="col-md-4 control-label" for="textinput"><?= TEXT_INTERNCOMMENTIMPORTANCE ?></label>
                                             <div class="col-md-4">
-                                                <select name="commentgroep">
-                                                    <option value="1" style="color:#5a5454">Normale opmerking
+                                                <select name="commentgroep" class="form-control">
+                                                    <option value="1" style="color:#5a5454">
+                                                        <?= TEXT_INTERNCOMMENTIMPORTANCE1 ?>
                                                     </option>
-                                                    <option value="2" style="color:#9a1734">Let op de volgende
-                                                        punten
+                                                    <option value="2" style="color:#9a1734">
+                                                        <?= TEXT_INTERNCOMMENTIMPORTANCE2 ?>
                                                     </option>
-                                                    <option value="3" style="color:#dd2c4c">Belangrijke opmerking
+                                                    <option value="3" style="color:#dd2c4c">
+                                                        <?= TEXT_INTERNCOMMENTIMPORTANCE3 ?>
                                                     </option>
-                                                    <option value="4" style="color:#ff0000">Eis van de klant
+                                                    <option value="4" style="color:#ff0000">
+                                                        <?= TEXT_INTERNCOMMENTIMPORTANCE4 ?>
                                                     </option>
                                                 </select>
                                             </div>
@@ -157,7 +157,7 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);
 
                                     <ul class="list-inline pull-right">
                                         <li>
-                                            <button type="button" class="btn btn-primary next-step">Volgende</button>
+                                            <button type="button" class="btn btn-primary next-step"><?= BUTTON_NEXT ?></button>
                                         </li>
                                     </ul>
                                 </div>
@@ -165,12 +165,11 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);
                                 <div class="tab-pane" role="tabpanel" id="step3">
                                     <?php if($user->getPermission($permgroup, 'CAN_CREATE_CLIENT') == '1') {?>
                                         <div class="form-group">
-                                            <label class="col-md-4 control-label" for="textinput">Nieuwe klant
-                                                aanmaken</label>
+                                            <label class="col-md-4 control-label" for="textinput"><?= TEXT_NEWCLIENT ?></label>
                                             <div class="col-md-4">
                                                 <!-- <a href="#newclient"><div id="NewClientButton">Nieuwe klant</div></a> -->
                                                 <div id="NewClientButton" type="button" class="btn btn-info btn-lg"
-                                                     data-toggle="modal" data-target="#myModal">Nieuwe Klant
+                                                     data-toggle="modal" data-target="#myModal"><?= BUTTON_NEWCLIENT ?>
                                                 </div>
                                             </div>
                                         </div>
@@ -180,7 +179,7 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);
 
                                     <div class="demclients">
                                         <div class="form-group">
-                                            <label class="col-md-4 control-label" for="textinput">Klant zoeken</label>
+                                            <label class="col-md-4 control-label" for="textinput"><?= TEXT_SEARCH_CLIENT ?></label>
                                             <div class="col-md-4">
                                                 <select id="allclients" style="width:100%" name="client" required>
                                                     <option></option>
@@ -197,7 +196,7 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);
 
                                     <ul class="list-inline pull-right">
                                         <li>
-                                            <button type="submit" id="sbmtbtn">Versturen</button>
+                                            <button type="submit" id="sbmtbtn" class="btn btn-primary"><?= BUTTON_SEND ?></button>
                                         </li>
                                     </ul>
 
@@ -226,12 +225,11 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Nieuwe klant</h4>
+                    <h4 class="modal-title"><?= TEXT_NEWCLIENT ?></h4>
                 </div>
                 <div class="modal-body">
 
-                    <form action="#" method="post" enctype="multipart/form-data" class="form-horizontal newclient"
-                          id="createclient">
+                    <form action="#" method="post" enctype="multipart/form-data" class="form-horizontal" id="createclient">
 
                         <div class="demclients1">
                             <?php
@@ -246,70 +244,70 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);
 
                         <fieldset>
 
-                            <p class="ClientFormText">Namen</p>
+                            <p class="ClientFormText"><?= TEXT_NAMES ?></p>
                             <hr size="1">
 
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Naam<span
+                                <label class="col-md-4 control-label" for="textinput"><?= TEXT_NAME ?><span
                                         style="color:#dd2c4c">*</span></label>
                                 <div class="col-md-4">
                                     <input required class="form-control input-md" id="textinput" type="text" name="name"
-                                           size="50" placeholder="Naam">
+                                           size="50" placeholder="<?= TEXT_NAME ?>">
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Bedrijfsnaam</label>
+                                <label class="col-md-4 control-label" for="textinput"><?= TEXT_COMPANY_NAME ?></label>
                                 <div class="col-md-4">
                                     <input class="form-control input-md" id="textinput" type="text"
-                                           name="companyname" size="50" placeholder="Bedrijfsnaam">
+                                           name="companyname" size="50" placeholder="<?= TEXT_COMPANY_NAME ?>">
                                 </div>
                             </div>
 
-                            <p class="ClientFormText">Contactgegevens</p>
+                            <p class="ClientFormText"><?= TEXT_CONTACT_DETAILS ?></p>
                             <hr size="1">
 
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">E-mail<span
+                                <label class="col-md-4 control-label" for="textinput"><?= TEXT_EMAIL ?><span
                                         style="color:#dd2c4c">*</span></label>
                                 <div class="col-md-4">
                                     <input class="form-control input-md" id="textinput" required type="email"
-                                           name="email" size="50" placeholder="E-mailadres">
+                                           name="email" size="50" placeholder="<?= TEXT_EMAIL ?>">
                                 </div>
                             </div>
 
                             <br/>
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Alt E-mail</label>
+                                <label class="col-md-4 control-label" for="textinput"><?= TEXT_ALTERNATIVE_EMAIL ?></label>
                                 <div class="col-md-4">
-                                    <span style="font-size:15px">Alternatief email voor contact met de klant</span>
+                                    <span style="font-size:15px"><?= TEXT_ALTERNATIVE_EMAIL_INFO ?></span>
                                     <input class="form-control input-md" id="textinput" type="email" name="altmail"
-                                           size="50" placeholder="E-mailadres">
+                                           size="50" placeholder="<?= TEXT_EMAIL ?>">
                                 </div>
                             </div>
                             <br/>
 
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Adres</label>
+                                <label class="col-md-4 control-label" for="textinput"><?= TEXT_ADRESS ?></label>
                                 <div class="col-md-4">
                                     <input class="form-control input-md" id="textinput" type="text"
-                                           name="companyadress" size="50" placeholder="Adres">
+                                           name="companyadress" size="50" placeholder="<?= TEXT_ADRESS ?>">
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Postcode</label>
+                                <label class="col-md-4 control-label" for="textinput"><?= TEXT_POSTALCODE ?></label>
                                 <div class="col-md-4">
                                     <input class="form-control input-md" id="textinput" type="text"
-                                           name="postcode" size="50" placeholder="Postcode">
+                                           name="postcode" size="50" placeholder="<?= TEXT_POSTALCODE ?>">
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Plaats</label>
+                                <label class="col-md-4 control-label" for="textinput"><?= TEXT_CITY ?></label>
                                 <div class="col-md-4">
                                     <input class="form-control input-md" id="textinput" type="text"
-                                           name="plaats" size="50" placeholder="Plaats">
+                                           name="plaats" size="50" placeholder="<?= TEXT_CITY ?>">
                                 </div>
                             </div>
 
@@ -318,9 +316,7 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput"></label>
                                 <div class="col-md-4">
-                                    <input class="btn btn-primary btn-success" name="submit"
-                                           style="max-width: 100px; background-color: #bb2c4c; border: 1px solid #dd2c4c"
-                                           type="submit" value="Aanmaken">
+                                    <input class="btn btn-primary " name="submit" style="width: auto" type="submit" value="<?= TEXT_NEWCLIENT ?>">
                                 </div>
                             </div>
                         </fieldset>
@@ -337,7 +333,7 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);
     <script>
 
         var postForm = [];
-        var Files = '';
+        var Files = [];
 
         Dropzone.options.mydropzone = {
             addRemoveLinks: true,
@@ -348,7 +344,6 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);
             maxFilesize: 10, // MB
             acceptedFiles: "image/png, image/jpeg, image/gif, application/pdf",
             accept: function(file, done) {
-                console.log("uploaded");
                 done();
             },
             error: function(file, msg){
@@ -356,19 +351,10 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);
             },
             init: function() {
 
-                this.on("sending", function(file, xhr, formData) {
-                    // Will send the filesize along with the file as POST data.
-                    //Files.push(file.name);
-                    file.myCustomName = <?= $dbmail->getIncrement() ?> + '_' + file.name;
-                });
-
                 this.on("queuecomplete", function () {
                     this.options.autoProcessQueue = false;
-
-                    /* Files = <?php echo implode(",", $_SESSION['unique_names']) ?>; */
-
                     //window.location = 'index.php?page=lala1';
-                    postForm += Files;
+                    postForm += (Files.join(", "));
                     alert(postForm);
 
                     $.ajax({
@@ -403,7 +389,7 @@ $userinfo = $user->getUserById($_SESSION['usr_id']);
             }, // init end
 
             success: function( file, response ){
-                console.log(response);
+                Files.push(response);
             }
 
         };

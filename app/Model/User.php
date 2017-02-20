@@ -106,6 +106,14 @@ class User
     private $UserPermGroup;
 
     /**
+     * Variabele om boolean van actief van de gebruiker in op te slaan
+     *
+     * @var $UserActive
+     */
+
+    private $UserActive;
+
+    /**
      * Variabele voor de smtp setting
      *
      * @var $SettingSMTP
@@ -669,6 +677,17 @@ class User
     }
 
     /**
+     * Setter voor UserActive variabele
+     *
+     * @param $useractive
+     */
+
+    public function setUserActive($useractive)
+    {
+        $this->UserActive = $useractive;
+    }
+
+    /**
      * Haal de gebruiker op met behulp van het gebruiker id
      *
      * @param $id
@@ -822,6 +841,17 @@ class User
     public function getPermGroup()
     {
         return $this->UserPermGroup;
+    }
+
+    /**
+     * Getter voor UserActive variabele
+     *
+     * @return mixed
+     */
+
+    public function getUserActive()
+    {
+        return $this->UserActive;
     }
 
     /**

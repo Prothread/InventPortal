@@ -74,12 +74,17 @@ class DbUser extends Database
         }
 
         if ($user->getAltMail()) {
-            $sql .= ", `altmail` = '{$user->getAltmail()}' ";
+            $sql .= ", `altmail` = '{$user->getAltmail()}'";
         }
 
         if ($user->getProfileImage()) {
-            $sql .= ", `profimg` = '{$user->getProfileImage()}' ";
+            $sql .= ", `profimg` = '{$user->getProfileImage()}'";
         }
+
+        if ($user->getUserActive() !== null) {
+            $sql .= ", `active` = '{$user->getUserActive()}'";
+        }
+
         $sql .= " WHERE `id` = '{$user->getUserId()}'";
 
         if ($this->dbQuery($sql)) {
