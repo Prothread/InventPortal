@@ -334,6 +334,7 @@ $imageId = $dbmail->getIncrement();
 
         var postForm = [];
         var Files = [];
+        var processing = false;
 
         Dropzone.options.mydropzone = {
             addRemoveLinks: true,
@@ -341,41 +342,43 @@ $imageId = $dbmail->getIncrement();
             autoDiscover: false,
             paramName: 'file', // this is optional Like this one will get accessed in php by writing $_FILE['pic'] // if you dont specify it then bydefault it taked 'file' as paramName eg: $_FILE['file']
             previewsContainer: '#dropzonePreview', // we specify on which div id we must show the files
-            maxFilesize: 10, // MB
+            maxFilesize: 15, // MB
             acceptedFiles: "image/png, image/jpeg, image/gif, application/pdf",
             accept: function(file, done) {
                 done();
             },
             error: function(file, msg){
-                alert(msg);
+                alert(msg,"numba 1");
             },
             init: function() {
-
                 this.on("queuecomplete", function () {
-                    this.options.autoProcessQueue = false;
-                    //window.location = 'index.php?page=lala1';
-                    postForm += (Files.join(", "));
-                    alert(postForm);
-
-                    $.ajax({
-                        type: "POST",
-                        url: "?page=lala1",
-                        data: postForm,
-                        cache: false,
-                        success: function (result) {
-                            window.location.href = 'index.php?page=overview';
-                        }
-                    });
-                    event.preventDefault();
+                    if(true == processing) {
+                        this.options.autoProcessQueue = false;
+                        //window.location = 'index.php?page=lala1';
+                        postForm += (Files.join(", "));
+                        //alert de post form gegevens -> voor debug
+                        alert(postForm);
+                        $.ajax({
+                            type: "POST",
+                            url: "?page=lala1",
+                            data: postForm,
+                            cache: false,
+                            success: function (result) {
+                                window.location.href = 'index.php?page=overview';
+                            }
+                        });
+                        event.preventDefault();
+                    }
                 });
 
                 this.on("processing", function () {
                     this.options.autoProcessQueue = true;
+                    processing = true;
                 });
 
                 this.on("error", function(file, message) {
-                    alert(message);
                     this.removeFile(file);
+                    return false;
                 });
 
                 var myDropzone = this;
