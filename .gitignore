@@ -1,8 +1,6 @@
 ResponciveTableBootstrap.html
 public/css/bg.jpg
-config\db_constants.php
 *.jpg
 *.png
 *.pdf
-
-
+config/db_constants.php
