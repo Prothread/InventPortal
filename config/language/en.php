@@ -249,3 +249,9 @@ define("TEXT_MAKE_ALL_DOWNLOADABLE", "Make all files downloadable");
 /* */
 define("TEXT_MAKE_ALL_DOWNLOADABLE_MESSAGE", "You are about to make all the images in this assignment downloadble");
 define("TEXT_DELETE_ASSIGNMENT", "Delete assignment");
+
+define("TEXT_GEACHTE", "Dear ");
+define("TEXT_DIGITALE_PROEFDRUK", "We made a digital sample for you <br /> You can inspect this in the <b>clientportal</b>.");
+define("TEXT_PROEF_BEKIJKEN", "You can inspect, accord or eddit the assignment whith the link below");
+define("TEXT_GROET", "With kind regards,");
+define("TEXT_MAIL_DISCLAIMER", "This is an automatically generated mail. Please do not reply to this email");
