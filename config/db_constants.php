@@ -11,7 +11,7 @@
 define("DB_SERVER", "localhost");
 define("DB_USER", "root");
 define("DB_PASS", "");
-define("DB_NAME", "portalinvent");
+define("DB_NAME", "mmportal");
 
 
 define("TXT_NO_DATA", "Geen gegevens gevonden.");
