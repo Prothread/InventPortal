@@ -98,34 +98,35 @@ if ($error == 0) {
                         </div>
                     </div> ';
 
-    $content = $header . "  <br/><br/>" . "Geachte " . $name . "," .
-        " <br/><br/>" . "Wij hebben voor U een digitale proefdruk gemaakt. <br /> Dit is te zien in het <b>Klantenportaal</b>." . "<br /><br />" .
-        "<b>Onderwerp:</b> " .
+    $content = $header . "  <br/><br/>" . TEXT_GEACHTE . $name . "," .
+        " <br/><br/>" . TEXT_DIGITALE_PROEFDRUK . "<br /><br />" .
+        "<b>" . TABLE_TITLE . "</b>" .
         $title . "<br />" .
 
-        "<b>Beschrijving:</b> " .
+        "<b>" . TEXT_DESCRIPTION . "</b> " .
         $description .
 
-        "<br /><br />" . "U kunt uw proef met de onderstaand link bekijken, accorderen of wijzigen" . "<br />" .
+        "<br /><br />" . TEXT_PROEF_BEKIJKEN . "<br />" .
         "<a href='$link'>$title</a> " . "<br /><br />" .
 
         printImages($unique_names, $link, $admin['Host']) . "<br />" .
 
-        "<br /> <br />Met vriendelijke groet, <br />" . $sender . " </br>Madalco Media" .
-        "<br /> <br /><b>Disclaimer:</b> This is an automatically generated mail. Please do not reply to this email";
+        "<br /> <br />" . TEXT_GROET . "<br />" . $sender . " </br>Madalco Media" .
+        "<br /> <br /><b>Disclaimer: " . TEXT_MAIL_DISCLAIMER . "</b> ";
 
-    $altcontent = "Geachte " . $name . "," .
-        " <br/><br/>" . "Uw proef staat te wachten op goedkeuring in het <b>Madalco Portaal!</b>" . "<br /><br />" .
-        "<b>Onderwerp van uw proef:</b> " .
+    $altcontent = TEXT_GEACHTE . $name . "," .
+        " <br/><br/>" . TEXT_DIGITALE_PROEFDRUK . "<br /><br />" .
+        "<b>" . TABLE_TITLE . "</b> " .
         $title . "<br />" .
 
-        "<b>Beschrijving:</b> " .
+        "<b>" . TEXT_DESCRIPTION . "</b> " .
         $description .
 
-        "<br /><br />" . "U kunt uw proef " . "hier: $link " . "goedkeuren." .
+        "<br /><br />" . TEXT_PROEF_BEKIJKEN . "<br />" .
+        "<a href='$link'>$title</a> " . "<br /><br />" .
 
-        "<br /> <br />Met vriendelijke groet, <br />" . $sender . " </br>Madalco Media" .
-        "<br /> <br /><b>Disclaimer:</b> This is an automatically generated mail. Please do not reply to this email";
+        "<br /> <br />" . TEXT_GROET . "<br />" . $sender . " </br>Madalco Media" .
+        "<br /> <br /><b>Disclaimer:</b>" . TEXT_MAIL_DISCLAIMER;
 
     //SMTP Configuration
     $mailer->isSMTP();

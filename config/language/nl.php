@@ -249,3 +249,9 @@ define("TEXT_MAKE_ALL_DOWNLOADABLE", "Maak alle files downloadbaar");
 /* */
 define("TEXT_MAKE_ALL_DOWNLOADABLE_MESSAGE", "U staat op het punt om alle afbeeldingen in deze proef downloadbaar te maken");
 define("TEXT_DELETE_ASSIGNMENT", "Opdracht verwijderen");
+
+define("TEXT_GEACHTE", "Geachte ");
+define("TEXT_DIGITALE_PROEFDRUK", "Wij hebben voor U een digitale proefdruk gemaakt. <br /> Dit is te zien in het <b>Klantenportaal</b>.");
+define("TEXT_PROEF_BEKIJKEN", "U kunt uw proef met de onderstaand link bekijken, accorderen of wijzigen");
+define("TEXT_GROET", "Met vriendelijke groet,");
+define("TEXT_MAIL_DISCLAIMER", "Dit is een automatish aan gemaakte email. Reageer hier niet op");
