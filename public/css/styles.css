@@ -102,8 +102,6 @@ input[type="file"] {
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
-  background-image: none;
-  border: 1px solid transparent;
   border-radius: 4px;
 }
 
@@ -436,7 +434,6 @@ button {
     height: 35px;
     line-height: 35px;
     text-shadow: 1px 1px 1px #0c0c0c;
-    /* color: #ffffff; */
     color: rgba(0, 0, 0, 0.4);
 }
 
@@ -447,8 +444,7 @@ button {
 
 .wizard .nav-tabs {
     position: relative;
-    margin: 40px auto;
-    margin-bottom: 0;
+    margin: 40px auto 0 auto;
     border-bottom-color: #bb2c4c;
 }
 
@@ -662,11 +658,9 @@ table {
 
 #downloadtext {
     position: absolute;
-    /* left: 30%; */
     width: 100%;
     height: 100%;
     background: rgba(116, 109, 109, 0.3);
-    /* top: 45%; */
     text-align: center;
 }
 
@@ -1069,43 +1063,35 @@ tr:nth-child(even) {
 }
 
 #UserBlock {
-    background-color: #FFF;
-    margin-left:-100px;
-
-    border-radius: 5px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    width: 150px;
-    margin-top: 28px;
-    height: 50px;
-    text-align: right;
-    -webkit-box-shadow: 1px 15px 14px 3px rgba(0,0,0,0.16);
-    -moz-box-shadow: 1px 15px 14px 3px rgba(0,0,0,0.16);
-    box-shadow: 1px 15px 14px 3px rgba(0,0,0,0.16);
+    /*background-color: #FFF;*/
+    /*margin-left:-100px;*/
+    /*border-radius: 5px;*/
+    /*white-space: nowrap;*/
+    /*overflow: hidden;*/
+    /*text-overflow: ellipsis;*/
+    /*width: 150px;*/
+    /*margin-top: 28px;*/
+    /*height: 50px;*/
+    /*text-align: right;*/
+    /*-webkit-box-shadow: 1px 15px 14px 3px rgba(0,0,0,0.16);*/
+    /*-moz-box-shadow: 1px 15px 14px 3px rgba(0,0,0,0.16);*/
+    /*box-shadow: 1px 15px 14px 3px rgba(0,0,0,0.16);*/
 }
 
 #UserBlockImage {
-    content: "";
+    padding:5px;
+    float: left;
+    /*content: "";*/
     display: block;
-    position: absolute;
-    top: 27px;
-    left: -96px;
-    background-size: contain;
-    background-repeat: no-repeat;
-    width: 100%;
-    height: 40%;
+    /*position: absolute;*/
+    /*top: 27px;*/
+    /*left: -96px;*/
+    /*background-size: contain;*/
+    /*background-repeat: no-repeat;*/
+    /*width: 100%;*/
+    height: 100%;
     opacity: 0.2;
 }
-
-/*
-#UserBlock:hover {
-    -webkit-animation: swing 0.5s ease;
-    animation: swing 0.5s ease;
-    -webkit-animation-iteration-count: 0.5;
-    animation-iteration-count: 0.5;
-}
-*/
 
 #PaginationButton {
     color: #dd2c4c;
@@ -1184,10 +1170,7 @@ tr:nth-child(even) {
     position:relative;
     width: 100%;
     height: 130px;
-    background: #d4254e;
-    /*background-image: url('headerbg.png');*/
-    background-repeat: no-repeat;
-    margin-left: -8px;
+    background-color: #d4254e;
 }
 
 
@@ -1201,28 +1184,43 @@ ul.sidebar-nav {
 }
 
 #MenuButton {
-    width: 30px;
-    position: absolute;
-    bottom: 10px;
-    left: 35px;
+    float: left;
+    clear: both;
+    /*width: 30px;*/
+    margin: -10px 0 0 35px;
+    padding-bottom: 10px;
+    /*position: absolute;*/
+    /*bottom: 10px;*/
+    /*left: 35px;*/
 }
 
 #MenuSide {
-    position: absolute;
-    height: 130px;
-    margin-right: 25px;
-    left: 5px;
-    right: 70%;
+    /*position: absolute;*/
+    float: left;
+    /*height: 130px;*/
+    /*margin-right: 25px;*/
+    /*left: 5px;*/
+    /*right: 70%;*/
 }
 
 #NameSide {
-    position: absolute;
-    height: 130px;
-    right: 5px;
-    top: 5px;
-    bottom: 5px;
-    left: 88%;
-    margin-left: 25px;
+    background-color: #ffffff;
+    float: right;
+    margin:28px 70px 0 0;
+    height: 50px;
+    min-width: 150px;
+    /*width: 150px;*/
+    border-radius: 5px;
+    -webkit-box-shadow: 1px 15px 14px 3px rgba(0,0,0,0.16);
+    -moz-box-shadow: 1px 15px 14px 3px rgba(0,0,0,0.16);
+    box-shadow: 1px 15px 14px 3px rgba(0,0,0,0.16);
+    /*position: absolute;*/
+    /*height: 130px;*/
+    /*right: 5px;*/
+    /*top: 5px;*/
+    /*bottom: 5px;*/
+    /*left: 88%;*/
+    /*margin-left: 25px;*/
     text-align: right;
 }
 
@@ -1305,8 +1303,10 @@ ul.sidebar-nav {
 }
 
 #LoggedInAs {
+    padding:5px 5px 5px 25px;
+    float: right;
     color: #dd2c4c;
-    width:100%;
+    /*width:100%;*/
     height:100%;
     white-space: normal;
     display: -webkit-flexbox;
@@ -1319,6 +1319,7 @@ ul.sidebar-nav {
     align-items: center;
     justify-content: flex-end;
     font-size:20px;
+    float: right;
 }
 
 #LogOut{
@@ -1397,8 +1398,6 @@ table.table { width: 100%; }
     }
 
     td.edit-buttons, td.empty {
-        /*flex: 1 0 90%;
-        text-align: center;*/
     }
 }
 
