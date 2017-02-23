@@ -16,6 +16,7 @@ define("TEXT_USER", "Gebruikers");
 define("TEXT_ACCORD", "Accordering");
 define("TEXT_LOGOUT", "Uitloggen");
 define("TEXT_USERPROFILE", "Profiel: ");
+define("TEXT_VERSIE", "Versie");
 
 
 /* LOGIN */

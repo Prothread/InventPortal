@@ -236,13 +236,23 @@ else {
                             <div id="refsh"><?php
                                 if (in_array(2, $verifiedimages)) {
                                     $verified = 3;
-                                    $verifytext = "afgekeurd";
+                                    if($usr['lang'] == 'nl') {
+                                        $verifytext = "afgekeurd";
+                                    }
+                                    else {
+                                        $verifytext = "declined";
+                                    }
                                 } else if (in_array(0, $verifiedimages) || in_array(null, $verifiedimages) || empty($verifiedimages)) {
                                     $verified = 1;
                                     $verifytext = '';
                                 } else {
                                     $verified = 2;
-                                    $verifytext = 'goedgekeurd';
+                                    if($usr['lang'] == 'nl') {
+                                        $verifytext = "goedgekeurd";
+                                    }
+                                    else {
+                                        $verifytext = "approved";
+                                    }
                                 }
 
                                 if (in_array(0, $verifiedimages) || in_array(null, $verifiedimages) || empty($verifiedimages)) {

@@ -87,6 +87,18 @@ if ($user->getPermission($permgroup, 'CAN_CREATE_USER') == 1) {
                             </div>
                         </div>
 
+                        <?php if($user->getPermission($permgroup, 'CAN_CHANGE_USER_LANGUAGE')) {?>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="textinput"><?= TEXT_LANGUAGE ?></label>
+                                <div class="col-md-4">
+                                    <select class="form-control" name="taal" required>
+                                            <option value="en">English</option>
+                                            <option value="nl">Nederlands</option>
+                                    </select>
+                                </div>
+                            </div>
+                        <?php } ?>
+
                         <br/>
 
                         <?php if ($user->getPermission($permgroup, 'CAN_CREATE_USER') == '1') { ?>

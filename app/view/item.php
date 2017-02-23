@@ -12,8 +12,13 @@ $session = new Session();
 $uploads = new BlockController();
 $usermail = new MailController();
 
-$id = $_GET['id'];
-$id = $session->cleantonumber($id);
+if(isset($_GET['id'])) {
+    $id = $_GET['id'];
+    $id = $session->cleantonumber($id);
+}
+else {
+    return '<div class="alert alert-info"> ' . TEXT_ERROR_OCCURED .'</div>';
+}
 
 $myuser = $user->getUserById($_SESSION['usr_id']);
 
@@ -25,7 +30,7 @@ if ($getmail = $usermail->getUserMailbyMailID($id)) {
     } else if ($myuser['permgroup'] !== '1') {
 
     } else {
-        echo '<div class="alert alert-info">U kunt deze proef niet bekijken</div>';
+        echo '<div class="alert alert-info"> '. TEXT_NO_PERMISSION . '</div>';
         return false;
     }
 } else {
@@ -42,7 +47,7 @@ $image_controller = new ImageController();
 $uploadedimages = $image_controller->getImagebyMailID($upload['id']);
 
 if ($uploadedimages == null) {
-    return '<div class="alert alert-info">Item niet gevonden</div>';
+    return '<div class="alert alert-info"> ' . TEXT_ERROR_OCCURED .'</div>';
 }
 $checknewarray = array();
 foreach ($uploadedimages as $img) {
@@ -50,6 +55,10 @@ foreach ($uploadedimages as $img) {
     array_push($checknewarray, $isverified['verify']);
 }
 $clientmail = $usermail->getUserMailbyMailID($id);
+
+//Haalt de key op (tijd, datum, IP-adres)
+$theKey = $user->getClientKey($upload['naam']);
+
 ?>
 
 <div id="Mail">
@@ -57,13 +66,13 @@ $clientmail = $usermail->getUserMailbyMailID($id);
     <div id="page-content-wrapper">
         <table style="width:100%">
             <tr>
-                <th style="text-align: left;"><p class="NameText" style="font-weight: normal;">Uw opdracht</p></th>
+                <th style="text-align: left;"><p class="NameText" style="font-weight: normal;"><?= TEXT_YOUR_ASSIGNMENT ?></p></th>
                 <th style="text-align: right;">
 
                     <?php if ($user->getPermission($permgroup, 'CAN_USE_ITEM_DELETE') == 1) { ?>
                         <a data-toggle="modal" data-target="#Weigeritem" href="#">
                             <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
-                                <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span>Weiger opdracht
+                                <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span><?= BUTTON_DECLINE_ASSIGNMENT ?>
                             </button>
                         </a>
                     <?php } ?>
@@ -71,7 +80,7 @@ $clientmail = $usermail->getUserMailbyMailID($id);
                     <?php if ($user->getPermission($permgroup, 'CAN_USE_ITEM_DELETE') == 1) { ?>
                         <a data-toggle="modal" data-target="#Deleteitem" href="#">
                             <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
-                                <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span>Verwijder item
+                                <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span><?= BUTTON_DELETE_ASSIGNMENT ?>
                             </button>
                         </a>
                     <?php } ?>
@@ -159,20 +168,20 @@ $clientmail = $usermail->getUserMailbyMailID($id);
                             <?php
                             }
                             ?>
-                            <form class="form-horizontal" action="?page=uploading" method="post"
-                                  enctype="multipart/form-data">
+                            <form action="?page=uploadImages" method="post" enctype="multipart/form-data" class="form-horizontal dropzone" id="mydropzone">
                                 <input type="hidden" name="client" value="<?= $clientmail['clientid'] ?>">
                                 <input type="hidden" name="id" value="<?= $upload['id'] ?>">&emsp;&emsp;
                                 <div class="tab-content">
                                     <div class="tab-pane active" role="tabpanel" id="step1">
-                                        <div class="well" style="font-size: 15px; font-style: italic;">Bekijk hieronder
-                                            de proef en de status.
+                                        <div class="well" style="font-size: 15px; font-style: italic;"><?= TEXT_ASSIGNMENT_INFO ?>
                                         </div>
                                         <br>
                                         <?php
                                         $imgcount = 0;
                                         foreach ($uploadedimages as $img) {
+
                                             $demimages = $img['images'];
+
                                             $deimage = pathinfo($demimages);
                                             $imgcount++;
                                             ?>
@@ -201,17 +210,17 @@ $clientmail = $usermail->getUserMailbyMailID($id);
                                                     if ($isverified['verify'] == 1) { ?>
                                                         <div id="akkoord" class="alert1 alert-success"
                                                              style="text-align: center;" role="alert"><span
-                                                                class="alert-version">Versie <?= $isverified['version'] ?></span><br/><span
-                                                                class="glyphicon1 glyphicon-ok-circle"></span> Akkoord
+                                                                class="alert-version"><?= TEXT_VERSIE ?> <?= $isverified['version'] ?></span><br/><span
+                                                                class="glyphicon1 glyphicon-ok-circle"></span> <?= TEXT_ACCORD ?>
                                                         </div>
                                                     <?php }
 
                                                     if ($isverified['verify'] == 2) { ?>
                                                         <div id="weiger" class="alert1 alert-danger"
                                                              style="text-align: center;" role="alert"><span
-                                                                class="alert-version">Versie <?= $isverified['version'] ?></span><br/><span
+                                                                class="alert-version"><?= TEXT_VERSIE ?> <?= $isverified['version'] ?></span><br/><span
                                                                 class="glyphicon1 glyphicon-remove-circle"></span>
-                                                            Geweigerd
+                                                            <?= TEXT_DECLINED ?>
                                                         </div>
                                                     <?php }
 
@@ -219,18 +228,17 @@ $clientmail = $usermail->getUserMailbyMailID($id);
                                                         <div id="weiger" class="alert1 alert-info"
                                                              style="background-color:lightgrey; color:grey; text-align: center;"
                                                              role="alert"><span
-                                                                class="alert-version">Versie <?= $isverified['version'] ?></span><br/><span
+                                                                class="alert-version"><?= TEXT_VERSIE  ?> <?= $isverified['version'] ?></span><br/><span
                                                                 class="glyphicon1glyphicon-remove-circle"></span>
-                                                            Gewijzigd
+                                                            <?= TEXT_EDITED ?>
                                                         </div>
                                                     <?php }
 
                                                     if ($isverified['verify'] == 0) { ?>
                                                         <div id="weiger" class="alert1 alert-info"
                                                              style="text-align: center;" role="alert"><span
-                                                                class="alert-version">Versie <?= $isverified['version'] ?></span><br/><span
-                                                                class="glyphicon1 glyphicon-remove-circle"></span> Niet
-                                                            beoordeeld
+                                                                class="alert-version"><?= TEXT_VERSIE  ?> <?= $isverified['version'] ?></span><br/><span
+                                                                class="glyphicon1 glyphicon-remove-circle"></span> <?= TEXT_NO_EDITS ?>
                                                         </div>
                                                     <?php }
 
@@ -255,7 +263,7 @@ $clientmail = $usermail->getUserMailbyMailID($id);
                                         <br><br>
                                         <ul class="list-inline pull-right">
                                             <li>
-                                                <button type="button" class="btn btn-primary next-step">Volgende
+                                                <button type="button" class="btn btn-primary next-step"><?= BUTTON_NEXT ?>
                                                 </button>
                                             </li>
                                         </ul>
@@ -263,8 +271,7 @@ $clientmail = $usermail->getUserMailbyMailID($id);
 
 
                                     <div class="tab-pane" role="tabpanel" id="step2">
-                                        <div class="well" style="font-size: 15px; font-style: italic;">Bekijk de
-                                            informatie.
+                                        <div class="well" style="font-size: 15px; font-style: italic;"><?= TEXT_ASSIGNMENT_INFO ?>
                                         </div>
 
                                         <br>
@@ -273,7 +280,7 @@ $clientmail = $usermail->getUserMailbyMailID($id);
                                         <?php if (in_array(2, $verimages) || in_array(0, $verimages)) { ?>
 
                                         <div class="form-group">
-                                            <label class="col-md-4 control-label" for="textinput">Onderwerp<span
+                                            <label class="col-md-4 control-label" for="textinput"><?= TABLE_TITLE ?><span
                                                     style="color:#bc2d4c">*</span></label>
                                             <div class="col-md-4">
                                                 <input class="form-control input-md" id="textinput" required type="text"
@@ -282,7 +289,7 @@ $clientmail = $usermail->getUserMailbyMailID($id);
                                         </div>
 
                                         <div class="form-group">
-                                            <label class="col-md-4 control-label" for="textinput">Verstuurder<span
+                                            <label class="col-md-4 control-label" for="textinput"><?= TEXT_SENDER ?><span
                                                     style="color:#bc2d4c">*</span></label>
                                             <div class="col-md-4">
                                                 <?php $usr = $user->getUserById($upload['verstuurder']); ?>
@@ -293,7 +300,7 @@ $clientmail = $usermail->getUserMailbyMailID($id);
                                         </div>
 
                                         <div class="form-group">
-                                            <label class="col-md-4 control-label" for="textinput">Beschrijving<span
+                                            <label class="col-md-4 control-label" for="textinput"><?= TEXT_DESCRIPTION ?><span
                                                     style="color:#bc2d4c">*</span></label>
                                             <div class="col-md-4">
                                                 <input class="form-control input-md" id="textinput" required type="text"
@@ -303,7 +310,7 @@ $clientmail = $usermail->getUserMailbyMailID($id);
 
                                         <br/>
                                         <div class="form-group">
-                                            <label class="col-md-4 control-label" for="textinput">Naam klant<span
+                                            <label class="col-md-4 control-label" for="textinput"><?= TEXT_IS_CLIENT ?><span
                                                     style="color:#bc2d4c">*</span></label>
                                             <div class="col-md-4">
                                                 <?php $clnt = $user->getUserById($upload['naam']); ?>
@@ -315,7 +322,7 @@ $clientmail = $usermail->getUserMailbyMailID($id);
 
                                         <?php if ($user->getPermission($permgroup, 'CAN_EDIT_ACCORD') == 1) { ?>
                                             <div class="form-group">
-                                                <label class="col-md-4 control-label" for="textinput">Link accordering</label>
+                                                <label class="col-md-4 control-label" for="textinput"><?= TEXT_PRODUCT_ACCORD ?></label>
                                                 <div class="col-md-4">
                                                     <textarea class="form-control input-md" readonly><?= $admin['Host'] . '/' ?>index.php?page=verify&id=<?= $upload['id'] ?>&key=<?= $upload['key'] ?></textarea>
                                                 </div>
@@ -329,7 +336,7 @@ $clientmail = $usermail->getUserMailbyMailID($id);
                                                     <a href="index.php?page=verify&id=<?= $upload['id'] ?>&key=<?= $upload['key'] ?>">
                                                         <button type="button"
                                                                 class="btn btn-labeled btn-success MyOverviewButton"
-                                                                style="height: 40px;">Accorderen
+                                                                style="height: 40px;"><?= TEXT_ACCORD ?>
                                                         </button>
                                                     </a>
                                                 </div>
@@ -339,8 +346,7 @@ $clientmail = $usermail->getUserMailbyMailID($id);
                                         <?php if (isset($upload['answer']) && $upload['answer'] !== '') { ?>
                                             <br/>
                                             <div class="form-group">
-                                                <label class="col-md-4 control-label" for="textinput">Beschijving van de
-                                                    klant</label>
+                                                <label class="col-md-4 control-label" for="textinput"><?= TEXT_CLIENT_DESCRIPTION ?></label>
                                                 <div class="col-md-4">
                                                     <textarea disabled class="form-control input-md"
                                                               id="textinput1"><?= $upload['answer'] ?></textarea>
@@ -354,11 +360,9 @@ $clientmail = $usermail->getUserMailbyMailID($id);
                                                 <?php $i = 0;
                                                 $o = 0; ?>
                                                 <div class="form-group">
-                                                    <label class="col-md-4 control-label" for="textinput">Interne
-                                                        opmerkingen</label>
+                                                    <label class="col-md-4 control-label" for="textinput"><?= TEXT_INTERNCOMMENT ?></label>
                                                     <div class="col-md-4">
                                                         <ul id="comments">
-                                                            <span>Gesorteed op !importance!</span>
                                                             <?php foreach ($comments as $comment) { ?>
                                                                 <?php
                                                                 $i++;
@@ -437,7 +441,7 @@ $clientmail = $usermail->getUserMailbyMailID($id);
                                         <br>
                                         <ul class="list-inline pull-right">
                                             <li>
-                                                <button type="button" class="btn btn-primary next-step">Volgende
+                                                <button type="button" class="btn btn-primary next-step"><?= BUTTON_NEXT ?>
                                                 </button>
                                             </li>
                                         </ul>
@@ -446,8 +450,7 @@ $clientmail = $usermail->getUserMailbyMailID($id);
                                     else { ?>
 
                                         <div class="form-group">
-                                            <label class="col-md-4 control-label" for="textinput">Onderwerp<span
-                                                    style="color:#bc2d4c">*</span></label>
+                                            <label class="col-md-4 control-label" for="textinput"><?= TABLE_TITLE ?></label>
                                             <div class="col-md-4">
                                                 <input disabled name="title" class="form-control input-md"
                                                        id="textinput" type="text" size="50"
@@ -456,8 +459,7 @@ $clientmail = $usermail->getUserMailbyMailID($id);
                                         </div>
 
                                         <div class="form-group">
-                                            <label class="col-md-4 control-label" for="textinput">Verstuurder<span
-                                                    style="color:#bc2d4c">*</span></label>
+                                            <label class="col-md-4 control-label" for="textinput"><?= TEXT_SENDER ?></label>
                                             <div class="col-md-4">
                                                 <input disabled name="fromname" class="form-control input-md"
                                                        id="textinput" type="text" size="50"
@@ -466,8 +468,7 @@ $clientmail = $usermail->getUserMailbyMailID($id);
                                         </div>
 
                                         <div class="form-group">
-                                            <label class="col-md-4 control-label" for="textinput">Beschrijving<span
-                                                    style="color:#bc2d4c">*</span></label>
+                                            <label class="col-md-4 control-label" for="textinput"><?= TEXT_DESCRIPTION ?></label>
                                             <div class="col-md-4">
                                                 <input disabled name="additionalcontent" class="form-control input-md"
                                                        id="textinput" required type="text"
@@ -477,7 +478,7 @@ $clientmail = $usermail->getUserMailbyMailID($id);
 
                                         <?php if ($user->getPermission($permgroup, 'CAN_SHOW_USERIP') == '1') { ?>
                                             <div class="form-group">
-                                                <label class="col-md-4 control-label" for="textinput">Accordering IP</label>
+                                                <label class="col-md-4 control-label" for="textinput"><?= TEXT_ACCORD_IP ?></label>
                                                 <div class="col-md-4">
                                                     <input disabled name="mailname" class="form-control input-md"
                                                            id="textinput" type="text" value="<?= $upload['key'] ?>">
@@ -492,8 +493,7 @@ $clientmail = $usermail->getUserMailbyMailID($id);
                                     <?php if ($user->getPermission($permgroup, 'CAN_UPLOAD')) { ?>
                                         <?php if (in_array(2, $verimages) || in_array(0, $verimages)) { ?>
                                             <div class="tab-pane" role="tabpanel" id="step3">
-                                                <div class="well" style="font-size: 15px; font-style: italic;">Upload
-                                                    indien nodig nieuwe bestanden.
+                                                <div class="well" style="font-size: 15px; font-style: italic;"><?= TEXT_STEP5 ?>
                                                 </div>
                                                 <br>
                                                 <fieldset style="clear:both">
@@ -504,31 +504,28 @@ $clientmail = $usermail->getUserMailbyMailID($id);
                                                     -->
 
                                                     <div class="form-group">
-                                                        <label class="col-md-4 control-label" for="textinput">Bestanden
-                                                            uploaden</label>
+                                                        <label class="col-md-4 control-label" for="textinput"><?= TEXT_UPLOAD_FILES ?></label>
                                                         <div class="col-md-4">
-                                                            <label for="file-upload" class="custom-file-upload">
-                                                                <i class="fa fa-cloud-upload"></i> Uploaden
-                                                            </label>
-                                                            <input type="file" name="myFile[]" class="imgInp"
-                                                                   id="file-upload" multiple>
+                                                            <div class="dz-default dz-message">
+                                                    <span>
+                                                        <label class="custom-file-upload">
+                                                            <i class="fa fa-cloud-upload"></i> <?= TEXT_UPLOAD ?>
+                                                        </label>
+                                                    </span>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label class="col-md-4 control-label" for="textinput">Geselecteerde
-                                                            bestanden:</label>
+                                                        <label class="col-md-4 control-label" for="textinput"><?= TEXT_SELECTED_FILES ?></label>
                                                         <div class="col-md-4">
-                                                            <div id="fileList"></div>
-
-                                                            <output id="list"></output>
+                                                            <div id="dropzonePreview"></div>
                                                         </div>
                                                     </div>
 
                                                     <?php if ($user->getPermission($permgroup, 'CAN_ADD_INTERN_COMMENT') == 1) { ?>
                                                         <br/><br/>
                                                         <div class="form-group">
-                                                            <label class="col-md-4 control-label" for="textinput">Nieuwe
-                                                                interne opmerking:</label>
+                                                            <label class="col-md-4 control-label" for="textinput"><?= TEXT_NEW_INTERNCOMMENT ?></label>
                                                             <div class="col-md-4">
                                                                 <textarea class="form-control input-md" maxlength="300"
                                                                           id="textinput" type="text"
@@ -536,21 +533,20 @@ $clientmail = $usermail->getUserMailbyMailID($id);
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
-                                                            <label class="col-md-4 control-label" for="textinput">Belangrijkheid
-                                                                opmerking:</label>
+                                                            <label class="col-md-4 control-label" for="textinput"><?= TEXT_INTERNCOMMENTIMPORTANCE ?></label>
                                                             <div class="col-md-4">
-                                                                <select name="commentgroep">
-                                                                    <option value="1" style="color:#5a5454">Normale
-                                                                        opmerking
+                                                                <select name="commentgroep" class="form-control">
+                                                                    <option value="1" style="color:#5a5454">
+                                                                        <?= TEXT_INTERNCOMMENTIMPORTANCE1 ?>
                                                                     </option>
-                                                                    <option value="2" style="color:#9a1734">Let op de
-                                                                        volgende punten
+                                                                    <option value="2" style="color:#9a1734">
+                                                                        <?= TEXT_INTERNCOMMENTIMPORTANCE2 ?>
                                                                     </option>
-                                                                    <option value="3" style="color:#dd2c4c">Belangrijke
-                                                                        opmerking
+                                                                    <option value="3" style="color:#dd2c4c">
+                                                                        <?= TEXT_INTERNCOMMENTIMPORTANCE3 ?>
                                                                     </option>
-                                                                    <option value="4" style="color:red">Eis van de
-                                                                        klant
+                                                                    <option value="4" style="color:red">
+                                                                        <?= TEXT_INTERNCOMMENTIMPORTANCE4 ?>
                                                                     </option>
                                                                 </select>
                                                             </div>
@@ -563,21 +559,19 @@ $clientmail = $usermail->getUserMailbyMailID($id);
                                                 <ul class="list-inline pull-right">
                                                     <li>
                                                         <button type="button" class="btn btn-primary next-step">
-                                                            Volgende
+                                                            <?= BUTTON_NEXT ?>
                                                         </button>
                                                     </li>
                                                 </ul>
                                             </div>
                                             <div class="tab-pane" role="tabpanel" id="step4">
-                                            <div class="well" style="font-size: 15px; font-style: italic;">Pas hieronder
-                                                eventueel de beschrijving aan en verstuur de proef opnieuw.
+                                            <div class="well" style="font-size: 15px; font-style: italic;"><?= TEXT_STEP6 ?>
                                             </div>
 
                                             <br>
 
                                             <div class="form-group">
-                                                <label class="col-md-4 control-label" for="textinput">Nieuwe
-                                                    beschrijving</label>
+                                                <label class="col-md-4 control-label" for="textinput"><?= TEXT_NEW_DESCRIPTION ?></label>
                                                 <div class="col-md-4">
                                                     <input name="additionalcontent" class="form-control input-md"
                                                            id="textinput" type="text" size="50"
@@ -588,9 +582,9 @@ $clientmail = $usermail->getUserMailbyMailID($id);
                                                    value="<?= $upload['email'] ?>">
 
                                             <ul class="list-inline pull-right">
-                                                <li><input class="btn btn-primary btn-success" name="submit"
-                                                           style="max-width: 100px; background-color: #bb2c4c; border: 1px solid #bb2c4c"
-                                                           type="submit" value="Opslaan"></li>
+                                                <li>
+                                                    <button type="submit" id="sbmtbtn" class="btn btn-primary"><?= BUTTON_SENDAGAIN ?></button>
+                                                </li>
                                             </ul>
                                             <br>
                                         <?php } // VOOR ALS HET AL GEACCORDEERD IS
@@ -601,8 +595,7 @@ $clientmail = $usermail->getUserMailbyMailID($id);
                                             <br/><br/>
 
                                             <div class="form-group">
-                                                <label class="col-md-4 control-label" for="textinput">Naam klant<span
-                                                        style="color:#bc2d4c">*</span></label>
+                                                <label class="col-md-4 control-label" for="textinput"><?= TEXT_CLIENT ?></label>
                                                 <div class="col-md-4">
                                                     <?php $clnt = $user->getUserById($upload['naam']); ?>
                                                     <input disabled name="mailname" class="form-control input-md"
@@ -612,8 +605,7 @@ $clientmail = $usermail->getUserMailbyMailID($id);
 
 
                                             <div class="form-group">
-                                                <label class="col-md-4 control-label" for="textinput">E-mailadres
-                                                    klant<span style="color:#bc2d4c">*</span></label>
+                                                <label class="col-md-4 control-label" for="textinput"><?= TEXT_EMAIL_CLIENT ?></label>
                                                 <div class="col-md-4">
                                                     <input disabled name="mailto" class="form-control input-md"
                                                            id="textinput" type="text" size="50"
@@ -625,8 +617,7 @@ $clientmail = $usermail->getUserMailbyMailID($id);
                                                    value="<?= $upload['onderwerp'] ?>">
 
                                             <div class="form-group">
-                                                <label class="col-md-4 control-label" for="textinput">Beschijving van de
-                                                    klant</label>
+                                                <label class="col-md-4 control-label" for="textinput"><?= TEXT_CLIENT_DESCRIPTION ?></label>
                                                 <div class="col-md-4">
                                                     <input disabled name="mailanswer" class="form-control input-md"
                                                            id="textinput" type="text" size="50"
@@ -639,11 +630,9 @@ $clientmail = $usermail->getUserMailbyMailID($id);
                                         <?php $i = 0;
                                         $o = 0; ?>
                                             <div class="form-group">
-                                                <label class="col-md-4 control-label" for="textinput">Interne
-                                                    opmerkingen</label>
+                                                <label class="col-md-4 control-label" for="textinput"><?= TEXT_INTERNCOMMENT ?></label>
                                                 <div class="col-md-4">
                                                     <ul id="comments">
-                                                        <span>Gesorteed op !importance!</span>
                                                         <?php foreach ($comments as $comment) { ?>
                                                             <?php
                                                             $i++;
@@ -658,12 +647,6 @@ $clientmail = $usermail->getUserMailbyMailID($id);
                                                                 $importancecolor = 'red';
                                                             }
                                                             ?>
-                                                            <!-- <div class="form-group">
-                                                        <label class="col-md-4 control-label" for="textinput"><span style="color: <?= $importancecolor ?>">Opmerking <?= $i ?>: </span></label>
-                                                        <div class="col-md-4">
-                                                            <textarea disabled class="form-control input-md" id="textinput"><?= $comment['comment'] ?></textarea>
-                                                        </div>
-                                                    </div> -->
                                                             <a href="" class="question<?= $i ?>">
                                                                 <li style="color: <?= $importancecolor ?>">
                                                                     <div id="leftside"><?= $comment['comment'] ?></div>
@@ -677,10 +660,10 @@ $clientmail = $usermail->getUserMailbyMailID($id);
                                             <div class="allanswers">
 
                                                 <div class="form-group new_member_box_display" id="answer">
-                                                    <label class="col-md-4 control-label" for="textinput"><span>Opmerking </span></label>
+                                                    <label class="col-md-4 control-label" for="textinput"><span><?= TEXT_COMMENT ?> </span></label>
                                                     <div class="col-md-4">
                                                         <textarea disabled class="form-control input-md"
-                                                                  id="textinput1">*selecteer een opmerking*</textarea>
+                                                                  id="textinput1">*<?= TEXT_SELECT_COMMENT ?>*</textarea>
                                                     </div>
                                                 </div>
 
@@ -732,7 +715,7 @@ $clientmail = $usermail->getUserMailbyMailID($id);
                                 <table>
                                     <thead>
                                     <tr>
-                                        <td>Downloads:</td>
+                                        <td><?= TEXT_DOWNLOADS ?></td>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -753,13 +736,13 @@ $clientmail = $usermail->getUserMailbyMailID($id);
                                                     <ul class="dropdown-menu">
                                                         <?php if ($img['downloadable'] == 1 || substr($img['images'], -3) == 'pdf') { ?>
                                                             <li>
-                                                                <a href="?page=download&file='<?= $img['images']; ?>'">Download</a>
+                                                                <a href="?page=download&file='<?= $img['images']; ?>'"><?= TEXT_DOWNLOAD ?></a>
                                                             </li>
                                                         <?php } else { ?>
                                                             <?php if ($user->getPermission($permgroup, 'CAN_EDIT_ACCORD') == 1) { ?>
                                                                 <li>
                                                                     <form id="downloadbuttons" method="post">
-                                                                        <span>Maak downloadbaar: </span>
+                                                                        <span><?= TEXT_MAKE_DOWNLOADABLE ?></span>
                                                                         <input type="submit"
                                                                                class="imgdownload id<?= $id ?>"
                                                                                id="img<?= $img['id'] ?>">
@@ -767,7 +750,7 @@ $clientmail = $usermail->getUserMailbyMailID($id);
                                                                 </li>
                                                             <?php } ?>
                                                             <br/>
-                                                            <li>U kunt dit product nog niet downloaden</li>
+                                                            <li><?= TEXT_CANT_DOWNLOAD_YET ?></li>
                                                         <?php } ?>
                                                     </ul>
                                                 </div>
@@ -777,8 +760,7 @@ $clientmail = $usermail->getUserMailbyMailID($id);
                                     </tbody>
                                 </table>
                                 <?php if ($user->getPermission($permgroup, 'CAN_EDIT_ACCORD') == 1) { ?>
-                                    <a data-toggle="modal" data-target="#ImageDownloader" href="#">Maak alle files
-                                        downloadbaar</a>
+                                    <a data-toggle="modal" data-target="#ImageDownloader" href="#"><?= TEXT_MAKE_ALL_DOWNLOADABLE ?></a>
                                 <?php }
                             } ?>
 
@@ -798,14 +780,14 @@ $clientmail = $usermail->getUserMailbyMailID($id);
                 <div class="modal-content">
                     <div style="text-align: center;" class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Update alle open mails</h4>
+                        <h4 class="modal-title"><?= TEXT_MAKE_ALL_DOWNLOADABLE ?></h4>
                     </div>
                     <div style="text-align: center;" class="modal-body">
                         <br>
 
-                        <p> U staat op het punt om alle images downloadbaar te maken. <br/><br/>
-                            Weet u dit zeker?<br/><br/></p>
-                        <a class="abuttonmodal" href="?page=allimgdown&id=<?= $id ?>">Maak files downloadbaar</a>
+                        <p> <?= TEXT_MAKE_ALL_DOWNLOADABLE_MESSAGE ?> <br/><br/>
+                            <?= TEXT_ARE_YOU_SURE ?><br/><br/></p>
+                        <a class="abuttonmodal" href="?page=allimgdown&id=<?= $id ?>"><?= TEXT_MAKE_ALL_DOWNLOADABLE ?></a>
                         <br/>
                         <br/>
                     </div>
@@ -826,7 +808,7 @@ $clientmail = $usermail->getUserMailbyMailID($id);
                 <div class="modal-content">
                     <div style="text-align: center;" class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Opdracht verwijderen</h4>
+                        <h4 class="modal-title"><?= TEXT_DELETE_ASSIGNMENT ?></h4>
                     </div>
                     <div style="text-align: center;" class="modal-body">
                         <br>
@@ -852,6 +834,47 @@ $clientmail = $usermail->getUserMailbyMailID($id);
 
             </div>
         </div>
+
+        <?php if ($isverified['verify'] == 0) { ?>
+
+        <?php } else { ?>
+
+            <div class="container">
+
+                <h2>Geakkordeerd</h2>
+
+                <table class="table">
+
+                    <thead>
+
+                    <tr>
+                        <th>Date</th>
+                        <th>IP-adress</th>
+                        <th>Time</th>
+                    </tr>
+
+
+                    </thead>
+
+                    <tbody>
+
+                    <tr>
+                        <!--                            Loopt door de array (tijd, datum, IP-adres)-->
+                        <?php foreach (explode('-', $theKey) as $key): ?>
+
+                            <td><?= $key ?></td>
+
+                        <?php endforeach; ?>
+
+                    </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        <?php } ?>
 
         <!-- Modal -->
         <div class="modal fade" id="Weigeritem" role="dialog">
@@ -887,3 +910,69 @@ $clientmail = $usermail->getUserMailbyMailID($id);
 
             </div>
         </div>
+
+
+        <script>
+
+            var postForm = [];
+            var Files = [];
+
+            Dropzone.options.mydropzone = {
+                addRemoveLinks: true,
+                autoProcessQueue: false, // this is important as you dont want form to be submitted unless you have clicked the submit button
+                autoDiscover: false,
+                paramName: 'file', // this is optional Like this one will get accessed in php by writing $_FILE['pic'] // if you dont specify it then bydefault it taked 'file' as paramName eg: $_FILE['file']
+                previewsContainer: '#dropzonePreview', // we specify on which div id we must show the files
+                maxFilesize: 10, // MB
+                acceptedFiles: "image/png, image/jpeg, image/gif, application/pdf",
+                accept: function(file, done) {
+                    done();
+                },
+                error: function(file, msg){
+                    alert(msg);
+                },
+                init: function() {
+
+                    this.on("queuecomplete", function () {
+                        this.options.autoProcessQueue = false;
+                        //window.location = 'index.php?page=lala1';
+                        postForm += (Files.join(", "));
+
+                        $.ajax({
+                            type: "POST",
+                            url: "?page=uploadForm",
+                            data: postForm,
+                            cache: false,
+                            success: function (result) {
+                                window.location.href = 'index.php?page=overview';
+                            }
+                        });
+                        event.preventDefault();
+                    });
+
+                    this.on("processing", function () {
+                        this.options.autoProcessQueue = true;
+                    });
+
+                    this.on("error", function(file, message) {
+                        alert(message);
+                        this.removeFile(file);
+                    });
+
+                    var myDropzone = this;
+                    //now we will submit the form when the button is clicked
+                    $("#sbmtbtn").on('click',function(e) {
+                        e.preventDefault();
+                        myDropzone.processQueue(); // this will submit your form to the specified action path
+                        postForm = $('form#mydropzone').serialize() + '&files=';
+                    });
+
+                }, // init end
+
+                success: function( file, response ){
+                    Files.push(response);
+                }
+
+            };
+
+        </script>

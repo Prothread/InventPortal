@@ -48,7 +48,9 @@ if (isset($_GET['img'])) {
                 break;
             case "png":
                 $ctype = "image/png";
+
                 $im = imagecreatefrompng($fullPath);
+
                 break;
             case "jpeg":
             case "jpg":
@@ -63,31 +65,58 @@ if (isset($_GET['img'])) {
         return false;
     }
 
-// Get dimensions
-    $imageWidth = imagesx($im);
-    $imageHeight = imagesy($im);
+    list($width, $height) = getimagesize($fullPath);
 
-    $logoWidth = imagesx($stamp);
-    $logoHeight = imagesy($stamp);
+    //Check if we have a big or a small image
+    if($width > 10000 || $height > 10000){
 
-//White background?!
-    $image = imagecreatetruecolor($imageWidth, $imageHeight);
-    $white = imagecolorallocate($image, 255, 255, 255);
-    imagefill($image, 0, 0, $white);
+        //Resize the image
+        $newWidth = $width / 5;
+        $newHeight = $height / 5;
 
-// Paste the logo
-    imagecopy(
-// destination
-        $image,
-        // source
-        $im,
-        // destination x and y
-        0, 0,
-        // source x and y
-        0, 0,
-        // width and height of the area of the source to copy
-        $imageWidth, $imageHeight
-    );
+        $image = imagecreatetruecolor($newWidth, $newHeight);
+
+        imagecopyresized($image, $im, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
+
+
+        // Get dimensions
+        $imageWidth = imagesx($image);
+        $imageHeight = imagesy($image);
+
+        $logoWidth = imagesx($stamp);
+        $logoHeight = imagesy($stamp);
+
+        //White background?!
+        $white = imagecolorallocate($image, 255, 255, 255);
+        imagefill($image, 0, 0, $white);
+    }else {
+
+        // Get dimensions
+        $imageWidth = imagesx($im);
+        $imageHeight = imagesy($im);
+
+        $logoWidth = imagesx($stamp);
+        $logoHeight = imagesy($stamp);
+
+        //White background?!
+        $image = imagecreatetruecolor($imageWidth, $imageHeight);
+        $white = imagecolorallocate($image, 255, 255, 255);
+        imagefill($image, 0, 0, $white);
+
+        imagecopy(
+            // destination
+            $image,
+            // source
+            $im,
+            // destination x and y
+            0, 0,
+            // source x and y
+            0, 0,
+            // width and height of the area of the source to copy
+
+            $imageWidth, $imageHeight
+        );
+    }
 
 //Get new dimensions
     $imgWidth = imagesx($image);
@@ -104,16 +133,14 @@ if (isset($_GET['img'])) {
             // source x and y
             0, 0,
 
-
             //Width and height wannabe
             $imgWidth, $imgHeight,
-
 
             // width and height of the area of the source to copy
             $logoWidth, $logoHeight
         );
     } else {
-// Paste the logo
+//// Paste the logo
         imagecopy(
         // destination
             $image,
@@ -132,10 +159,12 @@ if (isset($_GET['img'])) {
     if (!headers_sent()) {
 // Output and free memory
         header("Content-Type: $ctype");
+
         imagepng($image);
         imagedestroy($image);
     } else {
         ob_start();
+
         imagepng($image);
         $contents = ob_get_contents();
         ob_end_clean();
@@ -144,11 +173,11 @@ if (isset($_GET['img'])) {
         echo '<img src="' . $dataUri . '">';
 
         //Display normal image:
-        /*
-            $type = pathinfo($fullPath, PATHINFO_EXTENSION);
-            $data = file_get_contents($fullPath);
-            $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
-            echo '<img src="'. $base64 .'">';
-        */
+//
+//            $type = pathinfo($fullPath, PATHINFO_EXTENSION);
+//            $data = file_get_contents($fullPath);
+//            $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
+//            echo '<img src="'. $base64 .'">';
+
     }
 }

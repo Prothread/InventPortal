@@ -47,6 +47,9 @@ class UserController
         if (isset($userinfo['plaats'])) {
             $this->model->setUserPlace($userinfo['plaats']);
         }
+        if (isset($userinfo['lang'])) {
+            $this->model->setUserLanguage($userinfo['lang']);
+        }
 
         $this->model->setUserPermgroup($userinfo['permgroup']);
 
@@ -454,4 +457,7 @@ class UserController
         return $ip;
     }
 
+    public function getClientKey($name){
+        return $this->model->getClientKey($name);
+    }
 }

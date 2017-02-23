@@ -58,41 +58,16 @@ if ($mailexist == null || empty($mailexist)) {
     } else {
         $to = $email; //The 'To' field
     }
-    $subject = "Accountgegevens Madalco-portaal";
+
 
     $link = $admin['Host'] . "/index.php?page=resetpassword&email=$email&token=$passtoken";
 
-    $header = ' <div style="background: ' . $admin['Header'] . '; position:relative; width: 100%; height: 130px;">
-                        <div style="position: absolute; height: 130px; margin-right: 25px; left: 5px;">
-                            <img src="cid:HeaderImage" style="width:auto;height:75%;" />
-                        </div>
-                    </div> ';
-    $content = $header . "  <br/><br/>" . "Geachte " . $_POST['companyname'] . "," .
-
-        " <br/><br/>" . $myuser . " heeft voor u het account <b> " . $_POST['name'] . "</b> " . " aangemaakt, hieronder uw gegevens:<br /><br />" .
-        "<b>E-mailadres: </b>" .
-        $_POST['email'] . '<br/>' .
-
-        "<b>Wachtwoord: </b>" .
-        $token .
-
-        "<br /><br />" . "U kunt " . "<a href='$link'>hier</a> " . "uw wachtwoord veranderen." .
-
-        "<br /><br />Met vriendelijke groet, <br />" . "Madalco Media" .
-        "<br /> <br /><b>Disclaimer:</b> This is an automatically generated mail. Please do not reply to this email";
-
-    $altcontent = "Geachte leden van " . $_POST['companyname'] . "," .
-        " <br/><br/>" . $myuser . " heeft voor U het account: <b>" . $_POST['name'] . "</b>" . "aangemaakt met de volgende informatie:<br /><br />" .
-        "<b>Email: </b>" .
-        $_POST['email'] . '<br />' .
-
-        "<b>Wachtwoord: </b>" .
-        $token .
-
-        "<br /><br />" . "U kunt hier: " . "$link " . "uw wachtwoord veranderen." .
-
-        "<br /> <br />Met vriendelijke groet, <br />" . "Madalco Media" .
-        "<br /> <br />Disclaimer: This is an automatically generated mail. Please do not reply to this email";
+    if($_POST['taal']) {
+        include_once DIR_VIEW . $_POST['taal'] . '_mail_client.php';
+    }
+    else {
+        include_once DIR_VIEW . 'en' . '_mail_client.php';
+    }
 
 //SMTP Configuration
     $mailer->isSMTP();
@@ -137,6 +112,7 @@ if ($mailexist == null || empty($mailexist)) {
         'adres' => strip_tags($adres),
         'postcode' => strip_tags($postcode),
         'plaats' => strip_tags($plaats),
+        'lang' => strip_tags($taal),
         'permgroup' => $rechten
     ];
     if(isset($taal) && $taal) {

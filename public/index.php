@@ -59,7 +59,7 @@ if (!$session->exists('usr_id') && $page !== 'approve' && $page !== 'conditions'
 }
 
 if ($session->exists('usr_id')) {
-    if ($page !== 'submit' && $page !== 'image' && $page !== 'download' && $page !== 'clientmail' && $page !== 'lala') {
+    if ($page !== 'submit' && $page !== 'image' && $page !== 'download' && $page !== 'clientmail' && $page !== 'uploadImages') {
         include_once '../app/view/header.php';
     }
 }
@@ -72,11 +72,11 @@ switch ($page) {
     case 'dashboard':
         include '../app/view/dashboard.php';
         break;
-    case 'lala':
-        include '../app/view/lala.php';
+    case 'uploadImages':
+        include '../app/Model/uploadImages.php';
         break;
-    case 'lala1':
-        include '../app/view/lala1.php';
+    case 'uploadForm':
+        include '../app/Model/uploadForm.php';
         break;
     case 'overview':
         include '../app/view/overview.php';
@@ -85,7 +85,7 @@ switch ($page) {
         include '../app/view/archive.php';
         break;
     case 'uploading':
-        include '../app/Model/upload.php';
+        include '../app/Model/uploadForm.php';
         break;
     case 'uploadoverview':
         include '../app/view/phpmail.php';
@@ -136,10 +136,7 @@ switch ($page) {
         include '../app/view/conditions.php';
         break;
     case 'test':
-        include '../app/view/test.php';
-        break;
-    case 'test1':
-        include '../app/view/test1.php';
+        include '../app/view/phpmail.php';
         break;
     case 'logout':
         include '../app/view/logout.php';
@@ -208,7 +205,7 @@ switch ($page) {
         include '../app/view/allimgdown.php';
         break;
     case 'item2':
-        include '../app/view/item2.php';
+        include '../app/view/item.php';
         break;
     case 'nieuwstatusitem':
         include '../app/view/nieuwstatusitem.php';

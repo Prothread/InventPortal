@@ -582,4 +582,24 @@ class DbUser extends Database
         return false;
     }
 
+    public function getClientKey($name)
+
+    {
+
+        $sql = "SELECT `key` FROM `mail` WHERE `naam` = '{$name}'";
+
+        $result = $this->dbQuery($sql);
+
+        $value = mysqli_fetch_assoc($result);
+
+        (string)$newValue = implode(" ",$value);
+
+
+
+        if($newValue){
+            return $newValue;
+        }
+
+    }
+
 }
