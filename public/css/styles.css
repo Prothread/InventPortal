@@ -1406,11 +1406,7 @@ ul.sidebar-nav {
     background: url("../icons/acchover.png") no-repeat 40px 7px
 }
 
-html, #sidebar-wrapper {
-    height: calc(100% - 130px);
-}
-
-body, #wrapper {
+html, body, #wrapper, #sidebar-wrapper{
     height: 100%;
 }
 
