@@ -41,7 +41,7 @@ if (isset($_SESSION['accorduserid']) && !isset($_SESSION['usr_id'])) {
 
 }
 ?>
-    <html lang="<?= $language ?>">
+<html lang="<?= $language ?>">
     <head>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
@@ -68,7 +68,7 @@ if (isset($_SESSION['accorduserid']) && !isset($_SESSION['usr_id'])) {
         <link href="css/styles.css" rel="stylesheet">
 
         <!-- Upload plugin -->
-        <link rel="stylesheet" type="text/css" href="css/dropzone.css" />
+        <link rel="stylesheet" type="text/css" href="css/dropzone.css"/>
         <script type="text/javascript" src="js/dropzone.js"></script>
 
         <!-- JQuery -->
@@ -106,22 +106,16 @@ if (isset($_SESSION['accorduserid']) && !isset($_SESSION['usr_id'])) {
     <div id="header" style="background: <?= $admin['Header']; ?>">
         <div id="MenuSide">
             <img src="<?= DIR_PUBLIC . $admin['Logo'] ?>" style="width:auto;height:75%;"/>
-            <!-- ../public/css/madlogo.png -->
+        </div>
+        <div id="NameSide">
+            <a style="text-decoration: none;" href="?page=profile">
+                <img src="<?= $imgsrc ?>" id="UserBlockImage">
+                <div id="LoggedInAs"><?= $myuser ?></div>
+            </a>
         </div>
         <div id="MenuButton">
             <a href="#menu-toggle" class="btn btn-default" id="menu-toggle"><img src="icons/menu-alt-20.png"></a>
         </div>
-    </div>
-
-    <div id="NameSide">
-        <div id="UserPhoto">
-        </div>
-        <a style="text-decoration: none;" href="?page=profile">
-            <div id="UserBlock" style="text-decoration: none;">
-                <div id="UserBlockImage" style="background-image: url('<?= $imgsrc ?>');"></div>
-                <div id="LoggedInAs"><?= $myuser ?></div>
-            </div>
-        </a>
     </div>
 
 <div id="wrapper">
