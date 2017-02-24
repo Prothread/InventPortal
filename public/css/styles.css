@@ -1447,7 +1447,7 @@ table.table {
     border-bottom: 0 solid #FFFFFF;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 1130px) {
     #myTable tr {
         display: flex;
         flex-direction: row;

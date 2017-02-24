@@ -70,8 +70,8 @@ $theKey = $user->getClientKey($upload['naam']);
                 <th style="text-align: right;">
 
                     <?php if ($user->getPermission($permgroup, 'CAN_USE_ITEM_DELETE') == 1) { ?>
-                        <a data-toggle="modal" data-target="#Weigeritem" href="#">
-                            <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
+                        <a data-toggle="modal" data-target="#Weigeritem" href="#" style="text-decoration: none;">
+                            <button type="button" class="btn btn-labeled btn-success MyOverviewButton" >
                                 <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span><?= BUTTON_DECLINE_ASSIGNMENT ?>
                             </button>
                         </a>
