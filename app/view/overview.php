@@ -44,7 +44,7 @@ else {
                             <?php } ?>
 
                             <a href="?page=useroverview">
-                                <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
+                                <button type="button" class="btn btn-labeled btn-success MyOverviewButton" >
                                     <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> <?= BUTTON_MYOVERVIEW ?>
                                 </button>
                             </a>

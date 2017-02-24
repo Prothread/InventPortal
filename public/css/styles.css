@@ -1861,3 +1861,7 @@ tr:nth-child(2n) {
 .btn-primary:hover {
     cursor: pointer !important;
 }
+
+#filters a{
+    text-decoration: none;
+}

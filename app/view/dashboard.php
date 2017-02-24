@@ -1,5 +1,6 @@
 <?php
 #DASHBOARD PAGE LAAT RECENTE ITEMS ZIEN
+
 if ($user->getPermission($permgroup, 'CAN_SHOW_HOME') == 1) {
 
 } else {
