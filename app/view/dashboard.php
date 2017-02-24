@@ -1,6 +1,5 @@
 <?php
 #DASHBOARD PAGE LAAT RECENTE ITEMS ZIEN
-phpinfo();
 if ($user->getPermission($permgroup, 'CAN_SHOW_HOME') == 1) {
 
 } else {
@@ -75,130 +74,122 @@ $_SESSION['geweigerd_percent'] = $get_items_geweigerd['COUNT(status)'];
             <div class="col-lg-12">
                 <p class="NameText"><?= TEXT_HOME ?></p>
                 <hr size="1">
-                <div class="col-sm-6 col-md-4">
-                    <div class="thumbnail">
-                        <div class="well widgetwell">
-                            <div class="caption">
-                                <div class="widget-header bg-success"></div>
-                                <div class="widget-body text-center">
-                                    <div>
-                                        <p style="text-align: center;"><?= TEXT_DIAGRAM ?></p>
-                                        <canvas id="myChart" width="200" height="200"></canvas>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-4">
-                    <div class="thumbnail">
-                        <div style="text-align: center;" class="well widgetwell">
-                            <div class="caption">
-                                <div class="widget-header bg-success"></div>
-                                <div class="widget-body text-center">
-                                    <div>
-                                        <p style="text-align: center;"><?= TEXT_ASSIGNMENTS ?></p>
-                                        <div class="counter overzichtcount" data-count="<?= $open_items ?>">0</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-4">
-                    <div class="thumbnail">
-                        <div class="well widgetwell">
-                            <div class="caption">
-                                <div class="widget-header bg-success"></div>
-                                <div class="widget-body text-center">
-                                    <p style="text-align: center;"><?= TEXT_DIAGRAM_PERCENTAGE ?></p>
-                                    <?php if (isset($p0) && $p0 !== '0') { ?>
-                                        <div class="skillbar clearfix" data-percent="<?= $p0 ?>%">
-                                            <div class="skillbar-title"
-                                                 style="visibility: hidden;position: relative;"></div>
-                                            <div class="skillbar-text"><?= $u0 ?></div>
-                                            <div class="skillbar-bar" style="background: #a625b3;"></div>
-                                            <div class="skill-bar-percent"><?= $p0 ?>%</div>
-                                        </div> <!-- End Skill Bar -->
-                                    <?php } else { ?>
-                                        <div class="skillbar clearfix " data-percent="0>%">
-                                            <div class="skillbar-title"
-                                                 style="visibility: hidden;position: relative;"></div>
-                                            <div style="position: absolute; color: black; left: 6%; top: 16%;"></div>
-                                            <div class="skillbar-bar" style="background: #a625b3;"></div>
-                                            <div class="skill-bar-percent">0%</div>
-                                        </div> <!-- End Skill Bar -->
-                                    <?php } ?>
-
-                                    <?php if (isset($p1) && $p1 !== '0') { ?>
-                                        <div class="skillbar clearfix" data-percent="<?= $p1 ?>%">
-                                            <div class="skillbar-title"
-                                                 style="visibility: hidden;position: relative;"></div>
-                                            <div class="skillbar-text"><?= $u1 ?></div>
-                                            <div class="skillbar-bar" style="background: #a625b3;"></div>
-                                            <div class="skill-bar-percent"><?= $p1 ?>%</div>
-                                        </div> <!-- End Skill Bar -->
-                                    <?php } else { ?>
-                                        <div class="skillbar clearfix" data-percent="0%">
-                                            <div class="skillbar-title"
-                                                 style="visibility: hidden;position: relative;"></div>
-                                            <div style="position: absolute; color: black; left: 6%; top: 16%;"></div>
-                                            <div class="skillbar-bar" style="background: #a625b3;"></div>
-                                            <div class="skill-bar-percent">0%</div>
-                                        </div> <!-- End Skill Bar -->
-                                    <?php } ?>
-
-                                    <?php if (isset($p2) && $p2 !== '0') { ?>
-                                        <div class="skillbar clearfix" data-percent="<?= $p2 ?>%">
-                                            <div class="skillbar-title"
-                                                 style="visibility: hidden;position: relative;"></div>
-                                            <div class="skillbar-text"><?= $u2 ?></div>
-                                            <div class="skillbar-bar" style="background: #a625b3;"></div>
-                                            <div class="skill-bar-percent"><?= $p2 ?>%</div>
-                                        </div> <!-- End Skill Bar -->
-                                    <?php } else { ?>
-                                        <div class="skillbar clearfix" data-percent="0%">
-                                            <div class="skillbar-title"
-                                                 style="visibility: hidden;position: relative;"></div>
-                                            <div style="position: absolute; color: black; left: 6%; top: 16%;"></div>
-                                            <div class="skillbar-bar" style="background: #a625b3;"></div>
-                                            <div class="skill-bar-percent">0%</div>
-                                        </div> <!-- End Skill Bar -->
-                                    <?php } ?>
-
-                                    <?php if (isset($p3) && $p3 !== '0') { ?>
-
-                                        <div class="skillbar clearfix " data-percent="<?= $p3 ?>%">
-                                            <div class="skillbar-title"
-                                                 style="visibility: hidden;position: relative;"></div>
-                                            <div class="skillbar-text"><?= $u3 ?></div>
-                                            <div class="skillbar-bar" style="background: #a625b3;"></div>
-                                            <div class="skill-bar-percent"><?= $p3 ?>%</div>
-                                        </div> <!-- End Skill Bar -->
-                                    <?php } else { ?>
-                                        <div class="skillbar clearfix " data-percent="0%">
-                                            <div class="skillbar-title"
-                                                 style="visibility: hidden;position: relative;"></div>
-                                            <div style="position: absolute; color: black; left: 6%; top: 16%;"></div>
-                                            <div class="skillbar-bar" style="background: #a625b3;"></div>
-                                            <div class="skill-bar-percent">0%</div>
-                                        </div> <!-- End Skill Bar -->
-                                    <?php } ?>
-
+            </div>
+            <div class="col-sm-6 col-md-4">
+                <div class="thumbnail">
+                    <div class="well widgetwell">
+                        <div class="caption">
+                            <div class="widget-header bg-success"></div>
+                            <div class="widget-body text-center">
+                                <div>
+                                    <p style="text-align: center;"><?= TEXT_DIAGRAM ?></p>
+                                    <canvas id="myChart" width="200" height="200"></canvas>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="col-sm-6 col-md-4">
+                <div class="thumbnail">
+                    <div style="text-align: center;" class="well widgetwell">
+                        <div class="caption">
+                            <div class="widget-body text-center">
+                                <p style="text-align: center;"><?= TEXT_ASSIGNMENTS ?></p>
+                                <div class="counter overzichtcount" data-count="<?= $open_items ?>">0</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-4">
+                <div class="thumbnail">
+                    <div class="well widgetwell">
+                        <div class="caption">
+                            <div class="widget-header bg-success"></div>
+                            <div class="widget-body text-center">
+                                <p style="text-align: center;"><?= TEXT_DIAGRAM_PERCENTAGE ?></p>
+                                <?php if (isset($p0) && $p0 !== '0') { ?>
+                                    <div class="skillbar clearfix" data-percent="<?= $p0 ?>%">
+                                        <div class="skillbar-title"
+                                             style="visibility: hidden;position: relative;"></div>
+                                        <div class="skillbar-text"><?= $u0 ?></div>
+                                        <div class="skillbar-bar" style="background: #a625b3;"></div>
+                                        <div class="skill-bar-percent"><?= $p0 ?>%</div>
+                                    </div> <!-- End Skill Bar -->
+                                <?php } else { ?>
+                                    <div class="skillbar clearfix " data-percent="0>%">
+                                        <div class="skillbar-title"
+                                             style="visibility: hidden;position: relative;"></div>
+                                        <div style="position: absolute; color: black; left: 6%; top: 16%;"></div>
+                                        <div class="skillbar-bar" style="background: #a625b3;"></div>
+                                        <div class="skill-bar-percent">0%</div>
+                                    </div> <!-- End Skill Bar -->
+                                <?php } ?>
 
-            <br><br><br>
+                                <?php if (isset($p1) && $p1 !== '0') { ?>
+                                    <div class="skillbar clearfix" data-percent="<?= $p1 ?>%">
+                                        <div class="skillbar-title"
+                                             style="visibility: hidden;position: relative;"></div>
+                                        <div class="skillbar-text"><?= $u1 ?></div>
+                                        <div class="skillbar-bar" style="background: #a625b3;"></div>
+                                        <div class="skill-bar-percent"><?= $p1 ?>%</div>
+                                    </div> <!-- End Skill Bar -->
+                                <?php } else { ?>
+                                    <div class="skillbar clearfix" data-percent="0%">
+                                        <div class="skillbar-title"
+                                             style="visibility: hidden;position: relative;"></div>
+                                        <div style="position: absolute; color: black; left: 6%; top: 16%;"></div>
+                                        <div class="skillbar-bar" style="background: #a625b3;"></div>
+                                        <div class="skill-bar-percent">0%</div>
+                                    </div> <!-- End Skill Bar -->
+                                <?php } ?>
 
-            <br>
+                                <?php if (isset($p2) && $p2 !== '0') { ?>
+                                    <div class="skillbar clearfix" data-percent="<?= $p2 ?>%">
+                                        <div class="skillbar-title"
+                                             style="visibility: hidden;position: relative;"></div>
+                                        <div class="skillbar-text"><?= $u2 ?></div>
+                                        <div class="skillbar-bar" style="background: #a625b3;"></div>
+                                        <div class="skill-bar-percent"><?= $p2 ?>%</div>
+                                    </div> <!-- End Skill Bar -->
+                                <?php } else { ?>
+                                    <div class="skillbar clearfix" data-percent="0%">
+                                        <div class="skillbar-title"
+                                             style="visibility: hidden;position: relative;"></div>
+                                        <div style="position: absolute; color: black; left: 6%; top: 16%;"></div>
+                                        <div class="skillbar-bar" style="background: #a625b3;"></div>
+                                        <div class="skill-bar-percent">0%</div>
+                                    </div> <!-- End Skill Bar -->
+                                <?php } ?>
+
+                                <?php if (isset($p3) && $p3 !== '0') { ?>
+
+                                    <div class="skillbar clearfix " data-percent="<?= $p3 ?>%">
+                                        <div class="skillbar-title"
+                                             style="visibility: hidden;position: relative;"></div>
+                                        <div class="skillbar-text"><?= $u3 ?></div>
+                                        <div class="skillbar-bar" style="background: #a625b3;"></div>
+                                        <div class="skill-bar-percent"><?= $p3 ?>%</div>
+                                    </div> <!-- End Skill Bar -->
+                                <?php } else { ?>
+                                    <div class="skillbar clearfix " data-percent="0%">
+                                        <div class="skillbar-title"
+                                             style="visibility: hidden;position: relative;"></div>
+                                        <div style="position: absolute; color: black; left: 6%; top: 16%;"></div>
+                                        <div class="skillbar-bar" style="background: #a625b3;"></div>
+                                        <div class="skill-bar-percent">0%</div>
+                                    </div> <!-- End Skill Bar -->
+                                <?php } ?>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <?php
             if ($get_filled_info !== null) {
                 foreach ($get_filled_info as $upload) { ?>
-
                     <div class="col-sm-6 col-md-4">
                         <div class="thumbnail">
                             <div class="well widgetwell">
