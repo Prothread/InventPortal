@@ -1409,9 +1409,11 @@ html, body, #wrapper, #sidebar-wrapper{
 }
 
 html{
+    min-width: 400px;
     background-image: url("../img/sideMenuBack.png");
     background-repeat: repeat-y;
-    background-position: 0;
+    background-position: -250px;
+    /*background-position: 0;*/
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
@@ -1419,7 +1421,9 @@ html{
 }
 
 html.toggled{
-    background-position: -250px;
+    /*background-position: -250px;*/
+    background-position: 0;
+    overflow-x: hidden;
 }
 
 #wrapper {
@@ -1493,10 +1497,10 @@ table.table {
     }
 }
 
-#mychart {
-    width: 100%;
-    height: 200px;
-}
+/*#mychart {*/
+    /*width: 100%;*/
+    /*height: 200px;*/
+/*}*/
 
 #wrapper.toggled {
     padding-left: 250px;
@@ -1521,6 +1525,7 @@ table.table {
 }
 
 #page-content-wrapper {
+    min-width: 380px;
     width: 100%;
     position: absolute;
     padding: 15px;
@@ -1533,6 +1538,16 @@ table.table {
 #wrapper.toggled #page-content-wrapper {
     position: absolute;
     margin-right: -250px;
+}
+
+#page-content-wrapper .thumbnail{
+    height: 100%;
+    padding-bottom: 30px;
+    margin-bottom: 0px;
+}
+
+#wrapper .widgetwell{
+    height: 100%;
 }
 
 /* Sidebar */
@@ -1574,21 +1589,21 @@ table.table {
 }
 
 @media (min-width: 768px) {
-    #wrapper {
-        padding-left: 250px;
-    }
+    /*#wrapper {*/
+        /*padding-left: 250px;*/
+    /*}*/
 
-    #wrapper.toggled {
-        padding-left: 0;
-    }
+    /*#wrapper.toggled {*/
+        /*padding-left: 0;*/
+    /*}*/
 
-    #sidebar-wrapper {
-        width: 250px;
-    }
+    /*#sidebar-wrapper {*/
+        /*width: 250px;*/
+    /*}*/
 
-    #wrapper.toggled #sidebar-wrapper {
-        width: 0;
-    }
+    /*#wrapper.toggled #sidebar-wrapper {*/
+        /*width: 0;*/
+    /*}*/
 
     #page-content-wrapper {
         padding: 20px;
@@ -1864,4 +1879,48 @@ tr:nth-child(2n) {
 
 #filters a{
     text-decoration: none;
+}
+
+/*donut chart*/
+
+@media screen and (max-width: 420px){
+#mychart{
+    width: 100% ;
+    height: auto ;
+}
+}
+@media screen and (min-width: 420px) and (max-width: 1000px){
+    #mychart {
+        width: auto ;
+        height: calc(100% - 24px) ;
+    }
+}
+@media screen and (min-width: 1000px) and (max-width: 1050px){
+    #mychart{
+        width: 100% ;
+        height: auto ;
+    }
+}
+@media screen and (min-width: 1050px){
+    #mychart {
+        width: auto;
+        height: calc(100% - 24px);
+    }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1300px){
+    #wrapper.toggled #mychart{
+        width: 100% !important;
+        height: auto !important;
+    }
+}
+
+@media screen and (max-width: 770px) {
+    #wrapper.toggled #page-content-wrapper{
+        width:calc(100% - 250px);
+    }
+    #mychart {
+        width: auto ;
+        height: calc(100% - 24px) ;
+    }
 }

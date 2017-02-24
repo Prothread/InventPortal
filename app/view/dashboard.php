@@ -25,6 +25,8 @@ if ($get_user_info !== null) {
         } else {
             $percent = '0';
         }
+        $singleName = explode(' ',trim($user['naam']));
+        $user['naam'] = $singleName[0];
         $percentarray[$user['naam']] = $percent;
         array_push($namearray, $user['naam']);
     }
@@ -82,7 +84,7 @@ $_SESSION['geweigerd_percent'] = $get_items_geweigerd['COUNT(status)'];
                         <div class="caption">
                             <div class="widget-header bg-success"></div>
                             <div class="widget-body text-center">
-                                <div>
+                                <div id="chartHolder">
                                     <p style="text-align: center;"><?= TEXT_DIAGRAM ?></p>
                                     <canvas id="myChart" width="200" height="200"></canvas>
                                 </div>

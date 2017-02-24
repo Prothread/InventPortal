@@ -41,7 +41,7 @@ if (isset($_SESSION['accorduserid']) && !isset($_SESSION['usr_id'])) {
 
 }
 ?>
-<html lang="<?= $language ?>">
+<html lang="<?= $language ?>" class="toggled">
     <head>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
@@ -118,7 +118,7 @@ if (isset($_SESSION['accorduserid']) && !isset($_SESSION['usr_id'])) {
         </div>
     </div>
 
-<div id="wrapper">
+<div id="wrapper" class="toggled">
     <!-- Sidebar -->
 
     <div id="sidebar-wrapper">
