@@ -28,7 +28,7 @@ var uploadError = '';
 if(lan === "en"){
     uploadError = "File is too big ({{filesize}}MiB). Maximum filesize: {{maxFilesize}}MiB.";
 }else{
-    uploadError = "Bestand is te groot ({{filesize}}MiB). Maximale bestandsgroote: {{maxFilesize}}MiB.";
+    uploadError = "Bestand is te groot ({{filesize}}MiB). Maximale bestandsgrootte: {{maxFilesize}}MiB.";
 }
 
 (function() {
