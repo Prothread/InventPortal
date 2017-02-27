@@ -69,7 +69,7 @@ if (isset($_SESSION['accorduserid']) && !isset($_SESSION['usr_id'])) {
 
         <!-- Upload plugin -->
         <link rel="stylesheet" type="text/css" href="css/dropzone.css"/>
-        <script type="text/javascript" src="js/dropzone.js"></script>
+        <script type="text/javascript" src="js/dropzone.js" lan="<?= $language ?>"></script>
 
         <!-- JQuery -->
         <script src="js/jquery-1.12.4.js"></script>

@@ -1,4 +1,3 @@
-
 /*
  *
  * More info at [www.dropzonejs.com](http://www.dropzonejs.com)
@@ -24,6 +23,13 @@
  * THE SOFTWARE.
  *
  */
+var lan = document.currentScript.getAttribute('lan');
+var uploadError = '';
+if(lan === "en"){
+    uploadError = "File is too big ({{filesize}}MiB). Maximum filesize: {{maxFilesize}}MiB.";
+}else{
+    uploadError = "Bestand is te groot ({{filesize}}MiB). Maximale bestandsgroote: {{maxFilesize}}MiB.";
+}
 
 (function() {
     var Dropzone, Emitter, camelize, contentLoaded, detectVerticalSquash, drawImageIOSFix, noop, without,
@@ -142,7 +148,7 @@
             dictDefaultMessage: "Drop files here to upload",
             dictFallbackMessage: "Your browser does not support drag'n'drop file uploads.",
             dictFallbackText: "Please use the fallback form below to upload your files like in the olden days.",
-            dictFileTooBig: "File is too big ({{filesize}}MiB). Max filesize: {{maxFilesize}}MiB.",
+            dictFileTooBig: uploadError,
             dictInvalidFileType: "You can't upload files of this type.",
             dictResponseError: "Server responded with {{statusCode}} code.",
             dictCancelUpload: "Cancel upload",
