@@ -56,7 +56,8 @@ $imageId = $dbmail->getIncrement();
                         </div>
 
 
-                        <form action="?page=uploadImages" method="post" enctype="multipart/form-data" class="form-horizontal dropzone" id="mydropzone">
+                        <form action="?page=uploadImages" method="post" enctype="multipart/form-data"
+                              class="form-horizontal dropzone" id="mydropzone">
                             <div class="tab-content">
 
                                 <div class="tab-pane active" role="tabpanel" id="step1">
@@ -66,7 +67,11 @@ $imageId = $dbmail->getIncrement();
                                     <div class="form-group">
                                         <label class="col-md-4 control-label" for="textinput"><?= TABLE_TITLE ?></label>
                                         <div class="col-md-4">
-                                            <input required class="form-control input-md" maxlength="32" id="textinput" type="text" name="title" size="50" placeholder="<?php if (isset($mailinfo['title'])) { echo $mailinfo['title']; } ?>">
+                                            <input required class="form-control input-md" maxlength="32" id="textinput"
+                                                   type="text" name="title" size="50"
+                                                   placeholder="<?php if (isset($mailinfo['title'])) {
+                                                       echo $mailinfo['title'];
+                                                   } ?>">
                                         </div>
                                     </div>
 
@@ -79,7 +84,8 @@ $imageId = $dbmail->getIncrement();
                                         -->
 
                                         <div class="form-group">
-                                            <label class="col-md-4 control-label" for="textinput"><?= TEXT_UPLOAD_FILES ?></label>
+                                            <label class="col-md-4 control-label"
+                                                   for="textinput"><?= TEXT_UPLOAD_FILES ?></label>
                                             <div class="col-md-4">
                                                 <div class="dz-default dz-message">
                                                     <span>
@@ -91,7 +97,8 @@ $imageId = $dbmail->getIncrement();
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-md-4 control-label" for="textinput"><?= TEXT_SELECTED_FILES ?></label>
+                                            <label class="col-md-4 control-label"
+                                                   for="textinput"><?= TEXT_SELECTED_FILES ?></label>
                                             <div class="col-md-4">
                                                 <div id="dropzonePreview"></div>
                                             </div>
@@ -102,7 +109,8 @@ $imageId = $dbmail->getIncrement();
 
                                     <ul class="list-inline pull-right">
                                         <li>
-                                            <button type="button" class="btn btn-primary next-step"><?= BUTTON_NEXT ?></button>
+                                            <button type="button"
+                                                    class="btn btn-primary next-step"><?= BUTTON_NEXT ?></button>
                                         </li>
                                     </ul>
                                 </div>
@@ -113,7 +121,8 @@ $imageId = $dbmail->getIncrement();
                                     <br>
 
                                     <div class="form-group">
-                                        <label class="col-md-4 control-label" for="textinput"><?= TEXT_DESCRIPTION ?><span
+                                        <label class="col-md-4 control-label" for="textinput"><?= TEXT_DESCRIPTION ?>
+                                            <span
                                                 style="color:#bc2d4c">*</span></label>
                                         <div class="col-md-4">
                                             <input required class="form-control input-md" maxlength="250" id="textinput"
@@ -127,7 +136,8 @@ $imageId = $dbmail->getIncrement();
                                     <?php if ($user->getPermission($permgroup, 'CAN_ADD_INTERN_COMMENT') == 1) { ?>
                                         <br/><br/>
                                         <div class="form-group">
-                                            <label class="col-md-4 control-label" for="textinput"><?= TEXT_INTERNCOMMENT ?></label>
+                                            <label class="col-md-4 control-label"
+                                                   for="textinput"><?= TEXT_INTERNCOMMENT ?></label>
                                             <div class="col-md-4">
                                                     <textarea class="form-control input-md" maxlength="300"
                                                               id="textinput" type="text"
@@ -135,7 +145,8 @@ $imageId = $dbmail->getIncrement();
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-md-4 control-label" for="textinput"><?= TEXT_INTERNCOMMENTIMPORTANCE ?></label>
+                                            <label class="col-md-4 control-label"
+                                                   for="textinput"><?= TEXT_INTERNCOMMENTIMPORTANCE ?></label>
                                             <div class="col-md-4">
                                                 <select name="commentgroep" class="form-control">
                                                     <option value="1" style="color:#5a5454">
@@ -157,15 +168,17 @@ $imageId = $dbmail->getIncrement();
 
                                     <ul class="list-inline pull-right">
                                         <li>
-                                            <button type="button" class="btn btn-primary next-step"><?= BUTTON_NEXT ?></button>
+                                            <button type="button"
+                                                    class="btn btn-primary next-step"><?= BUTTON_NEXT ?></button>
                                         </li>
                                     </ul>
                                 </div>
 
                                 <div class="tab-pane" role="tabpanel" id="step3">
-                                    <?php if($user->getPermission($permgroup, 'CAN_CREATE_CLIENT') == '1') {?>
+                                    <?php if ($user->getPermission($permgroup, 'CAN_CREATE_CLIENT') == '1') { ?>
                                         <div class="form-group">
-                                            <label class="col-md-4 control-label" for="textinput"><?= TEXT_NEWCLIENT ?></label>
+                                            <label class="col-md-4 control-label"
+                                                   for="textinput"><?= TEXT_NEWCLIENT ?></label>
                                             <div class="col-md-4">
                                                 <!-- <a href="#newclient"><div id="NewClientButton">Nieuwe klant</div></a> -->
                                                 <div id="NewClientButton" type="button" class="btn btn-info btn-lg"
@@ -179,12 +192,17 @@ $imageId = $dbmail->getIncrement();
 
                                     <div class="demclients">
                                         <div class="form-group">
-                                            <label class="col-md-4 control-label" for="textinput"><?= TEXT_SEARCH_CLIENT ?></label>
+                                            <label class="col-md-4 control-label"
+                                                   for="textinput"><?= TEXT_SEARCH_CLIENT ?></label>
                                             <div class="col-md-4">
                                                 <select id="allclients" style="width:100%" name="client" required>
                                                     <option></option>
                                                     <?php foreach ($user->getAllLatestClients() as $klant) { ?>
-                                                        <option value="<?= $klant['id'] ?>"><?php if($klant['bedrijfsnaam']){ echo $klant['bedrijfsnaam'] . '  -  '; } echo $klant['naam'] ?></option>
+                                                        <option
+                                                            value="<?= $klant['id'] ?>"><?php if ($klant['bedrijfsnaam']) {
+                                                                echo $klant['bedrijfsnaam'] . '  -  ';
+                                                            }
+                                                            echo $klant['naam'] ?></option>
                                                     <?php } ?>
                                                 </select>
                                             </div>
@@ -196,7 +214,8 @@ $imageId = $dbmail->getIncrement();
 
                                     <ul class="list-inline pull-right">
                                         <li>
-                                            <button type="submit" id="sbmtbtn" class="btn btn-primary"><?= BUTTON_SEND ?></button>
+                                            <button type="submit" id="sbmtbtn"
+                                                    class="btn btn-primary"><?= BUTTON_SEND ?></button>
                                         </li>
                                     </ul>
 
@@ -229,7 +248,8 @@ $imageId = $dbmail->getIncrement();
                 </div>
                 <div class="modal-body">
 
-                    <form action="#" method="post" enctype="multipart/form-data" class="form-horizontal" id="createclient">
+                    <form action="#" method="post" enctype="multipart/form-data" class="form-horizontal"
+                          id="createclient">
 
                         <div class="demclients1">
                             <?php
@@ -278,7 +298,8 @@ $imageId = $dbmail->getIncrement();
 
                             <br/>
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput"><?= TEXT_ALTERNATIVE_EMAIL ?></label>
+                                <label class="col-md-4 control-label"
+                                       for="textinput"><?= TEXT_ALTERNATIVE_EMAIL ?></label>
                                 <div class="col-md-4">
                                     <span style="font-size:15px"><?= TEXT_ALTERNATIVE_EMAIL_INFO ?></span>
                                     <input class="form-control input-md" id="textinput" type="email" name="altmail"
@@ -316,7 +337,8 @@ $imageId = $dbmail->getIncrement();
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput"></label>
                                 <div class="col-md-4">
-                                    <input class="btn btn-primary " name="submit" style="width: auto" type="submit" value="<?= TEXT_NEWCLIENT ?>">
+                                    <input class="btn btn-primary " name="submit" style="width: auto" type="submit"
+                                           value="<?= TEXT_NEWCLIENT ?>">
                                 </div>
                             </div>
                         </fieldset>
@@ -341,47 +363,51 @@ $imageId = $dbmail->getIncrement();
             autoDiscover: false,
             paramName: 'file', // this is optional Like this one will get accessed in php by writing $_FILE['pic'] // if you dont specify it then bydefault it taked 'file' as paramName eg: $_FILE['file']
             previewsContainer: '#dropzonePreview', // we specify on which div id we must show the files
-            maxFilesize: 10, // MB
+            maxFilesize: 15, // MB
             acceptedFiles: "image/png, image/jpeg, image/gif, application/pdf",
-            accept: function(file, done) {
+            accept: function (file, done) {
                 done();
             },
-            error: function(file, msg){
-                alert(msg);
+            error: function (file, msg) {
+//                alert(msg);
             },
-            init: function() {
+            init: function () {
 
                 this.on("queuecomplete", function () {
-                    this.options.autoProcessQueue = false;
-                    //window.location = 'index.php?page=uploadForm';
-                    postForm += (Files.join(", "));
+                    if (true == processing) {
+                        this.options.autoProcessQueue = false;
+                        //window.location = 'index.php?page=uploadForm';
+                        postForm += (Files.join(", "));
 
-                    alert(postForm);
+//                    alert(postForm);
 
-                    $.ajax({
-                        type: "POST",
-                        url: "?page=uploadForm",
-                        data: postForm,
-                        cache: false,
-                        success: function (result) {
-                            window.location.href = 'index.php?page=overview';
-                        }
-                    });
-                    event.preventDefault();
+                        $.ajax({
+                            type: "POST",
+                            url: "?page=uploadForm",
+                            data: postForm,
+                            cache: false,
+                            success: function (result) {
+                                window.location.href = 'index.php?page=overview';
+                            }
+                        });
+                        event.preventDefault();
+                    }
                 });
 
                 this.on("processing", function () {
                     this.options.autoProcessQueue = true;
+
+                    processing = true;
                 });
 
-                this.on("error", function(file, message) {
+                this.on("error", function (file, message) {
                     alert(message);
                     this.removeFile(file);
                 });
 
                 var myDropzone = this;
                 //now we will submit the form when the button is clicked
-                $("#sbmtbtn").on('click',function(e) {
+                $("#sbmtbtn").on('click', function (e) {
                     e.preventDefault();
                     myDropzone.processQueue(); // this will submit your form to the specified action path
                     postForm = $('form#mydropzone').serialize() + '&files=';
@@ -389,7 +415,7 @@ $imageId = $dbmail->getIncrement();
 
             }, // init end
 
-            success: function( file, response ){
+            success: function (file, response) {
                 Files.push(response);
             }
 

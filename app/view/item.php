@@ -923,7 +923,7 @@ $theKey = $user->getClientKey($upload['naam']);
                 autoDiscover: false,
                 paramName: 'file', // this is optional Like this one will get accessed in php by writing $_FILE['pic'] // if you dont specify it then bydefault it taked 'file' as paramName eg: $_FILE['file']
                 previewsContainer: '#dropzonePreview', // we specify on which div id we must show the files
-                maxFilesize: 10, // MB
+                maxFilesize: 15, // MB
                 acceptedFiles: "image/png, image/jpeg, image/gif, application/pdf",
                 accept: function(file, done) {
                     done();
