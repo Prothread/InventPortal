@@ -353,6 +353,13 @@ $imageId = $dbmail->getIncrement();
     </div>
 
     <script>
+        var lan = '<?= $language?>';
+        var errMessage = {};
+        if(lan == 'nl'){
+            errMessage = {noTitle:'Titel is leeg, probeer opnieuw.',noDes:'Beschrijving is leeg, probeer opnieuw.'};
+        }else{
+            errMessage = {noTitle:'Title is empty, try again.',noDes:'Description is empty, try again.'};
+        }
 
         var postForm = [];
         var Files = [];
@@ -378,9 +385,6 @@ $imageId = $dbmail->getIncrement();
                         this.options.autoProcessQueue = false;
                         //window.location = 'index.php?page=uploadForm';
                         postForm += (Files.join(", "));
-
-//                    alert(postForm);
-
                         $.ajax({
                             type: "POST",
                             url: "?page=uploadForm",
@@ -408,6 +412,13 @@ $imageId = $dbmail->getIncrement();
                 var myDropzone = this;
                 //now we will submit the form when the button is clicked
                 $("#sbmtbtn").on('click', function (e) {
+                    if(!$('[name="title"]').val()){
+                        alert(errMessage['noTitle']);
+                        return;
+                    }else if(!$('[name="additionalcontent"]').val()){
+                        alert(errMessage['noDes']);
+                        return;
+                    }
                     e.preventDefault();
                     myDropzone.processQueue(); // this will submit your form to the specified action path
                     postForm = $('form#mydropzone').serialize() + '&files=';
