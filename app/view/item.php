@@ -819,7 +819,7 @@ $theKey = $user->getClientKey($upload['naam']);
                         <?php if ($user->getPermission($permgroup, 'CAN_USE_ITEM_DELETE') == 1) { ?>
                             <a href="?page=deleteitem&id=<?= $_GET['id'] ?>">
                                 <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
-                                    <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span>Verwijder item
+                                    <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span><?= BUTTON_DELETE_ASSIGNMENT ?>
                                 </button>
                             </a>
                         <?php } ?>

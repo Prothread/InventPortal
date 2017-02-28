@@ -29,7 +29,7 @@ $imageId = $dbmail->getIncrement();
 
                                 <li role="presentation" class="active">
                                     <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab"
-                                       title="Uploaden">
+                                       title="<?= BUTTON_UPLOAD ?>">
                             <span class="round-tab">
                                 <i class="glyphicon glyphicon-picture"></i>
                             </span>
@@ -37,7 +37,7 @@ $imageId = $dbmail->getIncrement();
                                 </li>
                                 <li role="presentation" class="disabled">
                                     <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab"
-                                       title="Beschrijving">
+                                       title="<?= TEXT_DESCRIPTION ?>">
                             <span class="round-tab">
                                 <i class="glyphicon glyphicon-pencil"></i>
                             </span>
@@ -46,7 +46,7 @@ $imageId = $dbmail->getIncrement();
 
                                 <li role="presentation" class="disabled">
                                     <a href="#step3" data-toggle="tab" aria-controls="complete" role="tab"
-                                       title="Klant & Versturen">
+                                       title="<?= INPUT_SELECT_CLIENT ?> & <?= BUTTON_SEND?>">
                             <span class="round-tab">
                                 <i class="glyphicon glyphicon-ok"></i>
                             </span>
