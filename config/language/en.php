@@ -79,6 +79,9 @@ define("INPUT_SELECT_CLIENT", "Select a client");
 /* Buttons */
 define("BUTTON_NEXT", "Next");
 define("BUTTON_SEND", "Send");
+/* Upload errors */
+define("ERROR_TITLE","Title is empty, try again.");
+define("ERROR_DESCRIPTION","Description is empty, try again.");
 
 
 /* SETTINGS */

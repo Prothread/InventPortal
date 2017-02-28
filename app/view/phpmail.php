@@ -353,14 +353,6 @@ $imageId = $dbmail->getIncrement();
     </div>
 
     <script>
-        var lan = '<?= $language?>';
-        var errMessage = {};
-        if(lan == 'nl'){
-            errMessage = {noTitle:'Titel is leeg, probeer opnieuw.',noDes:'Beschrijving is leeg, probeer opnieuw.'};
-        }else{
-            errMessage = {noTitle:'Title is empty, try again.',noDes:'Description is empty, try again.'};
-        }
-
         var postForm = [];
         var Files = [];
 
@@ -413,10 +405,10 @@ $imageId = $dbmail->getIncrement();
                 //now we will submit the form when the button is clicked
                 $("#sbmtbtn").on('click', function (e) {
                     if(!$('[name="title"]').val()){
-                        alert(errMessage['noTitle']);
+                        alert("<?= ERROR_TITLE ?>");
                         return;
                     }else if(!$('[name="additionalcontent"]').val()){
-                        alert(errMessage['noDes']);
+                        alert("<?= ERROR_DESCRIPTION ?>");
                         return;
                     }
                     e.preventDefault();

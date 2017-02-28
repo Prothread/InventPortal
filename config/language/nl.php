@@ -79,6 +79,9 @@ define("INPUT_SELECT_CLIENT", "Selecteer een klant");
 /* Buttons */
 define("BUTTON_NEXT", "Volgende");
 define("BUTTON_SEND", "Versturen");
+/* Upload errors */
+define("ERROR_TITLE","Titel is leeg, probeer opnieuw.");
+define("ERROR_DESCRIPTION","Beschrijving is leeg, probeer opnieuw.");
 
 
 /* SETTINGS */
