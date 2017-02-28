@@ -14,11 +14,10 @@ if (isset($_SESSION['uploads'])) {
 } else {
     $get_filled_info = $uploads->getUploads();
 }
-if(isset($_SESSION['accorduserid'])) {
+if (isset($_SESSION['accorduserid'])) {
     $leclient = $user->getUserById($_SESSION['accorduserid']);
     $clientname = $leclient['naam'];
-}
-else {
+} else {
     $leclient = $user->getUserById($_SESSION['usr_id']);
     $clientname = $leclient['naam'];
 }
@@ -44,14 +43,17 @@ else {
                             <?php } ?>
 
                             <a href="?page=useroverview">
-                                <button type="button" class="btn btn-labeled btn-success MyOverviewButton" >
-                                    <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> <?= BUTTON_MYOVERVIEW ?>
+                                <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
+                                    <span class="btn-label"><i
+                                            class="glyphicon glyphicon-list-alt"></i></span> <?= BUTTON_MYOVERVIEW ?>
                                 </button>
                             </a>
 
                             <a id="filteropen" href="#">
                                 <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
-                                    <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> <?= BUTTON_DAYSOPEN ?> <span id="days"><?= BUTTON_5DAYS ?></span></button>
+                                    <span class="btn-label"><i
+                                            class="glyphicon glyphicon-list-alt"></i></span> <?= BUTTON_DAYSOPEN ?>
+                                    <span id="days"><?= BUTTON_5DAYS ?></span></button>
                             </a>
 
                             <a id="filtergoed" href="#">
@@ -182,7 +184,6 @@ unset($_SESSION['updateopenmails']);
             data: dataString,
             cache: false,
             success: function (result) {
-                //$('#container').load("?page=overview " + '#container');
                 location.reload();
             }
         });
@@ -202,7 +203,6 @@ unset($_SESSION['updateopenmails']);
             data: dataString,
             cache: false,
             success: function (result) {
-                //$('#container').load("?page=overview " + '#container');
                 location.reload();
             }
         });
@@ -221,7 +221,6 @@ unset($_SESSION['updateopenmails']);
             data: dataString,
             cache: false,
             success: function (result) {
-                //$('#container').load("?page=overview " + '#container');
                 location.reload();
             }
         });

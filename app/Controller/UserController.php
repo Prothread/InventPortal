@@ -177,22 +177,22 @@ class UserController
         $this->model->setSettingsEmail($settingsarray['Email']);
         $this->model->setSettingsEmailPass($settingsarray['Mailpass']);
 
-        if(isset($settingsarray['Logo'])) {
+        if (isset($settingsarray['Logo'])) {
             $this->model->setSettingsLogo($settingsarray['Logo']);
         }
 
         $this->model->setSettingsHeader($settingsarray['Header']);
         $this->model->setSettingsHost($settingsarray['Host']);
 
-        if(isset($settingsarray['globalmail'])) {
+        if (isset($settingsarray['globalmail'])) {
             $this->model->setSettingsGlobalmail($settingsarray['globalmail']);
         }
 
-        if(isset($settingsarray['contactmail'])) {
+        if (isset($settingsarray['contactmail'])) {
             $this->model->setSettingsContactmail($settingsarray['contactmail']);
         }
 
-        if(isset($settingsarray['background'])) {
+        if (isset($settingsarray['background'])) {
             $this->model->setSettingsBackground($settingsarray['background']);
         }
 
@@ -457,7 +457,8 @@ class UserController
         return $ip;
     }
 
-    public function getClientKey($name){
+    public function getClientKey($name)
+    {
         return $this->model->getClientKey($name);
     }
 }

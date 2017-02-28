@@ -28,7 +28,8 @@ if (isset($_SESSION['uploads'])) {
 
                             <a href="?page=useroverview">
                                 <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
-                                    <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> <?= BUTTON_MYOVERVIEW ?>
+                                    <span class="btn-label"><i
+                                            class="glyphicon glyphicon-list-alt"></i></span> <?= BUTTON_MYOVERVIEW ?>
                                 </button>
                             </a>
 
@@ -152,7 +153,6 @@ unset($_SESSION['updateopenmails']);
             data: dataString,
             cache: false,
             success: function (result) {
-                //$('#container').load("?page=overview " + '#container');
                 location.reload();
             }
         });
@@ -172,7 +172,6 @@ unset($_SESSION['updateopenmails']);
             data: dataString,
             cache: false,
             success: function (result) {
-                //$('#container').load("?page=overview " + '#container');
                 location.reload();
             }
         });
@@ -191,7 +190,6 @@ unset($_SESSION['updateopenmails']);
             data: dataString,
             cache: false,
             success: function (result) {
-                //$('#container').load("?page=overview " + '#container');
                 location.reload();
             }
         });

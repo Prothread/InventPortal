@@ -32,18 +32,22 @@ if (isset($_SESSION['useruploads'])) {
         <div class="container-fluid">
             <table style="width:100%">
                 <tr>
-                    <th style="text-align: left;"><p class="NameText" style="font-weight: normal;"><?= MY_TEXT_OVERVIEW ?></p></th>
+                    <th style="text-align: left;"><p class="NameText"
+                                                     style="font-weight: normal;"><?= MY_TEXT_OVERVIEW ?></p></th>
 
                     <th style="text-align: right;">
 
                         <a id="filteropen" href="#">
                             <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
-                                <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> <?= BUTTON_DAYSOPEN ?> <span id="days"><?= BUTTON_5DAYS ?></span></button>
+                                <span class="btn-label"><i
+                                        class="glyphicon glyphicon-list-alt"></i></span> <?= BUTTON_DAYSOPEN ?> <span
+                                    id="days"><?= BUTTON_5DAYS ?></span></button>
                         </a>
 
                         <a id="filtergoed" href="#">
                             <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
-                                <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span> <?= BUTTON_ACCORDED ?>
+                                <span class="btn-label"><i
+                                        class="glyphicon glyphicon-list-alt"></i></span> <?= BUTTON_ACCORDED ?>
                             </button>
                         </a>
 
@@ -142,7 +146,6 @@ unset($_SESSION['useruploads']);
             data: dataString,
             cache: false,
             success: function (result) {
-                //$('#container').load("?page=overview " + '#container');
                 location.reload();
             }
         });
@@ -162,7 +165,6 @@ unset($_SESSION['useruploads']);
             data: dataString,
             cache: false,
             success: function (result) {
-                //$('#container').load("?page=overview " + '#container');
                 location.reload();
             }
         });

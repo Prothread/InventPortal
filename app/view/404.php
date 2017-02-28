@@ -11,7 +11,8 @@ unset($contenter);
         <h1 class="elegantshadow">Error 404</h1>
         <br>
         <hr class="style17">
-        <h3 style="color: #dd2c4c; font-family: 'Abhaya Libre', serif; font-size: 40px;" class="font-bold"><?= TEXT_MESSAGE_ERROR_404_TITLE ?>...</h3>
+        <h3 style="color: #dd2c4c; font-family: 'Abhaya Libre', serif; font-size: 40px;"
+            class="font-bold"><?= TEXT_MESSAGE_ERROR_404_TITLE ?>...</h3>
         <div style="color: #000; font-family: 'Open Sans', sans-serif; font-size: 20px;" class="error-desc">
             <?= TEXT_MESSAGE_ERROR_404 ?>
             <div>

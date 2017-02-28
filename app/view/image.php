@@ -3,14 +3,12 @@
 
 if (isset($_SESSION['usr_id']) || isset($_SESSION['accorduserid'])) {
 
-}
-else {
+} else {
     $block->Redirect('index.php');
     Session::flash('error', TEXT_NO_PERMISSION);
 }
 
 ob_clean();
-//header('Content-type: image/png');
 if (isset($_GET['img'])) {
 
     $session = new Session();
@@ -19,7 +17,6 @@ if (isset($_GET['img'])) {
     $image = strip_tags($image);
 
     $stamp = imagecreatefrompng(DIR_PUBLIC . 'proefer.png');
-    //$im = imagecreatefromjpeg(DIR_IMAGE . $image);
 
     $fullPath = DIR_IMAGE . $image;
 
@@ -42,7 +39,6 @@ if (isset($_GET['img'])) {
                 readfile($fullPath);
                 return true;
                 break;
-            //case "zip": $ctype="application/zip"; break;
             case "gif":
                 $ctype = "image/gif";
                 break;
@@ -68,7 +64,7 @@ if (isset($_GET['img'])) {
     list($width, $height) = getimagesize($fullPath);
 
     //Check if we have a big or a small image
-    if($width > 10000 || $height > 10000){
+    if ($width > 10000 || $height > 10000) {
 
         //Resize the image
         $newWidth = $width / 5;
@@ -89,7 +85,7 @@ if (isset($_GET['img'])) {
         //White background?!
         $white = imagecolorallocate($image, 255, 255, 255);
         imagefill($image, 0, 0, $white);
-    }else {
+    } else {
 
         // Get dimensions
         $imageWidth = imagesx($im);
@@ -104,7 +100,7 @@ if (isset($_GET['img'])) {
         imagefill($image, 0, 0, $white);
 
         imagecopy(
-            // destination
+        // destination
             $image,
             // source
             $im,
@@ -171,13 +167,5 @@ if (isset($_GET['img'])) {
 
         $dataUri = 'data:image/' . 'png' . ';base64,' . base64_encode($contents);
         echo '<img src="' . $dataUri . '">';
-
-        //Display normal image:
-//
-//            $type = pathinfo($fullPath, PATHINFO_EXTENSION);
-//            $data = file_get_contents($fullPath);
-//            $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
-//            echo '<img src="'. $base64 .'">';
-
     }
 }

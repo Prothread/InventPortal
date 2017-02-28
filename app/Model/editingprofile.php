@@ -11,10 +11,10 @@ if (isset($_POST['submit'])) {
     $adres = mysqli_real_escape_string($mysqli, $_POST['adres']);
     $postcode = mysqli_real_escape_string($mysqli, $_POST['postcode']);
     $plaats = mysqli_real_escape_string($mysqli, $_POST['plaats']);
-    if(isset($_POST['rechten']) && $_POST['rechten']) {
+    if (isset($_POST['rechten']) && $_POST['rechten']) {
         $rechten = mysqli_real_escape_string($mysqli, $_POST['rechten']);
     }
-    if(isset($_POST['taal']) && $_POST['taal']) {
+    if (isset($_POST['taal']) && $_POST['taal']) {
         $taal = mysqli_real_escape_string($mysqli, $_POST['taal']);
     }
 
@@ -28,10 +28,10 @@ if (isset($_POST['submit'])) {
         'postcode' => $postcode,
         'plaats' => $plaats
     ];
-    if(isset($taal) && $taal) {
+    if (isset($taal) && $taal) {
         $userinfo1['lang'] = $taal;
     }
-    if(isset($rechten) && $rechten) {
+    if (isset($rechten) && $rechten) {
         $userinfo1['permgroup'] = $rechten;
     }
 

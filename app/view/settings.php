@@ -62,15 +62,20 @@ if ($user->getPermission($permgroup, 'CAN_EDIT_SETTINGS') == 1) {
                         </div>
                     </div>
 
-                    <br />
-                    <br />
+                    <br/>
+                    <br/>
 
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput"><?= TEXT_GLOBAL_MAIL ?></label>
                         <div class="col-md-4">
-                            <input type="checkbox" name="checker" style="width: 31px; height: 33px; float: left;" id="isGlobalMail" onclick="checkStatus()" <?php if($admin['globalmail']){ echo 'checked'; } ?>>
+                            <input type="checkbox" name="checker" style="width: 31px; height: 33px; float: left;"
+                                   id="isGlobalMail" onclick="checkStatus()" <?php if ($admin['globalmail']) {
+                                echo 'checked';
+                            } ?>>
                             <div id="Globalmail">
-                                <input class="form-control input-md" id="textinput" maxlength="64" required type="email" name="globalmail" value="<?= $admin['contactmail'] ?>" placeholder="http://www.madalcomedia.com">
+                                <input class="form-control input-md" id="textinput" maxlength="64" required type="email"
+                                       name="globalmail" value="<?= $admin['contactmail'] ?>"
+                                       placeholder="http://www.madalcomedia.com">
                             </div>
                         </div>
                     </div>
@@ -116,17 +121,18 @@ if ($user->getPermission($permgroup, 'CAN_EDIT_SETTINGS') == 1) {
                             <output id="list"></output>
                         </div>
                     </div>
-                    <br />
+                    <br/>
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput"><?= TEXT_BACKGROUND_COLOR_HEADER ?></label>
+                        <label class="col-md-4 control-label"
+                               for="textinput"><?= TEXT_BACKGROUND_COLOR_HEADER ?></label>
                         <div class="col-md-4">
                             <input class="form-control input-md" id="textinput" maxlength="64" required type="text"
                                    name="headerkleur" size="50" value="<?= $admin['Header'] ?>"
                                    placeholder="#dd2c4c/rgb(..,..,..)">
                         </div>
                     </div>
-                    <br />
+                    <br/>
 
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput"><?= TEXT_LOGIN_BACKGROUND ?></label>
@@ -147,8 +153,8 @@ if ($user->getPermission($permgroup, 'CAN_EDIT_SETTINGS') == 1) {
                         </div>
                     </div>
 
-                    <br />
-                    <br />
+                    <br/>
+                    <br/>
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput"></label>
                         <div class="col-md-4">

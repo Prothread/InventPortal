@@ -30,9 +30,9 @@ if ($mailexist == null || empty($mailexist)) {
 
 
     //Generate a random string.
-        $token = openssl_random_pseudo_bytes(8);
+    $token = openssl_random_pseudo_bytes(8);
     //Convert the binary data into hexadecimal representation.
-        $token = bin2hex($token);
+    $token = bin2hex($token);
 
     //New token
     $passtoken = openssl_random_pseudo_bytes(8);
@@ -62,10 +62,9 @@ if ($mailexist == null || empty($mailexist)) {
 
     $link = $admin['Host'] . "/index.php?page=resetpassword&email=$email&token=$passtoken";
 
-    if($_POST['taal']) {
+    if ($_POST['taal']) {
         include_once DIR_VIEW . $_POST['taal'] . '_mail_client.php';
-    }
-    else {
+    } else {
         include_once DIR_VIEW . 'en' . '_mail_client.php';
     }
 
@@ -100,7 +99,7 @@ if ($mailexist == null || empty($mailexist)) {
     $postcode = mysqli_real_escape_string($mysqli, $_POST['postcode']);
     $plaats = mysqli_real_escape_string($mysqli, $_POST['plaats']);
     $rechten = mysqli_real_escape_string($mysqli, $_POST['rechten']);
-    if(isset($_POST['taal']) && $_POST['taal']) {
+    if (isset($_POST['taal']) && $_POST['taal']) {
         $taal = mysqli_real_escape_string($mysqli, $_POST['taal']);
     }
 
@@ -115,7 +114,7 @@ if ($mailexist == null || empty($mailexist)) {
         'lang' => strip_tags($taal),
         'permgroup' => $rechten
     ];
-    if(isset($taal) && $taal) {
+    if (isset($taal) && $taal) {
         $userinfo1['lang'] = $taal;
     }
 
@@ -142,12 +141,6 @@ if ($mailexist == null || empty($mailexist)) {
 
         $user->newPassword($email, $passtoken);
 
-        /*if ($rechten >= 2) {
-            $block->Redirect('index.php?page=manageusers');
-        } else {
-            $block->Redirect('index.php?page=manageclients');
-        }*/
-
         $response = array();
         $response['status'] = 'success';
         $response['message'] = 'Nieuwe klant is aangemaakt';
@@ -158,9 +151,6 @@ if ($mailexist == null || empty($mailexist)) {
     $response = array();
     $response['status'] = 'error';
     $response['message'] = 'Deze mail is al in gebruik';
-
-    //$block->Redirect('index.php?page=newclient');
-    //Session::flash('error', TEXT_MAIL_USED);
 
     echo json_encode($response);
 }

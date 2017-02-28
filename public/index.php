@@ -238,6 +238,6 @@ switch ($page) {
         include '../app/view/404.php';
         break;
 }
-if($page !== 'clientmail') {
+if ($page !== 'clientmail') {
     require_once '../app/view/footer.php';
 }

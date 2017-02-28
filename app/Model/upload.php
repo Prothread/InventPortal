@@ -42,10 +42,9 @@ if (isset($_POST['id'])) {
 } else {
     $dbmail = new DbMail();
 
-    if($dbmail->getIncrement()) {
+    if ($dbmail->getIncrement()) {
         $imageId = $dbmail->getIncrement();
-    }
-    else {
+    } else {
         $imageId = $imageFileName->getNewId();
         $imageId = $imageId + 1;
     }
@@ -82,7 +81,7 @@ if (isset($_FILES['myFile'])) {
         if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "pdf") {
             $error = 1;
         }
-        
+
         if ($myFile["size"][$i] > 15728640) {
             $error = 1;
             header('Location: index.php?page=uploadoverview');
@@ -95,7 +94,7 @@ if (isset($_FILES['myFile'])) {
             $unique_name = preg_replace('/\s+/', '-', $unique_name);
             $uniqfile = $target_dir . $unique_name;
 
-            if(file_exists($uniqfile)) {
+            if (file_exists($uniqfile)) {
                 $uniq = pathinfo($uniqfile);
                 $unique_name = $uniq['filename'] . "-1" . '.' . $uniq['extension'];
                 $uniqfile = $target_dir . $unique_name;
@@ -109,7 +108,7 @@ if (isset($_FILES['myFile'])) {
             $updir = $target_dir;
             $img = $unique_name;
 
-            if(file_exists($updir . $img)) {
+            if (file_exists($updir . $img)) {
 
                 $thumbnail_width = 100;
                 $thumbnail_height = 100;
@@ -159,14 +158,13 @@ if (isset($_FILES['myFile'])) {
 
     }
 
-    foreach($unique_names as $image) {
+    foreach ($unique_names as $image) {
         $Directory = "../app/uploads/";
         $fullPath = $Directory . $image;
 
-        if(file_exists($fullPath)) {
+        if (file_exists($fullPath)) {
             true;
-        }
-        else {
+        } else {
             echo '<div class="alert alert_error">' . TEXT_FILES_UPLOAD_ERROR . '</div>';
             return false;
         }
@@ -202,20 +200,20 @@ if ($error == 0) {
 
         $link = $admin['Host'] . "/index.php?page=verify&id=$imageId&key=$token";
 
-        function printImages($uploadedimage, $link, $hosturl)  {
+        function printImages($uploadedimage, $link, $hosturl)
+        {
             $html = '';
             $i = 0;
-            foreach($uploadedimage as $image) {
+            foreach ($uploadedimage as $image) {
                 $html .= "<a href='$link'><img src='$hosturl/index.php?page=image&img=thumb_$image' style='width: auto;height: 70px;'></a>";
                 $i++;
             }
             return $html;
         }
 
-        if($client['lang']) {
+        if ($client['lang']) {
             include_once DIR_VIEW . $client['lang'] . '_mail_proef.php';
-        }
-        else {
+        } else {
             include_once DIR_VIEW . 'en' . '_mail_proef.php';
         }
 
@@ -317,8 +315,7 @@ if ($error == 0) {
         if (!$mailer->send()) {
             $block->Redirect('index.php?page=phpmail');
             Session::flash('error', $mailer->ErrorInfo);
-        }
-        else {
+        } else {
             //If mail is send, create data and send it to the database
             if (isset($_POST['id'])) {
                 $mymail->update($mailinfo);

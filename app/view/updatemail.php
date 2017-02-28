@@ -45,7 +45,7 @@ $mailer->addEmbeddedImage(DIR_PUBLIC . $admin['Logo'], "HeaderImage", "Logo.png"
 
 /* TO, SUBJECT, CONTENT */
 $to = $_SESSION['mailto']; //The 'To' field
-$subject = $_SESSION['verifytext']. ': ' . $_POST['title'];
+$subject = $_SESSION['verifytext'] . ': ' . $_POST['title'];
 
 if (isset($_SESSION['accordid'])) {
     $myid = $_SESSION['accordid'];
@@ -61,10 +61,9 @@ $usrname = $usr['naam'];
 $clnt = $user->getUserById(intval($_POST['clientid']));
 $clntname = $usr['naam'];
 
-if($clnt['lang']) {
+if ($clnt['lang']) {
     include_once DIR_VIEW . $clnt['lang'] . '_mail_update.php';
-}
-else {
+} else {
     include_once DIR_VIEW . 'en' . '_mail_update.php';
 }
 

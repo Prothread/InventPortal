@@ -36,35 +36,35 @@ class DbUser extends Database
     {
         $sql = "UPDATE `users` SET ";
 
-        if($user->getName()) {
+        if ($user->getName()) {
             $sql .= "`naam` = '{$user->getName()}'";
         }
 
-        if($user->getEmail()) {
+        if ($user->getEmail()) {
             $sql .= ", `email` = '{$user->getEmail()}'";
         }
 
-        if($user->getCompanyName()) {
+        if ($user->getCompanyName()) {
             $sql .= ", `bedrijfsnaam` = '{$user->getCompanyName()}'";
         }
 
-        if($user->getPermGroup()) {
+        if ($user->getPermGroup()) {
             $sql .= ", `permgroup` = '{$user->getPermGroup()}'";
         }
 
-        if($user->getUserPostcode()) {
+        if ($user->getUserPostcode()) {
             $sql .= ", `postcode` = '{$user->getUserPostcode()}'";
         }
 
-        if($user->getUserPlace()) {
+        if ($user->getUserPlace()) {
             $sql .= ", `plaats` = '{$user->getUserPlace()}'";
         }
 
-        if($user->getUserAdres()) {
+        if ($user->getUserAdres()) {
             $sql .= ", `adres` = '{$user->getUserAdres()}'";
         }
 
-        if($user->getUserLanguage()) {
+        if ($user->getUserLanguage()) {
             $sql .= ", `lang` = '{$user->getUserLanguage()}'";
         }
 
@@ -155,15 +155,15 @@ class DbUser extends Database
 
         $sql .= ", `Header` = '{$setting->getSettingHeader()}'";
 
-        if($setting->getSettingsGlobalmail() !== null) {
+        if ($setting->getSettingsGlobalmail() !== null) {
             $sql .= ", `globalmail` = '{$setting->getSettingsGlobalmail()}'";
 
-            if($setting->getSettingsContactmail()) {
+            if ($setting->getSettingsContactmail()) {
                 $sql .= ", `contactmail` = '{$setting->getSettingsContactmail()}'";
             }
         }
 
-        if($setting->getSettingsBackground()) {
+        if ($setting->getSettingsBackground()) {
             $sql .= ", `background` = '{$setting->getSettingsBackground()}'";
         }
 
@@ -228,7 +228,7 @@ class DbUser extends Database
         $result = $this->dbQuery($sql);
         $value = mysqli_fetch_assoc($result);
 
-        if($value){
+        if ($value) {
             return $value;
         }
         return false;
@@ -592,11 +592,10 @@ class DbUser extends Database
 
         $value = mysqli_fetch_assoc($result);
 
-        (string)$newValue = implode(" ",$value);
+        (string)$newValue = implode(" ", $value);
 
 
-
-        if($newValue){
+        if ($newValue) {
             return $newValue;
         }
 

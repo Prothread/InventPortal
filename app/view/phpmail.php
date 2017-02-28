@@ -46,7 +46,7 @@ $imageId = $dbmail->getIncrement();
 
                                 <li role="presentation" class="disabled">
                                     <a href="#step3" data-toggle="tab" aria-controls="complete" role="tab"
-                                       title="<?= INPUT_SELECT_CLIENT ?> & <?= BUTTON_SEND?>">
+                                       title="<?= INPUT_SELECT_CLIENT ?> & <?= BUTTON_SEND ?>">
                             <span class="round-tab">
                                 <i class="glyphicon glyphicon-ok"></i>
                             </span>
@@ -368,14 +368,12 @@ $imageId = $dbmail->getIncrement();
                 done();
             },
             error: function (file, msg) {
-//                alert(msg);
             },
             init: function () {
 
                 this.on("queuecomplete", function () {
                     if (true == processing) {
                         this.options.autoProcessQueue = false;
-                        //window.location = 'index.php?page=uploadForm';
                         postForm += (Files.join(", "));
                         $.ajax({
                             type: "POST",
@@ -404,10 +402,10 @@ $imageId = $dbmail->getIncrement();
                 var myDropzone = this;
                 //now we will submit the form when the button is clicked
                 $("#sbmtbtn").on('click', function (e) {
-                    if(!$('[name="title"]').val()){
+                    if (!$('[name="title"]').val()) {
                         alert("<?= ERROR_TITLE ?>");
                         return;
-                    }else if(!$('[name="additionalcontent"]').val()){
+                    } else if (!$('[name="additionalcontent"]').val()) {
                         alert("<?= ERROR_DESCRIPTION ?>");
                         return;
                     }

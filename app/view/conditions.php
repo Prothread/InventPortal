@@ -14,8 +14,8 @@
                            src="img/Algemene voorwaarden Madalco Media BV - V2016.2.pdf"></embed>
 
                     <?php
-                        $ctype = "application/pdf";
-                        $fullPath = 'img/Algemene voorwaarden Madalco Media BV - V2016.2.pdf';
+                    $ctype = "application/pdf";
+                    $fullPath = 'img/Algemene voorwaarden Madalco Media BV - V2016.2.pdf';
                     if (!headers_sent()) {
                         header('Content-type: application/pdf');
                         header('Content-Disposition: inline; filename="' . $filename . '"');
@@ -25,7 +25,7 @@
 
                         readfile($fullPath);
                     }
-                        return true; ?>
+                    return true; ?>
 
 
                 </div>

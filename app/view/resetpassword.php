@@ -23,7 +23,7 @@ if ($getbyemail !== null) {
 
 $date = date('Y-m-d h:i:s');
 
-if(strtotime($getbyemail['passresetdate']) > 0) {
+if (strtotime($getbyemail['passresetdate']) > 0) {
     if ($getbyemail['passresetdate'] > $date) {
 
     } else {
@@ -42,7 +42,8 @@ if(strtotime($getbyemail['passresetdate']) > 0) {
 
                     <div class="form-group">
                         <label for="name"><?= TEXT_NEW_PASSWORD ?></label>
-                        <input type="password" name="password" placeholder="<?= TEXT_NEW_PASSWORD ?>" required class="form-control"/>
+                        <input type="password" name="password" placeholder="<?= TEXT_NEW_PASSWORD ?>" required
+                               class="form-control"/>
                         <span class="text-danger"><?php if (isset($password_error)) echo $password_error; ?></span>
                     </div>
 
@@ -74,7 +75,6 @@ if(strtotime($getbyemail['passresetdate']) > 0) {
         if ( <?= $verify ?> == 1
         )
         {
-            // $( "#verify" ).text( "Uw wachtwoord wordt veranderd!" ).show();
             return true;
         }
 

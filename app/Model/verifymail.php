@@ -118,7 +118,6 @@ if (isset($_GET['id']) && isset($mailkey)) {
      * Redirect to the next page
      */
 
-    //header('Location: index.php?page=approve&id='.$getter['id']);
     $block->Redirect('index.php?page=approve');
 } else {
     echo '<div class="alert alert-danger">' . TEXT_ERROR_OCCURED . '</div>';

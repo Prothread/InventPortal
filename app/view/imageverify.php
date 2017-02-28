@@ -16,22 +16,7 @@ if ($user->getPermission($permgroup, 'CAN_ACCORD') == 1) {
 $imgcontrol = new ImageController();
 $session = new Session();
 
-/*
-
-if(isset($_GET['page'])) {
-
-    $_GET['page'] = $session->clean( $_GET['page'] );
-
-    if (isset($_GET['page']) == 'imageverify') {
-
-        //$imgcontrol->ImageVerify($_GET['img']);
-        $session->ImageVerify($_GET['img'], 1);
-        //header('Location: ' . $_SERVER['HTTP_REFERER']);
-    }
-}
-
-*/
-if($_POST) {
+if ($_POST) {
     $imgid = $_POST['img'];
 
     if ($_POST['vote'] == BUTTON_ACCORD) {

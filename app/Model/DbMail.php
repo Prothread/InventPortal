@@ -224,10 +224,8 @@ class DbMail extends Database
 
         if ($clientid) {
             $sql .= " JOIN `mail` ON `usermail`.`mailid` = `mail`.`id` WHERE `usermail`.`clientid` = '{$id}'";
-            //$sql .= "WHERE `clientid` = '{$clientid}'";
         } else {
             $sql .= " JOIN `mail` ON `usermail`.`mailid` = `mail`.`id` WHERE `usermail`.`userid` = '{$id}'";
-            //$sql .= "WHERE `userid` = '{$id}'";
         }
 
         if ($date) {

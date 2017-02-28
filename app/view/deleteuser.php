@@ -13,20 +13,17 @@ $checkperms = $user->checkUserPerms($myclient['permgroup']);
 
 if ($user->getPermission($permgroup, 'CAN_DELETE_CLIENT') == 1 && $myclient['permgroup'] == '1' && $checkperms['assignable'] == '1') {
 
-}
-else if ($user->getPermission($permgroup, 'CAN_DELETE_USER') == 1 && $myclient['permgroup'] !== '1' && $checkperms['assignable'] == '1') {
+} else if ($user->getPermission($permgroup, 'CAN_DELETE_USER') == 1 && $myclient['permgroup'] !== '1' && $checkperms['assignable'] == '1') {
 
-}
-else {
+} else {
     $block->Redirect($_SERVER['HTTP_REFERER']);
     Session::flash('error', TEXT_CANT_DELETE_USER);
     return false;
 }
 $user->delete($id);
 
-if($myclient['permgroup'] == '1') {
+if ($myclient['permgroup'] == '1') {
     $block->Redirect('index.php?page=manageclients');
-}
-else {
+} else {
     $block->Redirect('index.php?page=manageusers');
 }

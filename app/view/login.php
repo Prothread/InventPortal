@@ -20,11 +20,10 @@ if (isset($_POST['login'])) {
     ];
 
     if ($row = mysqli_fetch_array($user->getUser($userinfo))) {
-        if($row['active']) {
+        if ($row['active']) {
             $_SESSION['usr_id'] = $row['id'];
             $_SESSION['usr_name'] = $row['naam'];
-        }
-        else {
+        } else {
             $errormsg = TEXT_USER_NOT_ACTIVE;
         }
     } else {
@@ -49,7 +48,8 @@ if ($session->exists('flash')) {
 }
 ?>
 
-<div id="loginbackground" style="width: 100%; height: 100%; background-image: url('<?= DIR_PUBLIC . 'background/' . $admin['background'] ?>'); background-size: cover; background-repeat: no-repeat;">
+<div id="loginbackground"
+     style="width: 100%; height: 100%; background-image: url('<?= DIR_PUBLIC . 'background/' . $admin['background'] ?>'); background-size: cover; background-repeat: no-repeat;">
     <div id="h">
         <div class="social hidden-xs">
 
@@ -69,15 +69,18 @@ if ($session->exists('flash')) {
                             <br>
                             <br>
                             <label for="name"><?= TEXT_EMAIL ?></label>
-                            <input type="text" name="email" placeholder="<?= TEXT_EMAIL ?>" required class="form-control"/>
+                            <input type="text" name="email" placeholder="<?= TEXT_EMAIL ?>" required
+                                   class="form-control"/>
                             <br/>
                             <label for="name"><?= TEXT_PASSWORD ?></label>
-                            <input type="password" name="password" placeholder="<?= TEXT_PASSWORD ?>" required class="form-control"/>
+                            <input type="password" name="password" placeholder="<?= TEXT_PASSWORD ?>" required
+                                   class="form-control"/>
                             <br/>
                             <input type="submit" name="login" value="Inloggen" class="btn btn-primary"/>
                             <br/>
                             <br/>
-                            <a style="color: #fff;" href="index.php?page=forgetpassword"><?= TEXT_PASSWORD_FORGET ?>?</a>
+                            <a style="color: #fff;" href="index.php?page=forgetpassword"><?= TEXT_PASSWORD_FORGET ?>
+                                ?</a>
                             <br/>
                             <br/>
                         </fieldset>

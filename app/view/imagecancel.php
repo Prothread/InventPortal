@@ -22,8 +22,6 @@ if (isset($_GET['page'])) {
     $_GET['img'] = $session->cleantonumber($_GET['img']);
 
     if (isset($_GET['page']) == 'imagecancel') {
-
-        //$imgcontrol->ImageDecline($_GET['img']);
         $session->ImageVerify($_GET['img'], 0);
         $block->Redirect($_SERVER['HTTP_REFERER']);
     }

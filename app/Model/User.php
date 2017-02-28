@@ -993,7 +993,8 @@ class User
         return $this->db->resetPassword($mail, $token, $pass);
     }
 
-    public function getClientKey($name){
+    public function getClientKey($name)
+    {
         return $this->db->getClientKey($name);
     }
 

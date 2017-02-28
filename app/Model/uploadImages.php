@@ -53,7 +53,7 @@ $error = 0;
 
 $unique_names = array();
 
-if(!empty($_FILES)) {
+if (!empty($_FILES)) {
 
     $targetDir = "../app/uploads/";
     $myFile = $_FILES['file'];
@@ -77,7 +77,6 @@ if(!empty($_FILES)) {
     }
 
     if (move_uploaded_file($test1, $uniqfile)) {
-        //array_push($_SESSION['unique_names'], $unique_name);
 
         echo $unique_name;
 

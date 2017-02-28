@@ -19,9 +19,7 @@ if (isset($_SESSION['usr_id'])) {
 
     $mypermgroup = $perm['name'];
     $permgroup = $leid['permgroup'];
-}
-
-else if (isset($_SESSION['userid'])) {
+} else if (isset($_SESSION['userid'])) {
     if ($session->getUserId()) {
         $leid = $user->getPermissionGroup($session->getUserId());
         $perm = $user->getPermissionGroupName($leid['permgroup']);
@@ -29,8 +27,6 @@ else if (isset($_SESSION['userid'])) {
         $mypermgroup = $perm['name'];
         $permgroup = $leid['permgroup'];
     }
-}
-
-else {
+} else {
     $permgroup = 1;
 }

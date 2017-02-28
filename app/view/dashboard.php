@@ -25,7 +25,7 @@ if ($get_user_info !== null) {
         } else {
             $percent = '0';
         }
-        $singleName = explode(' ',trim($user['naam']));
+        $singleName = explode(' ', trim($user['naam']));
         $user['naam'] = $singleName[0];
         $percentarray[$user['naam']] = $percent;
         array_push($namearray, $user['naam']);

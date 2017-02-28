@@ -12,12 +12,11 @@ $session = new Session();
 $uploads = new BlockController();
 $usermail = new MailController();
 
-if(isset($_GET['id'])) {
+if (isset($_GET['id'])) {
     $id = $_GET['id'];
     $id = $session->cleantonumber($id);
-}
-else {
-    return '<div class="alert alert-info"> ' . TEXT_ERROR_OCCURED .'</div>';
+} else {
+    return '<div class="alert alert-info"> ' . TEXT_ERROR_OCCURED . '</div>';
 }
 
 $myuser = $user->getUserById($_SESSION['usr_id']);
@@ -30,7 +29,7 @@ if ($getmail = $usermail->getUserMailbyMailID($id)) {
     } else if ($myuser['permgroup'] !== '1') {
 
     } else {
-        echo '<div class="alert alert-info"> '. TEXT_NO_PERMISSION . '</div>';
+        echo '<div class="alert alert-info"> ' . TEXT_NO_PERMISSION . '</div>';
         return false;
     }
 } else {
@@ -47,7 +46,7 @@ $image_controller = new ImageController();
 $uploadedimages = $image_controller->getImagebyMailID($upload['id']);
 
 if ($uploadedimages == null) {
-    return '<div class="alert alert-info"> ' . TEXT_ERROR_OCCURED .'</div>';
+    return '<div class="alert alert-info"> ' . TEXT_ERROR_OCCURED . '</div>';
 }
 $checknewarray = array();
 foreach ($uploadedimages as $img) {
@@ -66,13 +65,15 @@ $theKey = $user->getClientKey($upload['naam']);
     <div id="page-content-wrapper">
         <table style="width:100%">
             <tr>
-                <th style="text-align: left;"><p class="NameText" style="font-weight: normal;"><?= TEXT_YOUR_ASSIGNMENT ?></p></th>
+                <th style="text-align: left;"><p class="NameText"
+                                                 style="font-weight: normal;"><?= TEXT_YOUR_ASSIGNMENT ?></p></th>
                 <th style="text-align: right;">
 
                     <?php if ($user->getPermission($permgroup, 'CAN_USE_ITEM_DELETE') == 1) { ?>
                         <a data-toggle="modal" data-target="#Weigeritem" href="#" style="text-decoration: none;">
-                            <button type="button" class="btn btn-labeled btn-success MyOverviewButton" >
-                                <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span><?= BUTTON_DECLINE_ASSIGNMENT ?>
+                            <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
+                                <span class="btn-label"><i
+                                        class="glyphicon glyphicon-list-alt"></i></span><?= BUTTON_DECLINE_ASSIGNMENT ?>
                             </button>
                         </a>
                     <?php } ?>
@@ -80,7 +81,8 @@ $theKey = $user->getClientKey($upload['naam']);
                     <?php if ($user->getPermission($permgroup, 'CAN_USE_ITEM_DELETE') == 1) { ?>
                         <a data-toggle="modal" data-target="#Deleteitem" href="#">
                             <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
-                                <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span><?= BUTTON_DELETE_ASSIGNMENT ?>
+                                <span class="btn-label"><i
+                                        class="glyphicon glyphicon-list-alt"></i></span><?= BUTTON_DELETE_ASSIGNMENT ?>
                             </button>
                         </a>
                     <?php } ?>
@@ -168,12 +170,14 @@ $theKey = $user->getClientKey($upload['naam']);
                             <?php
                             }
                             ?>
-                            <form action="?page=uploadImages" method="post" enctype="multipart/form-data" class="form-horizontal dropzone" id="mydropzone">
+                            <form action="?page=uploadImages" method="post" enctype="multipart/form-data"
+                                  class="form-horizontal dropzone" id="mydropzone">
                                 <input type="hidden" name="client" value="<?= $clientmail['clientid'] ?>">
                                 <input type="hidden" name="id" value="<?= $upload['id'] ?>">&emsp;&emsp;
                                 <div class="tab-content">
                                     <div class="tab-pane active" role="tabpanel" id="step1">
-                                        <div class="well" style="font-size: 15px; font-style: italic;"><?= TEXT_ASSIGNMENT_INFO ?>
+                                        <div class="well"
+                                             style="font-size: 15px; font-style: italic;"><?= TEXT_ASSIGNMENT_INFO ?>
                                         </div>
                                         <br>
                                         <?php
@@ -228,7 +232,7 @@ $theKey = $user->getClientKey($upload['naam']);
                                                         <div id="weiger" class="alert1 alert-info"
                                                              style="background-color:lightgrey; color:grey; text-align: center;"
                                                              role="alert"><span
-                                                                class="alert-version"><?= TEXT_VERSIE  ?> <?= $isverified['version'] ?></span><br/><span
+                                                                class="alert-version"><?= TEXT_VERSIE ?> <?= $isverified['version'] ?></span><br/><span
                                                                 class="glyphicon1glyphicon-remove-circle"></span>
                                                             <?= TEXT_EDITED ?>
                                                         </div>
@@ -237,7 +241,7 @@ $theKey = $user->getClientKey($upload['naam']);
                                                     if ($isverified['verify'] == 0) { ?>
                                                         <div id="weiger" class="alert1 alert-info"
                                                              style="text-align: center;" role="alert"><span
-                                                                class="alert-version"><?= TEXT_VERSIE  ?> <?= $isverified['version'] ?></span><br/><span
+                                                                class="alert-version"><?= TEXT_VERSIE ?> <?= $isverified['version'] ?></span><br/><span
                                                                 class="glyphicon1 glyphicon-remove-circle"></span> <?= TEXT_NO_EDITS ?>
                                                         </div>
                                                     <?php }
@@ -263,7 +267,8 @@ $theKey = $user->getClientKey($upload['naam']);
                                         <br><br>
                                         <ul class="list-inline pull-right">
                                             <li>
-                                                <button type="button" class="btn btn-primary next-step"><?= BUTTON_NEXT ?>
+                                                <button type="button"
+                                                        class="btn btn-primary next-step"><?= BUTTON_NEXT ?>
                                                 </button>
                                             </li>
                                         </ul>
@@ -271,7 +276,8 @@ $theKey = $user->getClientKey($upload['naam']);
 
 
                                     <div class="tab-pane" role="tabpanel" id="step2">
-                                        <div class="well" style="font-size: 15px; font-style: italic;"><?= TEXT_ASSIGNMENT_INFO ?>
+                                        <div class="well"
+                                             style="font-size: 15px; font-style: italic;"><?= TEXT_ASSIGNMENT_INFO ?>
                                         </div>
 
                                         <br>
@@ -280,7 +286,8 @@ $theKey = $user->getClientKey($upload['naam']);
                                         <?php if (in_array(2, $verimages) || in_array(0, $verimages)) { ?>
 
                                         <div class="form-group">
-                                            <label class="col-md-4 control-label" for="textinput"><?= TABLE_TITLE ?><span
+                                            <label class="col-md-4 control-label" for="textinput"><?= TABLE_TITLE ?>
+                                                <span
                                                     style="color:#bc2d4c">*</span></label>
                                             <div class="col-md-4">
                                                 <input class="form-control input-md" id="textinput" required type="text"
@@ -289,7 +296,8 @@ $theKey = $user->getClientKey($upload['naam']);
                                         </div>
 
                                         <div class="form-group">
-                                            <label class="col-md-4 control-label" for="textinput"><?= TEXT_SENDER ?><span
+                                            <label class="col-md-4 control-label" for="textinput"><?= TEXT_SENDER ?>
+                                                <span
                                                     style="color:#bc2d4c">*</span></label>
                                             <div class="col-md-4">
                                                 <?php $usr = $user->getUserById($upload['verstuurder']); ?>
@@ -300,7 +308,8 @@ $theKey = $user->getClientKey($upload['naam']);
                                         </div>
 
                                         <div class="form-group">
-                                            <label class="col-md-4 control-label" for="textinput"><?= TEXT_DESCRIPTION ?><span
+                                            <label class="col-md-4 control-label"
+                                                   for="textinput"><?= TEXT_DESCRIPTION ?><span
                                                     style="color:#bc2d4c">*</span></label>
                                             <div class="col-md-4">
                                                 <input class="form-control input-md" id="textinput" required type="text"
@@ -310,7 +319,8 @@ $theKey = $user->getClientKey($upload['naam']);
 
                                         <br/>
                                         <div class="form-group">
-                                            <label class="col-md-4 control-label" for="textinput"><?= TEXT_IS_CLIENT ?><span
+                                            <label class="col-md-4 control-label" for="textinput"><?= TEXT_IS_CLIENT ?>
+                                                <span
                                                     style="color:#bc2d4c">*</span></label>
                                             <div class="col-md-4">
                                                 <?php $clnt = $user->getUserById($upload['naam']); ?>
@@ -322,9 +332,13 @@ $theKey = $user->getClientKey($upload['naam']);
 
                                         <?php if ($user->getPermission($permgroup, 'CAN_EDIT_ACCORD') == 1) { ?>
                                             <div class="form-group">
-                                                <label class="col-md-4 control-label" for="textinput"><?= TEXT_PRODUCT_ACCORD ?></label>
+                                                <label class="col-md-4 control-label"
+                                                       for="textinput"><?= TEXT_PRODUCT_ACCORD ?></label>
                                                 <div class="col-md-4">
-                                                    <textarea class="form-control input-md" readonly><?= $admin['Host'] . '/' ?>index.php?page=verify&id=<?= $upload['id'] ?>&key=<?= $upload['key'] ?></textarea>
+                                                    <textarea class="form-control input-md"
+                                                              readonly><?= $admin['Host'] . '/' ?>
+                                                        index.php?page=verify&id=<?= $upload['id'] ?>
+                                                        &key=<?= $upload['key'] ?></textarea>
                                                 </div>
                                             </div>
                                         <?php } ?>
@@ -346,7 +360,8 @@ $theKey = $user->getClientKey($upload['naam']);
                                         <?php if (isset($upload['answer']) && $upload['answer'] !== '') { ?>
                                             <br/>
                                             <div class="form-group">
-                                                <label class="col-md-4 control-label" for="textinput"><?= TEXT_CLIENT_DESCRIPTION ?></label>
+                                                <label class="col-md-4 control-label"
+                                                       for="textinput"><?= TEXT_CLIENT_DESCRIPTION ?></label>
                                                 <div class="col-md-4">
                                                     <textarea disabled class="form-control input-md"
                                                               id="textinput1"><?= $upload['answer'] ?></textarea>
@@ -360,7 +375,8 @@ $theKey = $user->getClientKey($upload['naam']);
                                                 <?php $i = 0;
                                                 $o = 0; ?>
                                                 <div class="form-group">
-                                                    <label class="col-md-4 control-label" for="textinput"><?= TEXT_INTERNCOMMENT ?></label>
+                                                    <label class="col-md-4 control-label"
+                                                           for="textinput"><?= TEXT_INTERNCOMMENT ?></label>
                                                     <div class="col-md-4">
                                                         <ul id="comments">
                                                             <?php foreach ($comments as $comment) { ?>
@@ -441,7 +457,8 @@ $theKey = $user->getClientKey($upload['naam']);
                                         <br>
                                         <ul class="list-inline pull-right">
                                             <li>
-                                                <button type="button" class="btn btn-primary next-step"><?= BUTTON_NEXT ?>
+                                                <button type="button"
+                                                        class="btn btn-primary next-step"><?= BUTTON_NEXT ?>
                                                 </button>
                                             </li>
                                         </ul>
@@ -450,7 +467,8 @@ $theKey = $user->getClientKey($upload['naam']);
                                     else { ?>
 
                                         <div class="form-group">
-                                            <label class="col-md-4 control-label" for="textinput"><?= TABLE_TITLE ?></label>
+                                            <label class="col-md-4 control-label"
+                                                   for="textinput"><?= TABLE_TITLE ?></label>
                                             <div class="col-md-4">
                                                 <input disabled name="title" class="form-control input-md"
                                                        id="textinput" type="text" size="50"
@@ -459,7 +477,8 @@ $theKey = $user->getClientKey($upload['naam']);
                                         </div>
 
                                         <div class="form-group">
-                                            <label class="col-md-4 control-label" for="textinput"><?= TEXT_SENDER ?></label>
+                                            <label class="col-md-4 control-label"
+                                                   for="textinput"><?= TEXT_SENDER ?></label>
                                             <div class="col-md-4">
                                                 <input disabled name="fromname" class="form-control input-md"
                                                        id="textinput" type="text" size="50"
@@ -468,7 +487,8 @@ $theKey = $user->getClientKey($upload['naam']);
                                         </div>
 
                                         <div class="form-group">
-                                            <label class="col-md-4 control-label" for="textinput"><?= TEXT_DESCRIPTION ?></label>
+                                            <label class="col-md-4 control-label"
+                                                   for="textinput"><?= TEXT_DESCRIPTION ?></label>
                                             <div class="col-md-4">
                                                 <input disabled name="additionalcontent" class="form-control input-md"
                                                        id="textinput" required type="text"
@@ -478,7 +498,8 @@ $theKey = $user->getClientKey($upload['naam']);
 
                                         <?php if ($user->getPermission($permgroup, 'CAN_SHOW_USERIP') == '1') { ?>
                                             <div class="form-group">
-                                                <label class="col-md-4 control-label" for="textinput"><?= TEXT_ACCORD_IP ?></label>
+                                                <label class="col-md-4 control-label"
+                                                       for="textinput"><?= TEXT_ACCORD_IP ?></label>
                                                 <div class="col-md-4">
                                                     <input disabled name="mailname" class="form-control input-md"
                                                            id="textinput" type="text" value="<?= $upload['key'] ?>">
@@ -493,7 +514,8 @@ $theKey = $user->getClientKey($upload['naam']);
                                     <?php if ($user->getPermission($permgroup, 'CAN_UPLOAD')) { ?>
                                         <?php if (in_array(2, $verimages) || in_array(0, $verimages)) { ?>
                                             <div class="tab-pane" role="tabpanel" id="step3">
-                                                <div class="well" style="font-size: 15px; font-style: italic;"><?= TEXT_STEP5 ?>
+                                                <div class="well"
+                                                     style="font-size: 15px; font-style: italic;"><?= TEXT_STEP5 ?>
                                                 </div>
                                                 <br>
                                                 <fieldset style="clear:both">
@@ -504,7 +526,8 @@ $theKey = $user->getClientKey($upload['naam']);
                                                     -->
 
                                                     <div class="form-group">
-                                                        <label class="col-md-4 control-label" for="textinput"><?= TEXT_UPLOAD_FILES ?></label>
+                                                        <label class="col-md-4 control-label"
+                                                               for="textinput"><?= TEXT_UPLOAD_FILES ?></label>
                                                         <div class="col-md-4">
                                                             <div class="dz-default dz-message">
                                                     <span>
@@ -516,7 +539,8 @@ $theKey = $user->getClientKey($upload['naam']);
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label class="col-md-4 control-label" for="textinput"><?= TEXT_SELECTED_FILES ?></label>
+                                                        <label class="col-md-4 control-label"
+                                                               for="textinput"><?= TEXT_SELECTED_FILES ?></label>
                                                         <div class="col-md-4">
                                                             <div id="dropzonePreview"></div>
                                                         </div>
@@ -525,7 +549,8 @@ $theKey = $user->getClientKey($upload['naam']);
                                                     <?php if ($user->getPermission($permgroup, 'CAN_ADD_INTERN_COMMENT') == 1) { ?>
                                                         <br/><br/>
                                                         <div class="form-group">
-                                                            <label class="col-md-4 control-label" for="textinput"><?= TEXT_NEW_INTERNCOMMENT ?></label>
+                                                            <label class="col-md-4 control-label"
+                                                                   for="textinput"><?= TEXT_NEW_INTERNCOMMENT ?></label>
                                                             <div class="col-md-4">
                                                                 <textarea class="form-control input-md" maxlength="300"
                                                                           id="textinput" type="text"
@@ -533,7 +558,8 @@ $theKey = $user->getClientKey($upload['naam']);
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
-                                                            <label class="col-md-4 control-label" for="textinput"><?= TEXT_INTERNCOMMENTIMPORTANCE ?></label>
+                                                            <label class="col-md-4 control-label"
+                                                                   for="textinput"><?= TEXT_INTERNCOMMENTIMPORTANCE ?></label>
                                                             <div class="col-md-4">
                                                                 <select name="commentgroep" class="form-control">
                                                                     <option value="1" style="color:#5a5454">
@@ -565,13 +591,15 @@ $theKey = $user->getClientKey($upload['naam']);
                                                 </ul>
                                             </div>
                                             <div class="tab-pane" role="tabpanel" id="step4">
-                                            <div class="well" style="font-size: 15px; font-style: italic;"><?= TEXT_STEP6 ?>
+                                            <div class="well"
+                                                 style="font-size: 15px; font-style: italic;"><?= TEXT_STEP6 ?>
                                             </div>
 
                                             <br>
 
                                             <div class="form-group">
-                                                <label class="col-md-4 control-label" for="textinput"><?= TEXT_NEW_DESCRIPTION ?></label>
+                                                <label class="col-md-4 control-label"
+                                                       for="textinput"><?= TEXT_NEW_DESCRIPTION ?></label>
                                                 <div class="col-md-4">
                                                     <input name="additionalcontent" class="form-control input-md"
                                                            id="textinput" type="text" size="50"
@@ -583,7 +611,8 @@ $theKey = $user->getClientKey($upload['naam']);
 
                                             <ul class="list-inline pull-right">
                                                 <li>
-                                                    <button type="submit" id="sbmtbtn" class="btn btn-primary"><?= BUTTON_SENDAGAIN ?></button>
+                                                    <button type="submit" id="sbmtbtn"
+                                                            class="btn btn-primary"><?= BUTTON_SENDAGAIN ?></button>
                                                 </li>
                                             </ul>
                                             <br>
@@ -595,7 +624,8 @@ $theKey = $user->getClientKey($upload['naam']);
                                             <br/><br/>
 
                                             <div class="form-group">
-                                                <label class="col-md-4 control-label" for="textinput"><?= TEXT_CLIENT ?></label>
+                                                <label class="col-md-4 control-label"
+                                                       for="textinput"><?= TEXT_CLIENT ?></label>
                                                 <div class="col-md-4">
                                                     <?php $clnt = $user->getUserById($upload['naam']); ?>
                                                     <input disabled name="mailname" class="form-control input-md"
@@ -605,7 +635,8 @@ $theKey = $user->getClientKey($upload['naam']);
 
 
                                             <div class="form-group">
-                                                <label class="col-md-4 control-label" for="textinput"><?= TEXT_EMAIL_CLIENT ?></label>
+                                                <label class="col-md-4 control-label"
+                                                       for="textinput"><?= TEXT_EMAIL_CLIENT ?></label>
                                                 <div class="col-md-4">
                                                     <input disabled name="mailto" class="form-control input-md"
                                                            id="textinput" type="text" size="50"
@@ -617,7 +648,8 @@ $theKey = $user->getClientKey($upload['naam']);
                                                    value="<?= $upload['onderwerp'] ?>">
 
                                             <div class="form-group">
-                                                <label class="col-md-4 control-label" for="textinput"><?= TEXT_CLIENT_DESCRIPTION ?></label>
+                                                <label class="col-md-4 control-label"
+                                                       for="textinput"><?= TEXT_CLIENT_DESCRIPTION ?></label>
                                                 <div class="col-md-4">
                                                     <input disabled name="mailanswer" class="form-control input-md"
                                                            id="textinput" type="text" size="50"
@@ -630,7 +662,8 @@ $theKey = $user->getClientKey($upload['naam']);
                                         <?php $i = 0;
                                         $o = 0; ?>
                                             <div class="form-group">
-                                                <label class="col-md-4 control-label" for="textinput"><?= TEXT_INTERNCOMMENT ?></label>
+                                                <label class="col-md-4 control-label"
+                                                       for="textinput"><?= TEXT_INTERNCOMMENT ?></label>
                                                 <div class="col-md-4">
                                                     <ul id="comments">
                                                         <?php foreach ($comments as $comment) { ?>
@@ -660,10 +693,12 @@ $theKey = $user->getClientKey($upload['naam']);
                                             <div class="allanswers">
 
                                                 <div class="form-group new_member_box_display" id="answer">
-                                                    <label class="col-md-4 control-label" for="textinput"><span><?= TEXT_COMMENT ?> </span></label>
+                                                    <label class="col-md-4 control-label"
+                                                           for="textinput"><span><?= TEXT_COMMENT ?> </span></label>
                                                     <div class="col-md-4">
                                                         <textarea disabled class="form-control input-md"
-                                                                  id="textinput1">*<?= TEXT_SELECT_COMMENT ?>*</textarea>
+                                                                  id="textinput1">*<?= TEXT_SELECT_COMMENT ?>
+                                                            *</textarea>
                                                     </div>
                                                 </div>
 
@@ -760,7 +795,8 @@ $theKey = $user->getClientKey($upload['naam']);
                                     </tbody>
                                 </table>
                                 <?php if ($user->getPermission($permgroup, 'CAN_EDIT_ACCORD') == 1) { ?>
-                                    <a data-toggle="modal" data-target="#ImageDownloader" href="#"><?= TEXT_MAKE_ALL_DOWNLOADABLE ?></a>
+                                    <a data-toggle="modal" data-target="#ImageDownloader"
+                                       href="#"><?= TEXT_MAKE_ALL_DOWNLOADABLE ?></a>
                                 <?php }
                             } ?>
 
@@ -787,7 +823,8 @@ $theKey = $user->getClientKey($upload['naam']);
 
                         <p> <?= TEXT_MAKE_ALL_DOWNLOADABLE_MESSAGE ?> <br/><br/>
                             <?= TEXT_ARE_YOU_SURE ?><br/><br/></p>
-                        <a class="abuttonmodal" href="?page=allimgdown&id=<?= $id ?>"><?= TEXT_MAKE_ALL_DOWNLOADABLE ?></a>
+                        <a class="abuttonmodal"
+                           href="?page=allimgdown&id=<?= $id ?>"><?= TEXT_MAKE_ALL_DOWNLOADABLE ?></a>
                         <br/>
                         <br/>
                     </div>
@@ -813,13 +850,15 @@ $theKey = $user->getClientKey($upload['naam']);
                     <div style="text-align: center;" class="modal-body">
                         <br>
 
-                        <p> U staat op het punt om het item <b><?= $upload['onderwerp'] ?></b> te verwijderen. <br/><br/>
+                        <p> U staat op het punt om het item <b><?= $upload['onderwerp'] ?></b> te verwijderen.
+                            <br/><br/>
                             Weet u dit zeker?<br/><br/></p>
 
                         <?php if ($user->getPermission($permgroup, 'CAN_USE_ITEM_DELETE') == 1) { ?>
                             <a href="?page=deleteitem&id=<?= $_GET['id'] ?>">
                                 <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
-                                    <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span><?= BUTTON_DELETE_ASSIGNMENT ?>
+                                    <span class="btn-label"><i
+                                            class="glyphicon glyphicon-list-alt"></i></span><?= BUTTON_DELETE_ASSIGNMENT ?>
                                 </button>
                             </a>
                         <?php } ?>
@@ -895,7 +934,8 @@ $theKey = $user->getClientKey($upload['naam']);
                         <?php if ($user->getPermission($permgroup, 'CAN_USE_ITEM_DELETE') == 1) { ?>
                             <a href="?page=weigeritem&id=<?= $_GET['id'] ?>">
                                 <button type="button" class="btn btn-labeled btn-success MyOverviewButton">
-                                    <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span>Weiger opdrachten
+                                    <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span>Weiger
+                                    opdrachten
                                 </button>
                             </a>
                         <?php } ?>
@@ -925,17 +965,16 @@ $theKey = $user->getClientKey($upload['naam']);
                 previewsContainer: '#dropzonePreview', // we specify on which div id we must show the files
                 maxFilesize: 15, // MB
                 acceptedFiles: "image/png, image/jpeg, image/gif, application/pdf",
-                accept: function(file, done) {
+                accept: function (file, done) {
                     done();
                 },
-                error: function(file, msg){
+                error: function (file, msg) {
                     alert(msg);
                 },
-                init: function() {
+                init: function () {
 
                     this.on("queuecomplete", function () {
                         this.options.autoProcessQueue = false;
-                        //window.location = 'index.php?page=lala1';
                         postForm += (Files.join(", "));
 
                         $.ajax({
@@ -954,14 +993,14 @@ $theKey = $user->getClientKey($upload['naam']);
                         this.options.autoProcessQueue = true;
                     });
 
-                    this.on("error", function(file, message) {
+                    this.on("error", function (file, message) {
                         alert(message);
                         this.removeFile(file);
                     });
 
                     var myDropzone = this;
                     //now we will submit the form when the button is clicked
-                    $("#sbmtbtn").on('click',function(e) {
+                    $("#sbmtbtn").on('click', function (e) {
                         e.preventDefault();
                         myDropzone.processQueue(); // this will submit your form to the specified action path
                         postForm = $('form#mydropzone').serialize() + '&files=';
@@ -969,7 +1008,7 @@ $theKey = $user->getClientKey($upload['naam']);
 
                 }, // init end
 
-                success: function( file, response ){
+                success: function (file, response) {
                     Files.push(response);
                 }
 

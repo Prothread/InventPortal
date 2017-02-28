@@ -1,5 +1,4 @@
 <?php
-
 if ($user->getPermission($permgroup, 'CAN_UPLOAD') == 1) {
 
 } else {
@@ -12,6 +11,7 @@ $user = new UserController();
 $mysqli = mysqli_connect();
 
 $title = mysqli_real_escape_string($mysqli, $_POST['title']);
+
 $description = mysqli_real_escape_string($mysqli, $_POST['additionalcontent']);
 
 if (isset($_SESSION['clientid'])) {
@@ -42,10 +42,9 @@ if (isset($_POST['id'])) {
 } else {
     $dbmail = new DbMail();
 
-    if($dbmail->getIncrement()) {
+    if ($dbmail->getIncrement()) {
         $imageId = $dbmail->getIncrement();
-    }
-    else {
+    } else {
         $imageId = $imageFileName->getNewId();
         $imageId = $imageId + 1;
     }
@@ -70,7 +69,6 @@ if ($error == 0) {
     //Load Mail account settings
     require_once DIR_MODEL . 'MailSettings.php';
 
-    //if (isset($_POST['submit'])) {
 
     /* Create phpmailer and add the image to the mail */
     $mailer = new PHPMailer();
@@ -82,10 +80,11 @@ if ($error == 0) {
 
     $link = $admin['Host'] . "/index.php?page=verify&id=$imageId&key=$token";
 
-    function printImages($uploadedimage, $link, $hosturl)  {
+    function printImages($uploadedimage, $link, $hosturl)
+    {
         $html = '';
         $i = 0;
-        foreach($uploadedimage as $image) {
+        foreach ($uploadedimage as $image) {
             $html .= "<a href='$link'><img src='$hosturl/index.php?page=image&img=thumb_$image' style='width: auto;height: 70px;'></a>";
             $i++;
         }
@@ -168,8 +167,7 @@ if ($error == 0) {
     if (isset($_POST['id'])) {
         $myid = mysqli_real_escape_string($mysqli, $_POST['id']);
         $mailinfo['id'] = intval($myid);
-    }
-    else {
+    } else {
         $mailinfo['clientid'] = intval($clientid);
     }
 
@@ -189,8 +187,7 @@ if ($error == 0) {
     if (!$mailer->send()) {
         $block->Redirect('index.php?page=uploadoverview');
         Session::flash('error', $mailer->ErrorInfo);
-    }
-    else {
+    } else {
         //If mail is send, create data and send it to the database
         if (isset($_POST['id'])) {
             $mymail->update($mailinfo);
