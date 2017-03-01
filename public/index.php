@@ -35,7 +35,7 @@ if (isset($_GET['page'])) {
 
 /**
  * If: Als er niemand ingelogd is of de pagina is niet registreren/wachtwoord vergeten of wachtwoord herstellen
- * Dan: De pagina si login
+ * Dan: De pagina is login
  *
  * Anders: de gebruiker is ingelogd en gaat naar het dashboard
  */

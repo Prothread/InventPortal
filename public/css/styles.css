@@ -1860,6 +1860,10 @@ tr:nth-child(2n) {
 
 /*donut chart*/
 
+#mychart{
+    padding-bottom: 10px;
+}
+
 @media screen and (max-width: 420px) {
     #mychart {
         width: 100%;
