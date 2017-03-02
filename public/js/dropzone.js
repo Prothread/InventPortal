@@ -23,13 +23,6 @@
  * THE SOFTWARE.
  *
  */
-var lan = document.currentScript.getAttribute('lan');
-var uploadError = '';
-if(lan === "en"){
-    uploadError = "File is too big ({{filesize}}MiB). Maximum filesize: {{maxFilesize}}MiB.";
-}else{
-    uploadError = "Bestand is te groot ({{filesize}}MiB). Maximale bestandsgrootte: {{maxFilesize}}MiB.";
-}
 
 (function() {
     var Dropzone, Emitter, camelize, contentLoaded, detectVerticalSquash, drawImageIOSFix, noop, without,
