@@ -287,8 +287,12 @@ if (isset($_SESSION['accorduserid'])) {
                             <label class="control-label" for="textinput"
                                    style="float:left;"><?= TEXT_NEW_COMMENT ?></label>
                             <div class="col-md-4">
-                                <input name="answer" class="form-control input-md" id="textinput" type="text">
-                            </div><br/><br/>
+                                <textarea name="answer" class="form-control input-md" id="textinput" type="text" maxlength="512"></textarea>
+                                <font size="2" color="#bc2d4c"><?= MAX_WORDS_COMMENT ?></font>
+                            </div>
+                            <br/><br/>
+
+
 
                             <input type="hidden" id="totalverify" value="<?= $verify ?>">
                         <?php } else { ?>
