@@ -259,3 +259,6 @@ define("TEXT_DIGITALE_PROEFDRUK", "Wij hebben voor U een digitale proefdruk gema
 define("TEXT_PROEF_BEKIJKEN", "U kunt uw proef met de onderstaand link bekijken, accorderen of wijzigen");
 define("TEXT_GROET", "Met vriendelijke groet,");
 define("TEXT_MAIL_DISCLAIMER", "Dit is een automatish aan gemaakte email. Reageer hier niet op");
+
+define("MAX_WORDS_COMMENT", "*maximale aantal tekens is 512");
+define("UPLOAD_MAX_SIZE", "maximale upload grote is 16MB");

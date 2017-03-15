@@ -259,3 +259,6 @@ define("TEXT_DIGITALE_PROEFDRUK", "We made a digital sample for you <br /> You c
 define("TEXT_PROEF_BEKIJKEN", "You can inspect, accord or eddit the assignment whith the link below");
 define("TEXT_GROET", "With kind regards,");
 define("TEXT_MAIL_DISCLAIMER", "This is an automatically generated mail. Please do not reply to this email");
+
+define("MAX_WORDS_COMMENT", "*Maximum amount of characters is 512");
+define("UPLOAD_MAX_SIZE", " the maximum upload size is 16MB");

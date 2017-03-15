@@ -72,10 +72,10 @@ $imageId = $dbmail->getIncrement();
                                                    placeholder="<?php if (isset($mailinfo['title'])) {
                                                        echo $mailinfo['title'];
                                                    } ?>">
+                                            <div style="font-size: 13px; color: #bc2d4c"><?= UPLOAD_MAX_SIZE ?></div>
                                         </div>
                                     </div>
 
-                                    <br>
                                     <fieldset style="clear:both">
                                         <!--
                                         <label class="fileContainer">Nieuwe Bestand(en) uploaden*
