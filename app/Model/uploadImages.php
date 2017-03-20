@@ -65,7 +65,7 @@ if (!empty($_FILES)) {
 
     $imageFileType = pathinfo($targetFile, PATHINFO_EXTENSION);
 
-
+    $test = str_replace("&", "_", $test);
     $unique_name = pathinfo($test, PATHINFO_FILENAME) . "_" . ($imageId) . '.' . $imageFileType;
     $unique_name = preg_replace('/\s+/', '-', $unique_name);
     $uniqfile = $targetDir . $unique_name;
