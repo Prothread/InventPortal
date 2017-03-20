@@ -262,3 +262,5 @@ define("TEXT_MAIL_DISCLAIMER", "Dit is een automatish aan gemaakte email. Reagee
 
 define("MAX_WORDS_COMMENT", "*maximale aantal tekens is 512");
 define("UPLOAD_MAX_SIZE", "maximale upload grote is 16MB");
+define("SECOND_EMAIL_TEXT", "Extra e-mail addresses: ");
+define("MAIL_COMMENT", "Opmerking");

@@ -143,6 +143,8 @@ class Mail
 
     private $Commentgroup;
 
+    private $ExtraComment;
+
     /**
      * Constructor om te verbinden met DbMail
      *
@@ -435,6 +437,11 @@ class Mail
     {
         $this->Commentgroup = $Commentgroep;
     }
+
+    public function setExtraComment($extracomment){
+        $this->ExtraComment = $extracomment;
+    }
+
 
     /**
      * Haal de informatie voor MailId op

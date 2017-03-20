@@ -61,12 +61,12 @@ if (isset($_SESSION['accorduserid'])) {
                 <p class="NameText"><?= TEXT_PRODUCT_ACCORD ?></p>
                 <hr size="1">
 
-                <br/>
+<!--                <br/>-->
                 <p> <?= TABLE_TITLE ?>: <span style="color:#bc2d4c"><?= $myupload['onderwerp']; ?></span></p>
                 <?php $usr = $user->getUserById($myupload['verstuurder']); ?>
                 <p> <?= TEXT_SENDER ?>: <span style="color:#bc2d4c"><?= $usr['naam'] ?></span></p>
                 <p> <?= TEXT_DESCRIPTION ?>: <span style="color:#bc2d4c"><?= $myupload['beschrijving'] ?></span></p>
-                <br><br>
+<!--                <br><br>-->
 
                 <p> <?= TEXT_FILES ?>
                     <span style="color:#bc2d4c">
@@ -120,7 +120,7 @@ if (isset($_SESSION['accorduserid'])) {
                                 if ($session->getImageVerify($img['id']) == 1) { ?>
                                     <div id="akkoord" class="alert1 alert-success"
                                          style="text-align: center;" role="alert"><span
-                                            class="alert-version"></span><br/><span
+                                            class="alert-version"></span><span
                                             class="glyphicon glyphicon-ok-circle"></span> <?= BUTTON_ACCORD ?>
                                     </div>
                                     <a href="?page=imagecancel&img=<?= $img['id'] ?>">
@@ -132,7 +132,7 @@ if (isset($_SESSION['accorduserid'])) {
                                 <?php } else if ($session->getImageVerify($img['id']) == 2) { ?>
                                     <div id="weiger" class="alert1 alert-danger" style="text-align: center;"
                                          role="alert"><span
-                                            class="alert-version"></span><br/><span
+                                            class="alert-version"></span><span
                                             class="glyphicon glyphicon-remove-circle"></span> <?= BUTTON_DECLINE ?>
                                     </div>
                                     <a href="?page=imagecancel&img=<?= $img['id'] ?>">
@@ -145,7 +145,7 @@ if (isset($_SESSION['accorduserid'])) {
                                     <div id="weiger" class="alert1 alert-info"
                                          style="background-color:lightgrey; color:grey; text-align: center;"
                                          role="alert"><span
-                                            class="alert-version">Versie <?= $imago['version'] ?></span><br/><span
+                                            class="alert-version">Versie <?= $imago['version'] ?></span><span
                                             class="glyphicon glyphicon-remove-circle"></span> <?= TEXT_EDITED ?>
                                     </div>
                                 <?php } else { ?>
@@ -159,14 +159,14 @@ if (isset($_SESSION['accorduserid'])) {
                             } else if ($imago['verify'] == 1) { ?>
                                 <div id="akkoord" class="alert1 alert-success" style="text-align: center;"
                                      role="alert"><span
-                                        class="alert-version">Versie <?= $imago['version'] ?></span><br/><span
+                                        class="alert-version">Versie <?= $imago['version'] ?></span><span
                                         class="glyphicon1 glyphicon-ok-circle"></span> <?= BUTTON_ACCORD ?>
                                 </div>
                             <?php } else if ($imago['verify'] == 3) { ?>
                                 <div id="weiger" class="alert1 alert-info"
                                      style="background-color:lightgrey; color:grey; text-align: center;"
                                      role="alert"><span
-                                        class="alert-version">Versie <?= $imago['version'] ?></span><br/><span
+                                        class="alert-version">Versie <?= $imago['version'] ?></span><span
                                         class="glyphicon glyphicon-remove-circle"></span> <?= BUTTON_DECLINE ?>
                                 </div>
                                 <?php
@@ -262,12 +262,8 @@ if (isset($_SESSION['accorduserid'])) {
                 <div style="clear: both;"></div>
                 <form id="form" action="?page=updatemail" method="post" enctype="multipart/form-data"
                       class="form-horizontal">
-                    <br/>
 
                     <input disabled="disabled" type="hidden" name="id" value="<?= $myupload['id']; ?>">
-
-                    <br>
-                    <br>
 
                     <input type="hidden" name="clientid" value="<?php if (isset($_SESSION['usr_id'])) {
                         echo $_SESSION['usr_id'];
@@ -290,7 +286,6 @@ if (isset($_SESSION['accorduserid'])) {
                                 <textarea name="answer" class="form-control input-md" id="textinput" type="text" maxlength="512"></textarea>
                                 <font size="2" color="#bc2d4c"><?= MAX_WORDS_COMMENT ?></font>
                             </div>
-                            <br/><br/>
 
 
 
@@ -307,13 +302,14 @@ if (isset($_SESSION['accorduserid'])) {
                     <!--<input type="hidden" name="mailto" id="" value="kevin.herdershof@hotmail.com">-->
 
 
-                    <br>
+
                     <label id="Voorwaarden"><?= TEXT_BEFORE_TERMS_AND_CONDITIONS ?> <a href="index.php?page=conditions"
                                                                                        target="_blank"><span
                                 style="color:#bc2d4c"><?= TEXT_TERMS_AND_CONDITIONS ?></span></a> <?= TEXT_AFTER_TERMS_AND_CONDITIONS ?>
+                        <input type="checkbox" name="yeahright" required>
                     </label>
-                    <input type="checkbox" name="yeahright" required>
-                    <br><br>
+
+                    <br>
 
                     <input type="submit" id="verstuuracc" name="submit" value="<?= BUTTON_SEND ?>">
 
@@ -343,3 +339,14 @@ if (isset($_SESSION['accorduserid'])) {
     </div>
 </div>
 </div>
+
+<script language="javascript" type="text/javascript">
+    if (!isset($_SESSION['AccButton']){
+        window.onbeforeunload = askConfirm;
+        function askConfirm() {
+            return "You have unsaved changes.";
+        }
+    }
+</script>
+</head>
+

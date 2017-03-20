@@ -31,8 +31,23 @@ if ($client['altmail']) {
     $email = $client['email'];
 }
 
+if (isset($_POST['secondEmailAdress'])) {
+    $secondEmail = $_POST['secondEmailAdress'];
+}
+
+if (isset($_POST['thirdEmailAdress'])) {
+    $thirdEmail = $_POST['thirdEmailAdress'];
+}
+
 $comment = mysqli_real_escape_string($mysqli, $_POST['interncomment']);
 $commentgroep = mysqli_real_escape_string($mysqli, $_POST['commentgroep']);
+$extracomment = mysqli_real_escape_string($mysqli, $_POST['extracomment']);
+
+$extracommenttext;
+
+if(isset($extracomment) && $extracomment !== null && $extracomment !== "") {
+    $extracommenttext = "<br /><br /> <b>" . MAIL_COMMENT . " " . "</b>" . $extracomment;
+}
 
 $imageFileName = new ImageController();
 $block = new BlockController();
@@ -105,7 +120,10 @@ if ($error == 0) {
         "<b>" . TEXT_DESCRIPTION . "</b> " .
         $description .
 
-        "<br /><br />" . TEXT_PROEF_BEKIJKEN . "<br />" .
+        $extracommenttext .
+
+        "<br />" .
+        TEXT_PROEF_BEKIJKEN . "<br />" .
         "<a href='$link'>$title</a> " . "<br /><br />" .
 
         printImages($unique_names, $link, $admin['Host']) . "<br />" .
@@ -141,6 +159,13 @@ if ($error == 0) {
     $mailer->From = $crendentials['email'];
     $mailer->FromName = $sender; //Optional
     $mailer->addAddress($to);  // Add a recipient
+    if (isset($_POST['secondEmailAdress'])) {
+        $mailer->addAddress($secondEmail);
+    }
+    if (isset($_POST['thirdEmailAdress'])) {
+        $mailer->addAddress($thirdEmail);
+    }
+
 
     //Subject - Body :
     $mailer->Subject = $subject;
@@ -174,6 +199,10 @@ if ($error == 0) {
     if ($comment && $comment !== '') {
         $mailinfo['comment'] = $comment;
         $mailinfo['commentgroep'] = $commentgroep;
+    }
+
+    if($extracomment && $extracomment !== ''){
+        $mailinfo['extracomment'] = $extracomment;
     }
 
     $mailer->SMTPOptions = array(

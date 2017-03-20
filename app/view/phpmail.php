@@ -118,7 +118,7 @@ $imageId = $dbmail->getIncrement();
                                 <div class="tab-pane" role="tabpanel" id="step2">
                                     <div class="well" style="font-size: 15px; font-style: italic;"><?= TEXT_STEP2 ?>
                                     </div>
-                                    <br>
+
 
                                     <div class="form-group">
                                         <label class="col-md-4 control-label" for="textinput"><?= TEXT_DESCRIPTION ?>
@@ -134,7 +134,7 @@ $imageId = $dbmail->getIncrement();
                                     </div>
 
                                     <?php if ($user->getPermission($permgroup, 'CAN_ADD_INTERN_COMMENT') == 1) { ?>
-                                        <br/><br/>
+                                        <br/>
                                         <div class="form-group">
                                             <label class="col-md-4 control-label"
                                                    for="textinput"><?= TEXT_INTERNCOMMENT ?></label>
@@ -144,6 +144,18 @@ $imageId = $dbmail->getIncrement();
                                                               name="interncomment"></textarea>
                                             </div>
                                         </div>
+
+                                        <br/>
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label"
+                                                   for="textinput"><?= MAIL_COMMENT ?></label>
+                                            <div class="col-md-4">
+                                                    <textarea class="form-control input-md" maxlength="300"
+                                                              id="textinput" type="text"
+                                                              name="extracomment"></textarea>
+                                            </div>
+                                        </div>
+                                        <br>
                                         <div class="form-group">
                                             <label class="col-md-4 control-label"
                                                    for="textinput"><?= TEXT_INTERNCOMMENTIMPORTANCE ?></label>
@@ -205,6 +217,15 @@ $imageId = $dbmail->getIncrement();
                                                             echo $klant['naam'] ?></option>
                                                     <?php } ?>
                                                 </select>
+                                                <br>
+                                                <br>
+                                                <b><?= SECOND_EMAIL_TEXT ?></b>
+
+                                                <input type="text" name="secondEmailAdress" style="width:100%">
+                                                <br>
+                                                <br>
+                                                <input type="text" name="thirdEmailAdress" style="width:100%">
+
                                             </div>
                                         </div>
                                     </div>

@@ -42,6 +42,10 @@ class MailController
             $this->model->setCommentGroup($mailinfo['commentgroep']);
         }
 
+        if(isset($mailinfo['extracomment']) && $mailinfo['extracomment'] !== null){
+            $this->model->setExtraComment($mailinfo['extracomment']);
+        }
+
         if ($result = $this->model->create()) {
             return $result;
         }

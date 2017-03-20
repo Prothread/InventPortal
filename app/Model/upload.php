@@ -33,6 +33,7 @@ if ($client['altmail']) {
 
 $comment = mysqli_real_escape_string($mysqli, $_POST['interncomment']);
 $commentgroep = mysqli_real_escape_string($mysqli, $_POST['commentgroep']);
+$extracomment = mysqli_real_escape_string($mysqli, $_POST['extracomment']);
 
 $imageFileName = new ImageController();
 $block = new BlockController();
@@ -231,6 +232,9 @@ if ($error == 0) {
         $mailer->From = $crendentials['email'];
         $mailer->FromName = $sender; //Optional
         $mailer->addAddress($to);  // Add a recipient
+        //if(isset($_POST['secondEmailAdress'])) {
+
+        //}
 
 //Subject - Body :
         $mailer->Subject = $subject;
@@ -244,7 +248,7 @@ if ($error == 0) {
 
         if (isset($_POST['id'])) {
             $myid = $_POST['id'];
-            if ($comment !== null && $comment !== '') {
+            if ($extracomment !== null && $extracomment !== '' && $comment !== null && $comment !== '') {
                 $mailinfo = [
                     'id' => intval($myid),
                     'title' => strip_tags($title),
@@ -257,9 +261,40 @@ if ($error == 0) {
                     'datum' => date('Y-m-d'),
                     'verified' => 0,
                     'comment' => $comment,
-                    'commentgroep' => $commentgroep
+                    'commentgroep' => $commentgroep,
+                    'extracomment' => $extracomment
                 ];
-            } else {
+            }
+            else if ($comment !== null && $comment !== '') {
+                    $mailinfo = [
+                        'id' => intval($myid),
+                        'title' => strip_tags($title),
+                        'sender' => intval($_SESSION['usr_id']),
+                        'description' => strip_tags($description),
+                        'name' => intval($clientid),
+                        'email' => strip_tags($to),
+                        'token' => $token,
+                        'images' => strip_tags($uniqdbimages),
+                        'datum' => date('Y-m-d'),
+                        'verified' => 0,
+                        'comment' => $comment,
+                        'commentgroep' => $commentgroep
+                    ];
+            } else if($extracomment !== null && $extracomment !== ''){
+                $mailinfo = [
+                    'id' => intval($myid),
+                    'title' => strip_tags($title),
+                    'sender' => intval($_SESSION['usr_id']),
+                    'description' => strip_tags($description),
+                    'name' => intval($clientid),
+                    'email' => strip_tags($to),
+                    'token' => $token,
+                    'images' => strip_tags($uniqdbimages),
+                    'datum' => date('Y-m-d'),
+                    'verified' => 0,
+                    'extracomment' => $extracomment
+                ];
+            }else{
                 $mailinfo = [
                     'id' => intval($myid),
                     'title' => strip_tags($title),
@@ -274,7 +309,24 @@ if ($error == 0) {
                 ];
             }
         } else {
-            if ($comment !== null && $comment !== '') {
+            if ($extracomment !== null && $extracomment !== '' && $comment !== null && $comment !== '') {
+                $mailinfo = [
+                    'clientid' => intval($clientid),
+                    'title' => strip_tags($title),
+                    'sender' => intval($_SESSION['usr_id']),
+                    'description' => strip_tags($description),
+                    'name' => intval($clientid),
+                    'email' => strip_tags($to),
+                    'token' => $token,
+                    'images' => strip_tags($uniqdbimages),
+                    'datum' => date('Y-m-d'),
+                    'verified' => 0,
+                    'comment' => $comment,
+                    'commentgroep' => $commentgroep,
+                    'extracomment' => $extracomment
+                ];
+            }
+            else if ($comment !== null && $comment !== '') {
                 $mailinfo = [
                     'clientid' => intval($clientid),
                     'title' => strip_tags($title),
@@ -289,7 +341,21 @@ if ($error == 0) {
                     'comment' => $comment,
                     'commentgroep' => $commentgroep
                 ];
-            } else {
+            } else if($extracomment !== null && $extracomment !== ''){
+                $mailinfo = [
+                    'clientid' => intval($clientid),
+                    'title' => strip_tags($title),
+                    'sender' => intval($_SESSION['usr_id']),
+                    'description' => strip_tags($description),
+                    'name' => intval($clientid),
+                    'email' => strip_tags($to),
+                    'token' => $token,
+                    'images' => strip_tags($uniqdbimages),
+                    'datum' => date('Y-m-d'),
+                    'verified' => 0,
+                    'extracomment' => $extracomment
+                ];
+            }else{
                 $mailinfo = [
                     'clientid' => intval($clientid),
                     'title' => strip_tags($title),

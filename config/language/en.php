@@ -262,3 +262,5 @@ define("TEXT_MAIL_DISCLAIMER", "This is an automatically generated mail. Please 
 
 define("MAX_WORDS_COMMENT", "*Maximum amount of characters is 512");
 define("UPLOAD_MAX_SIZE", " the maximum upload size is 16MB");
+define("SECOND_EMAIL_TEXT", "Extra e-mail addresses: ");
+define("MAIL_COMMENT", "Comment");
