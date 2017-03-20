@@ -4,3 +4,6 @@ public/css/bg.jpg
 *.png
 *.pdf
 config/db_constants.php
+.idea/dictionaries/freek.xml
+.idea/InventPortal.iml
+config/db_constants.php
