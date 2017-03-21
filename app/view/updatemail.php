@@ -1,6 +1,5 @@
 <?php
 #UPDATE MAIL PROCESS PAGE
-
 require_once DIR_MODEL . 'permissions.php';
 
 $mysqli = mysqli_connect();
@@ -19,18 +18,19 @@ $myupload = $upload->getUploadById($session->getMailId());
 $image_controller = new ImageController();
 $uploadedimages = $image_controller->getImagebyMailID($myupload['id']);
 
+$mymail = new MailController();
+
 foreach ($uploadedimages as $img) {
     if (isset($_SESSION['img' . $img['id']])) {
         $imgver = $session->getImageVerify($img['id']);
     } else {
-        $imago = $image_controller->getImageVerify($img['id']);
+        $imago = $image_controller->getImageVerify($session->getMailId());
         $imgver = $imago['verify'];
     }
     $image_controller->setImageVerify($img['id'], $imgver);
     unset($_SESSION['img' . $img['id']]);
 }
 
-$mymail = new MailController();
 
 //Load PHPMailer dependencies
 require_once DIR_MAILER . '/PHPMailerAutoload.php';
@@ -126,6 +126,17 @@ if (!$mailer->send()) {
     unset($_SESSION['mailto']);
     unset($_SESSION['accorduserid']);
     unset($_SESSION['userid']);
+
+    //controleerd of of er een tweede of hogere versie is
+    $version = $image_controller->getHighVersion($myid);
+    if($version["version"] > 1) {
+        //controleerd of de laatste versie goed is gekeurd.
+        $status = $image_controller->getStatusLastVersion($myid);
+        if ($status["verify"] == 1) {
+            $mailinfo["verified"] = 2;
+            $mymail->update($mailinfo);
+        }
+    }
 
     $block->Redirect('index.php');
     Session::flash('message', TEXT_ACCORD_SEND);

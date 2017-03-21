@@ -129,4 +129,25 @@ class ImageController
         return $this->model->getImageByName($ImageName);
     }
 
+    /**
+     * haal de status van de laatste versie op
+     *
+     * @param $mailId
+     * @return array|null|string
+     */
+
+    public function getStatusLastVersion($mailId){
+        return $this->model->getStatusLastVersion($mailId);
+    }
+
+    /**
+     * haal de hoogste versie nummer op
+     * @param $mailId
+     * @return array|null
+     */
+
+    public function getHighVersion($mailId){
+        return $this->model->getHighVersion($mailId);
+    }
+
 }

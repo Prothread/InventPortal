@@ -113,4 +113,25 @@ class ImageModel
         return $this->db->getImageByName($ImageName);
     }
 
+    /**
+     * haal de status van de laatste versie op
+     *
+     * @param $mailId
+     * @return array|null|string
+     */
+
+    public function getStatusLastVersion($mailId){
+        return $this->db->getStatusLastVersion($mailId);
+    }
+
+    /**
+     * haal de hoogste versie nummer op
+     * @param $mailId
+     * @return array|null
+     */
+
+    public function getHighVersion($mailId){
+        return $this->db->getHighVersion($mailId);
+    }
+
 }

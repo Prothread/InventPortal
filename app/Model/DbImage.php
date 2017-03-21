@@ -133,4 +133,30 @@ class DbImage extends Database
         return false;
     }
 
+    /**
+     * haal de status van de laatste versie op
+     *
+     * @param $mailId
+     * @return array|null|string
+     */
+
+    public function getHighVersion($mailId){
+        $sql = "SELECT `version` FROM `image` WHERE `mailid` = ".$mailId." ORDER BY `version` DESC LIMIT 1";
+        $result = $this->dbQuery($sql);
+        return mysqli_fetch_assoc($result);
+    }
+
+    /**
+     * haal de hoogste versie nummer op
+     * @param $mailId
+     * @return array|null
+     */
+
+    public function getStatusLastVersion($mailId){
+        $sql = "SELECT `verify` FROM `image` WHERE `mailid` = ".$mailId." ORDER BY `version` DESC LIMIT 1";
+        if($result = $this->dbQuery($sql)) {
+            return mysqli_fetch_assoc($result);
+        }
+    }
+
 }
