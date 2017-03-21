@@ -8,3 +8,4 @@ config/db_constants.php
 .idea/InventPortal.iml
 config/db_constants.php
 *.iml
+/.idea/*
