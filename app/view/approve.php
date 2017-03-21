@@ -149,7 +149,7 @@ if (isset($_SESSION['accorduserid'])) {
                                             class="glyphicon glyphicon-remove-circle"></span> <?= TEXT_EDITED ?>
                                     </div>
                                 <?php } else { ?>
-                                    <form id="mybuttons" method="post">
+                                    <form id="mybuttons" method="post" onsubmit="errorNotification()">
                                         <input type="hidden" id="refreshcount" value="<?= $imgcount ?>">
                                         <input type="hidden" id="ImageID" value="<?= $img['id'] ?>">
                                         <input type="submit" id="AccButton" value="<?= BUTTON_ACCORD ?>">
@@ -171,7 +171,7 @@ if (isset($_SESSION['accorduserid'])) {
                                 </div>
                                 <?php
                             } else { ?>
-                                <form id="mybuttons" method="post">
+                                <form id="mybuttons" method="post" onsubmit="errorNotification()">
                                     <input type="hidden" id="refreshcount" value="<?= $imgcount ?>">
                                     <input type="hidden" id="ImageID" value="<?= $img['id'] ?>">
                                     <input type="submit" id="AccButton" value="<?= BUTTON_ACCORD ?>">
@@ -339,14 +339,20 @@ if (isset($_SESSION['accorduserid'])) {
     </div>
 </div>
 </div>
-
+</head>
 <script language="javascript" type="text/javascript">
-    if (!isset($_SESSION['AccButton']){
-        window.onbeforeunload = askConfirm;
-        function askConfirm() {
-            return "You have unsaved changes.";
+    var notification = true;
+    window.onbeforeunload = askConfirm;
+    function askConfirm() {
+        if(notification){
+            return "";
+        }else{
+            return null;
         }
     }
+    function errorNotification()
+    {
+        notification = false;
+    }
 </script>
-</head>
 
