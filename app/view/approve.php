@@ -149,7 +149,7 @@ if (isset($_SESSION['accorduserid'])) {
                                             class="glyphicon glyphicon-remove-circle"></span> <?= TEXT_EDITED ?>
                                     </div>
                                 <?php } else { ?>
-                                    <form id="mybuttons" method="post" onsubmit="errorNotification()">
+                                    <form id="mybuttons" method="post">
                                         <input type="hidden" id="refreshcount" value="<?= $imgcount ?>">
                                         <input type="hidden" id="ImageID" value="<?= $img['id'] ?>">
                                         <input type="submit" id="AccButton" value="<?= BUTTON_ACCORD ?>">
@@ -171,7 +171,7 @@ if (isset($_SESSION['accorduserid'])) {
                                 </div>
                                 <?php
                             } else { ?>
-                                <form id="mybuttons" method="post" onsubmit="errorNotification()">
+                                <form id="mybuttons" method="post">
                                     <input type="hidden" id="refreshcount" value="<?= $imgcount ?>">
                                     <input type="hidden" id="ImageID" value="<?= $img['id'] ?>">
                                     <input type="submit" id="AccButton" value="<?= BUTTON_ACCORD ?>">
@@ -261,7 +261,7 @@ if (isset($_SESSION['accorduserid'])) {
 
                 <div style="clear: both;"></div>
                 <form id="form" action="?page=updatemail" method="post" enctype="multipart/form-data"
-                      class="form-horizontal">
+                      class="form-horizontal" onsubmit="errorNotification()">
 
                     <input disabled="disabled" type="hidden" name="id" value="<?= $myupload['id']; ?>">
 
@@ -283,7 +283,7 @@ if (isset($_SESSION['accorduserid'])) {
                             <label class="control-label" for="textinput"
                                    style="float:left;"><?= TEXT_NEW_COMMENT ?></label>
                             <div class="col-md-4">
-                                <textarea name="answer" class="form-control input-md" id="textinput" type="text" maxlength="512"></textarea>
+                                <textarea name="answer" class="form-control input-md" id="textinput" type="text" maxlength="512" required></textarea>
                                 <font size="2" color="#bc2d4c"><?= MAX_WORDS_COMMENT ?></font>
                             </div>
 
