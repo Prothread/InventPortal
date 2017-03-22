@@ -421,14 +421,17 @@ $imageId = $dbmail->getIncrement();
                 });
 
                 var myDropzone = this;
+
                 //now we will submit the form when the button is clicked
                 $("#sbmtbtn").on('click', function (e) {
-                    if (!$('[name="title"]').val()) {
+                    var str1 = $('[name="title"]').val().replace(/\s+/g, '');
+                    var str2 = $('[name="additionalcontent"]').val().replace(/\s+/g, '');
+                    if (!$('[name="title"]').val() || !str1.length > 0) {
                         alert("<?= ERROR_TITLE ?>");
-                        return;
-                    } else if (!$('[name="additionalcontent"]').val()) {
+                        return false;
+                    } else if (!$('[name="additionalcontent"]').val() || !str2.length > 0 ) {
                         alert("<?= ERROR_DESCRIPTION ?>");
-                        return;
+                        return false;
                     }
                     e.preventDefault();
                     myDropzone.processQueue(); // this will submit your form to the specified action path

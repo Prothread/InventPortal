@@ -35,24 +35,22 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="phpmail.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="phpmail.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/view/phpmail.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4972">
-              <caret line="226" column="110" lean-forward="false" selection-start-line="226" selection-start-column="110" selection-end-line="226" selection-end-column="110" />
+            <state relative-caret-position="284">
+              <caret line="433" column="36" lean-forward="false" selection-start-line="433" selection-start-column="36" selection-end-line="433" selection-end-column="36" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="approve.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="approve.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/view/approve.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="642">
+            <state relative-caret-position="7700">
               <caret line="350" column="9" lean-forward="false" selection-start-line="350" selection-start-column="9" selection-end-line="350" selection-end-column="9" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#div#0;n#a#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -80,7 +78,7 @@
       <file leaf-file-name="newclient.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/view/newclient.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="764">
+            <state relative-caret-position="1672">
               <caret line="76" column="53" lean-forward="false" selection-start-line="76" selection-start-column="45" selection-end-line="76" selection-end-column="53" />
               <folding />
             </state>
@@ -111,7 +109,7 @@
         <entry file="file://$PROJECT_DIR$/app/view/item.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="13750">
-              <caret line="625" column="50" lean-forward="true" selection-start-line="625" selection-start-column="50" selection-end-line="625" selection-end-column="50" />
+              <caret line="625" column="50" lean-forward="false" selection-start-line="625" selection-start-column="50" selection-end-line="625" selection-end-column="50" />
               <folding />
             </state>
           </provider>
@@ -138,6 +136,7 @@
       <find>$comment</find>
       <find>$extracomment</find>
       <find>AccButton</find>
+      <find>name=&quot;additionalcontent&quot;</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -155,8 +154,8 @@
         <option value="$PROJECT_DIR$/config/language/nl.php" />
         <option value="$PROJECT_DIR$/app/Model/uploadForm.php" />
         <option value="$PROJECT_DIR$/app/view/item.php" />
-        <option value="$PROJECT_DIR$/app/view/phpmail.php" />
         <option value="$PROJECT_DIR$/app/view/approve.php" />
+        <option value="$PROJECT_DIR$/app/view/phpmail.php" />
       </list>
     </option>
   </component>
@@ -187,7 +186,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -267,6 +265,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -304,6 +303,12 @@
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.npm" factoryName="npm">
@@ -363,33 +368,37 @@
       <workItem from="1490007152515" duration="1829000" />
       <workItem from="1490099002730" duration="602000" />
       <workItem from="1490101814187" duration="2302000" />
+      <workItem from="1490176965563" duration="1342000" />
+      <workItem from="1490178326622" duration="1820000" />
+      <workItem from="1490180167655" duration="867000" />
+      <workItem from="1490182165775" duration="12000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="29802000" />
+    <option name="totallyTimeSpent" value="33843000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="0" width="1924" height="1038" extended-state="0" />
-    <editor active="false" />
+    <frame x="-8" y="0" width="1924" height="1038" extended-state="1" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32088745" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34036797" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298969" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298969" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -865,7 +874,7 @@
     <entry file="file://$PROJECT_DIR$/app/view/item.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="13750">
-          <caret line="625" column="50" lean-forward="true" selection-start-line="625" selection-start-column="50" selection-end-line="625" selection-end-column="50" />
+          <caret line="625" column="50" lean-forward="false" selection-start-line="625" selection-start-column="50" selection-end-line="625" selection-end-column="50" />
           <folding />
         </state>
       </provider>
@@ -894,17 +903,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/view/phpmail.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4972">
-          <caret line="226" column="110" lean-forward="false" selection-start-line="226" selection-start-column="110" selection-end-line="226" selection-end-column="110" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/view/newclient.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="764">
+        <state relative-caret-position="1672">
           <caret line="76" column="53" lean-forward="false" selection-start-line="76" selection-start-column="45" selection-end-line="76" selection-end-column="53" />
           <folding />
         </state>
@@ -912,11 +913,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/view/approve.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="642">
+        <state relative-caret-position="7700">
           <caret line="350" column="9" lean-forward="false" selection-start-line="350" selection-start-column="9" selection-end-line="350" selection-end-column="9" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#a#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/view/phpmail.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="284">
+          <caret line="433" column="36" lean-forward="false" selection-start-line="433" selection-start-column="36" selection-end-line="433" selection-end-column="36" />
+          <folding />
         </state>
       </provider>
     </entry>
