@@ -34,6 +34,18 @@ define("TEXT_EMPLOYEE","Werknemer");
 define("TEXT_END_DATE","Eind datum");
 define("TEXT_ADD_TASKS","Taken toevoegen");
 define("TEXT_TEMPLATE","Template");
+define("TEXT_ASSIGNMENT_CREATE","Opdracht aanmaken");
+define("TEXT_URGENCY","Urgentie");
+define("TEXT_DURATION","Duur");
+define("TEXT_VALIDITY_DURATION","Geldigheidsduur");
+define("TEXT_VALUE","Waarde");
+define("TEXT_CHANCE","Kans");
+define("TEXT_CREATION_DATE","Aanmaak datum");
+define("TEXT_TENDER_CREATE","Offerte aanmaken");
+define("TEXT_TASK_CREATE","Taak aanmaken");
+define("TEXT_CASE_CREATE","Case aanmaken");
+define("TEXT_TEMPLATE_CREATE","Template aanmaken");
+define("TEXT_DEFAULTTASK_CREATE","Standaard taak aanmaken");
 
 /*/CRM*/
 

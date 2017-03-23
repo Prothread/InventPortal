@@ -2033,7 +2033,7 @@ tr:nth-child(2n) {
     width: 100%;
 }
 
-.crm-add label, input, select, textarea{
+.crm-add label, .crm-add input, .crm-add select, .crm-add textarea{
     float: left;
 }
 

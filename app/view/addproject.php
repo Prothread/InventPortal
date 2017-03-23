@@ -11,30 +11,30 @@
 <div class="crm-content-wrapper">
     <div class="add-left-content add-content">
         <h1 class="crm-content-header"><?= TEXT_PROJECT_CREATE ?></h1>
-        <form class="crm-add">
+        <form class="crm-add" action="?page=projectcreate" method="post">
             <div>
                 <label><?= TABLE_TITLE ?></label>
-                <input type="text" class="form-control">
+                <input type="text" class="form-control" name="title">
             </div>
             <div>
                 <label><?= TEXT_ASSIGNFOR ?></label>
-                <select class="form-control">
+                <select class="form-control" name="client">
 
                 </select>
             </div>
             <div>
                 <label><?= TEXT_EMPLOYEE ?></label>
-                <select class="form-control">
+                <select class="form-control" name="user">
 
                 </select>
             </div>
             <div>
                 <label><?= TEXT_END_DATE ?></label>
-                <input type="date" class="form-control">
+                <input type="date" class="form-control" name="endDate">
             </div>
             <div class="description-holder">
                 <label><?= TEXT_DESCRIPTION ?></label>
-                <textarea></textarea>
+                <textarea name="description"></textarea>
             </div>
             <div class="button-holder">
                 <div class="button-push"></div>

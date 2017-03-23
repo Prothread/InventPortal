@@ -34,6 +34,18 @@ define("TEXT_EMPLOYEE","Employee");
 define("TEXT_END_DATE","End date");
 define("TEXT_ADD_TASKS","Add tasks");
 define("TEXT_TEMPLATE","Template");
+define("TEXT_ASSIGNMENT_CREATE","Create assignment");
+define("TEXT_URGENCY","Urgency");
+define("TEXT_DURATION","Duration");
+define("TEXT_VALIDITY_DURATION","Validity duration");
+define("TEXT_VALUE","Value");
+define("TEXT_CHANCE","Chance");
+define("TEXT_CREATION_DATE","Creation date");
+define("TEXT_TENDER_CREATE","Create tender");
+define("TEXT_TASK_CREATE","Create task");
+define("TEXT_CASE_CREATE","Create case");
+define("TEXT_TEMPLATE_CREATE","Create template");
+define("TEXT_DEFAULTTASK_CREATE","Create default task");
 
 /*/CRM*/
 
