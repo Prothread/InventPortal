@@ -276,6 +276,9 @@ switch ($page) {
     case 'adddefaulttask':
         include '../app/view/adddefaulttask.php';
         break;
+    case 'queue':
+        include '../app/view/queue.php';
+        break;
     default:
         include '../app/view/404.php';
         break;

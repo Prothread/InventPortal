@@ -25,7 +25,15 @@ define("TEXT_TASK_ADD", "Task");
 define("TEXT_CASE_ADD", "Case");
 define("TEXT_TEMPLATE_ADD", "Template");
 define("TEXT_DEFAULTTASK_ADD", "Default tasks ");
+define("TEXT_QUEUE", "Queue");
 
+/*CRM FORMS*/
+
+define("TEXT_PROJECT_CREATE","Create project");
+define("TEXT_EMPLOYEE","Employee");
+define("TEXT_END_DATE","End date");
+define("TEXT_ADD_TASKS","Add tasks");
+define("TEXT_TEMPLATE","Template");
 
 /*/CRM*/
 

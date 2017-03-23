@@ -1979,6 +1979,16 @@ tr:nth-child(2n) {
     background-size: 24px;
 }
 
+.sidebar-nav .nav-button-queue a {
+    background: url("../img/icons/queue-icon.png") no-repeat 40px 7px;
+    background-size: 24px;
+}
+
+.sidebar-nav .nav-button-queue a:hover {
+    background: url("../img/icons/queue-icon-hover.png") no-repeat 40px 7px;
+    background-size: 24px;
+}
+
 .nav-dropdown{
     overflow: hidden;
 }
@@ -1995,4 +2005,90 @@ tr:nth-child(2n) {
     margin-top: -45px;;
 }
 
+.crm-content-wrapper{
+    background: url("../img/devider-background.png") repeat-x ;
+    min-height: 66px;
+    margin: 0px 20px 0px 20px;
+}
+
+.crm-content-header{
+    font-size: 20px;
+    margin-top: 30px;
+    width: 100%;
+}
+
+.add-content{
+    float: left;
+}
+
+.add-left-content{
+    width: 50%;
+    max-width: 700px;
+}
+
+.add-right-content{
+    width: 50%;
+    max-width: 500px;
+}
+
+.crm-add{
+    padding-top: 20px;
+    width: 100%;
+}
+
+.crm-add label, input, select, textarea{
+    float: left;
+}
+
+.crm-add label{
+    clear: left;
+    width: 30%;
+    max-width: 160px;
+    min-width: 95px;
+    text-align: right;
+}
+
+.crm-add input, .crm-add select, .crm-add textarea, #taken-lijst{
+    margin-left: 20px;
+    width: 60% !important;
+    max-width: 350px;
+    height: 35px;
+    border-radius: 4px;
+}
+
+.crm-add .description-holder textarea{
+    height: 120px;
+    resize: none;
+}
+
+.crm-add div{
+    height: 55px;
+    padding-top: 10px;
+}
+
+.crm-add button{
+    width: 100px;
+    float: left;
+}
+
+.button-push{
+    width: calc(30% + 20px);
+    max-width: 180px;
+    float: left;
+}
+
+.description-holder{
+    height: 130px !important;
+}
+
+.button-holder{
+    padding-top: 20px !important;
+}
+
+#taken-lijst{
+    float: left;
+    border: solid #a9a9a9 1px;
+    height: auto;
+    min-height: 40px;
+}
 /*/CRM*/

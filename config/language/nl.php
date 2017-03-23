@@ -25,7 +25,15 @@ define("TEXT_TASK_ADD", "Taak");
 define("TEXT_CASE_ADD", "Case");
 define("TEXT_TEMPLATE_ADD", "Template");
 define("TEXT_DEFAULTTASK_ADD", "Standaard taak");
+define("TEXT_QUEUE", "Wachtrij");
 
+/*CRM Forms*/
+
+define("TEXT_PROJECT_CREATE","Project aanmaken");
+define("TEXT_EMPLOYEE","Werknemer");
+define("TEXT_END_DATE","Eind datum");
+define("TEXT_ADD_TASKS","Taken toevoegen");
+define("TEXT_TEMPLATE","Template");
 
 /*/CRM*/
 

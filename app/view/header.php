@@ -143,18 +143,24 @@ if (isset($_SESSION['accorduserid']) && !isset($_SESSION['usr_id'])) {
             <li class="nav-button-home">
                 <a href="?page=crmdashboard"><?= TEXT_CRM_DASHBOARD ?></a>
             </li>
-
+            <li class="nav-button-queue">
+                <a href="?page=queue"><?= TEXT_QUEUE ?></a>
+            </li>
             <li class="nav-button-dropdown">
                 <a id="overviews-link" href=""><?= TEXT_OVERVIEWS_DROPDOWN ?></a>
             </li>
+
             <ul id="overview-dropdown" class="nav-dropdown sidebar-nav toggled">
                 <li class="nav-button-tender"><a href="?page=tendersoverview"><?= TEXT_TENDER_OVERVIEW ?></a></li>
                 <li class="nav-button-project"><a href="?page=projectsoverview"><?= TEXT_PROJECT_OVERVIEW ?></a></li>
-                <li class="nav-button-assignment"><a href="?page=assignmentsoverview"><?= TEXT_ASSIGNMENT_OVERVIEW ?></a></li>
+                <li class="nav-button-assignment"><a
+                        href="?page=assignmentsoverview"><?= TEXT_ASSIGNMENT_OVERVIEW ?></a></li>
                 <li class="nav-button-task"><a href="?page=tasksoverview"><?= TEXT_TASK_OVERVIEW ?></a></li>
                 <li class="nav-button-case"><a href="?page=casesoverview"><?= TEXT_CASE_OVERVIEW ?></a></li>
-                <li class="nav-button-assignment"><a href="?page=templatesoverview"><?= TEXT_TEMPLATE_OVERVIEW ?></a></li>
-                <li class="nav-button-task"><a href="?page=defaulttasksoverview"><?= TEXT_DEFAULTTASK_OVERVIEW ?></a></li>
+                <li class="nav-button-assignment"><a href="?page=templatesoverview"><?= TEXT_TEMPLATE_OVERVIEW ?></a>
+                </li>
+                <li class="nav-button-task"><a href="?page=defaulttasksoverview"><?= TEXT_DEFAULTTASK_OVERVIEW ?></a>
+                </li>
             </ul>
 
             <li class="nav-button-dropdown">
@@ -169,7 +175,6 @@ if (isset($_SESSION['accorduserid']) && !isset($_SESSION['usr_id'])) {
                 <li class="nav-button-assignment"><a href="?page=addtemplate"><?= TEXT_TEMPLATE_ADD ?></a></li>
                 <li class="nav-button-task"><a href="?page=adddefaulttask"><?= TEXT_DEFAULTTASK_ADD ?></a></li>
             </ul>
-
             <br/>
 
             <?php if ($user->getPermission($permgroup, 'CAN_SHOW_KLANTPAGINA') == 1) { ?>
