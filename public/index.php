@@ -278,6 +278,8 @@ switch ($page) {
         break;
     case 'queue':
         include '../app/view/queue.php';
+    case 'crmdashboard.php':
+        include '../app/view/crmdashboard.php';
         break;
     default:
         include '../app/view/404.php';
