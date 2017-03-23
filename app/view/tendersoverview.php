@@ -1,9 +1,266 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: freek
- * Date: 22-3-2017
- * Time: 16:31
- */
+<div id="case-overview-holder">
 
-echo 'tenders overview';
+    <header>Offertes Overzicht</header>
+    <hr>
+    <div class="case-overzicht-buttons">
+        <button class="custom-file-upload">Aanmaken</button>
+        <button class="custom-file-upload">Archief</button>
+    </div>
+    <div class="case-overvieuw-table">
+        <table id="myTable" class="table table-striped">
+            <thead>
+            <tr>
+                <th>Onderwerp</th>
+                <th>Werknemer</th>
+                <th>Klant</th>
+                <th>Waarde</th>
+                <th>Kans</th>
+                <th>Eind datum</th>
+                <th>Status</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <a href="#">Case onderwerp</a>
+                </td>
+                <td>
+                    <a href="#">Werkn.afk</a>
+                </td>
+                <td>
+                    <a href="#">Klantnaam</a>
+                </td>
+                <td>
+                    <a href="#">&euro;500,-</a>
+                </td>
+                <td>
+                    <a href="#">75%</a>
+                </td>
+                <td>
+                    04-04-2017
+                </td>
+                <td>
+                    <img src="css/bezig-icon.png">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#">Case onderwerp</a>
+                </td>
+                <td>
+                    <a href="#">Werkn.afk</a>
+                </td>
+                <td>
+                    <a href="#">Klantnaam</a>
+                </td>
+                <td>
+                    <a href="#">&euro;500,-</a>
+                </td>
+                <td>
+                    <a href="#">75%</a>
+                </td>
+                <td>
+                    04-04-2017
+                </td>
+                <td>
+                    <img src="css/open-icon.png">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#">Case onderwerp</a>
+                </td>
+                <td>
+                    <a href="#">Werkn.afk</a>
+                </td>
+                <td>
+                    <a href="#">Klantnaam</a>
+                </td>
+                <td>
+                    <a href="#">&euro;500,-</a>
+                </td>
+                <td>
+                    <a href="#">75%</a>
+                </td>
+                <td>
+                    04-04-2017
+                </td>
+                <td>
+                    <img src="css/bezig-icon.png">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#">Case onderwerp</a>
+                </td>
+                <td>
+                    <a href="#">Werkn.afk</a>
+                </td>
+                <td>
+                    <a href="#">Klantnaam</a>
+                </td>
+                <td>
+                    <a href="#">&euro;500,-</a>
+                </td>
+                <td>
+                    <a href="#">75%</a>
+                </td>
+                <td>
+                    04-04-2017
+                </td>
+                <td>
+                    <img src="css/open-icon.png">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#">Case onderwerp</a>
+                </td>
+                <td>
+                    <a href="#">Werkn.afk</a>
+                </td>
+                <td>
+                    <a href="#">Klantnaam</a>
+                </td>
+                <td>
+                    <a href="#">&euro;500,-</a>
+                </td>
+                <td>
+                    <a href="#">75%</a>
+                </td>
+                <td>
+                    04-04-2017
+                </td>
+                <td>
+                    <img src="css/bezig-icon.png">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#">Case onderwerp</a>
+                </td>
+                <td>
+                    <a href="#">Werkn.afk</a>
+                </td>
+                <td>
+                    <a href="#">Klantnaam</a>
+                </td>
+                <td>
+                    <a href="#">&euro;500,-</a>
+                </td>
+                <td>
+                    <a href="#">75%</a>
+                </td>
+                <td>
+                    04-04-2017
+                </td>
+                <td>
+                    <img src="css/open-icon.png">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#">Case onderwerp</a>
+                </td>
+                <td>
+                    <a href="#">Werkn.afk</a>
+                </td>
+                <td>
+                    <a href="#">Klantnaam</a>
+                </td>
+                <td>
+                    <a href="#">&euro;500,-</a>
+                </td>
+                <td>
+                    <a href="#">75%</a>
+                </td>
+                <td>
+                    04-04-2017
+                </td>
+                <td>
+                    <img src="css/bezig-icon.png">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#">Case onderwerp</a>
+                </td>
+                <td>
+                    <a href="#">Werkn.afk</a>
+                </td>
+                <td>
+                    <a href="#">Klantnaam</a>
+                </td>
+                <td>
+                    <a href="#">&euro;500,-</a>
+                </td>
+                <td>
+                    <a href="#">75%</a>
+                </td>
+                <td>
+                    04-04-2017
+                </td>
+                <td>
+                    <img src="css/open-icon.png">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#">Case onderwerp</a>
+                </td>
+                <td>
+                    <a href="#">Werkn.afk</a>
+                </td>
+                <td>
+                    <a href="#">Klantnaam</a>
+                </td>
+                <td>
+                    <a href="#">&euro;500,-</a>
+                </td>
+                <td>
+                    <a href="#">75%</a>
+                </td>
+                <td>
+                    04-04-2017
+                </td>
+                <td>
+                    <img src="css/bezig-icon.png">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#">Case onderwerp</a>
+                </td>
+                <td>
+                    <a href="#">Werkn.afk</a>
+                </td>
+                <td>
+                    <a href="#">Klantnaam</a>
+                </td>
+                <td>
+                    <a href="#">&euro;500,-</a>
+                </td>
+                <td>
+                    <a href="#">75%</a>
+                </td>
+                <td>
+                    04-04-2017
+                </td>
+                <td>
+                    <img src="css/open-icon.png">
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#myTable').dataTable({
+            "order": [[0, "desc"]],
+            "deferRender": true
+        });
+
+    });
+</script>
