@@ -2012,14 +2012,21 @@ tr:nth-child(2n) {
     position: absolute;
     top: 3px;
     right: 3px;
-    width: 30px;
-    height: 30px;
+    height: 25px;
 }
 
 .crm-dashboard-box .urgentie{
     position: absolute;
-    bottom: 3px;
+    bottom: 25px;
+    right: 3px;
+    height: 25px;
+}
+
+.crm-dashboard-box .toewijzenlink{
+    position: absolute;
+    bottom: -5px;
     right: 3px;
     height: 30px;
+    text-decoration: underline;
 }
 
