@@ -125,14 +125,12 @@ if (isset($_SESSION['accorduserid']) && !isset($_SESSION['usr_id'])) {
         <ul class="sidebar-nav">
 
             <li class="nav-button-home">
-                <a href="?page=dashboard"><?= TEXT_HOME ?></a>
+                <a href="?page=dashboard"><?= TEXT_UPLOAD_DASHBOARD ?></a>
             </li>
 
             <li class="nav-button-all">
                 <a href="?page=overview"><?= TEXT_OVERVIEW ?></a>
             </li>
-
-            <br/>
 
             <?php if ($user->getPermission($permgroup, 'CAN_UPLOAD') == 1) { ?>
                 <li class="nav-button-upload">
@@ -140,19 +138,39 @@ if (isset($_SESSION['accorduserid']) && !isset($_SESSION['usr_id'])) {
                 </li>
             <?php } ?>
 
-            <?php if ($user->getPermission($permgroup, 'CAN_EDIT_SETTINGS') == 1) { ?>
-                <li class="nav-button-settings">
-                    <a href="?page=settings"><?= TEXT_SETTINGS ?></a>
-                </li>
-            <?php } ?>
-
             <br/>
 
-            <?php if ($user->getPermission($permgroup, 'CAN_ACCORD') == 1 && isset($_SESSION['accord'])) { ?>
-                <li class="nav-button-accord">
-                    <a href="?page=approve"><?= TEXT_ACCORD ?></a>
-                </li>
-            <?php } ?>
+            <li class="nav-button-home">
+                <a href="?page=crmdashboard"><?= TEXT_CRM_DASHBOARD ?></a>
+            </li>
+
+            <li class="nav-button-dropdown">
+                <a id="overviews-link" href=""><?= TEXT_OVERVIEWS_DROPDOWN ?></a>
+            </li>
+            <ul id="overview-dropdown" class="nav-dropdown sidebar-nav toggled">
+                <li class="nav-button-tender"><a href="?page=tendersoverview"><?= TEXT_TENDER_OVERVIEW ?></a></li>
+                <li class="nav-button-project"><a href="?page=projectsoverview"><?= TEXT_PROJECT_OVERVIEW ?></a></li>
+                <li class="nav-button-assignment"><a href="?page=assignmentsoverview"><?= TEXT_ASSIGNMENT_OVERVIEW ?></a></li>
+                <li class="nav-button-task"><a href="?page=tasksoverview"><?= TEXT_TASK_OVERVIEW ?></a></li>
+                <li class="nav-button-case"><a href="?page=casesoverview"><?= TEXT_CASE_OVERVIEW ?></a></li>
+                <li class="nav-button-assignment"><a href="?page=templatesoverview"><?= TEXT_TEMPLATE_OVERVIEW ?></a></li>
+                <li class="nav-button-task"><a href="?page=defaulttasksoverview"><?= TEXT_DEFAULTTASK_OVERVIEW ?></a></li>
+            </ul>
+
+            <li class="nav-button-dropdown">
+                <a id="create-link" href=""><?= TEXT_CREATE_DROPDOWN ?></a>
+            </li>
+            <ul id="create-dropdown" class="nav-dropdown sidebar-nav toggled">
+                <li class="nav-button-tender"><a href="?page=addtender"><?= TEXT_TENDER_ADD ?></a></li>
+                <li class="nav-button-project"><a href="?page=addproject"><?= TEXT_PROJECT_ADD ?></a></li>
+                <li class="nav-button-assignment"><a href="?page=addassignment"><?= TEXT_ASSIGNMENT_ADD ?></a></li>
+                <li class="nav-button-task"><a href="?page=addtask"><?= TEXT_TASK_ADD ?></a></li>
+                <li class="nav-button-case"><a href="?page=addcase"><?= TEXT_CASE_ADD ?></a></li>
+                <li class="nav-button-assignment"><a href="?page=addtemplate"><?= TEXT_TEMPLATE_ADD ?></a></li>
+                <li class="nav-button-task"><a href="?page=adddefaulttask"><?= TEXT_DEFAULTTASK_ADD ?></a></li>
+            </ul>
+
+            <br/>
 
             <?php if ($user->getPermission($permgroup, 'CAN_SHOW_KLANTPAGINA') == 1) { ?>
                 <li class="nav-button-users">
@@ -167,7 +185,19 @@ if (isset($_SESSION['accorduserid']) && !isset($_SESSION['usr_id'])) {
             <?php } ?>
 
             <br/>
-            <br/>
+
+            <?php if ($user->getPermission($permgroup, 'CAN_ACCORD') == 1 && isset($_SESSION['accord'])) { ?>
+                <li class="nav-button-accord">
+                    <a href="?page=approve"><?= TEXT_ACCORD ?></a>
+                </li>
+            <?php } ?>
+
+            <?php if ($user->getPermission($permgroup, 'CAN_EDIT_SETTINGS') == 1) { ?>
+                <li class="nav-button-settings">
+                    <a href="?page=settings"><?= TEXT_SETTINGS ?></a>
+                </li>
+            <?php } ?>
+
             <li class="nav-button-logout">
                 <a href="?page=logout"><?= TEXT_LOGOUT ?></a>
             </li>

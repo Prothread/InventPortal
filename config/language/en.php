@@ -6,7 +6,30 @@
  * Time: 14:37
  */
 
-define("TEXT_HOME", "Dashboard");
+/*CRM*/
+
+define("TEXT_CRM_DASHBOARD", "CRM Dashboard");
+define("TEXT_OVERVIEWS_DROPDOWN", "Overviews");
+define("TEXT_CREATE_DROPDOWN", "Add");
+define("TEXT_TENDER_OVERVIEW", "Tenders");
+define("TEXT_PROJECT_OVERVIEW", "Projects");
+define("TEXT_ASSIGNMENT_OVERVIEW", "Opdrachten");
+define("TEXT_TASK_OVERVIEW", "Tasks");
+define("TEXT_CASE_OVERVIEW", "Cases");
+define("TEXT_TEMPLATE_OVERVIEW", "Templates");
+define("TEXT_DEFAULTTASK_OVERVIEW", "Default tasks");
+define("TEXT_TENDER_ADD", "Tender");
+define("TEXT_PROJECT_ADD", "Project");
+define("TEXT_ASSIGNMENT_ADD", "Assignment");
+define("TEXT_TASK_ADD", "Task");
+define("TEXT_CASE_ADD", "Case");
+define("TEXT_TEMPLATE_ADD", "Template");
+define("TEXT_DEFAULTTASK_ADD", "Default tasks ");
+
+
+/*/CRM*/
+
+define("TEXT_UPLOAD_DASHBOARD", "Upload dashboard");
 define("TEXT_OVERVIEW", "Overview");
 define("MY_TEXT_OVERVIEW", "My overview");
 define("TEXT_UPLOAD", "Upload");

@@ -812,6 +812,7 @@ table {
 }
 
 body {
+    background:none !important;
     height: 600px;
     padding: 0 !important;
 }
@@ -1403,7 +1404,9 @@ ul.sidebar-nav {
     background: url("../icons/acchover.png") no-repeat 40px 7px
 }
 
-html, body, #wrapper, #sidebar-wrapper {
+
+
+html, body {
     height: 100%;
 }
 
@@ -1546,7 +1549,7 @@ table.table {
 /* Sidebar */
 
 .sidebar-nav {
-    position: absolute;
+    /*position: absolute;*/
     top: 0;
     width: 250px;
     margin: 0;
@@ -1568,7 +1571,6 @@ table.table {
 .sidebar-nav li a:hover {
     text-decoration: none;
     color: #bc2d4b;
-    background: #25292b;
 }
 
 .sidebar-nav li a:active,
@@ -1914,3 +1916,83 @@ tr:nth-child(2n) {
         height: calc(100% - 24px);
     }
 }
+
+/*CRM*/
+
+.sidebar-nav .nav-button-dropdown a {
+    background: url("../img/icons/dropdown-icon.png")no-repeat 40px 7px;
+    background-size: 24px;
+}
+
+.sidebar-nav .nav-button-dropdown a:hover {
+    background: url("../img/icons/dropdown-icon-hover.png") no-repeat 40px 7px;
+    background-size: 24px;
+}
+
+.sidebar-nav .nav-button-tender a {
+    background: url("../img/icons/offerte-icon.png") no-repeat 50px 7px;
+    background-size: 24px;
+}
+
+.sidebar-nav .nav-button-tender a:hover {
+    background: url("../img/icons/offerte-icon-hover.png") no-repeat 50px 7px;
+    background-size: 24px;
+}
+
+.sidebar-nav .nav-button-project a {
+    background: url("../img/icons/project-icon.png") no-repeat 50px 7px;
+    background-size: 24px;
+}
+
+.sidebar-nav .nav-button-project a:hover {
+    background: url("../img/icons/project-icon-hover.png") no-repeat 50px 7px;
+    background-size: 24px;
+}
+
+.sidebar-nav .nav-button-assignment a {
+    background: url("../img/icons/opdracht-icon.png") no-repeat 50px 7px;
+    background-size: 24px;
+}
+
+.sidebar-nav .nav-button-assignment a:hover {
+    background: url("../img/icons/opdracht-icon-hover.png") no-repeat 50px 7px;
+    background-size: 24px;
+}
+
+.sidebar-nav .nav-button-task a {
+    background: url("../img/icons/taak-icon.png") no-repeat 50px 7px;
+    background-size: 24px;
+}
+
+.sidebar-nav .nav-button-task a:hover {
+    background: url("../img/icons/taak-icon-hover.png") no-repeat 50px 7px;
+    background-size: 24px;
+}
+
+.sidebar-nav .nav-button-case a {
+    background: url("../img/icons/case-icon.png") no-repeat 50px 7px;
+    background-size: 24px;
+}
+
+.sidebar-nav .nav-button-case a:hover {
+    background: url("../img/icons/case-icon-hover.png") no-repeat 50px 7px;
+    background-size: 24px;
+}
+
+.nav-dropdown{
+    overflow: hidden;
+}
+
+.nav-dropdown li{
+    margin-left: 10px;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+.nav-dropdown.toggled li{
+    margin-top: -45px;;
+}
+
+/*/CRM*/
