@@ -234,6 +234,9 @@ switch ($page) {
     case 'weigeritem':
         include '../app/view/weigeritem.php';
         break;
+    case 'crmdashboard.php':
+        include '../app/view/crmdashboard.php';
+        break;
     default:
         include '../app/view/404.php';
         break;

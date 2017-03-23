@@ -1914,3 +1914,112 @@ tr:nth-child(2n) {
         height: calc(100% - 24px);
     }
 }
+
+/*CRM portaal*/
+
+/*#crmdashboardtable table {*/
+    /*border-collapse: collapse;*/
+    /*width: 90%;*/
+/*}*/
+
+/*#crmdashboardtable td {*/
+    /*padding-top: .5em;*/
+    /*padding-bottom: .5em;*/
+    /*position: relative;*/
+/*}*/
+
+/*#crmdashboardtable tr {*/
+/*background-color: #eaecef;*/
+/*}*/
+
+/*#crmdashboardtable td:after {*/
+    /*content: '';*/
+    /*display: block;*/
+    /*margin-top: 60px;*/
+/*}*/
+/*#crmdashboardtable td .content {*/
+    /*position: absolute;*/
+    /*top: 10px;*/
+    /*bottom: 10px;*/
+    /*left: 10px;*/
+    /*right: 10px;*/
+    /*background: gold;*/
+/*}*/
+
+.crm-dashboard-holder{
+    overflow-y: scroll;
+    width: 1438px;
+}
+
+.crm-dashboard-row{
+    margin-left: 30px;
+    width: 250px;
+    height: 550px;
+    text-align: left;
+    padding-top: 10px;
+    float: left;
+}
+
+.crm-dashboard-inside-row{
+    padding-top: 20px;
+    margin-top: 20px;
+    background-color: #eeeeee;
+    width: 250px;
+    height: 550px;
+    border-radius: 7px;
+    box-shadow: 0px 0px 20px #939393;
+    position: relative;
+}
+
+
+.crm-dashboard-inside-row button{
+    width: 200px;
+    position:absolute;
+    bottom:10px;
+    right: 10%;
+    border-radius: 7px;
+    height: 35px;
+}
+
+.crm-dashboard-box{
+    margin: 0 auto;
+    width: 220px;
+    list-style-type: none;
+    background-color: #f4f6f9;
+    border-radius: 7px;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.crm-dashboard-box ul{
+    list-style-type: none;
+    text-align: left;
+    padding: 5px;
+}
+
+.crm-dashboard-select{
+    width: 250px;
+    height: 30px;
+    border-radius: 9px;
+    background-color: #dd2c4c ;
+    color: white;
+    margin: 0 auto;
+    padding-left: 10px;
+    margin-top: 10px;
+}
+
+.crm-dashboard-box .deadline{
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    width: 30px;
+    height: 30px;
+}
+
+.crm-dashboard-box .urgentie{
+    position: absolute;
+    bottom: 3px;
+    right: 3px;
+    height: 30px;
+}
+
