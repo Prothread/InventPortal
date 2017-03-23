@@ -234,6 +234,50 @@ switch ($page) {
     case 'weigeritem':
         include '../app/view/weigeritem.php';
         break;
+    case 'tendersoverview':
+        include '../app/view/tendersoverview.php';
+        break;
+    case 'projectsoverview':
+        include '../app/view/projectsoverview.php';
+        break;
+    case 'assignmentsoverview':
+        include '../app/view/assignmentsoverview.php';
+        break;
+    case 'tasksoverview':
+        include '../app/view/tasksoverview.php';
+        break;
+    case 'casesoverview':
+        include '../app/view/casesoverview.php';
+        break;
+    case 'templatesoverview':
+        include '../app/view/templatesoverview.php';
+        break;
+    case 'defaulttasksoverview':
+        include '../app/view/defaulttasksoverview.php';
+        break;
+    case 'addtender':
+        include '../app/view/addtender.php';
+        break;
+    case 'addproject':
+        include '../app/view/addproject.php';
+        break;
+    case 'addassignment':
+        include '../app/view/addassignment.php';
+        break;
+    case 'addtask':
+        include '../app/view/addtask.php';
+        break;
+    case 'addcase':
+        include '../app/view/addcase.php';
+        break;
+    case 'addtemplate':
+        include '../app/view/addtemplate.php';
+        break;
+    case 'adddefaulttask':
+        include '../app/view/adddefaulttask.php';
+        break;
+    case 'queue':
+        include '../app/view/queue.php';
     case 'crmdashboard.php':
         include '../app/view/crmdashboard.php';
         break;

@@ -6,7 +6,38 @@
  * Time: 14:38
  */
 
-define("TEXT_HOME", "Home");
+/*CRM*/
+
+define("TEXT_CRM_DASHBOARD", "CRM Dashboard");
+define("TEXT_OVERVIEWS_DROPDOWN", "Overzichten");
+define("TEXT_CREATE_DROPDOWN", "Aanmaken");
+define("TEXT_TENDER_OVERVIEW", "Offertes");
+define("TEXT_PROJECT_OVERVIEW", "Projecten");
+define("TEXT_ASSIGNMENT_OVERVIEW", "Opdrachten");
+define("TEXT_TASK_OVERVIEW", "Taken");
+define("TEXT_CASE_OVERVIEW", "Cases");
+define("TEXT_TEMPLATE_OVERVIEW", "Templates");
+define("TEXT_DEFAULTTASK_OVERVIEW", "Standaard taken");
+define("TEXT_TENDER_ADD", "Offerte");
+define("TEXT_PROJECT_ADD", "Project");
+define("TEXT_ASSIGNMENT_ADD", "Opdracht");
+define("TEXT_TASK_ADD", "Taak");
+define("TEXT_CASE_ADD", "Case");
+define("TEXT_TEMPLATE_ADD", "Template");
+define("TEXT_DEFAULTTASK_ADD", "Standaard taak");
+define("TEXT_QUEUE", "Wachtrij");
+
+/*CRM Forms*/
+
+define("TEXT_PROJECT_CREATE","Project aanmaken");
+define("TEXT_EMPLOYEE","Werknemer");
+define("TEXT_END_DATE","Eind datum");
+define("TEXT_ADD_TASKS","Taken toevoegen");
+define("TEXT_TEMPLATE","Template");
+
+/*/CRM*/
+
+define("TEXT_UPLOAD_DASHBOARD", "Upload Dashboard");
 define("TEXT_OVERVIEW", "Overzicht");
 define("MY_TEXT_OVERVIEW", "Mijn overzicht");
 define("TEXT_UPLOAD", "Upload");
@@ -17,7 +48,6 @@ define("TEXT_ACCORD", "Accordering");
 define("TEXT_LOGOUT", "Uitloggen");
 define("TEXT_USERPROFILE", "Profiel: ");
 define("TEXT_VERSIE", "Versie");
-
 
 /* LOGIN */
 define("TEXT_PASSWORD", "Wachtwoord");

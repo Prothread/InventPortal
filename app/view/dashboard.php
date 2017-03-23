@@ -75,7 +75,7 @@ $_SESSION['geweigerd_percent'] = $get_items_geweigerd['COUNT(status)'];
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
-                <p class="NameText"><?= TEXT_HOME ?></p>
+                <p class="NameText"><?= TEXT_UPLOAD_DASHBOARD ?></p>
                 <hr size="1">
             </div>
             <div class="col-sm-6 col-md-4">
