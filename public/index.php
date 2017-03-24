@@ -282,8 +282,8 @@ switch ($page) {
     case 'crmdashboard':
         include '../app/view/crmdashboard.php';
         break;
-    case 'projectcreate':
-        include '../app/model/projectcreate.php';
+    case 'projectview':
+        include '../app/view/projectview.php';
         break;
     default:
         include '../app/view/404.php';

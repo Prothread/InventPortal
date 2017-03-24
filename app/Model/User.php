@@ -998,4 +998,11 @@ class User
         return $this->db->getClientKey($name);
     }
 
+    public function getClientList(){
+        return $this->db->getClientList();
+    }
+
+    public function getUserList(){
+        return $this->db->getUserList();
+    }
 }

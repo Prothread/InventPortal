@@ -461,4 +461,12 @@ class UserController
     {
         return $this->model->getClientKey($name);
     }
+
+    public function getClientList(){
+        return $this->model->getClientList();
+    }
+
+    public function getUserList(){
+        return $this->model->getUserList();
+    }
 }

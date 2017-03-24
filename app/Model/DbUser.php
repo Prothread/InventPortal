@@ -22,8 +22,7 @@ class DbUser extends Database
         $email = $user->getEmail();
         $password = hash('sha256', $user->getPassword());
 
-        $sql = "INSERT INTO `users` (`naam`, `email`, `altmail`,  `paswoord`, `permgroup`, `bedrijfsnaam`, `adres`, `postcode`, `plaats`) VALUES('" . $name . "', '" . $email . "', '{$user->getAltMail()}', '" . $password . "', '{$user->getPermGroup()}',
-        '{$user->getCompanyName()}', '{$user->getUserAdres()}', '{$user->getUserPostcode()}', '{$user->getUserPlace()}')";
+        $sql = "INSERT INTO `users` (`naam`, `email`, `altmail`,  `paswoord`, `permgroup`, `bedrijfsnaam`, `adres`, `postcode`, `plaats`) VALUES({$user->getAltMail()}', '" . $password . "', '{$user->getPermGroup()}','{$user->getCompanyName()}', '{$user->getUserAdres()}', '{$user->getUserPostcode()}', '{$user->getUserPlace()}')";
 
         if ($this->dbQuery($sql)) {
             return $this->dbLastInsertedId();
@@ -600,5 +599,16 @@ class DbUser extends Database
         }
 
     }
-
+    public function getClientList(){
+        $sql = "SELECT `id`, `naam` FROM `users` WHERE `permgroup` = 1 ORDER BY `naam`";
+        $result = $this->dbQuery($sql);
+        $endResult = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        return $endResult;
+    }
+    public function getUserList(){
+        $sql = "SELECT `id`, `naam` FROM `users` WHERE `permgroup` != 1 ORDER BY `naam`";
+        $result = $this->dbQuery($sql);
+        $endResult = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        return $endResult;
+    }
 }

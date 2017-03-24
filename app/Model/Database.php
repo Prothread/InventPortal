@@ -129,4 +129,8 @@ class Database
         // section 10-0-3-49--6022aa35:14bdfb8146c:-8000:0000000000000890 end
     }
 
+
+    public function test(){
+        return 'TEst';
+    }
 }

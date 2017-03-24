@@ -48,6 +48,7 @@
                 <label><?= TEXT_DESCRIPTION ?></label>
                 <textarea name="description"></textarea>
             </div>
+<!--            Bestanden uploaden moet nog toegevoegd worden-->
             <div class="button-holder">
                 <div class="button-push"></div>
                 <button type="submit" class="custom-file-upload"><?= TEXT_CREATE_DROPDOWN ?></button>

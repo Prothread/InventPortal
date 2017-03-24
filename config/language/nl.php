@@ -46,6 +46,7 @@ define("TEXT_TASK_CREATE","Taak aanmaken");
 define("TEXT_CASE_CREATE","Case aanmaken");
 define("TEXT_TEMPLATE_CREATE","Template aanmaken");
 define("TEXT_DEFAULTTASK_CREATE","Standaard taak aanmaken");
+define("TEXT_ERROR_FORM","Een veld is niet goed ingevuld, probeer opnieuw.");
 
 /*/CRM*/
 
