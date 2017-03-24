@@ -6,8 +6,9 @@
  * Date: 23-3-2017
  * Time: 14:05
  */
-class project
+class Project
 {
+    private $db;
     /*
      * Project ID
      */
@@ -40,6 +41,38 @@ class project
      * Afrond datum
      */
     private $finishDate;
+
+    /**
+     * Project constructor.
+     */
+    public function __construct()
+    {
+        $this->db = new DBProject();
+    }
+
+    public function create(){
+        return $this->db->create($this);
+    }
+
+    public function update(){
+        return $this->db->update($this);
+    }
+
+    public function delete($id){
+        return $this->db->delete($id);
+    }
+
+    public function getProjectById($id){
+        return $this->db->getProjectById($id);
+    }
+
+    public function getAllProjects(){
+        return $this->db->getAllProjects();
+    }
+
+    public function getProjectsByUserId($userId){
+        return $this->db->getProjectsByUserId($userId);
+    }
 
     /**
      * @return mixed
@@ -167,10 +200,5 @@ class project
     public function setFinishDate($finishDate)
     {
         $this->finishDate = $finishDate;
-    }
-
-
-    public function createProject($data){
-        return $data;
     }
 }
