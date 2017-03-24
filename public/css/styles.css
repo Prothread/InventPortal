@@ -1,3 +1,7 @@
+.se-pre-con{
+    display: none !important;
+}
+
 .equal, .equal > div[class*='col-'] {
     display: -webkit-box;
     display: -moz-box;
@@ -2005,12 +2009,12 @@ tr:nth-child(2n) {
 .crm-content-wrapper{
     background: url("../img/devider-background.png") repeat-x ;
     min-height: 66px;
-    margin: 0px 20px 0px 20px;
+    margin: 0px 0px 0px 20px;
 }
 
 .crm-content-header{
     font-size: 20px;
-    margin-top: 30px;
+    margin-top: 20px;
     width: 100%;
 }
 
@@ -2019,7 +2023,7 @@ tr:nth-child(2n) {
 }
 
 .add-left-content{
-    width: 50%;
+    width: 40%;
     max-width: 700px;
 }
 
@@ -2195,3 +2199,109 @@ tr:nth-child(2n) {
 #case-overview-holder img{
     width: 25px;
 }
+
+.tender-view-side-column{
+    padding-top: 15px;
+    width: 220px;
+    margin-left: 10px;
+    height: 84.5%;
+    float: right;
+    background-color: #cccccc;
+    overflow-y: auto;
+}
+
+.tender-view-box{
+    height: 70px;
+    width: 200px;
+    list-style-type: none;
+    background-color: #f4f6f9;
+    border-radius: 3px;
+    margin: 0 auto;
+    margin-top: 15px;
+    position: relative;
+}
+
+.tender-view-box ul{
+    list-style-type: none;
+    text-align: left;
+    padding: 5px;
+}
+
+.tender-view-box a{
+     text-decoration: none;
+     position: absolute;
+     bottom: 5px;
+     right: 5px;
+     height: 25px;
+     font-size: 20px;
+     color: #333;
+ }
+
+.tender-view-box-notitie{
+    height: 80px;
+    width: 200px;
+    list-style-type: none;
+    background-color: #f4f6f9;
+    border-radius: 3px;
+    margin: 0 auto;
+    margin-top: 15px;
+    position: relative;
+}
+
+.tender-view-box-notitie{
+    list-style-type: none;
+    text-align: left;
+    padding: 5px;
+}
+
+.tender-view-box-notitie a{
+    text-decoration: none;
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    height: 25px;
+    font-size: 20px;
+    color: #333;
+}
+
+.tender-view-box-notitie img{
+    text-decoration: none;
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    height: 25px;
+    font-size: 20px;
+    color: #333;
+}
+
+.tender-view-box-notitie .deadline{
+    position: absolute;
+    top: 5px;
+    right: 3px;
+    height: 25px;
+}
+
+.tender-view-box-notitie .urgentie{
+    position: absolute;
+    bottum: 20px;
+    margin-bottom: 15px;
+    right: 3px;
+    height: 25px;
+}
+
+.tender-view-box-notitie ul{
+    list-style-type: none;
+    text-align: left;
+    padding: 5px;
+}
+
+.tender-view-side-column button{
+    width: 200px;
+    position:absolute;
+    bottom:10px;
+    border-radius: 7px;
+    height: 35px;
+    margin-left: 10px;
+    margin-bottom: 5px;
+}
+

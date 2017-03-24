@@ -105,7 +105,6 @@ if (isset($_POST['signup'])) {
 
 <div id="h">
     <div class="social hidden-xs">
-
     </div>
     <div class="container">
         <div class="row">

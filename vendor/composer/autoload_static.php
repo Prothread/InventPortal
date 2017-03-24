@@ -59,6 +59,9 @@ class ComposerStaticInitc0a55957efdf0e279fcd6092060aa6da
         'UserController' => __DIR__ . '/../..' . '/app/Controller/UserController.php',
         'ntlm_sasl_client_class' => __DIR__ . '/..' . '/phpmailer/phpmailer/extras/ntlm_sasl_client.php',
         'phpmailerException' => __DIR__ . '/..' . '/phpmailer/phpmailer/class.phpmailer.php',
+        'TenderController' => __DIR__ . '/../..' . '/app/Controller/TenderController.php',
+        'Tender' => __DIR__ . '/../..' . '/app/Model/Tender.php',
+        'DbTender' => __DIR__ . '/../..' . '/app/Model/DbTender.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

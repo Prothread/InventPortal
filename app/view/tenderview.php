@@ -11,7 +11,7 @@ $mysqli = mysqli_connect();
 $tender = new TenderController();
 
 $error = false;
-
+$_GET['id'];
 if (isset($_POST['submitTender'])) {
 
     $subject = mysqli_real_escape_string($mysqli, $_POST['subject']);
@@ -66,8 +66,10 @@ if (isset($_POST['submitTender'])) {
         ];
 
         if ($id = $tender->create($tenderinfo)) {
-            $block = new BlockController();
-            $block->Redirect('index.php?page=tenderview&id='.$id);
+//            $id = 10;
+//            $id = $tender->getLastTenderId();
+//            $block = new BlockController();
+            $block->Redirect('index.php?page=tenderview&id=' . $id);
         } else {
             $errormsg = "Er is een probleem opgetreden tijdens het aan maken van een offerte, probeer het later opnieuw.";
         }
@@ -82,7 +84,10 @@ if (isset($_POST['submitTender'])) {
         <form class="crm-add" action="#" method="post">
             <div>
                 <label><?= TABLE_TITLE ?></label>
-                <input type="text" name="subject" class="form-control" name="title" value="<?php   if(isset($_POST['subject'])){echo $_POST['subject'];}?>">
+                <input type="text" name="subject" class="form-control" name="title"
+                       value="<?php if (isset($_POST['subject'])) {
+                           echo $_POST['subject'];
+                       } ?>">
                 <span class="text-danger"><?php if (isset($subject_error)) echo $subject_error; ?></span>
             </div>
             <div>
@@ -100,26 +105,37 @@ if (isset($_POST['submitTender'])) {
             </div>
             <div>
                 <label><?= TEXT_VALIDITY_DURATION ?></label>
-                <input type="number" class="form-control" name="validity" value="<?php   if(isset($_POST['validity'])){echo $_POST['validity'];}?>">
+                <input type="number" class="form-control" name="validity" value="<?php if (isset($_POST['validity'])) {
+                    echo $_POST['validity'];
+                } ?>">
                 <span class="text-danger"><?php if (isset($validity_error)) echo $validity_error; ?></span>
             </div>
             <div>
                 <label><?= TEXT_VALUE ?></label>
-                <input type="number" class="form-control" name="value" value="<?php   if(isset($_POST['value'])){echo $_POST['value'];}?>">
+                <input type="number" class="form-control" name="value" value="<?php if (isset($_POST['value'])) {
+                    echo $_POST['value'];
+                } ?>">
                 <span class="text-danger"><?php if (isset($value_error)) echo $value_error; ?></span>
             </div>
             <div>
                 <label><?= TEXT_CHANCE ?></label>
-                <input type="number" class="form-control" name="chance" value="<?php   if(isset($_POST['chance'])){echo $_POST['chance'];}?>">
+                <input type="number" class="form-control" name="chance" value="<?php if (isset($_POST['chance'])) {
+                    echo $_POST['chance'];
+                } ?>">
             </div>
             <div>
                 <label><?= TEXT_CREATION_DATE ?></label>
-                <input type="date" class="form-control" name="creationDate" value="<?php   if(isset($_POST['creationDate'])){echo $_POST['creationDate'];}?>">
+                <input type="date" class="form-control" name="creationDate"
+                       value="<?php if (isset($_POST['creationDate'])) {
+                           echo $_POST['creationDate'];
+                       } ?>">
                 <span class="text-danger"><?php if (isset($creationDate_error)) echo $creationDate_error; ?></span>
             </div>
             <div class="description-holder">
                 <label><?= TEXT_DESCRIPTION ?></label>
-                <textarea name="description"><?php   if(isset($_POST['description'])){echo $_POST['description'];}?></textarea>
+                <textarea name="description"><?php if (isset($_POST['description'])) {
+                        echo $_POST['description'];
+                    } ?></textarea>
                 <span class="text-danger"><?php if (isset($description_error)) echo $description_error; ?></span>
             </div>
             <div class="button-holder">
@@ -129,23 +145,124 @@ if (isset($_POST['submitTender'])) {
             </div>
         </form>
     </div>
-    <div class="add-right-content add-content">
-        <h1 class="crm-content-header"><?= TEXT_ADD_TASKS ?></h1>
-        <div class="crm-add">
-            <div>
-                <label><?= TEXT_TEMPLATE ?></label>
-                <select></select>
-            </div>
-            <div>
-                <label><?= TEXT_TASK_ADD ?></label>
-                <select></select>
-            </div>
-            <div>
-                <label><?= TEXT_TASK_OVERVIEW ?></label>
-                <div id="taken-lijst">
 
-                </div>
-            </div>
+    <div class="tender-view-side-column">
+        <div class="tender-view-box">
+            <a href="#">...</a>
+            <ul>
+                <li>
+                    Log onderwerp
+                </li>
+                <li>
+                    Log datum
+                </li>
+            </ul>
+        </div>
+
+        <div class="tender-view-box">
+            <a href="#">...</a>
+            <ul>
+                <li>
+                    Log onderwerp
+                </li>
+                <li>
+                    Log datum
+                </li>
+            </ul>
+        </div>
+
+        <div class="tender-view-box">
+            <a href="#">...</a>
+            <ul>
+                <li>
+                    Log onderwerp
+                </li>
+                <li>
+                    Log datum
+                </li>
+            </ul>
         </div>
     </div>
-</div>
+
+    <div class="tender-view-side-column">
+        <button class="custom-file-upload">Notitie toevoegen</button>
+        <div class="tender-view-box">
+            <a href="#">...</a>
+            <ul>
+                <li>
+                    Notitie type
+                </li>
+                <li>
+                    Aanmaak datum
+                </li>
+            </ul>
+        </div>
+
+        <div class="tender-view-box">
+            <a href="#">...</a>
+            <ul>
+                <li>
+                    Notitie type
+                </li>
+                <li>
+                    Aanmaak datum
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="tender-view-side-column">
+        <button class="custom-file-upload">Taak toevoegen</button>
+        <div class="tender-view-box-notitie">
+            <img class="deadline" src="css/deadline3.png">
+            <img class="urgentie" src="css/urgentie4.png">
+            <a href="#">...</a>
+            <ul>
+                <li>
+                    Taak onderwerp
+                </li>
+                <li>
+                    Eind datum
+                </li>
+            </ul>
+        </div>
+
+        <div class="tender-view-box-notitie">
+            <img class="deadline" src="css/deadline3.png">
+            <a href="#">...</a>
+            <ul>
+                <li>
+                    Taak onderwerp
+                </li>
+                <li>
+                    Eind datum
+                </li>
+            </ul>
+        </div>
+
+        <div class="tender-view-box-notitie">
+            <img class="deadline" src="css/deadline3.png">
+            <a href="#">...</a>
+            <ul>
+                <li>
+                    Taak onderwerp
+                </li>
+                <li>
+                    Eind datum
+                </li>
+            </ul>
+        </div>
+
+        <div class="tender-view-box-notitie">
+            <img class="deadline" src="css/deadline1.png">
+            <a href="#">...</a>
+            <ul>
+                <li>
+                    Taak onderwerp
+                </li>
+                <li>
+                    Eind datum
+                </li>
+            </ul>
+        </div>
+    </div>

@@ -285,6 +285,9 @@ switch ($page) {
     case 'projectcreate':
         include '../app/model/projectcreate.php';
         break;
+    case 'tenderview':
+        include '../app/view/tenderview.php';
+        break;
     default:
         include '../app/view/404.php';
         break;

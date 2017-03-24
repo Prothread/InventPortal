@@ -32,4 +32,7 @@ return array(
     'UserController' => $baseDir . '/app/Controller/UserController.php',
     'ntlm_sasl_client_class' => $vendorDir . '/phpmailer/phpmailer/extras/ntlm_sasl_client.php',
     'phpmailerException' => $vendorDir . '/phpmailer/phpmailer/class.phpmailer.php',
+    'TenderController' => $baseDir . '/app/Controller/TenderController.php',
+    'Tender' => $baseDir . '/app/Model/Tender.php',
+    'DbTender' => $baseDir . '/app/Model/DbTender.php',
 );
