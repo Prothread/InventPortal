@@ -35,4 +35,7 @@ return array(
     'ProjectController' => $baseDir . '/app/Controller/ProjectController.php',
     'Project' => $baseDir . '/app/Model/Project.php',
     'DBProject' => $baseDir . '/app/Model/DBProject.php',
+    'TenderController' => $baseDir . '/app/Controller/TenderController.php',
+    'Tender' => $baseDir . '/app/Model/Tender.php',
+    'DbTender' => $baseDir . '/app/Model/DbTender.php',
 );

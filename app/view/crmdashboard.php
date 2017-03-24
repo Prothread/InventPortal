@@ -1,14 +1,14 @@
 <div id="crm-dashboard-holder">
 
     <div class="crm-dashboard-row">
-        <header>Jouw offertes</header>
+        <header><?= YOUR_TENDER ?></header>
 
         <select class="crm-dashboard-select">
             <option value="" disabled selected>Filter optie</option>
-            <option>Onderwerp</option>
-            <option>Datum</option>
-            <option>Klant</option>
-            <option>Urgentie</option>
+            <option><?= TABLE_TITLE ?><option>
+            <option><?= TEXT_DATE ?></option>
+            <option><?= TEXT_IS_CLIENT ?></option>
+            <option><?= TEXT_URGENCY ?></option>
         </select>
 
         <div class="crm-dashboard-inside-row">

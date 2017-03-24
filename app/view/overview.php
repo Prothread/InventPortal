@@ -100,7 +100,6 @@ if (isset($_SESSION['accorduserid'])) {
                     <table id="myTable" class="table table-striped">
                         <thead>
                         <tr>
-
                             <th style="display:none">ID</th>
                             <th><?= TABLE_TITLE ?></th>
                             <th><?= TEXT_SENDER ?></th>
