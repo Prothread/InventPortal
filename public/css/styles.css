@@ -2305,3 +2305,7 @@ tr:nth-child(2n) {
     margin-bottom: 5px;
 }
 
+
+.error-input{
+    border:solid red 1px;
+}

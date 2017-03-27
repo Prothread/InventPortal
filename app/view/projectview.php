@@ -25,7 +25,6 @@ $userController = new UserController();
 $clients = $userController->getClientList();
 $users = $userController->getUserList();
 
-//=================================================
 $error = false;
 
 if(isset($_POST['update'])){
@@ -36,49 +35,50 @@ if(isset($_POST['update'])){
     }
     if(strlen($title) == 0){
         $error = true;
-        $title_error = "TITLE";
+        $title_error = true;
     }
-    if(!filter_var($client, FILTER_VALIDATE_INT)){
+    if(!filter_var($client, FILTER_VALIDATE_INT) && $client !== '0'){
         $error = true;
-        $client_error = "CLIENT ID";
+        $client_error = true;
     }
-    if(!filter_var($user, FILTER_VALIDATE_INT)){
+    if(!filter_var($user, FILTER_VALIDATE_INT) && $user !== '0'){
         $error = true;
-        $user_error = "USER ID";
+        $user_error = true;
     }
     if(!filter_var($endDate, FILTER_SANITIZE_STRING)){
         $error = true;
-        $endDate_error = "ENDDATE";
+        $endDate_error = true;
     }
     if(!filter_var($description, FILTER_SANITIZE_STRING)){
         $error = true;
-        $description_error = "DESCRIPTION";
+        $description_error = true;
     }
     if(!$error){
+        if($user == 0){
+            $status = 0;
+        }else{
+            $status = 1;
+        }
         $projectinfo = [
+            'id' => $id,
             'title' => strip_tags($title),
             'client' => $client,
             'user' => $user,
             'endDate' => $endDate,
-            'description' => strip_tags($description)
+            'description' => strip_tags($description),
+            'status' => $status
         ];
-
-        if($id = $project->create($projectinfo)){
-            $block = new BlockController();
-            $block->Redirect('index.php?page=projectview&id='.$id);
-        }else{
-            $errormsg = "FOUT";
-        }
+        $project->update($projectinfo);
     }
 }
 ?>
 <div class="crm-content-wrapper">
     <div class="add-left-content add-content">
-        <h1 class="crm-content-header"><?= TEXT_PROJECT_CREATE ?></h1>
+        <h1 class="crm-content-header"><?= TEXT_PROJECT_VIEW ?></h1>
         <form class="crm-add" action="#" method="post">
             <div>
                 <label><?= TABLE_TITLE ?></label>
-                <input type="text" class="form-control" name="title" value="<?= $projectinfo['subject'] ?>">
+                <input type="text" class="form-control <?php if(isset($title_error)){echo "error-input";} ?>" name="title" value="<?= $projectinfo['title'] ?>">
             </div>
             <div>
                 <label><?= TEXT_ASSIGNFOR ?></label>
@@ -116,11 +116,11 @@ if(isset($_POST['update'])){
             </div>
             <div class="description-holder">
                 <label><?= TEXT_DESCRIPTION ?></label>
-                <textarea name="description"><?= $projectinfo['description'] ?></textarea>
+                <textarea name="description" <?php if(isset($title_error)){echo "error-input";} ?>><?= $projectinfo['description'] ?></textarea>
             </div>
             <div class="button-holder">
                 <div class="button-push"></div>
-                <button type="submit" name="create" class="custom-file-upload"><?= TEXT_CREATE_DROPDOWN ?></button>
+                <button type="submit" name="update" class="custom-file-upload"><?= TEXT_EDIT ?></button>
             </div>
         </form>
     </div>

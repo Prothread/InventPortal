@@ -50,6 +50,8 @@ define("TEXT_CASE_CREATE","Create case");
 define("TEXT_TEMPLATE_CREATE","Create template");
 define("TEXT_DEFAULTTASK_CREATE","Create default task");
 define("TEXT_ERROR_FORM","One of the fields was not correct, try again.");
+define("TEXT_PROJECT_VIEW","Project overview");
+define("TEXT_EDIT","Edit");
 
 /*/CRM*/
 

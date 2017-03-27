@@ -26,31 +26,37 @@ if(isset($_POST['create'])){
     }
     if(strlen($title) == 0){
         $error = true;
-        $title_error = "TITLE";
+        $title_error = true;
     }
     if(!filter_var($client, FILTER_VALIDATE_INT) && $client !== '0'){
         $error = true;
-        $client_error = "CLIENT ID";
+        $client_error = true;
     }
     if(!filter_var($user, FILTER_VALIDATE_INT) && $user !== '0'){
         $error = true;
-        $user_error = "USER ID";
+        $user_error = true;
     }
     if(!filter_var($endDate, FILTER_SANITIZE_STRING)){
         $error = true;
-        $endDate_error = "ENDDATE";
+        $endDate_error = true;
     }
     if(!filter_var($description, FILTER_SANITIZE_STRING)){
         $error = true;
-        $description_error = "DESCRIPTION";
+        $description_error = true;
     }
     if(!$error){
+        if($user == 0){
+            $status = 0;
+        }else{
+            $status = 1;
+        }
         $projectinfo = [
             'title' => strip_tags($title),
             'client' => $client,
             'user' => $user,
             'endDate' => $endDate,
-            'description' => strip_tags($description)
+            'description' => strip_tags($description),
+            'status' => $status
         ];
 
         if($id = $project->create($projectinfo)){
@@ -60,7 +66,6 @@ if(isset($_POST['create'])){
 
         }
     }
-    Session::flash('error', TEXT_ERROR_FORM);
 }
 
 ?>
@@ -70,7 +75,7 @@ if(isset($_POST['create'])){
         <form class="crm-add" action="#" method="post">
             <div>
                 <label><?= TABLE_TITLE ?></label>
-                <input type="text" class="form-control" name="title" value="<?php if($post){echo $_POST['title'];}; ?>">
+                <input type="text" class="form-control <?php if(isset($title_error)){echo "error-input";} ?>" name="title" value="<?php if($post){echo $_POST['title'];}; ?>">
             </div>
             <div>
                 <label><?= TEXT_ASSIGNFOR ?></label>
@@ -100,11 +105,11 @@ if(isset($_POST['create'])){
             </div>
             <div>
                 <label><?= TEXT_END_DATE ?></label>
-                <input type="date" class="form-control" name="endDate">
+                <input type="date" class="form-control" name="endDate" value="<?php if($post){echo $_POST['endDate'];}; ?>">
             </div>
             <div class="description-holder">
                 <label><?= TEXT_DESCRIPTION ?></label>
-                <textarea name="description"></textarea>
+                <textarea name="description" class="<?php if(isset($description_error)){echo "error-input";} ?>"><?php if($post){echo $_POST['description'];}; ?></textarea>
             </div>
             <div class="button-holder">
                 <div class="button-push"></div>
