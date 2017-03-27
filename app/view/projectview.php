@@ -78,7 +78,7 @@ if(isset($_POST['update'])){
         <form class="crm-add" action="#" method="post">
             <div>
                 <label><?= TABLE_TITLE ?></label>
-                <input type="text" class="form-control <?php if(isset($title_error)){echo "error-input";} ?>" name="title" value="<?= $projectinfo['title'] ?>">
+                <input type="text" class="form-control <?php if(isset($title_error)){echo "error-input";} ?>" name="title" value="<?= $projectinfo['subject'] ?>">
             </div>
             <div>
                 <label><?= TEXT_ASSIGNFOR ?></label>

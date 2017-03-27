@@ -24,7 +24,7 @@ if (isset($_POST['submitTender'])) {
     $validity = mysqli_real_escape_string($mysqli, $_POST['validity']);
     $value = mysqli_real_escape_string($mysqli, $_POST['value']);
     $chance = mysqli_real_escape_string($mysqli, $_POST['chance']);
-    $creationDate = mysqli_real_escape_string($mysqli, $_POST['creationDate']);
+    $creationDate = mysqli_real_escape_string($mysqli, $_POST['creationdate']);
     $description = mysqli_real_escape_string($mysqli, $_POST['description']);
 
     if (!isset($subject) || $subject == null) {
@@ -57,6 +57,12 @@ if (isset($_POST['submitTender'])) {
         $description_error = "You must set a description";
     }
 
+    if($client == 0){
+        $status = 0;
+    }else{
+        $status = 1;
+    }
+
     if (!$error) {
         $tenderinfo = [
             'subject' => strip_tags($subject),
@@ -65,8 +71,9 @@ if (isset($_POST['submitTender'])) {
             'validity' => strip_tags($validity),
             'value' => strip_tags($value),
             'chance' => strip_tags($chance),
-            'creationDate' => strip_tags($creationDate),
-            'description' => strip_tags($description)
+            'creationdate' => strip_tags($creationDate),
+            'description' => strip_tags($description),
+            'status' => strip_tags($status)
         ];
 
         if ($id = $tender->create($tenderinfo)) {
@@ -86,7 +93,7 @@ if (isset($_POST['submitTender'])) {
         <form class="crm-add" action="#" method="post">
             <div>
                 <label><?= TABLE_TITLE ?></label>
-                <input type="text" name="subject" class="form-control" name="title"
+                <input type="text" name="subject" class="form-control"
                        value="<?php if (isset($_POST['subject'])) {
                            echo $_POST['subject'];
                        } ?>">
@@ -145,8 +152,8 @@ if (isset($_POST['submitTender'])) {
             </div>
             <div>
                 <label><?= TEXT_CREATION_DATE ?></label>
-                <input type="date" class="form-control" name="creationDate"
-                       value="<?php if (isset($_POST['creationDate'])) {
+                <input type="date" class="form-control" name="creationdate"
+                       value="<?php if (isset($_POST['creationdate'])) {
                            echo $_POST['creationDate'];
                        } ?>">
                 <span class="text-danger"><?php if (isset($creationDate_error)) echo $creationDate_error; ?></span>

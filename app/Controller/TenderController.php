@@ -34,18 +34,38 @@ class TenderController
         if (isset($tenderinfo['chance'])) {
             $this->model->setChance($tenderinfo['chance']);
         }
-        if (isset($tenderinfo['creationDate'])) {
-            $this->model->setCreationDate($tenderinfo['creationDate']);
+        if (isset($tenderinfo['creationdate'])) {
+            $this->model->setCreationDate($tenderinfo['creationdate']);
         }
         if (isset($tenderinfo['description'])) {
             $this->model->setDescription($tenderinfo['description']);
         }
+        if (isset($tenderinfo['status'])) {
+            $this->model->setStatus($tenderinfo['status']);
+        }
 
         if ($result = $this->model->create()) {
-            Session::flash('message', "Offerte aangemaakt!");
             return $result;
         }
 
+    }
+
+    public function update(array $tenderinfo){
+        $this->model->setTenderId($tenderinfo['id']);
+        $this->model->setSubject($tenderinfo['subject']);
+        $this->model->setClient($tenderinfo['client']);
+        $this->model->setUser($tenderinfo['user']);
+        $this->model->setValidity($tenderinfo['validity']);
+        $this->model->setCreationDate($tenderinfo['creationdate']);
+        $this->model->setDescription($tenderinfo['description']);
+        $this->model->setChance($tenderinfo['chance']);
+        $this->model->setValue($tenderinfo['value']);
+        $this->model->setStatus($tenderinfo['status']);
+        $this->model->update();
+    }
+
+    public function delete($id){
+        return $this->model->delete($id);
     }
 
     public function getLastTenderId(){

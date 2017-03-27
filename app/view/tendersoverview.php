@@ -32,44 +32,46 @@ $users = $userController->getUserList();
             </tr>
             </thead>
             <tbody>
-            <?php foreach ($allTenders as $tender) { ?>
+            <?php if (sizeof($allTenders) > 0) { ?>
+                <?php foreach ($allTenders as $tender) { ?>
 
-                <tr>
-                    <td>
-                        <a href="?page=tenderview&id= <?= $tender['id'] ?>"><?= $tender['onderwerp'] ?></a>
-                    </td>
-                    <td>
-                        <a href="#"> <?php
-                            foreach ($users as $user) {
-                                if ($user['id'] == $tender['werknemer']) {
-                                    echo $user['naam'];
+                    <tr>
+                        <td>
+                            <a href="?page=tenderview&id= <?= $tender['id'] ?>"><?= $tender['subject'] ?></a>
+                        </td>
+                        <td>
+                            <a href="#"> <?php
+                                foreach ($users as $user) {
+                                    if ($user['id'] == $tender['user']) {
+                                        echo $user['naam'];
+                                    }
                                 }
-                            }
-                            ?></a>
-                    </td>
-                    <td>
-                        <a href="#"> <?php
-                            foreach ($clients as $client) {
-                                if ($client['id'] == $tender['klant']) {
-                                    echo $client['naam'];
+                                ?></a>
+                        </td>
+                        <td>
+                            <a href="#"> <?php
+                                foreach ($clients as $client) {
+                                    if ($client['id'] == $tender['client']) {
+                                        echo $client['naam'];
+                                    }
                                 }
-                            }
-                            ?></a>
-                    </td>
-                    <td>
-                        &#8364; <?= $tender['waarde'] ?>
-                    </td>
-                    <td>
-                        <?= $tender['kans'] ?> &#37;
-                    </td>
-                    <td>
-                        <?= $tender['aanmaakdatum'] ?>
-                    </td>
-                    <td>
-                        <img src="css/bezig-icon.png">
-                    </td>
-                </tr>
+                                ?></a>
+                        </td>
+                        <td>
+                            &#8364; <?= $tender['value'] ?>
+                        </td>
+                        <td>
+                            <?= $tender['chance'] ?> &#37;
+                        </td>
+                        <td>
+                            <?= $tender['creationdate'] ?>
+                        </td>
+                        <td>
+                            <img src="css/bezig-icon.png">
+                        </td>
+                    </tr>
 
+                <?php } ?>
             <?php } ?>
 
             </tbody>

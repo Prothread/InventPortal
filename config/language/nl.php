@@ -26,6 +26,7 @@ define("TEXT_CASE_ADD", "Case");
 define("TEXT_TEMPLATE_ADD", "Template");
 define("TEXT_DEFAULTTASK_ADD", "Standaard taak");
 define("TEXT_QUEUE", "Wachtrij");
+define("TEXT_DELETE", "verwijderen");
 
 /*CRM Forms*/
 

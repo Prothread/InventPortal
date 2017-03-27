@@ -28,6 +28,39 @@ class Tender
 
     private $Description;
 
+    private $Status;
+
+    private $Id;
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->Id;
+    }
+
+    /**
+     * @param mixed $Id
+     */
+    public function setId($Id)
+    {
+        $this->Id = $Id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getStatus()
+    {
+        return $this->Status;
+    }
+
+    public function setStatus($Status)
+    {
+        $this->Status = $Status;
+    }
+
     public function __construct()
     {
         $this->db = new DbTender();
@@ -38,15 +71,15 @@ class Tender
         return $this->db->create($this);
     }
 
-//    public function update()
-//    {
-//        return $this->db->update($this);
-//    }
+    public function update()
+    {
+        return $this->db->update($this);
+    }
 //
-//    public function delete($id)
-//    {
-//        return $this->db->delete($id);
-//    }
+    public function delete($id)
+    {
+        return $this->db->delete($id);
+    }
 //
 //    public function getTender()
 //    {

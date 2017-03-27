@@ -2015,7 +2015,8 @@ tr:nth-child(2n) {
 .crm-content-header{
     font-size: 20px;
     margin-top: 20px;
-    width: 100%;
+    width: 50%;
+    float: left;
 }
 
 .add-content{
@@ -2035,6 +2036,7 @@ tr:nth-child(2n) {
 .crm-add{
     padding-top: 20px;
     width: 100%;
+    float: left;
 }
 
 .crm-add label, .crm-add input, .crm-add select, .crm-add textarea{
@@ -2305,6 +2307,12 @@ tr:nth-child(2n) {
     margin-bottom: 5px;
 }
 
+#deletebtn{
+    float: right;
+    width: 100px;
+    height: 35px;
+    margin-top: 20px;
+}
 
 .error-input{
     border:solid red 1px;

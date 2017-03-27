@@ -26,6 +26,7 @@ define("TEXT_CASE_ADD", "Case");
 define("TEXT_TEMPLATE_ADD", "Template");
 define("TEXT_DEFAULTTASK_ADD", "Default tasks ");
 define("TEXT_QUEUE", "Queue");
+define("TEXT_DELETE", "delete");
 
 /*CRM FORMS*/
 

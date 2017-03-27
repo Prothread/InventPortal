@@ -10,84 +10,28 @@ class DbTender extends Database
 {
     public function create(Tender $tender)
     {
-        $sql = "INSERT INTO `tenders` (`onderwerp`, `klant`, `werknemer`,  `geldigheidsduur`, `waarde`, `kans`, `aanmaakdatum`, `beschrijving`) VALUES('{$tender->getSubject()}', '{$tender->getClient()}', '{$tender->getUser()}', '{$tender->getValidity()}', '{$tender->getValue()}', '{$tender->getChance()}', '{$tender->getCreationDate()}', '{$tender->getDescription()}')";
-
+        $sql = "INSERT INTO `tenders` (`subject`, `client`, `user`,  `validity`, `value`, `chance`, `creationdate`, `description`, `status`) VALUES('{$tender->getSubject()}', '{$tender->getClient()}', '{$tender->getUser()}', '{$tender->getValidity()}', '{$tender->getValue()}', '{$tender->getChance()}', '{$tender->getCreationDate()}', '{$tender->getDescription()}', '{$tender->getStatus()}')";
 
         if ($this->dbQuery($sql)) {
             return $this->dbLastInsertedId();
         }
     }
 
-//    public function update(Tender $tender)
-//    {
-//        $sql = "UPDATE `users` SET ";
+    public function update(Tender $tender)
+    {
+        $sql = "UPDATE `tenders` SET `subject` = '{$tender->getSubject()}', `client` = '{$tender->getClient()}',`user` = '{$tender->getUser()}', `validity` = '{$tender->getValidity()}', `description` = '{$tender->getDescription()}', `status` = '{$tender->getStatus()}', `value` = '{$tender->getValue()}', `chance` = '{$tender->getChance()}', `creationdate` = '{$tender->getCreationDate()}' WHERE `id` = '{$tender->getTenderId()}'";
+        $this->dbQuery($sql);
+    }
 //
-//        if ($user->getName()) {
-//            $sql .= "`naam` = '{$user->getName()}'";
-//        }
-//
-//        if ($user->getEmail()) {
-//            $sql .= ", `email` = '{$user->getEmail()}'";
-//        }
-//
-//        if ($user->getCompanyName()) {
-//            $sql .= ", `bedrijfsnaam` = '{$user->getCompanyName()}'";
-//        }
-//
-//        if ($user->getPermGroup()) {
-//            $sql .= ", `permgroup` = '{$user->getPermGroup()}'";
-//        }
-//
-//        if ($user->getUserPostcode()) {
-//            $sql .= ", `postcode` = '{$user->getUserPostcode()}'";
-//        }
-//
-//        if ($user->getUserPlace()) {
-//            $sql .= ", `plaats` = '{$user->getUserPlace()}'";
-//        }
-//
-//        if ($user->getUserAdres()) {
-//            $sql .= ", `adres` = '{$user->getUserAdres()}'";
-//        }
-//
-//        if ($user->getUserLanguage()) {
-//            $sql .= ", `lang` = '{$user->getUserLanguage()}'";
-//        }
-//
-//        if ($user->getPassword()) {
-//            $password = hash('sha256', $user->getPassword());
-//            $sql .= ", `paswoord` = '{$password}' ";
-//        }
-//
-//        if ($user->getAltMail()) {
-//            $sql .= ", `altmail` = '{$user->getAltmail()}'";
-//        }
-//
-//        if ($user->getProfileImage()) {
-//            $sql .= ", `profimg` = '{$user->getProfileImage()}'";
-//        }
-//
-//        if ($user->getUserActive() !== null) {
-//            $sql .= ", `active` = '{$user->getUserActive()}'";
-//        }
-//
-//        $sql .= " WHERE `id` = '{$user->getUserId()}'";
-//
-//        if ($this->dbQuery($sql)) {
-//            return true;
-//        }
-//        return false;
-//    }
-//
-//    public function delete($id)
-//    {
-//        $sql = "DELETE FROM `users` WHERE `id` = '{$id}'";
-//
-//        if ($result = $this->dbQuery($sql)) {
-//            return true;
-//        }
-//        return false;
-//    }
+    public function delete($id)
+    {
+        $sql = "DELETE FROM `tenders` WHERE `id` = '{$id}'";
+
+        if ($result = $this->dbQuery($sql)) {
+            return true;
+        }
+        return false;
+    }
 //
 //    public function getTender(Tender $tender)
 //    {
