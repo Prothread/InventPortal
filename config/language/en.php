@@ -44,6 +44,7 @@ define("TEXT_CHANCE","Chance (%)");
 define("TEXT_CHANCE_TEXT","Chance");
 define("TEXT_CREATION_DATE","Creation date");
 define("TEXT_TENDER_CREATE","Create tender");
+define("TENDER_OVERVIEw","Tender overview");
 define("TEXT_TASK_CREATE","Create task");
 define("TEXT_CASE_CREATE","Create case");
 define("TEXT_TEMPLATE_CREATE","Create template");

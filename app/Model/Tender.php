@@ -204,4 +204,8 @@ class Tender
     public function getAllTenders(){
         return $this->db->getAllTenders();
     }
+
+    public function getTenderById($id){
+        return $this->db->getTenderById($id);
+    }
 }

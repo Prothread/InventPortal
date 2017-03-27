@@ -55,4 +55,8 @@ class TenderController
     public function getAllTenders(){
         return $this->model->getAllTenders();
     }
+
+    public function getTenderById($id){
+        return $this->model->getTenderById($id);
+    }
 }

@@ -44,6 +44,7 @@ define("TEXT_CHANCE","Kans (%)");
 define("TEXT_CHANCE_TEXT","Kans");
 define("TEXT_CREATION_DATE","Aanmaak datum");
 define("TEXT_TENDER_CREATE","Offerte aanmaken");
+define("TENDER_OVERVIEW","Offerte overzicht");
 define("TEXT_TASK_CREATE","Taak aanmaken");
 define("TEXT_CASE_CREATE","Case aanmaken");
 define("TEXT_TEMPLATE_CREATE","Template aanmaken");

@@ -126,4 +126,14 @@ class DbTender extends Database
             return $value;
         }
     }
+
+    public function getTenderById($id){
+        $sql = "SELECT * FROM `tenders` WHERE `id` = {$id}";
+
+        $result = $this->dbQuery($sql);
+        $endResult = mysqli_fetch_assoc($result);
+        if($endResult){
+            return $endResult;
+        }
+    }
 }

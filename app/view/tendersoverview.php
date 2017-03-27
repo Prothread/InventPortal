@@ -4,27 +4,31 @@ $tender = new TenderController();
 
 $allTenders = $tender->getAllTenders();
 
+$userController = new UserController();
+$clients = $userController->getClientList();
+$users = $userController->getUserList();
+
 ?>
 
 <div id="case-overview-holder">
 
-    <header><?=TENDER_OVERVIEW_TEXT?></header>
+    <header><?= TENDER_OVERVIEW_TEXT ?></header>
     <hr>
     <div class="case-overzicht-buttons">
-        <button class="custom-file-upload"><?=TEXT_CREATE_DROPDOWN?></button>
-        <button class="custom-file-upload"><?=TEXT_ARCHIVE?></button>
+        <button class="custom-file-upload"><?= TEXT_CREATE_DROPDOWN ?></button>
+        <button class="custom-file-upload"><?= TEXT_ARCHIVE ?></button>
     </div>
     <div class="case-overvieuw-table">
         <table id="myTable" class="table table-striped">
             <thead>
             <tr>
-                <th><?=TABLE_TITLE?></th>
-                <th><?=TEXT_EMPLOYEE?></th>
-                <th><?=TEXT_CLIENT?></th>
-                <th><?=TEXT_VALUE_TEXT?></th>
-                <th><?=TEXT_CHANCE_TEXT?></th>
-                <th><?=TEXT_END_DATE?></th>
-                <th><?=TEXT_PROGRESS?></th>
+                <th><?= TABLE_TITLE ?></th>
+                <th><?= TEXT_EMPLOYEE ?></th>
+                <th><?= TEXT_CLIENT ?></th>
+                <th><?= TEXT_VALUE_TEXT ?></th>
+                <th><?= TEXT_CHANCE_TEXT ?></th>
+                <th><?= TEXT_END_DATE ?></th>
+                <th><?= TEXT_PROGRESS ?></th>
             </tr>
             </thead>
             <tbody>
@@ -32,13 +36,25 @@ $allTenders = $tender->getAllTenders();
 
                 <tr>
                     <td>
-                        <a href="?page=tenderview&id= <?=$tender['id']?>"><?= $tender['onderwerp'] ?></a>
+                        <a href="?page=tenderview&id= <?= $tender['id'] ?>"><?= $tender['onderwerp'] ?></a>
                     </td>
                     <td>
-                        <a href="#"><?= $tender['werknemer'] ?></a>
+                        <a href="#"> <?php
+                            foreach ($users as $user) {
+                                if ($user['id'] == $tender['werknemer']) {
+                                    echo $user['naam'];
+                                }
+                            }
+                            ?></a>
                     </td>
                     <td>
-                        <a href="#"><?= $tender['klant'] ?></a>
+                        <a href="#"> <?php
+                            foreach ($clients as $client) {
+                                if ($client['id'] == $tender['klant']) {
+                                    echo $client['naam'];
+                                }
+                            }
+                            ?></a>
                     </td>
                     <td>
                         &#8364; <?= $tender['waarde'] ?>
