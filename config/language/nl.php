@@ -54,6 +54,11 @@ define("TEXT_ERROR_FORM","Een veld is niet goed ingevuld, probeer opnieuw.");
 define("TEXT_PROJECT_VIEW","Project overzicht");
 define("TEXT_EDIT","Aanpassen");
 
+/*CRM TABLES*/
+
+define("PROJECT_OVERVIEW_TEXT", "Projecten Overzicht");
+define("TEXT_SINGLE_CLIENT", "Klant");
+
 /*/CRM*/
 
 define("TEXT_UPLOAD_DASHBOARD", "Upload Dashboard");
@@ -101,7 +106,8 @@ define("BUTTON_ACCORDED", "Geakkordeerde proeven");
 define("BUTTON_DECLINED", "Geweigerde proeven");
 define("LEGEND", "Legenda");
 /* */
-define("TABLE_TITLE", "Onderwerp");
+define("TABLE_SUBJECT", "Onderwerp");
+define("TABLE_TITLE", "Titel");
 
 
 /* UPLOAD */

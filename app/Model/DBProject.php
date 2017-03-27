@@ -18,9 +18,8 @@ class DBProject extends Database
 
     public function update(Project $project)
     {
-        $sql = "UPDATE `projects` SET `subject` = '{$project->getSubject()}', `client` = '{$project->getClient()}',`user` = '{$project->getUser()}', `endDate` = '{$project->getEndDate()}', `description` = '{$project->getDescription()}', `status` = '{$project->getStatus()}' WERE `id` = '{$project->getProjectId()}'";
-//        $this->dbQuery($sql);
-        return $sql;
+        $sql = "UPDATE `projects` SET `subject` = '{$project->getSubject()}', `client` = '{$project->getClient()}',`user` = '{$project->getUser()}', `endDate` = '{$project->getEndDate()}', `description` = '{$project->getDescription()}', `status` = '{$project->getStatus()}' WHERE `id` = '{$project->getProjectId()}'";
+        $this->dbQuery($sql);
     }
 
     public function delete($id)
@@ -42,7 +41,12 @@ class DBProject extends Database
 
     public function getAllProjects()
     {
-        //=============================================
+        $sql = "SELECT `id`, `subject`, `user`, `client`, `endDate`, `status` FROM `projects`";
+        $result = $this->dbQuery($sql);
+        $endResult = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        if ($endResult) {
+            return $endResult;
+        }
     }
 
     public function getProjectsByUserId($userId)

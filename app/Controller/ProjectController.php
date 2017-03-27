@@ -16,7 +16,7 @@ class ProjectController
     }
 
     public function create(array $projectinfo){
-        $this->model->setSubject($projectinfo['title']);
+        $this->model->setSubject($projectinfo['subject']);
         $this->model->setClient($projectinfo['client']);
         $this->model->setUser($projectinfo['user']);
         $this->model->setEndDate($projectinfo['endDate']);
@@ -27,14 +27,16 @@ class ProjectController
         }
     }
     public function update(array $projectinfo){
-        $this->model->setProjectId($projectinfo['title']);
-        $this->model->setSubject($projectinfo['title']);
+        $this->model->setProjectId($projectinfo['id']);
+        $this->model->setSubject($projectinfo['subject']);
+        $this->model->setSubject($projectinfo['subject']);
         $this->model->setClient($projectinfo['client']);
         $this->model->setUser($projectinfo['user']);
         $this->model->setEndDate($projectinfo['endDate']);
         $this->model->setDescription($projectinfo['description']);
         $this->model->setStatus($projectinfo['status']);
-        $this->model->update();
+        $result = $this->model->update();
+        return $result;
     }
     public function delete($id){
         return $this->model->delete($id);

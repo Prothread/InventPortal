@@ -29,13 +29,13 @@ $error = false;
 
 if(isset($_POST['update'])){
 
-    $valueNames = ["title","client","user","endDate","description"];
+    $valueNames = ["subject","client","user","endDate","description"];
     foreach ($valueNames as $value){
         ${$value} = mysqli_real_escape_string($mysqli, $_POST[$value]);
     }
-    if(strlen($title) == 0){
+    if(strlen($subject) == 0){
         $error = true;
-        $title_error = true;
+        $subject_error = true;
     }
     if(!filter_var($client, FILTER_VALIDATE_INT) && $client !== '0'){
         $error = true;
@@ -61,14 +61,15 @@ if(isset($_POST['update'])){
         }
         $projectinfo = [
             'id' => $id,
-            'title' => strip_tags($title),
+            'subject' => strip_tags($subject),
             'client' => $client,
             'user' => $user,
             'endDate' => $endDate,
             'description' => strip_tags($description),
             'status' => $status
         ];
-        $project->update($projectinfo);
+        $test = $project->update($projectinfo);
+        echo $test;
     }
 }
 ?>
@@ -77,8 +78,8 @@ if(isset($_POST['update'])){
         <h1 class="crm-content-header"><?= TEXT_PROJECT_VIEW ?></h1>
         <form class="crm-add" action="#" method="post">
             <div>
-                <label><?= TABLE_TITLE ?></label>
-                <input type="text" class="form-control <?php if(isset($title_error)){echo "error-input";} ?>" name="title" value="<?= $projectinfo['subject'] ?>">
+                <label><?= TABLE_SUBJECT ?></label>
+                <input type="text" class="form-control <?php if(isset($subject_error)){echo "error-input";} ?>" name="subject" value="<?= $projectinfo['subject'] ?>">
             </div>
             <div>
                 <label><?= TEXT_ASSIGNFOR ?></label>
@@ -116,7 +117,7 @@ if(isset($_POST['update'])){
             </div>
             <div class="description-holder">
                 <label><?= TEXT_DESCRIPTION ?></label>
-                <textarea name="description" <?php if(isset($title_error)){echo "error-input";} ?>><?= $projectinfo['description'] ?></textarea>
+                <textarea name="description" <?php if(isset($description_error)){echo "error-input";} ?>><?= $projectinfo['description'] ?></textarea>
             </div>
             <div class="button-holder">
                 <div class="button-push"></div>
