@@ -20,13 +20,13 @@ $post = false;
 
 if(isset($_POST['create'])){
     $post = true;
-    $valueNames = ["title","client","user","endDate","description"];
+    $valueNames = ["subject","client","user","endDate","description"];
     foreach ($valueNames as $value){
         ${$value} = mysqli_real_escape_string($mysqli, $_POST[$value]);
     }
-    if(strlen($title) == 0){
+    if(strlen($subject) == 0){
         $error = true;
-        $title_error = true;
+        $subject_error = true;
     }
     if(!filter_var($client, FILTER_VALIDATE_INT) && $client !== '0'){
         $error = true;
@@ -51,7 +51,7 @@ if(isset($_POST['create'])){
             $status = 1;
         }
         $projectinfo = [
-            'title' => strip_tags($title),
+            'subject' => strip_tags($subject),
             'client' => $client,
             'user' => $user,
             'endDate' => $endDate,
@@ -74,8 +74,8 @@ if(isset($_POST['create'])){
         <h1 class="crm-content-header"><?= TEXT_PROJECT_CREATE ?></h1>
         <form class="crm-add" action="#" method="post">
             <div>
-                <label><?= TABLE_TITLE ?></label>
-                <input type="text" class="form-control <?php if(isset($title_error)){echo "error-input";} ?>" name="title" value="<?php if($post){echo $_POST['title'];}; ?>">
+                <label><?= TABLE_SUBJECT ?></label>
+                <input type="text" class="form-control <?php if(isset($subject_error)){echo "error-input";} ?>" name="subject" value="<?php if($post){echo $_POST['subject'];}; ?>">
             </div>
             <div>
                 <label><?= TEXT_ASSIGNFOR ?></label>

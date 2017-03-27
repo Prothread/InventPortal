@@ -53,6 +53,11 @@ define("TEXT_ERROR_FORM","One of the fields was not correct, try again.");
 define("TEXT_PROJECT_VIEW","Project overview");
 define("TEXT_EDIT","Edit");
 
+/*CRM TABLES*/
+
+define("PROJECT_OVERVIEW_TEXT", "Projects Overview");
+define("TEXT_SINGLE_CLIENT", "Client");
+
 /*/CRM*/
 
 define("TEXT_UPLOAD_DASHBOARD", "Upload dashboard");
@@ -101,6 +106,7 @@ define("BUTTON_ACCORDED", "Accorded assignment(s)");
 define("BUTTON_DECLINED", "Declined assignment(s)");
 define("LEGEND", "Legend");
 /* */
+define("TABLE_SUBJECT", "Subject");
 define("TABLE_TITLE", "Title");
 
 

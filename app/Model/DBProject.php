@@ -41,7 +41,12 @@ class DBProject extends Database
 
     public function getAllProjects()
     {
-        //=============================================
+        $sql = "SELECT `id`, `subject`, `user`, `client`, `endDate`, `status` FROM `projects`";
+        $result = $this->dbQuery($sql);
+        $endResult = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        if ($endResult) {
+            return $endResult;
+        }
     }
 
     public function getProjectsByUserId($userId)
