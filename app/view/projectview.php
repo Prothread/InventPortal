@@ -68,7 +68,8 @@ if(isset($_POST['update'])){
             'description' => strip_tags($description),
             'status' => $status
         ];
-        $project->update($projectinfo);
+        $test = $project->update($projectinfo);
+        echo $test;
     }
 }
 ?>
