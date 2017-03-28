@@ -50,7 +50,8 @@ class TenderController
 
     }
 
-    public function update(array $tenderinfo){
+    public function update(array $tenderinfo)
+    {
         $this->model->setTenderId($tenderinfo['id']);
         $this->model->setSubject($tenderinfo['subject']);
         $this->model->setClient($tenderinfo['client']);
@@ -64,38 +65,50 @@ class TenderController
         $this->model->update();
     }
 
-    public function delete($id){
+    public function delete($id)
+    {
         return $this->model->delete($id);
     }
 
-    public function getLastTenderId(){
+    public function getLastTenderId()
+    {
         return $this->model->getLastTenderId();
     }
 
-    public function getAllTenders(){
+    public function getAllTenders()
+    {
         return $this->model->getAllTenders();
     }
 
-    public function getTenderById($id){
+    public function getTenderById($id)
+    {
         return $this->model->getTenderById($id);
     }
 
-    public function getEndDate(){
+    public function getEndDate()
+    {
         return $this->model->getEndDate();
     }
 
-    public function calcEndDate($creationdate, $validity){
+    public function calcEndDate($creationdate, $validity)
+    {
         return $this->model->calcEndDate($creationdate, $validity);
     }
 
-    public function getUser(){
+    public function getUser()
+    {
         return $this->model->getUser();
     }
 
-    public function getTimeDifference($date1, $date2){
+    public function getTimeDifference($date1, $date2)
+    {
         $d1 = new DateTime($date1);
         $d2 = new DateTime($date2);
         return $diff = $d1->diff($d2)->format("%a");
-        //return $diff=date_diff(date_create($date1),date_create($date2));
+    }
+
+    public function getTendersByUserId($userId)
+    {
+        return $this->model->getTendersByUserId($userId);
     }
 }

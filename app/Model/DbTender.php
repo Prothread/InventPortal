@@ -22,6 +22,7 @@ class DbTender extends Database
         $sql = "UPDATE `tenders` SET `subject` = '{$tender->getSubject()}', `client` = '{$tender->getClient()}',`user` = '{$tender->getUser()}', `validity` = '{$tender->getValidity()}', `description` = '{$tender->getDescription()}', `status` = '{$tender->getStatus()}', `value` = '{$tender->getValue()}', `chance` = '{$tender->getChance()}', `enddate` = '{$tender->getEndDate()}' WHERE `id` = '{$tender->getTenderId()}'";
         $this->dbQuery($sql);
     }
+
 //
     public function delete($id)
     {
@@ -38,7 +39,8 @@ class DbTender extends Database
         return $this->connection->insert_id;
     }
 
-    public function getLastTenderId(){
+    public function getLastTenderId()
+    {
         $sql = "SELECT `id` FROM `tenders` ORDER BY `id` DESC LIMIT 1";
 
         $result = $this->dbQuery($sql);
@@ -49,7 +51,8 @@ class DbTender extends Database
         }
     }
 
-    public function getAllTenders(){
+    public function getAllTenders()
+    {
         $sql = "SELECT * FROM `tenders`";
 
         $result = $this->dbQuery($sql);
@@ -60,13 +63,22 @@ class DbTender extends Database
         }
     }
 
-    public function getTenderById($id){
+    public function getTenderById($id)
+    {
         $sql = "SELECT * FROM `tenders` WHERE `id` = {$id}";
 
         $result = $this->dbQuery($sql);
         $endResult = mysqli_fetch_assoc($result);
-        if($endResult){
+        if ($endResult) {
             return $endResult;
         }
+    }
+
+    public function getTendersByUserId($userId)
+    {
+        $sql = "SELECT * FROM `tenders` WHERE `user` = {$userId}";
+        $result = $this->dbQuery($sql);
+        $value = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        return $value;
     }
 }

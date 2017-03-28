@@ -19,8 +19,7 @@ class DBProject extends Database
     public function update(Project $project)
     {
         $sql = "UPDATE `projects` SET `subject` = '{$project->getSubject()}', `client` = '{$project->getClient()}',`user` = '{$project->getUser()}', `endDate` = '{$project->getEndDate()}', `description` = '{$project->getDescription()}', `status` = '{$project->getStatus()}' WHERE `id` = '{$project->getProjectId()}'";
-//        $this->dbQuery($sql);
-        return $sql;
+        $this->dbQuery($sql);
     }
 
     public function delete($id)
@@ -56,7 +55,10 @@ class DBProject extends Database
 
     public function getProjectsByUserId($userId)
     {
-        //=============================================
+        $sql = "SELECT * FROM `projects` WHERE `user` = {$userId}";
+        $result = $this->dbQuery($sql);
+        $value = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        return $value;
     }
 
     public function dbLastInsertedId()

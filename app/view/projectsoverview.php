@@ -30,10 +30,9 @@ $users = $userController->getUserList();
             </thead>
             <tbody>
             <?php foreach ($allProjects as $project) { ?>
-
                 <tr>
                     <td>
-                        <a href="?page=projectview&id= <?= $project['id'] ?>"><?= $project['subject'] ?></a>
+                        <a href="?page=projectview&id=<?= $project['id'] ?>"><?= $project['subject'] ?></a>
                     </td>
                     <td>
                         <a href="?page=showuserprofile&id=<?= $project['user'] ?>"> <?php
