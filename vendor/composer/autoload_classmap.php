@@ -38,4 +38,7 @@ return array(
     'TenderController' => $baseDir . '/app/Controller/TenderController.php',
     'Tender' => $baseDir . '/app/Model/Tender.php',
     'DbTender' => $baseDir . '/app/Model/DbTender.php',
+    'CaseController' => $baseDir . '/app/Controller/CaseController.php',
+    'CaseClass' => $baseDir . '/app/Model/CaseClass.php',
+    'DbCase' => $baseDir . '/app/Model/DbCase.php',
 );
