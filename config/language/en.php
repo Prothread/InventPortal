@@ -53,6 +53,10 @@ define("TEXT_DEFAULTTASK_CREATE","Create default task");
 define("TEXT_ERROR_FORM","One of the fields was not correct, try again.");
 define("TEXT_PROJECT_VIEW","Project overview");
 define("TEXT_EDIT","Edit");
+
+define("TEXT_CASE_VIEW", "Case overview");
+define("CASE_OVERVIEW_TEXT", "cases overview");
+
 define("TEXT_ASSIGNMENT_VIEW","Assignment overview");
 
 /*CRM TABLES*/

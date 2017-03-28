@@ -270,6 +270,9 @@ switch ($page) {
     case 'addcase':
         include '../app/view/addcase.php';
         break;
+    case 'caseview':
+        include '../app/view/caseview.php';
+        break;
     case 'addtemplate':
         include '../app/view/addtemplate.php';
         break;

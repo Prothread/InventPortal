@@ -15,7 +15,7 @@ $users = $userController->getUserList();
     <header><?= TENDER_OVERVIEW_TEXT ?></header>
     <hr>
     <div class="case-overzicht-buttons">
-        <button class="custom-file-upload"><?= TEXT_CREATE_DROPDOWN ?></button>
+        <button class="custom-file-upload" onclick="window.location.href='?page=addtender'"><?= TEXT_CREATE_DROPDOWN ?></button>
         <button class="custom-file-upload"><?= TEXT_ARCHIVE ?></button>
     </div>
     <div class="case-overvieuw-table">
@@ -67,7 +67,7 @@ $users = $userController->getUserList();
                             <?= date("d-m-Y", strtotime($tender['enddate'])) ?>
                         </td>
                         <td>
-                            <img src="css/bezig-icon.png">
+                            <img src="css/status-<?= $tender['status'] ?>.png">
                         </td>
                     </tr>
 

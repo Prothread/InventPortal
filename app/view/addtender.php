@@ -133,7 +133,7 @@ if (isset($_POST['submitTender'])) {
             </div>
             <div>
                 <label><?= TEXT_VALIDITY_DURATION ?></label>
-                <input type="number" class="form-control" name="validity" value="<?php if (isset($_POST['validity'])) {
+                <input type="number" class="form-control" name="validity" min="1" value="<?php if (isset($_POST['validity'])) {
                     echo $_POST['validity'];
                 } ?>">
                 <span class="text-danger"><?php if (isset($validity_error)) echo $validity_error; ?></span>

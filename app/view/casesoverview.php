@@ -1,255 +1,87 @@
+<?php
+$case = new CaseController();
+
+$allCases = $case->getAllCases();
+
+$userController = new UserController();
+$clients = $userController->getClientList();
+$users = $userController->getUserList();
+
+$projectController = new ProjectController();
+$projects = $projectController->getAllProjecs();
+
+?>
+
 <div id="case-overview-holder">
 
-    <header>Cases Overzicht</header>
+    <header><?= TENDER_OVERVIEW_TEXT ?></header>
     <hr>
     <div class="case-overzicht-buttons">
-        <button class="custom-file-upload">Aanmaken</button>
-        <button class="custom-file-upload">Archief</button>
+        <button class="custom-file-upload"><?= TEXT_CREATE_DROPDOWN ?></button>
+        <button class="custom-file-upload"><?= TEXT_ARCHIVE ?></button>
     </div>
     <div class="case-overvieuw-table">
         <table id="myTable" class="table table-striped">
             <thead>
             <tr>
-                <th>Onderwerp</th>
-                <th>Werknemer</th>
-                <th>Klant</th>
+                <th><?= TABLE_TITLE ?></th>
+                <th><?= TEXT_EMPLOYEE ?></th>
+                <th><?= TEXT_CLIENT ?></th>
                 <th>Project</th>
-                <th>Opdracht</th>
-                <th>Eind datum</th>
-                <th>Status</th>
+                <th><?= TEXT_ASSIGNMENT_ADD ?></th>
+                <th><?= TEXT_END_DATE ?></th>
+                <th><?= TEXT_PROGRESS ?></th>
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>
-                    <a href="#">Case onderwerp</a>
-                </td>
-                <td>
-                    <a href="#">Werkn.afk</a>
-                </td>
-                <td>
-                    <a href="#">Klantnaam</a>
-                </td>
-                <td>
-                    <a href="#">Projectnaam</a>
-                </td>
-                <td>
-                    <a href="#">Opdrachtnaam</a>
-                </td>
-                <td>
-                    04-04-2017
-                </td>
-                <td>
-                    <img src="css/bezig-icon.png">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="#">Case onderwerp</a>
-                </td>
-                <td>
-                    <a href="#">Werkn.afk</a>
-                </td>
-                <td>
-                    <a href="#">Klantnaam</a>
-                </td>
-                <td>
-                    <a href="#">Projectnaam</a>
-                </td>
-                <td>
-                    <a href="#">Opdrachtnaam</a>
-                </td>
-                <td>
-                    04-04-2017
-                </td>
-                <td>
-                    <img src="css/open-icon.png">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="#">Case onderwerp</a>
-                </td>
-                <td>
-                    <a href="#">Werkn.afk</a>
-                </td>
-                <td>
-                    <a href="#">Klantnaam</a>
-                </td>
-                <td>
-                    <a href="#">Projectnaam</a>
-                </td>
-                <td>
-                    <a href="#">Opdrachtnaam</a>
-                </td>
-                <td>
-                    04-04-2017
-                </td>
-                <td>
-                    <img src="css/bezig-icon.png">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="#">Case onderwerp</a>
-                </td>
-                <td>
-                    <a href="#">Werkn.afk</a>
-                </td>
-                <td>
-                    <a href="#">Klantnaam</a>
-                </td>
-                <td>
-                    <a href="#">Projectnaam</a>
-                </td>
-                <td>
-                    <a href="#">Opdrachtnaam</a>
-                </td>
-                <td>
-                    04-04-2017
-                </td>
-                <td>
-                    <img src="css/open-icon.png">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="#">Case onderwerp</a>
-                </td>
-                <td>
-                    <a href="#">Werkn.afk</a>
-                </td>
-                <td>
-                    <a href="#">Klantnaam</a>
-                </td>
-                <td>
-                    <a href="#">Projectnaam</a>
-                </td>
-                <td>
-                    <a href="#">Opdrachtnaam</a>
-                </td>
-                <td>
-                    04-04-2017
-                </td>
-                <td>
-                    <img src="css/bezig-icon.png">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="#">Case onderwerp</a>
-                </td>
-                <td>
-                    <a href="#">Werkn.afk</a>
-                </td>
-                <td>
-                    <a href="#">Klantnaam</a>
-                </td>
-                <td>
-                    <a href="#">Projectnaam</a>
-                </td>
-                <td>
-                    <a href="#">Opdrachtnaam</a>
-                </td>
-                <td>
-                    04-04-2017
-                </td>
-                <td>
-                    <img src="css/open-icon.png">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="#">Case onderwerp</a>
-                </td>
-                <td>
-                    <a href="#">Werkn.afk</a>
-                </td>
-                <td>
-                    <a href="#">Klantnaam</a>
-                </td>
-                <td>
-                    <a href="#">Projectnaam</a>
-                </td>
-                <td>
-                    <a href="#">Opdrachtnaam</a>
-                </td>
-                <td>
-                    04-04-2017
-                </td>
-                <td>
-                    <img src="css/bezig-icon.png">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="#">Case onderwerp</a>
-                </td>
-                <td>
-                    <a href="#">Werkn.afk</a>
-                </td>
-                <td>
-                    <a href="#">Klantnaam</a>
-                </td>
-                <td>
-                    <a href="#">Projectnaam</a>
-                </td>
-                <td>
-                    <a href="#">Opdrachtnaam</a>
-                </td>
-                <td>
-                    04-04-2017
-                </td>
-                <td>
-                    <img src="css/open-icon.png">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="#">Case onderwerp</a>
-                </td>
-                <td>
-                    <a href="#">Werkn.afk</a>
-                </td>
-                <td>
-                    <a href="#">Klantnaam</a>
-                </td>
-                <td>
-                    <a href="#">Projectnaam</a>
-                </td>
-                <td>
-                    <a href="#">Opdrachtnaam</a>
-                </td>
-                <td>
-                    04-04-2017
-                </td>
-                <td>
-                    <img src="css/bezig-icon.png">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="#">Case onderwerp</a>
-                </td>
-                <td>
-                    <a href="#">Werkn.afk</a>
-                </td>
-                <td>
-                    <a href="#">Klantnaam</a>
-                </td>
-                <td>
-                    <a href="#">Projectnaam</a>
-                </td>
-                <td>
-                    <a href="#">Opdrachtnaam</a>
-                </td>
-                <td>
-                    04-04-2017
-                </td>
-                <td>
-                    <img src="css/open-icon.png">
-                </td>
-            </tr>
+            <?php if (sizeof($allCases) > 0) { ?>
+                <?php foreach ($allCases as $case) { ?>
+
+                    <tr>
+                        <td>
+                            <a href="?page=caseview&id= <?= $case['id'] ?>"><?= $case['subject'] ?></a>
+                        </td>
+                        <td>
+                            <a href="?page=showuserprofile&id=<?= $case['user'] ?>"> <?php
+                                foreach ($users as $user) {
+                                    if ($user['id'] == $case['user']) {
+                                        echo $user['naam'];
+                                    }
+                                }
+                                ?></a>
+                        </td>
+                        <td>
+                            <a href="?page=showuserprofile&id=<?= $case['client'] ?>"> <?php
+                                foreach ($clients as $client) {
+                                    if ($client['id'] == $case['client']) {
+                                        echo $client['naam'];
+                                    }
+                                }
+                                ?></a>
+                        </td>
+                        <td>
+                            <a href="?page=projectview&id=<?= $case['project'] ?>"> <?php
+                                foreach ($projects as $project) {
+                                    if ($project['id'] == $case['project']) {
+                                        echo $project['subject'];
+                                    }
+                                }
+                                ?></a>
+                        </td>
+                        <td>
+                            test
+                        </td>
+                        <td>
+                            <?= date("d-m-Y", strtotime($case['enddate'])) ?>
+                        </td>
+                        <td>
+                            <img src="css/status-<?= $case['status'] ?>.png">
+                        </td>
+                    </tr>
+
+                <?php } ?>
+            <?php } ?>
+
             </tbody>
         </table>
     </div>

@@ -7,8 +7,21 @@ $allTenders = $tenderCon->getTendersByUserId($thisUserId);
 $projectController = new ProjectController();
 $allProjects = $projectController->getProjectsByUserId($thisUserId);
 
+
 $assignmentController = new AssignmentController();
 $allAssignments = $assignmentController->getAssignmentsByUserId($thisUserId);
+
+$caseCon = new CaseController();
+$allCases = $caseCon->getAllCases();
+
+$dashCases = array();
+
+foreach ($allCases as $case) {
+    if($case['user'] == $thisUserId){
+        array_push($dashCases, $case);
+    }
+}
+
 
 $userController = new UserController();
 $clients = $userController->getClientList();
@@ -269,36 +282,26 @@ $clients = $userController->getClientList();
         <div class="crm-dashboard-inside-row">
 
             <button class="custom-file-upload">Aanmaken</button>
-
+            <?php foreach ($dashCases as $case) {?>
             <div class="crm-dashboard-box">
                 <img class="deadline" src="css/deadline3.png">
                 <ul>
                     <li>
-                        Case onderwerp
+                        <a href="?page=caseview&id= <?= $case['id'] ?>"><?= $case['subject'] ?></a>
                     </li>
                     <li>
-                        Klant naam
+                        <?php foreach ($clients as $client) {
+                            if ($client['id'] == $case['client']) { ?>
+                                <a href="?page=showuserprofile&id= <?= $client['id'] ?>"><?= $client['naam'] ?></a>
+                            <?php }
+                        } ?>
                     </li>
                     <li>
-                        04-03-2017
+                        <?= date("d-m-Y", strtotime($case['enddate'])) ?>
                     </li>
                 </ul>
             </div>
-
-            <div class="crm-dashboard-box">
-                <img class="deadline" src="css/deadline1.png">
-                <ul>
-                    <li>
-                        Case onderwerp
-                    </li>
-                    <li>
-                        Klant naam
-                    </li>
-                    <li>
-                        04-03-2017
-                    </li>
-                </ul>
-            </div>
+<?php } ?>
         </div>
     </div>
 </div>
