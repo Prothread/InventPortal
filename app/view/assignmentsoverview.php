@@ -1,224 +1,80 @@
+<?php
+$assignmentController = new AssignmentController();
+$allAssignments = $assignmentController->getAllAssignments();
+
+$projectController = new ProjectController();
+$projects = $projectController->getAllProjects();
+
+$userController = new UserController();
+$clients = $userController->getClientList();
+$users = $userController->getUserList();
+
+?>
+
 <div id="case-overview-holder">
 
-    <header>Opdrachten Overzicht</header>
+    <header><?= ASSIGNMENT_OVERVIEW_TEXT ?></header>
     <hr>
     <div class="case-overzicht-buttons">
-        <button class="custom-file-upload">Aanmaken</button>
-        <button class="custom-file-upload">Archief</button>
+        <button class="custom-file-upload"><?= TEXT_CREATE_DROPDOWN ?></button>
+        <button class="custom-file-upload"><?= TEXT_ARCHIVE ?></button>
     </div>
     <div class="case-overvieuw-table">
         <table id="myTable" class="table table-striped">
             <thead>
             <tr>
-                <th>Onderwerp</th>
-                <th>Werknemer</th>
-                <th>Klant</th>
-                <th>Project</th>
-                <th>Eind datum</th>
-                <th>Status</th>
+                <th><?= TABLE_SUBJECT ?></th>
+                <th><?= TEXT_EMPLOYEE ?></th>
+                <th><?= TEXT_SINGLE_CLIENT ?></th>
+                <th><?= TEXT_PROJECT_ADD ?></th>
+                <th><?= TEXT_END_DATE ?></th>
+                <th><?= TEXT_PROGRESS ?></th>
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>
-                    <a href="#">Case onderwerp</a>
-                </td>
-                <td>
-                    <a href="#">Werkn.afk</a>
-                </td>
-                <td>
-                    <a href="#">Klantnaam</a>
-                </td>
-                <td>
-                    <a href="#">Project naam</a>
-                </td>
-                <td>
-                    04-04-2017
-                </td>
-                <td>
-                    <img src="css/bezig-icon.png">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="#">Case onderwerp</a>
-                </td>
-                <td>
-                    <a href="#">Werkn.afk</a>
-                </td>
-                <td>
-                    <a href="#">Klantnaam</a>
-                </td>
-                <td>
-                    <a href="#">Project naam</a>
-                </td>
-                <td>
-                    04-04-2017
-                </td>
-                <td>
-                    <img src="css/open-icon.png">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="#">Case onderwerp</a>
-                </td>
-                <td>
-                    <a href="#">Werkn.afk</a>
-                </td>
-                <td>
-                    <a href="#">Klantnaam</a>
-                </td>
-                <td>
-                    <a href="#">Project naam</a>
-                </td>
-                <td>
-                    04-04-2017
-                </td>
-                <td>
-                    <img src="css/bezig-icon.png">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="#">Case onderwerp</a>
-                </td>
-                <td>
-                    <a href="#">Werkn.afk</a>
-                </td>
-                <td>
-                    <a href="#">Klantnaam</a>
-                </td>
-                <td>
-                    <a href="#">Project naam</a>
-                </td>
-                <td>
-                    04-04-2017
-                </td>
-                <td>
-                    <img src="css/open-icon.png">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="#">Case onderwerp</a>
-                </td>
-                <td>
-                    <a href="#">Werkn.afk</a>
-                </td>
-                <td>
-                    <a href="#">Klantnaam</a>
-                </td>
-                <td>
-                    <a href="#">Project naam</a>
-                </td>
-                <td>
-                    04-04-2017
-                </td>
-                <td>
-                    <img src="css/bezig-icon.png">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="#">Case onderwerp</a>
-                </td>
-                <td>
-                    <a href="#">Werkn.afk</a>
-                </td>
-                <td>
-                    <a href="#">Klantnaam</a>
-                </td>
-                <td>
-                    <a href="#">Project naam</a>
-                </td>
-                <td>
-                    04-04-2017
-                </td>
-                <td>
-                    <img src="css/open-icon.png">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="#">Case onderwerp</a>
-                </td>
-                <td>
-                    <a href="#">Werkn.afk</a>
-                </td>
-                <td>
-                    <a href="#">Klantnaam</a>
-                </td>
-                <td>
-                    <a href="#">Project naam</a>
-                </td>
-                <td>
-                    04-04-2017
-                </td>
-                <td>
-                    <img src="css/bezig-icon.png">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="#">Case onderwerp</a>
-                </td>
-                <td>
-                    <a href="#">Werkn.afk</a>
-                </td>
-                <td>
-                    <a href="#">Klantnaam</a>
-                </td>
-                <td>
-                    <a href="#">Project naam</a>
-                </td>
-                <td>
-                    04-04-2017
-                </td>
-                <td>
-                    <img src="css/open-icon.png">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="#">Case onderwerp</a>
-                </td>
-                <td>
-                    <a href="#">Werkn.afk</a>
-                </td>
-                <td>
-                    <a href="#">Klantnaam</a>
-                </td>
-                <td>
-                    <a href="#">Project naam</a>
-                </td>
-                <td>
-                    04-04-2017
-                </td>
-                <td>
-                    <img src="css/bezig-icon.png">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="#">Case onderwerp</a>
-                </td>
-                <td>
-                    <a href="#">Werkn.afk</a>
-                </td>
-                <td>
-                    <a href="#">Klantnaam</a>
-                </td>
-                <td>
-                    <a href="#">Project naam</a>
-                </td>
-                <td>
-                    04-04-2017
-                </td>
-                <td>
-                    <img src="css/open-icon.png">
-                </td>
-            </tr>
+            <?php foreach ($allAssignments as $assignment) { ?>
+
+                <tr>
+                    <td>
+                        <a href="?page=assignmentview&id= <?= $assignment['id'] ?>"><?= $assignment['subject'] ?></a>
+                    </td>
+                    <td>
+                        <a href="?page=showuserprofile&id=<?= $assignment['user'] ?>"> <?php
+                            foreach ($users as $user) {
+                                if ($user['id'] == $assignment['user']) {
+                                    echo $user['naam'];
+                                }
+                            }
+                            ?></a>
+                    </td>
+                    <td>
+                        <a href="?page=showuserprofile&id=<?= $assignment['client'] ?>"> <?php
+                            foreach ($clients as $client) {
+                                if ($client['id'] == $assignment['client']) {
+                                    echo $client['naam'];
+                                }
+                            }
+                            ?></a>
+                    </td>
+                    <td>
+                        <a href="?page=projectview&id=<?= $assignment['project'] ?>"> <?php
+                            foreach ($projects as $project) {
+                                if ($project['id'] == $assignment['project']) {
+                                    echo $project['subject'];
+                                }
+                            }
+                            ?></a>
+                    </td>
+                    <td>
+                        <?= $assignment['endDate'] ?>
+                    </td>
+                    <td>
+                        <img src="css/status-<?= $assignment['status'] ?>.png">
+                    </td>
+                </tr>
+
+            <?php } ?>
+
             </tbody>
         </table>
     </div>

@@ -104,11 +104,7 @@ class Tender
     {
         return $this->db->delete($id);
     }
-//
-//    public function getTender()
-//    {
-//        return $this->db->getTender($this);
-//    }
+
 
     /**
      * @return mixed

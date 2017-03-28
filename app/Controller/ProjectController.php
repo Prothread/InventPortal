@@ -29,7 +29,6 @@ class ProjectController
     public function update(array $projectinfo){
         $this->model->setProjectId($projectinfo['id']);
         $this->model->setSubject($projectinfo['subject']);
-        $this->model->setSubject($projectinfo['subject']);
         $this->model->setClient($projectinfo['client']);
         $this->model->setUser($projectinfo['user']);
         $this->model->setEndDate($projectinfo['endDate']);
@@ -44,7 +43,7 @@ class ProjectController
     public function getProjectById($id){
         return $this->model->getProjectById($id);
     }
-    public function getAllProjecs(){
+    public function getAllProjects(){
         return $this->model->getAllProjects();
     }
     public function getProjectsByUserId($userId){

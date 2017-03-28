@@ -32,18 +32,7 @@ class DbTender extends Database
         }
         return false;
     }
-//
-//    public function getTender(Tender $tender)
-//    {
-//        $email = $tender->getEmail();
-//        $password = hash('sha256', $tender->getPassword());
-//
-//        $sql = "SELECT * FROM users WHERE email = '" . $email . "' and paswoord = '" . $password . "'";
-//
-//        if ($result = $this->dbQuery($sql)) {
-//            return $result;
-//        }
-//    }
+
     public function dbLastInsertedId()
     {
         return $this->connection->insert_id;

@@ -288,6 +288,9 @@ switch ($page) {
     case 'tenderview':
         include '../app/view/tenderview.php';
         break;
+    case 'assignmentview':
+        include '../app/view/assignmentview.php';
+        break;
     default:
         include '../app/view/404.php';
         break;

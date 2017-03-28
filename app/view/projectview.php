@@ -68,14 +68,24 @@ if(isset($_POST['update'])){
             'description' => strip_tags($description),
             'status' => $status
         ];
-        $test = $project->update($projectinfo);
-        echo $test;
+        $sql = $project->update($projectinfo);
+        echo $sql;
+    }
+}
+
+if (isset($_POST['delete'])) {
+    if ($project->delete($id)) {
+        $block->Redirect('index.php?page=projectsoverview');
     }
 }
 ?>
 <div class="crm-content-wrapper">
     <div class="add-left-content add-content">
         <h1 class="crm-content-header"><?= TEXT_PROJECT_VIEW ?></h1>
+        <form action="#" method="post">
+            <button type="submit" name="delete" id="deletebtn"
+                    class="custom-file-upload"><?= TEXT_DELETE ?></button>
+        </form>
         <form class="crm-add" action="#" method="post">
             <div>
                 <label><?= TABLE_SUBJECT ?></label>

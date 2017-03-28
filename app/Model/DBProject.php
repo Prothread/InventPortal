@@ -19,13 +19,18 @@ class DBProject extends Database
     public function update(Project $project)
     {
         $sql = "UPDATE `projects` SET `subject` = '{$project->getSubject()}', `client` = '{$project->getClient()}',`user` = '{$project->getUser()}', `endDate` = '{$project->getEndDate()}', `description` = '{$project->getDescription()}', `status` = '{$project->getStatus()}' WHERE `id` = '{$project->getProjectId()}'";
-        $this->dbQuery($sql);
+//        $this->dbQuery($sql);
+        return $sql;
     }
 
     public function delete($id)
     {
-        //Delete function
-        //=============================================
+        $sql = "DELETE FROM `projects` WHERE `id` = '{$id}'";
+
+        if ($result = $this->dbQuery($sql)) {
+            return true;
+        }
+        return false;
     }
 
     public function getProjectById($id)

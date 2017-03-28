@@ -1,7 +1,7 @@
 <?php
 $projectController = new ProjectController();
 
-$allProjects = $projectController->getAllProjecs();
+$allProjects = $projectController->getAllProjects();
 
 $userController = new UserController();
 $clients = $userController->getClientList();
