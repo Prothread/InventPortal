@@ -24,8 +24,12 @@ class DBProject extends Database
 
     public function delete($id)
     {
-        //Delete function
-        //=============================================
+        $sql = "DELETE FROM `projects` WHERE `id` = '{$id}'";
+
+        if ($result = $this->dbQuery($sql)) {
+            return true;
+        }
+        return false;
     }
 
     public function getProjectById($id)
@@ -51,7 +55,10 @@ class DBProject extends Database
 
     public function getProjectsByUserId($userId)
     {
-        //=============================================
+        $sql = "SELECT * FROM `projects` WHERE `user` = {$userId}";
+        $result = $this->dbQuery($sql);
+        $value = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        return $value;
     }
 
     public function dbLastInsertedId()

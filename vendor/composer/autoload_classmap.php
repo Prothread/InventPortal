@@ -41,4 +41,7 @@ return array(
     'CaseController' => $baseDir . '/app/Controller/CaseController.php',
     'CaseClass' => $baseDir . '/app/Model/CaseClass.php',
     'DbCase' => $baseDir . '/app/Model/DbCase.php',
+    'AssignmentController' => $baseDir . '/app/Controller/AssignmentController.php',
+    'Assignment' => $baseDir . '/app/Model/Assignment.php',
+    'DbAssignment' => $baseDir . '/app/Model/DbAssignment.php',
 );

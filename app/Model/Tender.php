@@ -40,7 +40,7 @@ class Tender
 
     public function setEndDate($enddate)
     {
-       $this->EndDate = $enddate;
+        $this->EndDate = $enddate;
     }
 
     public function getEndDate()
@@ -48,7 +48,8 @@ class Tender
         return $this->EndDate;
     }
 
-    public function calcEndDate($creationdate, $validity){
+    public function calcEndDate($creationdate, $validity)
+    {
         $this->EndDate = date('Y-m-d', strtotime($creationdate . " +" . $validity . " days"));
     }
 
@@ -99,16 +100,13 @@ class Tender
     {
         return $this->db->update($this);
     }
+
 //
     public function delete($id)
     {
         return $this->db->delete($id);
     }
-//
-//    public function getTender()
-//    {
-//        return $this->db->getTender($this);
-//    }
+
 
     /**
      * @return mixed
@@ -254,15 +252,23 @@ class Tender
         $this->Description = $Description;
     }
 
-    public function getLastTenderId(){
+    public function getLastTenderId()
+    {
         return $this->db->getLastTenderId();
     }
 
-    public function getAllTenders(){
+    public function getAllTenders()
+    {
         return $this->db->getAllTenders();
     }
 
-    public function getTenderById($id){
+    public function getTenderById($id)
+    {
         return $this->db->getTenderById($id);
+    }
+
+    public function getTendersByUserId($userId)
+    {
+        return $this->db->getTendersByUserId($userId);
     }
 }

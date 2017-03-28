@@ -50,27 +50,33 @@ class Project
         $this->db = new DBProject();
     }
 
-    public function create(){
+    public function create()
+    {
         return $this->db->create($this);
     }
 
-    public function update(){
+    public function update()
+    {
         return $this->db->update($this);
     }
 
-    public function delete($id){
+    public function delete($id)
+    {
         return $this->db->delete($id);
     }
 
-    public function getProjectById($id){
+    public function getProjectById($id)
+    {
         return $this->db->getProjectById($id);
     }
 
-    public function getAllProjects(){
+    public function getAllProjects()
+    {
         return $this->db->getAllProjects();
     }
 
-    public function getProjectsByUserId($userId){
+    public function getProjectsByUserId($userId)
+    {
         return $this->db->getProjectsByUserId($userId);
     }
 

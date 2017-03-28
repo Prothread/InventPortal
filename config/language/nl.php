@@ -53,13 +53,17 @@ define("TEXT_DEFAULTTASK_CREATE","Standaard taak aanmaken");
 define("TEXT_ERROR_FORM","Een veld is niet goed ingevuld, probeer opnieuw.");
 define("TEXT_PROJECT_VIEW","Project overzicht");
 define("TEXT_EDIT","Aanpassen");
+
 define("TEXT_CASE_VIEW", "Case overzicht");
 define("CASE_OVERVIEW_TEXT", "cases overzicht");
+
+define("TEXT_ASSIGNMENT_VIEW","Opdracht overzicht");
 
 /*CRM TABLES*/
 
 define("PROJECT_OVERVIEW_TEXT", "Projecten Overzicht");
 define("TEXT_SINGLE_CLIENT", "Klant");
+define("ASSIGNMENT_OVERVIEW_TEXT", "Opdrachten overzicht");
 
 /*/CRM*/
 

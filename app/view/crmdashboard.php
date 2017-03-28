@@ -1,16 +1,11 @@
 <?php
-$tenderCon = new TenderController();
-$allTenders = $tenderCon->getAllTenders();
-
 $thisUserId = $_SESSION['usr_id'];
 
-$dashTenders = array();
+$tenderCon = new TenderController();
+$allTenders = $tenderCon->getTendersByUserId($thisUserId);
 
-foreach ($allTenders as $tender) {
-    if($tender['user'] == $thisUserId){
-        array_push($dashTenders, $tender);
-    }
-}
+$projectController = new ProjectController();
+$allProjects = $projectController->getProjectsByUserId($thisUserId);
 
 $caseCon = new CaseController();
 $allCases = $caseCon->getAllCases();
@@ -25,11 +20,7 @@ foreach ($allCases as $case) {
 
 $userController = new UserController();
 $clients = $userController->getClientList();
-$theclient;
 
-foreach ($dashTenders as $tender) {
-    $time = $tenderCon->getTimeDifference($tender['enddate'], date("Y-m-d"));
-}
 ?>
 
 <div id="crm-dashboard-holder">
@@ -39,35 +30,37 @@ foreach ($dashTenders as $tender) {
 
         <select class="crm-dashboard-select">
             <option value="" disabled selected>Filter optie</option>
-            <option><?= TABLE_TITLE ?>
-            <option>
+            <option><?= TABLE_TITLE ?></option>
             <option><?= TEXT_DATE ?></option>
             <option><?= TEXT_IS_CLIENT ?></option>
             <option><?= TEXT_URGENCY ?></option>
         </select>
 
         <div class="crm-dashboard-inside-row">
-
             <button class="custom-file-upload">Aanmaken</button>
-            <?php foreach ($dashTenders as $tender) { ?>
+            <?php foreach ($allTenders as $tender) {
+                $timeDiff = $tenderCon->getTimeDifference($tender['enddate'], date("Y-m-d"))
+                ?>
                 <div class="crm-dashboard-box">
-                    <?php if($tenderCon->getTimeDifference($tender['enddate'], date("Y-m-d")) <= 0 ){ ?>
+                    <?php if ($timeDiff <= 0) { ?>
                         <img class="deadline" src="css/deadline4.png">
-                    <?php } else if($tenderCon->getTimeDifference($tender['enddate'], date("Y-m-d")) > 0 && $tenderCon->getTimeDifference($tender['enddate'], date("Y-m-d")) <= 2) {?>
+                    <?php } else if ($timeDiff > 0 && $timeDiff <= 2) { ?>
                         <img class="deadline" src="css/deadline3.png">
-                    <?php } else if($tenderCon->getTimeDifference($tender['enddate'], date("Y-m-d")) > 2 && $tenderCon->getTimeDifference($tender['enddate'], date("Y-m-d")) <= 7) { ?>
+                    <?php } else if ($timeDiff > 2 && $timeDiff <= 7) { ?>
                         <img class="deadline" src="css/deadline2.png">
                     <?php } else { ?>
                         <img class="deadline" src="css/deadline1.png">
                     <?php } ?>
                     <ul>
                         <li>
-                            <a href="?page=tenderview&id= <?= $tender['id'] ?>"><?= $tender['subject'] ?></a>
+                            <a href="?page=tenderview&id=<?= $tender['id'] ?>"><?= $tender['subject'] ?></a>
                         </li>
                         <li>
                             <?php foreach ($clients as $client) {
                                 if ($client['id'] == $tender['client']) {
-                                    echo $client['naam'];
+                                    ?>
+                                    <a href="?page=showuserprofile&id=<?= $client['id'] ?>"><?= $client['naam'] ?></a>
+                                    <?php
                                 }
                             } ?>
                         </li>
@@ -92,23 +85,39 @@ foreach ($dashTenders as $tender) {
         </select>
 
         <div class="crm-dashboard-inside-row">
-
             <button class="custom-file-upload">Aanmaken</button>
-
-            <div class="crm-dashboard-box">
-                <img class="deadline" src="css/deadline1.png">
-                <ul>
-                    <li>
-                        Project onderwerp
-                    </li>
-                    <li>
-                        Klant naam
-                    </li>
-                    <li>
-                        04-03-2017
-                    </li>
-                </ul>
-            </div>
+            <?php foreach ($allProjects as $project) {
+                $timeDiff = $projectController->getTimeDifference($project['endDate'], date("Y-m-d"));
+                ?>
+                <div class="crm-dashboard-box">
+                    <?php if ($timeDiff <= 0) { ?>
+                        <img class="deadline" src="css/deadline4.png">
+                    <?php } else if ($timeDiff > 0 && $timeDiff <= 2) { ?>
+                        <img class="deadline" src="css/deadline3.png">
+                    <?php } else if ($timeDiff > 2 && $timeDiff <= 7) { ?>
+                        <img class="deadline" src="css/deadline2.png">
+                    <?php } else { ?>
+                        <img class="deadline" src="css/deadline1.png">
+                    <?php } ?>
+                    <ul>
+                        <li>
+                            <a href="?page=projectview&id=<?= $project['id'] ?>"><?= $project['subject'] ?></a>
+                        </li>
+                        <li>
+                            <?php foreach ($clients as $client) {
+                                if ($client['id'] == $project['client']) {
+                                    ?>
+                                    <a href="?page=showuserprofile&id=<?= $client['id'] ?>"><?= $client['naam'] ?></a>
+                                    <?php
+                                }
+                            } ?>
+                        </li>
+                        <li>
+                            <?= date("d-m-Y", strtotime($project['endDate'])) ?>
+                        </li>
+                    </ul>
+                </div>
+            <?php } ?>
         </div>
     </div>
 

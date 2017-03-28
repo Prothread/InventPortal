@@ -37,10 +37,10 @@ $users = $userController->getUserList();
 
                     <tr>
                         <td>
-                            <a href="?page=tenderview&id= <?= $tender['id'] ?>"><?= $tender['subject'] ?></a>
+                            <a href="?page=tenderview&id=<?= $tender['id'] ?>"><?= $tender['subject'] ?></a>
                         </td>
                         <td>
-                            <a href="#"> <?php
+                            <a href="?page=showuserprofile&id=<?= $tender['user'] ?>"> <?php
                                 foreach ($users as $user) {
                                     if ($user['id'] == $tender['user']) {
                                         echo $user['naam'];
@@ -49,7 +49,7 @@ $users = $userController->getUserList();
                                 ?></a>
                         </td>
                         <td>
-                            <a href="#"> <?php
+                            <a href="?page=showuserprofile&id=<?= $tender['client'] ?>"> <?php
                                 foreach ($clients as $client) {
                                     if ($client['id'] == $tender['client']) {
                                         echo $client['naam'];

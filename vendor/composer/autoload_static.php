@@ -68,6 +68,9 @@ class ComposerStaticInitc0a55957efdf0e279fcd6092060aa6da
         'CaseController' => __DIR__ . '/../..' . '/app/Controller/CaseController.php',
         'CaseClass' => __DIR__ . '/../..' . '/app/Model/CaseClass.php',
         'DbCase' => __DIR__ . '/../..' . '/app/Model/DbCase.php',
+        'AssignmentController' => __DIR__ . '/../..' . '/app/Controller/AssignmentController.php',
+        'Assignment' => __DIR__ . '/../..' . '/app/Model/Assignment.php',
+        'DBAssignment' => __DIR__ . '/../..' . '/app/Model/DBAssignment.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
