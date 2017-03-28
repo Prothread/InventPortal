@@ -14,7 +14,7 @@ class CaseController
         $this->model->setSubject($caseinfo['subject']);
         $this->model->setClient($caseinfo['client']);
         $this->model->setUser($caseinfo['user']);
-        $this->model->setEndDate($caseinfo['endDate']);
+        $this->model->setEndDate($caseinfo['enddate']);
         $this->model->setDescription($caseinfo['description']);
         $this->model->setStatus($caseinfo['status']);
         $this->model->setProject($caseinfo['project']);
@@ -48,5 +48,9 @@ class CaseController
     }
     public function getCasesByUserId($userId){
 
+    }
+
+    public function getCasesByStatus($status){
+        return $this->model->getCasesByStatus($status);
     }
 }

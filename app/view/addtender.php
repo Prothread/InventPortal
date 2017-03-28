@@ -29,32 +29,32 @@ if (isset($_POST['submitTender'])) {
 
     if (!isset($subject) || $subject == null) {
         $error = true;
-        $subject_error = "You must fill in the subject field.";
+        $title_error = true;
     }
 
-    if (!isset($client) || $client == null) {
+    if (!filter_var($client, FILTER_VALIDATE_INT)) {
         $error = true;
-        $client_error = "You must select a client.";
+        $client_error = true;
     }
 
-    if (!isset($validity) || $validity == null) {
+    if (!filter_var($validity, FILTER_VALIDATE_INT) && $validity !== '0') {
         $error = true;
-        $validity_error = "You must set validity days";
+        $validity_error = true;
     }
 
-    if (!isset($value) || $value == null) {
+    if (!filter_var($value, FILTER_VALIDATE_FLOAT)) {
         $error = true;
-        $value_error = "You must set a value";
+        $value_error = true;
     }
 
-    if (!isset($creationDate) || $creationDate == null) {
+    if (!filter_var($creationDate, FILTER_SANITIZE_STRING)) {
         $error = true;
-        $creationDate_error = "You must set the creation date";
+        $creationDate_error = true;
     }
 
-    if (!isset($description) || $description == null) {
+    if (!filter_var($description, FILTER_SANITIZE_STRING)) {
         $error = true;
-        $description_error = "You must set a description";
+        $description_error = true;
     }
 
     $tender->calcEndDate($creationDate, $validity);
@@ -94,15 +94,14 @@ if (isset($_POST['submitTender'])) {
         <form class="crm-add" action="#" method="post">
             <div>
                 <label><?= TABLE_TITLE ?></label>
-                <input type="text" name="subject" class="form-control"
+                <input type="text" name="subject" class="form-control <?php if(isset($title_error)){echo "error-input";} ?>"
                        value="<?php if (isset($_POST['subject'])) {
                            echo $_POST['subject'];
                        } ?>">
-                <span class="text-danger"><?php if (isset($subject_error)) echo $subject_error; ?></span>
             </div>
             <div>
                 <label><?= TEXT_ASSIGNFOR ?></label>
-                <select class="form-control" name="client">
+                <select class="form-control <?php if(isset($client_error)){echo "error-input";} ?>" name="client">
                     <option value="0"><?= TEXT_ASSIGNFOR ?></option>
                     <?php
                     foreach ($clients as $client) {
@@ -114,7 +113,6 @@ if (isset($_POST['submitTender'])) {
                     }
                     ?>
                 </select>
-                <span class="text-danger"><?php if (isset($client_error)) echo $client_error; ?></span>
             </div>
             <div>
                 <label><?= TEXT_EMPLOYEE ?></label>
@@ -133,38 +131,34 @@ if (isset($_POST['submitTender'])) {
             </div>
             <div>
                 <label><?= TEXT_VALIDITY_DURATION ?></label>
-                <input type="number" class="form-control" name="validity" min="1" value="<?php if (isset($_POST['validity'])) {
+                <input type="number" class="form-control <?php if(isset($validity_error)){echo "error-input";} ?>" name="validity" min="1" value="<?php if (isset($_POST['validity'])) {
                     echo $_POST['validity'];
                 } ?>">
-                <span class="text-danger"><?php if (isset($validity_error)) echo $validity_error; ?></span>
             </div>
             <div>
                 <label><?= TEXT_VALUE ?></label>
-                <input type="number" class="form-control" name="value" value="<?php if (isset($_POST['value'])) {
+                <input type="number" class="form-control <?php if(isset($value_error)){echo "error-input";} ?>" name="value" value="<?php if (isset($_POST['value'])) {
                     echo $_POST['value'];
                 } ?>">
-                <span class="text-danger"><?php if (isset($value_error)) echo $value_error; ?></span>
             </div>
             <div>
                 <label><?= TEXT_CHANCE ?></label>
-                <input type="number" class="form-control" name="chance" value="<?php if (isset($_POST['chance'])) {
+                <input type="number" class="form-control" name="chance" max="100" value="<?php if (isset($_POST['chance'])) {
                     echo $_POST['chance'];
                 } ?>">
             </div>
             <div>
                 <label><?= TEXT_CREATION_DATE ?></label>
-                <input type="date" class="form-control" name="creationdate"
+                <input type="date" class="form-control <?php if(isset($creationDate_error)){echo "error-input";} ?>" name="creationdate"
                        value="<?php if (isset($_POST['creationdate'])) {
                            echo $_POST['creationdate'];
-                       } ?>">
-                <span class="text-danger"><?php if (isset($creationDate_error)) echo $creationDate_error; ?></span>
+                       }else{ echo date("d-m-y"); } ?>">
             </div>
             <div class="description-holder">
                 <label><?= TEXT_DESCRIPTION ?></label>
-                <textarea name="description"><?php if (isset($_POST['description'])) {
+                <textarea name="description" class="<?php if(isset($description_error)){echo "error-input";} ?>"><?php if (isset($_POST['description'])) {
                         echo $_POST['description'];
                     } ?></textarea>
-                <span class="text-danger"><?php if (isset($description_error)) echo $description_error; ?></span>
             </div>
             <!--            Bestanden uploaden moet nog toegevoegd worden-->
             <div class="button-holder">

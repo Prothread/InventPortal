@@ -220,4 +220,8 @@ class CaseClass
     {
         $this->finishDate = $finishDate;
     }
+
+    public function getCasesByStatus($status){
+        return $this->db->getCasesByStatus($status);
+    }
 }

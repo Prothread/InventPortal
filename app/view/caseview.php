@@ -21,7 +21,7 @@ $clients = $userController->getClientList();
 $users = $userController->getUserList();
 
 $projectController = new ProjectController();
-$projects = $projectController->getAllProjecs();
+$projects = $projectController->getAllProjects();
 
 $error = false;
 

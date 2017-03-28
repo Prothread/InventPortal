@@ -15,7 +15,7 @@ $clients = $userController->getClientList();
 $users = $userController->getUserList();
 
 $projectController = new ProjectController();
-$projects = $projectController->getAllProjecs();
+$projects = $projectController->getAllProjects();
 
 $error = false;
 
@@ -23,7 +23,7 @@ $post = false;
 
 if(isset($_POST['create'])){
     $post = true;
-    $valueNames = ["subject","client","user","endDate","description","project"];
+    $valueNames = ["subject","client","user","enddate","description","project"];
     foreach ($valueNames as $value){
         ${$value} = mysqli_real_escape_string($mysqli, $_POST[$value]);
     }
@@ -39,7 +39,7 @@ if(isset($_POST['create'])){
         $error = true;
         $user_error = true;
     }
-    if(!filter_var($endDate, FILTER_SANITIZE_STRING)){
+    if(!filter_var($enddate, FILTER_SANITIZE_STRING)){
         $error = true;
         $endDate_error = true;
     }
@@ -57,7 +57,7 @@ if(isset($_POST['create'])){
             'subject' => strip_tags($subject),
             'client' => $client,
             'user' => $user,
-            'endDate' => $endDate,
+            'enddate' => $endDate,
             'description' => strip_tags($description),
             'status' => $status,
             'project' => $project
@@ -134,7 +134,7 @@ if(isset($_POST['create'])){
 
             <div>
                 <label><?= TEXT_END_DATE ?></label>
-                <input type="date" class="form-control" name="endDate" value="<?php if($post){echo $_POST['endDate'];}; ?>">
+                <input type="date" class="form-control" name="enddate" value="<?php if($post){echo $_POST['endDate'];}; ?>">
             </div>
             <div class="description-holder">
                 <label><?= TEXT_DESCRIPTION ?></label>

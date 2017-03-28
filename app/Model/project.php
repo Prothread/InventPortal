@@ -207,4 +207,8 @@ class Project
     {
         $this->finishDate = $finishDate;
     }
+
+    public function getProjectsByStatus($status){
+        return $this->db->getProjectsByStatus($status);
+    }
 }

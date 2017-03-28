@@ -17,7 +17,6 @@ $users = $userController->getUserList();
     <div class="case-overzicht-buttons">
         <button class="custom-file-upload" onclick="window.location.href='?page=addtender'"><?= TEXT_CREATE_DROPDOWN ?></button>
         <button class="custom-file-upload"><?= TEXT_ARCHIVE ?></button>
-    </div>
     <div class="case-overvieuw-table">
         <table id="myTable" class="table table-striped">
             <thead>

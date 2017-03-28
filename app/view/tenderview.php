@@ -41,7 +41,7 @@ if (isset($_POST['updateTender'])) {
         $title_error = true;
         echo "1";
     }
-    if (!filter_var($client, FILTER_VALIDATE_INT) && $client !== '0') {
+    if (!filter_var($client, FILTER_VALIDATE_INT)) {
         $error = true;
         $client_error = true;
         echo "2";
@@ -60,11 +60,6 @@ if (isset($_POST['updateTender'])) {
         $error = true;
         $value_error = true;
         echo $value;
-    }
-    if (!filter_var($chance, FILTER_VALIDATE_INT)) {
-        $error = true;
-        $chance_error = true;
-        echo "6";
     }
     if (!filter_var($description, FILTER_SANITIZE_STRING)) {
         $error = true;
@@ -122,7 +117,7 @@ if (isset($_POST['deleteTender'])) {
             </div>
             <div>
                 <label><?= TEXT_ASSIGNFOR ?></label>
-                <select class="form-control" name="client">
+                <select class="form-control <?php if(isset($client_error)){echo "error-input";} ?>" name="client">
                     <option value="0"<?php if ($tenderinfo['client'] == 0) {
                         echo 'selected';
                     } ?>><?= TEXT_ASSIGNFOR ?></option>
@@ -157,19 +152,19 @@ if (isset($_POST['deleteTender'])) {
             </div>
             <div>
                 <label><?= TEXT_VALIDITY_DURATION ?></label>
-                <input type="number" class="form-control" name="validity" min="1" value="<?= $tenderinfo['validity'] ?>" ) {
+                <input type="number" class="form-control <?php if(isset($vadility_error)){echo "error-input";} ?>" name="validity" min="1" value="<?= $tenderinfo['validity'] ?>" ) {
                        echo $_POST['validity'];
                 } ?>
 
             </div>
             <div>
                 <label><?= TEXT_VALUE ?></label>
-                <input type="number" class="form-control" name="value" value="<?= $tenderinfo['value'] ?>">
+                <input type="number" class="form-control <?php if(isset($value_error)){echo "error-input";} ?>" name="value" min="0" value="<?= $tenderinfo['value'] ?>">
 
             </div>
             <div>
                 <label><?= TEXT_CHANCE ?></label>
-                <input type="number" class="form-control" name="chance" value="<?= $tenderinfo['chance'] ?>" ) {
+                <input type="number" class="form-control" name="chance" max="100" min="0" value="<?= $tenderinfo['chance'] ?>" ) {
                        echo $_POST['chance'];
                 } ?>
             </div>
@@ -188,7 +183,7 @@ if (isset($_POST['deleteTender'])) {
             </div>
             <div class="description-holder">
                 <label><?= TEXT_DESCRIPTION ?></label>
-                <textarea name="description"><?= $tenderinfo['description'] ?></textarea>
+                <textarea name="description" class="<?php if(isset($description_error)){echo "error-input";} ?>"><?= $tenderinfo['description'] ?></textarea>
 
             </div>
             <div class="button-update">

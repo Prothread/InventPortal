@@ -81,4 +81,12 @@ class DbTender extends Database
         $value = mysqli_fetch_all($result, MYSQLI_ASSOC);
         return $value;
     }
+
+    public function getTendersByStatus($status)
+    {
+        $sql = "SELECT * FROM `tenders` WHERE `status` = {$status}";
+        $result = $this->dbQuery($sql);
+        $value = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        return $value;
+    }
 }

@@ -1,11 +1,13 @@
 <?php
-$thisUserId = $_SESSION['usr_id'];
 
 $tenderController = new TenderController();
-$allTenders = $tenderController->getTendersByUserId($thisUserId);
+$allTenders = $tenderController->getTendersByStatus(0);
 
 $projectController = new ProjectController();
-$allProjects = $projectController->getProjectsByUserId($thisUserId);
+$allProjects = $projectController->getProjectsByStatus(0);
+
+$caseController = new CaseController();
+$allCases = $caseController->getCasesByStatus(0);
 
 $userController = new UserController();
 $clients = $userController->getClientList();
@@ -47,7 +49,9 @@ $clients = $userController->getClientList();
                         <li>
                             <?php foreach ($clients as $client) {
                                 if ($client['id'] == $tender['client']) {
-                                    echo $client['naam'];
+                                    ?>
+                                    <a href="?page=showuserprofile&id=<?= $client['id'] ?>"><?= $client['naam'] ?></a>
+                                    <?php
                                 }
                             } ?>
                         </li>
@@ -93,7 +97,9 @@ $clients = $userController->getClientList();
                         <li>
                             <?php foreach ($clients as $client) {
                                 if ($client['id'] == $project['client']) {
-                                    echo $client['naam'];
+                                    ?>
+                                    <a href="?page=showuserprofile&id=<?= $client['id'] ?>"><?= $client['naam'] ?></a>
+                                    <?php
                                 }
                             } ?>
                         </li>
@@ -283,40 +289,40 @@ $clients = $userController->getClientList();
         </select>
 
         <div class="crm-dashboard-inside-row">
-
-            <button class="custom-file-upload">Aanmaken</button>
-
-            <div class="crm-dashboard-box">
-                <img class="deadline" src="css/deadline3.png">
-                <ul>
-                    <li>
-                        Case onderwerp
-                    </li>
-                    <li>
-                        Klant naam
-                    </li>
-                    <li>
-                        04-03-2017
-                    </li>
-                </ul>
-                <a class="toewijzenlink" href="">Toewijzen</a>
-            </div>
-
-            <div class="crm-dashboard-box">
-                <img class="deadline" src="css/deadline1.png">
-                <ul>
-                    <li>
-                        Case onderwerp
-                    </li>
-                    <li>
-                        Klant naam
-                    </li>
-                    <li>
-                        04-03-2017
-                    </li>
-                </ul>
-                <a class="toewijzenlink" href="">Toewijzen</a>
-            </div>
+            <button class="custom-file-upload" onclick="window.location.href='?page=addcase'">Aanmaken</button>
+            <?php foreach ($allCases as $case) {
+                $timeDiff = $projectController->getTimeDifference($case['enddate'], date("Y-m-d"))
+                ?>
+                <div class="crm-dashboard-box">
+                    <?php if ($timeDiff <= 0) { ?>
+                        <img class="deadline" src="css/deadline4.png">
+                    <?php } else if ($timeDiff > 0 && $timeDiff <= 2) { ?>
+                        <img class="deadline" src="css/deadline3.png">
+                    <?php } else if ($timeDiff > 2 && $timeDiff <= 7) { ?>
+                        <img class="deadline" src="css/deadline2.png">
+                    <?php } else { ?>
+                        <img class="deadline" src="css/deadline1.png">
+                    <?php } ?>
+                    <ul>
+                        <li>
+                            <a href="?page=caseview&id=<?= $case['id'] ?>"><?= $case['subject'] ?></a>
+                        </li>
+                        <li>
+                            <?php foreach ($clients as $client) {
+                                if ($client['id'] == $case['client']) {
+                                    ?>
+                            <a href="?page=showuserprofile&id=<?= $client['id'] ?>"><?= $client['naam'] ?></a>
+                            <?php
+                                }
+                            } ?>
+                        </li>
+                        <li>
+                            <?= date("d-m-Y", strtotime($case['enddate'])) ?>
+                        </li>
+                    </ul>
+                    <a class="toewijzenlink" href="">Toewijzen</a>
+                </div>
+            <?php } ?>
         </div>
     </div>
 </div>
