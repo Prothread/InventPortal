@@ -111,4 +111,9 @@ class TenderController
     {
         return $this->model->getTendersByUserId($userId);
     }
+
+    public function getTendersByStatus($status)
+    {
+        return $this->model->getTendersByStatus($status);
+    }
 }

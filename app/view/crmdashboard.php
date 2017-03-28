@@ -282,9 +282,19 @@ $clients = $userController->getClientList();
         <div class="crm-dashboard-inside-row">
 
             <button class="custom-file-upload">Aanmaken</button>
-            <?php foreach ($dashCases as $case) {?>
+            <?php foreach ($dashCases as $case) {
+                $timeDiff = $tenderCon->getTimeDifference($case['enddate'], date("Y-m-d"))
+                ?>
             <div class="crm-dashboard-box">
-                <img class="deadline" src="css/deadline3.png">
+                <?php if ($timeDiff <= 0) { ?>
+                    <img class="deadline" src="css/deadline4.png">
+                <?php } else if ($timeDiff > 0 && $timeDiff <= 2) { ?>
+                    <img class="deadline" src="css/deadline3.png">
+                <?php } else if ($timeDiff > 2 && $timeDiff <= 7) { ?>
+                    <img class="deadline" src="css/deadline2.png">
+                <?php } else { ?>
+                    <img class="deadline" src="css/deadline1.png">
+                <?php } ?>
                 <ul>
                     <li>
                         <a href="?page=caseview&id= <?= $case['id'] ?>"><?= $case['subject'] ?></a>

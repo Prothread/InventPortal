@@ -61,6 +61,14 @@ class DBProject extends Database
         return $value;
     }
 
+    public function getProjectsByStatus($status)
+    {
+        $sql = "SELECT * FROM `projects` WHERE `status` = {$status}";
+        $result = $this->dbQuery($sql);
+        $value = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        return $value;
+    }
+
     public function dbLastInsertedId()
     {
         return $this->connection->insert_id;

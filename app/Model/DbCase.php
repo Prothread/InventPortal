@@ -58,4 +58,12 @@ class DbCase extends Database
     {
         return $this->connection->insert_id;
     }
+
+    public function getCasesByStatus($status)
+    {
+        $sql = "SELECT * FROM `cases` WHERE `status` = {$status}";
+        $result = $this->dbQuery($sql);
+        $value = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        return $value;
+    }
 }

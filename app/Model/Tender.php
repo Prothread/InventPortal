@@ -271,4 +271,9 @@ class Tender
     {
         return $this->db->getTendersByUserId($userId);
     }
+
+    public function getTendersByStatus($status)
+    {
+        return $this->db->getTendersByStatus($status);
+    }
 }
