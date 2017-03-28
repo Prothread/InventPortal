@@ -32,6 +32,30 @@ class Tender
 
     private $Id;
 
+    private $EndDate;
+
+    /**
+     * @return mixed
+     */
+
+    public function setEndDate($enddate)
+    {
+       $this->EndDate = $enddate;
+    }
+
+    public function getEndDate()
+    {
+        return $this->EndDate;
+    }
+
+    public function calcEndDate($creationdate, $validity){
+        $this->EndDate = date('Y-m-d', strtotime($creationdate . " +" . $validity . " days"));
+    }
+
+    /**
+     * @param mixed $EndDate
+     */
+
     /**
      * @return mixed
      */

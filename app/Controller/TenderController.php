@@ -56,7 +56,7 @@ class TenderController
         $this->model->setClient($tenderinfo['client']);
         $this->model->setUser($tenderinfo['user']);
         $this->model->setValidity($tenderinfo['validity']);
-        $this->model->setCreationDate($tenderinfo['creationdate']);
+        //$this->model->setEndDate($tenderinfo['enddate']);
         $this->model->setDescription($tenderinfo['description']);
         $this->model->setChance($tenderinfo['chance']);
         $this->model->setValue($tenderinfo['value']);
@@ -78,5 +78,24 @@ class TenderController
 
     public function getTenderById($id){
         return $this->model->getTenderById($id);
+    }
+
+    public function getEndDate(){
+        return $this->model->getEndDate();
+    }
+
+    public function calcEndDate($creationdate, $validity){
+        return $this->model->calcEndDate($creationdate, $validity);
+    }
+
+    public function getUser(){
+        return $this->model->getUser();
+    }
+
+    public function getTimeDifference($date1, $date2){
+        $d1 = new DateTime($date1);
+        $d2 = new DateTime($date2);
+        return $diff = $d1->diff($d2)->format("%a");
+        //return $diff=date_diff(date_create($date1),date_create($date2));
     }
 }

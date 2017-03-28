@@ -64,7 +64,7 @@ $users = $userController->getUserList();
                             <?= $tender['chance'] ?> &#37;
                         </td>
                         <td>
-                            <?= $tender['creationdate'] ?>
+                            <?= date("d-m-Y", strtotime($tender['enddate'])) ?>
                         </td>
                         <td>
                             <img src="css/bezig-icon.png">

@@ -57,6 +57,8 @@ if (isset($_POST['submitTender'])) {
         $description_error = "You must set a description";
     }
 
+    $tender->calcEndDate($creationDate, $validity);
+
     if($client == 0){
         $status = 0;
     }else{
@@ -75,7 +77,6 @@ if (isset($_POST['submitTender'])) {
             'description' => strip_tags($description),
             'status' => strip_tags($status)
         ];
-
         if ($id = $tender->create($tenderinfo)) {
             $block = new BlockController();
             $block->Redirect('index.php?page=tenderview&id=' . $id);
@@ -154,7 +155,7 @@ if (isset($_POST['submitTender'])) {
                 <label><?= TEXT_CREATION_DATE ?></label>
                 <input type="date" class="form-control" name="creationdate"
                        value="<?php if (isset($_POST['creationdate'])) {
-                           echo $_POST['creationDate'];
+                           echo $_POST['creationdate'];
                        } ?>">
                 <span class="text-danger"><?php if (isset($creationDate_error)) echo $creationDate_error; ?></span>
             </div>

@@ -29,7 +29,10 @@ $users = $userController->getUserList();
 $error = false;
 
 if (isset($_POST['updateTender'])) {
-    $valueNames = ["subject", "client", "user", "validity", "value", "chance", "creationDate", "description"];
+
+    //$test = $tender->getEndDate();
+
+    $valueNames = ["subject", "client", "user", "validity", "value", "chance", "description"];
     foreach ($valueNames as $v) {
         ${$v} = mysqli_real_escape_string($mysqli, $_POST[$v]);
     }
@@ -63,16 +66,15 @@ if (isset($_POST['updateTender'])) {
         $chance_error = true;
         echo "6";
     }
-    if (!filter_var($creationDate, FILTER_SANITIZE_STRING)) {
-        $error = true;
-        $createdate_error = true;
-        echo "7";
-    }
     if (!filter_var($description, FILTER_SANITIZE_STRING)) {
         $error = true;
         $description_error = true;
         echo "8";
     }
+
+    $tender->calcEndDate($tenderinfo['creationdate'], $validity);
+
+    $enddate = $tender->getEndDate();
 
     if (!$error) {
         if ($client == 0) {
@@ -88,10 +90,10 @@ if (isset($_POST['updateTender'])) {
             'validity' => $validity,
             'description' => strip_tags($description),
             'chance' => strip_tags($chance),
-            'creationdate' => strip_tags($creationDate),
             'value' => strip_tags($value),
             'status' => $status
         ];
+
         $tender->update($tenderinfo);
     }
 }
@@ -172,9 +174,16 @@ if (isset($_POST['deleteTender'])) {
                 } ?>
             </div>
             <div>
-                <label><?= TEXT_CREATION_DATE ?></label>
-                <input type="date" class="form-control" name="creationDate"
-                       value="<?= $tenderinfo['creationdate'] ?>"
+                <label><?= TEXT_END_DATE ?></label>
+                <input type="text" class="form-control" name="enddate" readonly
+                       value="<?php
+                       if(isset($enddate)) {
+                           echo date("d-m-Y", strtotime($enddate));
+                       }else{
+//                           echo $tenderinfo['enddate'];
+                           echo date("d-m-Y", strtotime($tenderinfo['enddate']));
+                       }
+                       ?>"
                 <span class="text-danger"><?php if (isset($creationDate_error)) echo $creationDate_error; ?></span>
             </div>
             <div class="description-holder">

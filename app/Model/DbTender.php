@@ -10,7 +10,7 @@ class DbTender extends Database
 {
     public function create(Tender $tender)
     {
-        $sql = "INSERT INTO `tenders` (`subject`, `client`, `user`,  `validity`, `value`, `chance`, `creationdate`, `description`, `status`) VALUES('{$tender->getSubject()}', '{$tender->getClient()}', '{$tender->getUser()}', '{$tender->getValidity()}', '{$tender->getValue()}', '{$tender->getChance()}', '{$tender->getCreationDate()}', '{$tender->getDescription()}', '{$tender->getStatus()}')";
+        $sql = "INSERT INTO `tenders` (`subject`, `client`, `user`,  `validity`, `value`, `chance`, `creationdate`, `description`, `status`, `enddate`) VALUES('{$tender->getSubject()}', '{$tender->getClient()}', '{$tender->getUser()}', '{$tender->getValidity()}', '{$tender->getValue()}', '{$tender->getChance()}', '{$tender->getCreationDate()}', '{$tender->getDescription()}', '{$tender->getStatus()}', '{$tender->getEndDate()}')";
 
         if ($this->dbQuery($sql)) {
             return $this->dbLastInsertedId();
@@ -19,7 +19,7 @@ class DbTender extends Database
 
     public function update(Tender $tender)
     {
-        $sql = "UPDATE `tenders` SET `subject` = '{$tender->getSubject()}', `client` = '{$tender->getClient()}',`user` = '{$tender->getUser()}', `validity` = '{$tender->getValidity()}', `description` = '{$tender->getDescription()}', `status` = '{$tender->getStatus()}', `value` = '{$tender->getValue()}', `chance` = '{$tender->getChance()}', `creationdate` = '{$tender->getCreationDate()}' WHERE `id` = '{$tender->getTenderId()}'";
+        $sql = "UPDATE `tenders` SET `subject` = '{$tender->getSubject()}', `client` = '{$tender->getClient()}',`user` = '{$tender->getUser()}', `validity` = '{$tender->getValidity()}', `description` = '{$tender->getDescription()}', `status` = '{$tender->getStatus()}', `value` = '{$tender->getValue()}', `chance` = '{$tender->getChance()}', `enddate` = '{$tender->getEndDate()}' WHERE `id` = '{$tender->getTenderId()}'";
         $this->dbQuery($sql);
     }
 //
