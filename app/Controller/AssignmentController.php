@@ -15,7 +15,8 @@ class AssignmentController
         $this->model = new Assignment();
     }
 
-    public function create(array $assignmentinfo){
+    public function create(array $assignmentinfo)
+    {
         $this->model->setSubject($assignmentinfo['subject']);
         $this->model->setClient($assignmentinfo['client']);
         $this->model->setUser($assignmentinfo['user']);
@@ -23,12 +24,13 @@ class AssignmentController
         $this->model->setDescription($assignmentinfo['description']);
         $this->model->setProject($assignmentinfo['project']);
         $this->model->setStatus($assignmentinfo['status']);
-        if ($result = $this->model->create()){
+        if ($result = $this->model->create()) {
             return $result;
         }
     }
 
-    public function update(array $assignmentinfo){
+    public function update(array $assignmentinfo)
+    {
         $this->model->setAssignmentId($assignmentinfo['id']);
         $this->model->setSubject($assignmentinfo['subject']);
         $this->model->setClient($assignmentinfo['client']);
@@ -40,16 +42,31 @@ class AssignmentController
         $result = $this->model->update();
         return $result;
     }
-    public function delete($id){
+
+    public function delete($id)
+    {
         return $this->model->delete($id);
     }
-    public function getAssignmentById($id){
+
+    public function getAssignmentById($id)
+    {
         return $this->model->getAssignmentById($id);
     }
-    public function getAllAssignments(){
+
+    public function getAllAssignments()
+    {
         return $this->model->getAllAssignments();
     }
-    public function getAssignmentsByUserId($userId){
 
+    public function getAssignmentsByUserId($userId)
+    {
+        return $this->model->getAssignmentsByUserId($userId);
+    }
+
+    public function getTimeDifference($date1, $date2)
+    {
+        $d1 = new DateTime($date1);
+        $d2 = new DateTime($date2);
+        return $diff = $d1->diff($d2)->format("%a");
     }
 }
