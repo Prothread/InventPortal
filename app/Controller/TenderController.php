@@ -57,7 +57,6 @@ class TenderController
         $this->model->setClient($tenderinfo['client']);
         $this->model->setUser($tenderinfo['user']);
         $this->model->setValidity($tenderinfo['validity']);
-        //$this->model->setEndDate($tenderinfo['enddate']);
         $this->model->setDescription($tenderinfo['description']);
         $this->model->setChance($tenderinfo['chance']);
         $this->model->setValue($tenderinfo['value']);
@@ -92,7 +91,7 @@ class TenderController
 
     public function calcEndDate($creationdate, $validity)
     {
-        return $this->model->calcEndDate($creationdate, $validity);
+        $this->model->calcEndDate($creationdate, $validity);
     }
 
     public function getUser()

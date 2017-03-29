@@ -28,9 +28,10 @@ $users = $userController->getUserList();
 
 $error = false;
 
-if (isset($_POST['updateTender'])) {
+$post = false;
 
-    //$test = $tender->getEndDate();
+if (isset($_POST['updateTender'])) {
+    $post = true;
 
     $valueNames = ["subject", "client", "user", "validity", "value", "chance", "description"];
     foreach ($valueNames as $v) {
@@ -39,32 +40,26 @@ if (isset($_POST['updateTender'])) {
     if (strlen($subject) == 0) {
         $error = true;
         $title_error = true;
-        echo "1";
     }
     if (!filter_var($client, FILTER_VALIDATE_INT)) {
         $error = true;
         $client_error = true;
-        echo "2";
     }
     if (!filter_var($user, FILTER_VALIDATE_INT) && $user !== '0') {
         $error = true;
         $user_error = true;
-        echo "3";
     }
     if (!filter_var($validity, FILTER_VALIDATE_INT) && $validity !== '0') {
         $error = true;
         $vadility_error = true;
-        echo "4";
     }
     if (!filter_var($value, FILTER_VALIDATE_FLOAT)) {
         $error = true;
         $value_error = true;
-        echo $value;
     }
     if (!filter_var($description, FILTER_SANITIZE_STRING)) {
         $error = true;
         $description_error = true;
-        echo "8";
     }
 
     $tender->calcEndDate($tenderinfo['creationdate'], $validity);
@@ -93,7 +88,7 @@ if (isset($_POST['updateTender'])) {
     }
 }
 
-if (isset($_POST['deleteTender'])) {
+if (isset($_POST['delete'])) {
     if ($tender->delete($id)) {
         $block->Redirect('index.php?page=tendersoverview');
     }
@@ -104,27 +99,38 @@ if (isset($_POST['deleteTender'])) {
     <div class="add-left-content add-content">
         <h1 class="crm-content-header"><?= TENDER_OVERVIEW ?></h1>
         <form action="#" method="post">
-            <button type="submit" name="deleteTender" id="deletebtn"
+            <button type="submit" name="delete" id="deletebtn"
                     class="custom-file-upload"><?= TEXT_DELETE ?></button>
         </form>
-
         <form class="crm-add" action="#" method="post">
             <div>
                 <label><?= TABLE_TITLE ?></label>
-                <input type="text" name="subject" class="form-control <?php if(isset($title_error)){echo "error-input";} ?>"
-                       value="<?= $tenderinfo['subject'] ?>">
+                <input type="text" name="subject" class="form-control <?php if (isset($title_error)) {
+                    echo "error-input";
+                } ?>"
+                       value="<?php
+                       if ($post) {
+                           echo $_POST['subject'];
+                       } else {
+                           echo $tenderinfo['subject'];
+                       }
+                       ?>">
 
             </div>
             <div>
                 <label><?= TEXT_ASSIGNFOR ?></label>
-                <select class="form-control <?php if(isset($client_error)){echo "error-input";} ?>" name="client">
+                <select class="form-control <?php if (isset($client_error)) {
+                    echo "error-input";
+                } ?>" name="client">
                     <option value="0"<?php if ($tenderinfo['client'] == 0) {
                         echo 'selected';
                     } ?>><?= TEXT_ASSIGNFOR ?></option>
                     <?php
                     foreach ($clients as $client) {
                         echo '<option value="' . $client['id'] . '"';
-                        if ($client['id'] == $tenderinfo['client']) {
+                        if ($post && $client['id'] == $_POST['client']) {
+                            echo 'selected';
+                        } elseif (!$post && $client['id'] == $tenderinfo['client']) {
                             echo 'selected';
                         }
                         echo '>' . $client['naam'] . '</option>';
@@ -142,7 +148,9 @@ if (isset($_POST['deleteTender'])) {
                     <?php
                     foreach ($users as $user) {
                         echo '<option value="' . $user['id'] . '"';
-                        if ($user['id'] == $tenderinfo['user']) {
+                        if ($post && $user['id'] == $_POST['user']) {
+                            echo 'selected';
+                        } elseif (!$post && $user['id'] == $tenderinfo['user']) {
                             echo 'selected';
                         }
                         echo '>' . $user['naam'] . '</option>';
@@ -152,38 +160,63 @@ if (isset($_POST['deleteTender'])) {
             </div>
             <div>
                 <label><?= TEXT_VALIDITY_DURATION ?></label>
-                <input type="number" class="form-control <?php if(isset($vadility_error)){echo "error-input";} ?>" name="validity" min="1" value="<?= $tenderinfo['validity'] ?>" ) {
-                       echo $_POST['validity'];
-                } ?>
-
+                <input type="number" class="form-control <?php if (isset($vadility_error)) {
+                    echo "error-input";
+                } ?>" name="validity" min="1" value="<?php
+                if ($post) {
+                    echo $_POST['validity'];
+                } else {
+                    echo $tenderinfo['validity'];
+                }
+                ?>">
             </div>
             <div>
                 <label><?= TEXT_VALUE ?></label>
-                <input type="number" class="form-control <?php if(isset($value_error)){echo "error-input";} ?>" name="value" min="0" value="<?= $tenderinfo['value'] ?>">
+                <input type="number" class="form-control <?php if (isset($value_error)) {
+                    echo "error-input";
+                } ?>" name="value" min="0" value="<?php
+                if ($post) {
+                    echo $_POST['value'];
+                } else {
+                    echo $tenderinfo['value'];
+                }
+                ?>">
 
             </div>
             <div>
                 <label><?= TEXT_CHANCE ?></label>
-                <input type="number" class="form-control" name="chance" max="100" min="0" value="<?= $tenderinfo['chance'] ?>" ) {
-                       echo $_POST['chance'];
-                } ?>
+                <input type="number" class="form-control" name="chance" max="100" min="0"
+                       value="<?php
+                       if ($post) {
+                           echo $_POST['chance'];
+                       } else {
+                           echo $tenderinfo['chance'];
+                       }
+                       ?>">
             </div>
             <div>
                 <label><?= TEXT_END_DATE ?></label>
                 <input type="text" class="form-control" name="enddate" readonly
                        value="<?php
-                       if(isset($enddate)) {
+                       if (isset($enddate)) {
                            echo date("d-m-Y", strtotime($enddate));
-                       }else{
-//                           echo $tenderinfo['enddate'];
+                       } else {
                            echo date("d-m-Y", strtotime($tenderinfo['enddate']));
                        }
                        ?>"
-<br>
+                <br>
             </div>
             <div class="description-holder">
                 <label><?= TEXT_DESCRIPTION ?></label>
-                <textarea name="description" class="<?php if(isset($description_error)){echo "error-input";} ?>"><?= $tenderinfo['description'] ?></textarea>
+                <textarea name="description" class="<?php if (isset($description_error)) {
+                    echo "error-input";
+                } ?>"><?php
+                    if ($post) {
+                        echo $_POST['description'];
+                    } else {
+                        echo $tenderinfo['description'];
+                    }
+                    ?></textarea>
 
             </div>
             <div class="button-update">

@@ -34,7 +34,7 @@ return array(
     'phpmailerException' => $vendorDir . '/phpmailer/phpmailer/class.phpmailer.php',
     'ProjectController' => $baseDir . '/app/Controller/ProjectController.php',
     'Project' => $baseDir . '/app/Model/Project.php',
-    'DBProject' => $baseDir . '/app/Model/DBProject.php',
+    'DbProject' => $baseDir . '/app/Model/DbProject.php',
     'TenderController' => $baseDir . '/app/Controller/TenderController.php',
     'Tender' => $baseDir . '/app/Model/Tender.php',
     'DbTender' => $baseDir . '/app/Model/DbTender.php',

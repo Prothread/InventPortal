@@ -23,9 +23,15 @@ $users = $userController->getUserList();
 $projectController = new ProjectController();
 $projects = $projectController->getAllProjects();
 
+$assignmentController = new AssignmentController();
+$assignments = $assignmentController->getAllAssignments();
+
 $error = false;
 
+$post = false;
+
 if (isset($_POST['update'])) {
+    $post = true;
 
     $valueNames = ["subject", "client", "user", "enddate", "description", "project"];
     foreach ($valueNames as $value) {
@@ -71,16 +77,32 @@ if (isset($_POST['update'])) {
         echo $test;
     }
 }
+
+if (isset($_POST['delete'])) {
+    if ($case->delete($id)) {
+        $block->Redirect('index.php?page=casesoverview');
+    }
+}
 ?>
 <div class="crm-content-wrapper">
     <div class="add-left-content add-content">
         <h1 class="crm-content-header"><?= TEXT_CASE_VIEW ?></h1>
+        <form action="#" method="post">
+            <button type="submit" name="delete" id="deletebtn"
+                    class="custom-file-upload"><?= TEXT_DELETE ?></button>
+        </form>
         <form class="crm-add" action="#" method="post">
             <div>
                 <label><?= TABLE_SUBJECT ?></label>
                 <input type="text" class="form-control <?php if (isset($subject_error)) {
                     echo "error-input";
-                } ?>" name="subject" value="<?= $caseinfo['subject'] ?>">
+                } ?>" name="subject" value="<?php
+                if ($post) {
+                    echo $_POST['subject'];
+                } else {
+                    echo $caseinfo['subject'];
+                }
+                ?>">
             </div>
             <div>
                 <label><?= TEXT_ASSIGNFOR ?></label>
@@ -91,7 +113,9 @@ if (isset($_POST['update'])) {
                     <?php
                     foreach ($clients as $client) {
                         echo '<option value="' . $client['id'] . '"';
-                        if ($client['id'] == $caseinfo['client']) {
+                        if ($post && $client['id'] == $_POST['client']) {
+                            echo 'selected';
+                        } elseif (!$post && $client['id'] == $caseinfo['client']) {
                             echo 'selected';
                         }
                         echo '>' . $client['naam'] . '</option>';
@@ -108,7 +132,9 @@ if (isset($_POST['update'])) {
                     <?php
                     foreach ($users as $user) {
                         echo '<option value="' . $user['id'] . '"';
-                        if ($user['id'] == $caseinfo['user']) {
+                        if ($post && $user['id'] == $_POST['user']) {
+                            echo 'selected';
+                        } elseif (!$post && $user['id'] == $caseinfo['user']) {
                             echo 'selected';
                         }
                         echo '>' . $user['naam'] . '</option>';
@@ -126,7 +152,9 @@ if (isset($_POST['update'])) {
                     <?php
                     foreach ($projects as $project){
                         echo '<option value="' . $project['id'] . '"';
-                        if ($project['id'] == $caseinfo['project']) {
+                        if ($post && $project['id'] == $_POST['project']) {
+                            echo 'selected';
+                        } elseif (!$post && $project['id'] == $caseinfo['project']) {
                             echo 'selected';
                         }
                         echo '>' . $project['subject'] . '</option>';
@@ -140,8 +168,14 @@ if (isset($_POST['update'])) {
                 <select class="form-control" name="assignment">
                     <option value="0"><?= TEXT_ASSIGNMENT_ADD ?></option>
                     <?php
-                    foreach ($users as $user){
-                        echo '<option value="'.$user['id'].'">'.$user['naam'].'</option>';
+                    foreach ($assignments as $assignment) {
+                        echo '<option value="' . $assignment['id'] . '"';
+                        if ($post && $assignment['id'] == $_POST['assignment']) {
+                            echo 'selected';
+                        } elseif (!$post && $assignment['id'] == $caseinfo['assignment']) {
+                            echo 'selected';
+                        }
+                        echo '>' . $assignment['subject'] . '</option>';
                     }
                     ?>
                 </select>
@@ -149,13 +183,25 @@ if (isset($_POST['update'])) {
 
             <div>
                 <label><?= TEXT_END_DATE ?></label>
-                <input type="date" class="form-control" name="enddate" value="<?= $caseinfo['enddate'] ?>">
+                <input type="date" class="form-control" name="enddate" value="<?php
+                if ($post) {
+                    echo $_POST['enddate'];
+                } else {
+                    $caseinfo['enddate'];
+                }
+                ?>">
             </div>
             <div class="description-holder">
                 <label><?= TEXT_DESCRIPTION ?></label>
-                <textarea name="description" <?php if (isset($description_error)) {
+                <textarea name="description" class="<?php if (isset($description_error)) {
                     echo "error-input";
-                } ?>><?= $caseinfo['description'] ?></textarea>
+                } ?>"><?php
+                    if ($post) {
+                        echo $_POST['description'];
+                    } else {
+                        $caseinfo['description'];
+                    }
+                    ?></textarea>
             </div>
             <div class="button-holder">
                 <div class="button-push"></div>

@@ -7,9 +7,10 @@ $allTenders = $tenderCon->getTendersByUserId($thisUserId);
 $projectController = new ProjectController();
 $allProjects = $projectController->getProjectsByUserId($thisUserId);
 
-
 $assignmentController = new AssignmentController();
 $allAssignments = $assignmentController->getAssignmentsByUserId($thisUserId);
+
+//cases goed ophalen
 
 $caseCon = new CaseController();
 $allCases = $caseCon->getAllCases();
@@ -17,11 +18,10 @@ $allCases = $caseCon->getAllCases();
 $dashCases = array();
 
 foreach ($allCases as $case) {
-    if($case['user'] == $thisUserId){
+    if ($case['user'] == $thisUserId) {
         array_push($dashCases, $case);
     }
 }
-
 
 $userController = new UserController();
 $clients = $userController->getClientList();
@@ -34,6 +34,7 @@ $clients = $userController->getClientList();
         <header><?= YOUR_TENDER ?></header>
 
         <select class="crm-dashboard-select">
+            <!--     FILETER OPTION moet nog toegevoegd worden       -->
             <option value="" disabled selected>Filter optie</option>
             <option><?= TABLE_TITLE ?></option>
             <option><?= TEXT_DATE ?></option>
@@ -42,7 +43,8 @@ $clients = $userController->getClientList();
         </select>
 
         <div class="crm-dashboard-inside-row">
-            <button class="custom-file-upload">Aanmaken</button>
+            <button class="custom-file-upload"
+                    onclick="window.location.href='?page=addtender'"><?= TEXT_CREATE_DROPDOWN ?></button>
             <?php foreach ($allTenders as $tender) {
                 $timeDiff = $tenderCon->getTimeDifference($tender['enddate'], date("Y-m-d"))
                 ?>
@@ -79,9 +81,10 @@ $clients = $userController->getClientList();
     </div>
 
     <div class="crm-dashboard-row">
-        <header>Jouw projecten</header>
+        <header><?= YOUR_PROJECT ?></header>
 
         <select class="crm-dashboard-select">
+            <!--     FILETER OPTION moet nog toegevoegd worden       -->
             <option value="" disabled selected>Filter optie</option>
             <option>Onderwerp</option>
             <option>Datum</option>
@@ -90,7 +93,8 @@ $clients = $userController->getClientList();
         </select>
 
         <div class="crm-dashboard-inside-row">
-            <button class="custom-file-upload">Aanmaken</button>
+            <button class="custom-file-upload"
+                    onclick="window.location.href='?page=addproject'"><?= TEXT_CREATE_DROPDOWN ?></button>
             <?php foreach ($allProjects as $project) {
                 $timeDiff = $projectController->getTimeDifference($project['endDate'], date("Y-m-d"));
                 ?>
@@ -127,9 +131,10 @@ $clients = $userController->getClientList();
     </div>
 
     <div class="crm-dashboard-row">
-        <header>Jouw opdrachten</header>
+        <header><?= YOUR_ASSIGNMENT ?></header>
 
         <select class="crm-dashboard-select">
+            <!--     FILETER OPTION moet nog toegevoegd worden       -->
             <option value="" disabled selected>Filter optie</option>
             <option>Onderwerp</option>
             <option>Datum</option>
@@ -175,7 +180,7 @@ $clients = $userController->getClientList();
     </div>
 
     <div class="crm-dashboard-row">
-        <header>Jouw taken</header>
+        <header><?= YOUR_TASK ?></header>
 
         <select class="crm-dashboard-select">
             <option value="" disabled selected>Filter optie</option>
@@ -269,9 +274,10 @@ $clients = $userController->getClientList();
     </div>
 
     <div class="crm-dashboard-row">
-        <header>Jouw cases</header>
+        <header><?= YOUR_CASE ?></header>
 
         <select class="crm-dashboard-select">
+            <!--     FILETER OPTION moet nog toegevoegd worden       -->
             <option value="" disabled selected>Filter optie</option>
             <option>Onderwerp</option>
             <option>Datum</option>
@@ -285,33 +291,33 @@ $clients = $userController->getClientList();
             <?php foreach ($dashCases as $case) {
                 $timeDiff = $tenderCon->getTimeDifference($case['enddate'], date("Y-m-d"))
                 ?>
-            <div class="crm-dashboard-box">
-                <?php if ($timeDiff <= 0) { ?>
-                    <img class="deadline" src="css/deadline4.png">
-                <?php } else if ($timeDiff > 0 && $timeDiff <= 2) { ?>
-                    <img class="deadline" src="css/deadline3.png">
-                <?php } else if ($timeDiff > 2 && $timeDiff <= 7) { ?>
-                    <img class="deadline" src="css/deadline2.png">
-                <?php } else { ?>
-                    <img class="deadline" src="css/deadline1.png">
-                <?php } ?>
-                <ul>
-                    <li>
-                        <a href="?page=caseview&id= <?= $case['id'] ?>"><?= $case['subject'] ?></a>
-                    </li>
-                    <li>
-                        <?php foreach ($clients as $client) {
-                            if ($client['id'] == $case['client']) { ?>
-                                <a href="?page=showuserprofile&id= <?= $client['id'] ?>"><?= $client['naam'] ?></a>
-                            <?php }
-                        } ?>
-                    </li>
-                    <li>
-                        <?= date("d-m-Y", strtotime($case['enddate'])) ?>
-                    </li>
-                </ul>
-            </div>
-<?php } ?>
+                <div class="crm-dashboard-box">
+                    <?php if ($timeDiff <= 0) { ?>
+                        <img class="deadline" src="css/deadline4.png">
+                    <?php } else if ($timeDiff > 0 && $timeDiff <= 2) { ?>
+                        <img class="deadline" src="css/deadline3.png">
+                    <?php } else if ($timeDiff > 2 && $timeDiff <= 7) { ?>
+                        <img class="deadline" src="css/deadline2.png">
+                    <?php } else { ?>
+                        <img class="deadline" src="css/deadline1.png">
+                    <?php } ?>
+                    <ul>
+                        <li>
+                            <a href="?page=caseview&id= <?= $case['id'] ?>"><?= $case['subject'] ?></a>
+                        </li>
+                        <li>
+                            <?php foreach ($clients as $client) {
+                                if ($client['id'] == $case['client']) { ?>
+                                    <a href="?page=showuserprofile&id= <?= $client['id'] ?>"><?= $client['naam'] ?></a>
+                                <?php }
+                            } ?>
+                        </li>
+                        <li>
+                            <?= date("d-m-Y", strtotime($case['enddate'])) ?>
+                        </li>
+                    </ul>
+                </div>
+            <?php } ?>
         </div>
     </div>
 </div>

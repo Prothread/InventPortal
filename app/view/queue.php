@@ -10,7 +10,7 @@ $caseController = new CaseController();
 $allCases = $caseController->getCasesByStatus(0);
 
 $assignmentController = new AssignmentController();
-$allAssignments = $assignmentController->getAssignmentsByUserId($thisUserId);
+$allAssignments = $assignmentController->getAssignmentsByStatus(0);
 
 $userController = new UserController();
 $clients = $userController->getClientList();
@@ -20,7 +20,7 @@ $clients = $userController->getClientList();
 <div id="crm-dashboard-holder">
 
     <div class="crm-dashboard-row">
-        <header>Open offertes</header>
+        <header><?= OPEN_TENDERS ?></header>
 
         <select class="crm-dashboard-select">
             <option value="" disabled selected>Filter optie</option>
@@ -31,7 +31,8 @@ $clients = $userController->getClientList();
         </select>
 
         <div class="crm-dashboard-inside-row">
-            <button class="custom-file-upload">Aanmaken</button>
+            <button class="custom-file-upload"
+                    onclick="window.location.href='?page=addtender'"><?= TEXT_CREATE_DROPDOWN ?></button>
             <?php foreach ($allTenders as $tender) {
                 $timeDiff = $tenderController->getTimeDifference($tender['enddate'], date("Y-m-d"))
                 ?>
@@ -62,14 +63,14 @@ $clients = $userController->getClientList();
                             <?= date("d-m-Y", strtotime($tender['enddate'])) ?>
                         </li>
                     </ul>
-                    <a class="toewijzenlink" href="">Toewijzen</a>
+                    <a class="toewijzenlink" href=""><?= TEXT_ASSIGN ?></a>
                 </div>
             <?php } ?>
         </div>
     </div>
 
     <div class="crm-dashboard-row">
-        <header>Open projecten</header>
+        <header><?= OPEN_PROJECTS ?></header>
 
         <select class="crm-dashboard-select">
             <option value="" disabled selected>Filter optie</option>
@@ -79,7 +80,8 @@ $clients = $userController->getClientList();
             <option>Urgentie</option>
         </select>
         <div class="crm-dashboard-inside-row">
-            <button class="custom-file-upload">Aanmaken</button>
+            <button class="custom-file-upload"
+                    onclick="window.location.href='?page=addproject'"><?= TEXT_CREATE_DROPDOWN ?></button>
             <?php foreach ($allProjects as $project) {
                 $timeDiff = $projectController->getTimeDifference($project['endDate'], date("Y-m-d"))
                 ?>
@@ -110,14 +112,14 @@ $clients = $userController->getClientList();
                             <?= date("d-m-Y", strtotime($project['endDate'])) ?>
                         </li>
                     </ul>
-                    <a class="toewijzenlink" href="">Toewijzen</a>
+                    <a class="toewijzenlink" href=""><?= TEXT_ASSIGN ?></a>
                 </div>
             <?php } ?>
         </div>
     </div>
 
     <div class="crm-dashboard-row">
-        <header>Open opdrachten</header>
+        <header><?= OPEN_ASSIGNMENTS ?></header>
 
         <select class="crm-dashboard-select">
             <option value="" disabled selected>Filter optie</option>
@@ -128,7 +130,8 @@ $clients = $userController->getClientList();
         </select>
 
         <div class="crm-dashboard-inside-row">
-            <button class="custom-file-upload">Aanmaken</button>
+            <button class="custom-file-upload"
+                    onclick="window.location.href='?page=addassignment'"><?= TEXT_CREATE_DROPDOWN ?></button>
             <?php foreach ($allAssignments as $assignment) {
                 $timeDiff = $assignmentController->getTimeDifference($assignment['endDate'], date("Y-m-d"));
                 ?>
@@ -159,14 +162,14 @@ $clients = $userController->getClientList();
                             <?= date("d-m-Y", strtotime($assignment['endDate'])) ?>
                         </li>
                     </ul>
-                    <a class="toewijzenlink" href="">Toewijzen</a>
+                    <a class="toewijzenlink" href=""><?= TEXT_ASSIGN ?></a>
                 </div>
             <?php } ?>
         </div>
     </div>
 
     <div class="crm-dashboard-row">
-        <header>Open taken</header>
+        <header><?= OPEN_TASKS ?></header>
 
         <select class="crm-dashboard-select">
             <option value="" disabled selected>Filter optie</option>
@@ -265,7 +268,7 @@ $clients = $userController->getClientList();
     </div>
 
     <div class="crm-dashboard-row">
-        <header>Open cases</header>
+        <header><?= OPEN_CASES ?></header>
 
         <select class="crm-dashboard-select">
             <option value="" disabled selected>Filter optie</option>
@@ -298,8 +301,8 @@ $clients = $userController->getClientList();
                             <?php foreach ($clients as $client) {
                                 if ($client['id'] == $case['client']) {
                                     ?>
-                            <a href="?page=showuserprofile&id=<?= $client['id'] ?>"><?= $client['naam'] ?></a>
-                            <?php
+                                    <a href="?page=showuserprofile&id=<?= $client['id'] ?>"><?= $client['naam'] ?></a>
+                                    <?php
                                 }
                             } ?>
                         </li>
@@ -307,7 +310,7 @@ $clients = $userController->getClientList();
                             <?= date("d-m-Y", strtotime($case['enddate'])) ?>
                         </li>
                     </ul>
-                    <a class="toewijzenlink" href="">Toewijzen</a>
+                    <a class="toewijzenlink" href=""><?= TEXT_ASSIGN ?></a>
                 </div>
             <?php } ?>
         </div>

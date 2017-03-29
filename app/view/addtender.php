@@ -10,22 +10,21 @@ $mysqli = mysqli_connect();
 
 $tender = new TenderController();
 
-$error = false;
-
 $userController = new UserController();
 $clients = $userController->getClientList();
 $users = $userController->getUserList();
+
+$error = false;
+
 $post = false;
-if (isset($_POST['submitTender'])) {
+
+if (isset($_POST['create'])) {
     $post = true;
-    $subject = mysqli_real_escape_string($mysqli, $_POST['subject']);
-    $client = mysqli_real_escape_string($mysqli, $_POST['client']);
-    $user = mysqli_real_escape_string($mysqli, $_POST['user']);
-    $validity = mysqli_real_escape_string($mysqli, $_POST['validity']);
-    $value = mysqli_real_escape_string($mysqli, $_POST['value']);
-    $chance = mysqli_real_escape_string($mysqli, $_POST['chance']);
-    $creationDate = mysqli_real_escape_string($mysqli, $_POST['creationdate']);
-    $description = mysqli_real_escape_string($mysqli, $_POST['description']);
+
+    $valueNames = ["subject", "client", "user", "validity", "value", "chance", "creationDate", "description"];
+    foreach ($valueNames as $v) {
+        ${$v} = mysqli_real_escape_string($mysqli, $_POST[$v]);
+    }
 
     if (!isset($subject) || $subject == null) {
         $error = true;
@@ -59,9 +58,9 @@ if (isset($_POST['submitTender'])) {
 
     $tender->calcEndDate($creationDate, $validity);
 
-    if($client == 0){
+    if ($user == 0) {
         $status = 0;
-    }else{
+    } else {
         $status = 1;
     }
 
@@ -94,14 +93,18 @@ if (isset($_POST['submitTender'])) {
         <form class="crm-add" action="#" method="post">
             <div>
                 <label><?= TABLE_TITLE ?></label>
-                <input type="text" name="subject" class="form-control <?php if(isset($title_error)){echo "error-input";} ?>"
+                <input type="text" name="subject" class="form-control <?php if (isset($title_error)) {
+                    echo "error-input";
+                } ?>"
                        value="<?php if (isset($_POST['subject'])) {
                            echo $_POST['subject'];
                        } ?>">
             </div>
             <div>
                 <label><?= TEXT_ASSIGNFOR ?></label>
-                <select class="form-control <?php if(isset($client_error)){echo "error-input";} ?>" name="client">
+                <select class="form-control <?php if (isset($client_error)) {
+                    echo "error-input";
+                } ?>" name="client">
                     <option value="0"><?= TEXT_ASSIGNFOR ?></option>
                     <?php
                     foreach ($clients as $client) {
@@ -131,39 +134,50 @@ if (isset($_POST['submitTender'])) {
             </div>
             <div>
                 <label><?= TEXT_VALIDITY_DURATION ?></label>
-                <input type="number" class="form-control <?php if(isset($validity_error)){echo "error-input";} ?>" name="validity" min="1" value="<?php if (isset($_POST['validity'])) {
+                <input type="number" class="form-control <?php if (isset($validity_error)) {
+                    echo "error-input";
+                } ?>" name="validity" min="1" value="<?php if (isset($_POST['validity'])) {
                     echo $_POST['validity'];
                 } ?>">
             </div>
             <div>
                 <label><?= TEXT_VALUE ?></label>
-                <input type="number" class="form-control <?php if(isset($value_error)){echo "error-input";} ?>" name="value" value="<?php if (isset($_POST['value'])) {
+                <input type="number" class="form-control <?php if (isset($value_error)) {
+                    echo "error-input";
+                } ?>" name="value" value="<?php if (isset($_POST['value'])) {
                     echo $_POST['value'];
                 } ?>">
             </div>
             <div>
                 <label><?= TEXT_CHANCE ?></label>
-                <input type="number" class="form-control" name="chance" max="100" value="<?php if (isset($_POST['chance'])) {
-                    echo $_POST['chance'];
-                } ?>">
+                <input type="number" class="form-control" name="chance" max="100"
+                       value="<?php if (isset($_POST['chance'])) {
+                           echo $_POST['chance'];
+                       } ?>">
             </div>
             <div>
                 <label><?= TEXT_CREATION_DATE ?></label>
-                <input type="date" class="form-control <?php if(isset($creationDate_error)){echo "error-input";} ?>" name="creationdate"
+                <input type="date" class="form-control <?php if (isset($creationDate_error)) {
+                    echo "error-input";
+                } ?>" name="creationDate"
                        value="<?php if (isset($_POST['creationdate'])) {
                            echo $_POST['creationdate'];
-                       }else{ echo date("d-m-y"); } ?>">
+                       } else {
+                           echo date("d-m-y");
+                       } ?>">
             </div>
             <div class="description-holder">
                 <label><?= TEXT_DESCRIPTION ?></label>
-                <textarea name="description" class="<?php if(isset($description_error)){echo "error-input";} ?>"><?php if (isset($_POST['description'])) {
+                <textarea name="description" class="<?php if (isset($description_error)) {
+                    echo "error-input";
+                } ?>"><?php if (isset($_POST['description'])) {
                         echo $_POST['description'];
                     } ?></textarea>
             </div>
             <!--            Bestanden uploaden moet nog toegevoegd worden-->
             <div class="button-holder">
                 <div class="button-push"></div>
-                <button type="submit" name="submitTender"
+                <button type="submit" name="create"
                         class="custom-file-upload"><?= TEXT_CREATE_DROPDOWN ?></button>
             </div>
         </form>

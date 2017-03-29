@@ -10,11 +10,14 @@ $users = $userController->getUserList();
 $projectController = new ProjectController();
 $projects = $projectController->getAllProjects();
 
+$assignmentController = new AssignmentController();
+$assignments = $assignmentController->getAllAssignments();
+
 ?>
 
 <div id="case-overview-holder">
 
-    <header><?= TENDER_OVERVIEW_TEXT ?></header>
+    <header><?= CASES_OVERVIEW_TEXT ?></header>
     <hr>
     <div class="case-overzicht-buttons">
         <button class="custom-file-upload"><?= TEXT_CREATE_DROPDOWN ?></button>
@@ -27,7 +30,7 @@ $projects = $projectController->getAllProjects();
                 <th><?= TABLE_TITLE ?></th>
                 <th><?= TEXT_EMPLOYEE ?></th>
                 <th><?= TEXT_CLIENT ?></th>
-                <th>Project</th>
+                <th><?= TEXT_PROJECT_ADD ?></th>
                 <th><?= TEXT_ASSIGNMENT_ADD ?></th>
                 <th><?= TEXT_END_DATE ?></th>
                 <th><?= TEXT_PROGRESS ?></th>
@@ -69,7 +72,13 @@ $projects = $projectController->getAllProjects();
                                 ?></a>
                         </td>
                         <td>
-                            test
+                            <a href="?page=assignmentview&id=<?= $case['assignment'] ?>"> <?php
+                                foreach ($assignments as $assignment) {
+                                    if ($assignment['id'] == $case['assignment']) {
+                                        echo $assignment['subject'];
+                                    }
+                                }
+                                ?></a>
                         </td>
                         <td>
                             <?= date("d-m-Y", strtotime($case['enddate'])) ?>

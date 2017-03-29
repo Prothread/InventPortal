@@ -24,8 +24,8 @@ $post = false;
 if(isset($_POST['create'])){
     $post = true;
     $valueNames = ["subject","client","user","endDate","description","projectId"];
-    foreach ($valueNames as $value){
-        ${$value} = mysqli_real_escape_string($mysqli, $_POST[$value]);
+    foreach ($valueNames as $v){
+        ${$v} = mysqli_real_escape_string($mysqli, $_POST[$v]);
     }
     if(strlen($subject) == 0){
         $error = true;

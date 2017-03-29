@@ -28,31 +28,42 @@ class Assignment
 
     public function __construct()
     {
-        $this->db = new DBAssignment();
+        $this->db = new DbAssignment();
     }
 
-    public function create(){
+    public function create()
+    {
         return $this->db->create($this);
     }
 
-    public function update(){
+    public function update()
+    {
         return $this->db->update($this);
     }
 
-    public function delete($id){
+    public function delete($id)
+    {
         return $this->db->delete($id);
     }
 
-    public function getAssignmentById($id){
+    public function getAssignmentById($id)
+    {
         return $this->db->getAssignmentById($id);
     }
 
-    public function getAllAssignments(){
+    public function getAllAssignments()
+    {
         return $this->db->getAllAssignments();
     }
 
-    public function getAssignmentsByUserId($userId){
+    public function getAssignmentsByUserId($userId)
+    {
         return $this->db->getAssignmentsByUserId($userId);
+    }
+
+    public function getAssignmentsByStatus($status)
+    {
+        return $this->db->getAssignmentsByStatus($status);
     }
 
     /**

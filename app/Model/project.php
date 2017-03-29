@@ -47,7 +47,7 @@ class Project
      */
     public function __construct()
     {
-        $this->db = new DBProject();
+        $this->db = new DbProject();
     }
 
     public function create()
@@ -208,7 +208,8 @@ class Project
         $this->finishDate = $finishDate;
     }
 
-    public function getProjectsByStatus($status){
+    public function getProjectsByStatus($status)
+    {
         return $this->db->getProjectsByStatus($status);
     }
 }

@@ -24,8 +24,12 @@ class DbCase extends Database
 
     public function delete($id)
     {
-        //Delete function
-        //=============================================
+        $sql = "DELETE FROM `cases` WHERE `id` = '{$id}'";
+
+        if ($result = $this->dbQuery($sql)) {
+            return true;
+        }
+        return false;
     }
 
     public function getCaseById($id)

@@ -68,7 +68,8 @@ class ProjectController
         return $diff = $d1->diff($d2)->format("%a");
     }
 
-    public function getProjectsByStatus($status){
+    public function getProjectsByStatus($status)
+    {
         return $this->model->getProjectsByStatus($status);
     }
 }

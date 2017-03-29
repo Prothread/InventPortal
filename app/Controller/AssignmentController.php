@@ -69,4 +69,9 @@ class AssignmentController
         $d2 = new DateTime($date2);
         return $diff = $d1->diff($d2)->format("%a");
     }
+
+    public function getAssignmentsByStatus($status)
+    {
+        return $this->model->getAssignmentsByStatus($status);
+    }
 }

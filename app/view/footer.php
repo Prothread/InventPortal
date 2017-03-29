@@ -382,12 +382,6 @@
                     });
 
                 });
-
-
-                /* Coole functie?
-                 $( "#cart" ).on( "mouseenter mouseleave", function( event ) {
-                 $( this ).toggleClass( "active" );
-                 }); */
             </script>
         </div>
     </div>
@@ -587,7 +581,7 @@
             setTimeout(
                 function () {
                     toggleInputError()
-                }, 2000);
+                }, 4000);
         });
     </script>
 

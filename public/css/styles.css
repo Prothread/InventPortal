@@ -2003,7 +2003,8 @@ tr:nth-child(2n) {
 }
 
 .nav-dropdown.toggled li{
-    margin-top: -45px;;
+    margin-top: -45px;
+    pointer-events: none;
 }
 
 .crm-content-wrapper{
@@ -2176,6 +2177,7 @@ tr:nth-child(2n) {
 
 .case-overzicht-buttons{
     margin-left: 20px;
+    float: left;
 }
 
 .case-overzicht-buttons button{
