@@ -15,6 +15,9 @@ $allAssignments = $assignmentController->getAssignmentsByUserId($thisUserId);
 $caseCon = new CaseController();
 $allCases = $caseCon->getAllCases();
 
+$taskCon = new TaskController();
+$allTasks = $taskCon->getAllTasks();
+
 $dashCases = array();
 
 foreach ($allCases as $case) {
@@ -143,6 +146,54 @@ $clients = $userController->getClientList();
         </select>
 
         <div class="crm-dashboard-inside-row">
+
+            <button class="custom-file-upload" onclick="window.location.href='?page=addassignment'"><?= TEXT_CREATE_DROPDOWN?> </button>
+
+            <div class="crm-dashboard-box">
+                <img class="deadline" src="css/deadline3.png">
+                <ul>
+                    <li>
+                        Opdracht onderwerp
+                    </li>
+                    <li>
+                        Klant naam
+                    </li>
+                    <li>
+                        04-03-2017
+                    </li>
+                </ul>
+            </div>
+
+            <div class="crm-dashboard-box">
+                <img class="deadline" src="css/deadline3.png">
+                <ul>
+                    <li>
+                        Opdracht onderwerp
+                    </li>
+                    <li>
+                        Klant naam
+                    </li>
+                    <li>
+                        04-03-2017
+                    </li>
+                </ul>
+            </div>
+
+            <div class="crm-dashboard-box">
+                <img class="deadline" src="css/deadline1.png">
+                <ul>
+                    <li>
+                        Opdracht onderwerp
+                    </li>
+                    <li>
+                        Klant naam
+                    </li>
+                    <li>
+                        04-03-2017
+                    </li>
+                </ul>
+            </div>
+
             <button class="custom-file-upload">Aanmaken</button>
             <?php foreach ($allAssignments as $assignment) {
                 $timeDiff = $assignmentController->getTimeDifference($assignment['endDate'], date("Y-m-d"));
@@ -192,84 +243,37 @@ $clients = $userController->getClientList();
 
         <div class="crm-dashboard-inside-row">
 
-            <button class="custom-file-upload">Aanmaken</button>
-
+            <button class="custom-file-upload" onclick="window.location.href='?page=addtask'"><?= TEXT_CREATE_DROPDOWN?> </button>
+            <?php foreach ($allTasks as $task) {
+            $timeDiff = $tenderCon->getTimeDifference($case['enddate'], date("Y-m-d"))
+                ?>
             <div class="crm-dashboard-box">
-                <img class="deadline" src="css/deadline4.png">
-                <img class="urgentie" src="css/urgentie4.png">
+                <?php if ($timeDiff <= 0) { ?>
+                    <img class="deadline" src="css/deadline4.png">
+                <?php } else if ($timeDiff > 0 && $timeDiff <= 2) { ?>
+                    <img class="deadline" src="css/deadline3.png">
+                <?php } else if ($timeDiff > 2 && $timeDiff <= 7) { ?>
+                    <img class="deadline" src="css/deadline2.png">
+                <?php } else { ?>
+                    <img class="deadline" src="css/deadline1.png">
+                <?php } ?>
                 <ul>
                     <li>
-                        Taak onderwerp
+                        <a href="?page=taskview&id= <?= $task['id'] ?>"><?= $task['subject'] ?></a>
                     </li>
                     <li>
-                        Klant naam
+                        <?php foreach ($clients as $client) {
+                            if ($client['id'] == $task['client']) { ?>
+                                <a href="?page=showuserprofile&id= <?= $client['id'] ?>"><?= $client['naam'] ?></a>
+                            <?php }
+                        } ?>
                     </li>
                     <li>
-                        04-03-2017
+                        <?= date("d-m-Y", strtotime($task['enddate'])) ?>
                     </li>
                 </ul>
             </div>
-
-            <div class="crm-dashboard-box">
-                <img class="deadline" src="css/deadline3.png">
-                <img class="urgentie" src="css/urgentie4.png">
-                <ul>
-                    <li>
-                        Taak onderwerp
-                    </li>
-                    <li>
-                        Klant naam
-                    </li>
-                    <li>
-                        04-03-2017
-                    </li>
-                </ul>
-            </div>
-
-            <div class="crm-dashboard-box">
-                <img class="deadline" src="css/deadline1.png">
-                <ul>
-                    <li>
-                        Taak onderwerp
-                    </li>
-                    <li>
-                        Klant naam
-                    </li>
-                    <li>
-                        04-03-2017
-                    </li>
-                </ul>
-            </div>
-
-            <div class="crm-dashboard-box">
-                <img class="deadline" src="css/deadline2.png">
-                <ul>
-                    <li>
-                        Taak onderwerp
-                    </li>
-                    <li>
-                        Klant naam
-                    </li>
-                    <li>
-                        04-03-2017
-                    </li>
-                </ul>
-            </div>
-
-            <div class="crm-dashboard-box">
-                <img class="deadline" src="css/deadline1.png">
-                <ul>
-                    <li>
-                        Taak onderwerp
-                    </li>
-                    <li>
-                        Klant naam
-                    </li>
-                    <li>
-                        04-03-2017
-                    </li>
-                </ul>
-            </div>
+            <?php } ?>
         </div>
     </div>
 
@@ -287,7 +291,7 @@ $clients = $userController->getClientList();
 
         <div class="crm-dashboard-inside-row">
 
-            <button class="custom-file-upload">Aanmaken</button>
+            <button class="custom-file-upload" onclick="window.location.href='?page=addcase'"><?= TEXT_CREATE_DROPDOWN?> </button>
             <?php foreach ($dashCases as $case) {
                 $timeDiff = $tenderCon->getTimeDifference($case['enddate'], date("Y-m-d"))
                 ?>

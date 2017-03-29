@@ -36,7 +36,6 @@ $users = $userController->getUserList();
             <?php
             if (sizeof($allAssignments) > 0) {
                 foreach ($allAssignments as $assignment) { ?>
-
                     <tr>
                         <td>
                             <a href="?page=assignmentview&id= <?= $assignment['id'] ?>"><?= $assignment['subject'] ?></a>
@@ -46,27 +45,45 @@ $users = $userController->getUserList();
                                 foreach ($users as $user) {
                                     if ($user['id'] == $assignment['user']) {
                                         echo $user['naam'];
+                                        $hasUser = true;
                                     }
                                 }
                                 ?></a>
+                            <?php
+                            if (!$hasUser) {
+                                echo "-";
+                            }
+                            ?>
                         </td>
                         <td>
                             <a href="?page=showuserprofile&id=<?= $assignment['client'] ?>"> <?php
                                 foreach ($clients as $client) {
                                     if ($client['id'] == $assignment['client']) {
                                         echo $client['naam'];
+                                        $hasAssignment = true;
                                     }
                                 }
                                 ?></a>
+                            <?php
+                            if (!$hasAssignment) {
+                                echo "-";
+                            }
+                            ?>
                         </td>
                         <td>
                             <a href="?page=projectview&id=<?= $assignment['project'] ?>"> <?php
                                 foreach ($projects as $project) {
                                     if ($project['id'] == $assignment['project']) {
                                         echo $project['subject'];
+                                        $hasProject = true;
                                     }
                                 }
                                 ?></a>
+                            <?php
+                            if (!$hasProject) {
+                                echo "-";
+                            }
+                            ?>
                         </td>
                         <td>
                             <?= date("d-m-Y", strtotime($assignment['endDate'])) ?>
@@ -75,6 +92,7 @@ $users = $userController->getUserList();
                             <img src="css/status-<?= $assignment['status'] ?>.png">
                         </td>
                     </tr>
+
 
                 <?php }
             } ?>

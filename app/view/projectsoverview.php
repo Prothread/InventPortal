@@ -41,18 +41,30 @@ $users = $userController->getUserList();
                                 foreach ($users as $user) {
                                     if ($user['id'] == $project['user']) {
                                         echo $user['naam'];
+                                        $hasUser = true;
                                     }
                                 }
                                 ?></a>
+                            <?php
+                            if (!$hasUser) {
+                                echo "-";
+                            }
+                            ?>
                         </td>
                         <td>
                             <a href="?page=showuserprofile&id=<?= $project['client'] ?>"> <?php
                                 foreach ($clients as $client) {
                                     if ($client['id'] == $project['client']) {
                                         echo $client['naam'];
+                                        $hasClient = true;
                                     }
                                 }
                                 ?></a>
+                            <?php
+                            if (!$hasClient) {
+                                echo "-";
+                            }
+                            ?>
                         </td>
                         <td>
                             <?= date("d-m-Y", strtotime($project['endDate'])) ?>
@@ -61,7 +73,6 @@ $users = $userController->getUserList();
                             <img src="css/status-<?= $project['status'] ?>.png">
                         </td>
                     </tr>
-
                 <?php }
             } ?>
 

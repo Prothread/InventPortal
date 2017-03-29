@@ -31,7 +31,6 @@ $users = $userController->getUserList();
                 <tbody>
                 <?php if (sizeof($allTenders) > 0) {
                     foreach ($allTenders as $tender) { ?>
-
                         <tr>
                             <td>
                                 <a href="?page=tenderview&id=<?= $tender['id'] ?>"><?= $tender['subject'] ?></a>
@@ -41,18 +40,30 @@ $users = $userController->getUserList();
                                     foreach ($users as $user) {
                                         if ($user['id'] == $tender['user']) {
                                             echo $user['naam'];
+                                            $hasUser = true;
                                         }
                                     }
                                     ?></a>
+                                <?php
+                                if (!$hasUser) {
+                                    echo "-";
+                                }
+                                ?>
                             </td>
                             <td>
                                 <a href="?page=showuserprofile&id=<?= $tender['client'] ?>"> <?php
                                     foreach ($clients as $client) {
                                         if ($client['id'] == $tender['client']) {
                                             echo $client['naam'];
+                                            $hasClient = true;
                                         }
                                     }
                                     ?></a>
+                                <?php
+                                if (!$hasClient) {
+                                    echo "-";
+                                }
+                                ?>
                             </td>
                             <td>
                                 &#8364; <?= $tender['value'] ?>
@@ -67,7 +78,6 @@ $users = $userController->getUserList();
                                 <img src="css/status-<?= $tender['status'] ?>.png">
                             </td>
                         </tr>
-
                     <?php }
                 } ?>
 

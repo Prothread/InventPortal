@@ -12,6 +12,9 @@ $allCases = $caseController->getCasesByStatus(0);
 $assignmentController = new AssignmentController();
 $allAssignments = $assignmentController->getAssignmentsByStatus(0);
 
+$taskController = new TaskController();
+$tasks = $taskController->getTasksByStatus(0);
+
 $userController = new UserController();
 $clients = $userController->getClientList();
 
@@ -183,87 +186,39 @@ $clients = $userController->getClientList();
 
             <button class="custom-file-upload">Aanmaken</button>
 
-            <div class="crm-dashboard-box">
-                <img class="deadline" src="css/deadline4.png">
-                <img class="urgentie" src="css/urgentie4.png">
-                <ul>
-                    <li>
-                        Taak onderwerp
-                    </li>
-                    <li>
-                        Klant naam
-                    </li>
-                    <li>
-                        04-03-2017
-                    </li>
-                </ul>
-                <a class="toewijzenlink" href="">Toewijzen</a>
-            </div>
-
-            <div class="crm-dashboard-box">
-                <img class="deadline" src="css/deadline3.png">
-                <img class="urgentie" src="css/urgentie4.png">
-                <ul>
-                    <li>
-                        Taak onderwerp
-                    </li>
-                    <li>
-                        Klant naam
-                    </li>
-                    <li>
-                        04-03-2017
-                    </li>
-                </ul>
-                <a class="toewijzenlink" href="">Toewijzen</a>
-            </div>
-
-            <div class="crm-dashboard-box">
-                <img class="deadline" src="css/deadline1.png">
-                <ul>
-                    <li>
-                        Taak onderwerp
-                    </li>
-                    <li>
-                        Klant naam
-                    </li>
-                    <li>
-                        04-03-2017
-                    </li>
-                </ul>
-                <a class="toewijzenlink" href="">Toewijzen</a>
-            </div>
-
-            <div class="crm-dashboard-box">
-                <img class="deadline" src="css/deadline2.png">
-                <ul>
-                    <li>
-                        Taak onderwerp
-                    </li>
-                    <li>
-                        Klant naam
-                    </li>
-                    <li>
-                        04-03-2017
-                    </li>
-                </ul>
-                <a class="toewijzenlink" href="">Toewijzen</a>
-            </div>
-
-            <div class="crm-dashboard-box">
-                <img class="deadline" src="css/deadline1.png">
-                <ul>
-                    <li>
-                        Taak onderwerp
-                    </li>
-                    <li>
-                        Klant naam
-                    </li>
-                    <li>
-                        04-03-2017
-                    </li>
-                </ul>
-                <a class="toewijzenlink" href="">Toewijzen</a>
-            </div>
+            <?php foreach ($tasks as $task) {
+                $timeDiff = $taskController->getTimeDifference($task['enddate'], date("Y-m-d"))
+                ?>
+                <div class="crm-dashboard-box">
+                    <?php if ($timeDiff <= 0) { ?>
+                        <img class="deadline" src="css/deadline4.png">
+                    <?php } else if ($timeDiff > 0 && $timeDiff <= 2) { ?>
+                        <img class="deadline" src="css/deadline3.png">
+                    <?php } else if ($timeDiff > 2 && $timeDiff <= 7) { ?>
+                        <img class="deadline" src="css/deadline2.png">
+                    <?php } else { ?>
+                        <img class="deadline" src="css/deadline1.png">
+                    <?php } ?>
+                    <ul>
+                        <li>
+                            <a href="?page=taskview&id=<?= $task['id'] ?>"><?= $task['subject'] ?></a>
+                        </li>
+                        <li>
+                            <?php foreach ($clients as $client) {
+                                if ($client['id'] == $task['client']) {
+                                    ?>
+                                    <a href="?page=showuserprofile&id=<?= $client['id'] ?>"><?= $client['naam'] ?></a>
+                                    <?php
+                                }
+                            } ?>
+                        </li>
+                        <li>
+                            <?= date("d-m-Y", strtotime($task['enddate'])) ?>
+                        </li>
+                    </ul>
+                    <a class="toewijzenlink" href="">Toewijzen</a>
+                </div>
+            <?php } ?>
         </div>
     </div>
 
