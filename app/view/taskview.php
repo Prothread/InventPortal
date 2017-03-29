@@ -85,7 +85,6 @@ if (isset($_POST['updateTask'])) {
 }
 
 if (isset($_POST['deleteTask'])) {
-    echo "yea";
     if ($task->delete($id)) {
         $block->Redirect('index.php?page=tasksoverview');
     }

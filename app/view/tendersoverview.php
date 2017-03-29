@@ -30,7 +30,10 @@ $users = $userController->getUserList();
                 </thead>
                 <tbody>
                 <?php if (sizeof($allTenders) > 0) {
-                    foreach ($allTenders as $tender) { ?>
+                    foreach ($allTenders as $tender) {
+                        $hasUser = false;
+                        $hasClient = false;
+                        ?>
                         <tr>
                             <td>
                                 <a href="?page=tenderview&id=<?= $tender['id'] ?>"><?= $tender['subject'] ?></a>

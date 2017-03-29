@@ -38,8 +38,13 @@ $assignments = $assignmentController->getAllAssignments();
             </thead>
             <tbody>
             <?php if (sizeof($allCases) > 0) { ?>
-                <?php foreach ($allCases as $case) { ?>
-
+                <?php foreach ($allCases as $case) {
+                    $hasUser = false;
+                    $hasClient = false;
+                    $hasProject = false;
+                    $hasCase = false;
+                    $hasAssignment = false;
+                    ?>
                     <tr>
                         <td>
                             <a href="?page=caseview&id= <?= $case['id'] ?>"><?= $case['subject'] ?></a>
@@ -50,12 +55,12 @@ $assignments = $assignmentController->getAllAssignments();
                                 foreach ($users as $user) {
                                     if ($user['id'] == $case['user']) {
                                         echo $user['naam'];
-                                        $hasCase = true;
+                                        $hasUser = true;
                                     }
                                 }
                                 ?></a>
                             <?php
-                            if (!$hasCase) {
+                            if (!$hasUser) {
                                 echo "-";
                             }
                             ?>
@@ -97,9 +102,15 @@ $assignments = $assignmentController->getAllAssignments();
                                 foreach ($assignments as $assignment) {
                                     if ($assignment['id'] == $case['assignment']) {
                                         echo $assignment['subject'];
+                                        $hasAssignment = true;
                                     }
                                 }
                                 ?></a>
+                            <?php
+                            if (!$hasAssignment) {
+                                echo "-";
+                            }
+                            ?>
                         </td>
                         <td>
                             <?= date("d-m-Y", strtotime($case['enddate'])) ?>

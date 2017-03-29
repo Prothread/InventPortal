@@ -173,7 +173,7 @@ if (isset($_POST['delete'])) {
                 if ($post) {
                     echo $_POST['endDate'];
                 } else {
-                    $assignmentinfo['endDate'];
+                    echo $assignmentinfo['endDate'];
                 }
                 ?>">
             </div>
@@ -185,7 +185,7 @@ if (isset($_POST['delete'])) {
                     if ($post) {
                         echo $_POST['description'];
                     } else {
-                        $assignmentinfo['description'];
+                        echo $assignmentinfo['description'];
                     }
                     ?></textarea>
             </div>

@@ -35,7 +35,11 @@ $users = $userController->getUserList();
             <tbody>
             <?php
             if (sizeof($allAssignments) > 0) {
-                foreach ($allAssignments as $assignment) { ?>
+                foreach ($allAssignments as $assignment) {
+                    $hasUser = false;
+                    $hasAssignment = false;
+                    $hasProject = false;
+                    ?>
                     <tr>
                         <td>
                             <a href="?page=assignmentview&id= <?= $assignment['id'] ?>"><?= $assignment['subject'] ?></a>

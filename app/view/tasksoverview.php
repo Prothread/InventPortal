@@ -35,14 +35,17 @@ $allProjects = $project->getAllProjects();
             </thead>
             <tbody>
             <?php if (sizeof($allTasks) > 0) { ?>
-                <?php foreach ($allTasks as $task) { ?>
+                <?php foreach ($allTasks as $task) {
+                    $hasUser = false;
+                    $hasClient = false;
+                    $hasProject = false;
+                    ?>
                     <tr>
                         <td>
                             <a href="?page=taskview&id=<?= $task['id'] ?>"><?= $task['subject'] ?></a>
                         </td>
                         <td>
                             <a href="?page=showuserprofile&id=<?= $task['user'] ?>"> <?php
-                                $hasUser = false;
                                 foreach ($users as $user) {
                                     if ($user['id'] == $task['user']) {
                                         $hasUser = true;
@@ -58,7 +61,7 @@ $allProjects = $project->getAllProjects();
                         </td>
                         <td>
                             <a href="?page=showuserprofile&id=<?= $task['client'] ?>"> <?php
-                                $hasClient = false;
+
                                 foreach ($clients as $client) {
                                     if ($client['id'] == $task['client']) {
                                         echo $client['naam'];
@@ -73,7 +76,6 @@ $allProjects = $project->getAllProjects();
                         </td>
                         <td>
                             <a href="?page=projectview&id=<?= $task['project'] ?>"> <?php
-                                $hasProject = false;
                                 foreach ($allProjects as $project) {
                                     if ($project['id'] == $task['project']) {
                                         echo $project['subject'];

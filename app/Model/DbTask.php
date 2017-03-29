@@ -73,9 +73,9 @@ class DbTask extends Database
         }
     }
 
-    public function getTendersByUserId($userId)
+    public function getTasksByUserId($userId)
     {
-        $sql = "SELECT * FROM `tenders` WHERE `user` = {$userId}";
+        $sql = "SELECT * FROM `tasks` WHERE `user` = {$userId}";
         $result = $this->dbQuery($sql);
         $value = mysqli_fetch_all($result, MYSQLI_ASSOC);
         return $value;

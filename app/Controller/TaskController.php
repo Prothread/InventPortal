@@ -117,9 +117,8 @@ class TaskController
         return $diff = $d1->diff($d2)->format("%a");
     }
 
-    public function getTendersByUserId($userId)
-    {
-        return $this->model->getTendersByUserId($userId);
+    public function getTasksByUserId($userId){
+        return $this->model->getTasksByUserId($userId);
     }
 
     public function getTasksByStatus($status)

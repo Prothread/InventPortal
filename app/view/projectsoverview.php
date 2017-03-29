@@ -31,7 +31,10 @@ $users = $userController->getUserList();
             <tbody>
             <?php
             if (sizeof($allProjects) > 0) {
-                foreach ($allProjects as $project) { ?>
+                foreach ($allProjects as $project) {
+                    $hasUser = false;
+                    $hasClient = false;
+                    ?>
                     <tr>
                         <td>
                             <a href="?page=projectview&id=<?= $project['id'] ?>"><?= $project['subject'] ?></a>

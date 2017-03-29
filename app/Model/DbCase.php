@@ -55,7 +55,10 @@ class DbCase extends Database
 
     public function getCasesByUserId($userId)
     {
-        //=============================================
+        $sql = "SELECT * FROM `cases` WHERE `user` = {$userId}";
+        $result = $this->dbQuery($sql);
+        $value = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        return $value;
     }
 
     public function dbLastInsertedId()

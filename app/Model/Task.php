@@ -261,9 +261,9 @@ class Task
         return $this->db->getTaskById($id);
     }
 
-    public function getTendersByUserId($userId)
+    public function getTasksByUserId($userId)
     {
-        return $this->db->getTendersByUserId($userId);
+        return $this->db->getTasksByUserId($userId);
     }
 
     public function getTasksByStatus($status)

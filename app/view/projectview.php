@@ -147,7 +147,7 @@ if (isset($_POST['delete'])) {
                 if ($post) {
                     echo $_POST['endDate'];
                 } else {
-                    $projectinfo['endDate'];
+                    echo $projectinfo['endDate'];
                 }
                 ?>">
             </div>
@@ -159,7 +159,7 @@ if (isset($_POST['delete'])) {
                     if ($post) {
                         echo $_POST['description'];
                     } else {
-                        $projectinfo['description'];
+                        echo $projectinfo['description'];
                     }
                     ?></textarea>
             </div>

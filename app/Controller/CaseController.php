@@ -47,7 +47,7 @@ class CaseController
         return $this->model->getAllCases();
     }
     public function getCasesByUserId($userId){
-
+        return $this->model->getCasesByUserId($userId);
     }
 
     public function getCasesByStatus($status){
