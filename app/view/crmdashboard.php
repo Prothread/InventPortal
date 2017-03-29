@@ -7,6 +7,10 @@ $allTenders = $tenderCon->getTendersByUserId($thisUserId);
 $projectController = new ProjectController();
 $allProjects = $projectController->getProjectsByUserId($thisUserId);
 
+
+$assignmentController = new AssignmentController();
+$allAssignments = $assignmentController->getAssignmentsByUserId($thisUserId);
+
 $caseCon = new CaseController();
 $allCases = $caseCon->getAllCases();
 
@@ -20,6 +24,7 @@ foreach ($allCases as $case) {
         array_push($dashCases, $case);
     }
 }
+
 
 $userController = new UserController();
 $clients = $userController->getClientList();
@@ -183,6 +188,40 @@ $clients = $userController->getClientList();
                     </li>
                 </ul>
             </div>
+
+            <button class="custom-file-upload">Aanmaken</button>
+            <?php foreach ($allAssignments as $assignment) {
+                $timeDiff = $assignmentController->getTimeDifference($assignment['endDate'], date("Y-m-d"));
+                ?>
+                <div class="crm-dashboard-box">
+                    <?php if ($timeDiff <= 0) { ?>
+                        <img class="deadline" src="css/deadline4.png">
+                    <?php } else if ($timeDiff > 0 && $timeDiff <= 2) { ?>
+                        <img class="deadline" src="css/deadline3.png">
+                    <?php } else if ($timeDiff > 2 && $timeDiff <= 7) { ?>
+                        <img class="deadline" src="css/deadline2.png">
+                    <?php } else { ?>
+                        <img class="deadline" src="css/deadline1.png">
+                    <?php } ?>
+                    <ul>
+                        <li>
+                            <a href="?page=assignmentview&id=<?= $assignment['id'] ?>"><?= $assignment['subject'] ?></a>
+                        </li>
+                        <li>
+                            <?php foreach ($clients as $client) {
+                                if ($client['id'] == $assignment['client']) {
+                                    ?>
+                                    <a href="?page=showuserprofile&id=<?= $client['id'] ?>"><?= $client['naam'] ?></a>
+                                    <?php
+                                }
+                            } ?>
+                        </li>
+                        <li>
+                            <?= date("d-m-Y", strtotime($assignment['endDate'])) ?>
+                        </li>
+                    </ul>
+                </div>
+            <?php } ?>
         </div>
     </div>
 

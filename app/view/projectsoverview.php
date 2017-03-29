@@ -14,7 +14,7 @@ $users = $userController->getUserList();
     <header><?= PROJECT_OVERVIEW_TEXT ?></header>
     <hr>
     <div class="case-overzicht-buttons">
-        <button class="custom-file-upload"><?= TEXT_CREATE_DROPDOWN ?></button>
+        <button class="custom-file-upload" onclick="window.location.href='?page=addproject'"><?= TEXT_CREATE_DROPDOWN ?></button>
         <button class="custom-file-upload"><?= TEXT_ARCHIVE ?></button>
     </div>
     <div class="case-overvieuw-table">

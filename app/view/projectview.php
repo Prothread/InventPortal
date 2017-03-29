@@ -127,7 +127,7 @@ if (isset($_POST['delete'])) {
             </div>
             <div class="description-holder">
                 <label><?= TEXT_DESCRIPTION ?></label>
-                <textarea name="description" <?php if(isset($description_error)){echo "error-input";} ?>><?= $projectinfo['description'] ?></textarea>
+                <textarea name="description" class="<?php if(isset($description_error)){echo "error-input";} ?>"><?= $projectinfo['description'] ?></textarea>
             </div>
             <div class="button-holder">
                 <div class="button-push"></div>

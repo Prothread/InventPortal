@@ -81,7 +81,7 @@ if(isset($_POST['update'])){
 }
 
 if (isset($_POST['delete'])) {
-    if ($project->delete($id)) {
+    if ($assignment->delete($id)) {
         $block->Redirect('index.php?page=assignmentsoverview');
     }
 }
@@ -149,7 +149,7 @@ if (isset($_POST['delete'])) {
             </div>
             <div class="description-holder">
                 <label><?= TEXT_DESCRIPTION ?></label>
-                <textarea name="description" <?php if(isset($description_error)){echo "error-input";} ?>><?= $assignmentinfo['description'] ?></textarea>
+                <textarea name="description" class="<?php if(isset($description_error)){echo "error-input";} ?>"><?= $assignmentinfo['description'] ?></textarea>
             </div>
             <div class="button-holder">
                 <div class="button-push"></div>

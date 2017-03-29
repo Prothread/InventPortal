@@ -48,11 +48,21 @@ class DBAssignment extends Database
         }
     }
 
-    public function getAssignmentsByUserId($userid){
-        //================================================
+    public function getAssignmentsByUserId($userId){
+        $sql = "SELECT * FROM `assignments` WHERE `user` = {$userId}";
+        $result = $this->dbQuery($sql);
+        $value = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        return $value;
     }
 
     public function dbLastInsertedId(){
         return $this->connection->insert_id;
+    }
+
+    public function getTimeDifference($date1, $date2)
+    {
+        $d1 = new DateTime($date1);
+        $d2 = new DateTime($date2);
+        return $diff = $d1->diff($d2)->format("%a");
     }
 }
