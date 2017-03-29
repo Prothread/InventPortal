@@ -36,21 +36,35 @@ $users = $userController->getUserList();
                     </td>
                     <td>
                         <a href="?page=showuserprofile&id=<?= $project['user'] ?>"> <?php
+                            $hasUser = false;
                             foreach ($users as $user) {
                                 if ($user['id'] == $project['user']) {
                                     echo $user['naam'];
+                                    $hasUser = true;
                                 }
                             }
                             ?></a>
+                        <?php
+                        if (!$hasUser) {
+                            echo "-";
+                        }
+                        ?>
                     </td>
                     <td>
                         <a href="?page=showuserprofile&id=<?= $project['client'] ?>"> <?php
+                            $hasClient = false;
                             foreach ($clients as $client) {
                                 if ($client['id'] == $project['client']) {
                                     echo $client['naam'];
+                                    $hasClient = true;
                                 }
                             }
                             ?></a>
+                        <?php
+                        if (!$hasClient) {
+                            echo "-";
+                        }
+                        ?>
                     </td>
                     <td>
                         <?= $project['endDate'] ?>

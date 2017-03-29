@@ -70,7 +70,10 @@ class ComposerStaticInitc0a55957efdf0e279fcd6092060aa6da
         'DbCase' => __DIR__ . '/../..' . '/app/Model/DbCase.php',
         'AssignmentController' => __DIR__ . '/../..' . '/app/Controller/AssignmentController.php',
         'Assignment' => __DIR__ . '/../..' . '/app/Model/Assignment.php',
-        'DBAssignment' => __DIR__ . '/../..' . '/app/Model/DBAssignment.php',
+        'DBassignment' => __DIR__ . '/../..' . '/app/Model/DBassignment.php',
+        'TaskController' => __DIR__ . '/../..' . '/app/Controller/TaskController.php',
+        'Task' => __DIR__ . '/../..' . '/app/Model/Task.php',
+        'DbTask' => __DIR__ . '/../..' . '/app/Model/DbTask.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

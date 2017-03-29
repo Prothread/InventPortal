@@ -27,6 +27,10 @@ define("TEXT_TEMPLATE_ADD", "Template");
 define("TEXT_DEFAULTTASK_ADD", "Default tasks ");
 define("TEXT_QUEUE", "Queue");
 define("TEXT_DELETE", "delete");
+define("URGENCY_1", "Low");
+define("URGENCY_2", "Normal");
+define("URGENCY_3", "High");
+define("URGENCY_4", "Critical");
 
 /*CRM FORMS*/
 
@@ -53,6 +57,7 @@ define("TEXT_DEFAULTTASK_CREATE","Create default task");
 define("TEXT_ERROR_FORM","One of the fields was not correct, try again.");
 define("TEXT_PROJECT_VIEW","Project overview");
 define("TEXT_EDIT","Edit");
+define("TASK_OVERVIEW","Task overview");
 
 define("TEXT_CASE_VIEW", "Case overview");
 define("CASE_OVERVIEW_TEXT", "cases overview");

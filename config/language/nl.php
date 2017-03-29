@@ -53,6 +53,11 @@ define("TEXT_DEFAULTTASK_CREATE","Standaard taak aanmaken");
 define("TEXT_ERROR_FORM","Een veld is niet goed ingevuld, probeer opnieuw.");
 define("TEXT_PROJECT_VIEW","Project overzicht");
 define("TEXT_EDIT","Aanpassen");
+define("TASK_OVERVIEW","Taak overzicht");
+define("URGENCY_1", "Laag");
+define("URGENCY_2", "Normaal");
+define("URGENCY_3", "Hoog");
+define("URGENCY_4", "Kritisch");
 
 define("TEXT_CASE_VIEW", "Case overzicht");
 define("CASE_OVERVIEW_TEXT", "cases overzicht");

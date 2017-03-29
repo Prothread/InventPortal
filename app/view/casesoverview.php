@@ -14,7 +14,7 @@ $projects = $projectController->getAllProjects();
 
 <div id="case-overview-holder">
 
-    <header><?= TENDER_OVERVIEW_TEXT ?></header>
+    <header><?= CASE_OVERVIEW_TEXT ?></header>
     <hr>
     <div class="case-overzicht-buttons">
         <button class="custom-file-upload"><?= TEXT_CREATE_DROPDOWN ?></button>
@@ -43,30 +43,51 @@ $projects = $projectController->getAllProjects();
                         </td>
                         <td>
                             <a href="?page=showuserprofile&id=<?= $case['user'] ?>"> <?php
+                                $hasCase = false;
                                 foreach ($users as $user) {
                                     if ($user['id'] == $case['user']) {
                                         echo $user['naam'];
+                                        $hasCase = true;
                                     }
                                 }
                                 ?></a>
+                            <?php
+                            if (!$hasCase) {
+                                echo "-";
+                            }
+                            ?>
                         </td>
                         <td>
                             <a href="?page=showuserprofile&id=<?= $case['client'] ?>"> <?php
+                                $hasClient = false;
                                 foreach ($clients as $client) {
                                     if ($client['id'] == $case['client']) {
                                         echo $client['naam'];
+                                        $hasClient = true;
                                     }
                                 }
                                 ?></a>
+                            <?php
+                            if (!$hasClient) {
+                                echo "-";
+                            }
+                            ?>
                         </td>
                         <td>
                             <a href="?page=projectview&id=<?= $case['project'] ?>"> <?php
+                                $hasProject = false;
                                 foreach ($projects as $project) {
                                     if ($project['id'] == $case['project']) {
                                         echo $project['subject'];
+                                        $hasProject = true;
                                     }
                                 }
                                 ?></a>
+                            <?php
+                            if (!$hasProject) {
+                                echo "-";
+                            }
+                            ?>
                         </td>
                         <td>
                             test

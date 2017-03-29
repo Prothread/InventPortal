@@ -294,6 +294,9 @@ switch ($page) {
     case 'assignmentview':
         include '../app/view/assignmentview.php';
         break;
+    case 'taskview':
+        include '../app/view/taskview.php';
+        break;
     default:
         include '../app/view/404.php';
         break;

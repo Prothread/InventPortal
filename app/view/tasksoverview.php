@@ -1,9 +1,23 @@
+<?php
+$task = new TaskController();
+
+$allTasks = $task->getAllTasks();
+
+$userController = new UserController();
+$clients = $userController->getClientList();
+$users = $userController->getUserList();
+
+$project = new ProjectController();
+$allProjects = $project->getAllProjects();
+
+?>
+
 <div id="case-overview-holder">
 
     <header>Taken Overzicht</header>
     <hr>
     <div class="case-overzicht-buttons">
-        <button class="custom-file-upload">Aanmaken</button>
+        <button class="custom-file-upload" onclick="window.location.href='?page=addtask'">Aanmaken</button>
         <button class="custom-file-upload">Archief</button>
     </div>
     <div class="case-overvieuw-table">
@@ -15,272 +29,76 @@
                 <th>Klant</th>
                 <th>Project</th>
                 <th>Opdracht</th>
-                <th>case</th>
                 <th>Duur</th>
                 <th>Status</th>
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>
-                    <a href="#">Case onderwerp</a>
-                </td>
-                <td>
-                    <a href="#">Werkn.afk</a>
-                </td>
-                <td>
-                    <a href="#">Klantnaam</a>
-                </td>
-                <td>
-                    <a href="#">Project naam</a>
-                </td>
-                <td>
-                    <a href="#">Opdracht naam</a>
-                </td>
-                <td>
-                    <a href="#">Case naam</a>
-                </td>
-                <td>
-                    2 Dagen
-                </td>
-                <td>
-                    <img src="css/bezig-icon.png">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="#">Case onderwerp</a>
-                </td>
-                <td>
-                    <a href="#">Werkn.afk</a>
-                </td>
-                <td>
-                    <a href="#">Klantnaam</a>
-                </td>
-                <td>
-                    <a href="#">Project naam</a>
-                </td>
-                <td>
-                    <a href="#">Opdracht naam</a>
-                </td>
-                <td>
-                    <a href="#">Case naam</a>
-                </td>
-                <td>
-                    2 Dagen
-                </td>
-                <td>
-                    <img src="css/bezig-icon.png">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="#">Case onderwerp</a>
-                </td>
-                <td>
-                    <a href="#">Werkn.afk</a>
-                </td>
-                <td>
-                    <a href="#">Klantnaam</a>
-                </td>
-                <td>
-                    <a href="#">Project naam</a>
-                </td>
-                <td>
-                    <a href="#">Opdracht naam</a>
-                </td>
-                <td>
-                    <a href="#">Case naam</a>
-                </td>
-                <td>
-                    2 Dagen
-                </td>
-                <td>
-                    <img src="css/bezig-icon.png">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="#">Case onderwerp</a>
-                </td>
-                <td>
-                    <a href="#">Werkn.afk</a>
-                </td>
-                <td>
-                    <a href="#">Klantnaam</a>
-                </td>
-                <td>
-                    <a href="#">Project naam</a>
-                </td>
-                <td>
-                    <a href="#">Opdracht naam</a>
-                </td>
-                <td>
-                    <a href="#">Case naam</a>
-                </td>
-                <td>
-                    2 Dagen
-                </td>
-                <td>
-                    <img src="css/bezig-icon.png">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="#">Case onderwerp</a>
-                </td>
-                <td>
-                    <a href="#">Werkn.afk</a>
-                </td>
-                <td>
-                    <a href="#">Klantnaam</a>
-                </td>
-                <td>
-                    <a href="#">Project naam</a>
-                </td>
-                <td>
-                    <a href="#">Opdracht naam</a>
-                </td>
-                <td>
-                    <a href="#">Case naam</a>
-                </td>
-                <td>
-                    2 Dagen
-                </td>
-                <td>
-                    <img src="css/bezig-icon.png">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="#">Case onderwerp</a>
-                </td>
-                <td>
-                    <a href="#">Werkn.afk</a>
-                </td>
-                <td>
-                    <a href="#">Klantnaam</a>
-                </td>
-                <td>
-                    <a href="#">Project naam</a>
-                </td>
-                <td>
-                    <a href="#">Opdracht naam</a>
-                </td>
-                <td>
-                    <a href="#">Case naam</a>
-                </td>
-                <td>
-                    2 Dagen
-                </td>
-                <td>
-                    <img src="css/bezig-icon.png">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="#">Case onderwerp</a>
-                </td>
-                <td>
-                    <a href="#">Werkn.afk</a>
-                </td>
-                <td>
-                    <a href="#">Klantnaam</a>
-                </td>
-                <td>
-                    <a href="#">Project naam</a>
-                </td>
-                <td>
-                    <a href="#">Opdracht naam</a>
-                </td>
-                <td>
-                    <a href="#">Case naam</a>
-                </td>
-                <td>
-                    2 Dagen
-                </td>
-                <td>
-                    <img src="css/bezig-icon.png">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="#">Case onderwerp</a>
-                </td>
-                <td>
-                    <a href="#">Werkn.afk</a>
-                </td>
-                <td>
-                    <a href="#">Klantnaam</a>
-                </td>
-                <td>
-                    <a href="#">Project naam</a>
-                </td>
-                <td>
-                    <a href="#">Opdracht naam</a>
-                </td>
-                <td>
-                    <a href="#">Case naam</a>
-                </td>
-                <td>
-                    2 Dagen
-                </td>
-                <td>
-                    <img src="css/bezig-icon.png">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="#">Case onderwerp</a>
-                </td>
-                <td>
-                    <a href="#">Werkn.afk</a>
-                </td>
-                <td>
-                    <a href="#">Klantnaam</a>
-                </td>
-                <td>
-                    <a href="#">Project naam</a>
-                </td>
-                <td>
-                    <a href="#">Opdracht naam</a>
-                </td>
-                <td>
-                    <a href="#">Case naam</a>
-                </td>
-                <td>
-                    2 Dagen
-                </td>
-                <td>
-                    <img src="css/bezig-icon.png">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="#">Case onderwerp</a>
-                </td>
-                <td>
-                    <a href="#">Werkn.afk</a>
-                </td>
-                <td>
-                    <a href="#">Klantnaam</a>
-                </td>
-                <td>
-                    <a href="#">Project naam</a>
-                </td>
-                <td>
-                    <a href="#">Opdracht naam</a>
-                </td>
-                <td>
-                    <a href="#">Case naam</a>
-                </td>
-                <td>
-                    2 Dagen
-                </td>
-                <td>
-                    <img src="css/bezig-icon.png">
-                </td>
-            </tr>
+            <?php if (sizeof($allTasks) > 0) { ?>
+                <?php foreach ($allTasks as $task) { ?>
+                    <tr>
+                        <td>
+                            <a href="?page=taskview&id=<?= $task['id'] ?>"><?= $task['subject'] ?></a>
+                        </td>
+                        <td>
+                            <a href="?page=showuserprofile&id=<?= $task['user'] ?>"> <?php
+                                $hasUser = false;
+                                foreach ($users as $user) {
+                                    if ($user['id'] == $task['user']) {
+                                        $hasUser = true;
+                                        echo $user['naam'];
+                                    }
+                                }
+                                ?></a>
+                            <?php
+                            if (!$hasUser) {
+                                echo "-";
+                            }
+                            ?>
+                        </td>
+                        <td>
+                            <a href="?page=showuserprofile&id=<?= $task['client'] ?>"> <?php
+                                $hasClient = false;
+                                foreach ($clients as $client) {
+                                    if ($client['id'] == $task['client']) {
+                                        echo $client['naam'];
+                                        $hasClient = true;
+                                    }
+                                } ?></a>
+                            <?php
+                            if (!$hasClient) {
+                                echo "-";
+                            }
+                            ?>
+                        </td>
+                        <td>
+                            <a href="?page=projectview&id=<?= $task['project'] ?>"> <?php
+                                $hasProject = false;
+                                foreach ($allProjects as $project) {
+                                    if ($project['id'] == $task['project']) {
+                                        echo $project['subject'];
+                                        $hasProject = true;
+                                    }
+                                }
+                                ?></a>
+                            <?php
+                            if (!$hasProject) {
+                                echo "-";
+                            }
+                            ?>
+                        </td>
+                        <td>
+                            <a href="#">TEST</a>
+                        </td>
+                        <td>
+                            <?= $task['duration'] ?>
+                        </td>
+                        <td>
+                            <img src="css/status-<?= $task['status'] ?>.png">
+                        </td>
+                    </tr>
+                <?php } ?>
+            <?php } ?>
             </tbody>
         </table>
     </div>

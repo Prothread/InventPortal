@@ -43,5 +43,8 @@ return array(
     'DbCase' => $baseDir . '/app/Model/DbCase.php',
     'AssignmentController' => $baseDir . '/app/Controller/AssignmentController.php',
     'Assignment' => $baseDir . '/app/Model/Assignment.php',
-    'DbAssignment' => $baseDir . '/app/Model/DbAssignment.php',
+    'DBassignment' => $baseDir . '/app/Model/DBassignment.php',
+    'TaskController' => $baseDir . '/app/Controller/TaskController.php',
+    'Task' => $baseDir . '/app/Model/Task.php',
+    'DbTask' => $baseDir . '/app/Model/DbTask.php',
 );

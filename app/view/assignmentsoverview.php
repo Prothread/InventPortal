@@ -40,30 +40,51 @@ $users = $userController->getUserList();
                     </td>
                     <td>
                         <a href="?page=showuserprofile&id=<?= $assignment['user'] ?>"> <?php
+                            $hasUser = false;
                             foreach ($users as $user) {
                                 if ($user['id'] == $assignment['user']) {
                                     echo $user['naam'];
+                                    $hasUser = true;
                                 }
                             }
                             ?></a>
+                        <?php
+                        if (!$hasUser) {
+                            echo "-";
+                        }
+                        ?>
                     </td>
                     <td>
                         <a href="?page=showuserprofile&id=<?= $assignment['client'] ?>"> <?php
+                            $hasAssignment = false;
                             foreach ($clients as $client) {
                                 if ($client['id'] == $assignment['client']) {
                                     echo $client['naam'];
+                                    $hasAssignment = true;
                                 }
                             }
                             ?></a>
+                        <?php
+                        if (!$hasAssignment) {
+                            echo "-";
+                        }
+                        ?>
                     </td>
                     <td>
                         <a href="?page=projectview&id=<?= $assignment['project'] ?>"> <?php
+                            $hasProject = false;
                             foreach ($projects as $project) {
                                 if ($project['id'] == $assignment['project']) {
                                     echo $project['subject'];
+                                    $hasProject = true;
                                 }
                             }
                             ?></a>
+                        <?php
+                        if (!$hasProject) {
+                            echo "-";
+                        }
+                        ?>
                     </td>
                     <td>
                         <?= $assignment['endDate'] ?>

@@ -28,7 +28,7 @@ class Assignment
 
     public function __construct()
     {
-        $this->db = new DBAssignment();
+        $this->db = new DBassignment();
     }
 
     public function create(){

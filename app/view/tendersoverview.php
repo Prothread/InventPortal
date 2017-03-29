@@ -1,5 +1,4 @@
 <?php
-$allTenders;
 $tender = new TenderController();
 
 $allTenders = $tender->getAllTenders();
@@ -40,21 +39,35 @@ $users = $userController->getUserList();
                         </td>
                         <td>
                             <a href="?page=showuserprofile&id=<?= $tender['user'] ?>"> <?php
+                                $hasUser = false;
                                 foreach ($users as $user) {
                                     if ($user['id'] == $tender['user']) {
                                         echo $user['naam'];
+                                        $hasUser = true;
                                     }
                                 }
                                 ?></a>
+                                <?php
+                                if (!$hasUser) {
+                                    echo "-";
+                                }
+                                ?>
                         </td>
                         <td>
                             <a href="?page=showuserprofile&id=<?= $tender['client'] ?>"> <?php
+                                $hasClient = false;
                                 foreach ($clients as $client) {
                                     if ($client['id'] == $tender['client']) {
                                         echo $client['naam'];
+                                        $hasClient = true;
                                     }
                                 }
                                 ?></a>
+                            <?php
+                            if (!$hasClient) {
+                                echo "-";
+                            }
+                            ?>
                         </td>
                         <td>
                             &#8364; <?= $tender['value'] ?>
