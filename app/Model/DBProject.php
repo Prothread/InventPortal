@@ -6,7 +6,7 @@
  * Date: 24-3-2017
  * Time: 09:09
  */
-class DBProject extends Database
+class DbProject extends Database
 {
     public function create(Project $project)
     {
@@ -45,7 +45,7 @@ class DBProject extends Database
 
     public function getAllProjects()
     {
-        $sql = "SELECT `id`, `subject`, `user`, `client`, `endDate`, `status` FROM `projects`";
+        $sql = "SELECT * FROM `projects`";
         $result = $this->dbQuery($sql);
         $endResult = mysqli_fetch_all($result, MYSQLI_ASSOC);
         if ($endResult) {
