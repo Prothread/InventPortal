@@ -16,6 +16,8 @@ require_once '../config/load.php';
 
 $session = new Session();
 
+$typeId;
+$type;
 /**
  * Creeren van ?page=
  */
@@ -46,20 +48,20 @@ if (!$session->exists('usr_id') && $page !== 'image' && $page !== 'forgetpasswor
     $page = 'dashboard';
 }
 
-if (!$session->exists('usr_id') && $page == 'approve') {
+if (!$session->exists('usr_id') && $page == 'approve' && $page !== "quickAssign") {
     require_once '../app/view/header.php';
 }
 
-if (!$session->exists('usr_id') && $page == 'conditions') {
+if (!$session->exists('usr_id') && $page == 'conditions' && $page !== "quickAssign") {
     require_once '../app/view/header.php';
 }
 
-if (!$session->exists('usr_id') && $page !== 'approve' && $page !== 'conditions') {
+if (!$session->exists('usr_id') && $page !== 'approve' && $page !== 'conditions' && $page !== "quickAssign") {
     require_once '../app/view/header2.php';
 }
 
 if ($session->exists('usr_id')) {
-    if ($page !== 'submit' && $page !== 'image' && $page !== 'download' && $page !== 'clientmail' && $page !== 'uploadImages') {
+    if ($page !== 'submit' && $page !== 'image' && $page !== 'download' && $page !== 'clientmail' && $page !== 'uploadImages' && $page !== "quickAssign") {
         include_once '../app/view/header.php';
     }
 }
@@ -296,6 +298,9 @@ switch ($page) {
         break;
     case 'taskview':
         include '../app/view/taskview.php';
+        break;
+    case 'quickAssign':
+        include '../app/view/quickAssign.php';
         break;
     default:
         include '../app/view/404.php';

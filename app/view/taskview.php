@@ -179,7 +179,11 @@ if (isset($_POST['deleteTask'])) {
             <div>
                 <label><?= TEXT_URGENCY ?></label>
                 <select class="form-control" name="urgency">
-
+                    <?php if($taskinfo['urgency'] == 0){ ?>
+                        <option value="0" selected>-</option>
+                    <?php } else{ ?>
+                        <option value="0">-</option>
+                    <?php } ?>
                     <?php if($taskinfo['urgency'] == 1){ ?>
                         <option value="1" selected><?= URGENCY_1 ?></option>
                     <?php } else{ ?>

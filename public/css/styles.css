@@ -2330,3 +2330,10 @@ tr:nth-child(2n) {
     margin-left: -35px; /*set to a negative number 1/2 of your width*/
     background-color: #fff;
 }
+
+.urgencyImage{
+    position: absolute;
+    top: 32px;
+    right: 3px;
+    height: 25px;
+}

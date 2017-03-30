@@ -73,4 +73,10 @@ class DbCase extends Database
         $value = mysqli_fetch_all($result, MYSQLI_ASSOC);
         return $value;
     }
+
+    public function assignUser($user, $id){
+        $status = 1;
+        $sql = "UPDATE `cases` SET `user` = '{$user}', `status` = '{$status}' WHERE `id` = {$id}";
+        $this->dbQuery($sql);
+    }
 }

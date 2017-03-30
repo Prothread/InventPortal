@@ -201,6 +201,17 @@ $clients = $userController->getClientList();
                     <?php } else { ?>
                         <img class="deadline" src="css/deadline1.png">
                     <?php } ?>
+                    <?php if ($task['urgency'] == 0) { ?>
+
+                    <?php } else if ($task['urgency'] == 1) { ?>
+                        <img class="urgencyImage" src="css/urgentie1.png">
+                    <?php } else if ($task['urgency'] == 2) { ?>
+                        <img class="urgencyImage" src="css/urgentie2.png">
+                    <?php } else if($task['urgency'] == 3){ ?>
+                        <img class="urgencyImage" src="css/urgentie3.png">
+                    <?php } else if($task['urgency'] == 4){ ?>
+                        <img class="urgencyImage" src="css/urgentie4.png">
+                    <?php } ?>
                     <ul>
                         <li>
                             <a href="?page=taskview&id= <?= $task['id'] ?>"><?= $task['subject'] ?></a>
