@@ -17,6 +17,12 @@ $tasks = $taskController->getTasksByStatus(0);
 
 $userController = new UserController();
 $clients = $userController->getClientList();
+$showPupUp = true;
+
+$userController = new UserController();
+$users = $userController->getUserList();
+
+$thisUserId = $_SESSION['usr_id'];
 
 ?>
 
@@ -265,9 +271,73 @@ $clients = $userController->getClientList();
                             <?= date("d-m-Y", strtotime($case['enddate'])) ?>
                         </li>
                     </ul>
-                    <a class="toewijzenlink" href=""><?= TEXT_ASSIGN ?></a>
+                    <a class="toewijzenlink" data-toggle="modal" data-target="#myModal" href=""><?= TEXT_ASSIGN ?></a>
                 </div>
             <?php } ?>
+        </div>
+    </div>
+
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title"><?= TEXT_ASSIGN ?></h4>
+                </div>
+                <div class="modal-body">
+
+                    <form action="#" method="post" enctype="multipart/form-data" class="form-horizontal"
+                          id="createclient">
+
+                        <div class="demclients1">
+                            <?php
+                            if ($session->exists('flash')) {
+                                foreach ($session->get('flash') as $flash) {
+                                    echo "<div class='alert alert_{$flash['type']}'>{$flash['message']}</div>";
+                                }
+                                $session->remove('flash');
+                            }
+                            ?>
+                        </div>
+
+                        <fieldset>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="textinput"><?= TEXT_USER ?><span
+                                            style="color:#dd2c4c">*</span></label>
+                                <div class="col-md-4">
+                                    <select class="form-control" name="user">
+                                        <option value="0"><?= TEXT_EMPLOYEE ?></option>
+                                        <?php
+                                        foreach ($users as $user) {
+                                            echo '<option value="' . $user['id'] . '"';
+                                            if ($user['id'] == $thisUserId) {
+                                                echo 'selected';
+                                            }
+                                            echo '>' . $user['naam'] . '</option>';
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="textinput"></label>
+                                <div class="col-md-4">
+                                    <input class="btn btn-primary " name="submit" style="width: auto" type="submit"
+                                           value="<?= TEXT_ASSIGN ?>">
+                                </div>
+                            </div>
+
+                        </fieldset>
+                    </form>
+                </div>
+                <div class="modal-footer">
+
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
