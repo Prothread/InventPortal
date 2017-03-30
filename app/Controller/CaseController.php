@@ -53,4 +53,8 @@ class CaseController
     public function getCasesByStatus($status){
         return $this->model->getCasesByStatus($status);
     }
+
+    public function assignUser($user, $id){
+        return $this->model->assignUser($user, $id);
+    }
 }

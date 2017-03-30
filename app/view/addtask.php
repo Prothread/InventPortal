@@ -159,16 +159,17 @@ if (isset($_POST['submitTask'])) {
             <div>
                 <label><?= TEXT_URGENCY ?></label>
                 <select class="form-control" name="urgency">
-                    <option value="1"<?php if ($_POST['urgency'] == 1) {
+                    <option value="0">-</option>
+                    <option value="1"<?php if (isset($_POST['urgency']) && $_POST['urgency'] == 1) {
                         echo 'selected';
                     } ?>><?= URGENCY_1 ?></option>
-                    <option value="2"<?php if ($_POST['urgency'] == 2) {
+                    <option value="2"<?php if (isset($_POST['urgency']) && $_POST['urgency'] == 2) {
                         echo 'selected';
                     } ?>><?= URGENCY_2 ?></option>
-                    <option value="3"<?php if ($_POST['urgency'] == 3) {
+                    <option value="3"<?php if (isset($_POST['urgency']) && $_POST['urgency'] == 3) {
                         echo 'selected';
                     } ?>><?= URGENCY_3 ?></option>
-                    <option value="4"<?php if ($_POST['urgency'] == 4) {
+                    <option value="4"<?php if (isset($_POST['urgency']) && $_POST['urgency'] == 4) {
                         echo 'selected';
                     } ?>><?= URGENCY_4 ?></option>
                 </select>

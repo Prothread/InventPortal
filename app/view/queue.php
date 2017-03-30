@@ -1,5 +1,11 @@
 <?php
+if(isset($_POST['assign'])){
 
+    if($_GET['type'] == "cases"){
+        $caseController = new CaseController();
+        $caseController->assignUser($_POST['theUser'], $_GET['typeId']);
+    }
+}
 $tenderController = new TenderController();
 $allTenders = $tenderController->getTendersByStatus(0);
 
@@ -23,6 +29,9 @@ $userController = new UserController();
 $users = $userController->getUserList();
 
 $thisUserId = $_SESSION['usr_id'];
+
+$theId;
+$theOption;
 
 ?>
 
@@ -271,65 +280,61 @@ $thisUserId = $_SESSION['usr_id'];
                             <?= date("d-m-Y", strtotime($case['enddate'])) ?>
                         </li>
                     </ul>
-                    <a class="toewijzenlink" data-toggle="modal" data-target="#myModal" href=""><?= TEXT_ASSIGN ?></a>
+                    <a class="toewijzenlink" data-toggle="modal" data-target="#myModal" href="?page=quickAssign&type=cases&typeId=<?=$case['id']?>"><?= TEXT_ASSIGN ?></a>
                 </div>
             <?php } ?>
         </div>
     </div>
 
+    <!-- Modal -->
     <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog">
+
 
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title"><?= TEXT_ASSIGN ?></h4>
+                    <h4 class="modal-title">Toewijzen</h4>
                 </div>
                 <div class="modal-body">
+                    <br>
 
-                    <form action="#" method="post" enctype="multipart/form-data" class="form-horizontal"
-                          id="createclient">
 
-                        <div class="demclients1">
-                            <?php
-                            if ($session->exists('flash')) {
-                                foreach ($session->get('flash') as $flash) {
-                                    echo "<div class='alert alert_{$flash['type']}'>{$flash['message']}</div>";
-                                }
-                                $session->remove('flash');
-                            }
-                            ?>
-                        </div>
-
+                    <form action="?page=nieuwstatusitem" method="post" enctype="multipart/form-data"
+                          class="form-horizontal">
                         <fieldset>
+
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput"><?= TEXT_USER ?><span
-                                            style="color:#dd2c4c">*</span></label>
+                                <label class="col-md-4 control-label" for="textinput">Werknemers</label>
                                 <div class="col-md-4">
-                                    <select class="form-control" name="user">
-                                        <option value="0"><?= TEXT_EMPLOYEE ?></option>
-                                        <?php
-                                        foreach ($users as $user) {
-                                            echo '<option value="' . $user['id'] . '"';
-                                            if ($user['id'] == $thisUserId) {
-                                                echo 'selected';
-                                            }
-                                            echo '>' . $user['naam'] . '</option>';
-                                        }
-                                        ?>
-                                    </select>
+
+                                    <?php if ($users !== null || !empty($users)) { ?>
+                                        <select class="form-control" name="name">
+
+                                            <?php foreach ($users as $user) { ?>
+                                                <?php if($user['id'] == $thisUserId) {?>
+                                                    <option class="form-control input-md" selected
+                                                            value="<?= $user['id'] ?>"><?= $user['naam'] ?></option>
+                                                <?php } else{ ?>
+                                                    <option class="form-control input-md"
+                                                            value="<?= $user['id'] ?>"><?= $user['naam'] ?></option>
+                                                <?php } ?>
+                                            <?php } ?>
+                                        </select>
+                                    <?php } ?>
+
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput"></label>
                                 <div class="col-md-4">
-                                    <input class="btn btn-primary " name="submit" style="width: auto" type="submit"
-                                           value="<?= TEXT_ASSIGN ?>">
+                                    <input class="btn btn-primary btn-success" name="submit"
+                                           style="max-width: 100px; background-color: #bb2c4c; border: 1px solid #dd2c4c"
+                                           type="submit" value="Toewijzen">
                                 </div>
                             </div>
-
                         </fieldset>
                     </form>
                 </div>
@@ -340,4 +345,24 @@ $thisUserId = $_SESSION['usr_id'];
 
         </div>
     </div>
-</div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="Sure" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Weet u zeker dat u dit item wilt verwijderen?</h4>
+                </div>
+                <div class="modal-body">
+                    <br>
+                </div>
+                <div class="modal-footer">
+
+                </div>
+            </div>
+        </div>
+    </div>
+

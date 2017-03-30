@@ -224,4 +224,8 @@ class CaseClass
     public function getCasesByStatus($status){
         return $this->db->getCasesByStatus($status);
     }
+
+    public function assignUser($user, $id){
+        return $this->db->assignUser($user, $id);
+    }
 }
