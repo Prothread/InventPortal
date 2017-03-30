@@ -60,10 +60,12 @@ $users = $userController->getUserList();
                         </td>
                         <td>
                             <a href="?page=showuserprofile&id=<?= $assignment['client'] ?>"> <?php
-                                foreach ($clients as $client) {
-                                    if ($client['id'] == $assignment['client']) {
-                                        echo $client['naam'];
-                                        $hasAssignment = true;
+                                if (!is_null($clients)) {
+                                    foreach ($clients as $client) {
+                                        if ($client['id'] == $assignment['client']) {
+                                            echo $client['naam'];
+                                            $hasAssignment = true;
+                                        }
                                     }
                                 }
                                 ?></a>
@@ -75,10 +77,12 @@ $users = $userController->getUserList();
                         </td>
                         <td>
                             <a href="?page=projectview&id=<?= $assignment['project'] ?>"> <?php
-                                foreach ($projects as $project) {
-                                    if ($project['id'] == $assignment['project']) {
-                                        echo $project['subject'];
-                                        $hasProject = true;
+                                if (!is_null($projects)) {
+                                    foreach ($projects as $project) {
+                                        if ($project['id'] == $assignment['project']) {
+                                            echo $project['subject'];
+                                            $hasProject = true;
+                                        }
                                     }
                                 }
                                 ?></a>

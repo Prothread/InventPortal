@@ -8,108 +8,112 @@
  */
 class Tender
 {
+    /**
+     * Voor de dbTender connectie
+     *
+     * @var DbTender
+     */
+
     private $db;
 
+    /**
+     * Id van de tender
+     *
+     * @var $TenderId
+     */
+
     private $TenderId;
+    /**
+     * Onderwerp van de tender
+     *
+     * @var $Subject
+     */
 
     private $Subject;
 
+    /**
+     * Client id van de tender
+     *
+     * @var $client
+     */
+
     private $Client;
+
+    /**
+     * User id van de tender
+     *
+     * @var $User
+     */
 
     private $User;
 
+    /**
+     * Geldigheids duur van de tender
+     *
+     * @var $Validity
+     */
+
     private $Validity;
+
+    /**
+     * De waarde van de tender
+     *
+     * @var $Value
+     */
 
     private $Value;
 
+    /**
+     * Kans van de tender
+     *
+     * @var $Chance
+     */
+
     private $Chance;
+
+    /**
+     * Aanmaak datum van de tender
+     *
+     * @var $CreationDate
+     */
 
     private $CreationDate;
 
+    /**
+     * Bescbhrijving van de tender
+     *
+     * @var $Description
+     */
+
     private $Description;
+
+    /**
+     * Status ven de tender
+     *
+     * @var $Status
+     */
 
     private $Status;
 
-    private $Id;
+    /**
+     * Verval datum van de tender
+     *
+     * @var $EndDate
+     */
 
     private $EndDate;
 
     /**
-     * @return mixed
+     * Tender constructor.
      */
-
-    public function setEndDate($enddate)
-    {
-        $this->EndDate = $enddate;
-    }
-
-    public function getEndDate()
-    {
-        return $this->EndDate;
-    }
-
-    public function calcEndDate($creationdate, $validity)
-    {
-        $this->EndDate = date('Y-m-d', strtotime($creationdate . " +" . $validity . " days"));
-    }
-
-    /**
-     * @param mixed $EndDate
-     */
-
-    /**
-     * @return mixed
-     */
-    public function getId()
-    {
-        return $this->Id;
-    }
-
-    /**
-     * @param mixed $Id
-     */
-    public function setId($Id)
-    {
-        $this->Id = $Id;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getStatus()
-    {
-        return $this->Status;
-    }
-
-    public function setStatus($Status)
-    {
-        $this->Status = $Status;
-    }
 
     public function __construct()
     {
         $this->db = new DbTender();
     }
 
-    public function create()
-    {
-        return $this->db->create($this);
-    }
-
-    public function update()
-    {
-        return $this->db->update($this);
-    }
-
-//
-    public function delete($id)
-    {
-        return $this->db->delete($id);
-    }
-
-
     /**
-     * @return mixed
+     * @return int
      */
     public function getTenderId()
     {
@@ -117,39 +121,43 @@ class Tender
     }
 
     /**
-     * @param mixed $TenderId
+     * @param int $TenderId
      */
+
     public function setTenderId($TenderId)
     {
         $this->TenderId = $TenderId;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
+
     public function getSubject()
     {
         return $this->Subject;
     }
 
     /**
-     * @param mixed $Subject
+     * @param string $Subject
      */
+
     public function setSubject($Subject)
     {
         $this->Subject = $Subject;
     }
 
     /**
-     * @return mixed
+     * @return int
      */
+
     public function getClient()
     {
         return $this->Client;
     }
 
     /**
-     * @param mixed $Client
+     * @param int $Client
      */
     public function setClient($Client)
     {
@@ -157,71 +165,79 @@ class Tender
     }
 
     /**
-     * @return mixed
+     * @return int
      */
+
     public function getUser()
     {
         return $this->User;
     }
 
     /**
-     * @param mixed $User
+     * @param int $User
      */
+
     public function setUser($User)
     {
         $this->User = $User;
     }
 
     /**
-     * @return mixed
+     * @return int
      */
+
     public function getValidity()
     {
         return $this->Validity;
     }
 
     /**
-     * @param mixed $Validity
+     * @param int $Validity
      */
+
     public function setValidity($Validity)
     {
         $this->Validity = $Validity;
     }
 
     /**
-     * @return mixed
+     * @return float
      */
+
     public function getValue()
     {
         return $this->Value;
     }
 
     /**
-     * @param mixed $Value
+     * @param float $Value
      */
+
     public function setValue($Value)
     {
         $this->Value = $Value;
     }
 
     /**
-     * @return mixed
+     * @return int
      */
+
     public function getChance()
     {
         return $this->Chance;
     }
 
     /**
-     * @param mixed $Chance
+     * @param int $Chance
      */
+
     public function setChance($Chance)
     {
         $this->Chance = $Chance;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getCreationDate()
     {
@@ -229,51 +245,142 @@ class Tender
     }
 
     /**
-     * @param mixed $CreationDate
+     * @param string $CreationDate
      */
+
     public function setCreationDate($CreationDate)
     {
         $this->CreationDate = $CreationDate;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
+
     public function getDescription()
     {
         return $this->Description;
     }
 
     /**
-     * @param mixed $Description
+     * @param string $Description
      */
+
     public function setDescription($Description)
     {
         $this->Description = $Description;
     }
 
-    public function getLastTenderId()
+    /**
+     * @return int
+     */
+
+    public function getStatus()
     {
-        return $this->db->getLastTenderId();
+        return $this->Status;
     }
+
+    /**
+     * @param int $Status
+     */
+
+    public function setStatus($Status)
+    {
+        $this->Status = $Status;
+    }
+
+    /**
+     * @param string $enddate
+     */
+
+    public function setEndDate($enddate)
+    {
+        $this->EndDate = $enddate;
+    }
+
+    /**
+     * @return string
+     */
+
+    public function getEndDate()
+    {
+        return $this->EndDate;
+    }
+
+    /**
+     * @return int
+     */
+
+    public function create()
+    {
+        return $this->db->create($this);
+    }
+
+    /**
+     * @return array|null
+     */
 
     public function getAllTenders()
     {
         return $this->db->getAllTenders();
     }
 
+    /**
+     * @param $id
+     * @return array|null
+     */
+
     public function getTenderById($id)
     {
         return $this->db->getTenderById($id);
     }
+
+    /**
+     * @param $userId
+     * @return array|null
+     */
 
     public function getTendersByUserId($userId)
     {
         return $this->db->getTendersByUserId($userId);
     }
 
+    /**
+     * @param $status
+     * @return array|null
+     */
+
     public function getTendersByStatus($status)
     {
         return $this->db->getTendersByStatus($status);
     }
+
+    /**
+     * @param $creationdate
+     * @param $validity
+     */
+
+    public function calcEndDate($creationdate, $validity)
+    {
+        $this->EndDate = date('Y-m-d', strtotime($creationdate . " +" . $validity . " days"));
+    }
+
+    /**
+     * update tender
+     */
+
+    public function update()
+    {
+        return $this->db->update($this);
+    }
+
+    /**
+     * @param $id
+     * @return bool
+     */
+    public function delete($id)
+    {
+        return $this->db->delete($id);
+    }
+
 }

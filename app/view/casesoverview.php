@@ -19,7 +19,8 @@ $assignments = $assignmentController->getAllAssignments();
 
     <h1 class="crm-content-header"><?= CASE_OVERVIEW_TEXT ?></h1>
     <div class="case-overzicht-buttons">
-        <button class="custom-file-upload overview-add-button" onclick="window.location.href='?page=addcase'"><?= TEXT_CREATE_DROPDOWN ?></button>
+        <button class="custom-file-upload overview-add-button"
+                onclick="window.location.href='?page=addcase'"><?= TEXT_CREATE_DROPDOWN ?></button>
         <button class="custom-file-upload"><?= TEXT_ARCHIVE ?></button>
     </div>
     <div class="case-overvieuw-table">
@@ -50,7 +51,6 @@ $assignments = $assignmentController->getAllAssignments();
                         </td>
                         <td>
                             <a href="?page=showuserprofile&id=<?= $case['user'] ?>"> <?php
-                                $hasCase = false;
                                 foreach ($users as $user) {
                                     if ($user['id'] == $case['user']) {
                                         echo $user['naam'];
@@ -66,11 +66,12 @@ $assignments = $assignmentController->getAllAssignments();
                         </td>
                         <td>
                             <a href="?page=showuserprofile&id=<?= $case['client'] ?>"> <?php
-                                $hasClient = false;
-                                foreach ($clients as $client) {
-                                    if ($client['id'] == $case['client']) {
-                                        echo $client['naam'];
-                                        $hasClient = true;
+                                if (!is_null($clients)) {
+                                    foreach ($clients as $client) {
+                                        if ($client['id'] == $case['client']) {
+                                            echo $client['naam'];
+                                            $hasClient = true;
+                                        }
                                     }
                                 }
                                 ?></a>
@@ -82,11 +83,12 @@ $assignments = $assignmentController->getAllAssignments();
                         </td>
                         <td>
                             <a href="?page=projectview&id=<?= $case['project'] ?>"> <?php
-                                $hasProject = false;
-                                foreach ($projects as $project) {
-                                    if ($project['id'] == $case['project']) {
-                                        echo $project['subject'];
-                                        $hasProject = true;
+                                if (!is_null($projects)) {
+                                    foreach ($projects as $project) {
+                                        if ($project['id'] == $case['project']) {
+                                            echo $project['subject'];
+                                            $hasProject = true;
+                                        }
                                     }
                                 }
                                 ?></a>
@@ -98,10 +100,12 @@ $assignments = $assignmentController->getAllAssignments();
                         </td>
                         <td>
                             <a href="?page=assignmentview&id=<?= $case['assignment'] ?>"> <?php
-                                foreach ($assignments as $assignment) {
-                                    if ($assignment['id'] == $case['assignment']) {
-                                        echo $assignment['subject'];
-                                        $hasAssignment = true;
+                                if (!is_null($assignments)) {
+                                    foreach ($assignments as $assignment) {
+                                        if ($assignment['id'] == $case['assignment']) {
+                                            echo $assignment['subject'];
+                                            $hasAssignment = true;
+                                        }
                                     }
                                 }
                                 ?></a>

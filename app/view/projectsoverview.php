@@ -55,10 +55,12 @@ $users = $userController->getUserList();
                         </td>
                         <td>
                             <a href="?page=showuserprofile&id=<?= $project['client'] ?>"> <?php
-                                foreach ($clients as $client) {
-                                    if ($client['id'] == $project['client']) {
-                                        echo $client['naam'];
-                                        $hasClient = true;
+                                if (!is_null($clients)) {
+                                    foreach ($clients as $client) {
+                                        if ($client['id'] == $project['client']) {
+                                            echo $client['naam'];
+                                            $hasClient = true;
+                                        }
                                     }
                                 }
                                 ?></a>

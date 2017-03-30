@@ -16,7 +16,8 @@ $allProjects = $project->getAllProjects();
 
     <h1 class="crm-content-header">Taken Overzicht</h1>
     <div class="case-overzicht-buttons">
-        <button class="custom-file-upload overview-add-button" onclick="window.location.href='?page=addtask'">Aanmaken</button>
+        <button class="custom-file-upload overview-add-button" onclick="window.location.href='?page=addtask'">Aanmaken
+        </button>
         <button class="custom-file-upload">Archief</button>
     </div>
     <div class="case-overvieuw-table">
@@ -60,11 +61,12 @@ $allProjects = $project->getAllProjects();
                         </td>
                         <td>
                             <a href="?page=showuserprofile&id=<?= $task['client'] ?>"> <?php
-
-                                foreach ($clients as $client) {
-                                    if ($client['id'] == $task['client']) {
-                                        echo $client['naam'];
-                                        $hasClient = true;
+                                if (!is_null($clients)) {
+                                    foreach ($clients as $client) {
+                                        if ($client['id'] == $task['client']) {
+                                            echo $client['naam'];
+                                            $hasClient = true;
+                                        }
                                     }
                                 } ?></a>
                             <?php
@@ -75,10 +77,12 @@ $allProjects = $project->getAllProjects();
                         </td>
                         <td>
                             <a href="?page=projectview&id=<?= $task['project'] ?>"> <?php
-                                foreach ($allProjects as $project) {
-                                    if ($project['id'] == $task['project']) {
-                                        echo $project['subject'];
-                                        $hasProject = true;
+                                if (!is_null($allProjects)) {
+                                    foreach ($allProjects as $project) {
+                                        if ($project['id'] == $task['project']) {
+                                            echo $project['subject'];
+                                            $hasProject = true;
+                                        }
                                     }
                                 }
                                 ?></a>

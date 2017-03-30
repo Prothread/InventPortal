@@ -8,26 +8,41 @@
  */
 class TenderController
 {
+    /**
+     * Variabele om Tender controller te verbinden met de tender
+     *
+     * @var $model
+     */
 
     private $model;
+
+    /**
+     * Verbind controller met tender
+     *
+     * TenderController constructor.
+     */
 
     public function __construct()
     {
         $this->model = new Tender();
     }
 
+    /**
+     * Tender aanmaken
+     *
+     * @param array $tenderinfo
+     *
+     * @return int
+     */
+
     public function create(array $tenderinfo)
     {
         $this->model->setSubject($tenderinfo['subject']);
-
         $this->model->setClient($tenderinfo['client']);
-
         if (isset($tenderinfo['user'])) {
             $this->model->setUser($tenderinfo['user']);
         }
-
         $this->model->setValidity($tenderinfo['validity']);
-
         if (isset($tenderinfo['value'])) {
             $this->model->setValue($tenderinfo['value']);
         }
@@ -43,12 +58,104 @@ class TenderController
         if (isset($tenderinfo['status'])) {
             $this->model->setStatus($tenderinfo['status']);
         }
-
-        if ($result = $this->model->create()) {
-            return $result;
-        }
-
+        $result = $this->model->create();
+        return $result;
     }
+
+    /**
+     * Haalt alle Tenders op
+     *
+     * @return array|null
+     */
+
+    public function getAllTenders()
+    {
+        return $this->model->getAllTenders();
+    }
+
+    /**
+     * Haalt een tender op met $id
+     *
+     * @param $id
+     *
+     * @return array|null
+     */
+
+    public function getTenderById($id)
+    {
+        return $this->model->getTenderById($id);
+    }
+
+    /**
+     * Haalt enddate op
+     *
+     * @return mixed
+     */
+
+    public function getEndDate()
+    {
+        return $this->model->getEndDate();
+    }
+
+    /**
+     * Berekend te enddate
+     *
+     * @param $creationdate
+     * @param $validity
+     */
+
+    public function calcEndDate($creationdate, $validity)
+    {
+        $this->model->calcEndDate($creationdate, $validity);
+    }
+
+    /**
+     * Haalt het tijdverschil op
+     *
+     * @param $date1
+     * @param $date2
+     *
+     * @return string
+     */
+
+    public function getTimeDifference($date1, $date2)
+    {
+        $d1 = new DateTime($date1);
+        $d2 = new DateTime($date2);
+        return $diff = $d1->diff($d2)->format("%a");
+    }
+
+    /**
+     * Haalt tenders op, op basis van $userId
+     *
+     * @param $userId
+     *
+     * @return array|null
+     */
+
+    public function getTendersByUserId($userId)
+    {
+        return $this->model->getTendersByUserId($userId);
+    }
+
+    /**
+     * Haalt tenders op, op basis van $status
+     *
+     * @param $status
+     *
+     * @return array|null
+     */
+
+    public function getTendersByStatus($status)
+    {
+        return $this->model->getTendersByStatus($status);
+    }
+
+    /**
+     * Tender aanpassen
+     *
+     * @param array $tenderinfo
+     */
 
     public function update(array $tenderinfo)
     {
@@ -64,55 +171,18 @@ class TenderController
         $this->model->update();
     }
 
+    /**
+     * Verwijderd tender
+     *
+     * @param $id
+     *
+     * @return bool
+     */
+
     public function delete($id)
     {
         return $this->model->delete($id);
     }
 
-    public function getLastTenderId()
-    {
-        return $this->model->getLastTenderId();
-    }
 
-    public function getAllTenders()
-    {
-        return $this->model->getAllTenders();
-    }
-
-    public function getTenderById($id)
-    {
-        return $this->model->getTenderById($id);
-    }
-
-    public function getEndDate()
-    {
-        return $this->model->getEndDate();
-    }
-
-    public function calcEndDate($creationdate, $validity)
-    {
-        $this->model->calcEndDate($creationdate, $validity);
-    }
-
-    public function getUser()
-    {
-        return $this->model->getUser();
-    }
-
-    public function getTimeDifference($date1, $date2)
-    {
-        $d1 = new DateTime($date1);
-        $d2 = new DateTime($date2);
-        return $diff = $d1->diff($d2)->format("%a");
-    }
-
-    public function getTendersByUserId($userId)
-    {
-        return $this->model->getTendersByUserId($userId);
-    }
-
-    public function getTendersByStatus($status)
-    {
-        return $this->model->getTendersByStatus($status);
-    }
 }
