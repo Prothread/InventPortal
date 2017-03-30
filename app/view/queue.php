@@ -20,10 +20,10 @@ $clients = $userController->getClientList();
 
 ?>
 
-<div id="crm-dashboard-holder">
+<div id="crm-dashboard-holder" class="crm-content-wrapper">
 
     <div class="crm-dashboard-row">
-        <header><?= OPEN_TENDERS ?></header>
+        <h1 class="crm-content-header"><?= OPEN_TENDERS ?></h1>
 
         <select class="crm-dashboard-select">
             <option value="" disabled selected>Filter optie</option>
@@ -73,7 +73,7 @@ $clients = $userController->getClientList();
     </div>
 
     <div class="crm-dashboard-row">
-        <header><?= OPEN_PROJECTS ?></header>
+        <h1 class="crm-content-header"><?= OPEN_PROJECTS ?></h1>
 
         <select class="crm-dashboard-select">
             <option value="" disabled selected>Filter optie</option>
@@ -122,7 +122,7 @@ $clients = $userController->getClientList();
     </div>
 
     <div class="crm-dashboard-row">
-        <header><?= OPEN_ASSIGNMENTS ?></header>
+        <h1 class="crm-content-header"><?= OPEN_ASSIGNMENTS ?></h1>
 
         <select class="crm-dashboard-select">
             <option value="" disabled selected>Filter optie</option>
@@ -172,7 +172,7 @@ $clients = $userController->getClientList();
     </div>
 
     <div class="crm-dashboard-row">
-        <header><?= OPEN_TASKS ?></header>
+        <h1 class="crm-content-header"><?= OPEN_TASKS ?></h1>
 
         <select class="crm-dashboard-select">
             <option value="" disabled selected>Filter optie</option>
@@ -223,7 +223,7 @@ $clients = $userController->getClientList();
     </div>
 
     <div class="crm-dashboard-row">
-        <header><?= OPEN_CASES ?></header>
+        <h1 class="crm-content-header"><?= OPEN_CASES ?></h1>
 
         <select class="crm-dashboard-select">
             <option value="" disabled selected>Filter optie</option>

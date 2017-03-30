@@ -2011,6 +2011,7 @@ tr:nth-child(2n) {
     background: url("../img/devider-background.png") repeat-x ;
     min-height: 66px;
     margin: 0px 0px 0px 20px;
+    width: calc(100% - 40px);
 }
 
 .crm-content-header{
@@ -2107,12 +2108,12 @@ tr:nth-child(2n) {
 
 .crm-dashboard-inside-row{
     padding-top: 20px;
-    margin-top: 50px;
+    margin-top: 30px;
     background-color: #eeeeee;
     width: 250px;
     height: 550px;
     border-radius: 7px;
-    box-shadow: 0px 0px 20px #939393;
+    box-shadow: 0 0 20px #939393;
     position: relative;
 }
 
@@ -2148,9 +2149,8 @@ tr:nth-child(2n) {
     border-radius: 9px;
     background-color: #dd2c4c;
     color: white;
-    margin: 0 auto;
+    margin: 20px auto 0 auto;
     padding-left: 10px;
-    margin-top: 10px;
 }
 
 .crm-dashboard-box .deadline{
@@ -2176,8 +2176,9 @@ tr:nth-child(2n) {
 }
 
 .case-overzicht-buttons{
-    margin-left: 20px;
     float: left;
+    clear: left;
+    width: 100%;
 }
 
 .case-overzicht-buttons button{
@@ -2191,8 +2192,7 @@ tr:nth-child(2n) {
 }
 
 .case-overvieuw-table{
-    margin-right: 30px;
-    margin-left: 30px;
+/*leeg*/
 }
 
 #case-overview-holder header{
@@ -2318,4 +2318,16 @@ tr:nth-child(2n) {
 
 .error-input{
     border:solid red 1px;
+}
+
+.overview-add-button{
+    margin-left: 0 !important;
+}
+
+#crm-dashboard-holder .crm-content-header{
+    width:100%;
+}
+
+#crm-dashboard-holder .crm-dashboard-row:first-of-type{
+    margin-left: 0;
 }

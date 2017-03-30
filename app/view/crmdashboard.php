@@ -21,10 +21,10 @@ $clients = $userController->getClientList();
 
 ?>
 
-<div id="crm-dashboard-holder">
+<div id="crm-dashboard-holder" class="crm-content-wrapper">
 
     <div class="crm-dashboard-row">
-        <header><?= YOUR_TENDER ?></header>
+        <h1 class="crm-content-header"><?= YOUR_TENDER ?></h1>
 
         <select class="crm-dashboard-select">
             <!--     FILETER OPTION moet nog toegevoegd worden       -->
@@ -74,7 +74,7 @@ $clients = $userController->getClientList();
     </div>
 
     <div class="crm-dashboard-row">
-        <header><?= YOUR_PROJECT ?></header>
+        <h1 class="crm-content-header"><?= YOUR_PROJECT ?></h1>
 
         <select class="crm-dashboard-select">
             <!--     FILETER OPTION moet nog toegevoegd worden       -->
@@ -124,7 +124,7 @@ $clients = $userController->getClientList();
     </div>
 
     <div class="crm-dashboard-row">
-        <header><?= YOUR_ASSIGNMENT ?></header>
+        <h1 class="crm-content-header"><?= YOUR_ASSIGNMENT ?></h1>
 
         <select class="crm-dashboard-select">
             <!--     FILETER OPTION moet nog toegevoegd worden       -->
@@ -174,7 +174,7 @@ $clients = $userController->getClientList();
     </div>
 
     <div class="crm-dashboard-row">
-        <header><?= YOUR_TASK ?></header>
+        <h1 class="crm-content-header"><?= YOUR_TASK ?></h1>
 
         <select class="crm-dashboard-select">
             <option value="" disabled selected>Filter optie</option>
@@ -222,7 +222,7 @@ $clients = $userController->getClientList();
     </div>
 
     <div class="crm-dashboard-row">
-        <header><?= YOUR_CASE ?></header>
+        <h1 class="crm-content-header"><?= YOUR_CASE ?></h1>
 
         <select class="crm-dashboard-select">
             <!--     FILETER OPTION moet nog toegevoegd worden       -->

@@ -60,7 +60,7 @@ define("TEXT_EDIT","Edit");
 define("TASK_OVERVIEW","Task overview");
 
 define("TEXT_CASE_VIEW", "Case overview");
-define("CASE_OVERVIEW_TEXT", "cases overview");
+define("CASE_OVERVIEW_TEXT", "Cases overview");
 
 define("TEXT_ASSIGNMENT_VIEW","Assignment overview");
 

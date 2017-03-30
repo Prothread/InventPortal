@@ -12,12 +12,11 @@ $allProjects = $project->getAllProjects();
 
 ?>
 
-<div id="case-overview-holder">
+<div id="case-overview-holder" class="crm-content-wrapper">
 
-    <header>Taken Overzicht</header>
-    <hr>
+    <h1 class="crm-content-header">Taken Overzicht</h1>
     <div class="case-overzicht-buttons">
-        <button class="custom-file-upload" onclick="window.location.href='?page=addtask'">Aanmaken</button>
+        <button class="custom-file-upload overview-add-button" onclick="window.location.href='?page=addtask'">Aanmaken</button>
         <button class="custom-file-upload">Archief</button>
     </div>
     <div class="case-overvieuw-table">

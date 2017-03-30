@@ -60,7 +60,7 @@ define("URGENCY_3", "Hoog");
 define("URGENCY_4", "Kritisch");
 
 define("TEXT_CASE_VIEW", "Case overzicht");
-define("CASE_OVERVIEW_TEXT", "cases overzicht");
+define("CASE_OVERVIEW_TEXT", "Cases overzicht");
 
 define("TEXT_ASSIGNMENT_VIEW","Opdracht overzicht");
 

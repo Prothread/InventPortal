@@ -15,12 +15,11 @@ $assignments = $assignmentController->getAllAssignments();
 
 ?>
 
-<div id="case-overview-holder">
+<div id="case-overview-holder" class="crm-content-wrapper">
 
-    <header><?= CASE_OVERVIEW_TEXT ?></header>
-    <hr>
+    <h1 class="crm-content-header"><?= CASE_OVERVIEW_TEXT ?></h1>
     <div class="case-overzicht-buttons">
-        <button class="custom-file-upload"><?= TEXT_CREATE_DROPDOWN ?></button>
+        <button class="custom-file-upload overview-add-button" onclick="window.location.href='?page=addcase'"><?= TEXT_CREATE_DROPDOWN ?></button>
         <button class="custom-file-upload"><?= TEXT_ARCHIVE ?></button>
     </div>
     <div class="case-overvieuw-table">

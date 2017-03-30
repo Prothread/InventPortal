@@ -8,12 +8,11 @@ $users = $userController->getUserList();
 
 ?>
 
-<div id="case-overview-holder">
+<div id="case-overview-holder" class="crm-content-wrapper">
 
-    <header><?= PROJECT_OVERVIEW_TEXT ?></header>
-    <hr>
+    <h1 class="crm-content-header"><?= PROJECT_OVERVIEW_TEXT ?></h1>
     <div class="case-overzicht-buttons">
-        <button class="custom-file-upload"
+        <button class="custom-file-upload overview-add-button"
                 onclick="window.location.href='?page=addproject'"><?= TEXT_CREATE_DROPDOWN ?></button>
         <button class="custom-file-upload"><?= TEXT_ARCHIVE ?></button>
     </div>
