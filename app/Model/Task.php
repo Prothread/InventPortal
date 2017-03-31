@@ -34,6 +34,24 @@ class Task
 
     private $Id;
 
+    private $tender;
+
+    /**
+     * @return mixed
+     */
+    public function getTender()
+    {
+        return $this->tender;
+    }
+
+    /**
+     * @param mixed $tender
+     */
+    public function setTender($tender)
+    {
+        $this->tender = $tender;
+    }
+
     /**
      * @return mixed
      */
@@ -273,5 +291,9 @@ class Task
 
     public function assignUser($user, $id){
        $this->db->assignUser($user, $id);
+    }
+
+    public function getTaskByTendeId($id){
+        return $this->db->getTaskByTendeId($id);
     }
 }

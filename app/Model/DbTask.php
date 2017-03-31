@@ -10,7 +10,7 @@ class DbTask extends Database
 {
     public function create(Task $task)
     {
-        $sql = "INSERT INTO `tasks` (`subject`, `client`, `user`,  `project`, `assignment`, `enddate`, `urgency`, `description`, `duration`, `status`) VALUES('{$task->getSubject()}', '{$task->getClient()}', '{$task->getUser()}', '{$task->getProject()}', '{$task->getAssignment()}', '{$task->getEndDate()}', '{$task->getUrgency()}', '{$task->getDescription()}', '{$task->getDuration()}', '{$task->getStatus()}')";
+        $sql = "INSERT INTO `tasks` (`subject`, `client`, `user`,  `project`, `assignment`, `enddate`, `urgency`, `description`, `duration`, `status`, `tender`) VALUES('{$task->getSubject()}', '{$task->getClient()}', '{$task->getUser()}', '{$task->getProject()}', '{$task->getAssignment()}', '{$task->getEndDate()}', '{$task->getUrgency()}', '{$task->getDescription()}', '{$task->getDuration()}', '{$task->getStatus()}', '{$task->getTender()}')";
 
         if ($this->dbQuery($sql)) {
             return $this->dbLastInsertedId();
@@ -19,7 +19,7 @@ class DbTask extends Database
 
     public function update(Task $task)
     {
-        $sql = "UPDATE `tasks` SET `subject` = '{$task->getSubject()}', `client` = '{$task->getClient()}',`user` = '{$task->getUser()}', `project` = '{$task->getProject()}', `assignment` = '{$task->getAssignment()}', `urgency` = '{$task->getUrgency()}', `duration` = '{$task->getDuration()}', `enddate` = '{$task->getEndDate()}', `description` = '{$task->getDescription()}' , `status` = '{$task->getStatus()}' WHERE `id` = '{$task->getTaskId()}'";
+        $sql = "UPDATE `tasks` SET `tender` = '{$task->getTender()}', `subject` = '{$task->getSubject()}', `client` = '{$task->getClient()}',`user` = '{$task->getUser()}', `project` = '{$task->getProject()}', `assignment` = '{$task->getAssignment()}', `urgency` = '{$task->getUrgency()}', `duration` = '{$task->getDuration()}', `enddate` = '{$task->getEndDate()}', `description` = '{$task->getDescription()}' , `status` = '{$task->getStatus()}' WHERE `id` = '{$task->getTaskId()}'";
         $this->dbQuery($sql);
     }
 
@@ -93,6 +93,13 @@ class DbTask extends Database
         $status = 1;
         $sql = "UPDATE `tasks` SET `user` = '{$user}', `status` = '{$status}' WHERE `id` = {$id}";
         $this->dbQuery($sql);
+    }
+
+    public function getTaskByTendeId($id){
+        $sql = "SELECT * FROM `tasks` WHERE `tender` = {$id}";
+        $result = $this->dbQuery($sql);
+        $value = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        return $value;
     }
 
 }

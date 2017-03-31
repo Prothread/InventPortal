@@ -32,11 +32,15 @@ $projects = $projectController->getAllProjects();
 $assignmentController = new AssignmentController();
 $assignments = $assignmentController->getAllAssignments();
 
+$tenderController = new TenderController();
+$tenders = $tenderController->getAllTenders();
+
+
 $error = false;
 
 if (isset($_POST['updateTask'])) {
 
-    $valueNames = ["subject", "client", "user", "project", "assignment", "urgency", "duration", "enddate", "description"];
+    $valueNames = ["subject", "client", "user", "project", "assignment", "urgency", "duration", "enddate", "description", "tender"];
     foreach ($valueNames as $v) {
         ${$v} = mysqli_real_escape_string($mysqli, $_POST[$v]);
     }
@@ -101,7 +105,8 @@ if (isset($_POST['updateTask'])) {
             'duration' => $duration,
             'description' => strip_tags($description),
             'enddate' => $enddate,
-            'status' => $status
+            'status' => $status,
+            'tender' => $tender
         ];
         $task->update($taskinfo);
     }
@@ -194,6 +199,24 @@ if (isset($_POST['delete'])) {
                             echo 'selected';
                         }
                         echo '>' . $assignment['subject'] . '</option>';
+                    }
+                    ?>
+                </select>
+            </div>
+
+            <div>
+                <label><?= TEXT_TENDER_ADD ?></label>
+                <select class="form-control" name="tender">
+                    <option value="0"<?php if ($taskinfo['tender'] == 0) {
+                        echo 'selected';
+                    } ?>><?= TEXT_TENDER_ADD ?></option>
+                    <?php
+                    foreach ($tenders as $tender) {
+                        echo '<option value="' . $tender['id'] . '"';
+                        if ($tender['id'] == $taskinfo['tender']) {
+                            echo 'selected';
+                        }
+                        echo '>' . $tender['subject'] . '</option>';
                     }
                     ?>
                 </select>
