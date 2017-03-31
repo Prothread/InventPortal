@@ -8,12 +8,30 @@
  */
 class ProjectController
 {
+    /**
+     * @var Project
+     */
+
     private $model;
+
+    /**
+     * Verbind controller met project
+     *
+     * ProjectController constructor.
+     */
 
     public function __construct()
     {
         $this->model = new Project();
     }
+
+    /**
+     * Maakt project aan
+     *
+     * @param array $projectinfo
+     *
+     * @return mixed
+     */
 
     public function create(array $projectinfo)
     {

@@ -18,9 +18,6 @@ $task = new TaskController();
 
 $taskinfo = $task->getTaskById($id);
 
-$projectController = new ProjectController();
-$projects = $projectController->getAllProjects();
-
 if (is_null($taskinfo)) {
     $block->Redirect('index.php?page=404');
 }
@@ -29,11 +26,15 @@ $userController = new UserController();
 $clients = $userController->getClientList();
 $users = $userController->getUserList();
 
+$projectController = new ProjectController();
+$projects = $projectController->getAllProjects();
+
+$assignmentController = new AssignmentController();
+$assignments = $assignmentController->getAllAssignments();
+
 $error = false;
 
 if (isset($_POST['updateTask'])) {
-
-    //$test = $tender->getEndDate();
 
     $valueNames = ["subject", "client", "user", "project", "assignment", "urgency", "duration", "enddate", "description"];
     foreach ($valueNames as $v) {
@@ -42,22 +43,44 @@ if (isset($_POST['updateTask'])) {
     if (strlen($subject) == 0) {
         $error = true;
         $title_error = true;
-        echo "1";
     }
-    if (!filter_var($client, FILTER_VALIDATE_INT)) {
+    if (!filter_var($client, FILTER_VALIDATE_INT) && $client !== '0') {
         $error = true;
         $client_error = true;
-        echo "2";
     }
+
+    if (!filter_var($user, FILTER_VALIDATE_INT) && $user !== '0') {
+        $error = true;
+        $user_error = true;
+    }
+
+    if (!filter_var($project, FILTER_VALIDATE_INT) && $project !== '0') {
+        $error = true;
+        $project_error = true;
+    }
+
+    if (!filter_var($assignment, FILTER_VALIDATE_INT) && $assignment !== '0') {
+        $error = true;
+        $assignment_error = true;
+    }
+
+    if (!filter_var($urgency, FILTER_VALIDATE_INT) && $urgency !== '0') {
+        $error = true;
+        $urgency_error = true;
+    }
+
+    if (!filter_var($duration, FILTER_VALIDATE_INT) && $duration !== '0') {
+        $error = true;
+        $duration_error = true;
+    }
+
     if (!filter_var($enddate, FILTER_SANITIZE_STRING)) {
         $error = true;
         $enddate_error = true;
-        echo "4";
     }
     if (!filter_var($description, FILTER_SANITIZE_STRING)) {
         $error = true;
         $description_error = true;
-        echo "8";
     }
 
     if (!$error) {
@@ -84,7 +107,7 @@ if (isset($_POST['updateTask'])) {
     }
 }
 
-if (isset($_POST['deleteTask'])) {
+if (isset($_POST['delete'])) {
     if ($task->delete($id)) {
         $block->Redirect('index.php?page=tasksoverview');
     }
@@ -95,7 +118,7 @@ if (isset($_POST['deleteTask'])) {
     <div class="add-left-content add-content">
         <h1 class="crm-content-header"><?= TASK_OVERVIEW ?></h1>
         <form action="#" method="post">
-            <button type="submit" name="deleteTask" id="deletebtn"
+            <button type="submit" name="delete" id="deletebtn"
                     class="custom-file-upload"><?= TEXT_DELETE ?></button>
         </form>
 
@@ -108,7 +131,7 @@ if (isset($_POST['deleteTask'])) {
             </div>
             <div>
                 <label><?= TEXT_ASSIGNFOR ?></label>
-                <select class="form-control <?php if(isset($client_error)){echo "error-input";} ?>" name="client">
+                <select class="form-control" name="client">
                     <option value="0"<?php if ($taskinfo['client'] == 0) {echo 'selected';} ?> > <?= TEXT_ASSIGNFOR ?> </option>
                     <?php
                     foreach ($clients as $client) {
@@ -165,12 +188,12 @@ if (isset($_POST['deleteTask'])) {
                         echo 'selected';
                     } ?>><?= TEXT_ASSIGNMENT_ADD ?></option>
                     <?php
-                    foreach ($projects as $project) {
-                        echo '<option value="' . $project['id'] . '"';
-                        if ($project['id'] == $taskinfo['project']) {
+                    foreach ($assignments as $assignment) {
+                        echo '<option value="' . $assignment['id'] . '"';
+                        if ($assignment['id'] == $taskinfo['assignment']) {
                             echo 'selected';
                         }
-                        echo '>' . $project['subject'] . '</option>';
+                        echo '>' . $assignment['subject'] . '</option>';
                     }
                     ?>
                 </select>

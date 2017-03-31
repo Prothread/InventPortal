@@ -58,11 +58,11 @@ define("TEXT_ERROR_FORM","One of the fields was not correct, try again.");
 define("TEXT_PROJECT_VIEW","Project overview");
 define("TEXT_EDIT","Edit");
 define("TASK_OVERVIEW","Task overview");
-
 define("TEXT_CASE_VIEW", "Case overview");
 define("CASE_OVERVIEW_TEXT", "Cases overview");
-
 define("TEXT_ASSIGNMENT_VIEW","Assignment overview");
+define("TEXT_ADD_NOTE","Add note");
+define("TEXT_NOTE_TYPE","Type");
 
 /*CRM TABLES*/
 

@@ -23,6 +23,7 @@ class Tender
      */
 
     private $TenderId;
+
     /**
      * Onderwerp van de tender
      *
@@ -115,6 +116,7 @@ class Tender
     /**
      * @return int
      */
+
     public function getTenderId()
     {
         return $this->TenderId;
@@ -159,6 +161,7 @@ class Tender
     /**
      * @param int $Client
      */
+
     public function setClient($Client)
     {
         $this->Client = $Client;
@@ -239,6 +242,7 @@ class Tender
     /**
      * @return string
      */
+
     public function getCreationDate()
     {
         return $this->CreationDate;
@@ -290,21 +294,21 @@ class Tender
     }
 
     /**
-     * @param string $enddate
-     */
-
-    public function setEndDate($enddate)
-    {
-        $this->EndDate = $enddate;
-    }
-
-    /**
      * @return string
      */
 
     public function getEndDate()
     {
         return $this->EndDate;
+    }
+
+    /**
+     * @param string $enddate
+     */
+
+    public function setEndDate($enddate)
+    {
+        $this->EndDate = $enddate;
     }
 
     /**

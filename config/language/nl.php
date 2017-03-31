@@ -58,11 +58,11 @@ define("URGENCY_1", "Laag");
 define("URGENCY_2", "Normaal");
 define("URGENCY_3", "Hoog");
 define("URGENCY_4", "Kritisch");
-
 define("TEXT_CASE_VIEW", "Case overzicht");
 define("CASE_OVERVIEW_TEXT", "Cases overzicht");
-
 define("TEXT_ASSIGNMENT_VIEW","Opdracht overzicht");
+define("TEXT_ADD_NOTE","Notitie toevoegen");
+define("TEXT_NOTE_TYPE","Type");
 
 /*CRM TABLES*/
 

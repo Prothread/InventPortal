@@ -9,8 +9,6 @@
 class TenderController
 {
     /**
-     * Variabele om Tender controller te verbinden met de tender
-     *
      * @var $model
      */
 

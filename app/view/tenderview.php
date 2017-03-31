@@ -22,6 +22,8 @@ if (is_null($tenderinfo)) {
     $block->Redirect('index.php?page=404');
 }
 
+$thisUserId = $_SESSION['usr_id'];
+
 $userController = new UserController();
 $clients = $userController->getClientList();
 $users = $userController->getUserList();
@@ -115,7 +117,6 @@ if (isset($_POST['delete'])) {
                            echo $tenderinfo['subject'];
                        }
                        ?>">
-
             </div>
             <div>
                 <label><?= TEXT_ASSIGNFOR ?></label>
@@ -266,7 +267,7 @@ if (isset($_POST['delete'])) {
     </div>
 
     <div class="tender-view-side-column">
-        <button class="custom-file-upload">Notitie toevoegen</button>
+        <button class="custom-file-upload" data-toggle="modal" data-target="#myModal">Notitie toevoegen</button>
         <div class="tender-view-box">
             <a href="#">...</a>
             <ul>
@@ -346,5 +347,45 @@ if (isset($_POST['delete'])) {
                 </li>
             </ul>
         </div>
+    </div>
+</div>
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title"><?= TEXT_ADD_NOTE ?></h4>
+            </div>
+            <div class="modal-body">
+
+                <form action="#" method="post" enctype="multipart/form-data" class="form-horizontal">
+                    <fieldset>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="noteType"><?= TEXT_NOTE_TYPE ?></label>
+                            <div class="col-md-4">
+                                <select name="noteType" id="noteType">
+                                    <option value="1">NOTITIT TYPE</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="description"><?= TEXT_DESCRIPTION ?></label>
+                            <textarea id="description" name="description"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <input type="hidden" name="linkType" value="1"/>
+                            <input type="hidden" name="linkId" value="<?= $tenderinfo['id'] ?>"/>
+                            <input type="hidden" name="user" value="<?= $thisUserId ?>">
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+
     </div>
 </div>

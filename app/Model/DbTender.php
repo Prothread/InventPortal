@@ -12,6 +12,7 @@ class DbTender extends Database
      * @param Tender $tender
      * @return int
      */
+
     public function create(Tender $tender)
     {
         $sql = "INSERT INTO `tenders` (`subject`, `client`, `user`,  `validity`, `value`, `chance`, `creationdate`, `description`, `status`, `enddate`) VALUES('{$tender->getSubject()}', '{$tender->getClient()}', '{$tender->getUser()}', '{$tender->getValidity()}', '{$tender->getValue()}', '{$tender->getChance()}', '{$tender->getCreationDate()}', '{$tender->getDescription()}', '{$tender->getStatus()}', '{$tender->getEndDate()}')";
@@ -21,7 +22,7 @@ class DbTender extends Database
     }
 
     /**
-     * @return mixed
+     * @return int
      */
 
     public function dbLastInsertedId()
@@ -47,6 +48,7 @@ class DbTender extends Database
 
     /**
      * @param $id
+     *
      * @return array|null
      */
 
@@ -63,6 +65,7 @@ class DbTender extends Database
 
     /**
      * @param $userId
+     *
      * @return array|null
      */
 
@@ -76,6 +79,7 @@ class DbTender extends Database
 
     /**
      * @param $status
+     *
      * @return array|null
      */
 
@@ -99,6 +103,7 @@ class DbTender extends Database
 
     /**
      * @param $id
+     *
      * @return bool
      */
 

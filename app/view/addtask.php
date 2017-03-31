@@ -34,16 +34,55 @@ if (isset($_POST['submitTask'])) {
     if (!isset($subject) || $subject == null) {
         $error = true;
         $title_error = true;
+        echo '1';
+    }
+
+    if (!filter_var($client, FILTER_VALIDATE_INT) && $client !== '0') {
+        $error = true;
+        $client_error = true;
+        echo '2';
+    }
+
+    if (!filter_var($user, FILTER_VALIDATE_INT) && $user !== '0') {
+        $error = true;
+        $user_error = true;
+        echo '3';
+    }
+
+    if (!filter_var($project, FILTER_VALIDATE_INT) && $project !== '0') {
+        $error = true;
+        $project_error = true;
+        echo '4';
+    }
+
+    if (!filter_var($assignment, FILTER_VALIDATE_INT) && $assignment !== '0') {
+        $error = true;
+        $assignment_error = true;
+        echo '5';
+    }
+
+    if (!filter_var($urgency, FILTER_VALIDATE_INT) && $urgency !== '0') {
+        $error = true;
+        $urgency_error = true;
+        echo '6';
+    }
+
+    if (!filter_var($duration, FILTER_VALIDATE_INT) && $duration !== '0') {
+        $error = true;
+        $duration_error = true;
+        echo '7';
     }
 
     if (!filter_var($enddate, FILTER_SANITIZE_STRING)) {
         $error = true;
         $enddate_error = true;
+        echo '8';
     }
 
     if (!filter_var($description, FILTER_SANITIZE_STRING)) {
         $error = true;
         $description_error = true;
+        echo '9';
     }
 
     if ($client == 0) {
@@ -181,7 +220,7 @@ if (isset($_POST['submitTask'])) {
                     echo "error-input";
                 } ?>" name="duration" value="<?php if (isset($_POST['duration'])) {
                     echo $_POST['duration'];
-                } ?>">
+                } ?>" min="0">
             </div>
 
             <div>
