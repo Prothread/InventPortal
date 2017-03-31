@@ -117,5 +117,10 @@ class DbTender extends Database
         return false;
     }
 
+    public function assignUser($user, $id){
+        $status = 1;
+        $sql = "UPDATE `tenders` SET `user` = '{$user}', `status` = '{$status}' WHERE `id` = {$id}";
+        $this->dbQuery($sql);
+    }
 
 }

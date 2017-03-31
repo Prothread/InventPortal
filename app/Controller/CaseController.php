@@ -55,6 +55,6 @@ class CaseController
     }
 
     public function assignUser($user, $id){
-        return $this->model->assignUser($user, $id);
+        $this->model->assignUser($user, $id);
     }
 }

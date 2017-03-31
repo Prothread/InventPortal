@@ -270,4 +270,8 @@ class Task
     {
         return $this->db->getTasksByStatus($status);
     }
+
+    public function assignUser($user, $id){
+       $this->db->assignUser($user, $id);
+    }
 }

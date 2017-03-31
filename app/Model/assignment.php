@@ -194,5 +194,8 @@ class Assignment
         $this->status = $status;
     }
 
+    public function assignUser($user, $id){
+        $this->db->assignUser($user, $id);
+    }
 
 }

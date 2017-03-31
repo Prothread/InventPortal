@@ -182,5 +182,8 @@ class TenderController
         return $this->model->delete($id);
     }
 
+    public function assignUser($user, $id){
+        $this->model->assignUser($user, $id);
+    }
 
 }

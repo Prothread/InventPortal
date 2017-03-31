@@ -125,4 +125,8 @@ class TaskController
     {
         return $this->model->getTasksByStatus($status);
     }
+
+    public function assignUser($user, $id){
+        $this->model->assignUser($user, $id);
+    }
 }
