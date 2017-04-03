@@ -45,7 +45,7 @@ class DbAssignment extends Database
 
     public function getAllAssignments()
     {
-        $sql = "SELECT `id`, `subject`, `user`, `client`, `project`, `endDate`, `status` FROM `assignments`";
+        $sql = "SELECT * FROM `assignments`";
         $result = $this->dbQuery($sql);
         $endResult = mysqli_fetch_all($result, MYSQLI_ASSOC);
         if ($endResult) {
@@ -85,6 +85,13 @@ class DbAssignment extends Database
         $status = 1;
         $sql = "UPDATE `assignments` SET `user` = '{$user}', `status` = '{$status}' WHERE `id` = {$id}";
         $this->dbQuery($sql);
+    }
+
+    public function getAssignmentByProjectId($id){
+        $sql = "SELECT * FROM `assignments` WHERE `project` = {$id}";
+        $result = $this->dbQuery($sql);
+        $value = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        return $value;
     }
 
 }

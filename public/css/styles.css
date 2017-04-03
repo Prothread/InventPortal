@@ -2011,7 +2011,7 @@ tr:nth-child(2n) {
     background: url("../img/devider-background.png") repeat-x ;
     min-height: 66px;
     margin: 0px 0px 0px 20px;
-    width: calc(100% - 40px);
+    width: calc(100% - 20px);
 }
 
 .crm-content-header{

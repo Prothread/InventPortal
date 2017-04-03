@@ -198,4 +198,8 @@ class Assignment
         $this->db->assignUser($user, $id);
     }
 
+    public function getAssignmentByProjectId($id){
+        return $this->db->getAssignmentByProjectId($id);
+    }
+
 }

@@ -36,6 +36,24 @@ class Task
 
     private $tender;
 
+    private $case;
+
+    /**
+     * @return mixed
+     */
+    public function getCase()
+    {
+        return $this->case;
+    }
+
+    /**
+     * @param mixed $case
+     */
+    public function setCase($case)
+    {
+        $this->case = $case;
+    }
+
     /**
      * @return mixed
      */
@@ -296,4 +314,17 @@ class Task
     public function getTaskByTendeId($id){
         return $this->db->getTaskByTendeId($id);
     }
+
+    public function getTaskByAssignmentId($id){
+        return $this->db->getTaskByAssignmentId($id);
+    }
+
+    public function getTaskByCaseId($id){
+        return $this->db->getTaskByCaseId($id);
+    }
+
+    public function getTaskByProjectId($id){
+        return $this->db->getTaskByProjectId($id);
+    }
+
 }

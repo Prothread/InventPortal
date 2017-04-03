@@ -57,6 +57,10 @@ class TaskController
             $this->model->setTender($taskinfo['tender']);
         }
 
+        if (isset($taskinfo['case'])) {
+            $this->model->setCase($taskinfo['case']);
+        }
+
         if ($result = $this->model->create()) {
             return $result;
         }
@@ -77,6 +81,7 @@ class TaskController
         $this->model->setDescription($taskinfo['description']);
         $this->model->setStatus($taskinfo['status']);
         $this->model->setTender($taskinfo['tender']);
+        $this->model->setCase($taskinfo['cases']);
         $this->model->update();
     }
 
@@ -137,5 +142,17 @@ class TaskController
 
     public function getTaskByTendeId($id){
         return $this->model->getTaskByTendeId($id);
+    }
+
+    public function getTaskByAssignmentId($id){
+        return $this->model->getTaskByAssignmentId($id);
+    }
+
+    public function getTaskByCaseId($id){
+        return $this->model->getTaskByCaseId($id);
+    }
+
+    public function getTaskByProjectId($id){
+        return $this->model->getTaskByProjectId($id);
     }
 }
