@@ -16,8 +16,6 @@ require_once '../config/load.php';
 
 $session = new Session();
 
-$typeId;
-$type;
 /**
  * Creeren van ?page=
  */

@@ -387,4 +387,8 @@ class Tender
         return $this->db->delete($id);
     }
 
+    public function assignUser($user, $id){
+        $this->db->assignUser($user, $id);
+    }
+
 }

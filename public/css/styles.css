@@ -2173,6 +2173,7 @@ tr:nth-child(2n) {
     right: 3px;
     height: 30px;
     text-decoration: underline;
+    cursor: pointer;
 }
 
 .case-overzicht-buttons{
@@ -2258,15 +2259,7 @@ tr:nth-child(2n) {
     padding: 5px;
 }
 
-.tender-view-box-notitie a{
-    text-decoration: none;
-    position: absolute;
-    bottom: 5px;
-    right: 5px;
-    height: 25px;
-    font-size: 20px;
-    color: #333;
-}
+
 
 .tender-view-box-notitie img{
     text-decoration: none;

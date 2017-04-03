@@ -34,6 +34,42 @@ class Task
 
     private $Id;
 
+    private $tender;
+
+    private $case;
+
+    /**
+     * @return mixed
+     */
+    public function getCase()
+    {
+        return $this->case;
+    }
+
+    /**
+     * @param mixed $case
+     */
+    public function setCase($case)
+    {
+        $this->case = $case;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTender()
+    {
+        return $this->tender;
+    }
+
+    /**
+     * @param mixed $tender
+     */
+    public function setTender($tender)
+    {
+        $this->tender = $tender;
+    }
+
     /**
      * @return mixed
      */
@@ -270,4 +306,25 @@ class Task
     {
         return $this->db->getTasksByStatus($status);
     }
+
+    public function assignUser($user, $id){
+       $this->db->assignUser($user, $id);
+    }
+
+    public function getTaskByTendeId($id){
+        return $this->db->getTaskByTendeId($id);
+    }
+
+    public function getTaskByAssignmentId($id){
+        return $this->db->getTaskByAssignmentId($id);
+    }
+
+    public function getTaskByCaseId($id){
+        return $this->db->getTaskByCaseId($id);
+    }
+
+    public function getTaskByProjectId($id){
+        return $this->db->getTaskByProjectId($id);
+    }
+
 }

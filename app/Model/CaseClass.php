@@ -226,6 +226,6 @@ class CaseClass
     }
 
     public function assignUser($user, $id){
-        return $this->db->assignUser($user, $id);
+       $this->db->assignUser($user, $id);
     }
 }

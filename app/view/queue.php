@@ -1,27 +1,58 @@
+
 <?php
+$tenderController = new TenderController();
+$projectController = new ProjectController();
+$caseController = new CaseController();
+$assignmentController = new AssignmentController();
+$taskController = new TaskController();
+$userController = new UserController();
+
+$mysqli = mysqli_connect();
+
 if(isset($_POST['assign'])){
 
-    if($_GET['type'] == "cases"){
-        $caseController = new CaseController();
-        $caseController->assignUser($_POST['theUser'], $_GET['typeId']);
+    $user = mysqli_real_escape_string($mysqli, $_POST['user']);
+
+    if (!filter_var($user, FILTER_VALIDATE_INT) && $user !== '0') {
+        $error = true;
     }
+
+    $theType = $_POST['theType'];
+    $typeId = $_POST['typeId'];
+
+    switch ($theType){
+        case "tender":
+            $tenderController->assignUser($user, $typeId);
+            break;
+        case "project":
+            $projectController->assignUser($user, $typeId);
+            break;
+        case "assignment":
+            $assignmentController->assignUser($user, $typeId);
+            break;
+        case "task":
+            $taskController->assignUser($user, $typeId);
+            break;
+        case "case":
+            $caseController->assignUser($user, $typeId);
+            break;
+        default:
+            echo "What have you done?";
+            break;
+    }
+
 }
-$tenderController = new TenderController();
+
 $allTenders = $tenderController->getTendersByStatus(0);
 
-$projectController = new ProjectController();
 $allProjects = $projectController->getProjectsByStatus(0);
 
-$caseController = new CaseController();
 $allCases = $caseController->getCasesByStatus(0);
 
-$assignmentController = new AssignmentController();
 $allAssignments = $assignmentController->getAssignmentsByStatus(0);
 
-$taskController = new TaskController();
 $tasks = $taskController->getTasksByStatus(0);
 
-$userController = new UserController();
 $clients = $userController->getClientList();
 $showPupUp = true;
 
@@ -29,9 +60,6 @@ $userController = new UserController();
 $users = $userController->getUserList();
 
 $thisUserId = $_SESSION['usr_id'];
-
-$theId;
-$theOption;
 
 ?>
 
@@ -81,7 +109,7 @@ $theOption;
                             <?= date("d-m-Y", strtotime($tender['enddate'])) ?>
                         </li>
                     </ul>
-                    <a class="toewijzenlink" href=""><?= TEXT_ASSIGN ?></a>
+                    <a class="toewijzenlink" data-toggle="modal" data-target="#myModal" theType="tender" typeId="<?=$tender['id']?>" typeSubject="<?=$tender['subject']?>"><?= TEXT_ASSIGN ?></a>
                 </div>
             <?php } ?>
         </div>
@@ -130,7 +158,7 @@ $theOption;
                             <?= date("d-m-Y", strtotime($project['endDate'])) ?>
                         </li>
                     </ul>
-                    <a class="toewijzenlink" href=""><?= TEXT_ASSIGN ?></a>
+                    <a class="toewijzenlink" data-toggle="modal" data-target="#myModal" theType="project" typeId="<?=$project['id']?>" typeSubject="<?=$project['subject']?>"><?= TEXT_ASSIGN ?></a>
                 </div>
             <?php } ?>
         </div>
@@ -180,7 +208,7 @@ $theOption;
                             <?= date("d-m-Y", strtotime($assignment['endDate'])) ?>
                         </li>
                     </ul>
-                    <a class="toewijzenlink" href=""><?= TEXT_ASSIGN ?></a>
+                    <a class="toewijzenlink" data-toggle="modal" data-target="#myModal" theType="assignment" typeId="<?=$assignment['id']?>" typeSubject="<?=$assignment['subject']?>"><?= TEXT_ASSIGN ?></a>
                 </div>
             <?php } ?>
         </div>
@@ -231,7 +259,7 @@ $theOption;
                             <?= date("d-m-Y", strtotime($task['enddate'])) ?>
                         </li>
                     </ul>
-                    <a class="toewijzenlink" href="">Toewijzen</a>
+                    <a class="toewijzenlink" data-toggle="modal" data-target="#myModal" theType="task" typeId="<?=$task['id']?>" typeSubject="<?=$task['subject']?>"><?= TEXT_ASSIGN ?></a>
                 </div>
             <?php } ?>
         </div>
@@ -280,61 +308,45 @@ $theOption;
                             <?= date("d-m-Y", strtotime($case['enddate'])) ?>
                         </li>
                     </ul>
-                    <a class="toewijzenlink" data-toggle="modal" data-target="#myModal" href="?page=quickAssign&type=cases&typeId=<?=$case['id']?>"><?= TEXT_ASSIGN ?></a>
+                    <a class="toewijzenlink" data-toggle="modal" data-target="#myModal" theType="case" typeId="<?=$case['id']?>" typeSubject="<?=$case['subject']?>"><?= TEXT_ASSIGN ?></a>
                 </div>
             <?php } ?>
         </div>
     </div>
 
-    <!-- Modal -->
     <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog">
-
 
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Toewijzen</h4>
+                    <h4 class="modal-title" id="toewijzenaan">Toewijzen aan x</h4>
                 </div>
                 <div class="modal-body">
-                    <br>
-
-
-                    <form action="?page=nieuwstatusitem" method="post" enctype="multipart/form-data"
-                          class="form-horizontal">
+                    <form action="?page=queue" method="post" class="form-horizontal">
                         <fieldset>
-
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Werknemers</label>
-                                <div class="col-md-4">
-
-                                    <?php if ($users !== null || !empty($users)) { ?>
-                                        <select class="form-control" name="name">
-
-                                            <?php foreach ($users as $user) { ?>
-                                                <?php if($user['id'] == $thisUserId) {?>
-                                                    <option class="form-control input-md" selected
-                                                            value="<?= $user['id'] ?>"><?= $user['naam'] ?></option>
-                                                <?php } else{ ?>
-                                                    <option class="form-control input-md"
-                                                            value="<?= $user['id'] ?>"><?= $user['naam'] ?></option>
-                                                <?php } ?>
-                                            <?php } ?>
-                                        </select>
-                                    <?php } ?>
-
-                                </div>
-                            </div>
-
-                            <div class="form-group">
+                            <select class="form-control" name="user">
+                                <option value="0"><?= TEXT_ASSIGNFOR ?></option>
+                                <?php
+                                foreach ($users as $user) {
+                                    echo '<option value="' . $user['id'] . '"';
+                                    if ($user['id'] == $thisUserId) {
+                                        echo 'selected';
+                                    }
+                                    echo '>' . $user['naam'] . '</option>';
+                                }
+                                ?>
+                            </select>
+                            <input name="typeId" type="hidden" value="" id="typeId">
+                            <input name="theType" type="hidden" value="" id="theType">
+                            <br>
                                 <label class="col-md-4 control-label" for="textinput"></label>
                                 <div class="col-md-4">
-                                    <input class="btn btn-primary btn-success" name="submit"
+                                    <input class="btn btn-primary btn-success" type="submit" name="assign"
                                            style="max-width: 100px; background-color: #bb2c4c; border: 1px solid #dd2c4c"
-                                           type="submit" value="Toewijzen">
+                                           value="Toewijzen">
                                 </div>
-                            </div>
                         </fieldset>
                     </form>
                 </div>
@@ -365,4 +377,22 @@ $theOption;
             </div>
         </div>
     </div>
+
+    <script>
+        $(function(){
+            $('.toewijzenlink').click(function() {
+                var theType = $(this).attr('theType');
+                var typeId = $(this).attr('typeId');
+                var typeSubject = $(this).attr('typeSubject');
+                console.log(theType);
+                console.log(typeId);
+                console.log(typeSubject);
+                $('#toewijzenaan').text("Werknemer toewijzen aan " + typeSubject);
+                $('#typeId').val(typeId);
+                $('#theType').val(theType);
+            });
+        });
+    </script>
+
+
 

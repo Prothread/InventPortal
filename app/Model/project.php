@@ -212,4 +212,8 @@ class Project
     {
         return $this->db->getProjectsByStatus($status);
     }
+
+    public function assignUser($user, $id){
+        $this->db->assignUser($user, $id);
+    }
 }

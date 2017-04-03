@@ -13,11 +13,10 @@ $type = $_GET['type'];
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Toewijzen</h4>
+                <h4 class="modal-title">Werknemer toewijzen aan <?=$_GET['subject']?></h4>
             </div>
             <div class="modal-body">
                 <br>
-
 
                 <form action="?page=queue&type=<?=$type?>&typeId=<?=$typeId?>" method="post" enctype="multipart/form-data"
                       class="form-horizontal">
@@ -41,6 +40,8 @@ $type = $_GET['type'];
                                         <?php } ?>
                                     </select>
                                 <?php } ?>
+                                <?= $type?>
+                                <?= $typeId ?>
 
                             </div>
                         </div>

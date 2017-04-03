@@ -90,4 +90,8 @@ class ProjectController
     {
         return $this->model->getProjectsByStatus($status);
     }
+
+    public function assignUser($user, $id){
+        $this->model->assignUser($user, $id);
+    }
 }

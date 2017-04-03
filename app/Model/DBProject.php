@@ -73,4 +73,10 @@ class DbProject extends Database
     {
         return $this->connection->insert_id;
     }
+
+    public function assignUser($user, $id){
+        $status = 1;
+        $sql = "UPDATE `projects` SET `user` = '{$user}', `status` = '{$status}' WHERE `id` = {$id}";
+        $this->dbQuery($sql);
+    }
 }

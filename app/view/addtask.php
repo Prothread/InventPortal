@@ -18,6 +18,12 @@ $projects = $projectController->getAllProjects();
 $assignmentController = new AssignmentController();
 $assignments = $assignmentController->getAllAssignments();
 
+$tenderController = new TenderController();
+$tenders = $tenderController->getAllTenders();
+
+$caseController = new CaseController();
+$cases = $caseController->getAllCases();
+
 $userController = new UserController();
 $clients = $userController->getClientList();
 $users = $userController->getUserList();
@@ -26,7 +32,7 @@ $post = false;
 if (isset($_POST['submitTask'])) {
     $post = true;
 
-    $valueNames = ["subject", "client", "user", "project", "assignment", "urgency", "duration", "enddate", "description"];
+    $valueNames = ["subject", "client", "user", "project", "assignment", "urgency", "duration", "enddate", "description", "tender", "case"];
     foreach ($valueNames as $v) {
         ${$v} = mysqli_real_escape_string($mysqli, $_POST[$v]);
     }
@@ -102,7 +108,9 @@ if (isset($_POST['submitTask'])) {
             'duration' => strip_tags($duration),
             'description' => strip_tags($description),
             'enddate' => strip_tags($enddate),
-            'status' => strip_tags($status)
+            'status' => strip_tags($status),
+            'tender' => strip_tags($tender),
+            'case' => strip_tags($case)
         ];
         if ($id = $task->create($taskinfo)) {
             $block = new BlockController();
@@ -191,6 +199,41 @@ if (isset($_POST['submitTask'])) {
                     }
                     ?>
                     <?php
+                    ?>
+                </select>
+            </div>
+
+            <div>
+                <label><?= TEXT_TENDER_ADD ?></label>
+                <select class="form-control" name="tender">
+                    <option value="0"><?= TEXT_TENDER_ADD ?></option>
+                    <?php
+                    foreach ($tenders as $tender) {
+                        echo '<option value="' . $tender['id'] . '"';
+                        if (isset($_POST['create']) && $tender['id'] == $_POST['tender']) {
+                            echo 'selected';
+                        }
+                        echo '>' . $tender['subject'] . '</option>';
+                    }
+                    ?>
+                    <?php
+                    ?>
+                </select>
+            </div>
+
+
+            <div>
+                <label><?= TEXT_CASE_ADD ?></label>
+                <select class="form-control" name="case">
+                    <option value="0"><?= TEXT_CASE_ADD ?></option>
+                    <?php
+                    foreach ($cases as $case) {
+                        echo '<option value="' . $case['id'] . '"';
+                        if (isset($_POST['create']) && $case['id'] == $_POST['case']) {
+                            echo 'selected';
+                        }
+                        echo '>' . $case['subject'] . '</option>';
+                    }
                     ?>
                 </select>
             </div>

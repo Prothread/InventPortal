@@ -32,11 +32,17 @@ $projects = $projectController->getAllProjects();
 $assignmentController = new AssignmentController();
 $assignments = $assignmentController->getAllAssignments();
 
+$tenderController = new TenderController();
+$tenders = $tenderController->getAllTenders();
+
+$caseController = new CaseController();
+$cases = $caseController->getAllCases();
+
 $error = false;
 
 if (isset($_POST['updateTask'])) {
 
-    $valueNames = ["subject", "client", "user", "project", "assignment", "urgency", "duration", "enddate", "description"];
+    $valueNames = ["subject", "client", "user", "project", "assignment", "urgency", "duration", "enddate", "description", "tender", "case"];
     foreach ($valueNames as $v) {
         ${$v} = mysqli_real_escape_string($mysqli, $_POST[$v]);
     }
@@ -101,7 +107,9 @@ if (isset($_POST['updateTask'])) {
             'duration' => $duration,
             'description' => strip_tags($description),
             'enddate' => $enddate,
-            'status' => $status
+            'status' => $status,
+            'tender' => $tender,
+            'cases' => $case
         ];
         $task->update($taskinfo);
     }
@@ -184,7 +192,7 @@ if (isset($_POST['delete'])) {
             <div>
                 <label><?= TEXT_ASSIGNMENT_ADD ?></label>
                 <select class="form-control" name="assignment">
-                    <option value="0"<?php if ($taskinfo['project'] == 0) {
+                    <option value="0"<?php if ($taskinfo['assignment'] == 0) {
                         echo 'selected';
                     } ?>><?= TEXT_ASSIGNMENT_ADD ?></option>
                     <?php
@@ -194,6 +202,42 @@ if (isset($_POST['delete'])) {
                             echo 'selected';
                         }
                         echo '>' . $assignment['subject'] . '</option>';
+                    }
+                    ?>
+                </select>
+            </div>
+
+            <div>
+                <label><?= TEXT_TENDER_ADD ?></label>
+                <select class="form-control" name="tender">
+                    <option value="0"<?php if ($taskinfo['tender'] == 0) {
+                        echo 'selected';
+                    } ?>><?= TEXT_TENDER_ADD ?></option>
+                    <?php
+                    foreach ($tenders as $tender) {
+                        echo '<option value="' . $tender['id'] . '"';
+                        if ($tender['id'] == $taskinfo['tender']) {
+                            echo 'selected';
+                        }
+                        echo '>' . $tender['subject'] . '</option>';
+                    }
+                    ?>
+                </select>
+            </div>
+
+            <div>
+                <label><?= TEXT_CASE_ADD ?></label>
+                <select class="form-control" name="case">
+                    <option value="0"<?php if ($taskinfo['cases'] == 0) {
+                        echo 'selected';
+                    } ?>><?= TEXT_CASE_ADD ?></option>
+                    <?php
+                    foreach ($cases as $case) {
+                        echo '<option value="' . $case['id'] . '"';
+                        if ($case['id'] == $taskinfo['cases']) {
+                            echo 'selected';
+                        }
+                        echo '>' . $case['subject'] . '</option>';
                     }
                     ?>
                 </select>
@@ -315,62 +359,6 @@ if (isset($_POST['delete'])) {
             </li>
             <li>
                 Aanmaak datum
-            </li>
-        </ul>
-    </div>
-</div>
-
-<div class="tender-view-side-column">
-    <button class="custom-file-upload">Taak toevoegen</button>
-    <div class="tender-view-box-notitie">
-        <img class="deadline" src="css/deadline3.png">
-        <img class="urgentie" src="css/urgentie4.png">
-        <a href="#">...</a>
-        <ul>
-            <li>
-                Taak onderwerp
-            </li>
-            <li>
-                Eind datum
-            </li>
-        </ul>
-    </div>
-
-    <div class="tender-view-box-notitie">
-        <img class="deadline" src="css/deadline3.png">
-        <a href="#">...</a>
-        <ul>
-            <li>
-                Taak onderwerp
-            </li>
-            <li>
-                Eind datum
-            </li>
-        </ul>
-    </div>
-
-    <div class="tender-view-box-notitie">
-        <img class="deadline" src="css/deadline3.png">
-        <a href="#">...</a>
-        <ul>
-            <li>
-                Taak onderwerp
-            </li>
-            <li>
-                Eind datum
-            </li>
-        </ul>
-    </div>
-
-    <div class="tender-view-box-notitie">
-        <img class="deadline" src="css/deadline1.png">
-        <a href="#">...</a>
-        <ul>
-            <li>
-                Taak onderwerp
-            </li>
-            <li>
-                Eind datum
             </li>
         </ul>
     </div>

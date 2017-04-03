@@ -74,4 +74,12 @@ class AssignmentController
     {
         return $this->model->getAssignmentsByStatus($status);
     }
+
+    public function assignUser($user, $id){
+        $this->model->assignUser($user, $id);
+    }
+
+    public function getAssignmentByProjectId($id){
+        return $this->model->getAssignmentByProjectId($id);
+    }
 }
