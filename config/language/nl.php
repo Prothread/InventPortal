@@ -63,6 +63,8 @@ define("CASE_OVERVIEW_TEXT", "Cases overzicht");
 define("TEXT_ASSIGNMENT_VIEW","Opdracht overzicht");
 define("TEXT_ADD_NOTE","Notitie toevoegen");
 define("TEXT_NOTE_TYPE","Type");
+define("TEXT_EVENT_DATE", "Gebeurtenis datum");
+define("TEXT_ADD","Toevoegen");
 
 /*CRM TABLES*/
 

@@ -47,4 +47,10 @@ return array(
     'TaskController' => $baseDir . '/app/Controller/TaskController.php',
     'Task' => $baseDir . '/app/Model/Task.php',
     'DbTask' => $baseDir . '/app/Model/DbTask.php',
+    'NoteController' => $baseDir . '/app/Controller/NoteController.php',
+    'Note' => $baseDir . '/app/Model/Note.php',
+    'DbNote' => $baseDir . '/app/Model/DbNote.php',
+    'NoteTypeController' => $baseDir . '/app/Controller/NoteTypeController.php',
+    'NoteType' => $baseDir . '/app/Model/NoteType.php',
+    'DbNoteType' => $baseDir . '/app/Model/DbNoteType.php',
 );
