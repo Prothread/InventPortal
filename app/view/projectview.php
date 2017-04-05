@@ -23,6 +23,8 @@ if (is_null($projectinfo)) {
     $block->Redirect('index.php?page=404');
 }
 
+$thisUserId = $_SESSION['usr_id'];
+
 $assignmentController = new AssignmentController();
 $assignments = $assignmentController->getAllAssignments();
 
@@ -32,13 +34,18 @@ $taskController = new TaskController();
 $projectTasks = $taskController->getTaskByProjectId($id);
 $projectAssignments = $assignmentController->getAssignmentByProjectId($id);
 
-
 $project = new ProjectController();
 $projects = $project->getAllProjects();
 
 $userController = new UserController();
 $clients = $userController->getClientList();
 $users = $userController->getUserList();
+
+$noteController = new NoteController();
+$notes = $noteController->getNotesByLinkId(2, $projectinfo['id']);
+
+$noteTypeController = new NoteTypeController();
+$noteTypes = $noteTypeController->getNoteTypes();
 
 $thisProject = null;
 
@@ -48,9 +55,50 @@ foreach ($projects as $project) {
     }
 }
 
+
 $error = false;
 
 $post = false;
+
+if (isset($_POST['noteAdd'])) {
+    $valueNames = ["linkType", "linkId", "noteType", "eventDate", "description", "user", "creationDate"];
+    foreach ($valueNames as $v) {
+        ${$v} = mysqli_real_escape_string($mysqli, $_POST[$v]);
+    }
+    $intNames = ["linkType", "linkId", "noteType", "user"];
+    foreach ($intNames as $v) {
+        if (!filter_var(${$v}, FILTER_VALIDATE_INT) && ${$v} !== '0') {
+            $error = true;
+            echo 'FOUT' . ${$v};
+        }
+    }
+    if (!filter_var($eventDate, FILTER_SANITIZE_STRING)) {
+        $error = true;
+        echo 'FOUT' . $eventDate;
+    }
+    if (!filter_var($creationDate, FILTER_SANITIZE_STRING)) {
+        $error = true;
+        echo 'FOUT' . $creationDate;
+    }
+    if (!filter_var($description, FILTER_SANITIZE_STRING) || $description == '') {
+        $error = true;
+        echo 'FOUT' . $description;
+    }
+    if (!$error) {
+        $noteInfo = [
+            'linkType' => $linkType,
+            'linkId' => $linkId,
+            'noteType' => $noteType,
+            'eventDate' => $eventDate,
+            'description' => $description,
+            'user' => $user,
+            'creationDate' => $creationDate
+        ];
+        $noteController->create($noteInfo);
+    }
+}
+
+$error = false;
 
 if (isset($_POST['update'])) {
     $post = true;
@@ -329,7 +377,182 @@ if (isset($_POST['submitAssignment'])) {
             </div>
         </form>
     </div>
-    <div class="add-right-content add-content">
+    <div class="tender-view-side-column">
+        <div class="tender-view-box">
+            <a href="#">...</a>
+            <ul>
+                <li>
+                    Log onderwerp
+                </li>
+                <li>
+                    Log datum
+                </li>
+            </ul>
+        </div>
+
+        <div class="tender-view-box">
+            <a href="#">...</a>
+            <ul>
+                <li>
+                    Log onderwerp
+                </li>
+                <li>
+                    Log datum
+                </li>
+            </ul>
+        </div>
+
+        <div class="tender-view-box">
+            <a href="#">...</a>
+            <ul>
+                <li>
+                    Log onderwerp
+                </li>
+                <li>
+                    Log datum
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="tender-view-side-column">
+        <button class="custom-file-upload" data-toggle="modal" data-target="#myModal">Notitie toevoegen</button>
+        <?php
+        if(!is_null($notes)) {
+            foreach ($notes as $note) {
+                ?>
+                <div class="tender-view-box">
+                    <a></a>
+                    <ul>
+                        <li>
+                            <?php
+                            foreach ($noteTypes as $noteType){
+                                if($note['noteType'] == $noteType['id']){
+                                    echo $noteType['name'];
+                                }
+                            }
+                            ?>
+                        </li>
+                        <li>
+                            <?= $note['creationDate'] ?>
+                        </li>
+                    </ul>
+                </div>
+                <?php
+            }
+        }
+        ?>
+    </div>
+
+    <div class="tender-view-side-column">
+        <button class="custom-file-upload">Taak toevoegen</button>
+        <div class="tender-view-box-notitie">
+            <img class="deadline" src="css/deadline3.png">
+            <img class="urgentie" src="css/urgentie4.png">
+            <a href="#">...</a>
+            <ul>
+                <li>
+                    Taak onderwerp
+                </li>
+                <li>
+                    Eind datum
+                </li>
+            </ul>
+        </div>
+
+        <div class="tender-view-box-notitie">
+            <img class="deadline" src="css/deadline3.png">
+            <a href="#">...</a>
+            <ul>
+                <li>
+                    Taak onderwerp
+                </li>
+                <li>
+                    Eind datum
+                </li>
+            </ul>
+        </div>
+
+        <div class="tender-view-box-notitie">
+            <img class="deadline" src="css/deadline3.png">
+            <a href="#">...</a>
+            <ul>
+                <li>
+                    Taak onderwerp
+                </li>
+                <li>
+                    Eind datum
+                </li>
+            </ul>
+        </div>
+
+        <div class="tender-view-box-notitie">
+            <img class="deadline" src="css/deadline1.png">
+            <a href="#">...</a>
+            <ul>
+                <li>
+                    Taak onderwerp
+                </li>
+                <li>
+                    Eind datum
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title"><?= TEXT_ADD_NOTE ?></h4>
+            </div>
+            <div class="modal-body">
+
+                <form action="#" method="post" class="form-horizontal">
+                    <fieldset>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="noteType"><?= TEXT_NOTE_TYPE ?></label>
+                            <div class="col-md-4">
+                                <select class="form-control input-md" name="noteType" id="noteType">
+                                    <?php foreach ($noteTypes as $noteType) { ?>
+                                        <option value="<?= $noteType['id'] ?>"><?= $noteType['name'] ?></option>
+                                    <?php }
+                                    ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="description"><?= TEXT_DESCRIPTION ?></label>
+                            <div class="col-md-6">
+                                <textarea class="form-control input-md" id="description" name="description"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="eventDate"><?= TEXT_EVENT_DATE ?></label>
+                            <div class="col-md-4">
+                                <input class="form-control input-md" id="eventDate" name="eventDate" type="date"
+                                       value="<?= date('Y-m-d') ?>">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="hidden" name="linkType" value="2"/>
+                            <input type="hidden" name="linkId" value="<?= $projectinfo['id'] ?>"/>
+                            <input type="hidden" name="user" value="<?= $thisUserId ?>">
+                            <input type="hidden" name="creationDate" value="<?= date('Y-m-d'); ?>"/>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="noteAdd"></label>
+                            <div class="col-md-4">
+                                <button type="submit" name="noteAdd" class="btn btn-primary"><?= TEXT_ADD ?></button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
 
     </div>
 

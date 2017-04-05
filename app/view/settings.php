@@ -7,6 +7,35 @@ if ($user->getPermission($permgroup, 'CAN_EDIT_SETTINGS') == 1) {
     $block->Redirect('index.php');
     Session::flash('error', TEXT_NO_PERMISSION);
 }
+
+$mysqli = mysqli_connect();
+
+$noteTypeController = new NoteTypeController();
+
+if (isset($_POST['createNoteType'])) {
+    $name = mysqli_real_escape_string($mysqli, $_POST['name']);
+    $noteTypeinfo = [
+        'name' => strip_tags($name)
+    ];
+    $noteTypeController->create($noteTypeinfo);
+}
+if (isset($_POST['editNoteType'])) {
+    $id = mysqli_real_escape_string($mysqli, $_POST['id']);
+    $name = mysqli_real_escape_string($mysqli, $_POST['name']);
+    $noteTypeinfo = [
+        'id' => $id,
+        'name' => strip_tags($name)
+    ];
+    $sql = $noteTypeController->update($noteTypeinfo);
+    echo $sql;
+}
+if (isset($_POST['deleteNoteType'])) {
+    $id = mysqli_real_escape_string($mysqli, $_POST['id']);
+    $noteTypeController->delete($id);
+}
+
+$noteTypes = $noteTypeController->getNoteTypes();
+
 ?>
 
 <div id="page-content-wrapper">
@@ -163,8 +192,72 @@ if ($user->getPermission($permgroup, 'CAN_EDIT_SETTINGS') == 1) {
                                    type="submit" value="<?= BUTTON_SAVE ?>">
                         </div>
                     </div>
-
                 </form>
+                <div class="form-horizontal">
+                    <p>Note Type instellingen</p>
+                    <hr size="1"/>
+                    <div id="NoteTypeHolder">
+                        <label for="notetype-name" class="col-md-4 control-label"><i
+                                class="fa fa-cloud-upload"></i>Naam</label>
+                        <div class="col-md-4">
+                            <?php if (!isset($_GET['editId'])) { ?>
+                                <form class="notetype-form" action="#myTable" method="post">
+                                    <input id="notetype-name" type="text" class="form-control col-md-8" name="name">
+                                    <button type="submit" name="createNoteType" class="custom-file-upload col-md-4" id="noteType-add">
+                                        Toevoegen
+                                    </button>
+                                </form>
+                            <?php } ?>
+                            <table id="myTable" class="table table-striped noteType-add">
+                                <thead>
+                                <tr>
+                                    <th>Type naam</th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <?php
+                                if (sizeof($noteTypes > 0)) {
+                                    foreach ($noteTypes as $noteObj) {
+                                        ?>
+                                        <tr>
+                                            <td>
+                                                <?php if (isset($_GET['editId']) && $_GET['editId'] == $noteObj['id']) { ?>
+                                                    <form id="editNoteType" class="noteType-form" action="?page=settings#myTable" method="post">
+                                                        <input type="hidden" name="id" value="<?= $noteObj['id'] ?>">
+                                                        <input type="text" name="name" value="<?= $noteObj['name'] ?>" class="form-control">
+                                                    </form>
+                                                <?php } else {
+                                                    echo $noteObj['name'];
+                                                }
+                                            ?>
+                                            </td>
+                                            <td>
+                                                <?php if (isset($_GET['editId']) && $_GET['editId'] == $noteObj['id']) { ?>
+                                                    <button type="submit" form="editNoteType" name="editNoteType" class="custom-file-upload">Aanpassen</button>
+                                                <?php } else { ?>
+                                                    <a href="?page=settings&editId=<?= $noteObj['id'] ?>#myTable" class="custom-file-upload button-submit">Aanpassen</a>
+                                                <?php } ?>
+                                            </td>
+                                            <td>
+                                                <form action="#myTable" method="post">
+                                                    <input type="hidden" name="id" value="<?= $noteObj['id'] ?>">
+                                                    <button type="submit" name="deleteNoteType"
+                                                            class="custom-file-upload" style="width:auto;">Verwijderen
+                                                    </button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                        <?php
+                                    }
+                                }
+                                ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

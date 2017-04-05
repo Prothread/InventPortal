@@ -52,5 +52,11 @@ return array(
     'DbTemplate' => $baseDir . '/app/Model/DbTemplate.php',
     'TemplateTaskLinksController' => $baseDir . '/app/Controller/TemplateTaskLinksController.php',
     'TemplateTaskLinks' => $baseDir . '/app/Model/TemplateTaskLinks.php',
-    'DbTemplateTaskLinks' => $baseDir . '/app/Model/DbTemplateTaskLinks.php'
+    'DbTemplateTaskLinks' => $baseDir . '/app/Model/DbTemplateTaskLinks.php',
+    'NoteController' => $baseDir . '/app/Controller/NoteController.php',
+    'Note' => $baseDir . '/app/Model/Note.php',
+    'DbNote' => $baseDir . '/app/Model/DbNote.php',
+    'NoteTypeController' => $baseDir . '/app/Controller/NoteTypeController.php',
+    'NoteType' => $baseDir . '/app/Model/NoteType.php',
+    'DbNoteType' => $baseDir . '/app/Model/DbNoteType.php',
 );

@@ -80,7 +80,13 @@ class ComposerStaticInitc0a55957efdf0e279fcd6092060aa6da
         'DbTemplate' => __DIR__ . '/../..' . '/app/Model/DbTemplate.php',
         'TemplateTaskLinksController' => __DIR__ . '/../..' . '/app/Controller/TemplateTaskLinksController.php',
         'TemplateTaskLinks' => __DIR__ . '/../..' . '/app/Model/TemplateTaskLinks.php',
-        'DbTemplateTaskLinks' => __DIR__ . '/../..' . '/app/Model/DbTemplateTaskLinks.php'
+        'DbTemplateTaskLinks' => __DIR__ . '/../..' . '/app/Model/DbTemplateTaskLinks.php',
+        'NoteController' => __DIR__ . '/../..' . '/app/Controller/NoteController.php',
+        'Note' => __DIR__ . '/../..' . '/app/Model/note.php',
+        'DbNote' => __DIR__ . '/../..' . '/app/Model/DbNote.php',
+        'NoteTypeController' => __DIR__ . '/../..' . '/app/Controller/NoteTypeController.php',
+        'NoteType' => __DIR__ . '/../..' . '/app/Model/noteType.php',
+        'DbNoteType' => __DIR__ . '/../..' . '/app/Model/DbNoteType.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

@@ -2342,6 +2342,7 @@ tr:nth-child(2n) {
     height: 25px;
 }
 
+
 #sortable li{
     float: left;
     height: 25px !important;
@@ -2363,3 +2364,31 @@ tr:nth-child(2n) {
     padding: 0 !important;
     border-radius: 0 2px 2px 0;
 }
+
+#description{
+    max-width: 370px;
+    max-height: 400px;
+}
+
+#notetype-name{
+    width:66.66666666666666667% !important;
+}
+
+#mytable button{
+    width: auto;
+}
+
+.button-submit:hover{
+    color:#ffffff !important;
+    text-decoration: none !important;
+}
+
+#noteType-add{
+    width: calc(33.33333333333333333% - 20px);
+    margin-left:20px;
+}
+
+.noteType-add a, .noteType-add button{
+    float: right;
+}
+
