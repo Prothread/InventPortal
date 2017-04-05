@@ -47,4 +47,10 @@ return array(
     'TaskController' => $baseDir . '/app/Controller/TaskController.php',
     'Task' => $baseDir . '/app/Model/Task.php',
     'DbTask' => $baseDir . '/app/Model/DbTask.php',
+    'templateController' => $baseDir . '/app/Controller/templateController.php',
+    'Template' => $baseDir . '/app/Model/Template.php',
+    'DbTemplate' => $baseDir . '/app/Model/DbTemplate.php',
+    'TemplateTaskLinksController' => $baseDir . '/app/Controller/TemplateTaskLinksController.php',
+    'TemplateTaskLinks' => $baseDir . '/app/Model/TemplateTaskLinks.php',
+    'DbTemplateTaskLinks' => $baseDir . '/app/Model/DbTemplateTaskLinks.php'
 );

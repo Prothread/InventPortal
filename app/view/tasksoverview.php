@@ -1,7 +1,15 @@
 <?php
 $task = new TaskController();
 
-$allTasks = $task->getAllTasks();
+$TheTasks = $task->getAllTasks();
+
+$allTasks = array();
+
+foreach ($TheTasks as $task){
+    if($task['status'] != 4) {
+        array_push($allTasks, $task);
+    }
+}
 
 $userController = new UserController();
 $clients = $userController->getClientList();

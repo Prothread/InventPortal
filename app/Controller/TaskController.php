@@ -67,6 +67,28 @@ class TaskController
 
     }
 
+    public function createDefault(array $taskinfo)
+    {
+        $this->model->setSubject($taskinfo['subject']);
+
+        if (isset($taskinfo['duration'])) {
+            $this->model->setDuration($taskinfo['duration']);
+        }
+
+        if (isset($taskinfo['description'])) {
+            $this->model->setDescription($taskinfo['description']);
+        }
+
+        if (isset($taskinfo['status'])) {
+            $this->model->setStatus($taskinfo['status']);
+        }
+
+        if ($result = $this->model->createDefault()) {
+            return $result;
+        }
+
+    }
+
     public function update(array $taskinfo)
     {
         $this->model->setTaskId($taskinfo['id']);
@@ -83,6 +105,16 @@ class TaskController
         $this->model->setTender($taskinfo['tender']);
         $this->model->setCase($taskinfo['cases']);
         $this->model->update();
+    }
+
+    public function updateDefault(array $taskinfo)
+    {
+        $this->model->setTaskId($taskinfo['id']);
+        $this->model->setSubject($taskinfo['subject']);
+        $this->model->setDescription($taskinfo['description']);
+        $this->model->setDuration($taskinfo['duration']);
+        $this->model->setStatus($taskinfo['status']);
+        $this->model->updateDefault();
     }
 
     public function delete($id)
@@ -154,5 +186,9 @@ class TaskController
 
     public function getTaskByProjectId($id){
         return $this->model->getTaskByProjectId($id);
+    }
+
+    public function getAllTasksByStatus($status){
+        return $this->model->getAllTasksByStatus($status);
     }
 }
