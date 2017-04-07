@@ -32,8 +32,28 @@ $cases = $caseController->getAllCases();
 $tenderController = new TenderController();
 $tenders = $tenderController->getAllTenders();
 
+$tenderController = new TenderController();
+
+$caseTasks = array();
+
+$templateTaskLinksController = new TemplateTaskLinksController();
+
+$templateTasksId = $templateTaskLinksController->getTaskByTemplateId($id);
 $taskController = new TaskController();
-$caseTasks = $taskController->getTaskByCaseId($id);
+
+if(isset($templateTasksId)) {
+    foreach ($templateTasksId as $tTask) {
+        if (isset($tTask['idTask']) && $tTask['idTask'] != null) {
+            array_push($caseTasks, $taskController->getTaskById($tTask['idTask']));
+        }
+    }
+}
+
+$moreAssignmentTasks = $taskController->getTaskByAssignmentId($id);
+
+foreach ($moreAssignmentTasks as $tTask) {
+        array_push($caseTasks, $taskController->getTaskById($tTask['idTask']));
+}
 
 $error = false;
 

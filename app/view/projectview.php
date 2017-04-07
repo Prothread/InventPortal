@@ -30,8 +30,28 @@ $assignments = $assignmentController->getAllAssignments();
 
 $tenderController = new TenderController();
 
+$projectTasks = array();
+
+$templateTaskLinksController = new TemplateTaskLinksController();
+
+$templateTasksId = $templateTaskLinksController->getTaskByTemplateId($id);
 $taskController = new TaskController();
-$projectTasks = $taskController->getTaskByProjectId($id);
+
+if(isset($templateTasksId)) {
+    foreach ($templateTasksId as $tTask) {
+        if (isset($tTask['idTask']) && $tTask['idTask'] != null) {
+            array_push($projectTasks, $taskController->getTaskById($tTask['idTask']));
+        }
+    }
+}
+
+$moreprojectTasks = $taskController->getTaskByAssignmentId($id);
+
+foreach ($moreprojectTasks as $tTask) {
+    array_push($projectTasks, $taskController->getTaskById($tTask['idTask']));
+}
+
+
 $projectAssignments = $assignmentController->getAssignmentByProjectId($id);
 
 $project = new ProjectController();
@@ -459,46 +479,6 @@ if (isset($_POST['submitAssignment'])) {
                 </li>
             </ul>
         </div>
-
-        <div class="tender-view-box-notitie">
-            <img class="deadline" src="css/deadline3.png">
-            <a href="#">...</a>
-            <ul>
-                <li>
-                    Taak onderwerp
-                </li>
-                <li>
-                    Eind datum
-                </li>
-            </ul>
-        </div>
-
-        <div class="tender-view-box-notitie">
-            <img class="deadline" src="css/deadline3.png">
-            <a href="#">...</a>
-            <ul>
-                <li>
-                    Taak onderwerp
-                </li>
-                <li>
-                    Eind datum
-                </li>
-            </ul>
-        </div>
-
-        <div class="tender-view-box-notitie">
-            <img class="deadline" src="css/deadline1.png">
-            <a href="#">...</a>
-            <ul>
-                <li>
-                    Taak onderwerp
-                </li>
-                <li>
-                    Eind datum
-                </li>
-            </ul>
-        </div>
-    </div>
 </div>
 <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">

@@ -303,6 +303,9 @@ switch ($page) {
     case 'defaulttaskview':
         include '../app/view/defaulttaskview.php';
         break;
+    case 'templateview':
+        include '../app/view/templateview.php';
+        break;
     default:
         include '../app/view/404.php';
         break;

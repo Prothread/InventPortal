@@ -54,4 +54,16 @@ class TemplateTaskLinks
         return $this->db->create($this);
     }
 
+    public function getTaskAmountByTemplateId($id){
+        return $this->db->getTaskAmountByTemplateId($id);
+    }
+
+    public function getTaskByTemplateId($id){
+        return $this->db->getTaskByTemplateId($id);
+    }
+
+    public function deleteByTemplateId($id){
+        return $this->db->deleteByTemplateId($id);
+    }
+
 }

@@ -27,6 +27,8 @@ define("TEXT_TEMPLATE_ADD", "Template");
 define("TEXT_DEFAULTTASK_ADD", "Standaard taak");
 define("TEXT_QUEUE", "Wachtrij");
 define("TEXT_DELETE", "verwijderen");
+define("TEMPLATE_VIEW", "Template overzicht");
+define("TEXT_DEFAULT_TASK_VIEW", "Standaard taak overzicht");
 
 /*CRM Forms*/
 

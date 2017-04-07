@@ -79,7 +79,7 @@ if (isset($_POST['create'])) {
             }
 
             $block = new BlockController();
-            $block->Redirect('index.php?page=addtemplate');
+            $block->Redirect('index.php?page=templateview&id=' . $id);
         } else {
 
         }

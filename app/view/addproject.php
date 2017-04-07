@@ -37,6 +37,11 @@ $users = $userController->getUserList();
 $taskController = new TaskController();
 $defaultTask = $taskController->getAllTasksByStatus(4);
 
+$templateController = new templateController();
+$templates = $templateController->getAllTemplates();
+
+$templateTaskLinksController = new TemplateTaskLinksController();
+
 $error = false;
 
 $post = false;
@@ -90,13 +95,10 @@ if (isset($_POST['create'])) {
                     $t = $taskController->getTaskById($taskid);
                     if($t['subject'] != null && isset($t['subject'])) {
                         $taskinfo = [
-                            'subject' => strip_tags($t['subject']),
-                            'duration' => strip_tags($t['duration']),
-                            'description' => strip_tags($t['description']),
-                            'status' => 0,
-                            'project' => $id
+                            'idTemplate' => (int)$id,
+                            'idTask' => (int)$taskid
                         ];
-                        $taskController->create($taskinfo);
+                        $templateTaskLinksController->create($taskinfo);
                     }
                 }
             }
@@ -174,7 +176,12 @@ if (isset($_POST['create'])) {
         <div class="crm-add">
             <div>
                 <label><?= TEXT_TEMPLATE ?></label>
-                <select></select>
+                <select id="templatelist">
+                    <option value=0 selected> -</option>
+                    <?php foreach ($templates as $template) { ?>
+                        <option value="<?= $template['id'] ?>"> <?= $template['onderwerp'] ?> </option>
+                    <?php } ?>
+                </select>
             </div>
             <div>
                 <label><?= TEXT_TASK_ADD ?></label>
@@ -211,10 +218,7 @@ if (isset($_POST['create'])) {
 
     };
 
-    $("#tasklist").change(function () {
-        var list = document.getElementById("tasklist");
-        var id = list.options[list.selectedIndex].value;
-
+    function addTask(id){
         var ul = document.getElementById("sortable");
         var li = document.createElement("li");
         var btn = document.createElement("button");
@@ -232,6 +236,36 @@ if (isset($_POST['create'])) {
 
         btn.setAttribute("onclick", "deleteTask("+"dt"+amount+")");
         btn.setAttribute("class", "custom-file-upload");
+
+    }
+
+    $("#tasklist").change(function () {
+        var list = document.getElementById("tasklist");
+        var id = list.options[list.selectedIndex].value;
+
+        addTask(id);
+
+        list.selectedIndex = 0;
+
+    });
+
+    <?php foreach ($templates as $template){ ?>
+    var template<?=$template['id']?> = [<?php
+        $ids = $templateTaskLinksController->getTaskByTemplateId($template['id']);
+        foreach ($ids as $id){?>
+        <?= $id['idTask'] ?>,
+        <?php } ?>
+    ]
+    <?php }?>
+
+    $("#templatelist").change(function () {
+        var list = document.getElementById("templatelist");
+        var id = list.options[list.selectedIndex].value;
+
+        var templatename = 'template' + id;
+        for(i = 0; i < eval(templatename).length; i++){
+            addTask(eval(templatename)[i]);
+        }
 
         list.selectedIndex = 0;
 

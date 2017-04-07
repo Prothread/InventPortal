@@ -10,7 +10,7 @@ class Template
 {
     private $db;
 
-    private $assignmentId;
+    private $templateId;
 
     private $subject;
 
@@ -26,14 +26,14 @@ class Template
         $this->db = $db;
     }
 
-    public function getAssignmentId()
+    public function getTemplateId()
     {
-        return $this->assignmentId;
+        return $this->templateId;
     }
 
-    public function setAssignmentId($assignmentId)
+    public function setTemplateId($templateId)
     {
-        $this->assignmentId = $assignmentId;
+        $this->templateId = $templateId;
     }
 
     public function getSubject()
@@ -66,5 +66,18 @@ class Template
     public function create()
     {
         return $this->db->create($this);
+    }
+
+    public function getAllTemplates(){
+        return $this->db->getAllTemplates();
+    }
+
+    public function getTemplateById($id){
+        return $this->db->getTemplateById($id);
+    }
+
+    public function update()
+    {
+        return $this->db->update($this);
     }
 }

@@ -22,4 +22,30 @@ class DbTemplateTaskLinks extends Database
         return $this->connection->insert_id;
     }
 
+    public function getTaskAmountByTemplateId($id){
+            $sql = "SELECT COUNT(*) FROM `template_task_links` WHERE `idTemplate` = {$id}";
+        $result = $this->dbQuery($sql);
+        $value = mysqli_fetch_assoc($result);
+            return $value;
+    }
+
+    public function getTaskByTemplateId($id){
+        $sql = "SELECT * FROM `template_task_links` WHERE `idTemplate` = {$id}";
+
+        $result = $this->dbQuery($sql);
+        $endResult = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        if ($endResult) {
+            return $endResult;
+        }
+    }
+
+    public function deleteByTemplateId($id){
+        $sql = "DELETE FROM `template_task_links` WHERE `idTemplate` = '{$id}'";
+
+        if ($result = $this->dbQuery($sql)) {
+            return true;
+        }
+        return false;
+    }
+
 }

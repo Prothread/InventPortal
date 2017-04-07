@@ -24,4 +24,21 @@ class templateController
             return $result;
         }
     }
+
+    public function update(array $templateinfo)
+    {
+        $this->model->setTemplateId($templateinfo['id']);
+        $this->model->setSubject($templateinfo['onderwerp']);
+        $this->model->setDescription($templateinfo['beschrijving']);
+        $this->model->update();
+    }
+
+
+    public function getAllTemplates(){
+        return $this->model->getAllTemplates();
+    }
+
+    public function getTemplateById($id){
+        return $this->model->getTemplateById($id);
+    }
 }

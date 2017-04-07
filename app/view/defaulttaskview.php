@@ -69,7 +69,7 @@ if (isset($_POST['delete'])) {
 ?>
 <div class="crm-content-wrapper">
     <div class="add-left-content add-content">
-        <h1 class="crm-content-header"><?= TEXT_DEFAULTTASK_ADD ?></h1>
+        <h1 class="crm-content-header"><?= TEXT_DEFAULT_TASK_VIEW ?></h1>
         <form action="#" method="post">
             <button type="submit" name="delete" id="deletebtn"
                     class="custom-file-upload"><?= TEXT_DELETE ?></button>
