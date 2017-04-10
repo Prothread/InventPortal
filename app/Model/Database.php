@@ -99,8 +99,6 @@ class Database
     protected function dbOutArray($data_array)
     {
         // section 10-0-3-49--6022aa35:14bdfb8146c:-8000:000000000000088E begin
-
-
         foreach ($data_array as $field => $value) {
             if (is_numeric($value)) {
                 continue;
@@ -130,7 +128,10 @@ class Database
     }
 
 
-    public function test(){
-        return 'TEst';
+    public function getTimeDifference($date1, $date2){
+        $d1 = date_create($date1);
+        $d2 = date_create($date2);
+        $diff = date_diff($d2, $d1)->format("%r%a");
+        return $diff;
     }
 }

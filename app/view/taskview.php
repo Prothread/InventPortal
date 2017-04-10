@@ -22,6 +22,10 @@ if (is_null($taskinfo)) {
     $block->Redirect('index.php?page=404');
 }
 
+$type = 'task';
+
+$thisUserId = $_SESSION['usr_id'];
+
 $userController = new UserController();
 $clients = $userController->getClientList();
 $users = $userController->getUserList();
@@ -39,6 +43,51 @@ $caseController = new CaseController();
 $cases = $caseController->getAllCases();
 
 $error = false;
+
+$noteController = new NoteController();
+
+$noteTypeController = new NoteTypeController();
+$noteTypes = $noteTypeController->getNoteTypes();
+
+if (isset($_POST['noteAdd'])) {
+    $valueNames = ["linkType", "linkId", "noteType", "eventDate", "description", "user", "creationDate"];
+    foreach ($valueNames as $v) {
+        ${$v} = mysqli_real_escape_string($mysqli, $_POST[$v]);
+    }
+    $intNames = ["linkType", "linkId", "noteType", "user"];
+    foreach ($intNames as $v) {
+        if (!filter_var(${$v}, FILTER_VALIDATE_INT) && ${$v} !== '0') {
+            $error = true;
+            echo 'FOUT' . ${$v};
+        }
+    }
+    if (!filter_var($eventDate, FILTER_SANITIZE_STRING)) {
+        $error = true;
+        echo 'FOUT' . $eventDate;
+    }
+    if (!filter_var($creationDate, FILTER_SANITIZE_STRING)) {
+        $error = true;
+        echo 'FOUT' . $creationDate;
+    }
+    if (!filter_var($description, FILTER_SANITIZE_STRING) || $description == '') {
+        $error = true;
+        echo 'FOUT' . $description;
+    }
+    if (!$error) {
+        $noteInfo = [
+            'linkType' => $linkType,
+            'linkId' => $linkId,
+            'noteType' => $noteType,
+            'eventDate' => $eventDate,
+            'description' => $description,
+            'user' => $user,
+            'creationDate' => $creationDate
+        ];
+        $noteController->create($noteInfo);
+    }
+}
+
+$notes = $noteController->getNotesByLinkId(4, $taskinfo['id']);
 
 if (isset($_POST['updateTask'])) {
 
@@ -129,7 +178,6 @@ if (isset($_POST['delete'])) {
             <button type="submit" name="delete" id="deletebtn"
                     class="custom-file-upload"><?= TEXT_DELETE ?></button>
         </form>
-
         <form class="crm-add" action="#" method="post">
             <div>
                 <label><?= TABLE_TITLE ?></label>
@@ -273,9 +321,7 @@ if (isset($_POST['delete'])) {
                     <?php } ?>
                 </select>
             </div>
-
-            <div>
-                <div>
+             <div>
                     <label><?= TEXT_DURATION ?></label>
                     <input type="number" class="form-control" name="duration" min="0" value="<?= $taskinfo['duration'] ?>">
                 </div>
@@ -297,69 +343,3 @@ if (isset($_POST['delete'])) {
                 </div>
         </form>
     </div>
-</div>
-
-<div class="tender-view-side-column">
-    <div class="tender-view-box">
-        <a href="#">...</a>
-        <ul>
-            <li>
-                Log onderwerp
-            </li>
-            <li>
-                Log datum
-            </li>
-        </ul>
-    </div>
-
-    <div class="tender-view-box">
-        <a href="#">...</a>
-        <ul>
-            <li>
-                Log onderwerp
-            </li>
-            <li>
-                Log datum
-            </li>
-        </ul>
-    </div>
-
-    <div class="tender-view-box">
-        <a href="#">...</a>
-        <ul>
-            <li>
-                Log onderwerp
-            </li>
-            <li>
-                Log datum
-            </li>
-        </ul>
-    </div>
-</div>
-
-<div class="tender-view-side-column">
-    <button class="custom-file-upload">Notitie toevoegen</button>
-    <div class="tender-view-box">
-        <a href="#">...</a>
-        <ul>
-            <li>
-                Notitie type
-            </li>
-            <li>
-                Aanmaak datum
-            </li>
-        </ul>
-    </div>
-
-    <div class="tender-view-box">
-        <a href="#">...</a>
-        <ul>
-            <li>
-                Notitie type
-            </li>
-            <li>
-                Aanmaak datum
-            </li>
-        </ul>
-    </div>
-</div>

@@ -228,4 +228,8 @@ class CaseClass
     public function assignUser($user, $id){
        $this->db->assignUser($user, $id);
     }
+    public function getTimeDifference($date1, $date2)
+    {
+        return $this->db->getTimeDifference($date1, $date2);
+    }
 }

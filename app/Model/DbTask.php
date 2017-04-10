@@ -10,8 +10,7 @@ class DbTask extends Database
 {
     public function create(Task $task)
     {
-        $sql = "INSERT INTO `tasks` (`subject`, `client`, `user`,  `project`, `assignment`, `enddate`, `urgency`, `description`, `duration`, `status`, `tender`, `cases`) VALUES('{$task->getSubject()}', '{$task->getClient()}', '{$task->getUser()}', '{$task->getProject()}', '{$task->getAssignment()}', '{$task->getEndDate()}', '{$task->getUrgency()}', '{$task->getDescription()}', '{$task->getDuration()}', '{$task->getStatus()}', '{$task->getTender()}', '{$task->getCase()}')";
-
+        $sql = "INSERT INTO `tasks` (`subject`, `client`, `user`,  `project`, `assignment`, `endDate`, `urgency`, `description`, `duration`, `status`, `tender`, `cases`) VALUES('{$task->getSubject()}', '{$task->getClient()}', '{$task->getUser()}', '{$task->getProject()}', '{$task->getAssignment()}', '{$task->getEndDate()}', '{$task->getUrgency()}', '{$task->getDescription()}', '{$task->getDuration()}', '{$task->getStatus()}', '{$task->getTender()}', '{$task->getCase()}')";
         if ($this->dbQuery($sql)) {
             return $this->dbLastInsertedId();
         }
@@ -95,32 +94,14 @@ class DbTask extends Database
         $this->dbQuery($sql);
     }
 
-    public function getTaskByTendeId($id){
-        $sql = "SELECT * FROM `tasks` WHERE `tender` = {$id}";
+    public function getTasksByLinkId($type, $id){
+        if($type == 'case'){
+            $sql = "SELECT * FROM `tasks` WHERE `{$type}s` = {$id}";
+        }else {
+            $sql = "SELECT * FROM `tasks` WHERE `{$type}` = {$id}";
+        }
         $result = $this->dbQuery($sql);
         $value = mysqli_fetch_all($result, MYSQLI_ASSOC);
         return $value;
     }
-
-    public function getTaskByAssignmentId($id){
-        $sql = "SELECT * FROM `tasks` WHERE `assignment` = {$id}";
-        $result = $this->dbQuery($sql);
-        $value = mysqli_fetch_all($result, MYSQLI_ASSOC);
-        return $value;
-    }
-
-    public function getTaskByCaseId($id){
-        $sql = "SELECT * FROM `tasks` WHERE `cases` = {$id}";
-        $result = $this->dbQuery($sql);
-        $value = mysqli_fetch_all($result, MYSQLI_ASSOC);
-        return $value;
-    }
-
-    public function getTaskByProjectId($id){
-        $sql = "SELECT * FROM `tasks` WHERE `project` = {$id}";
-        $result = $this->dbQuery($sql);
-        $value = mysqli_fetch_all($result, MYSQLI_ASSOC);
-        return $value;
-    }
-
 }

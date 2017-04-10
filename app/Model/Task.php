@@ -311,20 +311,11 @@ class Task
        $this->db->assignUser($user, $id);
     }
 
-    public function getTaskByTendeId($id){
-        return $this->db->getTaskByTendeId($id);
+    public function getTasksByLinkId($type, $id){
+        return $this->db->getTasksByLinkId($type, $id);
     }
-
-    public function getTaskByAssignmentId($id){
-        return $this->db->getTaskByAssignmentId($id);
+    public function getTimeDifference($date1, $date2)
+    {
+        return $this->db->getTimeDifference($date1, $date2);
     }
-
-    public function getTaskByCaseId($id){
-        return $this->db->getTaskByCaseId($id);
-    }
-
-    public function getTaskByProjectId($id){
-        return $this->db->getTaskByProjectId($id);
-    }
-
 }

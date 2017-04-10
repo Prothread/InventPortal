@@ -272,6 +272,7 @@ switch ($page) {
         break;
     case 'caseview':
         include '../app/view/caseview.php';
+        include '../app/Model/viewColumns.php';
         break;
     case 'addtemplate':
         include '../app/view/addtemplate.php';
@@ -287,15 +288,19 @@ switch ($page) {
         break;
     case 'projectview':
         include '../app/view/projectview.php';
+        include '../app/Model/viewColumns.php';
         break;
     case 'tenderview':
         include '../app/view/tenderview.php';
+        include '../app/Model/viewColumns.php';
         break;
     case 'assignmentview':
         include '../app/view/assignmentview.php';
+        include '../app/Model/viewColumns.php';
         break;
     case 'taskview':
         include '../app/view/taskview.php';
+        include '../app/Model/viewColumns.php';
         break;
     case 'quickAssign':
         include '../app/view/quickAssign.php';

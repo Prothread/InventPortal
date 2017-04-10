@@ -41,8 +41,8 @@ class TaskController
             $this->model->setDuration($taskinfo['duration']);
         }
 
-        if (isset($taskinfo['enddate'])) {
-            $this->model->setEndDate($taskinfo['enddate']);
+        if (isset($taskinfo['endDate'])) {
+            $this->model->setEndDate($taskinfo['endDate']);
         }
 
         if (isset($taskinfo['description'])) {
@@ -122,9 +122,7 @@ class TaskController
 
     public function getTimeDifference($date1, $date2)
     {
-        $d1 = new DateTime($date1);
-        $d2 = new DateTime($date2);
-        return $diff = $d1->diff($d2)->format("%a");
+        return $this->model->getTimeDifference($date1, $date2);
     }
 
     public function getTasksByUserId($userId){
@@ -140,19 +138,7 @@ class TaskController
         $this->model->assignUser($user, $id);
     }
 
-    public function getTaskByTendeId($id){
-        return $this->model->getTaskByTendeId($id);
-    }
-
-    public function getTaskByAssignmentId($id){
-        return $this->model->getTaskByAssignmentId($id);
-    }
-
-    public function getTaskByCaseId($id){
-        return $this->model->getTaskByCaseId($id);
-    }
-
-    public function getTaskByProjectId($id){
-        return $this->model->getTaskByProjectId($id);
+    public function getTasksByLinkId($type, $id){
+        return $this->model->getTasksByLinkId($type, $id);
     }
 }

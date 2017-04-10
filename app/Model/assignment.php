@@ -202,4 +202,9 @@ class Assignment
         return $this->db->getAssignmentByProjectId($id);
     }
 
+    public function getTimeDifference($date1, $date2)
+    {
+        return $this->db->getTimeDifference($date1, $date2);
+    }
+
 }

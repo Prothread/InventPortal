@@ -2216,20 +2216,22 @@ tr:nth-child(2n) {
 }
 
 .tender-view-box{
-    height: 70px;
+    /*height: 70px;*/
     width: 200px;
     list-style-type: none;
     background-color: #f4f6f9;
     border-radius: 3px;
     margin: 0 auto;
     margin-top: 15px;
-    position: relative;
+    padding-bottom: 25px;
+    /*position: relative;*/
 }
 
 .tender-view-box ul{
     list-style-type: none;
     text-align: left;
     padding: 5px;
+    margin-bottom: 0px;
 }
 
 .tender-view-box a{
@@ -2241,6 +2243,17 @@ tr:nth-child(2n) {
      font-size: 20px;
      color: #333;
  }
+
+.tender-view-box button{
+    background-color: transparent;
+    border: transparent;
+    float: right;
+    height: 30px;
+    font-size: 20px;
+    width: 40px;
+    margin-top: -15px;
+    outline:none;
+}
 
 .tender-view-box-notitie{
     height: 80px;
@@ -2292,7 +2305,7 @@ tr:nth-child(2n) {
     padding: 5px;
 }
 
-.tender-view-side-column button{
+.tender-view-side-column .custom-file-upload{
     width: 200px;
     position:absolute;
     bottom:10px;
@@ -2341,7 +2354,7 @@ tr:nth-child(2n) {
     height: 25px;
 }
 
-#description{
+.description{
     max-width: 370px;
     max-height: 400px;
 }

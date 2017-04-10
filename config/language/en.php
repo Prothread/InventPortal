@@ -62,6 +62,7 @@ define("TEXT_CASE_VIEW", "Case overview");
 define("CASE_OVERVIEW_TEXT", "Cases overview");
 define("TEXT_ASSIGNMENT_VIEW","Assignment overview");
 define("TEXT_ADD_NOTE","Add note");
+define("TEXT_VIEW_NOTE","Note");
 define("TEXT_NOTE_TYPE","Type");
 define("TEXT_EVENT_DATE", "Event date");
 define("TEXT_ADD","Add");

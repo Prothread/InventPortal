@@ -208,12 +208,18 @@ class Project
         $this->finishDate = $finishDate;
     }
 
+    public function getTimeDifference($date1, $date2)
+    {
+        return $this->db->getTimeDifference($date1, $date2);
+    }
+
     public function getProjectsByStatus($status)
     {
         return $this->db->getProjectsByStatus($status);
     }
 
-    public function assignUser($user, $id){
+    public function assignUser($user, $id)
+    {
         $this->db->assignUser($user, $id);
     }
 }
