@@ -33,6 +33,7 @@ define("URGENCY_3", "High");
 define("URGENCY_4", "Critical");
 define("TEMPLATE_VIEW", "Template overview");
 define("TEXT_DEFAULT_TASK_VIEW", "default task overview");
+define("TEXT_FILTER_OPTION", "Filter option");
 
 /*CRM FORMS*/
 

@@ -29,6 +29,7 @@ define("TEXT_QUEUE", "Wachtrij");
 define("TEXT_DELETE", "verwijderen");
 define("TEMPLATE_VIEW", "Template overzicht");
 define("TEXT_DEFAULT_TASK_VIEW", "Standaard taak overzicht");
+define("TEXT_FILTER_OPTION", "Filter optie");
 
 /*CRM Forms*/
 

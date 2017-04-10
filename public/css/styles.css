@@ -2152,6 +2152,7 @@ tr:nth-child(2n) {
     color: white;
     margin: 20px auto 0 auto;
     padding-left: 10px;
+    outline:none;
 }
 
 .crm-dashboard-box .deadline{
