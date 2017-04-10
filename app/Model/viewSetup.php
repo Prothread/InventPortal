@@ -62,6 +62,17 @@ if($type == 'task' || $type == 'case' || $type == 'assignment') {
     //project list
     $projects = $projectController->getAllProjects();
 }
+if($type == 'task'){
+    //tender controller
+    $tenderController = new TenderController();
+    //tender list
+    $tenders = $tenderController->getAllTenders();
+
+    //case controller
+    $caseController = new CaseController();
+    //case list
+    $cases = $caseController->getAllCases();
+}
 
 //task submit handler
 if (isset($_POST['submitTask'])) {

@@ -99,6 +99,7 @@ if (isset($_SESSION['accorduserid']) && !isset($_SESSION['usr_id'])) {
         <link rel="icon"
               type="image/png"
               href="css/favicon.png">
+
     </head>
 
 <body>

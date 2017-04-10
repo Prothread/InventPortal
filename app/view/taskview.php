@@ -6,169 +6,9 @@
  * Time: 16:37
  */
 
-$block = new BlockController();
-if (!filter_var($_GET['id'], FILTER_VALIDATE_INT)) {
-    $block->Redirect('index.php?page=404');
-}
-$id = $_GET['id'];
-
-$mysqli = mysqli_connect();
-
-$task = new TaskController();
-
-$taskinfo = $task->getTaskById($id);
-
-if (is_null($taskinfo)) {
-    $block->Redirect('index.php?page=404');
-}
-
 $type = 'task';
 
-$thisUserId = $_SESSION['usr_id'];
-
-$userController = new UserController();
-$clients = $userController->getClientList();
-$users = $userController->getUserList();
-
-$projectController = new ProjectController();
-$projects = $projectController->getAllProjects();
-
-$assignmentController = new AssignmentController();
-$assignments = $assignmentController->getAllAssignments();
-
-$tenderController = new TenderController();
-$tenders = $tenderController->getAllTenders();
-
-$caseController = new CaseController();
-$cases = $caseController->getAllCases();
-
-$error = false;
-
-$noteController = new NoteController();
-
-$noteTypeController = new NoteTypeController();
-$noteTypes = $noteTypeController->getNoteTypes();
-
-if (isset($_POST['noteAdd'])) {
-    $valueNames = ["linkType", "linkId", "noteType", "eventDate", "description", "user", "creationDate"];
-    foreach ($valueNames as $v) {
-        ${$v} = mysqli_real_escape_string($mysqli, $_POST[$v]);
-    }
-    $intNames = ["linkType", "linkId", "noteType", "user"];
-    foreach ($intNames as $v) {
-        if (!filter_var(${$v}, FILTER_VALIDATE_INT) && ${$v} !== '0') {
-            $error = true;
-            echo 'FOUT' . ${$v};
-        }
-    }
-    if (!filter_var($eventDate, FILTER_SANITIZE_STRING)) {
-        $error = true;
-        echo 'FOUT' . $eventDate;
-    }
-    if (!filter_var($creationDate, FILTER_SANITIZE_STRING)) {
-        $error = true;
-        echo 'FOUT' . $creationDate;
-    }
-    if (!filter_var($description, FILTER_SANITIZE_STRING) || $description == '') {
-        $error = true;
-        echo 'FOUT' . $description;
-    }
-    if (!$error) {
-        $noteInfo = [
-            'linkType' => $linkType,
-            'linkId' => $linkId,
-            'noteType' => $noteType,
-            'eventDate' => $eventDate,
-            'description' => $description,
-            'user' => $user,
-            'creationDate' => $creationDate
-        ];
-        $noteController->create($noteInfo);
-    }
-}
-
-$notes = $noteController->getNotesByLinkId(4, $taskinfo['id']);
-
-if (isset($_POST['updateTask'])) {
-
-    $valueNames = ["subject", "client", "user", "project", "assignment", "urgency", "duration", "enddate", "description", "tender", "case"];
-    foreach ($valueNames as $v) {
-        ${$v} = mysqli_real_escape_string($mysqli, $_POST[$v]);
-    }
-    if (strlen($subject) == 0) {
-        $error = true;
-        $title_error = true;
-    }
-    if (!filter_var($client, FILTER_VALIDATE_INT) && $client !== '0') {
-        $error = true;
-        $client_error = true;
-    }
-
-    if (!filter_var($user, FILTER_VALIDATE_INT) && $user !== '0') {
-        $error = true;
-        $user_error = true;
-    }
-
-    if (!filter_var($project, FILTER_VALIDATE_INT) && $project !== '0') {
-        $error = true;
-        $project_error = true;
-    }
-
-    if (!filter_var($assignment, FILTER_VALIDATE_INT) && $assignment !== '0') {
-        $error = true;
-        $assignment_error = true;
-    }
-
-    if (!filter_var($urgency, FILTER_VALIDATE_INT) && $urgency !== '0') {
-        $error = true;
-        $urgency_error = true;
-    }
-
-    if (!filter_var($duration, FILTER_VALIDATE_INT) && $duration !== '0') {
-        $error = true;
-        $duration_error = true;
-    }
-
-    if (!filter_var($enddate, FILTER_SANITIZE_STRING)) {
-        $error = true;
-        $enddate_error = true;
-    }
-    if (!filter_var($description, FILTER_SANITIZE_STRING)) {
-        $error = true;
-        $description_error = true;
-    }
-
-    if (!$error) {
-        if ($user == 0) {
-            $status = 0;
-        } else {
-            $status = 1;
-        }
-
-        $taskinfo = [
-            'id' => $id,
-            'subject' => strip_tags($subject),
-            'client' => $client,
-            'user' => $user,
-            'project' => $project,
-            'assignment' => $assignment,
-            'urgency' => $urgency,
-            'duration' => $duration,
-            'description' => strip_tags($description),
-            'enddate' => $enddate,
-            'status' => $status,
-            'tender' => $tender,
-            'cases' => $case
-        ];
-        $task->update($taskinfo);
-    }
-}
-
-if (isset($_POST['delete'])) {
-    if ($task->delete($id)) {
-        $block->Redirect('index.php?page=tasksoverview');
-    }
-}
+include '../app/Model/viewSetup.php';
 
 ?>
 <div class="crm-content-wrapper">
@@ -328,7 +168,7 @@ if (isset($_POST['delete'])) {
 
                 <div>
                     <label><?= TEXT_END_DATE ?></label>
-                    <input type="date" class="form-control <?php if(isset($enddate_error)){echo "error-input";} ?>" name="enddate" value="<?= $taskinfo['enddate'] ?>"
+                    <input type="date" class="form-control <?php if(isset($enddate_error)){echo "error-input";} ?>" name="enddate" value="<?= $taskinfo['endDate'] ?>"
                     <br>
                 </div>
                 <div class="description-holder">

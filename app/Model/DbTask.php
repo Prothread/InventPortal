@@ -16,9 +16,24 @@ class DbTask extends Database
         }
     }
 
+    public function createDefault(Task $task)
+    {
+        $sql = "INSERT INTO `tasks` (`subject`, `description`, `duration`, `status`) VALUES('{$task->getSubject()}', '{$task->getDescription()}', '{$task->getDuration()}', '{$task->getStatus()}')";
+
+        if ($this->dbQuery($sql)) {
+            return $this->dbLastInsertedId();
+        }
+    }
+
     public function update(Task $task)
     {
         $sql = "UPDATE `tasks` SET `tender` = '{$task->getTender()}', `subject` = '{$task->getSubject()}', `client` = '{$task->getClient()}',`user` = '{$task->getUser()}', `project` = '{$task->getProject()}', `assignment` = '{$task->getAssignment()}', `urgency` = '{$task->getUrgency()}', `duration` = '{$task->getDuration()}', `enddate` = '{$task->getEndDate()}', `description` = '{$task->getDescription()}' , `status` = '{$task->getStatus()}' , `cases` = '{$task->getCase()}' WHERE `id` = '{$task->getTaskId()}'";
+        $this->dbQuery($sql);
+    }
+
+    public function updateDefault(Task $task)
+    {
+        $sql = "UPDATE `tasks` SET `subject` = '{$task->getSubject()}', `duration` = '{$task->getDuration()}', `description` = '{$task->getDescription()}' WHERE `id` = '{$task->getTaskId()}'";
         $this->dbQuery($sql);
     }
 
@@ -80,14 +95,6 @@ class DbTask extends Database
         return $value;
     }
 
-    public function getTasksByStatus($status)
-    {
-        $sql = "SELECT * FROM `tasks` WHERE `status` = {$status}";
-        $result = $this->dbQuery($sql);
-        $value = mysqli_fetch_all($result, MYSQLI_ASSOC);
-        return $value;
-    }
-
     public function assignUser($user, $id){
         $status = 1;
         $sql = "UPDATE `tasks` SET `user` = '{$user}', `status` = '{$status}' WHERE `id` = {$id}";
@@ -100,6 +107,13 @@ class DbTask extends Database
         }else {
             $sql = "SELECT * FROM `tasks` WHERE `{$type}` = {$id}";
         }
+        $result = $this->dbQuery($sql);
+        $value = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        return $value;
+    }
+
+    public function getAllTasksByStatus($status){
+        $sql = "SELECT * FROM `tasks` WHERE `status` = {$status}";
         $result = $this->dbQuery($sql);
         $value = mysqli_fetch_all($result, MYSQLI_ASSOC);
         return $value;

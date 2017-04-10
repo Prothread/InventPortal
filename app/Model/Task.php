@@ -272,9 +272,19 @@ class Task
         return $this->db->create($this);
     }
 
+    public function createDefault()
+    {
+        return $this->db->createDefault($this);
+    }
+
     public function update()
     {
         return $this->db->update($this);
+    }
+
+    public function updateDefault()
+    {
+        return $this->db->updateDefault($this);
     }
 
     public function delete($id)
@@ -302,9 +312,9 @@ class Task
         return $this->db->getTasksByUserId($userId);
     }
 
-    public function getTasksByStatus($status)
+    public function getAllTasksByStatus($status)
     {
-        return $this->db->getTasksByStatus($status);
+        return $this->db->getAllTasksByStatus($status);
     }
 
     public function assignUser($user, $id){

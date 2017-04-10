@@ -10,7 +10,6 @@ $type = 'assignment';
 
 include '../app/Model/viewSetup.php';
 
-
 ?>
 <div class="crm-content-wrapper">
     <div class="add-left-content add-content">

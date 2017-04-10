@@ -1,3 +1,10 @@
+<?php
+$template = new templateController();
+$allTemplates = $template->getAllTemplates();
+$templatetask = new TemplateTaskLinksController();
+
+?>
+
 <div id="case-overview-holder">
 
     <header>Templates Overzicht</header>
@@ -16,116 +23,23 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>
-                    <a href="#">Taak onderwerp</a>
-                </td>
-                <td>
-                    <a href="#">Taak beschrijving</a>
-                </td>
-                <td>
-                    <a href="#">3</a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="#">Taak onderwerp</a>
-                </td>
-                <td>
-                    <a href="#">Taak beschrijving</a>
-                </td>
-                <td>
-                    <a href="#">3</a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="#">Taak onderwerp</a>
-                </td>
-                <td>
-                    <a href="#">Taak beschrijving</a>
-                </td>
-                <td>
-                    <a href="#">3</a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="#">Taak onderwerp</a>
-                </td>
-                <td>
-                    <a href="#">Taak beschrijving</a>
-                </td>
-                <td>
-                    <a href="#">3</a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="#">Taak onderwerp</a>
-                </td>
-                <td>
-                    <a href="#">Taak beschrijving</a>
-                </td>
-                <td>
-                    <a href="#">3</a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="#">Taak onderwerp</a>
-                </td>
-                <td>
-                    <a href="#">Taak beschrijving</a>
-                </td>
-                <td>
-                    <a href="#">3</a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="#">Taak onderwerp</a>
-                </td>
-                <td>
-                    <a href="#">Taak beschrijving</a>
-                </td>
-                <td>
-                    <a href="#">3</a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="#">Taak onderwerp</a>
-                </td>
-                <td>
-                    <a href="#">Taak beschrijving</a>
-                </td>
-                <td>
-                    <a href="#">3</a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="#">Taak onderwerp</a>
-                </td>
-                <td>
-                    <a href="#">Taak beschrijving</a>
-                </td>
-                <td>
-                    <a href="#">3</a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="#">Taak onderwerp</a>
-                </td>
-                <td>
-                    <a href="#">Taak beschrijving</a>
-                </td>
-                <td>
-                    <a href="#">3</a>
-                </td>
-            </tr>
+            <?php if (sizeof($allTemplates) > 0) {
+                foreach ($allTemplates as $template) {
+                    $t = $templatetask->getTaskAmountByTemplateId($template['id']);
+                    ?>
+                    <tr>
+                        <td>
+                            <a href="?page=templateview&id=<?= $template['id'] ?>"><?= $template['onderwerp'] ?></a>
+                        </td>
+                        <td>
+                            <?= $template['beschrijving'] ?>
+                        </td>
+                        <td>
+                            <?php echo $t['COUNT(*)']?>
+                        </td>
+                    </tr>
+                <?php } ?>
+            <?php } ?>
             </tbody>
         </table>
     </div>
