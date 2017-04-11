@@ -40,7 +40,7 @@ $clients = $userController->getClientList();
                 <?php $amount = 0;
                 foreach ($allTenders as $tender) {
                     $amount++;
-                    $timeDiff = $tenderCon->getTimeDifference($tender['enddate'], date("Y-m-d"))
+                    $timeDiff = $tenderCon->getTimeDifference($tender['endDate'], date("Y-m-d"))
                     ?>
                     <div <?php if ($amount > 5){ ?> style="display: none"
                                                     <?php } ?>class="crm-dashboard-box boxesTenderselect">
@@ -69,7 +69,7 @@ $clients = $userController->getClientList();
                                 } ?>
                             </li>
                             <li class="crm-dashboard-dateTenderselect">
-                                <?= date("d-m-Y", strtotime($tender['enddate'])) ?>
+                                <?= date("d-m-Y", strtotime($tender['endDate'])) ?>
                             </li>
                         </ul>
                     </div>
@@ -207,7 +207,7 @@ $clients = $userController->getClientList();
                 <?php $amount = 0;
                 foreach ($allTasks as $task) {
                     $amount++;
-                    $timeDiff = $tenderCon->getTimeDifference($task['enddate'], date("Y-m-d"))
+                    $timeDiff = $tenderCon->getTimeDifference($task['endDate'], date("Y-m-d"))
                     ?>
                     <div <?php if ($amount > 5){ ?> style="display: none"
                                                     <?php } ?>class="crm-dashboard-box boxesTaskselect">
@@ -245,7 +245,7 @@ $clients = $userController->getClientList();
                                 } ?>
                             </li>
                             <li class="crm-dashboard-dateTaskselect">
-                                <?= date("d-m-Y", strtotime($task['enddate'])) ?>
+                                <?= date("d-m-Y", strtotime($task['endDate'])) ?>
                             </li>
                         </ul>
                     </div>
@@ -272,7 +272,7 @@ $clients = $userController->getClientList();
                 <?php $amount = 0;
                 foreach ($allCases as $case) {
                     $amount++;
-                    $timeDiff = $tenderCon->getTimeDifference($case['enddate'], date("Y-m-d"))
+                    $timeDiff = $tenderCon->getTimeDifference($case['endDate'], date("Y-m-d"))
                     ?>
                     <div <?php if ($amount > 5){ ?> style="display: none"
                                                     <?php } ?>class="crm-dashboard-box boxesCaseselect">
@@ -299,7 +299,7 @@ $clients = $userController->getClientList();
                                 } ?>
                             </li>
                             <li class="crm-dashboard-dateCaseselect">
-                                <?= date("d-m-Y", strtotime($case['enddate'])) ?>
+                                <?= date("d-m-Y", strtotime($case['endDate'])) ?>
                             </li>
                         </ul>
                     </div>

@@ -92,13 +92,28 @@ if (isset($_POST['create'])) {
             if($defaultTasks != null && isset($defaultTasks)){
                 $tasksId = explode("-", $defaultTasks);
                 foreach ($tasksId as $taskid) {
-                    $t = $taskController->getTaskById($taskid);
-                    if($t['subject'] != null && isset($t['subject'])) {
+                    if ($taskid != '') {
+                        $task = $taskController->getTaskById($taskid);
+                        if($task['user'] != 0){
+                            $status = 1;
+                        }else{
+                            $status = 0;
+                        }
                         $taskinfo = [
-                            'idTemplate' => (int)$id,
-                            'idTask' => (int)$taskid
+                            'subject' => strip_tags($task['subject']),
+                            'client' => strip_tags($task['client']),
+                            'user' => strip_tags($task['user']),
+                            'project' => $id,
+                            'assignment' => strip_tags($task['assignment']),
+                            'urgency' => strip_tags($task['urgency']),
+                            'duration' => strip_tags($task['duration']),
+                            'description' => strip_tags($task['description']),
+                            'endDate' => strip_tags($task['endDate']),
+                            'tender' => strip_tags($task['tender']),
+                            'cases' => strip_tags($task['cases']),
+                            'status' => strip_tags($status)
                         ];
-                        $templateTaskLinksController->create($taskinfo);
+                        $taskController->create($taskinfo);
                     }
                 }
             }

@@ -32,7 +32,7 @@ $post = false;
 if (isset($_POST['submitTask'])) {
     $post = true;
 
-    $valueNames = ["subject", "client", "user", "project", "assignment", "urgency", "duration", "enddate", "description", "tender", "case"];
+    $valueNames = ["subject", "client", "user", "project", "assignment", "urgency", "duration", "endDate", "description", "tender", "case"];
     foreach ($valueNames as $v) {
         ${$v} = mysqli_real_escape_string($mysqli, $_POST[$v]);
     }
@@ -79,9 +79,9 @@ if (isset($_POST['submitTask'])) {
         echo '7';
     }
 
-    if (!filter_var($enddate, FILTER_SANITIZE_STRING)) {
+    if (!filter_var($endDate, FILTER_SANITIZE_STRING)) {
         $error = true;
-        $enddate_error = true;
+        $endDate_error = true;
         echo '8';
     }
 
@@ -107,7 +107,7 @@ if (isset($_POST['submitTask'])) {
             'urgency' => strip_tags($urgency),
             'duration' => strip_tags($duration),
             'description' => strip_tags($description),
-            'enddate' => strip_tags($enddate),
+            'endDate' => strip_tags($endDate),
             'status' => strip_tags($status),
             'tender' => strip_tags($tender),
             'case' => strip_tags($case)
@@ -270,9 +270,9 @@ if (isset($_POST['submitTask'])) {
                 <label><?= TEXT_END_DATE ?></label>
                 <input type="date" class="form-control <?php if (isset($creationDate_error)) {
                     echo "error-input";
-                } ?>" name="enddate"
-                       value="<?php if (isset($_POST['enddate'])) {
-                           echo $_POST['enddate'];
+                } ?>" name="endDate"
+                       value="<?php if (isset($_POST['endDate'])) {
+                           echo $_POST['endDate'];
                        } else {
                            echo date("d-m-y");
                        } ?>">

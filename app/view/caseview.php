@@ -108,7 +108,7 @@ include '../app/Model/viewSetup.php';
                 if ($post) {
                     echo $_POST['endDate'];
                 } else {
-                    echo $caseinfo['enddate'];
+                    echo $caseinfo['endDate'];
                 }
                 ?>">
             </div>

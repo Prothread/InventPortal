@@ -50,7 +50,7 @@ $users = $userController->getUserList();
 //tasks controller
 $taskController = new TaskController();
 
-if($type == 'task' || $type == 'case') {
+if($type == 'task' || $type == 'case' || $type == 'project') {
     //assignment controller
     $assignmentController = new AssignmentController();
     //assignment list

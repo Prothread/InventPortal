@@ -18,7 +18,7 @@ class DbCase extends Database
 
     public function update(CaseClass $case)
     {
-        $sql = "UPDATE `cases` SET `subject` = '{$case->getSubject()}', `client` = '{$case->getClient()}',`user` = '{$case->getUser()}', `enddate` = '{$case->getEndDate()}', `description` = '{$case->getDescription()}', `status` = '{$case->getStatus()}', `project` = '{$case->getProject()}' WHERE `id` = '{$case->getCaseId()}'";
+        $sql = "UPDATE `cases` SET `subject` = '{$case->getSubject()}', `client` = '{$case->getClient()}',`user` = '{$case->getUser()}', `endDate` = '{$case->getEndDate()}', `description` = '{$case->getDescription()}', `status` = '{$case->getStatus()}', `project` = '{$case->getProject()}' WHERE `id` = '{$case->getCaseId()}'";
         $this->dbQuery($sql);
     }
 

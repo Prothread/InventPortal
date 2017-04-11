@@ -14,7 +14,7 @@ class CaseController
         $this->model->setSubject($caseinfo['subject']);
         $this->model->setClient($caseinfo['client']);
         $this->model->setUser($caseinfo['user']);
-        $this->model->setEndDate($caseinfo['enddate']);
+        $this->model->setEndDate($caseinfo['endDate']);
         $this->model->setDescription($caseinfo['description']);
         $this->model->setStatus($caseinfo['status']);
         $this->model->setProject($caseinfo['project']);

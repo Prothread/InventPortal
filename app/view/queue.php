@@ -48,9 +48,9 @@ $allProjects = $projectController->getProjectsByStatus(0);
 
 $allCases = $caseController->getCasesByStatus(0);
 
-$allAssignments = $assignmentController->ssignmentsByStatus(0);
+$allAssignments = $assignmentController->getAssignmentsByStatus(0);
 
-$tasks = $taskController->getTasksByStatus(0);
+$tasks = $taskController->getAllTasksByStatus(0);
 
 $clients = $userController->getClientList();
 $showPupUp = true;
@@ -80,7 +80,7 @@ $thisUserId = $_SESSION['usr_id'];
             <div id="containerTenderselect">
                 <?php $amount = 0; foreach ($allTenders as $tender) {
                     $amount++;
-                    $timeDiff = $tenderController->getTimeDifference($tender['enddate'], date("Y-m-d"))
+                    $timeDiff = $tenderController->getTimeDifference($tender['endDate'], date("Y-m-d"))
                     ?>
                     <div <?php if ($amount > 5){ ?> style="display: none" <?php } ?>class="crm-dashboard-box boxesTenderselect">
                         <?php if ($timeDiff <= 0) { ?>
@@ -108,7 +108,7 @@ $thisUserId = $_SESSION['usr_id'];
                                 } ?>
                             </li>
                             <li class="crm-dashboard-dateTenderselect">
-                                <?= date("d-m-Y", strtotime($tender['enddate'])) ?>
+                                <?= date("d-m-Y", strtotime($tender['endDate'])) ?>
                             </li>
                         </ul>
                         <a class="toewijzenlink" data-toggle="modal" data-target="#myModal" theType="tender"
@@ -247,7 +247,7 @@ $thisUserId = $_SESSION['usr_id'];
             <div id="containerTaskselect">
             <?php $amount = 0; foreach ($tasks as $task) {
                 $amount++;
-                $timeDiff = $taskController->getTimeDifference($task['enddate'], date("Y-m-d"))
+                $timeDiff = $taskController->getTimeDifference($task['endDate'], date("Y-m-d"))
                 ?>
                 <div <?php if ($amount > 5){ ?> style="display: none" <?php } ?>class="crm-dashboard-box boxesTaskselect">
                     <?php if ($timeDiff <= 0) { ?>
@@ -273,7 +273,7 @@ $thisUserId = $_SESSION['usr_id'];
                             } ?>
                         </li>
                         <li class="crm-dashboard-dateTaskselect">
-                            <?= date("d-m-Y", strtotime($task['enddate'])) ?>
+                            <?= date("d-m-Y", strtotime($task['endDate'])) ?>
                         </li>
                     </ul>
                     <a class="toewijzenlink" data-toggle="modal" data-target="#myModal" theType="task"
@@ -299,7 +299,7 @@ $thisUserId = $_SESSION['usr_id'];
             <div id="containerCaseselect">
             <?php $amount = 0; foreach ($allCases as $case) {
                 $amount++;
-                $timeDiff = $projectController->getTimeDifference($case['enddate'], date("Y-m-d"))
+                $timeDiff = $projectController->getTimeDifference($case['endDate'], date("Y-m-d"))
                 ?>
                 <div <?php if ($amount > 5){ ?> style="display: none" <?php } ?>class="crm-dashboard-box boxesCaseselect">
                     <?php if ($timeDiff <= 0) { ?>
@@ -325,7 +325,7 @@ $thisUserId = $_SESSION['usr_id'];
                             } ?>
                         </li>
                         <li class="crm-dashboard-dateCaseselect">
-                            <?= date("d-m-Y", strtotime($case['enddate'])) ?>
+                            <?= date("d-m-Y", strtotime($case['endDate'])) ?>
                         </li>
                     </ul>
                     <a class="toewijzenlink" data-toggle="modal" data-target="#myModal" theType="case"

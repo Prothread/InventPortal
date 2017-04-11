@@ -111,12 +111,12 @@ include '../app/Model/viewSetup.php';
             </div>
             <div>
                 <label><?= TEXT_END_DATE ?></label>
-                <input type="text" class="form-control" name="enddate" readonly
+                <input type="text" class="form-control" name="endDate" readonly
                        value="<?php
-                       if (isset($enddate)) {
-                           echo date("d-m-Y", strtotime($enddate));
+                       if (isset($endDate)) {
+                           echo date("d-m-Y", strtotime($endDate));
                        } else {
-                           echo date("d-m-Y", strtotime($tenderinfo['enddate']));
+                           echo date("d-m-Y", strtotime($tenderinfo['endDate']));
                        }
                        ?>"
                 <br>

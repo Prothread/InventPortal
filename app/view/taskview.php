@@ -168,7 +168,7 @@ include '../app/Model/viewSetup.php';
 
                 <div>
                     <label><?= TEXT_END_DATE ?></label>
-                    <input type="date" class="form-control <?php if(isset($enddate_error)){echo "error-input";} ?>" name="enddate" value="<?= $taskinfo['endDate'] ?>"
+                    <input type="date" class="form-control <?php if(isset($endDate_error)){echo "error-input";} ?>" name="endDate" value="<?= $taskinfo['endDate'] ?>"
                     <br>
                 </div>
                 <div class="description-holder">

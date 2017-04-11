@@ -116,7 +116,7 @@ $assignments = $assignmentController->getAllAssignments();
                             ?>
                         </td>
                         <td>
-                            <?= date("d-m-Y", strtotime($case['enddate'])) ?>
+                            <?= date("d-m-Y", strtotime($case['endDate'])) ?>
                         </td>
                         <td>
                             <img src="css/status-<?= $case['status'] ?>.png">

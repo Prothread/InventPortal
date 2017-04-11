@@ -57,8 +57,8 @@ class TaskController
             $this->model->setTender($taskinfo['tender']);
         }
 
-        if (isset($taskinfo['case'])) {
-            $this->model->setCase($taskinfo['case']);
+        if (isset($taskinfo['cases'])) {
+            $this->model->setCase($taskinfo['cases']);
         }
 
         if ($result = $this->model->create()) {
@@ -99,7 +99,7 @@ class TaskController
         $this->model->setAssignment($taskinfo['assignment']);
         $this->model->setUrgency($taskinfo['urgency']);
         $this->model->setDuration($taskinfo['duration']);
-        $this->model->setEndDate($taskinfo['enddate']);
+        $this->model->setEndDate($taskinfo['endDate']);
         $this->model->setDescription($taskinfo['description']);
         $this->model->setStatus($taskinfo['status']);
         $this->model->setTender($taskinfo['tender']);
@@ -159,11 +159,6 @@ class TaskController
 
     public function getTasksByUserId($userId){
         return $this->model->getTasksByUserId($userId);
-    }
-
-    public function getTasksByStatus($status)
-    {
-        return $this->model->getTasksByStatus($status);
     }
 
     public function assignUser($user, $id){

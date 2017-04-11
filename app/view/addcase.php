@@ -54,7 +54,7 @@ $post = false;
 
 if (isset($_POST['create'])) {
     $post = true;
-    $valueNames = ["subject", "client", "user", "enddate", "description", "project", "defaultTasks"];
+    $valueNames = ["subject", "client", "user", "endDate", "description", "project", "defaultTasks"];
     foreach ($valueNames as $value) {
         ${$value} = mysqli_real_escape_string($mysqli, $_POST[$value]);
     }
@@ -70,7 +70,7 @@ if (isset($_POST['create'])) {
         $error = true;
         $user_error = true;
     }
-    if (!filter_var($enddate, FILTER_SANITIZE_STRING)) {
+    if (!filter_var($endDate, FILTER_SANITIZE_STRING)) {
         $error = true;
         $endDate_error = true;
     }
@@ -88,7 +88,7 @@ if (isset($_POST['create'])) {
             'subject' => strip_tags($subject),
             'client' => $client,
             'user' => $user,
-            'enddate' => $enddate,
+            'endDate' => $endDate,
             'description' => strip_tags($description),
             'status' => $status,
             'project' => $project
@@ -99,13 +99,28 @@ if (isset($_POST['create'])) {
             if($defaultTasks != null && isset($defaultTasks)){
                 $tasksId = explode("-", $defaultTasks);
                 foreach ($tasksId as $taskid) {
-                    $t = $taskController->getTaskById($taskid);
-                    if($t['subject'] != null && isset($t['subject'])) {
+                    if ($taskid != '') {
+                        $task = $taskController->getTaskById($taskid);
+                        if($task['user'] != 0){
+                            $status = 1;
+                        }else{
+                            $status = 0;
+                        }
                         $taskinfo = [
-                            'idTemplate' => (int)$id,
-                            'idTask' => (int)$taskid
+                            'subject' => strip_tags($task['subject']),
+                            'client' => strip_tags($task['client']),
+                            'user' => strip_tags($task['user']),
+                            'project' => strip_tags($task['project']),
+                            'assignment' => strip_tags($task['assignment']),
+                            'urgency' => strip_tags($task['urgency']),
+                            'duration' => strip_tags($task['duration']),
+                            'description' => strip_tags($task['description']),
+                            'endDate' => strip_tags($task['endDate']),
+                            'tender' => strip_tags($task['tender']),
+                            'cases' => $id,
+                            'status' => strip_tags($status)
                         ];
-                        $templateTaskLinksController->create($taskinfo);
+                        $taskController->create($taskinfo);
                     }
                 }
             }
@@ -196,8 +211,8 @@ if (isset($_POST['create'])) {
 
             <div>
                 <label><?= TEXT_END_DATE ?></label>
-                <input type="date" class="form-control" name="enddate" value="<?php if ($post) {
-                    echo $_POST['enddate'];
+                <input type="date" class="form-control" name="endDate" value="<?php if ($post) {
+                    echo $_POST['endDate'];
                 }; ?>">
             </div>
             <div class="description-holder">

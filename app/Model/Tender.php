@@ -303,12 +303,12 @@ class Tender
     }
 
     /**
-     * @param string $enddate
+     * @param string $endDate
      */
 
-    public function setEndDate($enddate)
+    public function setEndDate($endDate)
     {
-        $this->EndDate = $enddate;
+        $this->EndDate = $endDate;
     }
 
     /**

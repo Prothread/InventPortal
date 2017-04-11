@@ -77,7 +77,7 @@ $users = $userController->getUserList();
                             <?= $tender['chance'] ?> &#37;
                         </td>
                         <td>
-                            <?= date("d-m-Y", strtotime($tender['enddate'])) ?>
+                            <?= date("d-m-Y", strtotime($tender['endDate'])) ?>
                         </td>
                         <td>
                             <img src="css/status-<?= $tender['status'] ?>.png">

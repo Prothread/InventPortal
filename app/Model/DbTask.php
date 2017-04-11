@@ -27,7 +27,7 @@ class DbTask extends Database
 
     public function update(Task $task)
     {
-        $sql = "UPDATE `tasks` SET `tender` = '{$task->getTender()}', `subject` = '{$task->getSubject()}', `client` = '{$task->getClient()}',`user` = '{$task->getUser()}', `project` = '{$task->getProject()}', `assignment` = '{$task->getAssignment()}', `urgency` = '{$task->getUrgency()}', `duration` = '{$task->getDuration()}', `enddate` = '{$task->getEndDate()}', `description` = '{$task->getDescription()}' , `status` = '{$task->getStatus()}' , `cases` = '{$task->getCase()}' WHERE `id` = '{$task->getTaskId()}'";
+        $sql = "UPDATE `tasks` SET `tender` = '{$task->getTender()}', `subject` = '{$task->getSubject()}', `client` = '{$task->getClient()}',`user` = '{$task->getUser()}', `project` = '{$task->getProject()}', `assignment` = '{$task->getAssignment()}', `urgency` = '{$task->getUrgency()}', `duration` = '{$task->getDuration()}', `endDate` = '{$task->getEndDate()}', `description` = '{$task->getDescription()}' , `status` = '{$task->getStatus()}' , `cases` = '{$task->getCase()}' WHERE `id` = '{$task->getTaskId()}'";
         $this->dbQuery($sql);
     }
 

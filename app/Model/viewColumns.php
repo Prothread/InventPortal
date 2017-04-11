@@ -513,8 +513,8 @@
                             <input type="date" class="form-control <?php if (isset($task_endDate_error)) {
                                 echo "error-input";
                             } ?>" name="endDate"
-                                   value="<?php if (isset($_POST['enddate'])) {
-                                       echo $_POST['enddate'];
+                                   value="<?php if (isset($_POST['endDate'])) {
+                                       echo $_POST['endDate'];
                                    } else {
                                        echo date("d-m-y");
                                    } ?>">

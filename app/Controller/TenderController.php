@@ -85,7 +85,7 @@ class TenderController
     }
 
     /**
-     * Haalt enddate op
+     * Haalt endDate op
      *
      * @return mixed
      */
@@ -96,7 +96,7 @@ class TenderController
     }
 
     /**
-     * Berekend te enddate
+     * Berekend te endDate
      *
      * @param $creationdate
      * @param $validity
