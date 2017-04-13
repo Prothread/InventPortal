@@ -10,7 +10,7 @@ class DbTask extends Database
 {
     public function create(Task $task)
     {
-        $sql = "INSERT INTO `tasks` (`subject`, `client`, `user`,  `project`, `assignment`, `endDate`, `urgency`, `description`, `duration`, `status`, `tender`, `cases`) VALUES('{$task->getSubject()}', '{$task->getClient()}', '{$task->getUser()}', '{$task->getProject()}', '{$task->getAssignment()}', '{$task->getEndDate()}', '{$task->getUrgency()}', '{$task->getDescription()}', '{$task->getDuration()}', '{$task->getStatus()}', '{$task->getTender()}', '{$task->getCase()}')";
+        $sql = "INSERT INTO `tasks` (`subject`, `client`, `user`,  `project`, `assignment`, `endDate`, `urgency`, `description`, `duration`, `status`, `tender`, `cases`) VALUES('{$task->getSubject()}', '{$task->getClient()}', '{$task->getUser()}', '{$task->getProjectId()}', '{$task->getAssignment()}', '{$task->getEndDate()}', '{$task->getUrgency()}', '{$task->getDescription()}', '{$task->getDuration()}', '{$task->getStatus()}', '{$task->getTender()}', '{$task->getCases()}')";
         if ($this->dbQuery($sql)) {
             return $this->dbLastInsertedId();
         }
@@ -27,7 +27,7 @@ class DbTask extends Database
 
     public function update(Task $task)
     {
-        $sql = "UPDATE `tasks` SET `tender` = '{$task->getTender()}', `subject` = '{$task->getSubject()}', `client` = '{$task->getClient()}',`user` = '{$task->getUser()}', `project` = '{$task->getProject()}', `assignment` = '{$task->getAssignment()}', `urgency` = '{$task->getUrgency()}', `duration` = '{$task->getDuration()}', `endDate` = '{$task->getEndDate()}', `description` = '{$task->getDescription()}' , `status` = '{$task->getStatus()}' , `cases` = '{$task->getCase()}' WHERE `id` = '{$task->getTaskId()}'";
+        $sql = "UPDATE `tasks` SET `tender` = '{$task->getTender()}', `subject` = '{$task->getSubject()}', `client` = '{$task->getClient()}',`user` = '{$task->getUser()}', `project` = '{$task->getProjectId()}', `assignment` = '{$task->getAssignment()}', `urgency` = '{$task->getUrgency()}', `duration` = '{$task->getDuration()}', `endDate` = '{$task->getEndDate()}', `description` = '{$task->getDescription()}' , `status` = '{$task->getStatus()}' , `cases` = '{$task->getCases()}' WHERE `id` = '{$task->getTaskId()}'";
         $this->dbQuery($sql);
     }
 

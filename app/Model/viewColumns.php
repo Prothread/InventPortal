@@ -11,41 +11,29 @@
 ?>
 
 <div class="tender-view-side-column">
-    <div class="tender-view-box">
-        <a href="#">...</a>
-        <ul>
-            <li>
-                Log onderwerp
-            </li>
-            <li>
-                Log datum
-            </li>
-        </ul>
-    </div>
-
-    <div class="tender-view-box">
-        <a href="#">...</a>
-        <ul>
-            <li>
-                Log onderwerp
-            </li>
-            <li>
-                Log datum
-            </li>
-        </ul>
-    </div>
-
-    <div class="tender-view-box">
-        <a href="#">...</a>
-        <ul>
-            <li>
-                Log onderwerp
-            </li>
-            <li>
-                Log datum
-            </li>
-        </ul>
-    </div>
+    <?php
+    if(!is_null($logs)) {
+        foreach ($logs as $log) {
+            $logDate = explode(' ', $log['date']);
+            ?>
+            <div class="tender-view-box">
+                <ul>
+                    <li>
+                        <?= constant($log['subject']) ?>
+                    </li>
+                    <li>
+                        <?= $logDate[0] ?>
+                    </li>
+                </ul>
+                <button id="logLink<?= $log['id'] ?>" class="notitieviewbtn" data-toggle="modal"
+                        data-target="#myModal"
+                        onclick="logView(<?= $log['id'] ?>)">...
+                </button>
+            </div>
+            <?php
+        }
+    }
+    ?>
 </div>
 <!--    Notes-->
 <div class="tender-view-side-column">
@@ -157,6 +145,39 @@
 
 <div class="modal fade" id="myModal" role="dialog">
 
+    <div class="modal-dialog" id="logview">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" id="logSubject"></h4>
+            </div>
+            <div class="modal-body">
+                <form action="#" method="post" class="form-horizontal">
+                    <fieldset>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="logDescription"><?= TEXT_DESCRIPTION ?></label>
+                            <div class="col-md-4">
+                                 <textarea class="form-control input-md description" id="logDescription" readonly></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="logDate"><?= TEXT_DATE ?></label>
+                            <div class="col-md-4">
+                                <input class="form-control input-md" id="logDate" type="text" value="" readonly/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="logUser"><?= TEXT_IS_USER ?></label>
+                            <div class="col-md-4">
+                                <input class="form-control input-md" id="logUser" type="text" value="" readonly/>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <div class="modal-dialog" id="notitieview">
         <div class="modal-content">
             <div class="modal-header">
@@ -217,7 +238,7 @@
                                            echo $_POST['eventDate'];
                                        } else {
                                            echo date('Y-m-d');
-                                       } ?>">
+                                       } ?>" max="<?= date("Y-m-d") ?>">
                             </div>
                         </div>
 
@@ -261,6 +282,25 @@
                             <input type="hidden" name="deleteId" id="deleteId" value="">
                             <label class="col-md-4 control-label" for="noteAdd"></label>
                             <div class="col-md-4">
+                                <input type="hidden" name="noteType" value="<?php
+                                switch ($type) {
+                                    case 'tender':
+                                        echo 1;
+                                        break;
+                                    case 'project':
+                                        echo 2;
+                                        break;
+                                    case 'assignment':
+                                        echo 3;
+                                        break;
+                                    case 'task':
+                                        echo 4;
+                                        break;
+                                    case 'case':
+                                        echo 5;
+                                        break;
+                                }
+                                ?>">
                                 <button type="submit" name="noteDelete"
                                         class="btn btn-primary"><?= TEXT_DELETE ?></button>
                             </div>
@@ -313,7 +353,7 @@
                                 if (isset($noteAddError ) && isset($note_eventDate_error)){
                                     echo 'error-input';
                                 }?>" id="eventDate" name="eventDate" type="date"
-                                       value="<?php if (isset($noteAddError )){echo $_POST['eventDate'];}else{echo date('Y-m-d');}?>">
+                                       value="<?php if (isset($noteAddError )){echo $_POST['eventDate'];}else{echo date('Y-m-d');}?>" max="<?= date("Y-m-d") ?>">
                             </div>
                         </div>
                         <div class="form-group">
@@ -517,7 +557,7 @@
                                        echo $_POST['endDate'];
                                    } else {
                                        echo date("d-m-y");
-                                   } ?>">
+                                   } ?>" min="<?= date("Y-m-d") ?>">
                         </div>
 
                         <div class="description-holder">
@@ -643,7 +683,7 @@
                                        echo $_POST['endDate'];
                                    } else {
                                        echo date("d-m-y");
-                                   } ?>">
+                                   } ?>" min="<?= date("Y-m-d") ?>">
                         </div>
 
                         <div class="description-holder">
@@ -682,6 +722,19 @@
         }
         ?>
     };
+    var logs = {
+        <?php
+        foreach ($logs as $log){
+            $logUser = '';
+            foreach ($users as $user){
+                if($user['id'] == $log['user']){
+                    $logUser = $user['naam'];
+                }
+            }
+            echo $log['id'] . ':{ subject:"' . constant($log['subject']) . '",description: "' . $log['description'] . '", date: "' . $log['date'] . '", user: "' . $logUser . '"},';
+        }
+        ?>
+    }
     var notitiebtn = document.getElementById("notitie");
     var taakbtn = document.getElementById("taak");
     var opdrachtbtn = document.getElementById("opdracht");
@@ -700,6 +753,7 @@
         opdracht.style.display = 'none';
         <?php }?>
         notitieview.style.display = 'none';
+        logview.style.display = 'none';
     }
 
     notitiebtn.onclick = function () {
@@ -719,6 +773,20 @@
         opdracht.style.display = 'block';
     };
     <?php } ?>
+
+    function logView(id) {
+        hideForms();
+        logview.style.display = 'block';
+        subject = logs[id]['subject'];
+        description = logs[id]['description'];
+        date = logs[id]['date'];
+        user = logs[id]['user'];
+//        alert(subject + description + date + user);
+        $('#logSubject').html(subject);
+        $('#logDescription').val(description);
+        $('#logDate').val(date);
+        $('#logUser').val(user);
+    }
 
     var noteEditError = false;
 

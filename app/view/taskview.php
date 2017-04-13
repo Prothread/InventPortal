@@ -115,12 +115,12 @@ include '../app/Model/viewSetup.php';
 
             <div>
                 <label><?= TEXT_CASE_ADD ?></label>
-                <select class="form-control" name="case">
+                <select class="form-control" name="cases">
                     <option value="0"<?php if ($taskinfo['cases'] == 0) {
                         echo 'selected';
                     } ?>><?= TEXT_CASE_ADD ?></option>
                     <?php
-                    foreach ($cases as $case) {
+                    foreach ($caseList as $case) {
                         echo '<option value="' . $case['id'] . '"';
                         if ($case['id'] == $taskinfo['cases']) {
                             echo 'selected';
@@ -168,7 +168,7 @@ include '../app/Model/viewSetup.php';
 
                 <div>
                     <label><?= TEXT_END_DATE ?></label>
-                    <input type="date" class="form-control <?php if(isset($endDate_error)){echo "error-input";} ?>" name="endDate" value="<?= $taskinfo['endDate'] ?>"
+                    <input type="date" class="form-control <?php if(isset($endDate_error)){echo "error-input";} ?>" name="endDate" value="<?= $taskinfo['endDate'] ?>" min="<?= date("Y-m-d") ?>">
                     <br>
                 </div>
                 <div class="description-holder">
@@ -178,7 +178,7 @@ include '../app/Model/viewSetup.php';
                 </div>
                 <div class="button-update">
                     <div class="button-push"></div>
-                    <button type="submit" name="updateTask"
+                    <button type="submit" name="update"
                             class="custom-file-upload"><?= TEXT_EDIT ?></button>
                 </div>
         </form>

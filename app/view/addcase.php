@@ -213,7 +213,7 @@ if (isset($_POST['create'])) {
                 <label><?= TEXT_END_DATE ?></label>
                 <input type="date" class="form-control" name="endDate" value="<?php if ($post) {
                     echo $_POST['endDate'];
-                }; ?>">
+                }; ?>" min="<?= date("Y-m-d") ?>">
             </div>
             <div class="description-holder">
                 <label><?= TEXT_DESCRIPTION ?></label>

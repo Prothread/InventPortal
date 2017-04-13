@@ -110,7 +110,7 @@ include '../app/Model/viewSetup.php';
                 } else {
                     echo $caseinfo['endDate'];
                 }
-                ?>">
+                ?>" min="<?= date("Y-m-d") ?>">
             </div>
             <div class="description-holder">
                 <label><?= TEXT_DESCRIPTION ?></label>

@@ -87,6 +87,9 @@ class ComposerStaticInitc0a55957efdf0e279fcd6092060aa6da
         'NoteTypeController' => __DIR__ . '/../..' . '/app/Controller/NoteTypeController.php',
         'NoteType' => __DIR__ . '/../..' . '/app/Model/noteType.php',
         'DbNoteType' => __DIR__ . '/../..' . '/app/Model/DbNoteType.php',
+        'LogController' => __DIR__ . '/../..' . '/app/Controller/LogController.php',
+        'log' => __DIR__ . '/../..' . '/app/Model/log.php',
+        'DbLog' => __DIR__ . '/../..' . '/app/Model/DbLog.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

@@ -8,6 +8,31 @@
 
 /*CRM*/
 
+/*CRM LOGS*/
+
+/*add*/
+define("TEXT_NOTE_ADDED","Notitie toegevoegd");
+define("TEXT_TASK_ADDED","Taak toegevoegd");
+define("TEXT_ASSIGNMENT_ADDED","Opdracht toegevoegd");
+/*create*/
+define("TEXT_TENDER_CREATED","Offerte aangemaakt");
+define("TEXT_PROJECT_CREATED","Project aangemaakt");
+define("TEXT_ASSIGNMENT_CREATED","Opdracht aangemaakt");
+define("TEXT_TASK_CREATED","Taak aangemaakt");
+define("TEXT_CASE_CREATED","Case aangemaakt");
+/*edit*/
+define("TEXT_TENDER_EDITED","Offerte aangepast");
+define("TEXT_PROJECT_EDITED","Project aangepast");
+define("TEXT_ASSIGNMENT_EDITED","Opdracht aangepast");
+define("TEXT_TASK_EDITED","Taak aangepast");
+define("TEXT_CASE_EDITED","Case aangepast");
+define("TEXT_NOTE_EDITED","Notitie aangepast");
+/*delete*/
+define("TEXT_NOTE_DELETED","Notitie verwijderd");
+
+/*CRM LOGS END*/
+
+
 define("TEXT_CRM_DASHBOARD", "CRM Dashboard");
 define("TEXT_OVERVIEWS_DROPDOWN", "Overzichten");
 define("TEXT_CREATE_DROPDOWN", "Aanmaken");
@@ -89,6 +114,7 @@ define("TEXT_ACCORD", "Accordering");
 define("TEXT_LOGOUT", "Uitloggen");
 define("TEXT_USERPROFILE", "Profiel: ");
 define("TEXT_VERSIE", "Versie");
+define("TEXT_VIEW_LOG", "Log");
 
 /* LOGIN */
 define("TEXT_PASSWORD", "Wachtwoord");

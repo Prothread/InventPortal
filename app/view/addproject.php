@@ -1,21 +1,36 @@
-
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>jQuery UI Sortable - Default functionality</title>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="/resources/demos/style.css">
 <style>
-    #sortable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
-    #sortable li { margin: 0 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; font-size: 1.4em; height: 18px; }
-    #sortable li span { position: absolute; margin-left: -1.3em; }
+    #sortable {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        width: 60%;
+    }
+
+    #sortable li {
+        margin: 0 3px 3px 3px;
+        padding: 0.4em;
+        padding-left: 1.5em;
+        font-size: 1.4em;
+        height: 18px;
+    }
+
+    #sortable li span {
+        position: absolute;
+        margin-left: -1.3em;
+    }
 </style>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
-    $( function() {
-        $( "#sortable" ).sortable();
-        $( "#sortable" ).disableSelection();
-    } );
+    $(function () {
+        $("#sortable").sortable();
+        $("#sortable").disableSelection();
+    });
 </script>
 
 <?php
@@ -89,14 +104,14 @@ if (isset($_POST['create'])) {
 
         if ($id = $project->create($projectinfo)) {
 
-            if($defaultTasks != null && isset($defaultTasks)){
+            if ($defaultTasks != null && isset($defaultTasks)) {
                 $tasksId = explode("-", $defaultTasks);
                 foreach ($tasksId as $taskid) {
                     if ($taskid != '') {
                         $task = $taskController->getTaskById($taskid);
-                        if($task['user'] != 0){
+                        if ($task['user'] != 0) {
                             $status = 1;
-                        }else{
+                        } else {
                             $status = 0;
                         }
                         $taskinfo = [
@@ -118,6 +133,16 @@ if (isset($_POST['create'])) {
                 }
             }
 
+            $logController = new LogController();
+            $loginfo = [
+                'subject' => 'TEXT_PROJECT_CREATED',
+                'description' => 'Project ' . $projectinfo['subject'] .  ' toegevoegd',
+                'date' => date('Y-m-d G:i:s'),
+                'user' => $_SESSION['usr_id'],
+                'linkType' => 2,
+                'linkId' => $id
+            ];
+            $logController->create($loginfo);
             $block = new BlockController();
             $block->Redirect('index.php?page=projectview&id=' . $id);
         } else {
@@ -169,7 +194,7 @@ if (isset($_POST['create'])) {
                 <label><?= TEXT_END_DATE ?></label>
                 <input type="date" class="form-control" name="endDate" value="<?php if ($post) {
                     echo $_POST['endDate'];
-                }; ?>">
+                }; ?>" min="<?= date("Y-m-d") ?>">
             </div>
             <div class="description-holder">
                 <label><?= TEXT_DESCRIPTION ?></label>
@@ -181,7 +206,8 @@ if (isset($_POST['create'])) {
             </div>
             <div class="button-holder">
                 <div class="button-push"></div>
-                <button type="submit" name="create" class="custom-file-upload" onclick="ez()"><?= TEXT_CREATE_DROPDOWN ?></button>
+                <button type="submit" name="create" class="custom-file-upload"
+                        onclick="ez()"><?= TEXT_CREATE_DROPDOWN ?></button>
             </div>
             <input type="hidden" name="defaultTasks" id="defaultTasks">
         </form>
@@ -233,7 +259,7 @@ if (isset($_POST['create'])) {
 
     };
 
-    function addTask(id){
+    function addTask(id) {
         var ul = document.getElementById("sortable");
         var li = document.createElement("li");
         var btn = document.createElement("button");
@@ -247,9 +273,9 @@ if (isset($_POST['create'])) {
 
         amount += 1;
 
-        li.setAttribute("id", "dt"+amount);
+        li.setAttribute("id", "dt" + amount);
 
-        btn.setAttribute("onclick", "deleteTask("+"dt"+amount+")");
+        btn.setAttribute("onclick", "deleteTask(" + "dt" + amount + ")");
         btn.setAttribute("class", "custom-file-upload");
 
     }
@@ -278,7 +304,7 @@ if (isset($_POST['create'])) {
         var id = list.options[list.selectedIndex].value;
 
         var templatename = 'template' + id;
-        for(i = 0; i < eval(templatename).length; i++){
+        for (i = 0; i < eval(templatename).length; i++) {
             addTask(eval(templatename)[i]);
         }
 
@@ -298,7 +324,7 @@ if (isset($_POST['create'])) {
         var parent = document.getElementById("sortable");
         var child = document.getElementById(task.id);
         parent.removeChild(child);
-        console.log("dt"+task.id)
+        console.log("dt" + task.id)
     }
 
     function ez() {

@@ -45,6 +45,15 @@ if (!$error) {
         $taskinfo[$v] = ${$v};
     }
     $taskController->create($taskinfo);
+    $loginfo = [
+        'subject' => 'TEXT_TASK_ADDED',
+        'description' => 'Task ' . $subject .  ' toegevoegd',
+        'date' => date('Y-m-d G:i:s'),
+        'user' => $_SESSION['usr_id'],
+        'linkType' => $typeNumb,
+        'linkId' => $id
+    ];
+    $logController->create($loginfo);
 } else {
     $taskError = true;
 }

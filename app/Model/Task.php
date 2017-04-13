@@ -22,7 +22,7 @@ class Task
 
     private $Status;
 
-    private $project;
+    private $ProjectId;
 
     private $assignment;
 
@@ -36,22 +36,22 @@ class Task
 
     private $tender;
 
-    private $case;
+    private $cases;
 
     /**
      * @return mixed
      */
-    public function getCase()
+    public function getCases()
     {
-        return $this->case;
+        return $this->cases;
     }
 
     /**
      * @param mixed $case
      */
-    public function setCase($case)
+    public function setCases($cases)
     {
-        $this->case = $case;
+        $this->cases = $cases;
     }
 
     /**
@@ -169,17 +169,17 @@ class Task
     /**
      * @return mixed
      */
-    public function getProject()
+    public function getProjectId()
     {
-        return $this->project;
+        return $this->ProjectId;
     }
 
     /**
-     * @param mixed $project
+     * @param mixed $ProjectId
      */
-    public function setProject($project)
+    public function setProjectId($ProjectId)
     {
-        $this->project = $project;
+        $this->ProjectId = $ProjectId;
     }
 
     /**

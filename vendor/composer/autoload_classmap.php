@@ -59,4 +59,7 @@ return array(
     'NoteTypeController' => $baseDir . '/app/Controller/NoteTypeController.php',
     'NoteType' => $baseDir . '/app/Model/NoteType.php',
     'DbNoteType' => $baseDir . '/app/Model/DbNoteType.php',
+    'LogController' => $baseDir . '/app/Controller/LogController.php',
+    'Log' => $baseDir . '/app/Model/log.php',
+    'DbLog' => $baseDir . '/app/Model/DBLog.php',
 );

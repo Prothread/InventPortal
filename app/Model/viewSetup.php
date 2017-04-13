@@ -40,6 +40,25 @@ if (is_null(${$typeinfo})) {
 //user ID
 $thisUserId = $_SESSION['usr_id'];
 
+//type numb setter
+switch ($type) {
+    case 'tender':
+        $typeNumb = 1;
+        break;
+    case 'project':
+        $typeNumb = 2;
+        break;
+    case 'assignment':
+        $typeNumb = 3;
+        break;
+    case 'task':
+        $typeNumb = 4;
+        break;
+    case 'case':
+        $typeNumb = 5;
+        break;
+}
+
 //users controller
 $userController = new UserController();
 //client list
@@ -71,8 +90,10 @@ if($type == 'task'){
     //case controller
     $caseController = new CaseController();
     //case list
-    $cases = $caseController->getAllCases();
+    $caseList = $caseController->getAllCases();
 }
+
+$logController = new LogController();
 
 //task submit handler
 if (isset($_POST['submitTask'])) {
@@ -95,25 +116,6 @@ $noteController = new NoteController();
 //note handeler
 if (isset($_POST['noteAdd']) || isset($_POST['noteEdit']) || isset($_POST['noteDelete'])) {
     include '../app/Model/noteProcessor.php';
-}
-
-//type numb setter
-switch ($type) {
-    case 'tender':
-        $typeNumb = 1;
-        break;
-    case 'project':
-        $typeNumb = 2;
-        break;
-    case 'assignment':
-        $typeNumb = 3;
-        break;
-    case 'task':
-        $typeNumb = 4;
-        break;
-    case 'case':
-        $typeNumb = 5;
-        break;
 }
 
 //related notes
@@ -192,6 +194,15 @@ if ($type == 'project') {
             ];
             //assignment create
             $assignmentController->create($assignmentinfo);
+            $loginfo = [
+                'subject' => 'TEXT_ASSIGNMENT_ADDED',
+                'description' => 'Task ' . $subject .  ' toegevoegd',
+                'date' => date('Y-m-d G:i:s'),
+                'user' => $_SESSION['usr_id'],
+                'linkType' => $typeNumb,
+                'linkId' => $id
+            ];
+            $logController->create($loginfo);
         } else {
 
             //assignment error setter
@@ -223,7 +234,7 @@ if (isset($_POST['update'])) {
             $valueNames = ["subject", "client", "user", "endDate", "description", "projectId"];
             break;
         case 'task':
-            $valueNames = ["subject", "client", "user", "projectId", "assignment", "urgency", "duration", "endDate", "description", "tender", "case"];
+            $valueNames = ["subject", "client", "user", "project", "assignment", "urgency", "duration", "endDate", "description", "tender", "cases"];
             break;
         case 'case':
             $valueNames = ["subject", "client", "user", "projectId", "assignment", "endDate", "description"];
@@ -240,7 +251,7 @@ if (isset($_POST['update'])) {
 
     //value type setters
     $stringVals = ["subject", "description", "endDate"];
-    $intVals = ["client", "user", "validity", "chance", "assignment", "urgency", "duration", "tender", "case","projectId"];
+    $intVals = ["client", "user", "validity", "chance", "assignment", "urgency", "duration", "tender", "cases","projectId","project"];
     $floatVals = ["value"];
 
     //string values filter
@@ -300,8 +311,24 @@ if (isset($_POST['update'])) {
 
         //item update
         ${$typeController}->update(${$typeinfo});
+        $logController = new LogController();
+        $loginfo = [
+            'subject' => 'TEXT_' . strtoupper($type) . '_EDITED',
+            'description' => 'Project ' . ${$typeinfo}['subject'] .  ' toegevoegd',
+            'date' => date('Y-m-d G:i:s'),
+            'user' => $_SESSION['usr_id'],
+            'linkType' => $typeNumb,
+            'linkId' => $id
+        ];
+        $logController->create($loginfo);
     }
 }
+
+//log controller
+$logController = new LogController();
+
+//related logs
+$logs = $logController->getLogsByLinkId($typeNumb, ${$typeinfo}['id']);
 
 //delete handler
 if (isset($_POST['delete'])) {

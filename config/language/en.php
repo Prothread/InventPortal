@@ -8,6 +8,29 @@
 
 /*CRM*/
 
+/*CRM LOGS*/
+
+/*add*/
+define("TEXT_NOTE_ADDED","Note addded");
+define("TEXT_TASK_ADDED","Task added");
+define("TEXT_ASSIGNMENT_ADDED","Assignment added");
+/*create*/
+define("TEXT_TENDER_CREATED","Tender created");
+define("TEXT_PROJECT_CREATED","Project created");
+define("TEXT_ASSIGNMENT_CREATED","Assignment created");
+define("TEXT_TASK_CREATED","Task created");
+define("TEXT_CASE_CREATED","Case created");
+/*edit*/
+define("TEXT_TENDER_EDITED","Tender edited");
+define("TEXT_PROJECT_EDITED","Project edited");
+define("TEXT_ASSIGNMENT_EDITED","Assignment edited");
+define("TEXT_TASK_EDITED","Task edited");
+define("TEXT_CASE_EDITED","Case edited");
+define("TEXT_NOTE_EDITED","Note edited");
+/*delete*/
+define("TEXT_NOTE_DELETED","Note deleted");
+
+
 define("TEXT_CRM_DASHBOARD", "CRM Dashboard");
 define("TEXT_OVERVIEWS_DROPDOWN", "Overviews");
 define("TEXT_CREATE_DROPDOWN", "Add");
@@ -89,6 +112,7 @@ define("TEXT_ACCORD", "Accord");
 define("TEXT_LOGOUT", "Log out");
 define("TEXT_USERPROFILE", "Profile: ");
 define("TEXT_VERSIE", "Version");
+define("TEXT_VIEW_LOG", "Log");
 
 
 /* LOGIN */

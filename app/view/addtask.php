@@ -275,7 +275,7 @@ if (isset($_POST['submitTask'])) {
                            echo $_POST['endDate'];
                        } else {
                            echo date("d-m-y");
-                       } ?>">
+                       } ?>" min="<?= date("Y-m-d") ?>">
             </div>
 
             <div class="description-holder">

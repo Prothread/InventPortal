@@ -94,7 +94,7 @@ include '../app/Model/viewSetup.php';
                 } else {
                     echo $assignmentinfo['endDate'];
                 }
-                ?>">
+                ?>" min="<?= date("Y-m-d") ?>">
             </div>
             <div class="description-holder">
                 <label><?= TEXT_DESCRIPTION ?></label>

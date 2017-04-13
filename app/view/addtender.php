@@ -221,8 +221,8 @@ if (isset($_POST['create'])) {
                        value="<?php if (isset($_POST['creationdate'])) {
                            echo $_POST['creationdate'];
                        } else {
-                           echo date("d-m-y");
-                       } ?>">
+                           echo date("Y-m-d");
+                       } ?>" max="<?= date("Y-m-d") ?>">
             </div>
             <div class="description-holder">
                 <label><?= TEXT_DESCRIPTION ?></label>

@@ -8,6 +8,12 @@
 
 $error = false;
 
+foreach ($noteTypes as $n){
+    if ($n['id'] == $_POST['noteType']){
+        $logName = $n['name'];
+    }
+}
+
 if (isset($_POST['noteDelete'])){
     $noteId = mysqli_real_escape_string($mysqli, $_POST['deleteId']);
     if (!filter_var($noteId, FILTER_VALIDATE_INT)) {
@@ -16,6 +22,15 @@ if (isset($_POST['noteDelete'])){
     }
     if(!$error){
         $noteController->delete($noteId);
+        $loginfo = [
+            'subject' => 'TEXT_NOTE_DELETED',
+            'description' => 'Note ' . $logName .  ' verwijderd',
+            'date' => date('Y-m-d G:i:s'),
+            'user' => $_SESSION['usr_id'],
+            'linkType' => $typeNumb,
+            'linkId' => $id
+        ];
+        $logController->create($loginfo);
     }
 }else {
 
@@ -59,6 +74,15 @@ if (isset($_POST['noteDelete'])){
                 'creationDate' => $creationDate
             ];
             $noteController->create($noteInfo);
+            $loginfo = [
+                'subject' => 'TEXT_NOTE_ADDED',
+                'description' => 'Note ' . $logName .  ' toegevoegd',
+                'date' => date('Y-m-d G:i:s'),
+                'user' => $_SESSION['usr_id'],
+                'linkType' => $typeNumb,
+                'linkId' => $id
+            ];
+            $logController->create($loginfo);
         } elseif (isset($_POST['noteEdit'])) {
             $noteInfo = [
                 'linkType' => $linkType,
@@ -71,6 +95,15 @@ if (isset($_POST['noteDelete'])){
                 'id' => $noteId
             ];
             $noteController->update($noteInfo);
+            $loginfo = [
+                'subject' => 'TEXT_NOTE_EDITED',
+                'description' => 'Note ' . $logName . ' aangepast',
+                'date' => date('Y-m-d G:i:s'),
+                'user' => $_SESSION['usr_id'],
+                'linkType' => $typeNumb,
+                'linkId' => $id
+            ];
+            $logController->create($loginfo);
         }
     }else{
         if (isset($_POST['noteAdd'])){

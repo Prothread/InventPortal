@@ -25,8 +25,8 @@ class TaskController
             $this->model->setUser($taskinfo['user']);
         }
 
-        if (isset($taskinfo['project'])) {
-            $this->model->setProject($taskinfo['project']);
+        if (isset($taskinfo['ProjectId'])) {
+            $this->model->setProjectId($taskinfo['ProjectId']);
         }
 
         if (isset($taskinfo['assignment'])) {
@@ -58,7 +58,7 @@ class TaskController
         }
 
         if (isset($taskinfo['cases'])) {
-            $this->model->setCase($taskinfo['cases']);
+            $this->model->setCases($taskinfo['cases']);
         }
 
         if ($result = $this->model->create()) {
@@ -95,7 +95,7 @@ class TaskController
         $this->model->setSubject($taskinfo['subject']);
         $this->model->setClient($taskinfo['client']);
         $this->model->setUser($taskinfo['user']);
-        $this->model->setProject($taskinfo['project']);
+        $this->model->setProjectId($taskinfo['project']);
         $this->model->setAssignment($taskinfo['assignment']);
         $this->model->setUrgency($taskinfo['urgency']);
         $this->model->setDuration($taskinfo['duration']);
@@ -103,7 +103,7 @@ class TaskController
         $this->model->setDescription($taskinfo['description']);
         $this->model->setStatus($taskinfo['status']);
         $this->model->setTender($taskinfo['tender']);
-        $this->model->setCase($taskinfo['cases']);
+        $this->model->setCases($taskinfo['cases']);
         $this->model->update();
     }
 
