@@ -22,7 +22,7 @@ class Task
 
     private $Status;
 
-    private $ProjectId;
+    private $project;
 
     private $assignment;
 
@@ -171,15 +171,15 @@ class Task
      */
     public function getProjectId()
     {
-        return $this->ProjectId;
+        return $this->project;
     }
 
     /**
-     * @param mixed $ProjectId
+     * @param mixed $project
      */
-    public function setProjectId($ProjectId)
+    public function setProjectId($project)
     {
-        $this->ProjectId = $ProjectId;
+        $this->project = $project;
     }
 
     /**

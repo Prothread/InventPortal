@@ -16,7 +16,6 @@ class DbTender extends Database
     public function create(Tender $tender)
     {
         $sql = "INSERT INTO `tenders` (`subject`, `client`, `user`,  `validity`, `value`, `chance`, `creationdate`, `description`, `status`, `endDate`) VALUES('{$tender->getSubject()}', '{$tender->getClient()}', '{$tender->getUser()}', '{$tender->getValidity()}', '{$tender->getValue()}', '{$tender->getChance()}', '{$tender->getCreationDate()}', '{$tender->getDescription()}', '{$tender->getStatus()}', '{$tender->getEndDate()}')";
-
         $this->dbQuery($sql);
         return $this->dbLastInsertedId();
     }
@@ -98,7 +97,9 @@ class DbTender extends Database
     public function update(Tender $tender)
     {
         $sql = "UPDATE `tenders` SET `subject` = '{$tender->getSubject()}', `client` = '{$tender->getClient()}',`user` = '{$tender->getUser()}', `validity` = '{$tender->getValidity()}', `description` = '{$tender->getDescription()}', `status` = '{$tender->getStatus()}', `value` = '{$tender->getValue()}', `chance` = '{$tender->getChance()}', `endDate` = '{$tender->getEndDate()}' WHERE `id` = '{$tender->getTenderId()}'";
-        $this->dbQuery($sql);
+        if($this->dbQuery($sql)){
+            return true;
+        }
     }
 
     /**

@@ -25,7 +25,9 @@ class DbNote extends Database
     public function update(Note $note)
     {
         $sql = "UPDATE `notes` SET `linkType` = '{$note->getLinkType()}',`linkId` = '{$note->getLinkId()}',`noteType` = '{$note->getNoteType()}',`eventDate` = '{$note->getEventDate()}',`description` = '{$note->getDescription()}',`user` = '{$note->getUser()}',`creationDate` = '{$note->getCreationDate()}' WHERE `id` = '{$note->getNoteId()}'";
-        $this->dbQuery($sql);
+        if ($this->dbQuery($sql)) {
+            return true;
+        }
     }
 
     public function delete($id)

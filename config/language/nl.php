@@ -14,6 +14,7 @@
 define("TEXT_NOTE_ADDED","Notitie toegevoegd");
 define("TEXT_TASK_ADDED","Taak toegevoegd");
 define("TEXT_ASSIGNMENT_ADDED","Opdracht toegevoegd");
+define("TEXT_ADDED","toegevoegd");
 /*create*/
 define("TEXT_TENDER_CREATED","Offerte aangemaakt");
 define("TEXT_PROJECT_CREATED","Project aangemaakt");
@@ -27,8 +28,10 @@ define("TEXT_ASSIGNMENT_EDITED","Opdracht aangepast");
 define("TEXT_TASK_EDITED","Taak aangepast");
 define("TEXT_CASE_EDITED","Case aangepast");
 define("TEXT_NOTE_EDITED","Notitie aangepast");
+define("TEXT_LOG_EDITED","aangepast");
 /*delete*/
 define("TEXT_NOTE_DELETED","Notitie verwijderd");
+define("TEXT_DELETED","verwijderd");
 
 /*CRM LOGS END*/
 

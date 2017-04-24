@@ -2,6 +2,7 @@
 #LOGIN PAGE
 
 $mysqli = mysqli_connect();
+//online mysqli connectie maken
 
 $user = new UserController();
 $admin = $user->getAdminSettings();

@@ -25,8 +25,8 @@ class TaskController
             $this->model->setUser($taskinfo['user']);
         }
 
-        if (isset($taskinfo['ProjectId'])) {
-            $this->model->setProjectId($taskinfo['ProjectId']);
+        if (isset($taskinfo['project'])) {
+            $this->model->setProjectId($taskinfo['project']);
         }
 
         if (isset($taskinfo['assignment'])) {
@@ -104,7 +104,7 @@ class TaskController
         $this->model->setStatus($taskinfo['status']);
         $this->model->setTender($taskinfo['tender']);
         $this->model->setCases($taskinfo['cases']);
-        $this->model->update();
+        return $this->model->update();
     }
 
     public function updateDefault(array $taskinfo)

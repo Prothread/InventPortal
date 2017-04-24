@@ -77,7 +77,7 @@ include '../app/Model/viewSetup.php';
                 <label><?= TEXT_VALIDITY_DURATION ?></label>
                 <input type="number" class="form-control <?php if (isset($vadility_error)) {
                     echo "error-input";
-                } ?>" name="validity" min="1" value="<?php
+                } ?>" name="validity" min="1" max="7500" value="<?php
                 if ($post) {
                     echo $_POST['validity'];
                 } else {
@@ -118,7 +118,7 @@ include '../app/Model/viewSetup.php';
                        } else {
                            echo date("d-m-Y", strtotime($tenderinfo['endDate']));
                        }
-                       ?>"
+                       ?>">
                 <br>
             </div>
             <div class="description-holder">
@@ -136,7 +136,7 @@ include '../app/Model/viewSetup.php';
             </div>
             <div class="button-update">
                 <div class="button-push"></div>
-                <button type="submit" name="updateTender"
+                <button type="submit" name="update"
                         class="custom-file-upload"><?= TEXT_EDIT ?></button>
             </div>
         </form>

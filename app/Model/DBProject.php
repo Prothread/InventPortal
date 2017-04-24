@@ -19,7 +19,9 @@ class DbProject extends Database
     public function update(Project $project)
     {
         $sql = "UPDATE `projects` SET `subject` = '{$project->getSubject()}', `client` = '{$project->getClient()}',`user` = '{$project->getUser()}', `endDate` = '{$project->getEndDate()}', `description` = '{$project->getDescription()}', `status` = '{$project->getStatus()}' WHERE `id` = '{$project->getProjectId()}'";
-        $this->dbQuery($sql);
+        if($this->dbQuery($sql)){
+            return true;
+        }
     }
 
     public function delete($id)

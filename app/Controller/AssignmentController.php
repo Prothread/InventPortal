@@ -22,7 +22,7 @@ class AssignmentController
         $this->model->setUser($assignmentinfo['user']);
         $this->model->setEndDate($assignmentinfo['endDate']);
         $this->model->setDescription($assignmentinfo['description']);
-        $this->model->setProject($assignmentinfo['project']);
+        $this->model->setProject($assignmentinfo['projectId']);
         $this->model->setStatus($assignmentinfo['status']);
         if ($result = $this->model->create()) {
             return $result;
@@ -37,7 +37,7 @@ class AssignmentController
         $this->model->setUser($assignmentinfo['user']);
         $this->model->setEndDate($assignmentinfo['endDate']);
         $this->model->setDescription($assignmentinfo['description']);
-        $this->model->setProject($assignmentinfo['project']);
+        $this->model->setProject($assignmentinfo['projectId']);
         $this->model->setStatus($assignmentinfo['status']);
         $result = $this->model->update();
         return $result;

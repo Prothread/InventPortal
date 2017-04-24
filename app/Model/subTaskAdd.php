@@ -47,7 +47,7 @@ if (!$error) {
     $taskController->create($taskinfo);
     $loginfo = [
         'subject' => 'TEXT_TASK_ADDED',
-        'description' => 'Task ' . $subject .  ' toegevoegd',
+        'description' => 'TEXT_TASK_ADD[constDivide]' . $subject .  '[constDivide]TEXT_ADDED',
         'date' => date('Y-m-d G:i:s'),
         'user' => $_SESSION['usr_id'],
         'linkType' => $typeNumb,

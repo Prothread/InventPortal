@@ -66,6 +66,9 @@ $clients = $userController->getClientList();
 //user list
 $users = $userController->getUserList();
 
+//log controller
+$logController = new LogController();
+
 //tasks controller
 $taskController = new TaskController();
 
@@ -92,8 +95,6 @@ if($type == 'task'){
     //case list
     $caseList = $caseController->getAllCases();
 }
-
-$logController = new LogController();
 
 //task submit handler
 if (isset($_POST['submitTask'])) {
@@ -130,7 +131,7 @@ if ($type == 'project') {
     if (isset($_POST['submitAssignment'])) {
 
         //value names
-        $valueNames = ["subject", "user", "client", "endDate", "description"];
+        $valueNames = ["subject", "user", "client", "endDate", "description", "projectId"];
 
         //value setters + mysqli escape string check
         foreach ($valueNames as $v) {
@@ -156,6 +157,12 @@ if ($type == 'project') {
             $assignment_client_error = true;
         }
 
+        //project filter
+        if (!filter_var($projectId, FILTER_VALIDATE_INT)) {
+            $error = true;
+            $assignment_project_error = true;
+        }
+
         //end date filter
         if (!filter_var($endDate, FILTER_SANITIZE_STRING)) {
             $error = true;
@@ -170,25 +177,22 @@ if ($type == 'project') {
 
         //ongoing status setter
         if ($user == 0) {
-
             //open status
             $status = 0;
         } else {
-
             //ongoing status
             $status = 1;
         }
 
         //error check
         if (!$error) {
-
             //value array set
             $assignmentinfo = [
                 'subject' => strip_tags($subject),
                 'user' => strip_tags($user),
                 'description' => strip_tags($description),
                 'endDate' => strip_tags($endDate),
-                'project' => $id,
+                'projectId' => strip_tags($projectId),
                 'status' => $status,
                 'client' => strip_tags($client)
             ];
@@ -196,7 +200,7 @@ if ($type == 'project') {
             $assignmentController->create($assignmentinfo);
             $loginfo = [
                 'subject' => 'TEXT_ASSIGNMENT_ADDED',
-                'description' => 'Task ' . $subject .  ' toegevoegd',
+                'description' => 'TEXT_ASSIGNMENT_ADD[constDivide]' . $subject .  '[constDivide]TEXT_ADDED',
                 'date' => date('Y-m-d G:i:s'),
                 'user' => $_SESSION['usr_id'],
                 'linkType' => $typeNumb,
@@ -204,7 +208,6 @@ if ($type == 'project') {
             ];
             $logController->create($loginfo);
         } else {
-
             //assignment error setter
             $assignmentError = true;
         }
@@ -218,7 +221,6 @@ $post = false;
 
 //post handeler
 if (isset($_POST['update'])) {
-
     //post setter
     $post = true;
 
@@ -300,32 +302,38 @@ if (isset($_POST['update'])) {
             $status = 1;
         }
 
+        if($type == 'tender'){
+            $creationDate = ${$typeinfo}["creationdate"];
+        }
+
         //value array set
         ${$typeinfo} = [
             'id' => $id,
             'status' => $status
         ];
+
         foreach ($valueNames as $v) {
             ${$typeinfo}[$v] = ${$v};
         }
 
+        if($type == 'tender'){
+            ${$typeinfo}['endDate'] = ${$typeController}->calcEndDate($creationDate,${$typeinfo}['validity']);
+        }
+
         //item update
-        ${$typeController}->update(${$typeinfo});
-        $logController = new LogController();
-        $loginfo = [
-            'subject' => 'TEXT_' . strtoupper($type) . '_EDITED',
-            'description' => 'Project ' . ${$typeinfo}['subject'] .  ' toegevoegd',
-            'date' => date('Y-m-d G:i:s'),
-            'user' => $_SESSION['usr_id'],
-            'linkType' => $typeNumb,
-            'linkId' => $id
-        ];
-        $logController->create($loginfo);
+        if(${$typeController}->update(${$typeinfo})) {
+            $loginfo = [
+                'subject' => 'TEXT_' . strtoupper($type) . '_EDITED',
+                'description' => 'TEXT_' . strtoupper($type) . '_ADD' . '[constDivide]' . ${$typeinfo}['subject'] . '[constDivide]' . 'TEXT_LOG_EDITED',
+                'date' => date('Y-m-d G:i:s'),
+                'user' => $_SESSION['usr_id'],
+                'linkType' => $typeNumb,
+                'linkId' => $id
+            ];
+            $logController->create($loginfo);
+        }
     }
 }
-
-//log controller
-$logController = new LogController();
 
 //related logs
 $logs = $logController->getLogsByLinkId($typeNumb, ${$typeinfo}['id']);

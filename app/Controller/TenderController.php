@@ -47,8 +47,9 @@ class TenderController
         if (isset($tenderinfo['chance'])) {
             $this->model->setChance($tenderinfo['chance']);
         }
-        if (isset($tenderinfo['creationdate'])) {
-            $this->model->setCreationDate($tenderinfo['creationdate']);
+        if (isset($tenderinfo['creationDate'])) {
+            $this->model->setCreationDate($tenderinfo['creationDate']);
+            $this->model->setEndDate($this->calcEndDate($tenderinfo['creationDate'],$tenderinfo['validity']));
         }
         if (isset($tenderinfo['description'])) {
             $this->model->setDescription($tenderinfo['description']);
@@ -104,7 +105,7 @@ class TenderController
 
     public function calcEndDate($creationdate, $validity)
     {
-        $this->model->calcEndDate($creationdate, $validity);
+        return $this->model->calcEndDate($creationdate, $validity);
     }
 
     /**
@@ -164,7 +165,8 @@ class TenderController
         $this->model->setChance($tenderinfo['chance']);
         $this->model->setValue($tenderinfo['value']);
         $this->model->setStatus($tenderinfo['status']);
-        $this->model->update();
+        $this->model->setEndDate($tenderinfo['endDate']);
+        return $this->model->update();
     }
 
     /**

@@ -14,6 +14,7 @@
 define("TEXT_NOTE_ADDED","Note addded");
 define("TEXT_TASK_ADDED","Task added");
 define("TEXT_ASSIGNMENT_ADDED","Assignment added");
+define("TEXT_ADDED","added");
 /*create*/
 define("TEXT_TENDER_CREATED","Tender created");
 define("TEXT_PROJECT_CREATED","Project created");
@@ -27,8 +28,12 @@ define("TEXT_ASSIGNMENT_EDITED","Assignment edited");
 define("TEXT_TASK_EDITED","Task edited");
 define("TEXT_CASE_EDITED","Case edited");
 define("TEXT_NOTE_EDITED","Note edited");
+define("TEXT_LOG_EDITED","edited");
 /*delete*/
 define("TEXT_NOTE_DELETED","Note deleted");
+define("TEXT_DELETED","deleted");
+
+/*CRM LOGS END*/
 
 
 define("TEXT_CRM_DASHBOARD", "CRM Dashboard");

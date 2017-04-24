@@ -6,121 +6,9 @@
  * Time: 16:37
  */
 
-$mysqli = mysqli_connect();
+$type = 'task';
 
-$task = new TaskController();
-
-$error = false;
-
-$projectController = new ProjectController();
-$projects = $projectController->getAllProjects();
-
-$assignmentController = new AssignmentController();
-$assignments = $assignmentController->getAllAssignments();
-
-$tenderController = new TenderController();
-$tenders = $tenderController->getAllTenders();
-
-$caseController = new CaseController();
-$cases = $caseController->getAllCases();
-
-$userController = new UserController();
-$clients = $userController->getClientList();
-$users = $userController->getUserList();
-
-$post = false;
-if (isset($_POST['submitTask'])) {
-    $post = true;
-
-    $valueNames = ["subject", "client", "user", "project", "assignment", "urgency", "duration", "endDate", "description", "tender", "case"];
-    foreach ($valueNames as $v) {
-        ${$v} = mysqli_real_escape_string($mysqli, $_POST[$v]);
-    }
-
-    if (!isset($subject) || $subject == null) {
-        $error = true;
-        $title_error = true;
-        echo '1';
-    }
-
-    if (!filter_var($client, FILTER_VALIDATE_INT) && $client !== '0') {
-        $error = true;
-        $client_error = true;
-        echo '2';
-    }
-
-    if (!filter_var($user, FILTER_VALIDATE_INT) && $user !== '0') {
-        $error = true;
-        $user_error = true;
-        echo '3';
-    }
-
-    if (!filter_var($project, FILTER_VALIDATE_INT) && $project !== '0') {
-        $error = true;
-        $project_error = true;
-        echo '4';
-    }
-
-    if (!filter_var($assignment, FILTER_VALIDATE_INT) && $assignment !== '0') {
-        $error = true;
-        $assignment_error = true;
-        echo '5';
-    }
-
-    if (!filter_var($urgency, FILTER_VALIDATE_INT) && $urgency !== '0') {
-        $error = true;
-        $urgency_error = true;
-        echo '6';
-    }
-
-    if (!filter_var($duration, FILTER_VALIDATE_INT) && $duration !== '0') {
-        $error = true;
-        $duration_error = true;
-        echo '7';
-    }
-
-    if (!filter_var($endDate, FILTER_SANITIZE_STRING)) {
-        $error = true;
-        $endDate_error = true;
-        echo '8';
-    }
-
-    if (!filter_var($description, FILTER_SANITIZE_STRING)) {
-        $error = true;
-        $description_error = true;
-        echo '9';
-    }
-
-    if ($client == 0) {
-        $status = 0;
-    } else {
-        $status = 1;
-    }
-
-    if (!$error) {
-        $taskinfo = [
-            'subject' => strip_tags($subject),
-            'client' => strip_tags($client),
-            'user' => strip_tags($user),
-            'project' => strip_tags($project),
-            'assignment' => strip_tags($assignment),
-            'urgency' => strip_tags($urgency),
-            'duration' => strip_tags($duration),
-            'description' => strip_tags($description),
-            'endDate' => strip_tags($endDate),
-            'status' => strip_tags($status),
-            'tender' => strip_tags($tender),
-            'case' => strip_tags($case)
-        ];
-        if ($id = $task->create($taskinfo)) {
-            $block = new BlockController();
-            $block->Redirect('index.php?page=taskview&id=' . $id);
-        } else {
-            $errormsg = "Er is een probleem opgetreden tijdens het aan maken van een taak, probeer het later opnieuw.";
-        }
-    }
-
-}
+include '../app/view/addItemSetup.php';
 
 ?>
 <div class="crm-content-wrapper">
@@ -289,7 +177,7 @@ if (isset($_POST['submitTask'])) {
 
             <div class="button-holder">
                 <div class="button-push"></div>
-                <button type="submit" name="submitTask"
+                <button type="submit" name="create"
                         class="custom-file-upload"><?= TEXT_CREATE_DROPDOWN ?></button>
             </div>
         </form>

@@ -1,4 +1,4 @@
-.se-pre-con{
+.se-pre-con {
     display: none !important;
 }
 
@@ -816,7 +816,7 @@ table {
 }
 
 body {
-    background:none !important;
+    background: none !important;
     height: 600px;
     padding: 0 !important;
 }
@@ -1407,8 +1407,6 @@ ul.sidebar-nav {
     background: url("../icons/acchover.png") no-repeat 40px 7px
 }
 
-
-
 html, body {
     height: 100%;
 }
@@ -1864,7 +1862,7 @@ tr:nth-child(2n) {
 
 /*donut chart*/
 
-#mychart{
+#mychart {
     padding-bottom: 10px;
 }
 
@@ -1921,7 +1919,7 @@ tr:nth-child(2n) {
 }
 
 .sidebar-nav .nav-button-dropdown a {
-    background: url("../img/icons/dropdown-icon.png")no-repeat 40px 7px;
+    background: url("../img/icons/dropdown-icon.png") no-repeat 40px 7px;
     background-size: 24px;
 }
 
@@ -1990,11 +1988,11 @@ tr:nth-child(2n) {
     background-size: 24px;
 }
 
-.nav-dropdown{
+.nav-dropdown {
     overflow: hidden;
 }
 
-.nav-dropdown li{
+.nav-dropdown li {
     margin-left: 10px;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
@@ -2002,50 +2000,50 @@ tr:nth-child(2n) {
     transition: all 0.5s ease;
 }
 
-.nav-dropdown.toggled li{
+.nav-dropdown.toggled li {
     margin-top: -45px;
     pointer-events: none;
 }
 
-.crm-content-wrapper{
-    background: url("../img/devider-background.png") repeat-x ;
+.crm-content-wrapper {
+    background: url("../img/devider-background.png") repeat-x;
     min-height: 66px;
     margin: 0px 0px 0px 20px;
     width: calc(100% - 20px);
 }
 
-.crm-content-header{
+.crm-content-header {
     font-size: 20px;
     margin-top: 20px;
     width: 50%;
     float: left;
 }
 
-.add-content{
+.add-content {
     float: left;
 }
 
-.add-left-content{
+.add-left-content {
     width: 40%;
     max-width: 700px;
 }
 
-.add-right-content{
+.add-right-content {
     width: 50%;
     max-width: 500px;
 }
 
-.crm-add{
+.crm-add {
     padding-top: 20px;
     width: 100%;
     float: left;
 }
 
-.crm-add label, .crm-add input, .crm-add select, .crm-add textarea{
+.crm-add label, .crm-add input, .crm-add select, .crm-add textarea {
     float: left;
 }
 
-.crm-add label{
+.crm-add label {
     clear: left;
     width: 30%;
     max-width: 160px;
@@ -2053,7 +2051,7 @@ tr:nth-child(2n) {
     text-align: right;
 }
 
-.crm-add input, .crm-add select, .crm-add textarea, #taken-lijst{
+.crm-add input, .crm-add select, .crm-add textarea, #taken-lijst {
     margin-left: 20px;
     width: 60% !important;
     max-width: 350px;
@@ -2061,36 +2059,36 @@ tr:nth-child(2n) {
     border-radius: 4px;
 }
 
-.crm-add .description-holder textarea{
+.crm-add .description-holder textarea {
     height: 120px;
     resize: none;
 }
 
-.crm-add div{
+.crm-add div {
     height: 55px;
     padding-top: 10px;
 }
 
-.crm-add button{
+.crm-add button {
     width: 100px;
     float: left;
 }
 
-.button-push{
+.button-push {
     width: calc(30% + 20px);
     max-width: 180px;
     float: left;
 }
 
-.description-holder{
+.description-holder {
     height: 130px !important;
 }
 
-.button-holder{
+.button-holder {
     padding-top: 20px !important;
 }
 
-#taken-lijst{
+#taken-lijst {
     float: left;
     border: solid #a9a9a9 1px;
     height: auto;
@@ -2098,7 +2096,7 @@ tr:nth-child(2n) {
     padding: 10px;
 }
 
-.crm-dashboard-row{
+.crm-dashboard-row {
     margin-left: 30px;
     width: 250px;
     height: 550px;
@@ -2107,7 +2105,7 @@ tr:nth-child(2n) {
     float: left;
 }
 
-.crm-dashboard-inside-row{
+.crm-dashboard-inside-row {
     padding-top: 20px;
     margin-top: 30px;
     background-color: #eeeeee;
@@ -2118,17 +2116,16 @@ tr:nth-child(2n) {
     position: relative;
 }
 
-
-.crm-dashboard-inside-row button{
+.crm-dashboard-inside-row button {
     width: 200px;
-    position:absolute;
-    bottom:10px;
+    position: absolute;
+    bottom: 10px;
     border-radius: 7px;
     height: 35px;
     right: 10%;
 }
 
-.crm-dashboard-box{
+.crm-dashboard-box {
     margin: 0 auto;
     width: 220px;
     list-style-type: none;
@@ -2138,13 +2135,13 @@ tr:nth-child(2n) {
     position: relative;
 }
 
-.crm-dashboard-box ul{
+.crm-dashboard-box ul {
     list-style-type: none;
     text-align: left;
     padding: 5px;
 }
 
-.crm-dashboard-select{
+.crm-dashboard-select {
     width: 250px;
     height: 30px;
     border-radius: 9px;
@@ -2152,24 +2149,24 @@ tr:nth-child(2n) {
     color: white;
     margin: 20px auto 0 auto;
     padding-left: 10px;
-    outline:none;
+    outline: none;
 }
 
-.crm-dashboard-box .deadline{
+.crm-dashboard-box .deadline {
     position: absolute;
     top: 3px;
     right: 3px;
     height: 25px;
 }
 
-.crm-dashboard-box .urgentie{
+.crm-dashboard-box .urgentie {
     position: absolute;
     bottom: 25px;
     right: 3px;
     height: 25px;
 }
 
-.crm-dashboard-box .toewijzenlink{
+.crm-dashboard-box .toewijzenlink {
     position: absolute;
     bottom: -5px;
     right: 3px;
@@ -2178,13 +2175,13 @@ tr:nth-child(2n) {
     cursor: pointer;
 }
 
-.case-overzicht-buttons{
+.case-overzicht-buttons {
     float: left;
     clear: left;
     width: 100%;
 }
 
-.case-overzicht-buttons button{
+.case-overzicht-buttons button {
     width: 90px;
     height: 30px;
     float: left;
@@ -2194,20 +2191,20 @@ tr:nth-child(2n) {
     padding: 0;
 }
 
-.case-overvieuw-table{
-/*leeg*/
+.case-overvieuw-table {
+    /*leeg*/
 }
 
-#case-overview-holder header{
+#case-overview-holder header {
     margin-left: 40px;
     margin-top: 15px;
 }
 
-#case-overview-holder img{
+#case-overview-holder img {
     width: 25px;
 }
 
-.tender-view-side-column{
+.tender-view-side-column {
     padding-top: 15px;
     width: 220px;
     margin-left: 10px;
@@ -2217,7 +2214,7 @@ tr:nth-child(2n) {
     overflow-y: auto;
 }
 
-.tender-view-box{
+.tender-view-box {
     /*height: 70px;*/
     width: 200px;
     list-style-type: none;
@@ -2229,24 +2226,24 @@ tr:nth-child(2n) {
     /*position: relative;*/
 }
 
-.tender-view-box ul{
+.tender-view-box ul {
     list-style-type: none;
     text-align: left;
     padding: 5px;
     margin-bottom: 0px;
 }
 
-.tender-view-box a{
-     text-decoration: none;
-     position: absolute;
-     bottom: 5px;
-     right: 5px;
-     height: 25px;
-     font-size: 20px;
-     color: #333;
- }
+.tender-view-box a {
+    text-decoration: none;
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    height: 25px;
+    font-size: 20px;
+    color: #333;
+}
 
-.tender-view-box button{
+.tender-view-box button {
     background-color: transparent;
     border: transparent;
     float: right;
@@ -2254,10 +2251,10 @@ tr:nth-child(2n) {
     font-size: 20px;
     width: 40px;
     margin-top: -15px;
-    outline:none;
+    outline: none;
 }
 
-.tender-view-box-notitie{
+.tender-view-box-notitie {
     height: 80px;
     width: 200px;
     list-style-type: none;
@@ -2268,15 +2265,13 @@ tr:nth-child(2n) {
     position: relative;
 }
 
-.tender-view-box-notitie{
+.tender-view-box-notitie {
     list-style-type: none;
     text-align: left;
     padding: 5px;
 }
 
-
-
-.tender-view-box-notitie img{
+.tender-view-box-notitie img {
     text-decoration: none;
     position: absolute;
     bottom: 5px;
@@ -2286,14 +2281,14 @@ tr:nth-child(2n) {
     color: #333;
 }
 
-.tender-view-box-notitie .deadline{
+.tender-view-box-notitie .deadline {
     position: absolute;
     top: 5px;
     right: 3px;
     height: 25px;
 }
 
-.tender-view-box-notitie .urgentie{
+.tender-view-box-notitie .urgentie {
     position: absolute;
     bottum: 20px;
     margin-bottom: 15px;
@@ -2301,62 +2296,64 @@ tr:nth-child(2n) {
     height: 25px;
 }
 
-.tender-view-box-notitie ul{
+.tender-view-box-notitie ul {
     list-style-type: none;
     text-align: left;
     padding: 5px;
 }
 
-.tender-view-side-column .custom-file-upload{
+.tender-view-side-column .custom-file-upload {
     width: 200px;
-    position:absolute;
-    bottom:10px;
+    position: absolute;
+    bottom: 10px;
     border-radius: 7px;
     height: 35px;
     margin-left: 10px;
     margin-bottom: 5px;
 }
 
-#deletebtn{
+#deletebtn {
     float: right;
     width: 100px;
     height: 35px;
     margin-top: 20px;
 }
 
-.error-input{
-    border:solid red 1px;
+.error-input {
+    border: solid red 1px;
 }
 
-.overview-add-button{
+.overview-add-button {
     margin-left: 0 !important;
 }
 
-#crm-dashboard-holder .crm-content-header{
-    width:100%;
+#crm-dashboard-holder .crm-content-header {
+    width: 100%;
 }
 
-#crm-dashboard-holder .crm-dashboard-row:first-of-type{
+#crm-dashboard-holder .crm-dashboard-row:first-of-type {
     margin-left: 0;
 }
-.queue-snel-toestaan{
-    position:fixed;
+
+.queue-snel-toestaan {
+    position: fixed;
     top: 50%;
     left: 50%;
-    width:250px;
-    height:200px;
+    width: 250px;
+    height: 200px;
     margin-top: -125px; /*set to a negative number 1/2 of your height*/
     margin-left: -35px; /*set to a negative number 1/2 of your width*/
     background-color: #fff;
 }
-.urgencyImage{
+
+.urgencyImage {
     position: absolute;
     top: 32px;
     right: 3px;
     height: 25px;
 }
 
-#sortable li{
+#sortable li {
     float: left;
     height: 25px !important;
     width: 163%;
@@ -2378,30 +2375,49 @@ tr:nth-child(2n) {
     border-radius: 0 2px 2px 0;
 }
 
-.description{
+.description {
     max-width: 370px;
     max-height: 400px;
 }
 
-#notetype-name{
-    width:66.66666666666666667% !important;
+#notetype-name {
+    width: 66.66666666666666667% !important;
 }
 
-#mytable button{
+#mytable button {
     width: auto;
 }
 
-.button-submit:hover{
-    color:#ffffff !important;
+.button-submit:hover {
+    color: #ffffff !important;
     text-decoration: none !important;
 }
 
-#noteType-add{
+#noteType-add {
     width: calc(33.33333333333333333% - 20px);
-    margin-left:20px;
+    margin-left: 20px;
 }
 
-.noteType-add a, .noteType-add button{
+.noteType-add a, .noteType-add button {
     float: right;
 }
 
+#sortable {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 60%;
+}
+
+#sortable li {
+    margin: 0 3px 3px 3px;
+    padding: 0.4em;
+    padding-left: 1.5em;
+    font-size: 1.4em;
+    height: 18px;
+}
+
+#sortable li span {
+    position: absolute;
+    margin-left: -1.3em;
+}

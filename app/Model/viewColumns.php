@@ -282,25 +282,7 @@
                             <input type="hidden" name="deleteId" id="deleteId" value="">
                             <label class="col-md-4 control-label" for="noteAdd"></label>
                             <div class="col-md-4">
-                                <input type="hidden" name="noteType" value="<?php
-                                switch ($type) {
-                                    case 'tender':
-                                        echo 1;
-                                        break;
-                                    case 'project':
-                                        echo 2;
-                                        break;
-                                    case 'assignment':
-                                        echo 3;
-                                        break;
-                                    case 'task':
-                                        echo 4;
-                                        break;
-                                    case 'case':
-                                        echo 5;
-                                        break;
-                                }
-                                ?>">
+                                <input type="hidden" name="noteType" id="deleteNoteType" value="">
                                 <button type="submit" name="noteDelete"
                                         class="btn btn-primary"><?= TEXT_DELETE ?></button>
                             </div>
@@ -672,6 +654,7 @@
                                 <option value="<?= $projectinfo['id'] ?>"
                                         selected><?= $projectinfo['subject'] ?></option>
                             </select>
+                            <input type="hidden" name="projectId" value="<?= $projectinfo['id'] ?>"/>
                         </div>
 
                         <div>
@@ -731,10 +714,12 @@
                     $logUser = $user['naam'];
                 }
             }
-            echo $log['id'] . ':{ subject:"' . constant($log['subject']) . '",description: "' . $log['description'] . '", date: "' . $log['date'] . '", user: "' . $logUser . '"},';
+            $logDescription = explode("[constDivide]",$log['description']);
+            $logViewDate = date_create($log['date']);
+            echo $log['id'] . ':{ subject:"' . constant($log['subject']) . '",description: "' . constant($logDescription[0]) . ' ' . $logDescription[1] . ' ' . constant($logDescription[2]) . '", date: "' . date_format($logViewDate,'d-m-Y H:i:s') . '", user: "' . $logUser . '"},';
         }
         ?>
-    }
+    };
     var notitiebtn = document.getElementById("notitie");
     var taakbtn = document.getElementById("taak");
     var opdrachtbtn = document.getElementById("opdracht");
@@ -781,7 +766,6 @@
         description = logs[id]['description'];
         date = logs[id]['date'];
         user = logs[id]['user'];
-//        alert(subject + description + date + user);
         $('#logSubject').html(subject);
         $('#logDescription').val(description);
         $('#logDate').val(date);
@@ -798,6 +782,7 @@
         eventDate = notes[id]['eventDate'];
         $('#noteIdView').val(id);
         $('#deleteId').val(id);
+        $('#deleteNoteType').val(type);
         if (!noteEditError) {
             $('.noteTypeView option[value=' + type + ']').prop('selected', true);
             $('#descriptionView').val(description);

@@ -19,7 +19,9 @@ class DbAssignment extends Database
     public function update(Assignment $assignment)
     {
         $sql = "UPDATE `assignments` SET `subject` = '{$assignment->getSubject()}', `client` = '{$assignment->getClient()}', `user` = '{$assignment->getUser()}', `endDate` = '{$assignment->getEndDate()}', `description` = '{$assignment->getDescription()}',`project` = '{$assignment->getProject()}', `status` = '{$assignment->getStatus()}' WHERE `id` = '{$assignment->getAssignmentId()}'";
-        $this->dbQuery($sql);
+        if($this->dbQuery($sql)){
+            return true;
+        }
     }
 
     public function delete($id)

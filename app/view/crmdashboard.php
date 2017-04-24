@@ -1,4 +1,7 @@
 <?php
+
+$_SESSION['test'] = 'test';
+
 $thisUserId = $_SESSION['usr_id'];
 
 $tenderCon = new TenderController();

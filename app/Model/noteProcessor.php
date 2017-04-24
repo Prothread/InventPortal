@@ -8,23 +8,23 @@
 
 $error = false;
 
-foreach ($noteTypes as $n){
-    if ($n['id'] == $_POST['noteType']){
+foreach ($noteTypes as $n) {
+    if ($n['id'] == $_POST['noteType']) {
         $logName = $n['name'];
     }
 }
 
-if (isset($_POST['noteDelete'])){
+if (isset($_POST['noteDelete'])) {
     $noteId = mysqli_real_escape_string($mysqli, $_POST['deleteId']);
     if (!filter_var($noteId, FILTER_VALIDATE_INT)) {
         $error = true;
-        echo 'FOUT' . $noteId;
+        echo 'FOUT ' . $noteId;
     }
-    if(!$error){
+    if (!$error) {
         $noteController->delete($noteId);
         $loginfo = [
             'subject' => 'TEXT_NOTE_DELETED',
-            'description' => 'Note ' . $logName .  ' verwijderd',
+            'description' => 'TEXT_VIEW_NOTE[constDivide]' . $logName . '[constDivide]TEXT_DELETED',
             'date' => date('Y-m-d G:i:s'),
             'user' => $_SESSION['usr_id'],
             'linkType' => $typeNumb,
@@ -32,11 +32,11 @@ if (isset($_POST['noteDelete'])){
         ];
         $logController->create($loginfo);
     }
-}else {
+} else {
 
     $valueNames = ["linkType", "linkId", "noteType", "eventDate", "description", "user", "creationDate"];
-    $stringVals = ["eventDate","description","creationDate"];
-    $intVals = ["linkType","linkId","noteType","user"];
+    $stringVals = ["eventDate", "description", "creationDate"];
+    $intVals = ["linkType", "linkId", "noteType", "user"];
     foreach ($valueNames as $v) {
         ${$v} = mysqli_real_escape_string($mysqli, $_POST[$v]);
     }
@@ -48,8 +48,8 @@ if (isset($_POST['noteDelete'])){
             echo 'iVal' . $iVal;
         }
     }
-    foreach ($stringVals as $sVal){
-        ${$sVal} =  trim(${$sVal});
+    foreach ($stringVals as $sVal) {
+        ${$sVal} = trim(${$sVal});
         if (!filter_var(${$sVal}, FILTER_SANITIZE_STRING)) {
             $error = true;
             $sVal_error = 'note_' . $sVal . '_error';
@@ -73,16 +73,17 @@ if (isset($_POST['noteDelete'])){
                 'user' => $user,
                 'creationDate' => $creationDate
             ];
-            $noteController->create($noteInfo);
-            $loginfo = [
-                'subject' => 'TEXT_NOTE_ADDED',
-                'description' => 'Note ' . $logName .  ' toegevoegd',
-                'date' => date('Y-m-d G:i:s'),
-                'user' => $_SESSION['usr_id'],
-                'linkType' => $typeNumb,
-                'linkId' => $id
-            ];
-            $logController->create($loginfo);
+            if ($noteController->create($noteInfo)) {
+                $loginfo = [
+                    'subject' => 'TEXT_NOTE_ADDED',
+                    'description' => 'TEXT_VIEW_NOTE[constDivide]' . $logName . '[constDivide]TEXT_ADDED',
+                    'date' => date('Y-m-d G:i:s'),
+                    'user' => $_SESSION['usr_id'],
+                    'linkType' => $typeNumb,
+                    'linkId' => $id
+                ];
+                $logController->create($loginfo);
+            }
         } elseif (isset($_POST['noteEdit'])) {
             $noteInfo = [
                 'linkType' => $linkType,
@@ -94,21 +95,22 @@ if (isset($_POST['noteDelete'])){
                 'creationDate' => $creationDate,
                 'id' => $noteId
             ];
-            $noteController->update($noteInfo);
-            $loginfo = [
-                'subject' => 'TEXT_NOTE_EDITED',
-                'description' => 'Note ' . $logName . ' aangepast',
-                'date' => date('Y-m-d G:i:s'),
-                'user' => $_SESSION['usr_id'],
-                'linkType' => $typeNumb,
-                'linkId' => $id
-            ];
-            $logController->create($loginfo);
+            if($noteController->update($noteInfo)) {
+                $loginfo = [
+                    'subject' => 'TEXT_NOTE_EDITED',
+                    'description' => 'TEXT_VIEW_NOTE[constDivide]' . $logName . '[constDivide]TEXT_LOG_EDITED',
+                    'date' => date('Y-m-d G:i:s'),
+                    'user' => $_SESSION['usr_id'],
+                    'linkType' => $typeNumb,
+                    'linkId' => $id
+                ];
+                $logController->create($loginfo);
+            }
         }
-    }else{
-        if (isset($_POST['noteAdd'])){
+    } else {
+        if (isset($_POST['noteAdd'])) {
             $noteAddError = true;
-        }elseif (isset($_POST['noteEdit'])){
+        } elseif (isset($_POST['noteEdit'])) {
             $noteEditError = true;
         }
     }

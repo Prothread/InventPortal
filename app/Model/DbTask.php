@@ -28,7 +28,9 @@ class DbTask extends Database
     public function update(Task $task)
     {
         $sql = "UPDATE `tasks` SET `tender` = '{$task->getTender()}', `subject` = '{$task->getSubject()}', `client` = '{$task->getClient()}',`user` = '{$task->getUser()}', `project` = '{$task->getProjectId()}', `assignment` = '{$task->getAssignment()}', `urgency` = '{$task->getUrgency()}', `duration` = '{$task->getDuration()}', `endDate` = '{$task->getEndDate()}', `description` = '{$task->getDescription()}' , `status` = '{$task->getStatus()}' , `cases` = '{$task->getCases()}' WHERE `id` = '{$task->getTaskId()}'";
-        $this->dbQuery($sql);
+        if($this->dbQuery($sql)){
+            return true;
+        }
     }
 
     public function updateDefault(Task $task)

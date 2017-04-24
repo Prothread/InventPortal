@@ -99,10 +99,10 @@ class Tender
     /**
      * Verval datum van de tender
      *
-     * @var $EndDate
+     * @var $endDate
      */
 
-    private $EndDate;
+    private $endDate;
 
     /**
      * Tender constructor.
@@ -299,7 +299,7 @@ class Tender
 
     public function getEndDate()
     {
-        return $this->EndDate;
+        return $this->endDate;
     }
 
     /**
@@ -308,7 +308,7 @@ class Tender
 
     public function setEndDate($endDate)
     {
-        $this->EndDate = $endDate;
+        $this->endDate = $endDate;
     }
 
     /**
@@ -366,7 +366,8 @@ class Tender
 
     public function calcEndDate($creationdate, $validity)
     {
-        $this->EndDate = date('Y-m-d', strtotime($creationdate . " +" . $validity . " days"));
+        $date = date('Y-m-d', strtotime($creationdate . " +" . $validity . " days"));
+        return $date;
     }
 
     /**

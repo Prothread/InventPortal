@@ -44,7 +44,7 @@ $users = $userController->getUserList();
                             <a href="?page=assignmentview&id= <?= $assignment['id'] ?>"><?= $assignment['subject'] ?></a>
                         </td>
                         <td>
-                            <a href="?page=showuserprofile&id=<?= $assignment['user'] ?>"> <?php
+                            <a href="?page=showuserprofile&id=<?= $assignment['user'] ?>"><?php
                                 foreach ($users as $user) {
                                     if ($user['id'] == $assignment['user']) {
                                         echo $user['naam'];
@@ -59,7 +59,7 @@ $users = $userController->getUserList();
                             ?>
                         </td>
                         <td>
-                            <a href="?page=showuserprofile&id=<?= $assignment['client'] ?>"> <?php
+                            <a href="?page=showuserprofile&id=<?= $assignment['client'] ?>"><?php
                                 if (!is_null($clients)) {
                                     foreach ($clients as $client) {
                                         if ($client['id'] == $assignment['client']) {
@@ -76,7 +76,7 @@ $users = $userController->getUserList();
                             ?>
                         </td>
                         <td>
-                            <a href="?page=projectview&id=<?= $assignment['project'] ?>"> <?php
+                            <a href="?page=projectview&id=<?= $assignment['project'] ?>"><?php
                                 if (!is_null($projects)) {
                                     foreach ($projects as $project) {
                                         if ($project['id'] == $assignment['project']) {

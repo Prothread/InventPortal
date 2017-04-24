@@ -91,9 +91,9 @@ class Project
     /**
      * @param mixed $projectId
      */
-    public function setProjectId($projectId)
+    public function setProjectId($project)
     {
-        $this->projectId = $projectId;
+        $this->projectId = $project;
     }
 
     /**

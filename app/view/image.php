@@ -1,12 +1,16 @@
 <?php
 #IMAGE
 
+
+
+
 if (isset($_SESSION['usr_id']) || isset($_SESSION['accorduserid'])) {
 
 } else {
     $block->Redirect('index.php');
     Session::flash('error', TEXT_NO_PERMISSION);
 }
+
 
 ob_clean();
 if (isset($_GET['img'])) {
