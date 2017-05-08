@@ -37,7 +37,7 @@ class ProjectController
     {
         $this->model->setSubject($projectinfo['subject']);
         $this->model->setClient($projectinfo['client']);
-        $this->model->setUser($projectinfo['user']);
+        $this->model->setUser($projectinfo['userId']);
         $this->model->setEndDate($projectinfo['endDate']);
         $this->model->setDescription($projectinfo['description']);
         $this->model->setStatus($projectinfo['status']);
@@ -51,7 +51,7 @@ class ProjectController
         $this->model->setProjectId($projectinfo['id']);
         $this->model->setSubject($projectinfo['subject']);
         $this->model->setClient($projectinfo['client']);
-        $this->model->setUser($projectinfo['user']);
+        $this->model->setUser($projectinfo['userId']);
         $this->model->setEndDate($projectinfo['endDate']);
         $this->model->setDescription($projectinfo['description']);
         $this->model->setStatus($projectinfo['status']);

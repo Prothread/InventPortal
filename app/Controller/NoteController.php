@@ -22,7 +22,7 @@ class NoteController
         $this->model->setNoteType($noteinfo['noteType']);
         $this->model->setEventDate($noteinfo['eventDate']);
         $this->model->setDescription($noteinfo['description']);
-        $this->model->setUser($noteinfo['user']);
+        $this->model->setUser($noteinfo['userId']);
         $this->model->setCreationDate($noteinfo['creationDate']);
         $result = $this->model->create();
         return $result;
@@ -36,7 +36,7 @@ class NoteController
         $this->model->setNoteType($noteinfo['noteType']);
         $this->model->setEventDate($noteinfo['eventDate']);
         $this->model->setDescription($noteinfo['description']);
-        $this->model->setUser($noteinfo['user']);
+        $this->model->setUser($noteinfo['userId']);
         $this->model->setCreationDate($noteinfo['creationDate']);
         $result = $this->model->update();
         return $result;

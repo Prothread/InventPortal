@@ -29,6 +29,15 @@ define("TEXT_TASK_EDITED","Taak aangepast");
 define("TEXT_CASE_EDITED","Case aangepast");
 define("TEXT_NOTE_EDITED","Notitie aangepast");
 define("TEXT_LOG_EDITED","aangepast");
+/*child*/
+define("TEXT_CHILD_TASK","Onderliggende taak");
+define("TEXT_CHILD_ASSIGNMENT","Onderliggende opdracht");
+/*child edit*/
+define("TEXT_CHILD_TASK_EDITED","Onderliggende taak aangepast");
+define("TEXT_CHILD_ASSIGNMENT_EDITED","Onderliggende opdracht aangepast");
+/*child delete*/
+define("TEXT_CHILD_TASK_DELETED","Onderliggende taak verwijderd");
+define("TEXT_CHILD_ASSIGNMENT_DELETED","Onderliggende opdracht verwijderd");
 /*delete*/
 define("TEXT_NOTE_DELETED","Notitie verwijderd");
 define("TEXT_DELETED","verwijderd");

@@ -13,11 +13,12 @@ class CaseController
     public function create(array $caseinfo){
         $this->model->setSubject($caseinfo['subject']);
         $this->model->setClient($caseinfo['client']);
-        $this->model->setUser($caseinfo['user']);
+        $this->model->setUser($caseinfo['userId']);
         $this->model->setEndDate($caseinfo['endDate']);
         $this->model->setDescription($caseinfo['description']);
         $this->model->setStatus($caseinfo['status']);
         $this->model->setProject($caseinfo['project']);
+        $this->model->setAssignment($caseinfo['assignment']);
         if($result = $this->model->create()){
             return $result;
         }
@@ -27,13 +28,15 @@ class CaseController
         $this->model->setCaseId($caseinfo['id']);
         $this->model->setSubject($caseinfo['subject']);
         $this->model->setClient($caseinfo['client']);
-        $this->model->setUser($caseinfo['user']);
+        $this->model->setUser($caseinfo['userId']);
         $this->model->setEndDate($caseinfo['endDate']);
         $this->model->setDescription($caseinfo['description']);
         $this->model->setStatus($caseinfo['status']);
-        $this->model->setProject($caseinfo['projectId']);
-        $result = $this->model->update();
-        return $result;
+        $this->model->setProject($caseinfo['project']);
+        $this->model->setAssignment($caseinfo['assignment']);
+        if($this->model->update()){
+            return true;
+        }
     }
 
     public function delete($id){

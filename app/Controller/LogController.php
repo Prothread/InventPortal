@@ -19,7 +19,7 @@ class logController
         $this->model->setSubject($loginfo['subject']);
         $this->model->setDescription($loginfo['description']);
         $this->model->setDate($loginfo['date']);
-        $this->model->setUser($loginfo['user']);
+        $this->model->setUser($loginfo['userId']);
         $this->model->setLinkType($loginfo['linkType']);
         $this->model->setLinkId($loginfo['linkId']);
         if ($result = $this->model->create()) {

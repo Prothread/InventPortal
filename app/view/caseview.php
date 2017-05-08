@@ -5,8 +5,8 @@ $type = 'case';
 include '../app/Model/viewSetup.php';
 
 ?>
-<div class="crm-content-wrapper">
-    <div class="add-left-content add-content">
+<div class="crm-content-view-wrapper">
+    <div class="view-content">
         <h1 class="crm-content-header"><?= TEXT_CASE_VIEW ?></h1>
         <form action="#" method="post">
             <button type="submit" name="delete" id="deletebtn"
@@ -15,7 +15,7 @@ include '../app/Model/viewSetup.php';
         <form class="crm-add" action="#" method="post">
             <div>
                 <label><?= TABLE_SUBJECT ?></label>
-                <input type="text" class="form-control <?php if (isset($subject_error)) {
+                <input type="text" class="form-control <?php if (isset($case_subject_error)) {
                     echo "error-input";
                 } ?>" name="subject" value="<?php
                 if ($post) {
@@ -46,14 +46,14 @@ include '../app/Model/viewSetup.php';
             </div>
             <div>
                 <label><?= TEXT_EMPLOYEE ?></label>
-                <select class="form-control" name="user">
-                    <option value="0"<?php if ($caseinfo['user'] == 0) {
+                <select class="form-control" name="userId">
+                    <option value="0"<?php if (isset($caseinfo['user']) && $caseinfo['user'] == 0) {
                         echo 'selected';
                     } ?>><?= TEXT_EMPLOYEE ?></option>
                     <?php
                     foreach ($users as $user) {
                         echo '<option value="' . $user['id'] . '"';
-                        if ($post && $user['id'] == $_POST['user']) {
+                        if ($post && $user['id'] == $_POST['userId']) {
                             echo 'selected';
                         } elseif (!$post && $user['id'] == $caseinfo['user']) {
                             echo 'selected';
@@ -66,14 +66,14 @@ include '../app/Model/viewSetup.php';
 
             <div>
                 <label><?= TEXT_PROJECT_ADD ?></label>
-                <select class="form-control" name="projectId">
+                <select class="form-control" name="project" id="projectSelect">
                     <option value="0"<?php if ($caseinfo['project'] == 0) {
                         echo 'selected';
                     } ?>><?= TEXT_PROJECT_ADD ?></option>
                     <?php
                     foreach ($projects as $project){
                         echo '<option value="' . $project['id'] . '"';
-                        if ($post && $project['id'] == $_POST['projectId']) {
+                        if ($post && $project['id'] == $_POST['project']) {
                             echo 'selected';
                         } elseif (!$post && $project['id'] == $caseinfo['project']) {
                             echo 'selected';
@@ -86,7 +86,7 @@ include '../app/Model/viewSetup.php';
 
             <div>
                 <label><?= TEXT_ASSIGNMENT_ADD ?></label>
-                <select class="form-control" name="assignment">
+                <select class="form-control" name="assignment" id="assignmentSelect">
                     <option value="0"><?= TEXT_ASSIGNMENT_ADD ?></option>
                     <?php
                     foreach ($assignments as $assignment) {
@@ -110,11 +110,11 @@ include '../app/Model/viewSetup.php';
                 } else {
                     echo $caseinfo['endDate'];
                 }
-                ?>" min="<?= date("Y-m-d") ?>">
+                ?>">
             </div>
             <div class="description-holder">
                 <label><?= TEXT_DESCRIPTION ?></label>
-                <textarea name="description" class="<?php if (isset($description_error)) {
+                <textarea name="description" class="<?php if (isset($case_description_error)) {
                     echo "error-input";
                 } ?>"><?php
                     if ($post) {
@@ -130,3 +130,7 @@ include '../app/Model/viewSetup.php';
             </div>
         </form>
     </div>
+</div>
+    <?php
+    include '../app/view/parentCheckerScript.php';
+    ?>

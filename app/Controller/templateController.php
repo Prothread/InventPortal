@@ -6,7 +6,7 @@
  * Date: 5-4-2017
  * Time: 11:58
  */
-class templateController
+class TemplateController
 {
 
     private $model;
@@ -28,9 +28,9 @@ class templateController
     public function update(array $templateinfo)
     {
         $this->model->setTemplateId($templateinfo['id']);
-        $this->model->setSubject($templateinfo['onderwerp']);
-        $this->model->setDescription($templateinfo['beschrijving']);
-        $this->model->update();
+        $this->model->setSubject($templateinfo['subject']);
+        $this->model->setDescription($templateinfo['description']);
+        return $this->model->update();
     }
 
 

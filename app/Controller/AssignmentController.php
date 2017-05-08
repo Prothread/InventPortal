@@ -19,7 +19,7 @@ class AssignmentController
     {
         $this->model->setSubject($assignmentinfo['subject']);
         $this->model->setClient($assignmentinfo['client']);
-        $this->model->setUser($assignmentinfo['user']);
+        $this->model->setUser($assignmentinfo['userId']);
         $this->model->setEndDate($assignmentinfo['endDate']);
         $this->model->setDescription($assignmentinfo['description']);
         $this->model->setProject($assignmentinfo['projectId']);
@@ -34,7 +34,7 @@ class AssignmentController
         $this->model->setAssignmentId($assignmentinfo['id']);
         $this->model->setSubject($assignmentinfo['subject']);
         $this->model->setClient($assignmentinfo['client']);
-        $this->model->setUser($assignmentinfo['user']);
+        $this->model->setUser($assignmentinfo['userId']);
         $this->model->setEndDate($assignmentinfo['endDate']);
         $this->model->setDescription($assignmentinfo['description']);
         $this->model->setProject($assignmentinfo['projectId']);

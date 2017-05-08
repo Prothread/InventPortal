@@ -573,7 +573,7 @@
 
     <script>
         function toggleInputError() {
-            $(".error-input").css("border", "solid 1px #ccc");
+            $(".error-input").toggleClass("error-input");
         }
         $(window).load(function () {
             // Animate loader off screen
@@ -678,6 +678,8 @@
             e.preventDefault();
             $("#wrapper").toggleClass("toggled");
             $("html").toggleClass("toggled");
+            $("#wrapper").toggleClass("toggledOff");
+            $("html").toggleClass("toggledOff");
         });
         $("#overviews-link").click(function (e) {
                 e.preventDefault();

@@ -29,6 +29,15 @@ define("TEXT_TASK_EDITED","Task edited");
 define("TEXT_CASE_EDITED","Case edited");
 define("TEXT_NOTE_EDITED","Note edited");
 define("TEXT_LOG_EDITED","edited");
+/*child*/
+define("TEXT_CHILD_TASK","Child task");
+define("TEXT_CHILD_ASSIGNMENT","Child assignment");
+/*child edit*/
+define("TEXT_CHILD_TASK_EDITED","Child task edited");
+define("TEXT_CHILD_ASSIGNMENT_EDITED","Child assignment edited");
+/*child delete*/
+define("TEXT_CHILD_TASK_DELETED","Child task deleted");
+define("TEXT_CHILD_ASSIGNMENT_DELETED","Child assignment deleted");
 /*delete*/
 define("TEXT_NOTE_DELETED","Note deleted");
 define("TEXT_DELETED","deleted");

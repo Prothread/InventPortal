@@ -45,6 +45,24 @@ class CaseClass
 
     private $project;
 
+    private $assignment;
+
+    /**
+     * @return mixed
+     */
+    public function getAssignment()
+    {
+        return $this->assignment;
+    }
+
+    /**
+     * @param mixed $assignment
+     */
+    public function setAssignment($assignment)
+    {
+        $this->assignment = $assignment;
+    }
+
     /**
      * @return mixed
      */

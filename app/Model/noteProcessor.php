@@ -26,7 +26,7 @@ if (isset($_POST['noteDelete'])) {
             'subject' => 'TEXT_NOTE_DELETED',
             'description' => 'TEXT_VIEW_NOTE[constDivide]' . $logName . '[constDivide]TEXT_DELETED',
             'date' => date('Y-m-d G:i:s'),
-            'user' => $_SESSION['usr_id'],
+            'userId' => $_SESSION['usr_id'],
             'linkType' => $typeNumb,
             'linkId' => $id
         ];
@@ -34,9 +34,9 @@ if (isset($_POST['noteDelete'])) {
     }
 } else {
 
-    $valueNames = ["linkType", "linkId", "noteType", "eventDate", "description", "user", "creationDate"];
+    $valueNames = ["linkType", "linkId", "noteType", "eventDate", "description", "userId", "creationDate"];
     $stringVals = ["eventDate", "description", "creationDate"];
-    $intVals = ["linkType", "linkId", "noteType", "user"];
+    $intVals = ["linkType", "linkId", "noteType", "userId"];
     foreach ($valueNames as $v) {
         ${$v} = mysqli_real_escape_string($mysqli, $_POST[$v]);
     }
@@ -70,7 +70,7 @@ if (isset($_POST['noteDelete'])) {
                 'noteType' => $noteType,
                 'eventDate' => $eventDate,
                 'description' => $description,
-                'user' => $user,
+                'userId' => $userId,
                 'creationDate' => $creationDate
             ];
             if ($noteController->create($noteInfo)) {
@@ -78,7 +78,7 @@ if (isset($_POST['noteDelete'])) {
                     'subject' => 'TEXT_NOTE_ADDED',
                     'description' => 'TEXT_VIEW_NOTE[constDivide]' . $logName . '[constDivide]TEXT_ADDED',
                     'date' => date('Y-m-d G:i:s'),
-                    'user' => $_SESSION['usr_id'],
+                    'userId' => $_SESSION['usr_id'],
                     'linkType' => $typeNumb,
                     'linkId' => $id
                 ];
@@ -91,7 +91,7 @@ if (isset($_POST['noteDelete'])) {
                 'noteType' => $noteType,
                 'eventDate' => $eventDate,
                 'description' => $description,
-                'user' => $user,
+                'userId' => $userId,
                 'creationDate' => $creationDate,
                 'id' => $noteId
             ];
@@ -100,7 +100,7 @@ if (isset($_POST['noteDelete'])) {
                     'subject' => 'TEXT_NOTE_EDITED',
                     'description' => 'TEXT_VIEW_NOTE[constDivide]' . $logName . '[constDivide]TEXT_LOG_EDITED',
                     'date' => date('Y-m-d G:i:s'),
-                    'user' => $_SESSION['usr_id'],
+                    'userId' => $_SESSION['usr_id'],
                     'linkType' => $typeNumb,
                     'linkId' => $id
                 ];

@@ -1,5 +1,5 @@
 <?php
-$template = new templateController();
+$template = new TemplateController();
 $allTemplates = $template->getAllTemplates();
 $templatetask = new TemplateTaskLinksController();
 

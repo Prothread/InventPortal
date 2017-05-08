@@ -75,7 +75,7 @@ class ComposerStaticInitc0a55957efdf0e279fcd6092060aa6da
         'TaskController' => __DIR__ . '/../..' . '/app/Controller/TaskController.php',
         'Task' => __DIR__ . '/../..' . '/app/Model/Task.php',
         'DbTask' => __DIR__ . '/../..' . '/app/Model/DbTask.php',
-        'templateController' => __DIR__ . '/../..' . '/app/Controller/templateController.php',
+        'TemplateController' => __DIR__ . '/../..' . '/app/Controller/templateController.php',
         'Template' => __DIR__ . '/../..' . '/app/Model/Template.php',
         'DbTemplate' => __DIR__ . '/../..' . '/app/Model/DbTemplate.php',
         'TemplateTaskLinksController' => __DIR__ . '/../..' . '/app/Controller/TemplateTaskLinksController.php',

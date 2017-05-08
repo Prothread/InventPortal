@@ -41,7 +41,7 @@ $users = $userController->getUserList();
                     ?>
                     <tr>
                         <td>
-                            <a href="?page=assignmentview&id= <?= $assignment['id'] ?>"><?= $assignment['subject'] ?></a>
+                            <a href="?page=assignmentview&id=<?= $assignment['id'] ?>"><?= $assignment['subject'] ?></a>
                         </td>
                         <td>
                             <a href="?page=showuserprofile&id=<?= $assignment['user'] ?>"><?php

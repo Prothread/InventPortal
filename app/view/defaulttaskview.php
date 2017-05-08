@@ -6,65 +6,9 @@
  * Time: 16:37
  */
 
-$block = new BlockController();
-if (!filter_var($_GET['id'], FILTER_VALIDATE_INT)) {
-    $block->Redirect('index.php?page=404');
-}
-$id = $_GET['id'];
+$type = 'default';
 
-$mysqli = mysqli_connect();
-
-$task = new TaskController();
-
-$taskinfo = $task->getTaskById($id);
-
-if (is_null($taskinfo)) {
-    $block->Redirect('index.php?page=404');
-}
-
-$error = false;
-
-if (isset($_POST['updateDefaultTask'])) {
-
-    $valueNames = ["subject", "duration", "description",];
-    foreach ($valueNames as $v) {
-        ${$v} = mysqli_real_escape_string($mysqli, $_POST[$v]);
-    }
-    if (strlen($subject) == 0) {
-        $error = true;
-        $title_error = true;
-    }
-
-    if (!filter_var($duration, FILTER_VALIDATE_INT) && $duration !== '0') {
-        $error = true;
-        $duration_error = true;
-    }
-
-    if (!filter_var($description, FILTER_SANITIZE_STRING)) {
-        $error = true;
-        $description_error = true;
-    }
-
-    if (!$error) {
-
-        $status = 4;
-
-        $taskinfo = [
-            'id' => $id,
-            'subject' => strip_tags($subject),
-            'duration' => $duration,
-            'description' => strip_tags($description),
-            'status' => $status,
-        ];
-        $task->updateDefault($taskinfo);
-    }
-}
-
-if (isset($_POST['delete'])) {
-    if ($task->delete($id)) {
-        $block->Redirect('index.php?page=defaulttasksoverview');
-    }
-}
+include '../app/Model/viewSetup.php';
 
 ?>
 <div class="crm-content-wrapper">
@@ -78,26 +22,33 @@ if (isset($_POST['delete'])) {
         <form class="crm-add" action="#" method="post">
             <div>
                 <label><?= TABLE_TITLE ?></label>
-                <input type="text" name="subject" class="form-control <?php if(isset($title_error)){echo "error-input";} ?>"
-                       value="<?= $taskinfo['subject'] ?>">
+                <input type="text" name="subject" class="form-control <?php if (isset($default_subject_error)) {
+                    echo "error-input";
+                } ?>"
+                       value="<?php if(isset($_POST['update'])){echo $_POST['subject'];}else{echo $taskinfo['subject'];} ?>">
 
             </div>
 
             <div>
                 <div>
                     <label><?= TEXT_DURATION ?></label>
-                    <input type="number" class="form-control" name="duration" min="0" value="<?= $taskinfo['duration'] ?>">
+                    <input type="number" class="form-control <?php if (isset($default_duration_error)) {
+                        echo "error-input";
+                    } ?>" name="duration" min="0"
+                           value="<?php if(isset($_POST['update'])){echo $_POST['duration'];}else{echo $taskinfo['duration'];} ?>">
                 </div>
 
                 <div class="description-holder">
                     <label><?= TEXT_DESCRIPTION ?></label>
-                    <textarea name="description" class="<?php if (isset($description_error)) {echo "error-input";} ?>"><?= $taskinfo['description'] ?></textarea>
+                    <textarea name="description" class="<?php if (isset($default_description_error)) {
+                        echo "error-input";
+                    } ?>"><?php if(isset($_POST['update'])){echo $_POST['description'];}else{echo $taskinfo['description'];} ?></textarea>
 
                 </div>
 
                 <div class="button-update">
                     <div class="button-push"></div>
-                    <button type="submit" name="updateDefaultTask"
+                    <button type="submit" name="update"
                             class="custom-file-upload"><?= TEXT_EDIT ?></button>
                 </div>
         </form>

@@ -8,138 +8,177 @@
  * Extends View pages
  */
 
+switch ($type){
+    case "task":
+        $columnNumb = 2;
+        break;
+    case "tender":
+    case "assignment":
+    case "case":
+        $columnNumb = 3;
+        break;
+    case "project":
+        $columnNumb = 4;
+        break;
+    default:
+        $block->Redirect('index.php?page=404');
+}
+
 ?>
-
-<div class="tender-view-side-column">
-    <?php
-    if(!is_null($logs)) {
-        foreach ($logs as $log) {
-            $logDate = explode(' ', $log['date']);
-            ?>
-            <div class="tender-view-box">
-                <ul>
-                    <li>
-                        <?= constant($log['subject']) ?>
-                    </li>
-                    <li>
-                        <?= $logDate[0] ?>
-                    </li>
-                </ul>
-                <button id="logLink<?= $log['id'] ?>" class="notitieviewbtn" data-toggle="modal"
-                        data-target="#myModal"
-                        onclick="logView(<?= $log['id'] ?>)">...
-                </button>
-            </div>
-            <?php
+<div id="view-column-wrapper-<?= $columnNumb ?>">
+    <div class="view-side-column">
+        <?php
+        if (!is_null($logs)) {
+            foreach ($logs as $log) {
+                $logDate = explode(' ', $log['date']);
+                ?>
+                <div class="column-box">
+                    <ul>
+                        <li>
+                            <?= constant($log['subject']) ?>
+                        </li>
+                        <li>
+                            <?php
+                            $date = date_create($logDate[0]);
+                            echo date_format($date, 'd-m-Y');
+                            ?>
+                        </li>
+                    </ul>
+                    <button id="logLink<?= $log['id'] ?>" class="viewbtn" data-toggle="modal"
+                            data-target="#myModal"
+                            onclick="logView(<?= $log['id'] ?>)">...
+                    </button>
+                </div>
+                <?php
+            }
         }
-    }
-    ?>
-</div>
-<!--    Notes-->
-<div class="tender-view-side-column">
-    <button id="notitie" class="custom-file-upload" data-toggle="modal" data-target="#myModal">Notitie toevoegen
+        ?>
+    </div>
+    <!--    Notes-->
+    <button id="notitie" class="custom-file-upload item-add-btn" data-toggle="modal" data-target="#myModal">Notitie toevoegen
     </button>
-    <?php
-    if (!is_null($notes)) {
-        foreach ($notes as $note) {
-            ?>
-            <div class="tender-view-box">
-                <ul>
-                    <li>
-                        <?php
-                        foreach ($noteTypes as $noteType) {
-                            if ($note['noteType'] == $noteType['id']) {
-                                echo $noteType['name'];
+    <div class="view-side-column">
+        <?php
+        if (!is_null($notes)) {
+            foreach ($notes as $note) {
+                ?>
+                <div class="column-box">
+                    <ul>
+                        <li>
+                            <?php
+                            foreach ($noteTypes as $noteType) {
+                                if ($note['noteType'] == $noteType['id']) {
+                                    echo $noteType['name'];
+                                }
                             }
-                        }
-                        ?>
-                    </li>
-                    <li>
-                        <?= $note['creationDate'] ?>
-                    </li>
-                </ul>
-                <button id="noteLink<?= $note['id'] ?>" class="notitieviewbtn" data-toggle="modal"
-                        data-target="#myModal"
-                        onclick="notitieView(<?= $note['id'] ?>)">...
-                </button>
-            </div>
-            <?php
+                            ?>
+                        </li>
+                        <li>
+                            <?php
+                            $date = date_create($note['creationDate']);
+                            echo date_format($date, 'd-m-Y');
+                            ?>
+                        </li>
+                    </ul>
+                    <button id="noteLink<?= $note['id'] ?>" class="viewbtn" data-toggle="modal"
+                            data-target="#myModal"
+                            onclick="notitieView(<?= $note['id'] ?>)">...
+                    </button>
+                </div>
+                <?php
+            }
         }
-    }
-    ?>
-</div>
-<!--Tasks-->
-<?php if ($type != 'task') { ?>
-    <div class="tender-view-side-column">
-        <button id="taak" class="custom-file-upload" data-toggle="modal" data-target="#myModal">Taak toevoegen</button>
-        <?php foreach (${$typeTasks} as $task) {
-            $timeDiff = ${$typeController}->getTimeDifference($task['endDate'], date("Y-m-d"));
-            ?>
-            <div class="tender-view-box-notitie">
-                <?php if ($timeDiff <= 0) { ?>
-                    <img class="deadline" src="css/deadline4.png">
-                <?php } else if ($timeDiff > 0 && $timeDiff <= 2) { ?>
-                    <img class="deadline" src="css/deadline3.png">
-                <?php } else if ($timeDiff > 2 && $timeDiff <= 7) { ?>
-                    <img class="deadline" src="css/deadline2.png">
-                <?php } else { ?>
-                    <img class="deadline" src="css/deadline1.png">
-                <?php } ?>
-
-                <?php if ($task['urgency'] == 0) { ?>
-
-                <?php } else if ($task['urgency'] == 1) { ?>
-                    <img class="urgencyImage" src="css/urgentie1.png">
-                <?php } else if ($task['urgency'] == 2) { ?>
-                    <img class="urgencyImage" src="css/urgentie2.png">
-                <?php } else if ($task['urgency'] == 3) { ?>
-                    <img class="urgencyImage" src="css/urgentie3.png">
-                <?php } else if ($task['urgency'] == 4) { ?>
-                    <img class="urgencyImage" src="css/urgentie4.png">
-                <?php } ?>
-
-                <ul>
-                    <li>
-                        <a href="?page=taskview&id=<?= $task['id'] ?>"><?= $task['subject'] ?></a>
-                    </li>
-                    <li>
-                        <?= $task['endDate'] ?>
-                    </li>
-                </ul>
-            </div>
-        <?php } ?>
+        ?>
     </div>
-<?php } ?>
-<!--assignments-->
-<?php if ($type == 'project') { ?>
-    <div class="tender-view-side-column">
-        <button id="opdracht" class="custom-file-upload" data-toggle="modal" data-target="#myModal">Opdracht toevoegen</button>
-        <?php foreach (${$typeAssignments} as $assignment) {
-            $timeDiff = $assignmentController->getTimeDifference($assignment['endDate'], date("Y-m-d"))
-            ?>
-            <div class="tender-view-box-notitie">
-                <?php if ($timeDiff <= 0) { ?>
-                    <img class="deadline" src="css/deadline4.png">
-                <?php } else if ($timeDiff > 0 && $timeDiff <= 2) { ?>
-                    <img class="deadline" src="css/deadline3.png">
-                <?php } else if ($timeDiff > 2 && $timeDiff <= 7) { ?>
-                    <img class="deadline" src="css/deadline2.png">
-                <?php } else { ?>
-                    <img class="deadline" src="css/deadline1.png">
-                <?php } ?>
+    <!--Tasks-->
+    <?php if ($type != 'task') { ?>
+        <button id="taak" class="custom-file-upload item-add-btn" data-toggle="modal" data-target="#myModal">Taak toevoegen
+        </button>
+        <div class="view-side-column">
+            <?php foreach (${$typeTasks} as $task) {
+                ?>
+                <div class="column-box">
+                    <?php
+                    if ($task['endDate'] != "0000-00-00") {
+                        $timeDiff = ${$typeController}->getTimeDifference($task['endDate'], date("Y-m-d"));
 
-                <ul>
-                    <li>
-                        <a href="?page=assignmentview&id=<?= $assignment['id'] ?>"><?= $assignment['subject'] ?></a>
-                    </li>
-                    <li>
-                        <?= $assignment['endDate'] ?>
-                    </li>
-                </ul>
-            </div>
-        <?php } ?>
-    </div>
-<?php } ?>
+                        if ($timeDiff <= 0) { ?>
+                            <img class="deadline" src="css/deadline4.png">
+                        <?php } else if ($timeDiff > 0 && $timeDiff <= 2) { ?>
+                            <img class="deadline" src="css/deadline3.png">
+                        <?php } else if ($timeDiff > 2 && $timeDiff <= 7) { ?>
+                            <img class="deadline" src="css/deadline2.png">
+                        <?php } else { ?>
+                            <img class="deadline" src="css/deadline1.png">
+                        <?php }
+                    } ?>
+
+                    <?php if ($task['urgency'] == 0) { ?>
+
+                    <?php } else if ($task['urgency'] == 1) { ?>
+                        <img class="urgencyImage" src="css/urgentie1.png">
+                    <?php } else if ($task['urgency'] == 2) { ?>
+                        <img class="urgencyImage" src="css/urgentie2.png">
+                    <?php } else if ($task['urgency'] == 3) { ?>
+                        <img class="urgencyImage" src="css/urgentie3.png">
+                    <?php } else if ($task['urgency'] == 4) { ?>
+                        <img class="urgencyImage" src="css/urgentie4.png">
+                    <?php } ?>
+
+                    <ul>
+                        <li>
+                            <a href="?page=taskview&id=<?= $task['id'] ?>&p=<?= $typeNumb ?><?= $id ?>"><?= $task['subject'] ?></a>
+                        </li>
+                        <li>
+                            <?php
+                            if ($task['endDate'] != "0000-00-00") {
+                            $date = date_create($task['endDate']);
+                            echo date_format($date, 'd-m-Y');
+                            }
+                            ?>
+                        </li>
+                    </ul>
+                </div>
+            <?php } ?>
+        </div>
+    <?php } ?>
+    <!--assignments-->
+    <?php if ($type == 'project') { ?>
+        <button id="opdracht" class="custom-file-upload item-add-btn" data-toggle="modal" data-target="#myModal">Opdracht
+            toevoegen
+        </button>
+        <div class="view-side-column">
+            <?php foreach (${$typeAssignments} as $assignment) {
+                $timeDiff = $assignmentController->getTimeDifference($assignment['endDate'], date("Y-m-d"))
+                ?>
+                <div class="column-box">
+                    <?php if ($timeDiff <= 0) { ?>
+                        <img class="deadline" src="css/deadline4.png">
+                    <?php } else if ($timeDiff > 0 && $timeDiff <= 2) { ?>
+                        <img class="deadline" src="css/deadline3.png">
+                    <?php } else if ($timeDiff > 2 && $timeDiff <= 7) { ?>
+                        <img class="deadline" src="css/deadline2.png">
+                    <?php } else { ?>
+                        <img class="deadline" src="css/deadline1.png">
+                    <?php } ?>
+
+                    <ul>
+                        <li>
+                            <a href="?page=assignmentview&id=<?= $assignment['id'] ?>"><?= $assignment['subject'] ?></a>
+                        </li>
+                        <li>
+                            <?php
+                            if ($task['endDate'] != "0000-00-00") {
+                                $date = date_create($assignment['endDate']);
+                                echo date_format($date, 'd-m-Y');
+                            }
+                            ?>
+                        </li>
+                    </ul>
+                </div>
+            <?php } ?>
+        </div>
+    <?php } ?>
 </div>
 <!--Modal-->
 
@@ -157,7 +196,8 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="logDescription"><?= TEXT_DESCRIPTION ?></label>
                             <div class="col-md-4">
-                                 <textarea class="form-control input-md description" id="logDescription" readonly></textarea>
+                                <textarea class="form-control input-md description" id="logDescription"
+                                          readonly></textarea>
                             </div>
                         </div>
                         <div class="form-group">
@@ -307,9 +347,10 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="noteType"><?= TEXT_NOTE_TYPE ?></label>
                             <div class="col-md-4">
-                                <select class="form-control input-md <?php if (isset($noteAddError ) && isset($note_noteType_error)){
-                                    echo 'error-input';
-                                }?>" name="noteType" id="noteType">
+                                <select
+                                    class="form-control input-md <?php if (isset($noteAddError) && isset($note_noteType_error)) {
+                                        echo 'error-input';
+                                    } ?>" name="noteType" id="noteType">
                                     <?php
                                     foreach ($noteTypes as $noteType) {
                                         ?>
@@ -323,19 +364,25 @@
                             <label class="col-md-4 control-label" for="description"><?= TEXT_DESCRIPTION ?></label>
                             <div class="col-md-6">
                                 <textarea class="form-control input-md description <?php
-                                if (isset($noteAddError ) && isset($note_description_error)){
+                                if (isset($noteAddError) && isset($note_description_error)) {
                                     echo 'error-input';
-                                }?>" id="description" name="description"><?php if (isset($noteAddError )){echo $_POST['description'];} ?></textarea>
+                                } ?>" id="description" name="description"><?php if (isset($noteAddError)) {
+                                        echo $_POST['description'];
+                                    } ?></textarea>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="eventDate"><?= TEXT_EVENT_DATE ?></label>
                             <div class="col-md-4">
                                 <input class="form-control input-md <?php
-                                if (isset($noteAddError ) && isset($note_eventDate_error)){
+                                if (isset($noteAddError) && isset($note_eventDate_error)) {
                                     echo 'error-input';
-                                }?>" id="eventDate" name="eventDate" type="date"
-                                       value="<?php if (isset($noteAddError )){echo $_POST['eventDate'];}else{echo date('Y-m-d');}?>" max="<?= date("Y-m-d") ?>">
+                                } ?>" id="eventDate" name="eventDate" type="date"
+                                       value="<?php if (isset($noteAddError)) {
+                                           echo $_POST['eventDate'];
+                                       } else {
+                                           echo date('Y-m-d');
+                                       } ?>" max="<?= date("Y-m-d") ?>">
                             </div>
                         </div>
                         <div class="form-group">
@@ -358,7 +405,7 @@
                             }
                             ?>"/>
                             <input type="hidden" name="linkId" value="<?= ${$typeinfo}['id'] ?>"/>
-                            <input type="hidden" name="user" value="<?= $thisUserId ?>">
+                            <input type="hidden" name="userId" value="<?= $thisUserId ?>">
                             <input type="hidden" name="creationDate" value="<?= date('Y-m-d'); ?>"/>
                         </div>
                         <div class="form-group">
@@ -423,7 +470,7 @@
                             <label><?= TEXT_EMPLOYEE ?></label>
                             <select class="form-control<?php if (isset($task_user_error)) {
                                 echo " error-input";
-                            } ?>" name="user">
+                            } ?>" name="userId">
                                 <option value="0"><?= TEXT_EMPLOYEE ?></option>
                                 <?php
                                 foreach ($users as $user) {
@@ -527,7 +574,9 @@
                                 echo "error-input";
                             } ?>" name="duration" value="<?php if (isset($_POST['duration'])) {
                                 echo $_POST['duration'];
-                            }else{echo 0;} ?>" min="0">
+                            } else {
+                                echo 0;
+                            } ?>" min="0">
                         </div>
 
                         <div>
@@ -632,12 +681,12 @@
                             <label><?= TEXT_EMPLOYEE ?></label>
                             <select class="form-control <?php if (isset($assignment_user_error)) {
                                 echo "error-input";
-                            } ?>" name="user">
+                            } ?>" name="userId">
                                 <option value="0"><?= TEXT_EMPLOYEE ?></option>
                                 <?php
                                 foreach ($users as $user) {
                                     echo '<option value="' . $user['id'] . '"';
-                                    if (isset($_POST['create']) && $user['id'] == $_POST['user']) {
+                                    if (isset($_POST['create']) && $user['id'] == $_POST['userId']) {
                                         echo 'selected';
                                     }
                                     echo '>' . $user['naam'] . '</option>';
@@ -695,6 +744,26 @@
 
         </div>
     <?php } ?>
+    <div class="modal-dialog" id="deleteform">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Weet u zeker dat je deze item wilt verwijderen?</h4>
+            </div>
+            <div class="modal-body">
+                <form action="#" method="post" class="form-horizontal">
+                    <fieldset>
+                        <form action="#" method="post">
+                            <button name="delete" type="submit" id="btndelete"
+                                    class="custom-file-upload" data-toggle="modal"
+                                    data-target="#myModal"> <?= TEXT_DELETE ?> </button>
+                        </form>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script>
@@ -707,27 +776,29 @@
     };
     var logs = {
         <?php
-        foreach ($logs as $log){
+        foreach ($logs as $log) {
             $logUser = '';
-            foreach ($users as $user){
-                if($user['id'] == $log['user']){
+            foreach ($users as $user) {
+                if ($user['id'] == $log['user']) {
                     $logUser = $user['naam'];
                 }
             }
-            $logDescription = explode("[constDivide]",$log['description']);
+            $logDescription = explode("[constDivide]", $log['description']);
             $logViewDate = date_create($log['date']);
-            echo $log['id'] . ':{ subject:"' . constant($log['subject']) . '",description: "' . constant($logDescription[0]) . ' ' . $logDescription[1] . ' ' . constant($logDescription[2]) . '", date: "' . date_format($logViewDate,'d-m-Y H:i:s') . '", user: "' . $logUser . '"},';
+            echo $log['id'] . ':{ subject:"' . constant($log['subject']) . '",description: "' . constant($logDescription[0]) . ' ' . $logDescription[1] . ' ' . constant($logDescription[2]) . '", date: "' . date_format($logViewDate, 'd-m-Y H:i:s') . '", user: "' . $logUser . '"},';
         }
         ?>
     };
     var notitiebtn = document.getElementById("notitie");
     var taakbtn = document.getElementById("taak");
     var opdrachtbtn = document.getElementById("opdracht");
+    var deletebtn = document.getElementById("thedeletebutton");
 
     var notitie = document.getElementById("notitieform");
     var taak = document.getElementById("taakform");
     var opdracht = document.getElementById("opdrachtform");
     var notitieview = document.getElementById("notitieview");
+    var deletee = document.getElementById("deleteform");
 
     function hideForms() {
         notitie.style.display = "none";
@@ -739,6 +810,7 @@
         <?php }?>
         notitieview.style.display = 'none';
         logview.style.display = 'none';
+        deletee.style.display = "none";
     }
 
     notitiebtn.onclick = function () {
@@ -778,7 +850,7 @@
         hideForms();
         notitieview.style.display = 'block';
         type = notes[id]['noteType'];
-        description = notes[id]['description'].replace(/<br>/g,"\r\n");
+        description = notes[id]['description'].replace(/<br>/g, "\r\n");
         eventDate = notes[id]['eventDate'];
         $('#noteIdView').val(id);
         $('#deleteId').val(id);
@@ -809,4 +881,9 @@
         $('<?php echo '#noteLink' . $_POST['id']; ?>').click();
         <?php }?>
     });
+
+    deletebtn.onclick = function () {
+        hideForms();
+        deletee.style.display = 'block';
+    };
 </script>

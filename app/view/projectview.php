@@ -11,13 +11,10 @@ $type = 'project';
 include '../app/Model/viewSetup.php';
 
 ?>
-<div class="crm-content-wrapper">
-    <div class="add-left-content add-content">
+<div class="crm-content-view-wrapper-4">
+    <div class="view-content">
         <h1 class="crm-content-header"><?= TEXT_PROJECT_VIEW ?></h1>
-        <form action="#" method="post">
-            <button type="submit" name="delete" id="deletebtn"
-                    class="custom-file-upload"><?= TEXT_DELETE ?></button>
-        </form>
+        <button id="thedeletebutton" class="custom-file-upload" data-toggle="modal" data-target="#myModal"> <?= TEXT_DELETE ?> </button>
         <form class="crm-add" action="#" method="post">
             <div>
                 <label><?= TABLE_SUBJECT ?></label>
@@ -59,17 +56,17 @@ include '../app/Model/viewSetup.php';
                 <label><?= TEXT_EMPLOYEE ?></label>
                 <select class="form-control <?php if (isset($project_user_error)) {
                     echo "error-input";
-                } ?>" name="user">
+                } ?>" name="userId">
                     <option value="0"
                         <?php
-                        if ($projectinfo['user'] == 0) {
+                        if (isset($projectinfo['user']) && $projectinfo['user'] == 0) {
                             echo 'selected';
                         }
                         ?>><?= TEXT_EMPLOYEE ?></option>
                     <?php
                     foreach ($users as $user) {
                         echo '<option value="' . $user['id'] . '"';
-                        if ($post && $user['id'] == $_POST['user']) {
+                        if ($post && $user['id'] == $_POST['userId']) {
                             echo 'selected';
                         } elseif (!$post && $user['id'] == $projectinfo['user']) {
                             echo 'selected';
@@ -89,7 +86,7 @@ include '../app/Model/viewSetup.php';
                 } else {
                     echo $projectinfo['endDate'];
                 }
-                ?>" min="<?= date("Y-m-d") ?>">
+                ?>">
             </div>
             <div class="description-holder">
                 <label><?= TEXT_DESCRIPTION ?></label>
@@ -112,3 +109,7 @@ include '../app/Model/viewSetup.php';
             </div>
         </form>
     </div>
+</div>
+    <?php
+    include '../app/Model/viewColumns.php';
+    ?>

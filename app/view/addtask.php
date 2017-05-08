@@ -17,7 +17,7 @@ include '../app/view/addItemSetup.php';
         <form class="crm-add" action="#" method="post">
             <div>
                 <label><?= TABLE_TITLE ?></label>
-                <input type="text" name="subject" class="form-control <?php if (isset($title_error)) {
+                <input type="text" name="subject" class="form-control <?php if (isset($task_subject_error)) {
                     echo "error-input";
                 } ?>"
                        value="<?php if (isset($_POST['subject'])) {
@@ -43,7 +43,7 @@ include '../app/view/addItemSetup.php';
             </div>
             <div>
                 <label><?= TEXT_EMPLOYEE ?></label>
-                <select class="form-control" name="user">
+                <select class="form-control" name="userId">
                     <option value="0"><?= TEXT_EMPLOYEE ?></option>
                     <?php
                     foreach ($users as $user) {
@@ -59,7 +59,7 @@ include '../app/view/addItemSetup.php';
 
             <div>
                 <label><?= TEXT_PROJECT_ADD ?></label>
-                <select class="form-control" name="project">
+                <select class="form-control" name="project" id="projectSelect">
                     <option value="0"><?= TEXT_PROJECT_ADD ?></option>
                     <?php
                     foreach ($projects as $project) {
@@ -75,7 +75,7 @@ include '../app/view/addItemSetup.php';
 
             <div>
                 <label><?= TEXT_ASSIGNMENT_ADD ?></label>
-                <select class="form-control" name="assignment">
+                <select class="form-control" name="assignment" id="assignmentSelect">
                     <option value="0"><?= TEXT_ASSIGNMENT_ADD ?></option>
                     <?php
                     foreach ($assignments as $assignment) {
@@ -93,7 +93,7 @@ include '../app/view/addItemSetup.php';
 
             <div>
                 <label><?= TEXT_TENDER_ADD ?></label>
-                <select class="form-control" name="tender">
+                <select class="form-control" name="tender" id="tenderSelect">
                     <option value="0"><?= TEXT_TENDER_ADD ?></option>
                     <?php
                     foreach ($tenders as $tender) {
@@ -112,7 +112,7 @@ include '../app/view/addItemSetup.php';
 
             <div>
                 <label><?= TEXT_CASE_ADD ?></label>
-                <select class="form-control" name="case">
+                <select class="form-control" name="case" id="caseSelect">
                     <option value="0"><?= TEXT_CASE_ADD ?></option>
                     <?php
                     foreach ($cases as $case) {
@@ -147,7 +147,7 @@ include '../app/view/addItemSetup.php';
 
             <div>
                 <label><?= TEXT_DURATION ?></label>
-                <input type="number" class="form-control <?php if (isset($value_error)) {
+                <input type="number" class="form-control <?php if (isset($task_duration_error)) {
                     echo "error-input";
                 } ?>" name="duration" value="<?php if (isset($_POST['duration'])) {
                     echo $_POST['duration'];
@@ -168,7 +168,7 @@ include '../app/view/addItemSetup.php';
 
             <div class="description-holder">
                 <label><?= TEXT_DESCRIPTION ?></label>
-                <textarea name="description" class="<?php if (isset($description_error)) {
+                <textarea name="description" class="<?php if (isset($task_description_error)) {
                     echo "error-input";
                 } ?>"><?php if (isset($_POST['description'])) {
                         echo $_POST['description'];
@@ -183,3 +183,6 @@ include '../app/view/addItemSetup.php';
         </form>
     </div>
 </div>
+<?php
+include '../app/view/parentCheckerScript.php';
+?>

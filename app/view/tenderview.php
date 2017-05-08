@@ -11,17 +11,15 @@ $type = 'tender';
 include '../app/Model/viewSetup.php';
 
 ?>
-<div class="crm-content-wrapper">
-    <div class="add-left-content add-content">
+<div class="crm-content-view-wrapper">
+    <div class="view-content">
         <h1 class="crm-content-header"><?= TENDER_OVERVIEW ?></h1>
-        <form action="#" method="post">
-            <button type="submit" name="delete" id="deletebtn"
-                    class="custom-file-upload"><?= TEXT_DELETE ?></button>
-        </form>
+        <button id="thedeletebutton" class="custom-file-upload" data-toggle="modal"
+                data-target="#myModal"> <?= TEXT_DELETE ?> </button>
         <form class="crm-add" action="#" method="post">
             <div>
                 <label><?= TABLE_TITLE ?></label>
-                <input type="text" name="subject" class="form-control <?php if (isset($title_error)) {
+                <input type="text" name="subject" class="form-control <?php if (isset($tender_subject_error)) {
                     echo "error-input";
                 } ?>"
                        value="<?php
@@ -34,7 +32,7 @@ include '../app/Model/viewSetup.php';
             </div>
             <div>
                 <label><?= TEXT_ASSIGNFOR ?></label>
-                <select class="form-control <?php if (isset($client_error)) {
+                <select class="form-control <?php if (isset($tender_client_error)) {
                     echo "error-input";
                 } ?>" name="client">
                     <option value="0"<?php if ($tenderinfo['client'] == 0) {
@@ -56,14 +54,14 @@ include '../app/Model/viewSetup.php';
             </div>
             <div>
                 <label><?= TEXT_EMPLOYEE ?></label>
-                <select class="form-control" name="user">
-                    <option value="0"<?php if ($tenderinfo['user'] == 0) {
+                <select class="form-control" name="userId">
+                    <option value="0"<?php if (isset($tenderinfo['user']) && $tenderinfo['user'] == 0) {
                         echo 'selected';
                     } ?>><?= TEXT_EMPLOYEE ?></option>
                     <?php
                     foreach ($users as $user) {
                         echo '<option value="' . $user['id'] . '"';
-                        if ($post && $user['id'] == $_POST['user']) {
+                        if ($post && $user['id'] == $_POST['userId']) {
                             echo 'selected';
                         } elseif (!$post && $user['id'] == $tenderinfo['user']) {
                             echo 'selected';
@@ -123,7 +121,7 @@ include '../app/Model/viewSetup.php';
             </div>
             <div class="description-holder">
                 <label><?= TEXT_DESCRIPTION ?></label>
-                <textarea name="description" class="<?php if (isset($description_error)) {
+                <textarea name="description" class="<?php if (isset($tender_description_error)) {
                     echo "error-input";
                 } ?>"><?php
                     if ($post) {
@@ -141,4 +139,9 @@ include '../app/Model/viewSetup.php';
             </div>
         </form>
     </div>
+</div>
+
+<?php
+include '../app/Model/viewColumns.php';
+?>
 

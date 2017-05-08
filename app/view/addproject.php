@@ -17,7 +17,7 @@ include '../app/view/addItemSetup.php';
         <form class="crm-add" action="#" method="post">
             <div>
                 <label><?= TABLE_SUBJECT ?></label>
-                <input type="text" class="form-control <?php if (isset($subject_error)) {
+                <input type="text" class="form-control <?php if (isset($project_subject_error)) {
                     echo "error-input";
                 } ?>" name="subject" value="<?php if ($post) {
                     echo $_POST['subject'];
@@ -40,7 +40,7 @@ include '../app/view/addItemSetup.php';
             </div>
             <div>
                 <label><?= TEXT_EMPLOYEE ?></label>
-                <select class="form-control" name="user">
+                <select class="form-control" name="userId">
                     <option value="0"><?= TEXT_EMPLOYEE ?></option>
                     <?php
                     foreach ($users as $user) {
@@ -57,7 +57,7 @@ include '../app/view/addItemSetup.php';
             </div>
             <div class="description-holder">
                 <label><?= TEXT_DESCRIPTION ?></label>
-                <textarea name="description" class="<?php if (isset($description_error)) {
+                <textarea name="description" class="<?php if (isset($project_description_error)) {
                     echo "error-input";
                 } ?>"><?php if ($post) {
                         echo $_POST['description'];
@@ -66,7 +66,7 @@ include '../app/view/addItemSetup.php';
             <div class="button-holder">
                 <div class="button-push"></div>
                 <button type="submit" name="create" class="custom-file-upload"
-                        onclick="ez()"><?= TEXT_CREATE_DROPDOWN ?></button>
+                        onclick="ez()" id="addSubmit"><?= TEXT_CREATE_DROPDOWN ?></button>
             </div>
             <input type="hidden" name="defaultTasks" id="defaultTasks">
         </form>
@@ -101,98 +101,10 @@ include '../app/view/addItemSetup.php';
                 </div>
             </div>
         </div>
+        <div id="submitSpace"></div>
+        <label for="addSubmit" class="custom-file-upload" id="hiddenSubmit"><?= TEXT_CREATE_DROPDOWN ?></label>
     </div>
 </div>
 
-<script type="text/javascript">
-
-    var amount = 0;
-
-    var tasks = "";
-
-    var dt = {
-
-        <?php foreach ($defaultTask as $task) {
-        echo $task['id'] . ':"' . $task['subject'] . '",';
-    } ?>
-
-    };
-
-    function addTask(id) {
-        var ul = document.getElementById("sortable");
-        var li = document.createElement("li");
-        var btn = document.createElement("button");
-        li.appendChild(document.createTextNode(dt[id]));
-        ul.appendChild(li);
-        btn.appendChild(document.createTextNode("x"));
-        li.appendChild(btn);
-
-        li.setAttribute("value", id);
-        li.setAttribute("class", "ui-state-default");
-
-        amount += 1;
-
-        li.setAttribute("id", "dt" + amount);
-
-        btn.setAttribute("onclick", "deleteTask(" + "dt" + amount + ")");
-        btn.setAttribute("class", "custom-file-upload");
-
-    }
-
-    $("#tasklist").change(function () {
-        var list = document.getElementById("tasklist");
-        var id = list.options[list.selectedIndex].value;
-
-        addTask(id);
-
-        list.selectedIndex = 0;
-
-    });
-
-    <?php foreach ($templates as $template){ ?>
-    var template<?=$template['id']?> = [<?php
-        $ids = $templateTaskLinksController->getTaskByTemplateId($template['id']);
-        foreach ($ids as $id){?>
-        <?= $id['idTask'] ?>,
-        <?php } ?>
-    ]
-    <?php }?>
-
-    $("#templatelist").change(function () {
-        var list = document.getElementById("templatelist");
-        var id = list.options[list.selectedIndex].value;
-
-        var templatename = 'template' + id;
-        for (i = 0; i < eval(templatename).length; i++) {
-            addTask(eval(templatename)[i]);
-        }
-
-        list.selectedIndex = 0;
-
-    });
-
-    $("#sortable").change(function () {
-        var list = document.getElementById("sortable");
-        var id = list.options[list.selectedIndex].text;
-
-        console.log("dt: " + dt[id]);
-
-    });
-
-    function deleteTask(task) {
-        var parent = document.getElementById("sortable");
-        var child = document.getElementById(task.id);
-        parent.removeChild(child);
-        console.log("dt" + task.id)
-    }
-
-    function ez() {
-        tasks = "";
-        $('#sortable li').each(function (i) {
-            tasks += $(this).attr('value') + "-";
-        });
-        console.log(tasks);
-        $('#defaultTasks').val(tasks);
-    }
-
-</script>
+<?php
+include '../app/view/taskListScript.php';

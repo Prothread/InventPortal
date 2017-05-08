@@ -38,7 +38,7 @@ class TenderController
         $this->model->setSubject($tenderinfo['subject']);
         $this->model->setClient($tenderinfo['client']);
         if (isset($tenderinfo['user'])) {
-            $this->model->setUser($tenderinfo['user']);
+            $this->model->setUser($tenderinfo['userId']);
         }
         $this->model->setValidity($tenderinfo['validity']);
         if (isset($tenderinfo['value'])) {
@@ -159,7 +159,7 @@ class TenderController
         $this->model->setTenderId($tenderinfo['id']);
         $this->model->setSubject($tenderinfo['subject']);
         $this->model->setClient($tenderinfo['client']);
-        $this->model->setUser($tenderinfo['user']);
+        $this->model->setUser($tenderinfo['userId']);
         $this->model->setValidity($tenderinfo['validity']);
         $this->model->setDescription($tenderinfo['description']);
         $this->model->setChance($tenderinfo['chance']);

@@ -152,15 +152,26 @@ if (isset($_SESSION['accorduserid']) && !isset($_SESSION['usr_id'])) {
             </li>
 
             <ul id="overview-dropdown" class="nav-dropdown sidebar-nav toggled">
-                <li class="nav-button-tender"><a href="?page=tendersoverview"><?= TEXT_TENDER_OVERVIEW ?></a></li>
-                <li class="nav-button-project"><a href="?page=projectsoverview"><?= TEXT_PROJECT_OVERVIEW ?></a></li>
-                <li class="nav-button-assignment"><a
-                        href="?page=assignmentsoverview"><?= TEXT_ASSIGNMENT_OVERVIEW ?></a></li>
-                <li class="nav-button-task"><a href="?page=tasksoverview"><?= TEXT_TASK_OVERVIEW ?></a></li>
-                <li class="nav-button-case"><a href="?page=casesoverview"><?= TEXT_CASE_OVERVIEW ?></a></li>
-                <li class="nav-button-assignment"><a href="?page=templatesoverview"><?= TEXT_TEMPLATE_OVERVIEW ?></a>
+                <li class="nav-button-tender">
+                    <a href="?page=tendersoverview"><?= TEXT_TENDER_OVERVIEW ?></a>
                 </li>
-                <li class="nav-button-task"><a href="?page=defaulttasksoverview"><?= TEXT_DEFAULTTASK_OVERVIEW ?></a>
+                <li class="nav-button-project">
+                    <a href="?page=projectsoverview"><?= TEXT_PROJECT_OVERVIEW ?></a>
+                </li>
+                <li class="nav-button-assignment">
+                    <a href="?page=assignmentsoverview"><?= TEXT_ASSIGNMENT_OVERVIEW ?></a>
+                </li>
+                <li class="nav-button-task">
+                    <a href="?page=tasksoverview"><?= TEXT_TASK_OVERVIEW ?></a>
+                </li>
+                <li class="nav-button-case">
+                    <a href="?page=casesoverview"><?= TEXT_CASE_OVERVIEW ?></a>
+                </li>
+                <li class="nav-button-task">
+                    <a href="?page=defaulttasksoverview"><?= TEXT_DEFAULTTASK_OVERVIEW ?></a>
+                </li>
+                <li class="nav-button-assignment">
+                    <a href="?page=templatesoverview"><?= TEXT_TEMPLATE_OVERVIEW ?></a>
                 </li>
             </ul>
 
@@ -168,13 +179,27 @@ if (isset($_SESSION['accorduserid']) && !isset($_SESSION['usr_id'])) {
                 <a id="create-link" href=""><?= TEXT_CREATE_DROPDOWN ?></a>
             </li>
             <ul id="create-dropdown" class="nav-dropdown sidebar-nav toggled">
-                <li class="nav-button-tender"><a href="?page=addtender"><?= TEXT_TENDER_ADD ?></a></li>
-                <li class="nav-button-project"><a href="?page=addproject"><?= TEXT_PROJECT_ADD ?></a></li>
-                <li class="nav-button-assignment"><a href="?page=addassignment"><?= TEXT_ASSIGNMENT_ADD ?></a></li>
-                <li class="nav-button-task"><a href="?page=addtask"><?= TEXT_TASK_ADD ?></a></li>
-                <li class="nav-button-case"><a href="?page=addcase"><?= TEXT_CASE_ADD ?></a></li>
-                <li class="nav-button-assignment"><a href="?page=addtemplate"><?= TEXT_TEMPLATE_ADD ?></a></li>
-                <li class="nav-button-task"><a href="?page=adddefaulttask"><?= TEXT_DEFAULTTASK_ADD ?></a></li>
+                <li class="nav-button-tender">
+                    <a href="?page=addtender"><?= TEXT_TENDER_ADD ?></a>
+                </li>
+                <li class="nav-button-project">
+                    <a href="?page=addproject"><?= TEXT_PROJECT_ADD ?></a>
+                </li>
+                <li class="nav-button-assignment">
+                    <a href="?page=addassignment"><?= TEXT_ASSIGNMENT_ADD ?></a>
+                </li>
+                <li class="nav-button-task">
+                    <a href="?page=addtask"><?= TEXT_TASK_ADD ?></a>
+                </li>
+                <li class="nav-button-case">
+                    <a href="?page=addcase"><?= TEXT_CASE_ADD ?></a>
+                </li>
+                <li class="nav-button-task">
+                    <a href="?page=adddefaulttask"><?= TEXT_DEFAULTTASK_ADD ?></a>
+                </li>
+                <li class="nav-button-assignment">
+                    <a href="?page=addtemplate"><?= TEXT_TEMPLATE_ADD ?></a>
+                </li>
             </ul>
             <br/>
 

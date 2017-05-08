@@ -46,7 +46,9 @@ class DbTemplate extends Database
 
     public function update(Template $template)
     {
-        $sql = "UPDATE `template` SET `onderwerp` = '{$template->getSubject()}', `beschrijving` = '{$template->getDescription()}' WHERE `id` = '{$template->getTemplateId()}'";
-        $this->dbQuery($sql);
+        $sql = "UPDATE `template` SET `subject` = '{$template->getSubject()}', `description` = '{$template->getDescription()}' WHERE `id` = '{$template->getTemplateId()}'";
+        if($this->dbQuery($sql)){
+            return true;
+        }
     }
 }

@@ -288,19 +288,15 @@ switch ($page) {
         break;
     case 'projectview':
         include '../app/view/projectview.php';
-        include '../app/Model/viewColumns.php';
         break;
     case 'tenderview':
         include '../app/view/tenderview.php';
-        include '../app/Model/viewColumns.php';
         break;
     case 'assignmentview':
         include '../app/view/assignmentview.php';
-        include '../app/Model/viewColumns.php';
         break;
     case 'taskview':
         include '../app/view/taskview.php';
-        include '../app/Model/viewColumns.php';
         break;
     case 'quickAssign':
         include '../app/view/quickAssign.php';
@@ -317,4 +313,9 @@ switch ($page) {
 }
 if ($page !== 'clientmail') {
     require_once '../app/view/footer.php';
+}
+
+//reset post (per ongeluk twee keer hetzelfde posten)
+if(isset($_POST)){
+    $_POST = null;
 }

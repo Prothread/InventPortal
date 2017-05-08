@@ -92,6 +92,7 @@ class DbTender extends Database
 
     /**
      * @param Tender $tender
+     * @return bool
      */
 
     public function update(Tender $tender)

@@ -19,10 +19,12 @@ class TaskController
     {
         $this->model->setSubject($taskinfo['subject']);
 
-        $this->model->setClient($taskinfo['client']);
+        if(isset($taskinfo['client'])) {
+            $this->model->setClient($taskinfo['client']);
+        }
 
         if (isset($taskinfo['user'])) {
-            $this->model->setUser($taskinfo['user']);
+            $this->model->setUser($taskinfo['userId']);
         }
 
         if (isset($taskinfo['project'])) {
@@ -94,7 +96,7 @@ class TaskController
         $this->model->setTaskId($taskinfo['id']);
         $this->model->setSubject($taskinfo['subject']);
         $this->model->setClient($taskinfo['client']);
-        $this->model->setUser($taskinfo['user']);
+        $this->model->setUser($taskinfo['userId']);
         $this->model->setProjectId($taskinfo['project']);
         $this->model->setAssignment($taskinfo['assignment']);
         $this->model->setUrgency($taskinfo['urgency']);

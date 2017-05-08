@@ -1,10 +1,3 @@
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<script>
-    $(function () {
-        $("#sortable").sortable();
-        $("#sortable").disableSelection();
-    });
-</script>
 <?php
 /**
  * Created by PhpStorm.
@@ -12,11 +5,35 @@
  * Date: 13-4-2017
  * Time: 12:38
  */
+//Default task en task hebben de sortable niet nodig
+if ($type != 'default' && $type != 'task') {
+    ?>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script>
+        $(function () {
+            $("#sortable").sortable();
+            $("#sortable").disableSelection();
+        });
+    </script>
+    <?php
 
-$typeCap = ucfirst($type);
-$typeController = $typeCap . 'Controller';
-$typeinfo = $type . 'info';
+}
 
+//Default tasks heeft andere parameters
+if($type == 'default'){
+    $typeCap = 'Task';
+    $typeController = 'TaskController';
+    $typeinfo = 'Taskinfo';
+}else{
+    $typeCap = ucfirst($type);
+    $typeController = $typeCap . 'Controller';
+    $typeinfo = $type . 'info';
+}
+
+//Block controller
+$block = new BlockController();
+
+//Switch voor type nummer
 switch ($type) {
     case 'tender':
         $typeNumb = 1;
@@ -33,14 +50,22 @@ switch ($type) {
     case 'case':
         $typeNumb = 5;
         break;
+    case 'default':
+        $typeNumb = 6;
+        break;
+    case 'template':
+        $typeNumb = 7;
+        break;
     default:
+        //404 fallback
         $block->Redirect('index.php?page=404');
         break;
 }
 
+//Mysql connect (replace tijdens implementatie)
 $mysqli = mysqli_connect();
 
-//typecontroller
+//type controller
 ${$typeController} = new $typeController;
 
 //users & clients
@@ -48,30 +73,32 @@ $userController = new UserController();
 $clients = $userController->getClientList();
 $users = $userController->getUserList();
 
-if ($type != 'task') {
+if ($type != 'task' || $type != 'default') {
 // task controller & default tasks
     $taskController = new TaskController();
     $defaultTask = $taskController->getAllTasksByStatus(4);
-//templates controller & templates
-    $templateController = new templateController();
-    $templates = $templateController->getAllTemplates();
-//template task links controller
+    //templates controller & templates
+    $templateController = new TemplateController();
+    if ($type != 'template') {
+        $templates = $templateController->getAllTemplates();
+    }
+    //template task links controller
     $templateTaskLinksController = new TemplateTaskLinksController();
 }
 
-if($type != 'project' || $type != 'tender'){
+if ($type != 'project' || $type != 'tender') {
     //project controller & projects
     $projectController = new ProjectController();
     $projects = $projectController->getAllProjects();
 }
 
-if($type == 'task' || $type == 'case'){
+if ($type == 'task' || $type == 'case') {
     //assignment controller & assignments
     $assignmentController = new AssignmentController();
     $assignments = $assignmentController->getAllAssignments();
 }
 
-if($type == 'task'){
+if ($type == 'task') {
     //tender controller & tenders
     $tenderController = new TenderController();
     $tenders = $tenderController->getAllTenders();
@@ -80,7 +107,7 @@ if($type == 'task'){
     $cases = $caseController->getAllCases();
 }
 
-$block = new BlockController();
+$logController = new LogController();
 
 $error = false;
 
@@ -91,19 +118,25 @@ if (isset($_POST['create'])) {
 
     switch ($type) {
         case 'tender':
-            $valueNames = ["subject", "client", "user", "validity", "value", "chance", "creationDate", "description", "defaultTasks"];
+            $valueNames = ["subject", "client", "userId", "validity", "value", "chance", "creationDate", "description", "defaultTasks"];
             break;
         case 'project':
-            $valueNames = ["subject", "client", "user", "endDate", "description", "defaultTasks"];
+            $valueNames = ["subject", "client", "userId", "endDate", "description", "defaultTasks"];
             break;
         case 'assignment':
-            $valueNames = ["subject", "client", "user", "endDate", "description", "projectId", "defaultTasks"];
+            $valueNames = ["subject", "client", "userId", "endDate", "description", "projectId", "defaultTasks"];
             break;
         case 'task':
-            $valueNames = ["subject", "client", "user", "project", "assignment", "urgency", "duration", "endDate", "description", "tender", "case"];
+            $valueNames = ["subject", "client", "userId", "project", "assignment", "urgency", "duration", "endDate", "description", "tender", "case"];
             break;
         case 'case':
-            $valueNames = ["subject", "client", "user", "endDate", "description", "project", "defaultTasks"];
+            $valueNames = ["subject", "client", "userId", "endDate", "description", "project", "defaultTasks", "assignment"];
+            break;
+        case 'default':
+            $valueNames = ["subject", "duration", "description"];
+            break;
+        case 'template':
+            $valueNames = ["subject", "description", "defaultTasks"];
             break;
         default:
             $block->Redirect('index.php?page=404');
@@ -115,17 +148,20 @@ if (isset($_POST['create'])) {
     }
 
     $stringVals = ["subject", "description", "creationDate"];
-    $intVals = ["client", "user", "validity", "chance", "assignment", "urgency", "duration", "tender", "case", "projectId", "project"];
+    $intVals = ["client", "userId", "validity", "chance", "assignment", "urgency", "duration", "tender", "case", "projectId", "project"];
     $floatVals = ["value"];
 
     foreach ($stringVals as $sVal) {
         if (isset(${$sVal})) {
             ${$sVal} = trim(${$sVal});
             if (!filter_var(${$sVal}, FILTER_SANITIZE_STRING)) {
-                $error = true;
-                $sVal_error = $type . '_' . $sVal . '_error';
-                ${$sVal_error} = true;
-                echo $sVal . ${$sVal};
+                if($type == "task" && $sVal == 'endDate' && ${$sVal} == ''){
+                    ${$sVal} = "0000-00-00";
+                }else {
+                    $error = true;
+                    $sVal_error = $type . '_' . $sVal . '_error';
+                    ${$sVal_error} = true;
+                }
             }
         }
     }
@@ -137,7 +173,6 @@ if (isset($_POST['create'])) {
                 $error = true;
                 $iVal_error = $type . '_' . $iVal . '_error';
                 ${$iVal_error} = true;
-                echo $iVal;
             }
         }
     }
@@ -146,14 +181,25 @@ if (isset($_POST['create'])) {
     foreach ($floatVals as $fVal) {
         if (isset(${$fVal})) {
             if (!filter_var(${$fVal}, FILTER_VALIDATE_FLOAT)) {
-                $error = true;
+                $error = true . ' ' . '<br>';
             }
         }
     }
 
+    if(isset($defaultTasks) && $defaultTasks == "-" && $type == 'template' || isset($defaultTasks) && $defaultTasks == "" && $type == 'template'){
+        $error = true;
+    }
+
+    if ($type == 'template' && $defaultTasks != null && isset($defaultTasks)) {
+        $error = true;
+        $template_error = true;
+    }
+
     if (!$error) {
-        if ($user == 0) {
+        if (isset($userId) && $userId == 0) {
             $status = 0;
+        } elseif ($type == 'default') {
+            $status = 4;
         } else {
             $status = 1;
         }
@@ -163,55 +209,88 @@ if (isset($_POST['create'])) {
         foreach ($valueNames as $v) {
             ${$typeinfo}[$v] = ${$v};
         }
+
         if ($id = ${$typeController}->create(${$typeinfo})) {
-            if ($type != 'task' && $defaultTasks != null && isset($defaultTasks)) {
-                $tasksId = explode("-", $defaultTasks);
-                foreach ($tasksId as $taskid) {
-                    if ($taskid != '') {
-                        $task = $taskController->getTaskById($taskid);
-                        if ($task['user'] != 0) {
-                            $status = 1;
-                        } else {
-                            $status = 0;
-                        }
-                        $taskinfo = [
-                            'subject' => strip_tags($task['subject']),
-                            'client' => strip_tags($task['client']),
-                            'user' => strip_tags($task['user']),
-                            'urgency' => strip_tags($task['urgency']),
-                            'duration' => strip_tags($task['duration']),
-                            'description' => strip_tags($task['description']),
-                            'endDate' => strip_tags($task['endDate']),
-                            'status' => strip_tags($status)
-                        ];
-                        $linkTypes = ["project", "assignment", "tender", "cases"];
-                        foreach ($linkTypes as $l) {
-                            if ($l == $type) {
-                                $taskinfo[$l] = $id;
-                            } elseif($type == 'case') {
-                                $taskinfo[$l . 's'] = $task[$l . 's'];
-                            }else{
-                                $taskinfo[$l] = $task[$l];
+            if ($type != 'default' && $type != 'template') {
+                if ($type != 'task' && $defaultTasks != null && isset($defaultTasks)) {
+                    $tasksId = explode("-", $defaultTasks);
+                    foreach ($tasksId as $taskid) {
+                        if ($taskid != '') {
+                            $task = $taskController->getTaskById($taskid);
+                            if ($task['user'] != 0) {
+                                $status = 1;
+                            } else {
+                                $status = 0;
                             }
+                            $taskinfo = [
+                                'subject' => strip_tags($task['subject']),
+                                'client' => strip_tags($task['client']),
+                                'userId' => strip_tags($task['user']),
+                                'urgency' => strip_tags($task['urgency']),
+                                'duration' => strip_tags($task['duration']),
+                                'description' => strip_tags($task['description']),
+                                'endDate' => strip_tags($task['endDate']),
+                                'status' => strip_tags($status),
+                                'project' => 0,
+                                'assignment' => 0,
+                                'tender' => 0,
+                                'cases' => 0,
+                            ];
+                            switch ($type){
+                                case 'project':
+                                    $taskinfo['project'] = $id;
+                                    break;
+                                case 'assignment':
+                                    $taskinfo['assignment'] = $id;
+                                    break;
+                                case 'tender':
+                                    $taskinfo['tender'] = $id;
+                                    break;
+                                case 'case':
+                                    $taskinfo['cases'] = $id;
+                                    break;
+                            };
+                            $taskId = $taskController->create($taskinfo);
+                            $loginfo = [
+                                'subject' => 'TEXT_TASK_CREATED',
+                                'description' => 'TEXT_TASK_ADD[constDivide]' . $task['subject'] . '[constDivide]TEXT_ADDED',
+                                'date' => date('Y-m-d G:i:s'),
+                                'userId' => $_SESSION['usr_id'],
+                                'linkType' => 4,
+                                'linkId' => $taskId
+                            ];
+                            $logController->create($loginfo);
                         }
-                        $taskController->create($taskinfo);
                     }
                 }
+                $loginfo = [
+                    'subject' => 'TEXT_' . strtoupper($type) . '_CREATED',
+                    'description' => 'TEXT_' . strtoupper($type) . '_ADD' . '[constDivide]' . ${$typeinfo}['subject'] . '[constDivide]' . 'TEXT_ADDED',
+                    'date' => date('Y-m-d G:i:s'),
+                    'userId' => $_SESSION['usr_id'],
+                    'linkType' => $typeNumb,
+                    'linkId' => $id
+                ];
+                $logController->create($loginfo);
+            } elseif ($type == 'template') {
+                    $tasksId = explode("-", $defaultTasks);
+                    array_pop($tasksId);
+                    foreach ($tasksId as $taskid) {
+                        $t = $taskController->getTaskById($taskid);
+                        if ($t['subject'] != null && isset($t['subject'])) {
+                            $templatetaskinfo = [
+                                'idTemplate' => (int)$id,
+                                'idTask' => (int)$taskid
+                            ];
+                            $templateTaskLinksController->create($templatetaskinfo);
+                        }
+                    }
             }
-            $logController = new LogController();
-            $loginfo = [
-                'subject' => 'TEXT_' . strtoupper($type) . '_CREATED',
-                'description' => 'TEXT_' . strtoupper($type) . '_ADD' . '[constDivide]' . ${$typeinfo}['subject'] . '[constDivide]' . 'TEXT_ADDED',
-                'date' => date('Y-m-d G:i:s'),
-                'user' => $_SESSION['usr_id'],
-                'linkType' => $typeNumb,
-                'linkId' => $id
-            ];
-            $logController->create($loginfo);
         }
-        $block = new BlockController();
-        $block->Redirect('index.php?page=' . $type . 'view&id=' . $id);
+        if ($type == 'default') {
+            $block->Redirect('index.php?page=defaulttaskview&id=' . $id);
+        } else {
+            $block->Redirect('index.php?page=' . $type . 'view&id=' . $id);
+        }
     }
 }
-
-

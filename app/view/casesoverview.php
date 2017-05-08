@@ -47,7 +47,7 @@ $assignments = $assignmentController->getAllAssignments();
                     ?>
                     <tr>
                         <td>
-                            <a href="?page=caseview&id= <?= $case['id'] ?>"><?= $case['subject'] ?></a>
+                            <a href="?page=caseview&id=<?= $case['id'] ?>"><?= $case['subject'] ?></a>
                         </td>
                         <td>
                             <a href="?page=showuserprofile&id=<?= $case['user'] ?>"> <?php

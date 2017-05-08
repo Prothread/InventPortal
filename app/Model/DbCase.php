@@ -10,7 +10,7 @@ class DbCase extends Database
 {
     public function create(CaseClass $case)
     {
-        $sql = "INSERT INTO `cases` (`subject`,`client`,`user`,`endDate`,`description`,`status`, `project`) VALUES('{$case->getSubject()}','{$case->getClient()}','{$case->getUser()}','{$case->getEndDate()}','{$case->getDescription()}','{$case->getStatus()}','{$case->getProject()}')";
+        $sql = "INSERT INTO `cases` (`subject`,`client`,`user`,`endDate`,`description`,`status`, `project`,`assignment`) VALUES('{$case->getSubject()}','{$case->getClient()}','{$case->getUser()}','{$case->getEndDate()}','{$case->getDescription()}','{$case->getStatus()}','{$case->getProject()}','{$case->getAssignment()}')";
         if ($this->dbQuery($sql)) {
             return $this->dbLastInsertedId();
         }
@@ -18,8 +18,10 @@ class DbCase extends Database
 
     public function update(CaseClass $case)
     {
-        $sql = "UPDATE `cases` SET `subject` = '{$case->getSubject()}', `client` = '{$case->getClient()}',`user` = '{$case->getUser()}', `endDate` = '{$case->getEndDate()}', `description` = '{$case->getDescription()}', `status` = '{$case->getStatus()}', `project` = '{$case->getProject()}' WHERE `id` = '{$case->getCaseId()}'";
-        $this->dbQuery($sql);
+        $sql = "UPDATE `cases` SET `subject` = '{$case->getSubject()}', `client` = '{$case->getClient()}',`user` = '{$case->getUser()}', `endDate` = '{$case->getEndDate()}', `description` = '{$case->getDescription()}', `status` = '{$case->getStatus()}', `project` = '{$case->getProject()}',`assignment` = '{$case->getAssignment()}' WHERE `id` = '{$case->getCaseId()}'";
+        if($this->dbQuery($sql)){
+            return true;
+        }
     }
 
     public function delete($id)
