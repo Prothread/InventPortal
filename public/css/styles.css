@@ -2474,7 +2474,6 @@ html *::-webkit-scrollbar-thumb
 .column-box .deadline {
     position: absolute;
     top: 5px;
-    right: 3px;
     height: 25px;
 }
 
