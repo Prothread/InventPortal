@@ -37,10 +37,6 @@ class Project
      * Status nummer
      */
     private $status;
-    /*
-     * Afrond datum
-     */
-    private $finishDate;
 
     /**
      * Project constructor.
@@ -192,22 +188,6 @@ class Project
         $this->status = $status;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getFinishDate()
-    {
-        return $this->finishDate;
-    }
-
-    /**
-     * @param mixed $finishDate
-     */
-    public function setFinishDate($finishDate)
-    {
-        $this->finishDate = $finishDate;
-    }
-
     public function getTimeDifference($date1, $date2)
     {
         return $this->db->getTimeDifference($date1, $date2);
@@ -221,5 +201,14 @@ class Project
     public function assignUser($user, $id)
     {
         $this->db->assignUser($user, $id);
+    }
+
+    public function getAllProjectsByStatus($status)
+    {
+        return $this->db->getAllProjectsByStatus($status);
+    }
+
+    public function updateStatus($id, $status){
+        return $this->db->updateStatus($id, $status);
     }
 }

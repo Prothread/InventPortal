@@ -22,14 +22,16 @@ class DbTemplateTaskLinks extends Database
         return $this->connection->insert_id;
     }
 
-    public function getTaskAmountByTemplateId($id){
-            $sql = "SELECT COUNT(*) FROM `template_task_links` WHERE `idTemplate` = {$id}";
+    public function getTaskAmountByTemplateId($id)
+    {
+        $sql = "SELECT COUNT(*) FROM `template_task_links` WHERE `idTemplate` = {$id}";
         $result = $this->dbQuery($sql);
         $value = mysqli_fetch_assoc($result);
-            return $value;
+        return $value;
     }
 
-    public function getTaskByTemplateId($id){
+    public function getTaskByTemplateId($id)
+    {
         $sql = "SELECT * FROM `template_task_links` WHERE `idTemplate` = {$id}";
 
         $result = $this->dbQuery($sql);
@@ -39,7 +41,8 @@ class DbTemplateTaskLinks extends Database
         }
     }
 
-    public function deleteByTemplateId($id){
+    public function deleteByTemplateId($id)
+    {
         $sql = "DELETE FROM `template_task_links` WHERE `idTemplate` = '{$id}'";
 
         if ($result = $this->dbQuery($sql)) {
@@ -48,4 +51,13 @@ class DbTemplateTaskLinks extends Database
         return false;
     }
 
+    public function checkDeleteDefaultTask($id){
+        $sql = "SELECT `id` FROM `template_task_links` WHERE `idTask` = '{$id}'";
+        $ids = $this->dbQuery($sql);
+        if(is_null($ids)){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }

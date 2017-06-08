@@ -2013,6 +2013,10 @@ tr:nth-child(2n) {
     min-width: 350px;
 }
 
+.crm-content-wrapper input, .crm-content-wrapper select, .crm-content-wrapper textarea{
+    border:1px solid rgb(204, 204, 204);
+}
+
 .crm-content-view-wrapper-2 {
     background: url("../img/devider-background.png") repeat-x;
     min-height: 66px;
@@ -2046,12 +2050,6 @@ tr:nth-child(2n) {
 .view-content{
     float: left;
     width: 100%;
-}
-
-.crm-content-header {
-    font-size: 20px;
-    margin-top: 20px;
-    float: left;
 }
 
 .add-content {
@@ -2191,6 +2189,27 @@ tr:nth-child(2n) {
     width: calc(30% + 20px);
     max-width: 180px;
     float: left;
+    clear: left;
+}
+
+#finish-holder{
+    float: left;
+    width: 100%;
+    margin-top: -20px;
+}
+
+#finish-holder .button-push{
+    height: 1px;
+}
+
+#form-finish-button{
+    margin-left: calc(50% - 50px);
+    width: 100px;
+}
+
+#finish-button, #revert-button, #delete-button{
+    width: 100px;
+    float: left;
 }
 
 .description-holder {
@@ -2204,97 +2223,18 @@ tr:nth-child(2n) {
 #taken-lijst {
     float: left;
     height: auto;
-    border: solid #a9a9a9 1px;
+    border: solid rgb(204, 204, 204) 1px;
     min-height: 40px;
     padding: 10px;
 }
 
-.crm-dashboard-row {
-    margin-left: 30px;
-    width: 250px;
-    height: 550px;
-    text-align: left;
-    padding-top: 10px;
-    float: left;
-}
-
-.crm-dashboard-inside-row {
-    padding-top: 20px;
-    margin-top: 30px;
-    background-color: #eeeeee;
-    width: 250px;
-    height: 550px;
-    border-radius: 7px;
-    box-shadow: 0 0 20px #939393;
-    position: relative;
-}
-
-.crm-dashboard-inside-row button {
-    width: 200px;
-    position: absolute;
-    bottom: 10px;
-    border-radius: 7px;
-    height: 35px;
-    right: 10%;
-}
-
-.crm-dashboard-box {
-    margin: 0 auto;
-    width: 220px;
-    list-style-type: none;
-    background-color: #f4f6f9;
-    border-radius: 7px;
-    margin-bottom: 15px;
-    position: relative;
-}
-
-.crm-dashboard-box ul {
-    list-style-type: none;
-    text-align: left;
-    padding: 5px;
-}
-
-.crm-dashboard-select {
-    width: 250px;
-    height: 30px;
-    border-radius: 9px;
-    background-color: #dd2c4c;
-    color: white;
-    margin: 20px auto 0 auto;
-    padding-left: 10px;
-    outline: none;
-}
-
-.crm-dashboard-box .deadline {
-    position: absolute;
-    top: 3px;
-    right: 3px;
-    height: 25px;
-}
-
-.crm-dashboard-box .urgentie {
-    position: absolute;
-    bottom: 25px;
-    right: 3px;
-    height: 25px;
-}
-
-.crm-dashboard-box .toewijzenlink {
-    position: absolute;
-    bottom: -5px;
-    right: 3px;
-    height: 30px;
-    text-decoration: underline;
-    cursor: pointer;
-}
-
-.case-overzicht-buttons {
+.overview-buttons {
     float: left;
     clear: left;
     width: 100%;
 }
 
-.case-overzicht-buttons button {
+.overview-buttons button {
     width: 90px;
     height: 30px;
     float: left;
@@ -2304,16 +2244,7 @@ tr:nth-child(2n) {
     padding: 0;
 }
 
-.case-overvieuw-table {
-    /*leeg*/
-}
-
-#case-overview-holder header {
-    margin-left: 40px;
-    margin-top: 15px;
-}
-
-#case-overview-holder img {
+#overview-holder img {
     width: 25px;
 }
 
@@ -2363,14 +2294,6 @@ html *::-webkit-scrollbar-thumb
 
 .overview-add-button {
     margin-left: 0 !important;
-}
-
-#crm-dashboard-holder .crm-content-header {
-    width: 100%;
-}
-
-#crm-dashboard-holder .crm-dashboard-row:first-of-type {
-    margin-left: 0;
 }
 
 .queue-snel-toestaan {
@@ -2477,7 +2400,7 @@ html *::-webkit-scrollbar-thumb
 .view-side-column {
     width: 220px;
     margin-left: 10px;
-    height: calc(100% - 130px);
+    height: calc(100vh - 130px);
     float: right;
     background-color: #cccccc;
     overflow-y: auto;
@@ -3103,4 +3026,140 @@ html *::-webkit-scrollbar-thumb
     #wrapper.toggledOff #view-column-wrapper-2 #notitie{
         bottom: 20px;
     }
+}
+
+/*Crm dashboard css*/
+
+#crm-dashboard-holder ::-webkit-scrollbar {
+    display: none;
+}
+
+#crm-dashboard-holder .crm-content-header {
+    width: 100%;
+}
+
+#crm-dashboard-holder .crm-dashboard-row:first-of-type {
+    margin-left: 0;
+}
+
+.crm-dashboard-row {
+    margin-left: 30px;
+    width: calc((100% - 125px) / 5);
+    min-width: 250px;
+    height: 550px;
+    text-align: left;
+    padding-top: 10px;
+    float: left;
+}
+
+.crm-content-header {
+    font-size: 20px;
+    margin-top: 20px;
+    float: left;
+}
+
+.crm-dashboard-select {
+    border:0px;
+    width: 100%;
+    height: 30px;
+    border-radius: 9px;
+    background-color: #dd2c4c;
+    color: white;
+    margin: 20px auto 0 auto;
+    padding-left: 10px;
+    outline: none;
+}
+
+.crm-dashboard-inside-row {
+    padding-top: 20px;
+    margin-top: 30px;
+    background-color: #eeeeee;
+    width: 100%;
+    height: calc(100vh - 300px);
+    min-height: 600px;
+    border-radius: 7px;
+    box-shadow: 0 0 20px #939393;
+    position: relative;
+}
+
+.crm-dashboard-inside-row button {
+    width: calc(100% - 30px);
+    position: absolute;
+    bottom: 10px;
+    border-radius: 7px;
+    height: 35px;
+    right: calc(50% - (100% - 30px) / 2);
+}
+
+.crm-dashboard-box {
+    margin: 0 auto;
+    width: calc(100% - 30px);
+    list-style-type: none;
+    background-color: #f4f6f9;
+    border-radius: 7px;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.crm-dashboard-box ul {
+    list-style-type: none;
+    text-align: left;
+    padding: 5px;
+}
+
+.crm-dashboard-box .deadline {
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    height: 25px;
+}
+
+.crm-dashboard-box .urgentie {
+    position: absolute;
+    bottom: 25px;
+    right: 3px;
+    height: 25px;
+}
+
+.crm-dashboard-box .toewijzenlink {
+    position: absolute;
+    bottom: -5px;
+    right: 3px;
+    height: 30px;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+#crm-dashboard-scroll{
+    height: calc(100vh - 130px);
+    min-width: 1400px;
+    padding: 0 10px;
+}
+
+@media screen and (max-width: 1680px) {
+    #wrapper.toggled #crm-dashboard-holder {
+        overflow-x: scroll;
+    }
+
+    #wrapper.toggled #crm-dashboard-scroll{
+        height: calc(100vh - 150px);
+    }
+}
+
+@media screen and (max-width: 1420px) {
+    #wrapper.toggledOff #crm-dashboard-holder {
+        overflow-x: scroll;
+    }
+
+    #wrapper.toggledOff #crm-dashboard-scroll{
+        height: calc(100vh - 150px);
+    }
+}
+
+#cantFinishHolder, #cantDeleteHolder{
+    height: 50px;
+}
+
+#cantFinishHolder #finish-button, #cantDeleteHolder #delete-button{
+    margin-left: calc(50% - 50px);
 }

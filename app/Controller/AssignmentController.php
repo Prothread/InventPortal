@@ -68,9 +68,9 @@ class AssignmentController
         return $this->model->getTimeDifference($date1, $date2);
     }
 
-    public function getAssignmentsByStatus($status)
+    public function getAllAssignmentsByStatus($status)
     {
-        return $this->model->getAssignmentsByStatus($status);
+        return $this->model->getAllAssignmentsByStatus($status);
     }
 
     public function assignUser($user, $id){
@@ -79,5 +79,9 @@ class AssignmentController
 
     public function getAssignmentByProjectId($id){
         return $this->model->getAssignmentByProjectId($id);
+    }
+
+    public function updateStatus($id, $status){
+        return $this->model->updateStatus($id, $status);
     }
 }

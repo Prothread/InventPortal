@@ -35,25 +35,21 @@ if (isset($_POST['assign'])) {
         case "case":
             $caseController->assignUser($user, $typeId);
             break;
-        default:
-            echo "What have you done?";
-            break;
     }
 
 }
 
-$allTenders = $tenderController->getTendersByStatus(0);
+$allTenders = $tenderController->getAllTendersByStatus(0);
 
-$allProjects = $projectController->getProjectsByStatus(0);
+$allProjects = $projectController->getAllProjectsByStatus(0);
 
-$allCases = $caseController->getCasesByStatus(0);
+$allCases = $caseController->getAllCasesByStatus(0);
 
-$allAssignments = $assignmentController->getAssignmentsByStatus(0);
+$allAssignments = $assignmentController->getAllAssignmentsByStatus(0);
 
-$tasks = $taskController->getAllTasksByStatus(0);
+$allTasks = $taskController->getAllTasksByStatus(0);
 
 $clients = $userController->getClientList();
-$showPupUp = true;
 
 $userController = new UserController();
 $users = $userController->getUserList();
@@ -63,277 +59,81 @@ $thisUserId = $_SESSION['usr_id'];
 ?>
 
 <div id="crm-dashboard-holder" class="crm-content-wrapper">
+    <div id="crm-dashboard-scroll">
+        <?php
+        $columnTypes = ["tender", "project", "assignment", "task", "case"];
+        foreach ($columnTypes as $columnType) {
+            $columnTypeCap = ucfirst($columnType);
+            $columnTypeUpper = strtoupper($columnType);
+            $columnTypeAll = "all" . $columnTypeCap . "s";
+            $columnTypeController = $columnType . "Controller";
+            ?>
+            <div class="crm-dashboard-row">
+                <h1 class="crm-content-header"><?= constant("OPEN_" . $columnTypeUpper . "S") ?></h1>
 
-    <div class="crm-dashboard-row">
-        <h1 class="crm-content-header"><?= OPEN_TENDERS ?></h1>
+                <select class="crm-dashboard-select" id="<?= $columnType ?>Sort" onchange="sortItems('<?= $columnType ?>');">
+                    <option value="" disabled selected><?= TEXT_FILTER_OPTION ?></option>
+                    <option value="subject"><?= TABLE_TITLE ?></option>
+                    <option value="date"><?= TEXT_DATE ?></option>
+                    <option value="client"><?= TEXT_IS_CLIENT ?></option>
+                </select>
 
-        <select class="crm-dashboard-select" id="Tenderselect" onchange="changeFunc('Tenderselect');">
-            <option value="" disabled selected><?= TEXT_FILTER_OPTION ?></option>
-            <option value="onderwerp"><?= TABLE_TITLE ?></option>
-            <option value="datum"><?= TEXT_DATE ?></option>
-            <option value="klant"><?= TEXT_IS_CLIENT ?></option>
-        </select>
-
-        <div class="crm-dashboard-inside-row">
-            <button class="custom-file-upload"
-                    onclick="window.location.href='?page=addtender'"><?= TEXT_CREATE_DROPDOWN ?></button>
-            <div id="containerTenderselect">
-                <?php $amount = 0; foreach ($allTenders as $tender) {
-                    $amount++;
-                    $timeDiff = $tenderController->getTimeDifference($tender['endDate'], date("Y-m-d"))
-                    ?>
-                    <div <?php if ($amount > 5){ ?> style="display: none" <?php } ?>class="crm-dashboard-box boxesTenderselect">
-                        <?php if ($timeDiff <= 0) { ?>
-                            <img class="deadline" src="css/deadline4.png">
-                        <?php } else if ($timeDiff > 0 && $timeDiff <= 2) { ?>
-                            <img class="deadline" src="css/deadline3.png">
-                        <?php } else if ($timeDiff > 2 && $timeDiff <= 7) { ?>
-                            <img class="deadline" src="css/deadline2.png">
-                        <?php } else { ?>
-                            <img class="deadline" src="css/deadline1.png">
+                <div class="crm-dashboard-inside-row">
+                    <?php if($user->getPermission($permgroup, 'CAN_EDIT_CRM') == 1){?>
+                    <button class="custom-file-upload"
+                            onclick="window.location.href='?page=add<?= $columnType ?>'"><?= TEXT_CREATE_DROPDOWN ?></button>
+<?php }?>
+                    <div id="container<?= $columnTypeCap ?>select">
+                        <?php $amount = 0;
+                        foreach (${$columnTypeAll} as ${$columnType}) {
+                            $amount++;
+                            $timeDiff = ${$columnTypeController}->getTimeDifference(${$columnType}['endDate'], date("Y-m-d"))
+                            ?>
+                            <div id="<?= $columnType ?><?= ${$columnType}['id'] ?>" <?php if ($amount > 5){ ?>
+                                 style="display: none"
+                                 <?php } ?>class="crm-dashboard-box boxes<?= $columnTypeCap ?>select">
+                                <?php if ($timeDiff <= 0) { ?>
+                                    <img class="deadline" src="css/deadline4.png">
+                                <?php } else if ($timeDiff > 0 && $timeDiff <= 2) { ?>
+                                    <img class="deadline" src="css/deadline3.png">
+                                <?php } else if ($timeDiff > 2 && $timeDiff <= 7) { ?>
+                                    <img class="deadline" src="css/deadline2.png">
+                                <?php } else { ?>
+                                    <img class="deadline" src="css/deadline1.png">
+                                <?php } ?>
+                                <ul>
+                                    <li>
+                                        <a class="subjectLink<?= $columnTypeCap ?>select"
+                                           href="?page=<?= $columnType ?>view&id= <?= ${$columnType}['id'] ?>"><?= ${$columnType}['subject'] ?></a>
+                                    </li>
+                                    <li>
+                                        <?php foreach ($clients as $client) {
+                                            if ($client['id'] == $tender['client']) {
+                                                ?>
+                                                <a class="clientLink<?= $columnTypeCap ?>select"
+                                                   href="?page=showuserprofile&id=<?= $client['id'] ?>"><?= $client['naam'] ?></a>
+                                                <?php
+                                            }
+                                        } ?>
+                                    </li>
+                                    <li class="crm-dashboard-date<?= $columnTypeCap ?>select">
+                                        <?= date("d-m-Y", strtotime($tender['endDate'])) ?>
+                                    </li>
+                                </ul>
+                                <?php if($user->getPermission($permgroup, 'CAN_EDIT_CRM') == 1){?>
+                                <a class="toewijzenlink" data-toggle="modal" data-target="#myModal"
+                                   theType="<?= $columnType ?>"
+                                   typeId="<?= ${$columnType}['id'] ?>"
+                                   typeSubject="<?= ${$columnType}['subject'] ?>"><?= TEXT_ASSIGN ?></a>
+                                <?php }?>
+                            </div>
                         <?php } ?>
-                        <ul>
-                            <li>
-                                <a class="subjectLinkTenderselect"
-                                   href="?page=tenderview&id= <?= $tender['id'] ?>"><?= $tender['subject'] ?></a>
-                            </li>
-                            <li>
-                                <?php foreach ($clients as $client) {
-                                    if ($client['id'] == $tender['client']) {
-                                        ?>
-                                        <a class="clientLinkTenderselect"
-                                           href="?page=showuserprofile&id=<?= $client['id'] ?>"><?= $client['naam'] ?></a>
-                                        <?php
-                                    }
-                                } ?>
-                            </li>
-                            <li class="crm-dashboard-dateTenderselect">
-                                <?= date("d-m-Y", strtotime($tender['endDate'])) ?>
-                            </li>
-                        </ul>
-                        <a class="toewijzenlink" data-toggle="modal" data-target="#myModal" theType="tender"
-                           typeId="<?= $tender['id'] ?>" typeSubject="<?= $tender['subject'] ?>"><?= TEXT_ASSIGN ?></a>
                     </div>
-                <?php } ?>
-            </div>
-        </div>
-    </div>
-
-    <div class="crm-dashboard-row">
-        <h1 class="crm-content-header"><?= OPEN_PROJECTS ?></h1>
-
-        <select class="crm-dashboard-select" id="Projectselect" onchange="changeFunc('Projectselect');">
-            <option value="standaard" disabled selected><?= TEXT_FILTER_OPTION ?></option>
-            <option value="onderwerp"><?= TABLE_TITLE ?></option>
-            <option value="datum"><?= TEXT_DATE ?></option>
-            <option value="klant"><?= TEXT_IS_CLIENT ?></option>
-        </select>
-        <div class="crm-dashboard-inside-row">
-            <button class="custom-file-upload"
-                    onclick="window.location.href='?page=addproject'"><?= TEXT_CREATE_DROPDOWN ?></button>
-            <div id="containerProjectselect">
-                <?php $amount = 0; foreach ($allProjects as $project) {
-                    $amount++;
-                    $timeDiff = $projectController->getTimeDifference($project['endDate'], date("Y-m-d"))
-                    ?>
-                    <div <?php if ($amount > 5){ ?> style="display: none" <?php } ?>class="crm-dashboard-box boxesProjectselect">
-                        <?php if ($timeDiff <= 0) { ?>
-                            <img class="deadline" src="css/deadline4.png">
-                        <?php } else if ($timeDiff > 0 && $timeDiff <= 2) { ?>
-                            <img class="deadline" src="css/deadline3.png">
-                        <?php } else if ($timeDiff > 2 && $timeDiff <= 7) { ?>
-                            <img class="deadline" src="css/deadline2.png">
-                        <?php } else { ?>
-                            <img class="deadline" src="css/deadline1.png">
-                        <?php } ?>
-                        <ul>
-                            <li>
-                                <a class="subjectLinkProjectselect"
-                                   href="?page=projectview&id=<?= $project['id'] ?>"><?= $project['subject'] ?></a>
-                            </li>
-                            <li>
-                                <?php foreach ($clients as $client) {
-                                    if ($client['id'] == $project['client']) {
-                                        ?>
-                                        <a class="clientLinkProjectselect"
-                                           href="?page=showuserprofile&id=<?= $client['id'] ?>"><?= $client['naam'] ?></a>
-                                        <?php
-                                    }
-                                } ?>
-                            </li>
-                            <li class="crm-dashboard-dateProjectselect">
-                                <?= date("d-m-Y", strtotime($project['endDate'])) ?>
-                            </li>
-                        </ul>
-                        <a class="toewijzenlink" data-toggle="modal" data-target="#myModal" theType="project"
-                           typeId="<?= $project['id'] ?>"
-                           typeSubject="<?= $project['subject'] ?>"><?= TEXT_ASSIGN ?></a>
-                    </div>
-                <?php } ?>
-            </div>
-        </div>
-    </div>
-
-    <div class="crm-dashboard-row">
-        <h1 class="crm-content-header"><?= OPEN_ASSIGNMENTS ?></h1>
-
-        <select class="crm-dashboard-select" id="Assignmentselect" onchange="changeFunc('Assignmentselect');">
-            <option value="" disabled selected><?= TEXT_FILTER_OPTION ?></option>
-            <option value="onderwerp"><?= TABLE_TITLE ?></option>
-            <option value="datum"><?= TEXT_DATE ?></option>
-            <option value="klant"><?= TEXT_IS_CLIENT ?></option>
-        </select>
-
-        <div class="crm-dashboard-inside-row">
-            <button class="custom-file-upload"
-                    onclick="window.location.href='?page=addassignment'"><?= TEXT_CREATE_DROPDOWN ?></button>
-            <div id="containerAssignmentselect">
-                <?php $amount = 0; foreach ($allAssignments as $assignment) {
-                    $amount++;
-                    $timeDiff = $assignmentController->getTimeDifference($assignment['endDate'], date("Y-m-d"));
-                    ?>
-                    <div  <?php if ($amount > 5){ ?> style="display: none" <?php } ?>class="crm-dashboard-box boxesAssignmentselect">
-                        <?php if ($timeDiff <= 0) { ?>
-                            <img class="deadline" src="css/deadline4.png">
-                        <?php } else if ($timeDiff > 0 && $timeDiff <= 2) { ?>
-                            <img class="deadline" src="css/deadline3.png">
-                        <?php } else if ($timeDiff > 2 && $timeDiff <= 7) { ?>
-                            <img class="deadline" src="css/deadline2.png">
-                        <?php } else { ?>
-                            <img class="deadline" src="css/deadline1.png">
-                        <?php } ?>
-                        <ul>
-                            <li>
-                                <a class="subjectLinkAssignmentselect"
-                                   href="?page=assignmentview&id=<?= $assignment['id'] ?>"><?= $assignment['subject'] ?></a>
-                            </li>
-                            <li>
-                                <?php foreach ($clients as $client) {
-                                    if ($client['id'] == $assignment['client']) {
-                                        ?>
-                                        <a class="clientLinkAssignmentselect"
-                                           href="?page=showuserprofile&id=<?= $client['id'] ?>"><?= $client['naam'] ?></a>
-                                        <?php
-                                    }
-                                } ?>
-                            </li>
-                            <li class="crm-dashboard-dateAssignmentselect">
-                                <?= date("d-m-Y", strtotime($assignment['endDate'])) ?>
-                            </li>
-                        </ul>
-                        <a class="toewijzenlink" data-toggle="modal" data-target="#myModal" theType="assignment"
-                           typeId="<?= $assignment['id'] ?>"
-                           typeSubject="<?= $assignment['subject'] ?>"><?= TEXT_ASSIGN ?></a>
-                    </div>
-                <?php } ?>
-            </div>
-        </div>
-    </div>
-
-    <div class="crm-dashboard-row">
-        <h1 class="crm-content-header"><?= OPEN_TASKS ?></h1>
-
-        <select class="crm-dashboard-select" id="Taskselect" onchange="changeFunc('Taskselect');">
-            <option value="" disabled selected><?= TEXT_FILTER_OPTION ?></option>
-            <option value="onderwerp"><?= TABLE_TITLE ?></option>
-            <option value="datum"><?= TEXT_DATE ?></option>
-            <option value="klant"><?= TEXT_IS_CLIENT ?></option>
-            <option value="urgentie"><?= TEXT_URGENCY ?></option>
-        </select>
-
-        <div class="crm-dashboard-inside-row">
-
-            <button class="custom-file-upload">Aanmaken</button>
-            <div id="containerTaskselect">
-            <?php $amount = 0; foreach ($tasks as $task) {
-                $amount++;
-                $timeDiff = $taskController->getTimeDifference($task['endDate'], date("Y-m-d"))
-                ?>
-                <div <?php if ($amount > 5){ ?> style="display: none" <?php } ?>class="crm-dashboard-box boxesTaskselect">
-                    <?php if ($timeDiff <= 0) { ?>
-                        <img class="deadline" src="css/deadline4.png">
-                    <?php } else if ($timeDiff > 0 && $timeDiff <= 2) { ?>
-                        <img class="deadline" src="css/deadline3.png">
-                    <?php } else if ($timeDiff > 2 && $timeDiff <= 7) { ?>
-                        <img class="deadline" src="css/deadline2.png">
-                    <?php } else { ?>
-                        <img class="deadline" src="css/deadline1.png">
-                    <?php } ?>
-                    <ul>
-                        <li>
-                            <a class="subjectLinkTaskselect" href="?page=taskview&id=<?= $task['id'] ?>"><?= $task['subject'] ?></a>
-                        </li>
-                        <li>
-                            <?php foreach ($clients as $client) {
-                                if ($client['id'] == $task['client']) {
-                                    ?>
-                                    <a class="clientLinkTaskselect" href="?page=showuserprofile&id=<?= $client['id'] ?>"><?= $client['naam'] ?></a>
-                                    <?php
-                                }
-                            } ?>
-                        </li>
-                        <li class="crm-dashboard-dateTaskselect">
-                            <?= date("d-m-Y", strtotime($task['endDate'])) ?>
-                        </li>
-                    </ul>
-                    <a class="toewijzenlink" data-toggle="modal" data-target="#myModal" theType="task"
-                       typeId="<?= $task['id'] ?>" typeSubject="<?= $task['subject'] ?>"><?= TEXT_ASSIGN ?></a>
                 </div>
-            <?php } ?>
             </div>
-        </div>
-    </div>
-
-    <div class="crm-dashboard-row">
-        <h1 class="crm-content-header"><?= OPEN_CASES ?></h1>
-
-        <select class="crm-dashboard-select" id="Caseselect" onchange="changeFunc('Caseselect');">
-            <option value="" disabled selected><?= TEXT_FILTER_OPTION ?></option>
-            <option value="onderwerp"><?= TABLE_TITLE ?></option>
-            <option value="datum"><?= TEXT_DATE ?></option>
-            <option value="klant"><?= TEXT_IS_CLIENT ?></option>
-        </select>
-
-        <div class="crm-dashboard-inside-row">
-            <button class="custom-file-upload" onclick="window.location.href='?page=addcase'">Aanmaken</button>
-            <div id="containerCaseselect">
-            <?php $amount = 0; foreach ($allCases as $case) {
-                $amount++;
-                $timeDiff = $projectController->getTimeDifference($case['endDate'], date("Y-m-d"))
-                ?>
-                <div <?php if ($amount > 5){ ?> style="display: none" <?php } ?>class="crm-dashboard-box boxesCaseselect">
-                    <?php if ($timeDiff <= 0) { ?>
-                        <img class="deadline" src="css/deadline4.png">
-                    <?php } else if ($timeDiff > 0 && $timeDiff <= 2) { ?>
-                        <img class="deadline" src="css/deadline3.png">
-                    <?php } else if ($timeDiff > 2 && $timeDiff <= 7) { ?>
-                        <img class="deadline" src="css/deadline2.png">
-                    <?php } else { ?>
-                        <img class="deadline" src="css/deadline1.png">
-                    <?php } ?>
-                    <ul>
-                        <li>
-                            <a class="subjectLinkCaseselect" href="?page=caseview&id=<?= $case['id'] ?>"><?= $case['subject'] ?></a>
-                        </li>
-                        <li>
-                            <?php foreach ($clients as $client) {
-                                if ($client['id'] == $case['client']) {
-                                    ?>
-                                    <a class="clientLinkCaseselect" href="?page=showuserprofile&id=<?= $client['id'] ?>"><?= $client['naam'] ?></a>
-                                    <?php
-                                }
-                            } ?>
-                        </li>
-                        <li class="crm-dashboard-dateCaseselect">
-                            <?= date("d-m-Y", strtotime($case['endDate'])) ?>
-                        </li>
-                    </ul>
-                    <a class="toewijzenlink" data-toggle="modal" data-target="#myModal" theType="case"
-                       typeId="<?= $case['id'] ?>" typeSubject="<?= $case['subject'] ?>"><?= TEXT_ASSIGN ?></a>
-                </div>
-            <?php } ?>
-            </div>
-        </div>
+            <?php
+        }
+        ?>
     </div>
 
     <div class="modal fade" id="myModal" role="dialog">
@@ -414,131 +214,130 @@ $thisUserId = $_SESSION['usr_id'];
                 $('#theType').val(theType);
             });
         });
-
-
-        var selectedValue;
-        var $divs;
-
-        function changeFunc(id) {
-            var selectBox = document.getElementById(id);
-            selectedValue = selectBox.options[selectBox.selectedIndex].value;
-
-            if (id == "Caseselect") {
-                $divs = $("div.boxesCaseselect");
-            } else if (id == "Taskselect") {
-                $divs = $("div.boxesTaskselect");
-            } else if (id == "Assignmentselect") {
-                $divs = $("div.boxesAssignmentselect");
-            } else if (id == "Projectselect") {
-                $divs = $("div.boxesProjectselect");
-            } else if (id == "Tenderselect") {
-                $divs = $("div.boxesTenderselect");
-            }
-
-            for (i = 0; i < $divs.length; i++) {
-                if (i < 5) {
-                    $divs[i].style.display = "block";
-                } else {
-                    $divs[i].style.display = "none";
-                }
-            }
-
-            if (selectedValue == "onderwerp") {
-                sortSubject(id);
-            }
-            if (selectedValue == "klant") {
-                sortClient(id);
-            }
-            if (selectedValue == "datum") {
-                sortDate(id);
-            }
-            if (selectedValue == "urgentie") {
-                sortUrgency(id);
-            }
-            selectBox.selectedIndex = 0;
-        }
-
-        var sort = [];
-        var sort0;
-        var sort1;
-        var sort2;
-        var sort3;
-        sort.add(sort0);
-        sort.add(sort1);
-        sort.add(sort2);
-        sort.add(sort3);
-
-        function sortSubject(id) {
-            resetSort(0);
-            sort[0]++;
-            var alphabeticallyOrderedDivs = $divs.sort(function (a, b) {
-                var subjectLink = $(".subjectLink" + id);
-                if (sort[0] == 1) {
-                    return $(a).find(subjectLink).text() < $(b).find(subjectLink).text();
-                } else {
-                    sort[0] = 0;
-                    return $(a).find(subjectLink).text() > $(b).find(subjectLink).text();
-                }
-            });
-            $("#container" + id).html(alphabeticallyOrderedDivs);
-        }
-
-        function sortClient(id) {
-            resetSort(1);
-            sort[1]++;
-            var alphabeticallyOrderedDivs = $divs.sort(function (a, b) {
-                var clientLink = $(".clientLink" + id);
-                if (sort[1] == 1) {
-                    return $(a).find(clientLink).text() < $(b).find(clientLink).text();
-                } else {
-                    sort[1] = 0;
-                    return $(a).find(clientLink).text() > $(b).find(clientLink).text();
-                }
-            });
-            $("#container" + id).html(alphabeticallyOrderedDivs);
-        }
-
-        function sortDate(id) {
-            resetSort(2);
-            sort[2]++;
-            var alphabeticallyOrderedDivs = $divs.sort(function (a, b) {
-                var date = $(".crm-dashboard-date" + id);
-                if (sort[2] == 1) {
-                    return $(a).find(date).text() < $(b).find(date).text();
-                } else {
-                    sort[2] = 0;
-                    return $(a).find(date).text() > $(b).find(date).text();
-                }
-            });
-            $("#container" + id).html(alphabeticallyOrderedDivs);
-        }
-
-        function sortUrgency(id) {
-            resetSort(3);
-            sort[3]++;
-            var alphabeticallyOrderedDivs = $divs.sort(function (a, b) {
-                var img = $(".urgencyImage");
-                console.log($(a).find(img).attr('src'));
-                if (sort[3] == 1) {
-                    return $(a).find(img).attr('src') < $(b).find(img).attr('src');
-                } else {
-                    sort[3] = 0;
-                    return $(a).find(img).attr('src') > $(b).find(img).attr('src');
-                }
-            });
-
-            $("#container" + id).html(alphabeticallyOrderedDivs);
-        }
-
-        function resetSort(int) {
-            for (i = 0; i < 3; i++) {
-                if (i != int) {
-                    sort[i] = 1;
-                }
-            }
-        }
-
     </script>
+    <script>
 
+        <?php
+        $listTypes = ["tender", "project", "assignment", "case", "task"];
+        foreach ($listTypes as $type) {
+            $typeCap = ucfirst($type);
+            $typeM = $typeCap . 's';
+            $typem = $type . 's';
+            $typeAll = 'all' . $typeM;
+            $typeCon = $type . 'Controller';
+            echo 'var ' . $typem . ' = [';
+            foreach (${$typeAll} as ${$type}) {
+                echo "{id:'" . ${$type}['id'] . "',subject:'" . ${$type}['subject'] . "',client:'" . ${$type}['client'] . "',dateDiff:'" . ${$typeCon}->getTimeDifference(${$type}["endDate"], date("Y-m-d")) . "'},";
+            }
+            echo '];';
+        }
+        ?>
+
+        var tenderCurrSort = "none";
+        var projectCurrSort = "none";
+        var assignmentCurrSort = "none";
+        var taskCurrSort = "none";
+        var caseCurrSort = "none";
+
+        function sortItems(type) {
+            //get sort type
+            var selectBox = document.getElementById(type + 'Sort');
+            var selectedVal = selectBox.options[selectBox.selectedIndex].value;
+            selectBox.selectedIndex = "none";
+            //call sort function
+            window[selectedVal + "Sort"](type);
+        }
+
+        function subjectSort(type) {
+            //sort
+            if (window[type + 'CurrSort'] != "subjectAsc" && window[type + 'CurrSort'] != "subjectDesc") {
+                window[type + 's'].sort(function (a, b) {
+                    var nameA = a.subject.toUpperCase();
+                    var nameB = b.subject.toUpperCase();
+                    if (nameA < nameB) {
+                        return -1;
+                    }
+                    if (nameA > nameB) {
+                        return 1;
+                    }
+                    return 0;
+                });
+                window[type + 'CurrSort'] = "subjectAsc";
+            } else {
+                window[type + 's'].reverse();
+                if (window[type + 'CurrSort'] === "subjectAsc") {
+                    window[type + 'CurrSort'] = "subjectDesc";
+                } else {
+                    window[type + 'CurrSort'] = "subjectAsc";
+                }
+            }
+            //hide items
+            hideItems(type);
+            //show items
+            displayItems(type);
+        }
+
+        function dateSort(type) {
+            //sort
+            if (window[type + 'CurrSort'] != "dateAsc" && window[type + 'CurrSort'] != "dateDesc") {
+                window[type + 's'].sort(function (a, b) {
+                    return a.dateDiff - b.dateDiff;
+                });
+                window[type + 'CurrSort'] = "dateAsc";
+            } else {
+                window[type + 's'].reverse();
+                if (window[type + 'CurrSort'] === "dateAsc") {
+                    window[type + 'CurrSort'] = "dateDesc";
+                } else {
+                    window[type + 'CurrSort'] = "dateAsc";
+                }
+            }
+            //hide items
+            hideItems(type);
+            //show items
+            displayItems(type);
+        }
+
+        function clientSort(type) {
+            //sort
+            if (window[type + 'CurrSort'] != "clientAsc" && window[type + 'CurrSort'] != "clientDesc") {
+                window[type + 's'].sort(function (a, b) {
+                    return a.client - b.client;
+                });
+                window[type + 'CurrSort'] = "clientAsc";
+            } else {
+                window[type + 's'].reverse();
+                if (window[type + 'CurrSort'] === "clientAsc") {
+                    window[type + 'CurrSort'] = "clientDesc";
+                } else {
+                    window[type + 'CurrSort'] = "clientAsc";
+                }
+            }
+            //hide items
+            hideItems(type);
+            //show items
+            displayItems(type);
+        }
+
+        function hideItems(type) {
+            //hide all items of type
+            $(".boxes" + type + "select").css('display', 'none');
+        }
+
+        function displayItems(type) {
+            var loopNumb = 4;
+            if (window[type + 's'].length <= 4) {
+                var itemNumb = window[type + 's'].length;
+                loopNumb = itemNumb - 1;
+            }
+            for (i = loopNumb; i > -1; i--) {
+                //show item
+                var orderItem = $("#" + type + window[type + 's'][i]["id"]);
+                orderItem.css('display', 'block');
+                //order items
+                orderItem.insertBefore($("#container" + type + "select div:first-child"));
+            }
+        }
+    </script>
 
 

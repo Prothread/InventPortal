@@ -34,4 +34,9 @@ class DBLog extends Database
         $value = mysqli_fetch_all($result, MYSQLI_ASSOC);
         return $value;
     }
+
+    public function deleteLogsByLinkId($typeNumb, $id){
+        $sql = "DELETE  FROM logs WHERE linkType = {$typeNumb} AND linkId = {$id}";
+        $this->dbQuery($sql);
+    }
 }

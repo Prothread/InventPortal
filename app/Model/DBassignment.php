@@ -28,10 +28,12 @@ class DbAssignment extends Database
     {
         $sql = "DELETE FROM `assignments` WHERE `id` = '{$id}'";
 
-        if ($result = $this->dbQuery($sql)) {
-            return true;
-        }
-        return false;
+        $this->dbQuery($sql);
+        $sql = "DELETE FROM `logs` WHERE `linkType` = 3 AND `linkId` = '{$id}'";
+        $this->dbQuery($sql);
+        $sql = "DELETE FROM `notes` WHERE `linkType` = 3 AND `linkId` = '{$id}'";
+        $this->dbQuery($sql);
+        return true;
     }
 
     public function getAssignmentById($id)
@@ -68,7 +70,7 @@ class DbAssignment extends Database
         return $this->connection->insert_id;
     }
 
-    public function getAssignmentsByStatus($status)
+    public function getAllAssignmentsByStatus($status)
     {
         $sql = "SELECT * FROM `assignments` WHERE `status` = {$status}";
         $result = $this->dbQuery($sql);
@@ -87,6 +89,11 @@ class DbAssignment extends Database
         $result = $this->dbQuery($sql);
         $value = mysqli_fetch_all($result, MYSQLI_ASSOC);
         return $value;
+    }
+
+    public function updateStatus($id, $status){
+        $sql = "UPDATE `assignments` SET `status` = {$status} WHERE `id` = {$id}";
+        $this->dbQuery($sql);
     }
 
 }

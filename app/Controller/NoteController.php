@@ -56,4 +56,8 @@ class NoteController
     {
         return $this->model->getNotesByLinkId($linkType, $linkId);
     }
+
+    public function deleteNotesByLinkId($typeNumb,$id){
+        return $this->model->deleteNotesByLinkId($typeNumb,$id);
+    }
 }

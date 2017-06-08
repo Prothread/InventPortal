@@ -83,24 +83,19 @@
     $("#sortable").change(function () {
         var list = document.getElementById("sortable");
         var id = list.options[list.selectedIndex].text;
-
-        console.log("dt: " + dt[id]);
-
     });
 
     function deleteTask(task) {
         var parent = document.getElementById("sortable");
         var child = document.getElementById(task.id);
         parent.removeChild(child);
-        console.log("dt" + task.id)
     }
 
-    function ez() {
+    function getTasks() {
         tasks = "";
         $('#sortable li').each(function (i) {
             tasks += $(this).attr('value') + "-";
         });
-        console.log(tasks);
         $('#defaultTasks').val(tasks);
     }
 

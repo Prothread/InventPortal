@@ -27,11 +27,12 @@ class DbProject extends Database
     public function delete($id)
     {
         $sql = "DELETE FROM `projects` WHERE `id` = '{$id}'";
-
-        if ($result = $this->dbQuery($sql)) {
-            return true;
-        }
-        return false;
+        $this->dbQuery($sql);
+        $sql = "DELETE FROM `logs` WHERE `linkType` = 2 AND `linkId` = '{$id}'";
+        $this->dbQuery($sql);
+        $sql = "DELETE FROM `notes` WHERE `linkType` = 2 AND `linkId` = '{$id}'";
+        $this->dbQuery($sql);
+        return true;
     }
 
     public function getProjectById($id)
@@ -79,6 +80,18 @@ class DbProject extends Database
     public function assignUser($user, $id){
         $status = 1;
         $sql = "UPDATE `projects` SET `user` = '{$user}', `status` = '{$status}' WHERE `id` = {$id}";
+        $this->dbQuery($sql);
+    }
+
+    public function getAllProjectsByStatus($status){
+        $sql = "SELECT * FROM `projects` WHERE `status` = {$status}";
+        $result = $this->dbQuery($sql);
+        $value = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        return $value;
+    }
+
+    public function updateStatus($id, $status){
+        $sql = "UPDATE `projects` SET `status` = {$status} WHERE `id` = {$id}";
         $this->dbQuery($sql);
     }
 }

@@ -37,4 +37,7 @@ class TemplateTaskLinksController
         return $this->model->deleteByTemplateId($id);
     }
 
+    public function checkDeleteDefaultTask($id){
+        return $this->model->checkDeleteDefaultTask($id);
+    }
 }

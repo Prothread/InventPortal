@@ -8,9 +8,9 @@
 
 $error = false;
 
-$valueNames = ["subject", "client", "userId", "project", "assignment", "tender", "case", "urgency", "duration", "endDate", "description"];
+$valueNames = ["subject", "client", "userId", "project", "assignment", "tender", "cases", "urgency", "duration", "endDate", "description"];
 $stringVals = ["subject", "endDate", "description"];
-$intVals = ["client", "userId", "project", "assignment", "tender", "case", "urgency", "duration"];
+$intVals = ["client", "userId", "project", "assignment", "tender", "cases", "urgency", "duration"];
 
 foreach ($valueNames as $v) {
     ${$v} = mysqli_real_escape_string($mysqli, $_POST[$v]);
@@ -48,7 +48,7 @@ if (!$error) {
     foreach ($valueNames as $v) {
         $taskinfo[$v] = ${$v};
     }
-    $taskController->create($taskinfo);
+    $taskId = $taskController->create($taskinfo);
     $loginfo = [
         'subject' => 'TEXT_TASK_ADDED',
         'description' => 'TEXT_TASK_ADD[constDivide]' . $subject .  '[constDivide]TEXT_ADDED',
@@ -57,6 +57,10 @@ if (!$error) {
         'linkType' => $typeNumb,
         'linkId' => $id
     ];
+    $logController->create($loginfo);
+    $loginfo['linkType'] = 4;
+    $loginfo['linkId'] = $taskId;
+    $loginfo['description'] = 'TEXT_TASK_ADD[constDivide]' . $subject .  '[constDivide]TEXT_ADDED';
     $logController->create($loginfo);
 } else {
     $taskError = true;

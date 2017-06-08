@@ -41,6 +41,8 @@ define("TEXT_CHILD_ASSIGNMENT_DELETED","Child assignment deleted");
 /*delete*/
 define("TEXT_NOTE_DELETED","Note deleted");
 define("TEXT_DELETED","deleted");
+/*archive*/
+define("TEXT_MOVED_ARCHIVED"," moved to archive.");
 
 /*CRM LOGS END*/
 
@@ -102,6 +104,8 @@ define("TEXT_CASE_VIEW", "Case overview");
 define("CASE_OVERVIEW_TEXT", "Cases overview");
 define("TEXT_ASSIGNMENT_VIEW","Assignment overview");
 define("TEXT_ADD_NOTE","Add note");
+define("TEXT_ADD_TASK","Add task");
+define("TEXT_ADD_ASSIGNMENT","Add assignment");
 define("TEXT_VIEW_NOTE","Note");
 define("TEXT_NOTE_TYPE","Type");
 define("TEXT_EVENT_DATE", "Event date");
@@ -112,12 +116,63 @@ define("TEXT_ADD","Add");
 define("PROJECT_OVERVIEW_TEXT", "Projects Overview");
 define("TEXT_SINGLE_CLIENT", "Client");
 define("ASSIGNMENT_OVERVIEW_TEXT", "Assignments Overview");
+define("DEFAULTTASK_OVERVIEW_TEXT", "Default-task Overview");
+define("TEMPLATE_OVERVIEW_TEXT", "Template Overview");
+
+/*CRM STATUS*/
+define("TEXT_STATUS_OPEN","Open");
+define("TEXT_STATUS_ONGOING","Ongoing");
+define("TEXT_STATUS_SECOND_PARTY","Waiting for client");
+define("TEXT_STATUS_THIRD_PARTY","Waiting for 3rd party");
+define("TEXT_STATUS_FINISHED","Finished");
+define("TEXT_STATUS_DELETED","Deleted");
+
+define("TEXT_OK","OK");
+define("TEXT_FINISH","Finish");
+define("TEXT_CANT_FINISH","Check child tasks/assignments.");
+define("TEXT_CONFIRM_FINISH","Are you sure you want to finish this item?");
+define("TEXT_HEADER_FINISHED"," (Finished)");
+define("TEXT_HEADER_DELETED"," (Deleted)");
+define("TEXT_TENDER_FINISHED","Tender finished");
+define("TEXT_PROJECT_FINISHED","Project finished");
+define("TEXT_ASSIGNMENT_FINISHED","Assignment finished");
+define("TEXT_CASE_FINISHED","Case finished");
+define("TEXT_TASK_FINISHED","Task finished");
+define("TEXT_LOG_FINISHED"," finished.");
+define("TEXT_CHILD_ASSIGNMENT_FINISHED","Child assignment finished");
+define("TEXT_CHILD_TASK_FINISHED","Child task  finished");
+
+define("TEXT_REVERT","Revert");
+define("TEXT_CONFIRM_REMOVE","Are you sure you want to delete this item?");
+define("TEXT_CONFIRM_DELETE","Are you REALY sure you want to delete this item and all the child items? You will not be able to revert this action.");
+define("TEXT_DEFAULT_LINKED","This Default task is still linked to a template, so it can't be removed");
+define("TEXT_LOG_REVERTED"," recovered.");
+define("TEXT_TASK_REVERTED","Task recoverd");
+define("TEXT_TENDER_REVERTED","Tender recoverd");
+define("TEXT_PROJECT_REVERTED","Project recoverd");
+define("TEXT_ASSIGNMENT_REVERTED","Assignment recoverd");
+define("TEXT_CASE_REVERTED","Case recoverd");
+define("TEXT_CHILD_TASK_REVERTED","Child task recoverd.");
+define("TEXT_CHILD_ASSIGNMENT_REVERTED","Child assignment recoverd.");
+
+define("TEXT_TENDER_ARCHIVED","Tender archived.");
+define("TEXT_PROJECT_ARCHIVED","Project archived.");
+define("TEXT_ASSIGNMENT_ARCHIVED","Assignemnt archived.");
+define("TEXT_TASK_ARCHIVED","Task archived.");
+define("TEXT_CASE_ARCHIVED","Case archived.");
+
+define("TENDER_OVERVIEW_ARCHIVE","Offerte archief");
+define("PROJECT_OVERVIEW_ARCHIVE","Project archief");
+define("ASSIGNMENT_OVERVIEW_ARCHIVE","Opdracht archief");
+define("TASK_OVERVIEW_ARCHIVE","Taak archief");
+define("CASE_OVERVIEW_ARCHIVE","Case archief");
 
 /*/CRM*/
 
 define("TEXT_UPLOAD_DASHBOARD", "Upload dashboard");
 define("TEXT_OVERVIEW", "Overview");
 define("MY_TEXT_OVERVIEW", "My overview");
+define("TASK_OVERVIEW_TEXT","Tasks overview");
 define("TEXT_UPLOAD", "Upload");
 define("TEXT_SETTINGS", "Settings");
 define("TEXT_CLIENT", "Clients");
@@ -127,7 +182,6 @@ define("TEXT_LOGOUT", "Log out");
 define("TEXT_USERPROFILE", "Profile: ");
 define("TEXT_VERSIE", "Version");
 define("TEXT_VIEW_LOG", "Log");
-
 
 /* LOGIN */
 define("TEXT_PASSWORD", "Password");
@@ -141,6 +195,7 @@ define("TEXT_USER_NOT_ACTIVE", "User is not active");
 define("TEXT_DIAGRAM", "Difference accord & declined");
 define("TEXT_ASSIGNMENTS", "Open assignments");
 define("TEXT_DIAGRAM_PERCENTAGE", "Percentage accord for each person");
+define("TEXT_NO_UPLOADS_FOUND","No items found, upload a new one on the upload page.");
 /* */
 define("TEXT_SENDER", "Send by");
 define("TEXT_ASSIGNFOR", "Client");
@@ -162,8 +217,23 @@ define("BUTTON_ACCORDED", "Accorded assignment(s)");
 define("BUTTON_DECLINED", "Declined assignment(s)");
 define("LEGEND", "Legend");
 /* */
+
 define("TABLE_SUBJECT", "Subject");
 define("TABLE_TITLE", "Title");
+define("TABLE_USER","Employee");
+define("TABLE_TASK","Task");
+define("TABLE_CLIENT","Client");
+define("TABLE_VALUE","Value");
+define("TABLE_CHANCE","Chance");
+define("TABLE_ENDDATE","End date");
+define("TABLE_STATUS","Status");
+define("TABLE_PROJECT","Project");
+define("TABLE_ASSIGNMENT","Assignment");
+define("TABLE_DURATION","Duration");
+define("TABLE_TENDER","Tender");
+define("TABLE_DESCRIPTION","Description");
+define("TABLE_COUNT","Tasks");
+define("TABLE_CASE","Case");
 
 
 /* UPLOAD */
@@ -269,7 +339,7 @@ define("TEXT_EDITED", "Edited");
 define("TEXT_NEW_COMMENT", "My comment");
 /* */
 define("TEXT_BEFORE_TERMS_AND_CONDITIONS", "I have read the ");
-DEFINE("TEXT_TERMS_AND_CONDITIONS", "terms and conditions");
+define("TEXT_TERMS_AND_CONDITIONS", "terms and conditions");
 define("TEXT_AFTER_TERMS_AND_CONDITIONS", "and I agree to it");
 
 

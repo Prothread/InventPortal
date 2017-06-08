@@ -52,8 +52,8 @@ class CaseController
         return $this->model->getCasesByUserId($userId);
     }
 
-    public function getCasesByStatus($status){
-        return $this->model->getCasesByStatus($status);
+    public function getAllCasesByStatus($status){
+        return $this->model->getAllCasesByStatus($status);
     }
 
     public function assignUser($user, $id){
@@ -63,5 +63,9 @@ class CaseController
     public function getTimeDifference($date1, $date2)
     {
         return $this->model->getTimeDifference($date1, $date2);
+    }
+
+    public function updateStatus($id, $status){
+        return $this->model->updateStatus($id, $status);
     }
 }

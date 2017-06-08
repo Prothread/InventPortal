@@ -354,9 +354,9 @@ class Tender
      * @return array|null
      */
 
-    public function getTendersByStatus($status)
+    public function getAllTendersByStatus($status)
     {
-        return $this->db->getTendersByStatus($status);
+        return $this->db->getAllTendersByStatus($status);
     }
 
     /**
@@ -398,4 +398,7 @@ class Tender
         return $this->db->getTimeDifference($date1, $date2);
     }
 
+    public function updateStatus($id, $status){
+        return $this->db->updateStatus($id, $status);
+    }
 }

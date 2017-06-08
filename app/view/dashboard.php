@@ -234,8 +234,7 @@ $_SESSION['geweigerd_percent'] = $get_items_geweigerd['COUNT(status)'];
             } else {
                 ?>
                 <tr>
-                    <div class="alert alert-danger" role="alert">Er is nog geen item om weer te geven. Voeg een item toe
-                        op de uploadpagina.
+                    <div class="alert alert-danger" role="alert"><?= TEXT_NO_UPLOADS_FOUND ?>
                     </div>
                 </tr>
                 <?php

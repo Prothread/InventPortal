@@ -34,4 +34,8 @@ class logController
     public function getLogsByLinkId($linkType, $linkId){
         return $this->model->getLogsByLinkId($linkType, $linkId);
     }
+
+    public function deleteLogsByLinkId($typeNumb, $id){
+        return $this->model->deleteLogsByLinkId($typeNumb, $id);
+    }
 }

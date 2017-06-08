@@ -80,4 +80,8 @@ class Template
     {
         return $this->db->update($this);
     }
+
+    public function delete($id){
+        return $this->db->delete($id);
+    }
 }

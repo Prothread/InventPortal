@@ -82,7 +82,7 @@ class DbTender extends Database
      * @return array|null
      */
 
-    public function getTendersByStatus($status)
+    public function getAllTendersByStatus($status)
     {
         $sql = "SELECT * FROM `tenders` WHERE `status` = {$status}";
         $result = $this->dbQuery($sql);
@@ -112,16 +112,22 @@ class DbTender extends Database
     public function delete($id)
     {
         $sql = "DELETE FROM `tenders` WHERE `id` = '{$id}'";
-
-        if ($result = $this->dbQuery($sql)) {
-            return true;
-        }
-        return false;
+        $this->dbQuery($sql);
+        $sql = "DELETE FROM `logs` WHERE `linkType` = 1 AND `linkId` = '{$id}'";
+        $this->dbQuery($sql);
+        $sql = "DELETE FROM `notes` WHERE `linkType` = 1 AND `linkId` = '{$id}'";
+        $this->dbQuery($sql);
+        return true;
     }
 
     public function assignUser($user, $id){
         $status = 1;
         $sql = "UPDATE `tenders` SET `user` = '{$user}', `status` = '{$status}' WHERE `id` = {$id}";
+        $this->dbQuery($sql);
+    }
+
+    public function updateStatus($id, $status){
+        $sql = "UPDATE `tenders` SET `status` = {$status} WHERE `id` = {$id}";
         $this->dbQuery($sql);
     }
 

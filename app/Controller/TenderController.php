@@ -143,9 +143,9 @@ class TenderController
      * @return array|null
      */
 
-    public function getTendersByStatus($status)
+    public function getAllTendersByStatus($status)
     {
-        return $this->model->getTendersByStatus($status);
+        return $this->model->getAllTendersByStatus($status);
     }
 
     /**
@@ -184,6 +184,10 @@ class TenderController
 
     public function assignUser($user, $id){
         $this->model->assignUser($user, $id);
+    }
+
+    public function updateStatus($id, $status){
+        return $this->model->updateStatus($id, $status);
     }
 
 }

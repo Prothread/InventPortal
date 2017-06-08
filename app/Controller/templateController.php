@@ -33,6 +33,9 @@ class TemplateController
         return $this->model->update();
     }
 
+    public function delete($id){
+        $this->model->delete($id);
+    }
 
     public function getAllTemplates(){
         return $this->model->getAllTemplates();

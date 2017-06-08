@@ -42,11 +42,12 @@ class DbTask extends Database
     public function delete($id)
     {
         $sql = "DELETE FROM `tasks` WHERE `id` = '{$id}'";
-
-        if ($result = $this->dbQuery($sql)) {
-            return true;
-        }
-        return false;
+        $this->dbQuery($sql);
+        $sql = "DELETE FROM `logs` WHERE `linkType` = 4 AND `linkId` = '{$id}'";
+        $this->dbQuery($sql);
+        $sql = "DELETE FROM `notes` WHERE `linkType` = 4 AND `linkId` = '{$id}'";
+        $this->dbQuery($sql);
+        return true;
     }
 
     public function dbLastInsertedId()
@@ -105,9 +106,9 @@ class DbTask extends Database
 
     public function getTasksByLinkId($type, $id){
         if($type == 'case'){
-            $sql = "SELECT * FROM `tasks` WHERE `{$type}s` = {$id}";
+            $sql = "SELECT * FROM `tasks` WHERE `{$type}s` = {$id} AND `status` NOT IN (6)";
         }else {
-            $sql = "SELECT * FROM `tasks` WHERE `{$type}` = {$id}";
+            $sql = "SELECT * FROM `tasks` WHERE `{$type}` = {$id} AND `status` NOT IN (6)";
         }
         $result = $this->dbQuery($sql);
         $value = mysqli_fetch_all($result, MYSQLI_ASSOC);
@@ -119,5 +120,10 @@ class DbTask extends Database
         $result = $this->dbQuery($sql);
         $value = mysqli_fetch_all($result, MYSQLI_ASSOC);
         return $value;
+    }
+
+    public function updateStatus($id, $status){
+        $sql = "UPDATE `tasks` SET `status` = {$status} WHERE `id` = {$id}";
+        $this->dbQuery($sql);
     }
 }

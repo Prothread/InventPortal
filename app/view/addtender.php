@@ -14,7 +14,7 @@ include '../app/view/addItemSetup.php';
 <div class="crm-content-wrapper">
     <div class="add-left-content add-content">
         <h1 class="crm-content-header"><?= TEXT_TENDER_CREATE ?></h1>
-        <form class="crm-add" action="#" method="post">
+        <form class="crm-add" action="#" method="post" id="tenderCreate">
             <div>
                 <label><?= TABLE_TITLE ?></label>
                 <input type="text" name="subject" class="form-control <?php if (isset($tender_subject_error)) {
@@ -102,10 +102,12 @@ include '../app/view/addItemSetup.php';
                         echo $_POST['description'];
                     } ?></textarea>
             </div>
+
             <!--            Bestanden uploaden moet nog toegevoegd worden-->
+
             <div class="button-holder">
                 <div class="button-push"></div>
-                <button type="submit" name="create" class="custom-file-upload" onclick="ez()" id="addSubmit"><?= TEXT_CREATE_DROPDOWN ?></button>
+                <button type="submit" name="create" class="custom-file-upload" onclick="getTasks()" id="addSubmit"><?= TEXT_CREATE_DROPDOWN ?></button>
             </div>
             <input type="hidden" name="defaultTasks" id="defaultTasks">
         </form>
@@ -144,5 +146,77 @@ include '../app/view/addItemSetup.php';
         <label for="addSubmit" class="custom-file-upload" id="hiddenSubmit"><?= TEXT_CREATE_DROPDOWN ?></label>
     </div>
 </div>
+
+
+    <script>
+        var postForm = [];
+        var Files = [];
+
+        Dropzone.options.mydropzone = {
+            addRemoveLinks: true,
+            autoProcessQueue: false, // this is important as you dont want form to be submitted unless you have clicked the submit button
+            autoDiscover: false,
+            paramName: 'file', // this is optional Like this one will get accessed in php by writing $_FILE['pic'] // if you dont specify it then bydefault it taked 'file' as paramName eg: $_FILE['file']
+            previewsContainer: '#dropzonePreview', // we specify on which div id we must show the files
+            maxFilesize: 15, // MB
+            acceptedFiles: "application/docx, application/pdf",
+            accept: function (file, done) {
+                done();
+            },
+            error: function (file, msg) {
+            },
+            init: function () {
+
+                this.on("queuecomplete", function () {
+                    if (true == processing) {
+                        this.options.autoProcessQueue = false;
+                        postForm += (Files.join(", "));
+                        $.ajax({
+                            type: "POST",
+                            url: "?page=uploadForm",
+                            data: postForm,
+                            cache: false,
+//                            success: function (result) {
+//                                window.location.href = 'index.php?page=overview';
+//                            }
+                        });
+                        event.preventDefault();
+                    }
+                });
+
+                this.on("processing", function () {
+                    this.options.autoProcessQueue = true;
+
+                    processing = true;
+                });
+
+                this.on("error", function (file, message) {
+                    alert(message);
+                    this.removeFile(file);
+                });
+
+                var myDropzone = this;
+
+                //now we will submit the form when the button is clicked
+                $("#sbmtbtn").on('click', function (e) {
+                    e.preventDefault();
+                    myDropzone.processQueue(); // this will submit your form to the specified action path
+                    postForm = $('form#tenderCreate').serialize() + '&files=';
+                });
+
+            }, // init end
+
+            success: function (file, response) {
+                Files.push(response);
+            }
+
+        };
+
+    </script>
+
+
+
+
+
 <?php
 include '../app/view/taskListScript.php';

@@ -7,11 +7,13 @@ include '../app/Model/viewSetup.php';
 ?>
 <div class="crm-content-view-wrapper">
     <div class="view-content">
-        <h1 class="crm-content-header"><?= TEXT_CASE_VIEW ?></h1>
-        <form action="#" method="post">
-            <button type="submit" name="delete" id="deletebtn"
-                    class="custom-file-upload"><?= TEXT_DELETE ?></button>
-        </form>
+        <h1 class="crm-content-header"><?= TEXT_CASE_VIEW ?><?php if (isset($finished)) {
+                echo TEXT_HEADER_FINISHED;
+            }elseif (isset($deleted)){echo TEXT_HEADER_DELETED;}; ?></h1>
+        <?php  if($user->getPermission($permgroup, 'CAN_EDIT_CRM') == 1){?>
+        <button id="thedeletebutton" class="custom-file-upload" data-toggle="modal"
+                data-target="#myModal"> <?= TEXT_DELETE ?> </button>
+        <?php }?>
         <form class="crm-add" action="#" method="post">
             <div>
                 <label><?= TABLE_SUBJECT ?></label>
@@ -23,11 +25,15 @@ include '../app/Model/viewSetup.php';
                 } else {
                     echo $caseinfo['subject'];
                 }
-                ?>">
+                ?>"
+                    <?php  if($user->getPermission($permgroup, 'CAN_EDIT_CRM') != 1){echo 'readonly';}?>
+                >
             </div>
             <div>
                 <label><?= TEXT_ASSIGNFOR ?></label>
-                <select class="form-control" name="client">
+                <select class="form-control" name="client"
+                    <?php  if($user->getPermission($permgroup, 'CAN_EDIT_CRM') != 1){echo 'readonly';}?>
+                >
                     <option value="0"<?php if ($caseinfo['client'] == 0) {
                         echo 'selected';
                     } ?>><?= TEXT_ASSIGNFOR ?></option>
@@ -46,19 +52,21 @@ include '../app/Model/viewSetup.php';
             </div>
             <div>
                 <label><?= TEXT_EMPLOYEE ?></label>
-                <select class="form-control" name="userId">
+                <select class="form-control" name="userId"
+                    <?php  if($user->getPermission($permgroup, 'CAN_EDIT_CRM') != 1){echo 'readonly';}?>
+                >
                     <option value="0"<?php if (isset($caseinfo['user']) && $caseinfo['user'] == 0) {
                         echo 'selected';
                     } ?>><?= TEXT_EMPLOYEE ?></option>
                     <?php
-                    foreach ($users as $user) {
-                        echo '<option value="' . $user['id'] . '"';
-                        if ($post && $user['id'] == $_POST['userId']) {
+                    foreach ($users as $u) {
+                        echo '<option value="' . $u['id'] . '"';
+                        if ($post && $u['id'] == $_POST['userId']) {
                             echo 'selected';
-                        } elseif (!$post && $user['id'] == $caseinfo['user']) {
+                        } elseif (!$post && $u['id'] == $caseinfo['user']) {
                             echo 'selected';
                         }
-                        echo '>' . $user['naam'] . '</option>';
+                        echo '>' . $u['naam'] . '</option>';
                     }
                     ?>
                 </select>
@@ -66,7 +74,9 @@ include '../app/Model/viewSetup.php';
 
             <div>
                 <label><?= TEXT_PROJECT_ADD ?></label>
-                <select class="form-control" name="project" id="projectSelect">
+                <select class="form-control" name="project" id="projectSelect"
+                    <?php  if($user->getPermission($permgroup, 'CAN_EDIT_CRM') != 1){echo 'readonly';}?>
+                >
                     <option value="0"<?php if ($caseinfo['project'] == 0) {
                         echo 'selected';
                     } ?>><?= TEXT_PROJECT_ADD ?></option>
@@ -86,7 +96,9 @@ include '../app/Model/viewSetup.php';
 
             <div>
                 <label><?= TEXT_ASSIGNMENT_ADD ?></label>
-                <select class="form-control" name="assignment" id="assignmentSelect">
+                <select class="form-control" name="assignment" id="assignmentSelect"
+                    <?php  if($user->getPermission($permgroup, 'CAN_EDIT_CRM') != 1){echo 'readonly';}?>
+                >
                     <option value="0"><?= TEXT_ASSIGNMENT_ADD ?></option>
                     <?php
                     foreach ($assignments as $assignment) {
@@ -110,13 +122,17 @@ include '../app/Model/viewSetup.php';
                 } else {
                     echo $caseinfo['endDate'];
                 }
-                ?>">
+                ?>"
+                    <?php  if($user->getPermission($permgroup, 'CAN_EDIT_CRM') != 1){echo 'readonly';}?>
+                >
             </div>
             <div class="description-holder">
                 <label><?= TEXT_DESCRIPTION ?></label>
                 <textarea name="description" class="<?php if (isset($case_description_error)) {
                     echo "error-input";
-                } ?>"><?php
+                } ?>"
+                    <?php  if($user->getPermission($permgroup, 'CAN_EDIT_CRM') != 1){echo 'readonly';}?>
+                ><?php
                     if ($post) {
                         echo $_POST['description'];
                     } else {
@@ -124,11 +140,37 @@ include '../app/Model/viewSetup.php';
                     }
                     ?></textarea>
             </div>
+            <?php
+            if($user->getPermission($permgroup, 'CAN_EDIT_CRM') == 1){
+            if (!isset($finished) && !isset($deleted)) {
+            ?>
             <div class="button-holder">
                 <div class="button-push"></div>
                 <button type="submit" name="update" class="custom-file-upload"><?= TEXT_EDIT ?></button>
             </div>
+                <?php
+            }}
+            ?>
         </form>
+        <?php if($user->getPermission($permgroup, 'CAN_EDIT_CRM') == 1){?>
+        <div id="finish-holder">
+            <div class="button-push"></div>
+            <?php
+            if (!isset($finished) && !isset($deleted)) {
+                ?>
+                <button id="finish-button" name="finish" class="custom-file-upload" data-toggle="modal"
+                        data-target="#myModal"><?= TEXT_FINISH ?></button>
+                <?php
+            } else {
+                ?>
+                <form action="#" method="post">
+                    <button id="revert-button" name="revert" class="custom-file-upload"><?= TEXT_REVERT ?></button>
+                </form>
+                <?php
+            }
+            ?>
+        </div>
+        <?php }?>
     </div>
 </div>
     <?php

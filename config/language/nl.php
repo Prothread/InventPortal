@@ -41,6 +41,8 @@ define("TEXT_CHILD_ASSIGNMENT_DELETED","Onderliggende opdracht verwijderd");
 /*delete*/
 define("TEXT_NOTE_DELETED","Notitie verwijderd");
 define("TEXT_DELETED","verwijderd");
+/*archive*/
+define("TEXT_MOVED_ARCHIVED"," naar archief verplaatst");
 
 /*CRM LOGS END*/
 
@@ -64,6 +66,10 @@ define("TEXT_TEMPLATE_ADD", "Template");
 define("TEXT_DEFAULTTASK_ADD", "Standaard taak");
 define("TEXT_QUEUE", "Wachtrij");
 define("TEXT_DELETE", "verwijderen");
+define("URGENCY_1", "Laag");
+define("URGENCY_2", "Normaal");
+define("URGENCY_3", "Hoog");
+define("URGENCY_4", "Kritisch");
 define("TEMPLATE_VIEW", "Template overzicht");
 define("TEXT_DEFAULT_TASK_VIEW", "Standaard taak overzicht");
 define("TEXT_FILTER_OPTION", "Filter optie");
@@ -94,14 +100,12 @@ define("TEXT_ERROR_FORM","Een veld is niet goed ingevuld, probeer opnieuw.");
 define("TEXT_PROJECT_VIEW","Project overzicht");
 define("TEXT_EDIT","Aanpassen");
 define("TASK_OVERVIEW","Taak overzicht");
-define("URGENCY_1", "Laag");
-define("URGENCY_2", "Normaal");
-define("URGENCY_3", "Hoog");
-define("URGENCY_4", "Kritisch");
 define("TEXT_CASE_VIEW", "Case overzicht");
 define("CASE_OVERVIEW_TEXT", "Cases overzicht");
 define("TEXT_ASSIGNMENT_VIEW","Opdracht overzicht");
 define("TEXT_ADD_NOTE","Notitie toevoegen");
+define("TEXT_ADD_TASK","Taak toevoegen");
+define("TEXT_ADD_ASSIGNMENT","Opdracht toevoegen");
 define("TEXT_VIEW_NOTE","Notitie");
 define("TEXT_NOTE_TYPE","Type");
 define("TEXT_EVENT_DATE", "Gebeurtenis datum");
@@ -111,13 +115,64 @@ define("TEXT_ADD","Toevoegen");
 
 define("PROJECT_OVERVIEW_TEXT", "Projecten Overzicht");
 define("TEXT_SINGLE_CLIENT", "Klant");
-define("ASSIGNMENT_OVERVIEW_TEXT", "Opdrachten overzicht");
+define("ASSIGNMENT_OVERVIEW_TEXT", "Opdrachten Overzicht");
+define("DEFAULTTASK_OVERVIEW_TEXT", "Standaard taken Overzicht");
+define("TEMPLATE_OVERVIEW_TEXT", "Template Overzicht");
+
+/*CRM STATUS*/
+define("TEXT_STATUS_OPEN","Open");
+define("TEXT_STATUS_ONGOING","Lopend");
+define("TEXT_STATUS_SECOND_PARTY","Wachtend op klant");
+define("TEXT_STATUS_THIRD_PARTY","Wachtend op 3e partij");
+define("TEXT_STATUS_FINISHED","Afgerond");
+define("TEXT_STATUS_DELETED","Verwijderd");
+
+define("TEXT_OK","Oké");
+define("TEXT_FINISH","Afronden");
+define("TEXT_CANT_FINISH","Controleer de onderliggende taken/opdrachten.");
+define("TEXT_CONFIRM_FINISH","Weet u zeker dat u dit onderdeel wilt afronden?");
+define("TEXT_HEADER_FINISHED"," (Afgerond)");
+define("TEXT_HEADER_DELETED"," (Verwijderd)");
+define("TEXT_TENDER_FINISHED","Offerte afgerond");
+define("TEXT_PROJECT_FINISHED","Project afgerond");
+define("TEXT_ASSIGNMENT_FINISHED","Opdracht afgerond");
+define("TEXT_CASE_FINISHED","Case afgerond");
+define("TEXT_TASK_FINISHED","Taak afgerond");
+define("TEXT_LOG_FINISHED"," afgerond.");
+define("TEXT_CHILD_ASSIGNMENT_FINISHED","Onderliggende opdracht afgerond");
+define("TEXT_CHILD_TASK_FINISHED","Onderliggende taak  afgerond");
+
+define("TEXT_REVERT","Terug zetten");
+define("TEXT_CONFIRM_REMOVE","Weet je zeker dat u dit item wilt verwijderen?");
+define("TEXT_CONFIRM_DELETE","Weet je HEEL zeker dat u dit item en de onderliggende items wilt verwijderen? Deze actie kan niet ongedaan worden");
+define("TEXT_DEFAULT_LINKED","De standaard taak is nog gekoppeld aan een template, dus kan niet verwijderd worden.");
+define("TEXT_LOG_REVERTED"," hersteld.");
+define("TEXT_TASK_REVERTED","Taak hersteld");
+define("TEXT_TENDER_REVERTED","Offerte hersteld");
+define("TEXT_PROJECT_REVERTED","Project hersteld");
+define("TEXT_ASSIGNMENT_REVERTED","Opdracht hersteld");
+define("TEXT_CASE_REVERTED","Case hersteld");
+define("TEXT_CHILD_TASK_REVERTED","Onderliggende taak hersteld.");
+define("TEXT_CHILD_ASSIGNMENT_REVERTED","Onderliggende opdracht hersteld.");
+
+define("TEXT_TENDER_ARCHIVED","Offerte gearchiveerd.");
+define("TEXT_PROJECT_ARCHIVED","Project gearchiveerd.");
+define("TEXT_ASSIGNMENT_ARCHIVED","Opdracht gearchiveerd.");
+define("TEXT_TASK_ARCHIVED","Taak gearchiveerd.");
+define("TEXT_CASE_ARCHIVED","Case gearchiveerd.");
+
+define("TENDER_OVERVIEW_ARCHIVE","Offerte archief");
+define("PROJECT_OVERVIEW_ARCHIVE","Project archief");
+define("ASSIGNMENT_OVERVIEW_ARCHIVE","Opdracht archief");
+define("TASK_OVERVIEW_ARCHIVE","Taak archief");
+define("CASE_OVERVIEW_ARCHIVE","Case archief");
 
 /*/CRM*/
 
 define("TEXT_UPLOAD_DASHBOARD", "Upload Dashboard");
 define("TEXT_OVERVIEW", "Overzicht");
 define("MY_TEXT_OVERVIEW", "Mijn overzicht");
+define("TASK_OVERVIEW_TEXT","Taken overzicht");
 define("TEXT_UPLOAD", "Upload");
 define("TEXT_SETTINGS", "Instellingen");
 define("TEXT_CLIENT", "Klanten");
@@ -140,6 +195,7 @@ define("TEXT_USER_NOT_ACTIVE", "Gebruiker is niet actief");
 define("TEXT_DIAGRAM", "Verschil akkoord & geweigerd");
 define("TEXT_ASSIGNMENTS", "Alle open opdrachten");
 define("TEXT_DIAGRAM_PERCENTAGE", "Procent akkoord per persoon");
+define("TEXT_NO_UPLOADS_FOUND","Er zijn geen items gevonden, upload een nieuwe op de upload pagina.");
 /* */
 define("TEXT_SENDER", "Verstuurd door");
 define("TEXT_ASSIGNFOR", "Klant");
@@ -161,8 +217,23 @@ define("BUTTON_ACCORDED", "Geakkordeerde proeven");
 define("BUTTON_DECLINED", "Geweigerde proeven");
 define("LEGEND", "Legenda");
 /* */
+
 define("TABLE_SUBJECT", "Onderwerp");
 define("TABLE_TITLE", "Titel");
+define("TABLE_USER","Gebruiker");
+define("TABLE_TASK","Taak");
+define("TABLE_CLIENT","Klant");
+define("TABLE_VALUE","Waarde");
+define("TABLE_CHANCE","Kans");
+define("TABLE_ENDDATE","Eind datum");
+define("TABLE_STATUS","Status");
+define("TABLE_PROJECT","Project");
+define("TABLE_ASSIGNMENT","Opdracht");
+define("TABLE_DURATION","Duur");
+define("TABLE_TENDER","Offerte");
+define("TABLE_DESCRIPTION","Beschrijving");
+define("TABLE_COUNT","Taken");
+define("TABLE_CASE","Case");
 
 
 /* UPLOAD */
@@ -284,7 +355,7 @@ define("TEXT_ARCHIVE", "Archief");
 
 
 /* SESSION FLASH */
-define("TEXT_NO_PERMISSION", "U heeft hier geen rechen voor");
+define("TEXT_NO_PERMISSION", "U heeft hier geen rechten voor");
 /*StatusController*/
 define("TEXT_ITEM_CREATED", "Het item is succesvol aangemaak");
 define("TEXT_ITEM_EDITED", "Het item is succesvol bijgewerkt");
@@ -375,7 +446,8 @@ define("UPLOAD_MAX_SIZE", "maximale upload grote is 16MB");
 define("SECOND_EMAIL_TEXT", "Extra e-mail addresses: ");
 define("MAIL_COMMENT", "Opmerking");
 define("YOUR_TENDER", "Jouw offertes");
-define("TENDER_OVERVIEW_TEXT", "Offertes Overzicht");
+define("TENDER_OVERVIEW_TEXT", "Offertes 0verzicht");
+define("CASES_OVERVIEW_TEXT", "Cases overzicht");
 define("YOUR_PROJECT", "Jouw projecten");
 define("YOUR_ASSIGNMENT", "Jouw opdrachten");
 define("YOUR_TASK", "Jouw taken");

@@ -32,8 +32,6 @@ class Task
 
     private $endDate;
 
-    private $Id;
-
     private $tender;
 
     private $cases;
@@ -246,22 +244,6 @@ class Task
         $this->endDate = $endDate;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getId()
-    {
-        return $this->Id;
-    }
-
-    /**
-     * @param mixed $Id
-     */
-    public function setId($Id)
-    {
-        $this->Id = $Id;
-    }
-
     public function __construct()
     {
         $this->db = new DbTask();
@@ -327,5 +309,9 @@ class Task
     public function getTimeDifference($date1, $date2)
     {
         return $this->db->getTimeDifference($date1, $date2);
+    }
+
+    public function updateStatus($id, $status){
+        return $this->db->updateStatus($id, $status);
     }
 }

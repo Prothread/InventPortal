@@ -111,42 +111,42 @@ if ($userinfo['permgroup'] == '1') {
                                 <div class="form-group">
                                     <label class="col-lg-3 control-label"><?= TEXT_NAME ?></label>
                                     <div class="col-lg-8">
-                                        <input disabled class="form-control" value="<?= $userinfo['naam'] ?>"
+                                        <input readonly class="form-control" value="<?= $userinfo['naam'] ?>"
                                                type="text">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-lg-3 control-label"><?= TEXT_COMPANY_NAME ?></label>
                                     <div class="col-lg-8">
-                                        <input disabled class="form-control" value="<?= $userinfo['bedrijfsnaam'] ?>"
+                                        <input readonly class="form-control" value="<?= $userinfo['bedrijfsnaam'] ?>"
                                                type="text">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-lg-3 control-label"><?= TEXT_EMAIL ?></label>
                                     <div class="col-lg-8">
-                                        <input disabled class="form-control" value="<?= $userinfo['email'] ?>"
+                                        <input readonly class="form-control" value="<?= $userinfo['email'] ?>"
                                                type="text">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-lg-3 control-label"><?= TEXT_ADRESS ?></label>
                                     <div class="col-lg-8">
-                                        <input disabled class="form-control" value="<?= $userinfo['adres'] ?>"
+                                        <input readonly class="form-control" value="<?= $userinfo['adres'] ?>"
                                                type="text">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-lg-3 control-label"><?= TEXT_POSTALCODE ?></label>
                                     <div class="col-lg-8">
-                                        <input disabled class="form-control" size="6"
+                                        <input readonly class="form-control" size="6"
                                                value="<?= $userinfo['postcode'] ?>" type="text">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-lg-3 control-label"><?= TEXT_CITY ?></label>
                                     <div class="col-lg-8">
-                                        <input disabled class="form-control" value="<?= $userinfo['plaats'] ?>"
+                                        <input readonly class="form-control" value="<?= $userinfo['plaats'] ?>"
                                                type="text">
                                     </div>
                                 </div>
@@ -156,7 +156,7 @@ if ($userinfo['permgroup'] == '1') {
                                     <div class="form-group">
                                         <label class="col-lg-3 control-label"><?= TEXT_PERMISSION ?></label>
                                         <div class="col-lg-8">
-                                            <input disabled class="form-control" value="<?= $usrperm['name'] ?>" type="text">
+                                            <input readonly class="form-control" value="<?= $usrperm['name'] ?>" type="text">
                                         </div>
                                     </div>
                                 <?php } ?>

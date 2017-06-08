@@ -61,9 +61,9 @@ class Assignment
         return $this->db->getAssignmentsByUserId($userId);
     }
 
-    public function getAssignmentsByStatus($status)
+    public function getAllAssignmentsByStatus($status)
     {
-        return $this->db->getAssignmentsByStatus($status);
+        return $this->db->getAllAssignmentsByStatus($status);
     }
 
     /**
@@ -207,4 +207,7 @@ class Assignment
         return $this->db->getTimeDifference($date1, $date2);
     }
 
+    public function updateStatus($id, $status){
+        return $this->db->updateStatus($id, $status);
+    }
 }

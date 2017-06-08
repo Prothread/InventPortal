@@ -27,11 +27,12 @@ class DbCase extends Database
     public function delete($id)
     {
         $sql = "DELETE FROM `cases` WHERE `id` = '{$id}'";
-
-        if ($result = $this->dbQuery($sql)) {
-            return true;
-        }
-        return false;
+        $this->dbQuery($sql);
+        $sql = "DELETE FROM `logs` WHERE `linkType` = 5 AND `linkId` = '{$id}'";
+        $this->dbQuery($sql);
+        $sql = "DELETE FROM `notes` WHERE `linkType` = 5 AND `linkId` = '{$id}'";
+        $this->dbQuery($sql);
+        return true;
     }
 
     public function getCaseById($id)
@@ -68,7 +69,7 @@ class DbCase extends Database
         return $this->connection->insert_id;
     }
 
-    public function getCasesByStatus($status)
+    public function getAllCasesByStatus($status)
     {
         $sql = "SELECT * FROM `cases` WHERE `status` = {$status}";
         $result = $this->dbQuery($sql);
@@ -79,6 +80,11 @@ class DbCase extends Database
     public function assignUser($user, $id){
         $status = 1;
         $sql = "UPDATE `cases` SET `user` = '{$user}', `status` = '{$status}' WHERE `id` = {$id}";
+        $this->dbQuery($sql);
+    }
+
+    public function updateStatus($id, $status){
+        $sql = "UPDATE `cases` SET `status` = {$status} WHERE `id` = {$id}";
         $this->dbQuery($sql);
     }
 }

@@ -13,9 +13,11 @@ include '../app/Model/viewSetup.php';
 ?>
 <div class="crm-content-view-wrapper">
     <div class="view-content">
-        <h1 class="crm-content-header"><?= TENDER_OVERVIEW ?></h1>
+        <h1 class="crm-content-header"><?= TENDER_OVERVIEW ?><?php if (isset($finished)) {echo TEXT_HEADER_FINISHED;}elseif (isset($deleted)){echo TEXT_HEADER_DELETED;}; ?></h1>
+        <?php  if($user->getPermission($permgroup, 'CAN_EDIT_CRM') == 1){?>
         <button id="thedeletebutton" class="custom-file-upload" data-toggle="modal"
                 data-target="#myModal"> <?= TEXT_DELETE ?> </button>
+        <?php }?>
         <form class="crm-add" action="#" method="post">
             <div>
                 <label><?= TABLE_TITLE ?></label>
@@ -28,13 +30,17 @@ include '../app/Model/viewSetup.php';
                        } else {
                            echo $tenderinfo['subject'];
                        }
-                       ?>">
+                       ?>"
+                    <?php  if($user->getPermission($permgroup, 'CAN_EDIT_CRM') != 1){echo 'readonly';}?>
+                >
             </div>
             <div>
                 <label><?= TEXT_ASSIGNFOR ?></label>
                 <select class="form-control <?php if (isset($tender_client_error)) {
                     echo "error-input";
-                } ?>" name="client">
+                } ?>" name="client"
+                    <?php  if($user->getPermission($permgroup, 'CAN_EDIT_CRM') != 1){echo 'readonly';}?>
+                >
                     <option value="0"<?php if ($tenderinfo['client'] == 0) {
                         echo 'selected';
                     } ?>><?= TEXT_ASSIGNFOR ?></option>
@@ -54,19 +60,19 @@ include '../app/Model/viewSetup.php';
             </div>
             <div>
                 <label><?= TEXT_EMPLOYEE ?></label>
-                <select class="form-control" name="userId">
+                <select class="form-control" name="userId" <?php  if($user->getPermission($permgroup, 'CAN_EDIT_CRM') != 1){echo 'readonly';}?>>
                     <option value="0"<?php if (isset($tenderinfo['user']) && $tenderinfo['user'] == 0) {
                         echo 'selected';
                     } ?>><?= TEXT_EMPLOYEE ?></option>
                     <?php
-                    foreach ($users as $user) {
-                        echo '<option value="' . $user['id'] . '"';
-                        if ($post && $user['id'] == $_POST['userId']) {
+                    foreach ($users as $u) {
+                        echo '<option value="' . $u['id'] . '"';
+                        if ($post && $u['id'] == $_POST['userId']) {
                             echo 'selected';
-                        } elseif (!$post && $user['id'] == $tenderinfo['user']) {
+                        } elseif (!$post && $u['id'] == $tenderinfo['user']) {
                             echo 'selected';
                         }
-                        echo '>' . $user['naam'] . '</option>';
+                        echo '>' . $u['naam'] . '</option>';
                     }
                     ?>
                 </select>
@@ -81,7 +87,7 @@ include '../app/Model/viewSetup.php';
                 } else {
                     echo $tenderinfo['validity'];
                 }
-                ?>">
+                ?>" <?php  if($user->getPermission($permgroup, 'CAN_EDIT_CRM') != 1){echo 'readonly';}?>>
             </div>
             <div>
                 <label><?= TEXT_VALUE ?></label>
@@ -93,7 +99,9 @@ include '../app/Model/viewSetup.php';
                 } else {
                     echo $tenderinfo['value'];
                 }
-                ?>">
+                ?>"
+                    <?php  if($user->getPermission($permgroup, 'CAN_EDIT_CRM') != 1){echo 'readonly';}?>
+                >
 
             </div>
             <div>
@@ -105,7 +113,9 @@ include '../app/Model/viewSetup.php';
                        } else {
                            echo $tenderinfo['chance'];
                        }
-                       ?>">
+                       ?>"
+                    <?php  if($user->getPermission($permgroup, 'CAN_EDIT_CRM') != 1){echo 'readonly';}?>
+                >
             </div>
             <div>
                 <label><?= TEXT_END_DATE ?></label>
@@ -116,14 +126,18 @@ include '../app/Model/viewSetup.php';
                        } else {
                            echo date("d-m-Y", strtotime($tenderinfo['endDate']));
                        }
-                       ?>">
+                       ?>"
+                    <?php  if($user->getPermission($permgroup, 'CAN_EDIT_CRM') != 1){echo 'readonly';}?>
+                >
                 <br>
             </div>
             <div class="description-holder">
                 <label><?= TEXT_DESCRIPTION ?></label>
                 <textarea name="description" class="<?php if (isset($tender_description_error)) {
                     echo "error-input";
-                } ?>"><?php
+                } ?>"
+                    <?php  if($user->getPermission($permgroup, 'CAN_EDIT_CRM') != 1){echo 'readonly';}?>
+                ><?php
                     if ($post) {
                         echo $_POST['description'];
                     } else {
@@ -132,12 +146,39 @@ include '../app/Model/viewSetup.php';
                     ?></textarea>
 
             </div>
+            <?php
+            if($user->getPermission($permgroup, 'CAN_EDIT_CRM') == 1){
+            if (!isset($finished) && !isset($deleted)) {
+            ?>
             <div class="button-update">
                 <div class="button-push"></div>
-                <button type="submit" name="update"
-                        class="custom-file-upload"><?= TEXT_EDIT ?></button>
+                    <button type="submit" name="update"
+                            class="custom-file-upload"><?= TEXT_EDIT ?></button>
             </div>
+                <?php
+            }
+}
+            ?>
         </form>
+        <?php if($user->getPermission($permgroup, 'CAN_EDIT_CRM') == 1){?>
+        <div id="finish-holder">
+            <div class="button-push"></div>
+            <?php
+            if (!isset($finished) && !isset($deleted)) {
+                ?>
+                <button id="finish-button" name="finish" class="custom-file-upload" data-toggle="modal"
+                        data-target="#myModal"><?= TEXT_FINISH ?></button>
+                <?php
+            } else {
+                ?>
+                <form action="#" method="post">
+                    <button id="revert-button" name="revert" class="custom-file-upload"><?= TEXT_REVERT ?></button>
+                </form>
+                <?php
+            }
+            ?>
+        </div>
+        <?php }?>
     </div>
 </div>
 

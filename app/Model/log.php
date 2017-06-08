@@ -152,4 +152,8 @@ class log
     public function getLogsByLinkId($linkType, $linkId){
         return $this->db->getLogsByLinkId($linkType, $linkId);
     }
+
+    public function deleteLogsByLinkId($typeNumb, $id){
+        return $this->db->deleteLogsByLinkId($typeNumb, $id);
+    }
 }

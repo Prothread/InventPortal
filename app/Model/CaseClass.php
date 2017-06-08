@@ -41,7 +41,6 @@ class CaseClass
     /*
      * Afrond datum
      */
-    private $finishDate;
 
     private $project;
 
@@ -223,24 +222,8 @@ class CaseClass
         $this->status = $status;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getFinishDate()
-    {
-        return $this->finishDate;
-    }
-
-    /**
-     * @param mixed $finishDate
-     */
-    public function setFinishDate($finishDate)
-    {
-        $this->finishDate = $finishDate;
-    }
-
-    public function getCasesByStatus($status){
-        return $this->db->getCasesByStatus($status);
+    public function getAllCasesByStatus($status){
+        return $this->db->getAllCasesByStatus($status);
     }
 
     public function assignUser($user, $id){
@@ -249,5 +232,9 @@ class CaseClass
     public function getTimeDifference($date1, $date2)
     {
         return $this->db->getTimeDifference($date1, $date2);
+    }
+
+    public function updateStatus($id, $status){
+        return $this->db->updateStatus($id, $status);
     }
 }

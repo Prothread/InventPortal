@@ -66,7 +66,7 @@ include '../app/view/addItemSetup.php';
             <div class="button-holder">
                 <div class="button-push"></div>
                 <button type="submit" name="create" class="custom-file-upload"
-                        onclick="ez()" id="addSubmit"><?= TEXT_CREATE_DROPDOWN ?></button>
+                        onclick="getTasks()" id="addSubmit"><?= TEXT_CREATE_DROPDOWN ?></button>
             </div>
             <input type="hidden" name="defaultTasks" id="defaultTasks">
         </form>

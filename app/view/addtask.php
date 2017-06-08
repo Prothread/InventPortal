@@ -48,7 +48,7 @@ include '../app/view/addItemSetup.php';
                     <?php
                     foreach ($users as $user) {
                         echo '<option value="' . $user['id'] . '"';
-                        if (isset($_POST['create']) && $user['id'] == $_POST['user']) {
+                        if (isset($_POST['create']) && $user['id'] == $_POST['userId']) {
                             echo 'selected';
                         }
                         echo '>' . $user['naam'] . '</option>';

@@ -230,22 +230,22 @@ if (isset($_SESSION['accorduserid'])) {
                     <?php
                 } ?>
                 <div id="refsh"><?php
-                    if (in_array(2, $verifiedimages)) {
-                        $verified = 3;
-                        if ($usr['lang'] == 'nl') {
-                            $verifytext = "afgekeurd";
-                        } else {
-                            $verifytext = "declined";
-                        }
-                    } else if (in_array(0, $verifiedimages) || in_array(null, $verifiedimages) || empty($verifiedimages)) {
-                        $verified = 1;
-                        $verifytext = '';
-                    } else {
+                    if(in_array(1,$verifiedimages)){
                         $verified = 2;
                         if ($usr['lang'] == 'nl') {
                             $verifytext = "goedgekeurd";
                         } else {
                             $verifytext = "approved";
+                        }
+                    }elseif (in_array(0, $verifiedimages) || in_array(null, $verifiedimages) || empty($verifiedimages)) {
+                        $verified = 1;
+                        $verifytext = '';
+                    } else {
+                        $verified = 3;
+                        if ($usr['lang'] == 'nl') {
+                            $verifytext = "afgekeurd";
+                        } else {
+                            $verifytext = "declined";
                         }
                     }
 
@@ -299,9 +299,6 @@ if (isset($_SESSION['accorduserid'])) {
                     <div id="verify" style="display: none" class="alert alert-info" role="alert"></div>
 
                     <input type="hidden" name="fromname" id="" value="<?= $clientname ?>">
-                    <!--<input type="hidden" name="mailto" id="" value="kevin.herdershof@hotmail.com">-->
-
-
 
                     <label id="Voorwaarden"><?= TEXT_BEFORE_TERMS_AND_CONDITIONS ?> <a href="index.php?page=conditions"
                                                                                        target="_blank"><span

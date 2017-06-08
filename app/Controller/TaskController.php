@@ -174,4 +174,8 @@ class TaskController
     public function getAllTasksByStatus($status){
         return $this->model->getAllTasksByStatus($status);
     }
+
+    public function updateStatus($id, $status){
+        return $this->model->updateStatus($id, $status);
+    }
 }

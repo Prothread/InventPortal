@@ -5,14 +5,28 @@
  * Date: 6-4-2017
  * Time: 10:23
  */
+//block controller
+$block = new BlockController();
 
-if($type == 'default'){
+if($user->getPermission($permgroup, 'CAN_VIEW_CRM') != 1){
+    $block->Redirect('index.php?page=crmdashboard');
+    Session::flash('error', TEXT_NO_PERMISSION);
+}
+
+if($type == 'template' || $type == 'default'){
+    if($user->getPermission($permgroup, 'CAN_VIEW_TEMPLATES') != 1){
+        $block->Redirect('index.php?page=crmdashboard');
+        Session::flash('error', TEXT_NO_PERMISSION);
+    }
+}
+
+if ($type == 'default') {
     $typeinfo = 'taskinfo';
     $newtypeController = 'TaskController';
     $typeController = 'taskController';
     $typeGetById = 'getTaskById';
 
-}else {
+} else {
 //Dynamic names
     $typeTasks = $type . 'Tasks';
     $typeAssignments = $type . 'Assignments';
@@ -23,8 +37,6 @@ if($type == 'default'){
     $typeGetById = 'get' . $typeCap . 'ById';
 }
 
-//block controller
-$block = new BlockController();
 if (!filter_var($_GET['id'], FILTER_VALIDATE_INT)) {
     $block->Redirect('index.php?page=404');
 }
@@ -32,70 +44,69 @@ if (!filter_var($_GET['id'], FILTER_VALIDATE_INT)) {
 //item ID
 $id = $_GET['id'];
 
-$pError = false;
-
-if(isset($_GET['p'])) {
-    $pLink = $_GET['p'];
-    if(!is_numeric($pLink) || $pLink == ''){
-        $pError = true;
-    }else {
-        $pTypeId = $pLink[0];
-        switch ($pTypeId) {
-            case 1:
-                $pType = 'tender';
-                break;
-            case 2:
-                $pType = 'project';
-                break;
-            case 3:
-                $pType = 'assignement';
-                break;
-            case 5:
-                $pType = 'case';
-                break;
-            default:
-                $block->Redirect('index.php?page=404');
-        }
-        $pId = substr($pLink, 1);
-        if($pId == ''){
-            $pError = true;
-        }
-    }
-}
-
-if(!is_numeric($id) || $pError){
-    $block->Redirect('index.php?page=404');
-}elseif (!$pError && isset($pType)){
-    $pDeleteRe = true;
-}
-
 //mysqli connection (local)
 $mysqli = mysqli_connect();
 
 //item controller
 ${$typeController} = new $newtypeController();
-//item info
+//item info-
 ${$typeinfo} = ${$typeController}->$typeGetById($id);
 
-//item not found
+//log controller
+$logController = new LogController();
+
+//note controller
+$noteController = new NoteController();
+
+//item not foundq
 if (is_null(${$typeinfo})) {
     $block->Redirect('index.php?page=404');
 }
 
-if ($type == 'template') {
-    ?>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script>
-        $(function () {
-            $("#sortable").sortable();
-            $("#sortable").disableSelection();
-        });
-    </script>
-    <?php
+//check parent redirect ($_GET(p))
+
+if ($type == 'assignment' || $type == 'task') {
+//check if has parent
+    $hasParent = false;
+    if ($type == 'task') {
+        $parentTypes = ["project", "assignment", "tender", "cases"];
+    } else {
+        $parentTypes = ["project"];
+    }
+    foreach ($parentTypes as $p) {
+        if (${$typeinfo}[$p] != 0) {
+            $parentType = $p;
+            $parentId = ${$typeinfo}[$p];
+            $hasParent = true;
+        }
+    }
+    if ($hasParent) {
+        switch ($parentType) {
+            case "tender":
+                $parentTypeNumb = 1;
+                break;
+            case "project":
+                $parentTypeNumb = 2;
+                break;
+            case "assignment":
+                $parentTypeNumb = 3;
+                break;
+            case "cases":
+                $parentTypeNumb = 5;
+                break;
+        };
+    }
 }
 
-//user ID
-$thisUserId = $_SESSION['usr_id'];
+$redirectParent = false;
+
+if (isset($_GET['p']) && $_GET['p'] == 't') {
+    $redirectParent = true;
+}
+
+if (isset($_GET['p']) && $_GET['p'] != 't') {
+    $block->Redirect('index.php?page=404');
+}
 
 //type numb setter
 switch ($type) {
@@ -117,10 +128,68 @@ switch ($type) {
         break;
 }
 
+if (isset($_POST['finish'])) {
+    //update status
+    ${$typeController}->updateStatus($id, 5);
+    //add log to item
+    $loginfo = [
+        'subject' => 'TEXT_' . strtoupper($type) . '_FINISHED',
+        'description' => 'TABLE_' . strtoupper($type) . '[constDivide]' . ${$typeinfo}['subject'] . '[constDivide]' . 'TEXT_LOG_FINISHED',
+        'date' => date('Y-m-d G:i:s'),
+        'userId' => $_SESSION['usr_id'],
+        'linkType' => $typeNumb,
+        'linkId' => $id
+    ];
+    $logController->create($loginfo);
+    //add log to parent
+    if ($type == 'assignment' || $type == 'task') {
+        //parent log
+        if ($hasParent) {
+            $loginfo = [
+                'subject' => 'TEXT_CHILD_' . strtoupper($type) . '_FINISHED',
+                'description' => 'TEXT_CHILD_' . strtoupper($type) . '[constDivide]' . ${$typeinfo}['subject'] . '[constDivide]' . 'TEXT_LOG_FINISHED',
+                'date' => date('Y-m-d G:i:s'),
+                'userId' => $_SESSION['usr_id'],
+                'linkType' => $parentTypeNumb,
+                'linkId' => $parentId
+            ];
+            $logController->create($loginfo);
+        }
+    }
+    ${$typeinfo} = ${$typeController}->$typeGetById($id);
+    $finished = true;
+}
+
+if(isset(${$typeinfo}['status'])) {
+    switch (${$typeinfo}['status']) {
+        case 5:
+            $finished = true;
+            break;
+        case 6:
+            $deleted = true;
+            break;
+    }
+}
+
+if ($type == 'template') {
+    ?>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script>
+        $(function () {
+            $("#sortable").sortable();
+            $("#sortable").disableSelection();
+        });
+    </script>
+    <?php
+}
+
+//user ID
+$thisUserId = $_SESSION['usr_id'];
+
 //tasks controller
 $taskController = new TaskController();
 
-if($type != 'default' && $type != 'template') {
+if ($type != 'default' && $type != 'template') {
 //users controller
     $userController = new UserController();
 //client list
@@ -128,16 +197,10 @@ if($type != 'default' && $type != 'template') {
 //user list
     $users = $userController->getUserList();
 
-//log controller
-    $logController = new LogController();
-
 //note type contoller
     $noteTypeController = new NoteTypeController();
 //note type list
     $noteTypes = $noteTypeController->getNoteTypes();
-
-//note controller
-    $noteController = new NoteController();
 
 //note handeler
     if (isset($_POST['noteAdd']) || isset($_POST['noteEdit']) || isset($_POST['noteDelete'])) {
@@ -145,9 +208,7 @@ if($type != 'default' && $type != 'template') {
     }
 
 //related notes
-    if($type != 'default' && $type != 'template') {
-        $notes = $noteController->getNotesByLinkId($typeNumb, ${$typeinfo}['id']);
-    }
+    $notes = $noteController->getNotesByLinkId($typeNumb, ${$typeinfo}['id']);
 }
 if ($type == 'task' || $type == 'case' || $type == 'project') {
     //assignment controller
@@ -172,7 +233,7 @@ if ($type == 'task') {
     //case list
     $caseList = $caseController->getAllCases();
 }
-if ($type == 'template') {
+if ($type == 'template' || $type == 'default') {
     $defaultTask = $taskController->getAllTasksByStatus(4);
     $templateTaskLinksController = new TemplateTaskLinksController();
 }
@@ -182,9 +243,18 @@ if (isset($_POST['submitTask'])) {
     include '../app/Model/subTaskAdd.php';
 }
 
+//can finish
+$canFinish = true;
+
 //related tasks
 if ($type != 'task' && $type != 'default' && $type != 'template') {
     ${$typeTasks} = $taskController->getTasksByLinkId($type, $id);
+    foreach (${$typeTasks} as $task) {
+        if ($task['status'] != "5" && $task['status'] != "6") {
+            $canFinish = false;
+            break;
+        }
+    }
 }
 
 //item add error
@@ -285,6 +355,199 @@ if ($type == 'project') {
 
     //related assignments
     $projectAssignments = $assignmentController->getAssignmentByProjectId($id);
+
+    foreach ($projectAssignments as $projectAssignment) {
+        if ($projectAssignment['status'] != '5') {
+            $canFinish = false;
+            break;
+        }
+    }
+}
+
+//revert item
+if (isset($_POST['revert'])) {
+    if (${$typeinfo}['user'] != 0) {
+        $status = 1;
+    } else {
+        $status = 0;
+    }
+    ${$typeController}->updateStatus($id, $status);
+    $loginfo = [
+        'subject' => 'TEXT_' . strtoupper($type) . '_REVERTED',
+        'description' => 'TABLE_' . strtoupper($type) . '[constDivide]' . ${$typeinfo}['subject'] . '[constDivide]' . 'TEXT_LOG_REVERTED',
+        'date' => date('Y-m-d G:i:s'),
+        'userId' => $_SESSION['usr_id'],
+        'linkType' => $typeNumb,
+        'linkId' => $id
+    ];
+    $logController->create($loginfo);
+
+    if ($type == 'assignment' || $type == 'task') {
+        //parent log
+        if ($hasParent) {
+            $loginfo = [
+                'subject' => 'TEXT_CHILD_' . strtoupper($type) . '_REVERTED',
+                'description' => 'TEXT_CHILD_' . strtoupper($type) . '[constDivide]' . ${$typeinfo}['subject'] . '[constDivide]' . 'TEXT_LOG_REVERTED',
+                'date' => date('Y-m-d G:i:s'),
+                'userId' => $_SESSION['usr_id'],
+                'linkType' => $parentTypeNumb,
+                'linkId' => $parentId
+            ];
+            $logController->create($loginfo);
+        }
+    }
+    //revert child tasks
+    if ($type == 'tender' || $type == 'project' || $type == 'assignment' || $type == 'case') {
+        if (!is_null(${$typeTasks})) {
+            foreach (${$typeTasks} as $task) {
+                if ($task['user'] == 0) {
+                    $status = 0;
+                } else {
+                    $status = 1;
+                }
+                $taskController->updateStatus($task['id'], $status);
+                $loginfo = [
+                    'subject' => 'TEXT_TASK_REVERTED',
+                    'description' => 'TABLE_TASK[constDivide]' . $task['subject'] . '[constDivide]' . 'TEXT_LOG_REVERTED',
+                    'date' => date('Y-m-d G:i:s'),
+                    'userId' => $_SESSION['usr_id'],
+                    'linkType' => 4,
+                    'linkId' => $task['id']
+                ];
+                $logController->create($loginfo);
+                ${$typeTasks} = $taskController->getTasksByLinkId($type, $id);
+            }
+        }
+    }
+    //revert child assignments
+    if ($type == 'project') {
+        if (!is_null($projectAssignments)) {
+            foreach ($projectAssignments as $projectAssignment) {
+                if ($projectAssignment['user'] == 0) {
+                    $status = 0;
+                } else {
+                    $status = 1;
+                }
+                $assignmentController->updateStatus($projectAssignment['id'], $status);
+                $loginfo = [
+                    'subject' => 'TEXT_ASSIGNMENT_REVERTED',
+                    'description' => 'TABLE_ASSIGNMENT[constDivide]' . $projectAssignment['subject'] . '[constDivide]' . 'TEXT_LOG_REVERTED',
+                    'date' => date('Y-m-d G:i:s'),
+                    'userId' => $_SESSION['usr_id'],
+                    'linkType' => 3,
+                    'linkId' => $projectAssignment['id']
+                ];
+                $logController->create($loginfo);
+                $projectAssignments = $assignmentController->getAssignmentByProjectId($id);
+            }
+        }
+    }
+    ${$typeinfo} = ${$typeController}->$typeGetById($id);
+
+    unset($finished);
+    unset($deleted);
+
+    if (is_null(${$typeinfo})) {
+        $block->Redirect('index.php?page=404');
+    }
+}
+
+//remove item
+if (isset($_POST['remove'])) {
+    ${$typeController}->updateStatus($id, 6);
+    if ($type == 'assignment' || $type == 'task') {
+        if ($hasParent) {
+            $loginfo = [
+                'subject' => 'TEXT_CHILD_' . strtoupper($type) . '_DELETED',
+                'description' => 'TEXT_CHILD_' . strtoupper($type) . '[constDivide]' . ${$typeinfo}['subject'] . '[constDivide]' . 'TEXT_DELETED',
+                'date' => date('Y-m-d G:i:s'),
+                'userId' => $_SESSION['usr_id'],
+                'linkType' => $parentTypeNumb,
+                'linkId' => $parentId
+            ];
+            $logController->create($loginfo);
+        }
+    }
+    //add delete to log item
+    $loginfo = [
+        'subject' => 'TEXT_' . strtoupper($type) . '_ARCHIVED',
+        'description' => 'TABLE_' . strtoupper($type) . '[constDivide]' . ${$typeinfo}['subject'] . '[constDivide]' . 'TEXT_MOVED_ARCHIVED',
+        'date' => date('Y-m-d G:i:s'),
+        'userId' => $_SESSION['usr_id'],
+        'linkType' => $typeNumb,
+        'linkId' => $id
+    ];
+    $logController->create($loginfo);
+
+    //remove child tasks
+    if ($type == 'tender' || $type == 'project' || $type == 'assignment' || $type == 'case') {
+        if (!is_null(${$typeTasks})) {
+            foreach (${$typeTasks} as $task) {
+                $taskController->updateStatus($task['id'], 6);
+                $loginfo = [
+                    'subject' => 'TEXT_TASK_ARCHIVED',
+                    'description' => 'TABLE_TASK[constDivide]' . $task['subject'] . '[constDivide]' . 'TEXT_MOVED_ARCHIVED',
+                    'date' => date('Y-m-d G:i:s'),
+                    'userId' => $_SESSION['usr_id'],
+                    'linkType' => 4,
+                    'linkId' => $task['id']
+                ];
+                $logController->create($loginfo);
+            }
+        }
+    }
+    //remove child assignments
+    if ($type == 'project') {
+        if (!is_null($projectAssignments)) {
+            foreach ($projectAssignments as $projectAssignment) {
+                $assignmentController->updateStatus($projectAssignment['id'], 6);
+                $loginfo = [
+                    'subject' => 'TEXT_ASSIGNMENT_ARCHIVED',
+                    'description' => 'TABLE_ASSIGNMENT[constDivide]' . $projectAssignment['subject'] . '[constDivide]' . 'TEXT_MOVED_ARCHIVED',
+                    'date' => date('Y-m-d G:i:s'),
+                    'userId' => $_SESSION['usr_id'],
+                    'linkType' => 3,
+                    'linkId' => $projectAssignment['id']
+                ];
+                $logController->create($loginfo);
+            }
+        }
+    }
+
+    if ($redirectParent) {
+        $block->Redirect('index.php?page=' . $parentType . 'view&id=' . $parentId);
+    } else if ($type == 'default') {
+        $block->Redirect('index.php?page=defaulttasksoverview');
+    } else {
+        $block->Redirect('index.php?page=' . $type . 'soverview');
+    }
+}
+
+//delete handler
+if (isset($_POST['delete'])) {
+    //delete item
+    ${$typeController}->delete($id);
+    if ($type == 'tender' || $type == 'assignment' || $type == 'project' || $type == 'case') {
+        if (!is_null(${$typeTasks})) {
+            foreach (${$typeTasks} as $task) {
+                $taskController->delete($task['id']);
+            }
+        }
+    }
+    if ($type == 'project' && isset($projectAssignments) && !is_null($projectAssignments)) {
+        foreach ($projectAssignments as $assignment) {
+            if (!is_null($projectAssignments)) {
+                $assignmentController->delete($assignment['id']);
+                $deleteTasks = $taskController->getTasksByLinkId('assignment', $assignment['id']);
+                if (!is_null($deleteTasks)) {
+                    foreach ($deleteTasks as $deleteTask) {
+                        $taskController->delete($deleteTask['id']);
+                    }
+                }
+            }
+        }
+    }
+    $block->Redirect('index.php?page=' . $type . 'soverview');
 }
 
 //post check
@@ -308,18 +571,18 @@ if (isset($_POST['update'])) {
             $valueNames = ["subject", "client", "userId", "endDate", "description", "projectId"];
             break;
         case 'task':
+            $valueNames = ["subject", "client", "userId", "project", "assignment", "urgency", "duration", "endDate", "description", "tender", "cases"];
+            break;
         case 'default':
             $valueNames = ["subject", "client", "userId", "project", "assignment", "urgency", "duration", "endDate", "description", "tender", "cases"];
-            if($type == 'default'){
-                $_POST['client'] = "0";
-                $_POST['userId'] = "0";
-                $_POST['project'] = "0";
-                $_POST['assignment'] = "0";
-                $_POST['endDate'] = "0000-00-00";
-                $_POST['urgency'] = "0";
-                $_POST['tender'] = "0";
-                $_POST['cases'] = "0";
-            }
+            $_POST['client'] = "0";
+            $_POST['userId'] = "0";
+            $_POST['project'] = "0";
+            $_POST['assignment'] = "0";
+            $_POST['endDate'] = "0000-00-00";
+            $_POST['urgency'] = "0";
+            $_POST['tender'] = "0";
+            $_POST['cases'] = "0";
             break;
         case 'case':
             $valueNames = ["subject", "client", "userId", "project", "assignment", "endDate", "description"];
@@ -347,9 +610,9 @@ if (isset($_POST['update'])) {
         if (isset(${$sVal})) {
             ${$sVal} = trim(${$sVal});
             if (!filter_var(${$sVal}, FILTER_SANITIZE_STRING)) {
-                if($type == "task" && $sVal == 'endDate' && ${$sVal} == ''){
+                if ($type == "task" && $sVal == 'endDate' && ${$sVal} == '') {
                     ${$sVal} = "0000-00-00";
-                }else {
+                } else {
                     $error = true;
                     $sVal_error = $type . '_' . $sVal . '_error';
                     ${$sVal_error} = true;
@@ -391,18 +654,20 @@ if (isset($_POST['update'])) {
     //error check
     if (!$error) {
         //status setter
-        if($type == 'default'){
+        if ($type == 'default') {
 
             //default status
-            $status = 4;
-        }else if ($userId == 0) {
+            ${$typeinfo}['status'] = 4;
+        } else if ($type == 'template') {
+
+        } else if ($userId == 0) {
 
             //open status
-            $status = 0;
+            ${$typeinfo}['status'] = 0;
         } else {
 
             //ongoing status
-            $status = 1;
+            ${$typeinfo}['status'] = 1;
         }
 
         if ($type == 'tender') {
@@ -412,7 +677,6 @@ if (isset($_POST['update'])) {
         //value array set
         ${$typeinfo} = [
             'id' => $id,
-            'status' => $status
         ];
 
         foreach ($valueNames as $v) {
@@ -434,7 +698,7 @@ if (isset($_POST['update'])) {
                     'linkId' => $id
                 ];
                 $logController->create($loginfo);
-            } else if($type == 'template') {
+            } else if ($type == 'template') {
                 $templateTaskLinksController->deleteByTemplateId($id);
 
                 $tasksId = explode("-", $defaultTasks);
@@ -451,46 +715,19 @@ if (isset($_POST['update'])) {
                     }
                 }
             }
-            if($type == 'assignment' || $type == 'task'){
+            if ($type == 'assignment' || $type == 'task') {
                 //parent log
-                $hasParent = false;
-                if($type == 'task'){
-                    $parentTypes = ["project","assignment","tender","cases"];
-                }else{
-                    $parentTypes = ["project"];
+                if ($hasParent) {
+                    $loginfo = [
+                        'subject' => 'TEXT_CHILD_' . strtoupper($type) . '_EDITED',
+                        'description' => 'TEXT_CHILD_' . strtoupper($type) . '[constDivide]' . ${$typeinfo}['subject'] . '[constDivide]' . 'TEXT_LOG_EDITED',
+                        'date' => date('Y-m-d G:i:s'),
+                        'userId' => $_SESSION['usr_id'],
+                        'linkType' => $parentTypeNumb,
+                        'linkId' => $parentId
+                    ];
+                    $logController->create($loginfo);
                 }
-                foreach ($parentTypes as $p){
-                    if(${$typeinfo}[$p] != 0){
-                        $parentType = $p;
-                        $parentId = ${$typeinfo}[$p];
-                        $hasParent = true;
-                    }
-                }
-                if($hasParent) {
-                    switch ($parentType) {
-                        case "tender":
-                            $parentType = 1;
-                            break;
-                        case "project":
-                            $parentType = 2;
-                            break;
-                        case "assignment":
-                            $parentType = 3;
-                            break;
-                        case "cases":
-                            $parentType = 5;
-                            break;
-                    };
-                }
-                $loginfo = [
-                    'subject' => 'TEXT_CHILD_' . strtoupper($type) . '_EDITED',
-                    'description' => 'TEXT_CHILD_' . strtoupper($type) . '[constDivide]' . ${$typeinfo}['subject'] . '[constDivide]' . 'TEXT_LOG_EDITED',
-                    'date' => date('Y-m-d G:i:s'),
-                    'userId' => $_SESSION['usr_id'],
-                    'linkType' => $parentType,
-                    'linkId' => $parentId
-                ];
-                $logController->create($loginfo);
             }
         }
     }
@@ -499,7 +736,7 @@ if (isset($_POST['update'])) {
 //related logs
 if ($type != 'default' && $type != 'template') {
     $logs = $logController->getLogsByLinkId($typeNumb, ${$typeinfo}['id']);
-}elseif ($type == 'template'){
+} elseif ($type == 'template') {
     $templateTasksId = $templateTaskLinksController->getTaskByTemplateId($id);
 
     $allTemplateTasks = array();
@@ -511,26 +748,7 @@ if ($type != 'default' && $type != 'template') {
     }
 }
 
-//delete handler
-if (isset($_POST['delete'])) {
-
-    //delete item
-    if (${$typeController}->delete($id)) {
-        if(isset($pDeleteRe)){
-            $loginfo = [
-                'subject' => 'TEXT_CHILD_' . strtoupper($type) . '_DELETED',
-                'description' => 'TEXT_CHILD_' . strtoupper($type) . '[constDivide]' . ${$typeinfo}['subject'] . '[constDivide]' . 'TEXT_DELETED',
-                'date' => date('Y-m-d G:i:s'),
-                'userId' => $_SESSION['usr_id'],
-                'linkType' => $pTypeId,
-                'linkId' => $pId
-            ];
-            $logController->create($loginfo);
-            $block->Redirect('index.php?page='.$pType.'view&id='.$pId);
-        }else if($type == 'default'){
-            $block->Redirect('index.php?page=defaulttasksoverview');
-        }else {
-            $block->Redirect('index.php?page=' . $type . 'soverview');
-        }
-    }
+//can delete default task
+if ($type == 'default') {
+    $canDelete = $templateTaskLinksController->checkDeleteDefaultTask(${$typeinfo}['id']);
 }

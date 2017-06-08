@@ -51,4 +51,11 @@ class DbTemplate extends Database
             return true;
         }
     }
+
+    public function delete($id){
+        $sql = "DELETE FROM `template` WHERE `id` = {$id}";
+        $this->dbQuery($sql);
+        $sql = "DELETE FROM `template_task_links` WHERE `idTemplate` = {$id}";
+        $this->dbQuery($sql);
+    }
 }

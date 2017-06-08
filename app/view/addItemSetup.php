@@ -5,7 +5,21 @@
  * Date: 13-4-2017
  * Time: 12:38
  */
+
+if ($user->getPermission($permgroup, 'CAN_EDIT_TEMPLATES') != 1) {
+    $block->Redirect('index.php?page=crmdashboard');
+    Session::flash('error', TEXT_NO_PERMISSION);
+}
+
+if($type == 'default' || $type == 'template'){
+    if($user->getPermission($permgroup, 'CAN_EDIT_TEMPLATES') != 1){
+        $block->Redirect('index.php?page=crmdashboard');
+        Session::flash('error', TEXT_NO_PERMISSION);
+    }
+}
+
 //Default task en task hebben de sortable niet nodig
+
 if ($type != 'default' && $type != 'task') {
     ?>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -112,6 +126,7 @@ $logController = new LogController();
 $error = false;
 
 $post = false;
+
 
 if (isset($_POST['create'])) {
     $post = true;

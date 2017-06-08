@@ -19,16 +19,6 @@ class TemplateTaskLinks
         $this->db = new DbTemplateTaskLinks();
     }
 
-    public function getDb()
-    {
-        return $this->db;
-    }
-
-    public function setDb($db)
-    {
-        $this->db = $db;
-    }
-
     public function getIdTemplate()
     {
         return $this->idTemplate;
@@ -66,4 +56,7 @@ class TemplateTaskLinks
         return $this->db->deleteByTemplateId($id);
     }
 
+    public function checkDeleteDefaultTask($id){
+        return $this->db->checkDeleteDefaultTask($id);
+    }
 }

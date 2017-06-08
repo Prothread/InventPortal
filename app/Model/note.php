@@ -181,4 +181,8 @@ class Note
     {
         return $this->db->getNotesByLinkId($linkType, $linkId);
     }
+
+    public function deleteNotesByLinkId($typeNumb,$id){
+        return $this->db->deleteNotesByLinkId($typeNumb,$id);
+    }
 }
