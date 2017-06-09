@@ -67,7 +67,7 @@ $clients = $userController->getClientList();
                             <?php } ?>
                             <ul>
                                 <li>
-                                    <a ref="?page=<?= $columnType ?>view&id=<?= ${$columnType}['id'] ?>"><?= ${$columnType}['subject'] ?></a>
+                                    <a href="?page=<?= $columnType ?>view&id=<?= ${$columnType}['id'] ?>"><?= ${$columnType}['subject'] ?></a>
                                 </li>
                                 <li>
                                     <?php foreach ($clients as $client) {

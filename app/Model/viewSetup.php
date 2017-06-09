@@ -610,8 +610,10 @@ if (isset($_POST['update'])) {
         if (isset(${$sVal})) {
             ${$sVal} = trim(${$sVal});
             if (!filter_var(${$sVal}, FILTER_SANITIZE_STRING)) {
-                if ($type == "task" && $sVal == 'endDate' && ${$sVal} == '') {
-                    ${$sVal} = "0000-00-00";
+                if ($type == "task" || $type == "project") {
+                    if($sVal == 'endDate' && ${$sVal} == ''){
+                        ${$sVal} = "0000-00-00";
+                    }
                 } else {
                     $error = true;
                     $sVal_error = $type . '_' . $sVal . '_error';
@@ -653,6 +655,16 @@ if (isset($_POST['update'])) {
 
     //error check
     if (!$error) {
+
+        if ($type == 'tender') {
+            $creationDate = ${$typeinfo}["creationdate"];
+        }
+
+        //value array set
+        ${$typeinfo} = [
+            'id' => $id,
+        ];
+
         //status setter
         if ($type == 'default') {
 
@@ -670,15 +682,6 @@ if (isset($_POST['update'])) {
             ${$typeinfo}['status'] = 1;
         }
 
-        if ($type == 'tender') {
-            $creationDate = ${$typeinfo}["creationdate"];
-        }
-
-        //value array set
-        ${$typeinfo} = [
-            'id' => $id,
-        ];
-
         foreach ($valueNames as $v) {
             ${$typeinfo}[$v] = ${$v};
         }
@@ -686,6 +689,7 @@ if (isset($_POST['update'])) {
         if ($type == 'tender') {
             ${$typeinfo}['endDate'] = ${$typeController}->calcEndDate($creationDate, ${$typeinfo}['validity']);
         }
+
         //item update
         if (${$typeController}->update(${$typeinfo})) {
             if ($type != 'template' && $type != 'default') {
